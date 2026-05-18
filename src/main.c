@@ -27,7 +27,7 @@ extern void IntrMain(void);
 void InputHandler_Normal();
 void sub_080009D8();
 void sub_08000FCC();
-void sub_08001144();
+void InterruptHandler_Normal();
 
 extern s8 gUnk_030007D8;
 extern s8 gUnk_03003420;
@@ -72,7 +72,9 @@ struct Unk_03004C20 {
 extern struct Unk_03004C20 gUnk_03004C20;
 
 struct Unk_03002920 {
-    u8 pad0[0x144 - 0x0];
+    u8 pad0[0x8 - 0x0];
+    u8 unk8;
+    u8 pad9[0x144 - 0x9];
     u8 unk144;
 };
 extern struct Unk_03002920 gUnk_03002920;
@@ -130,18 +132,18 @@ void AgbMain(void)
 
     gIntrTable.vBlank = sub_080009D8;
     gIntrTable.hBlank = sub_08000FCC;
-    gIntrTable.vCount = sub_08001144;
-    gIntrTable.timer0 = sub_08001144;
-    gIntrTable.timer1 = sub_08001144;
-    gIntrTable.timer2 = sub_08001144;
-    gIntrTable.timer3 = sub_08001144;
-    gIntrTable.serial = sub_08001144;
-    gIntrTable.dma0 = sub_08001144;
-    gIntrTable.dma1 = sub_08001144;
-    gIntrTable.dma2 = sub_08001144;
-    gIntrTable.dma3 = sub_08001144;
-    gIntrTable.keypad = sub_08001144;
-    gIntrTable.gamePak = sub_08001144;
+    gIntrTable.vCount = InterruptHandler_Normal;
+    gIntrTable.timer0 = InterruptHandler_Normal;
+    gIntrTable.timer1 = InterruptHandler_Normal;
+    gIntrTable.timer2 = InterruptHandler_Normal;
+    gIntrTable.timer3 = InterruptHandler_Normal;
+    gIntrTable.serial = InterruptHandler_Normal;
+    gIntrTable.dma0 = InterruptHandler_Normal;
+    gIntrTable.dma1 = InterruptHandler_Normal;
+    gIntrTable.dma2 = InterruptHandler_Normal;
+    gIntrTable.dma3 = InterruptHandler_Normal;
+    gIntrTable.keypad = InterruptHandler_Normal;
+    gIntrTable.gamePak = InterruptHandler_Normal;
 
     thunk_HeapInit();
     temp_r0 = thunk_HeapAlloc(0x200, 2);

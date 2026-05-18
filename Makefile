@@ -105,6 +105,9 @@ TOOLDIRS := $(filter-out tools/agbcc tools/binutils,$(wildcard tools/*))
 TOOLBASE = $(TOOLDIRS:tools/%=%)
 TOOLS = $(foreach tool,$(TOOLBASE),tools/$(tool)/$(tool)$(EXE))
 
+$(C_BUILDDIR)/interrupts.o: CC1 := tools/agbcc/bin/agbcc
+$(C_BUILDDIR)/interrupts.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -g -fprologue-bugfix
+
 $(C_BUILDDIR)/math.o: CC1 := tools/agbcc/bin/old_agbcc
 $(C_BUILDDIR)/math.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -g
 

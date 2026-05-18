@@ -8,6 +8,8 @@
 #define REG_OFFSET_DISPCNT     0x0
 #define REG_OFFSET_DISPSTAT    0x4
 #define REG_OFFSET_VCOUNT      0x6
+#define REG_OFFSET_VCOUNT_L    0x6
+#define REG_OFFSET_VCOUNT_H    0x7
 #define REG_OFFSET_BG0CNT      0x8
 #define REG_OFFSET_BG1CNT      0xa
 #define REG_OFFSET_BG2CNT      0xc
@@ -187,6 +189,8 @@
 #define REG_ADDR_DISPCNT     (REG_BASE + REG_OFFSET_DISPCNT)
 #define REG_ADDR_DISPSTAT    (REG_BASE + REG_OFFSET_DISPSTAT)
 #define REG_ADDR_VCOUNT      (REG_BASE + REG_OFFSET_VCOUNT)
+#define REG_ADDR_VCOUNT_L    (REG_BASE + REG_OFFSET_VCOUNT_L)
+#define REG_ADDR_VCOUNT_H    (REG_BASE + REG_OFFSET_VCOUNT_H)
 #define REG_ADDR_BG0CNT      (REG_BASE + REG_OFFSET_BG0CNT)
 #define REG_ADDR_BG1CNT      (REG_BASE + REG_OFFSET_BG1CNT)
 #define REG_ADDR_BG2CNT      (REG_BASE + REG_OFFSET_BG2CNT)
@@ -350,6 +354,8 @@
 #define REG_DISPCNT     (*(vu16 *)REG_ADDR_DISPCNT)
 #define REG_DISPSTAT    (*(vu16 *)REG_ADDR_DISPSTAT)
 #define REG_VCOUNT      (*(vu16 *)REG_ADDR_VCOUNT)
+#define REG_VCOUNT_L    (*(vu8  *)REG_ADDR_VCOUNT)
+#define REG_VCOUNT_H    (*(vu8  *)REG_ADDR_VCOUNT)
 #define REG_BG0CNT      (*(vu16 *)REG_ADDR_BG0CNT)
 #define REG_BG1CNT      (*(vu16 *)REG_ADDR_BG1CNT)
 #define REG_BG2CNT      (*(vu16 *)REG_ADDR_BG2CNT)
@@ -603,6 +609,9 @@
 // BLDALPHA
 #define BLDALPHA_BLEND(target1, target2) (((target2) << 8) | (target1))
 #define BLDALPHA_BLEND2(target1, target2) ((target1) | ((target2) << 8))
+
+#define BLDALPHA_MAX 16
+#define BLDY_MAX 16
 
 // SOUNDCNT_H
 #define SOUND_CGB_MIX_QUARTER 0x0000
