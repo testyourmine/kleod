@@ -1,108 +1,10 @@
 #include "global.h"
-#include "heap.h"
+#include "main.h"
 #include "eeprom.h"
+#include "heap.h"
+#include "interrupts.h"
 #include "rand.h"
-
-typedef void (*IntrFunc)(void);
-struct IntrTable {
-    IntrFunc vBlank; // INTR_FLAG_VBLANK
-    IntrFunc hBlank; // INTR_FLAG_HBLANK
-    IntrFunc vCount; // INTR_FLAG_VCOUNT
-    IntrFunc timer0; // INTR_FLAG_TIMER0
-    IntrFunc timer1; // INTR_FLAG_TIMER1
-    IntrFunc timer2; // INTR_FLAG_TIMER2
-    IntrFunc timer3; // INTR_FLAG_TIMER3
-    IntrFunc serial; // INTR_FLAG_SERIAL
-    IntrFunc dma0; // INTR_FLAG_DMA0
-    IntrFunc dma1; // INTR_FLAG_DMA1
-    IntrFunc dma2; // INTR_FLAG_DMA2
-    IntrFunc dma3; // INTR_FLAG_DMA3
-    IntrFunc keypad; // INTR_FLAG_KEYPAD
-    IntrFunc gamePak; // INTR_FLAG_GAMEPAK
-};
-extern struct IntrTable gIntrTable;
-
-extern void IntrMain(void);
-
-void InputHandler_Normal();
-void sub_080009D8();
-void sub_08000FCC();
-void InterruptHandler_Normal();
-
-extern s8 gUnk_030007D8;
-extern s8 gUnk_03003420;
-
-struct Unk_03003510 {
-    void (*unk0[3])(void);
-    s32 unkC;
-    u8 pad10[0x28 - 0x10];
-    void (*unk28[3])(void);
-    u8 pad34[0x38 - 0x34];
-    void *unk38;
-    u8 pad3C[0x78 - 0x3C];
-    u8 unk78;
-    u8 unk79;
-};
-extern struct Unk_03003510 gUnk_03003510;
-
-struct Unk_03003410 {
-    u8 pad0[0x7 - 0x0];
-    u8 unk7;
-};
-extern struct Unk_03003410 gUnk_03003410;
-
-extern volatile void *gUnk_030034FC;
-extern volatile void *gUnk_03004658;
-extern volatile void *gUnk_03004670;
-extern volatile void *gUnk_030047FC;
-extern u16 *gUnk_03005284;
-
-struct Unk_03004C20 {
-    s32 unk0;
-    s32 unk4;
-    u16 unk8;
-    u8 padA[0xC - 0xA];
-    u8 unkC;
-    u8 unkD;
-    u8 padE[0x12 - 0xE];
-    u8 demoNumber;
-    u8 demoInputIndex;
-    u8 demoNextInputTimer;
-};
-extern struct Unk_03004C20 gUnk_03004C20;
-
-struct Unk_03002920 {
-    u8 pad0[0x8 - 0x0];
-    u8 unk8;
-    u8 pad9[0x144 - 0x9];
-    u8 unk144;
-};
-extern struct Unk_03002920 gUnk_03002920;
-
-extern s8 gUnk_03004784;
-extern u16 gUnk_03005210;
-extern u8 gUnk_03005428;
-extern u8 gUnk_0300548C;
-extern u8 gUnk_03005498;
-
-extern u16 gUnk_030034F0;
-extern s16 gNewKeys;
-extern u16 gHeldKeys;
-
-extern u16 gHeldKeysAttract;
-extern u16 gNewKeysAttract;
-extern u8 gUnk_030034E4;
-
-struct Unk_03004790 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
-    s32 unk10;
-    s32 unk14;
-};
-extern struct Unk_03004790 gUnk_03004790; // TODO: s32 array or struct?
-extern s32 gUnk_03005290;
+#include "structs/variables.h"
 
 extern u8 gUnk_080D9150[][0x64];
 
@@ -113,6 +15,8 @@ struct Unk_0818B8E0 {
     u16 *unk4;
 };
 extern struct Unk_0818B8E0 *gUnk_0818B8E0[];
+
+extern void IntrMain(void);
 
 extern void sub_080245E8();
 extern void sub_0800BFF4();
