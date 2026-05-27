@@ -1,4 +1,5 @@
 #include "global.h"
+#include "interrupts.h"
 #include "structs/variables.h"
 
 extern s16 gUnk_080D8E14[]; // sine table
@@ -27,6 +28,7 @@ void sub_080009D8(void)
 // AB0
 void sub_08000AB0(void)
 {
+    // Called during intro movie, in between transitions
     // VBlankHandler_Minimal
     m4aSoundVSync();
     m4aSoundMain();
@@ -36,6 +38,7 @@ void sub_08000AB0(void)
 // AC8
 void sub_08000AC8(void)
 {
+    // Never called?
     // VBlankHandler_ModeA
     m4aSoundVSync();
 
@@ -58,6 +61,7 @@ void sub_08000AC8(void)
 // BD4
 void sub_08000BD4(void)
 {
+    // Called during title screen
     // VBlankHandler_ModeB
     m4aSoundVSync();
 
@@ -80,6 +84,7 @@ void sub_08000BD4(void)
 // CE0
 void sub_08000CE0(void)
 {
+    // Called during boss battle
     // VBlankDmaTransfer
     m4aSoundVSync();
 
@@ -118,6 +123,7 @@ void sub_08000DC0(void)
 // E14
 void sub_08000E14(void)
 {
+    // Never called?
     // VBlankHandler_OamOnlyAlt
     m4aSoundVSync();
 
@@ -135,6 +141,7 @@ void sub_08000E14(void)
 // E68
 void sub_08000E68(void)
 {
+    // Called during intro movie
     // VBlankHandler_WithWindowScroll
     m4aSoundVSync();
 

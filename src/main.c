@@ -23,7 +23,7 @@ extern void sub_0800BFF4();
 extern void sub_080477A8();
 extern void sub_08048768();
 
-#define UNK_KEY_COMBO (L_BUTTON | R_BUTTON | DPAD_RIGHT | B_BUTTON | A_BUTTON)
+#define DELETE_SAVE_DATA_KEYS (L_BUTTON | R_BUTTON | DPAD_RIGHT | B_BUTTON | A_BUTTON)
 
 // 470
 void AgbMain(void)
@@ -72,7 +72,7 @@ void AgbMain(void)
 
     gUnk_03005498 = gUnk_030007D8 = 0;
     gUnk_03005428 = 1;
-    gUnk_03005284[0xB] = 0;
+    gUnk_03005284->unk16 = 0;
     gUnk_03004C20.unk8 = 0;
     gUnk_03003420 = 0;
     thunk_UpdateRng();
@@ -89,7 +89,7 @@ void AgbMain(void)
     m4aSoundInit();
     gUnk_03005210 = 0x100;
 
-    if ((gHeldKeys & UNK_KEY_COMBO) == UNK_KEY_COMBO)
+    if ((gHeldKeys & DELETE_SAVE_DATA_KEYS) == DELETE_SAVE_DATA_KEYS)
     {
         gUnk_03003510.unk0[1] = &sub_080477A8;
     }
@@ -207,7 +207,7 @@ void sub_0800087C(u8 arg0, u8 arg1)
     DmaCopy16(
         3,
         gUnk_0818B8A8[arg1],
-        OBJ_VRAM0 + (gUnk_0818B8E0[(gUnk_03004C20.unkD - 1) * 9 + gUnk_03004C20.unkC]->unk4[(arg0 << 2) - (0x68/2)] * 0x20),
+        OBJ_VRAM0 + (gUnk_0818B8E0[(gUnk_03004C20.world - 1) * 9 + gUnk_03004C20.level]->unk4[(arg0 << 2) - (0x68/2)] * 0x20),
         0x20
     );
 }
@@ -216,9 +216,9 @@ void sub_0800087C(u8 arg0, u8 arg1)
 void sub_080008DC(void)
 {
     // Called on gameplay transitions
-    thunk_HeapFree(gUnk_03004790.unk4 - 4);
+    thunk_HeapFree(gUnk_03004790.unk4 - 2);
     thunk_HeapFree(gUnk_03004790.unk0 - 4);
-    thunk_HeapFree(gUnk_03004790.unkC - 4);
+    thunk_HeapFree(gUnk_03004790.unkC - 2);
     thunk_HeapFree(gUnk_03004790.unk8 - 4);
     thunk_HeapFree(gUnk_03004790.unk14 - 4);
     thunk_HeapFree(gUnk_03004790.unk10 - 4);
