@@ -128,7 +128,13 @@ SECTIONS {
         src/main.o(.text);
         src/math.o(.text);
         src/interrupts.o(.text);
-        asm/code.o(.text);
+        asm/code_08001158.o(.text);
+        asm/code_08003D58.o(.text);
+        asm/code_0800BFF4.o(.text);
+        asm/code_08014184.o(.text);
+        asm/code_080240F4.o(.text);
+        asm/code_0802688C.o(.text);
+        asm/code_08039D8C.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         asm/libagbsyscall.o(.text);

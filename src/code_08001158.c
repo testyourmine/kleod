@@ -67,7 +67,7 @@ extern void gUnk_080D927C; // TODO: type
 extern void gUnk_080D947C; // TODO: type
 
 extern void (*gUnk_08116620[][9])(void);
-extern void* gUnk_08188F5C[];
+extern void* gUnk_08188F5C[][9];
 extern void *gUnk_08189A24[][9];
 extern u32 *gUnk_08189034[][9][3];
 extern u32 *gUnk_081892BC[][9][3];
@@ -164,18 +164,18 @@ void sub_08001158(void)
 
     if ((gUnk_03004C20.level == 0) && (sp0 == 1))
     {
-        sub_08043B34(gUnk_08189544[gUnk_03004C20.world - 1], (void*)0x05000000, 0x200);
+        sub_08043B34(gUnk_08189544[gUnk_03004C20.world - 1], BG_PLTT, BG_PLTT_SIZE);
     }
     else
     {
-        sub_08043B34(gUnk_08188F5C[((gUnk_03004C20.world - 1) * 9) + gUnk_03004C20.level], (void*)0x05000000, 0x200);
+        sub_08043B34(gUnk_08188F5C[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
     }
 
     gUnk_03003430.unk8 = 0;
     gUnk_03003430.unkA = 0;
     gUnk_03003430.unk14 = 0;
-    gUnk_03003430.unk0 = (void *)0x06000000;
-    gUnk_03003430.unk4 = (void *)0x0600E000;
+    gUnk_03003430.unk0 = VRAM;
+    gUnk_03003430.unk4 = VRAM + 0xE000;
     gUnk_03003430.unk10 = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
     gUnk_03003430.unk12 = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
     gUnk_03003430.unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
@@ -183,8 +183,8 @@ void sub_08001158(void)
     gUnk_03003430.unk24 = 0;
     gUnk_03003430.unk26 = 0;
     gUnk_03003430.unk30 = 0;
-    gUnk_03003430.unk1C = (void *)0x06004000;
-    gUnk_03003430.unk20 = (void *)0x0600E800;
+    gUnk_03003430.unk1C = VRAM + 0x4000;
+    gUnk_03003430.unk20 = VRAM + 0xE800;
 
     if ((gUnk_03004C20.level == 0) && (sp0 == 1))
     {
@@ -202,8 +202,8 @@ void sub_08001158(void)
     }
 
     gUnk_03003430.unk4C = 0;
-    gUnk_03003430.unk38 = (void *)0x06008000;
-    gUnk_03003430.unk3C = (void *)0x0600F000;
+    gUnk_03003430.unk38 = VRAM + 0x8000;
+    gUnk_03003430.unk3C = VRAM + 0xF000;
     gUnk_03003430.unk48 = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gUnk_03003430.unk4A = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gUnk_03003430.unk4E = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
@@ -266,8 +266,8 @@ void sub_08001158(void)
     DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.unk4, 0x800);
     DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.unk20, 0x800);
 
-    REG_BG0CNT = (gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 3) | 0x1C40;
-    REG_BG1CNT = (gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 2) | 0x1D44;
+    REG_BG0CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_MOSAIC | BGCNT_CHARBASE(0);
+    REG_BG1CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(2) | BGCNT_SCREENBASE(29) | BGCNT_MOSAIC | BGCNT_CHARBASE(1);
 
     REG_BG0HOFS = (gUnk_03003430.unk8 >> 4) & 0x1FF;
     REG_BG0VOFS = (gUnk_03003430.unkA >> 7) & 0x1FF;
@@ -298,36 +298,37 @@ void sub_08001158(void)
     gUnk_03002910 = tmp;
     }
 
-    REG_WIN0H = 0xF0;
-    REG_WIN0V = 0x90A0;
-    REG_WININ = 0x21;
-    REG_WINOUT = 0x3F;
+    REG_WIN0H = WIN_RANGE(0, DISPLAY_WIDTH);
+    REG_WIN0V = WIN_RANGE((s32)(DISPLAY_HEIGHT * 0.9f), DISPLAY_HEIGHT);
+    REG_WININ = WININ_WIN0_CLR | WININ_WIN0_BG0;
+    REG_WINOUT = WINOUT_WIN01_CLR | WINOUT_WIN01_OBJ | WINOUT_WIN01_BG_ALL;
 
     if ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3)))
     {
-        REG_WIN1H = 0xA0F0;
-        REG_WIN1V = 0x10;
-        REG_WININ = 0x2121;
-        REG_WINOUT = 0x3F;
-        REG_DISPCNT = 0x7741;
+        REG_WIN1H = WIN_RANGE((s32)(DISPLAY_WIDTH * 2.f / 3.f), DISPLAY_WIDTH);
+        REG_WIN1V = WIN_RANGE(0, (s32)(DISPLAY_HEIGHT * 0.1f));
+        REG_WININ = WININ_WIN1_CLR | WININ_WIN1_BG0 | WININ_WIN0_CLR | WININ_WIN0_BG0;
+        REG_WINOUT = WINOUT_WIN01_CLR | WINOUT_WIN01_OBJ | WINOUT_WIN01_BG_ALL;
+        REG_DISPCNT = DISPCNT_WIN1_ON | DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_BG2_ON | DISPCNT_BG1_ON | DISPCNT_BG0_ON | DISPCNT_OBJ_1D_MAP | DISPCNT_MODE_1;
         gUnk_03004C20.unk10 = 1;
         sub_08026128();
     }
     else
     {
-        REG_DISPCNT = 0x3741;
+        REG_DISPCNT = DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_BG2_ON | DISPCNT_BG1_ON | DISPCNT_BG0_ON | DISPCNT_OBJ_1D_MAP | DISPCNT_MODE_1;
         gUnk_03004C20.unk10 = 0;
     }
 
     if (gUnk_03004C20.level != 8)
     {
-        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x7E49;
+        // TODO: use affine for BGCNT size?
+        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT512x256 | BGCNT_WRAP | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
         gIntrTable.vBlank = sub_080009D8;
     }
     else
     {
         var_r4 = (u32)REG_ADDR_BG2CNT; // FAKE!
-        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E49;
+        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT256x512 | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
         gIntrTable.vBlank = sub_08000CE0;
         gUnk_03004C20.unkE = 1;
     }
@@ -504,7 +505,7 @@ void sub_08001F58(void)
                     var_r3.unk0 = 1;
                 }
             }
-            if (gHeldKeys & 0x20)
+            if (gHeldKeys & DPAD_LEFT)
             {
                 var_r7 = 0;
                 var_r3.unk0 = 0;
@@ -532,7 +533,7 @@ void sub_08001F58(void)
                     var_r3.unk0 = -1;
                 }
             }
-            if (gHeldKeys & 0x10)
+            if (gHeldKeys & DPAD_RIGHT)
             {
                 var_r7 = 0;
                 var_r3.unk0 = 0;
@@ -715,7 +716,7 @@ void sub_0800247C(void)
                 var_r6.unk0 = 1;
             }
 
-            if (gHeldKeys & 0x20)
+            if (gHeldKeys & DPAD_LEFT)
             {
                 var_r7 = 0;
                 var_r6.unk0 = 0;
@@ -734,7 +735,7 @@ void sub_0800247C(void)
                 var_r6.unk0 = -1;
             }
 
-            if (gHeldKeys & 0x10)
+            if (gHeldKeys & DPAD_RIGHT)
             {
                 var_r7 = 0;
                 var_r6.unk0 = 0;
@@ -1355,12 +1356,12 @@ void sub_0800343C(u8 arg0)
 void sub_0800350C(void)
 {
     s32 tmp;
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
-    REG_DISPCNT = 0x704;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
+    REG_DISPCNT = DISPCNT_BG2_ON | DISPCNT_BG1_ON | DISPCNT_BG0_ON | DISPCNT_MODE_4;
 
     REG_WININ = REG_WINOUT = REG_WIN0H = REG_WIN0V = REG_WIN1H = REG_WIN1V = 0;
-    REG_BG2CNT = 1;
+    REG_BG2CNT = BGCNT_PRIORITY(1);
 
     // FAKE!
     if (&gUnk_03003430);
@@ -1378,14 +1379,14 @@ void sub_0800350C(void)
     gUnk_030007FC = (((gUnk_03003470 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 
-    DmaCopy16(3, &gUnk_080D927C, (void*)0x05000000, 0x200);
-    DmaCopy16(3, &gUnk_080D947C, (void*)0x06000000, 0x9600);
+    DmaCopy16(3, &gUnk_080D927C, BG_PLTT, BG_PLTT_SIZE);
+    DmaCopy16(3, &gUnk_080D947C, VRAM, 0x9600);
 
     gUnk_03004C20.unk0 = 0;
     gUnk_03003510.unk0[1] = sub_08003750;
     gIntrTable.vBlank = sub_08000DC0;
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aMPlayAllStop();
 }
 
@@ -1407,7 +1408,7 @@ void sub_08003750(void)
         gUnk_03005420 -= 0x10;
         gUnk_03004C20.unk0 = 0;
     }
-    else if ((gUnk_03004C20.unk0 == 0x258) || (gNewKeys & 0xB))
+    else if ((gUnk_03004C20.unk0 == 0x258) || (gNewKeys & (START_BUTTON | B_BUTTON | A_BUTTON)))
     {
         gUnk_030007D8 = 0;
         gUnk_03003410.unk7 = 1;
@@ -1425,8 +1426,8 @@ void sub_08003904(void)
     u32 var_r4;
     u32 var_r6;
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
 
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
@@ -1439,12 +1440,12 @@ void sub_08003904(void)
 
     if (gUnk_03003410.unk8 == 0)
     {
-        gUnk_03004C20.level = gUnk_03003410.unk8;
+        gUnk_03004C20.level = 0;
     }
     gUnk_030051DC = gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
-    gUnk_030007DC = (void*)0x05000200;
-    gUnk_03005490 = (void*)0x06010000;
+    gUnk_030007DC = OBJ_PLTT;
+    gUnk_03005490 = OBJ_VRAM0;
 
     sub_08003D80();
     sub_08003DC0(0, 0, gUnk_03002920.unk0, (u16) gUnk_03002920.unk2, 0, 0, gUnk_03002920.unkC_2, 0, 0x6E);
@@ -1567,9 +1568,9 @@ void sub_08003904(void)
     {
         gUnk_03005418 = &gUnk_080555A8;
     }
-    gUnk_03005294 = gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level]; // TODO: should be pointer types
+    gUnk_03005294 = gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 }
