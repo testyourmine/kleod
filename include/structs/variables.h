@@ -70,7 +70,7 @@ extern u8 gUnk_0300548C;
 extern u8 gUnk_03005498;
 extern s8 gUnk_030007D8;
 
-extern u16 gUnk_030034F0;
+extern u16 gUnk_030034F0; // jump timer count
 extern s16 gNewKeys;
 extern u16 gHeldKeys;
 
@@ -122,7 +122,7 @@ extern struct Unk_03002920 gUnk_03002920;
 
 struct Unk_03003430 {
     void *unk0;
-    void *unk4;
+    void *unk4; // BG0 tilemap
     u16 unk8;
     u16 unkA;
     u8 padC[0x10 - 0xC];
@@ -133,7 +133,7 @@ struct Unk_03003430 {
     u8 unk18;
     u8 pad19[0x1C - 0x19];
     void *unk1C;
-    void *unk20;
+    void *unk20; // BG1 tilemap
     u16 unk24;
     u16 unk26;
     u8 pad28[0x2C - 0x28];
@@ -144,9 +144,9 @@ struct Unk_03003430 {
     u8 unk34;
     u8 pad35[0x38 - 0x35];
     void *unk38;
-    void *unk3C;
-    u16 unk40;
-    u16 unk42;
+    void *unk3C; // BG2 tilemap
+    u16 unk40; // BG2 y position
+    u16 unk42; // BG2 x position
     u16 unk44;
     u16 unk46;
     u16 unk48;
@@ -198,16 +198,16 @@ extern s32 gUnk_030051D0;
 
 extern s16 gUnk_030034F8;
 
-extern s16 gUnk_03000808;
+extern s16 gUnk_03000808; // BG2PD
 
 extern u8 gUnk_03002910;
 extern s16 gUnk_030034AC;
 extern u8 gUnk_03004660;
-extern s16 gUnk_030047B0;
-extern s16 gUnk_030051BC;
+extern s16 gUnk_030047B0; // BG2PA
+extern s16 gUnk_030051BC; // BG2PC
 extern u8 gUnk_030052A0;
 extern s16 gUnk_03005420;
-extern s16 gUnk_03005464;
+extern s16 gUnk_03005464; // BG2PB
 
 struct Unk_03005468 {
     u16 unk0;

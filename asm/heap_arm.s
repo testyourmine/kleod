@@ -5,6 +5,32 @@
 
 	.text
 
+@  _____________________________________
+@ |       HeapInit: EWRAM_START         | <- gHeapPtr starts here
+@ |-------------------------------------|
+@ |             Skip a few              |
+@ |-------------------------------------|
+@ |                                     | <- gHeapPtr is pointing to empty space 
+@ |        Block size (in bytes)        | <- first we store the size of the block of new data
+@ |                                     |
+@ |-------------------------------------|
+@ |                                     |
+@ |      New block of data for use      | <- then we skip the new data block
+@ |                                     |
+@ |-------------------------------------|
+@ |                                     |
+@ |      Pointer to original space      | <- then we store the pointer to where gHeapPtr originally was
+@ |                                     |
+@ |-------------------------------------|
+@ |                                     | <- then we repoint gHeapPtr to new empty space
+@ |              And so on              |
+@ |                                     |
+@ |-------------------------------------|
+
+@ When allocating, we return a pointer to the new data block
+@ When freeing, we point gHeapPtr to the start of the block (block size) being freed
+@ This implicitly frees all data blocks afterwards
+
 	arm_func_start HeapInit
 HeapInit: @ 0x080001D0
 	@ gHeapPtr = &EWRAM_START
@@ -36,7 +62,7 @@ HeapAlloc: @ 0x080001E0
 
 	arm_func_start HeapFree
 HeapFree: @ 0x0800020C
-	@ r3 = r0[r0[-4] - 8]
+	@ r3 = r0[r0[-4] - 8] (unused)
 	ldr r1, [r0, #-4]
 	sub r1, r1, #8
 	add r2, r1, r0

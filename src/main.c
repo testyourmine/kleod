@@ -14,7 +14,7 @@ struct Unk_0818B8E0 {
     u8 pad0[0x4 - 0x0];
     u16 *unk4;
 };
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[];
+extern struct Unk_0818B8E0 *gUnk_0818B8E0[][9];
 
 extern void IntrMain(void);
 
@@ -31,8 +31,8 @@ void AgbMain(void)
     u32 var_r4;
     void *temp_r0;
 
-    DmaFill32(3, 0, (void *)0x02000000, 0x40000);
-    DmaFill32(3, 0, (void *)0x03000000, 0x7E00);
+    DmaFill32(3, 0, EWRAM_START, EWRAM_END - EWRAM_START);
+    DmaFill32(3, 0, IWRAM_START, IWRAM_END - IWRAM_START - 0x200);
 
     gIntrTable.vBlank = sub_080009D8;
     gIntrTable.hBlank = sub_08000FCC;
@@ -207,7 +207,7 @@ void sub_0800087C(u8 arg0, u8 arg1)
     DmaCopy16(
         3,
         gUnk_0818B8A8[arg1],
-        OBJ_VRAM0 + (gUnk_0818B8E0[(gUnk_03004C20.world - 1) * 9 + gUnk_03004C20.level]->unk4[(arg0 << 2) - (0x68/2)] * 0x20),
+        OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(arg0 << 2) - (0x68/2)] * 0x20),
         0x20
     );
 }

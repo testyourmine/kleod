@@ -1,4 +1,5 @@
 #include "global.h"
+#include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
 #include "main.h"
@@ -26,25 +27,22 @@ extern void sub_08026090();
 extern void sub_08026128(void);
 extern void sub_08039920();
 extern void sub_0803D15C(void);
-extern void sub_08043AF4(void*, void*);
-extern void sub_08043B34(void*, void*, u16);
-extern void *sub_08043B80(void*);
 extern void sub_0804517C(u8);
 extern void sub_080453F0();
 extern void sub_0804575C();
 extern void sub_08048028();
 
-extern u8 gUnk_08051BD4[][9][3];
-extern u16 gUnk_08051C76[][9][3];
-extern u16 gUnk_08051DBA[][9][3];
-extern u16 gUnk_08051EFE[][9][3];
-extern u8 gUnk_08051FE8[][8][0x1C];
-extern u8 gUnk_08052042[][9][3];
-extern u8 gUnk_08052624[][9];
-extern u16 gUnk_0805265A[];
-extern u16 gUnk_08052666[];
-extern u16 gUnk_08052672[];
-extern u8 gUnk_0805267E[];
+extern u8 gUnk_08051BD4[6][9][3];
+extern u16 gUnk_08051C76[6][9][3];
+extern u16 gUnk_08051DBA[6][9][3];
+extern u16 gUnk_08051EFE[6][9][3];
+extern u8 gUnk_08051FE8[][8][0x1C]; // TODO: seems to be in the middle of gUnk_08051EFE data?
+extern u8 gUnk_08052042[6][9][3];
+extern u8 gUnk_08052624[6][9];
+extern u16 gUnk_0805265A[6];
+extern u16 gUnk_08052666[6];
+extern u16 gUnk_08052672[6];
+extern u8 gUnk_0805267E[6];
 extern void gUnk_0805553C;
 extern void gUnk_080555A8;
 
@@ -67,6 +65,7 @@ extern void gUnk_080D927C; // TODO: type
 extern void gUnk_080D947C; // TODO: type
 
 extern void (*gUnk_08116620[][9])(void);
+
 extern void* gUnk_08188F5C[][9];
 extern void *gUnk_08189A24[][9];
 extern u32 *gUnk_08189034[][9][3];
@@ -121,7 +120,7 @@ void sub_08001158(void)
     {
         if ((gUnk_03004C20.level == 8) || (gUnk_03004C20.level == 0))
         {
-            gUnk_03005290 = sub_08043B80(gUnk_0818B7AC[((gUnk_03004C20.level >> 3) * 6) + (gUnk_03004C20.world - 1)]) + 4;
+            gUnk_03005290 = DecompressAlloc(gUnk_0818B7AC[((gUnk_03004C20.level >> 3) * 6) + (gUnk_03004C20.world - 1)]) + 4;
         }
 
         gUnk_03004790.unk10 = thunk_HeapAlloc(*gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] & 0x7FFFFFFF, 0);
@@ -139,20 +138,20 @@ void sub_08001158(void)
         gUnk_03004790.unk0 = thunk_HeapAlloc(*gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
         gUnk_03004790.unk4 = thunk_HeapAlloc(*gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
 
-        sub_08043AF4(gUnk_03004790.unk0, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
-        sub_08043AF4(gUnk_03004790.unk4, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
+        Decompress(gUnk_03004790.unk0, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
+        Decompress(gUnk_03004790.unk4, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
         if ((sp0 == 1) && (gUnk_03004C20.level == 0))
         {
-            sub_08043AF4(gUnk_03004790.unk8, gUnk_0818955C[gUnk_03004C20.world - 1]);
-            sub_08043AF4(gUnk_03004790.unkC, gUnk_08189574[gUnk_03004C20.world - 1]);
+            Decompress(gUnk_03004790.unk8, gUnk_0818955C[gUnk_03004C20.world - 1]);
+            Decompress(gUnk_03004790.unkC, gUnk_08189574[gUnk_03004C20.world - 1]);
         }
         else
         {
-            sub_08043AF4(gUnk_03004790.unk8, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
-            sub_08043AF4(gUnk_03004790.unkC, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
+            Decompress(gUnk_03004790.unk8, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
+            Decompress(gUnk_03004790.unkC, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
         }
-        sub_08043AF4(gUnk_03004790.unk10, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
-        sub_08043AF4(gUnk_03004790.unk14, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
+        Decompress(gUnk_03004790.unk10, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
+        Decompress(gUnk_03004790.unk14, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
 
         gUnk_03004790.unk0 += 4;
         gUnk_03004790.unk4 += 2;
@@ -164,11 +163,11 @@ void sub_08001158(void)
 
     if ((gUnk_03004C20.level == 0) && (sp0 == 1))
     {
-        sub_08043B34(gUnk_08189544[gUnk_03004C20.world - 1], BG_PLTT, BG_PLTT_SIZE);
+        DecompressDma(gUnk_08189544[gUnk_03004C20.world - 1], BG_PLTT, BG_PLTT_SIZE);
     }
     else
     {
-        sub_08043B34(gUnk_08188F5C[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
+        DecompressDma(gUnk_08188F5C[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
     }
 
     gUnk_03003430.unk8 = 0;

@@ -135,6 +135,8 @@ SECTIONS {
         asm/code_080240F4.o(.text);
         asm/code_0802688C.o(.text);
         asm/code_08039D8C.o(.text);
+        src/decompress.o(.text);
+        asm/code_08043BA4.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         asm/libagbsyscall.o(.text);
