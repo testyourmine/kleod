@@ -2468,7 +2468,7 @@ sub_08044F6C: @ 0x08044F6C
 	lsrs r7, r0, #0x18
 	cmp r7, #0
 	bne _08045020
-	ldr r0, _0804500C @ =0x080D48C8
+	ldr r0, _0804500C @ =gUnk_080D48C8
 	mov sb, r0
 	ldr r6, _08045010 @ =gUnk_030051C8
 	ldrb r1, [r6]
@@ -2538,7 +2538,7 @@ sub_08044F6C: @ 0x08044F6C
 	adds r2, r4, #0
 	b _08045080
 	.align 2, 0
-_0804500C: .4byte 0x080D48C8
+_0804500C: .4byte gUnk_080D48C8
 _08045010: .4byte gUnk_030051C8
 _08045014: .4byte gUnk_03004654
 _08045018: .4byte gUnk_03004C20

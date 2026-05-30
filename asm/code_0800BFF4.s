@@ -1255,7 +1255,7 @@ _0800CA92:
 	.align 2, 0
 _0800CAC8: .4byte 0x080D6458
 _0800CACC:
-	ldr r6, _0800CBE8 @ =0x080D48C8
+	ldr r6, _0800CBE8 @ =gUnk_080D48C8
 	ldr r5, _0800CBEC @ =gUnk_030051C8
 	ldrb r1, [r5]
 	adds r1, #1
@@ -1398,7 +1398,7 @@ _0800CBDC:
 	str r1, [r2, #4]
 	b _0800CC0E
 	.align 2, 0
-_0800CBE8: .4byte 0x080D48C8
+_0800CBE8: .4byte gUnk_080D48C8
 _0800CBEC: .4byte gUnk_030051C8
 _0800CBF0: .4byte gUnk_03004654
 _0800CBF4: .4byte gUnk_03005284

@@ -317,7 +317,13 @@ struct Unk_03000830 {
 extern struct Unk_03000830 gUnk_03000830[];
 
 extern s8 gUnk_0300363C;
+
+struct Unk_0818B8E0 {
+    u8 pad0[0x4 - 0x0];
+    u16 *unk4;
+};
 extern struct Unk_0818B8E0 *gUnk_030051DC;
+
 extern void *gUnk_03005294;
 extern void *gUnk_03005418;
 extern void *gUnk_03005490;

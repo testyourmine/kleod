@@ -52,34 +52,29 @@ struct Unk_080D2E88 {
     u16 unk4;
     u16 unk6;
 };
-extern struct Unk_080D2E88 gUnk_080D2E88[][0x7][0x14];
+extern struct Unk_080D2E88 gUnk_080D2E88[6][0x7][0x14];
 
 struct Unk_080D48C8 {
     u8 pad0[0x4 - 0x0];
     u8 unk4;
     u8 pad5[0x8 - 0x5];
 };
-extern struct Unk_080D48C8 gUnk_080D48C8[][7][0x15];
+extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 
-extern void gUnk_080D927C; // TODO: type
-extern void gUnk_080D947C; // TODO: type
+extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
+extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
 
-extern void (*gUnk_08116620[][9])(void);
+extern void (*gUnk_08116620[6][9])(void);
 
-extern void* gUnk_08188F5C[][9];
-extern void *gUnk_08189A24[][9];
-extern u32 *gUnk_08189034[][9][3];
-extern u32 *gUnk_081892BC[][9][3];
-extern u32 *gUnk_08189544[];
-extern u32 *gUnk_0818955C[];
-extern u32 *gUnk_08189574[];
-extern u32 *gUnk_0818B7AC[];
-
-struct Unk_0818B8E0 {
-    u8 pad0[0x4 - 0x0];
-    u16 *unk4;
-};
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[][9];
+extern void* gUnk_08188F5C[6][9];
+extern u32 *gUnk_08189034[6][9][3];
+extern u32 *gUnk_081892BC[6][9][3];
+extern u32 *gUnk_08189544[6];
+extern u32 *gUnk_0818955C[6];
+extern u32 *gUnk_08189574[6];
+extern void *gUnk_08189A24[6][9];
+extern u32 *gUnk_0818B7AC[6*2];
+extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
 
 struct Unk_08001CD0 {
     u16 unk0;
@@ -337,9 +332,11 @@ void sub_08001158(void)
 }
 
 // 1CD0
-// nonmatch: https://decomp.me/scratch/TRwiK
+#ifdef NON_MATCHING
 void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
 {
+    // https://decomp.me/scratch/TRwiK
+
     s32 temp_r1;
     u32 temp_r0_3;
     u32 temp_r0_7;
@@ -443,6 +440,13 @@ void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
         }
     }
 }
+#else
+NAKED
+void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
+{
+    asm_unified(".include \"asm/nonmatching/sub_08001CD0.inc\"");
+}
+#endif
 
 // 1F58
 void sub_08001F58(void)
@@ -1185,7 +1189,8 @@ void sub_08002FD0(void)
 
     var_r6 = 0;
 
-    gUnk_03004654 = gUnk_08051FE8[gUnk_03004C20.world - 1][gUnk_03004C20.level + 8]; // TODO: offsets required to match, fake?
+    // gUnk_03004654 = gUnk_08051FE8[gUnk_03004C20.world - 1][gUnk_03004C20.level + 8]; // TODO: offsets required to match, fake?
+    gUnk_03004654 = ((u8 (*)[8][0x1C])((u8 *)gUnk_08051EFE + 0xEA))[gUnk_03004C20.world - 1][gUnk_03004C20.level + 8]; // TODO: cleanup
     gUnk_03000800 = gUnk_08052624[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
     if (gUnk_03004C20.level == 0)

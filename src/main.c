@@ -9,12 +9,7 @@
 extern u8 gUnk_080D9150[][0x64];
 
 extern void *gUnk_0818B8A8[];
-
-struct Unk_0818B8E0 {
-    u8 pad0[0x4 - 0x0];
-    u16 *unk4;
-};
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[][9];
+extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
 
 extern void IntrMain(void);
 
