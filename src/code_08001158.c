@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_08001158.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -71,11 +72,6 @@ extern u32 *gUnk_08189574[6];
 extern void *gUnk_08189A24[6][9];
 extern u32 *gUnk_0818B7AC[6*2];
 extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
-
-struct Unk_08001CD0 {
-    u16 unk0;
-    u16 unk2;
-};
 
 // 1158
 void sub_08001158(void)
