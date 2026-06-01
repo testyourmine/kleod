@@ -5,9 +5,8 @@
 #include "main.h"
 #include "math.h"
 #include "util.h"
+#include "data/trig.h"
 #include "structs/variables.h"
-
-extern s16 gUnk_080D8E14[]; // sine table
 
 extern void sub_08002FD0(void);
 extern void sub_0800343C(u8 arg0);
@@ -268,10 +267,10 @@ void sub_08001158(void)
     REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
     REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
 
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
 
     REG_BG2X_L = gUnk_03003430.unk40 << 8;
     REG_BG2X_H = 0;
@@ -683,10 +682,10 @@ void sub_08001F58(void)
 
     new_var = &gUnk_03003430; // FAKE
     gUnk_03005474 = gUnk_03003472;
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
     gUnk_030007FC = ((((*new_var).unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 }
@@ -823,10 +822,10 @@ void sub_0800247C(void)
 
     new_var = &gUnk_03003430; // FAKE
     gUnk_03005474 = gUnk_03003472;
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
     gUnk_030007FC = ((((*new_var).unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 }
@@ -941,10 +940,10 @@ void sub_080027C4()
 
     new_var = &gUnk_03003430; // FAKE
     gUnk_03005474 = gUnk_03003472;
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
     gUnk_030007FC = ((((*new_var).unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 }
@@ -1113,7 +1112,7 @@ void sub_08002AC4(void)
         {
             if (Abs(gUnk_03005400.unk16) <= 4)
             {
-                gUnk_03002910 = ((gUnk_03005400.unk16 * gUnk_080D8E14[gUnk_03005400.unk14 + 0x40]) >> 8);
+                gUnk_03002910 = ((gUnk_03005400.unk16 * COS(gUnk_03005400.unk14)) >> 8);
                 if (gUnk_03004C20.unk0 & 4)
                 {
                     gUnk_03005400.unk14 += 4;
@@ -1121,7 +1120,7 @@ void sub_08002AC4(void)
             }
             else
             {
-                gUnk_03002910 = ((gUnk_03005400.unk16 * gUnk_080D8E14[gUnk_03005400.unk14 + 0x40]) >> 8);
+                gUnk_03002910 = ((gUnk_03005400.unk16 * COS(gUnk_03005400.unk14)) >> 8);
                 gUnk_03005400.unk14 += 4;
                 if (!(gUnk_03005400.unk14 % 0x40))
                 {
@@ -1137,10 +1136,10 @@ void sub_08002AC4(void)
             }
         }
 
-        gUnk_03005440.unk0 = -((gUnk_080D8E14[gUnk_03002910 + 0x40] * 0xF) >> 5);
-        gUnk_03005440.unk4 = ((gUnk_080D8E14[gUnk_03002910 + 0x40] * 0xF) >> 5);
-        gUnk_03005440.unk2 = -((gUnk_080D8E14[gUnk_03002910] * 0xF) >> 5);
-        gUnk_03005440.unk6 = ((gUnk_080D8E14[gUnk_03002910] * 0xF) >> 5);
+        gUnk_03005440.unk0 = -((COS(gUnk_03002910) * 0xF) >> 5);
+        gUnk_03005440.unk4 = ((COS(gUnk_03002910) * 0xF) >> 5);
+        gUnk_03005440.unk2 = -((SIN(gUnk_03002910) * 0xF) >> 5);
+        gUnk_03005440.unk6 = ((SIN(gUnk_03002910) * 0xF) >> 5);
 
         if ((((u32) gUnk_03004C20.unk0 % (u32) (0xA - Abs((s8)gUnk_03002910 / 2))) == 0) && (gUnk_03005400.unkC != 0) && (gUnk_03005220.unk31 != 0) && (((s8) gUnk_03002910 < -2) || ((s8) gUnk_03002910 > 2)))
         {
@@ -1170,10 +1169,10 @@ void sub_08002AC4(void)
         gUnk_03005440.unk6 += 0xDC;
     }
 
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
 
     sub_0803D15C();
     if (gUnk_03004C20.world == 1)
@@ -1375,10 +1374,10 @@ void sub_0800350C(void)
 
     gUnk_030034AC = gUnk_03005420 = 0x500;
 
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
 
     gUnk_030007FC = (((gUnk_03003470 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
@@ -1397,10 +1396,10 @@ void sub_0800350C(void)
 // 3750
 void sub_08003750(void)
 {
-    gUnk_030047B0 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gUnk_080D8E14[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gUnk_080D8E14[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030047B0 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_03005464 = MultiplyQ8(SIN(gUnk_03002910), ReciprocalQ8(gUnk_030034AC));
+    gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
+    gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
 
     gUnk_030007FC = (((gUnk_03003430.unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003430.unk42 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);

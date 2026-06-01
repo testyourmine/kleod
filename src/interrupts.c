@@ -1,8 +1,7 @@
 #include "global.h"
 #include "interrupts.h"
+#include "data/trig.h"
 #include "structs/variables.h"
-
-extern s16 gUnk_080D8E14[]; // sine table
 
 // 9D8
 void sub_080009D8(void)
@@ -235,8 +234,8 @@ void sub_0800107C(void)
     if (gUnk_03004C20.unk0 & 1)
     {
         gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.unk0) * 4) & 0xFF;
-        REG_BG2HOFS = (gUnk_03003430.unk40 >> 4) + (gUnk_080D8E14[gUnk_030034F8] >> 4) + 4;
-        REG_BG3HOFS = (gUnk_03003430.unk5C >> 4) + (gUnk_080D8E14[gUnk_030034F8] >> 4) + 4;
+        REG_BG2HOFS = (gUnk_03003430.unk40 >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
+        REG_BG3HOFS = (gUnk_03003430.unk5C >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
     }
     else
     {

@@ -1430,7 +1430,7 @@ _0804472E:
 	movs r3, #0
 	ldr r5, _0804479C @ =gUnk_03002920
 	ldr r4, _080447A0 @ =gUnk_03003472
-	ldr r6, _080447A4 @ =gUnk_080D8E14
+	ldr r6, _080447A4 @ =gSineTable
 _0804473A:
 	adds r0, r3, #0
 	adds r0, #0x10
@@ -1480,7 +1480,7 @@ _08044794: .4byte 0x03005494
 _08044798: .4byte 0x00007F41
 _0804479C: .4byte gUnk_03002920
 _080447A0: .4byte gUnk_03003472
-_080447A4: .4byte gUnk_080D8E14
+_080447A4: .4byte gSineTable
 _080447A8:
 	cmp r4, #3
 	bne _080447AE
@@ -1677,7 +1677,7 @@ _08044926:
 	lsls r1, r1, #3
 	adds r1, r1, r7
 	mov sb, r1
-	ldr r5, _080449F4 @ =gUnk_080D8E14
+	ldr r5, _080449F4 @ =gSineTable
 	ldr r4, _080449F8 @ =0x0811712A
 	ldr r3, _080449FC @ =gUnk_03004C20
 	ldr r0, [r3]
@@ -1775,7 +1775,7 @@ _080449E2:
 	.align 2, 0
 _080449EC: .4byte gUnk_03004658
 _080449F0: .4byte 0x03004680
-_080449F4: .4byte gUnk_080D8E14
+_080449F4: .4byte gSineTable
 _080449F8: .4byte 0x0811712A
 _080449FC: .4byte gUnk_03004C20
 _08044A00:
@@ -1875,7 +1875,7 @@ _08044A94:
 	movs r1, #0xff
 	ands r0, r1
 	lsls r0, r0, #1
-	ldr r1, _08044B3C @ =gUnk_080D8E14
+	ldr r1, _08044B3C @ =gSineTable
 	adds r0, r0, r1
 	ldrh r0, [r0]
 	lsls r0, r0, #0x10
@@ -1937,7 +1937,7 @@ _08044B2C: .4byte gUnk_03002920
 _08044B30: .4byte 0x03004680
 _08044B34: .4byte 0x0811713A
 _08044B38: .4byte gUnk_03003472
-_08044B3C: .4byte gUnk_080D8E14
+_08044B3C: .4byte gSineTable
 _08044B40: .4byte gUnk_03003470
 _08044B44: .4byte 0x03002CFA
 _08044B48:
@@ -2186,7 +2186,7 @@ _08044D16:
 _08044D22:
 	ldr r3, _08044DE4 @ =gUnk_030051CC
 	mov r8, r3
-	ldr r5, _08044DE8 @ =gUnk_080D8E14
+	ldr r5, _08044DE8 @ =gSineTable
 	mov ip, r5
 	movs r0, #0x80
 	mov sl, r0
@@ -2284,7 +2284,7 @@ _08044DCC:
 	.align 2, 0
 _08044DE0: .4byte gUnk_03005428
 _08044DE4: .4byte gUnk_030051CC
-_08044DE8: .4byte gUnk_080D8E14
+_08044DE8: .4byte gSineTable
 _08044DEC: .4byte gUnk_03002920
 _08044DF0: .4byte 0x030034D4
 _08044DF4: .4byte gUnk_030052A0
@@ -2657,7 +2657,7 @@ _080450F4:
 	mov r7, r8
 	subs r1, r7, r4
 	add r1, sl
-	ldr r6, _08045178 @ =gUnk_080D8E14
+	ldr r6, _08045178 @ =gSineTable
 	mov r0, sb
 	adds r0, #0x40
 	lsls r0, r0, #1
@@ -2715,7 +2715,7 @@ _08045160:
 	.align 2, 0
 _08045170: .4byte 0x0000FFF8
 _08045174: .4byte gUnk_030051CC
-_08045178: .4byte gUnk_080D8E14
+_08045178: .4byte gSineTable
 
 	thumb_func_start sub_0804517C
 sub_0804517C: @ 0x0804517C
@@ -4479,7 +4479,7 @@ sub_08045F68: @ 0x08045F68
 	rsbs r0, r0, #0
 	ands r0, r1
 	strb r0, [r6, #0xd]
-	ldr r5, _0804600C @ =gUnk_080D8E14
+	ldr r5, _0804600C @ =gSineTable
 	adds r0, r5, #0
 	adds r0, #0x80
 	movs r2, #0
@@ -4538,7 +4538,7 @@ sub_08045F68: @ 0x08045F68
 	b _08046020
 	.align 2, 0
 _08046008: .4byte gUnk_03002920
-_0804600C: .4byte gUnk_080D8E14
+_0804600C: .4byte gSineTable
 _08046010: .4byte 0x03004680
 _08046014:
 	ldr r1, _08046220 @ =0x03004680
@@ -4552,7 +4552,7 @@ _08046020:
 	strh r7, [r0, #2]
 	strh r4, [r0, #4]
 	strh r2, [r0, #6]
-	ldr r0, _08046224 @ =gUnk_080D8E14
+	ldr r0, _08046224 @ =gSineTable
 	mov sl, r0
 	ldr r1, _08046228 @ =gUnk_03002910
 	ldrb r0, [r1]
@@ -4799,7 +4799,7 @@ _0804621C:
 	b _08046264
 	.align 2, 0
 _08046220: .4byte 0x03004680
-_08046224: .4byte gUnk_080D8E14
+_08046224: .4byte gSineTable
 _08046228: .4byte gUnk_03002910
 _0804622C: .4byte gUnk_030034AC
 _08046230: .4byte gUnk_030047B0
@@ -17702,7 +17702,7 @@ sub_0804CA6C: @ 0x0804CA6C
 	push {r4, r5, r6, lr}
 	movs r2, #8
 	ldrsh r5, [r0, r2]
-	ldr r6, _0804CAB8 @ =gUnk_080D8E14
+	ldr r6, _0804CAB8 @ =gSineTable
 	movs r2, #0x14
 	ldrsh r3, [r0, r2]
 	ldrb r2, [r0, #0x1e]
@@ -17737,7 +17737,7 @@ sub_0804CA6C: @ 0x0804CA6C
 	movs r0, #0
 	b _0804CABE
 	.align 2, 0
-_0804CAB8: .4byte gUnk_080D8E14
+_0804CAB8: .4byte gSineTable
 _0804CABC:
 	movs r0, #1
 _0804CABE:
@@ -18140,7 +18140,7 @@ _0804CDA8:
 	ldrh r5, [r1, #0x18]
 	adds r0, r0, r5
 	strh r0, [r1, #0x18]
-	ldr r0, _0804CE88 @ =gUnk_080D8E14
+	ldr r0, _0804CE88 @ =gSineTable
 	adds r0, #0x80
 	movs r3, #0
 	ldrsh r2, [r0, r3]
@@ -18229,7 +18229,7 @@ _0804CDA8:
 	b _0804CF12
 	.align 2, 0
 _0804CE84: .4byte 0x030052A4
-_0804CE88: .4byte gUnk_080D8E14
+_0804CE88: .4byte gSineTable
 _0804CE8C: .4byte 0x03004680
 _0804CE90: .4byte gUnk_03002920
 _0804CE94:

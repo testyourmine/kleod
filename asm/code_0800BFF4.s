@@ -201,7 +201,7 @@ _0800C176:
 	strb r0, [r6]
 _0800C196:
 	ldrb r1, [r3]
-	ldr r3, _0800C22C @ =gUnk_080D8E14
+	ldr r3, _0800C22C @ =gSineTable
 	ldrb r0, [r4]
 	lsls r0, r0, #1
 	adds r0, r0, r3
@@ -270,7 +270,7 @@ _0800C21C: .4byte 0x03000001
 _0800C220: .4byte 0x03000003
 _0800C224: .4byte 0x03000000
 _0800C228: .4byte 0x03000002
-_0800C22C: .4byte gUnk_080D8E14
+_0800C22C: .4byte gSineTable
 _0800C230: .4byte gUnk_03004C20
 _0800C234: .4byte gUnk_03003510
 _0800C238: .4byte sub_0803A410
@@ -304,7 +304,7 @@ _0800C26A:
 	lsrs r4, r4, #0x18
 	ldr r0, [r5]
 	movs r6, #0
-	ldr r5, _0800C2B4 @ =gUnk_080D8E14
+	ldr r5, _0800C2B4 @ =gSineTable
 	mov sl, r5
 	movs r7, #0
 	ldr r3, _0800C2B8 @ =gUnk_030052C0
@@ -332,7 +332,7 @@ _0800C288:
 	b _0800C2C4
 	.align 2, 0
 _0800C2B0: .4byte gUnk_03005498
-_0800C2B4: .4byte gUnk_080D8E14
+_0800C2B4: .4byte gSineTable
 _0800C2B8: .4byte gUnk_030052C0
 _0800C2BC: .4byte gUnk_03004C40
 _0800C2C0:
@@ -530,7 +530,7 @@ sub_0800C45C: @ 0x0800C45C
 	push {r4, lr}
 	bl sub_080098C8
 	ldr r2, _0800C514 @ =gUnk_03004678
-	ldr r3, _0800C518 @ =gUnk_080D8E14
+	ldr r3, _0800C518 @ =gSineTable
 	ldr r1, _0800C51C @ =gUnk_03002910
 	ldrb r0, [r1]
 	lsls r0, r0, #1
@@ -617,7 +617,7 @@ sub_0800C45C: @ 0x0800C45C
 	bx r0
 	.align 2, 0
 _0800C514: .4byte gUnk_03004678
-_0800C518: .4byte gUnk_080D8E14
+_0800C518: .4byte gSineTable
 _0800C51C: .4byte gUnk_03002910
 _0800C520: .4byte gUnk_030051B0
 _0800C524: .4byte 0x04000052
@@ -749,7 +749,7 @@ sub_0800C564: @ 0x0800C564
 	orrs r0, r2
 	orrs r1, r0
 	strh r1, [r3]
-	ldr r0, _0800C7D0 @ =gUnk_080D8E14
+	ldr r0, _0800C7D0 @ =gSineTable
 	mov r8, r0
 	ldr r1, _0800C7D4 @ =gUnk_03004C20
 	mov sb, r1
@@ -918,7 +918,7 @@ _0800C7C0: .4byte 0x04000052
 _0800C7C4: .4byte gUnk_03005498
 _0800C7C8: .4byte 0x04000054
 _0800C7CC: .4byte gUnk_030007D8
-_0800C7D0: .4byte gUnk_080D8E14
+_0800C7D0: .4byte gSineTable
 _0800C7D4: .4byte gUnk_03004C20
 _0800C7D8: .4byte gUnk_030034F8
 _0800C7DC: .4byte gUnk_03002910
@@ -9610,7 +9610,7 @@ _08010E64:
 	adds r0, #1
 	lsls r0, r0, #3
 	adds r0, r0, r6
-	ldr r2, _08010EF4 @ =gUnk_080D8E14
+	ldr r2, _08010EF4 @ =gSineTable
 	adds r1, r2, #0
 	adds r1, #0x80
 	ldrh r1, [r1]
@@ -9642,7 +9642,7 @@ _08010EE2:
 	.align 2, 0
 _08010EEC: .4byte 0x03004680
 _08010EF0: .4byte gUnk_03002920
-_08010EF4: .4byte gUnk_080D8E14
+_08010EF4: .4byte gSineTable
 _08010EF8: .4byte gUnk_03004660
 _08010EFC:
 	ldr r5, _08010FA0 @ =gUnk_03002920

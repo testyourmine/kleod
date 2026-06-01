@@ -155,6 +155,8 @@ SECTIONS {
 
     rodata : ALIGN(4) {
         data/data_08051BD4.o(.rodata);
+        src/data/trig.o(.rodata);
+        data/data_080D9094.o(.rodata);
         src/data/m4a_tables.o(.rodata);
         data/data_08117CBC.o(.rodata);
         data/sound_data.o(.rodata);
