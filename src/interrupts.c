@@ -170,7 +170,7 @@ void sub_08000F70(void)
     // UpdateFadeEffect
     u32 bldAlpha;
 
-    bldAlpha = REG_VCOUNT_L / gUnk_03002920.unk8;
+    bldAlpha = REG_VCOUNT_L / gUnk_03002920[0].unk8;
     if (bldAlpha <= BLDALPHA_MAX)
     {
         REG_BLDALPHA = BLDALPHA_BLEND(bldAlpha, bldAlpha);

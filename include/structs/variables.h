@@ -109,16 +109,23 @@ struct Unk_03002920 {
     u16 unk4;
     u16 unk6;
     u8 unk8;
-    u8 pad9[0xC - 0x9];
-    u8 unkC_0:2; // TODO: verify
-    u8 unkC_2:2;
-    u8 padD[0x144 - 0xD];
-    u8 unk144;
-    u8 pad145[0x1F8 - 0x145];
-    u16 unk1F8;
-    u16 unk1FA;
+    u8 unk9;
+    u8 unkA;
+    u8 unkB;
+    u32 unkC_0:2;
+    u32 unkC_2:2;
+    u32 unkC_4:4;
+    u32 unkD_0:2;
+    u32 unkD_2:4;
+    u32 unkD_6:2; // TODO: verify
+    u32 unkE_0:1;
+    u32 unkE_1:1;
+    u8 unkF;
+    u8 unk10;
+    u8 unk11;
+    u8 pad12[0x1C - 0x12];
 };
-extern struct Unk_03002920 gUnk_03002920;
+extern struct Unk_03002920 gUnk_03002920[];
 
 struct Unk_03003430 {
     void *unk0;
@@ -230,14 +237,22 @@ struct Unk_0300542C {
 extern struct Unk_0300542C *gUnk_0300542C;
 
 struct Unk_03005220 {
-    u8 unk0_0:2; // TODO: verify
-    u8 unk0_2:3;
-    u8 unk0_5:3; // TODO: verify
-    u8 unk1_0:4; // TODO: verify
-    u8 unk1_4:3;
-    u8 pad2[0x4 - 0x2];
+    u32 unk0_0:2; // TODO: verify
+    u32 unk0_2:3;
+    u32 unk0_5:3; // TODO: verify
+    u32 unk1_0:4; // TODO: verify
+    u32 unk1_4:3;
+    u32 unk1_7:8;
+    u32 unk2_7:6;
+    u32 unk3_0:1;
+    u32 unk3_6:1;
     u32 unk4;
-    u8 pad8[0x2F - 0x8];
+    u32 unk8;
+    u32 unkC;
+    u8 pad10[0x14 - 0x10];
+    u16 unk14;
+    u8 pad16[0x2E - 0x16];
+    u8 unk2E;
     s8 unk2F;
     u8 unk30;
     u8 unk31;
@@ -245,6 +260,8 @@ struct Unk_03005220 {
     u8 unk35;
     u8 pad36[0x46 - 0x36];
     u8 unk46;
+    u8 pad47[0x58 - 0x47];
+    u8 unk58;
 };
 extern struct Unk_03005220 gUnk_03005220;
 

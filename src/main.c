@@ -191,7 +191,7 @@ void InputHandler_AttractMode(void)
 
     if (!(gUnk_03004C20.unk0 & 0x1F))
     {
-        gUnk_03002920.unk144 ^= 1;
+        gUnk_03002920[0xB].unk10 ^= 1;
     }
 }
 
