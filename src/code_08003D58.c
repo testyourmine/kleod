@@ -1310,11 +1310,9 @@ void sub_08005CF4(void)
     }
 }
 
-#ifdef NON_MATCHING
-void sub_080070A0(void)
+// (99.68%) https://decomp.me/scratch/V7n6S
+NONMATCH("asm/nonmatching/sub_080070A0.inc", void sub_080070A0(void))
 {
-    // https://decomp.me/scratch/V7n6S
-
     s32 sp0;
     s32 sp8;
     s32 spC;
@@ -2313,13 +2311,7 @@ void sub_080070A0(void)
         }
     }
 }
-#else
-NAKED
-void sub_080070A0(void)
-{
-    asm_unified(".include \"asm/nonmatching/sub_080070A0.inc\"");
-}
-#endif
+END_NONMATCH
 
 void sub_080098C8(void)
 {
@@ -3022,11 +3014,9 @@ extern void sub_08023BC0(u8);
 extern void sub_08025B78(s32, u8);
 extern void sub_0803CE14(u8);
 
-#ifdef NON_MATCHING
-void sub_0800AC34(void)
+// (99.55%) https://decomp.me/scratch/lRoby
+NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
 {
-    // https://decomp.me/scratch/lRoby
-
     s32 var_r6;
     struct Unk_03002920 *temp_r1_2;
     struct Unk_03002920 *temp_r1_5;
@@ -3319,13 +3309,7 @@ void sub_0800AC34(void)
         sub_08014318();
     }
 }
-#else
-NAKED
-void sub_0800AC34(void)
-{
-    asm_unified(".include \"asm/nonmatching/sub_0800AC34.inc\"");
-}
-#endif
+END_NONMATCH
 
 extern u8 gUnk_08061FC8[0x80];
 extern u8 gUnk_080627C8[0x80];

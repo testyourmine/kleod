@@ -324,11 +324,9 @@ void sub_08001158(void)
 }
 
 // 1CD0
-#ifdef NON_MATCHING
-void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
+// (97.78%) https://decomp.me/scratch/TRwiK
+NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1))
 {
-    // https://decomp.me/scratch/TRwiK
-
     s32 temp_r1;
     u32 temp_r0_3;
     u32 temp_r0_7;
@@ -432,13 +430,7 @@ void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
         }
     }
 }
-#else
-NAKED
-void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
-{
-    asm_unified(".include \"asm/nonmatching/sub_08001CD0.inc\"");
-}
-#endif
+END_NONMATCH
 
 // 1F58
 void sub_08001F58(void)
