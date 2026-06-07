@@ -211,12 +211,12 @@ void sub_0800087C(u8 arg0, u8 arg1)
 void sub_080008DC(void)
 {
     // Called on gameplay transitions
-    thunk_HeapFree(gUnk_03004790.unk4 - 2);
-    thunk_HeapFree(gUnk_03004790.unk0 - 4);
-    thunk_HeapFree(gUnk_03004790.unkC - 2);
-    thunk_HeapFree(gUnk_03004790.unk8 - 4);
-    thunk_HeapFree(gUnk_03004790.unk14 - 4);
-    thunk_HeapFree(gUnk_03004790.unk10 - 4);
+    thunk_HeapFree(gUnk_03004790.pBufBg0Tilemap - 2);
+    thunk_HeapFree(gUnk_03004790.pBufBg0Tiles - 4);
+    thunk_HeapFree(gUnk_03004790.pBufBg1Tilemap - 2);
+    thunk_HeapFree(gUnk_03004790.pBufBg1Tiles - 4);
+    thunk_HeapFree(gUnk_03004790.pBufBg2Tilemap - 4);
+    thunk_HeapFree(gUnk_03004790.pBufBg2Tiles - 4);
 
     if (gUnk_03005290 != 0)
     {
