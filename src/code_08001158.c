@@ -1,5 +1,6 @@
 #include "global.h"
 #include "code_08001158.h"
+#include "code_08003D58.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -9,9 +10,6 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern void sub_08003D80();
-extern void sub_08003DC0(s32, s32, u16, u16, s32, s32, u32, s32, s32);
-extern void sub_0800B3C0();
 extern void sub_0800C45C();
 extern void sub_0800CA0C();
 extern void sub_080144C4();

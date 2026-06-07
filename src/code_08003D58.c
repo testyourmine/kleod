@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_08003D58.h"
 #include "math.h"
 #include "data/trig.h"
 #include "structs/variables.h"
@@ -27,8 +28,27 @@ extern const u8 gUnk_080E2A84[0x6][0x8];
 
 extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
 
+extern u8 gUnk_08061FC8[0x80];
+extern u8 gUnk_080627C8[0x80];
+extern u8 gUnk_08063368[0x80];
+extern u8 gUnk_080635E8[0x80];
+extern u8 gUnk_08063FE8[0x80];
+extern u8 gUnk_08064868[0x200];
+extern u8 gUnk_08064A68[0x200];
+
+extern u8 gUnk_080B8F68[0x80];
+extern u8 gUnk_080B9068[0x80];
+extern u8 gUnk_080B90E8[0x80];
+extern u8 gUnk_080B9168[0x80];
+extern u8 gUnk_080B91E8[0x80];
+extern u8 gUnk_080B9268[0x80];
+extern u8 gUnk_080B92E8[0x80];
+extern u8 gUnk_080B9468[0x200];
+extern u8 gUnk_080B9668[0x200];
+
 extern void sub_0800A468(void);
 
+// 3D58
 void sub_08003D58(void)
 {
     register s32 var_r1 asm("r1");
@@ -55,6 +75,7 @@ void sub_08003D58(void)
     sub_0800A468();
 }
 
+// 3D80
 void sub_08003D80(void)
 {
     register s32 var_r1 asm("r1");
@@ -79,6 +100,7 @@ void sub_08003D80(void)
     while (var_r1 != 0);
 }
 
+// 3DA0
 void sub_08003DA0(void)
 {
     register s32 var_r1 asm("r1");
@@ -103,6 +125,7 @@ void sub_08003DA0(void)
     while (var_r1 != 0);
 }
 
+// 3DC0
 void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 arg6, u8 arg7, u8 arg8)
 {
     u32 var_r3_3;
@@ -821,6 +844,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     }
 }
 
+// 5CF4
 void sub_08005CF4(void)
 {
     s32 sp0;
@@ -1310,6 +1334,7 @@ void sub_08005CF4(void)
     }
 }
 
+// 70A0
 // (99.68%) https://decomp.me/scratch/V7n6S
 NONMATCH("asm/nonmatching/sub_080070A0.inc", void sub_080070A0(void))
 {
@@ -2313,6 +2338,7 @@ NONMATCH("asm/nonmatching/sub_080070A0.inc", void sub_080070A0(void))
 }
 END_NONMATCH
 
+// 98C8
 void sub_080098C8(void)
 {
     s32 sp0;
@@ -2610,6 +2636,7 @@ void sub_080098C8(void)
     }
 }
 
+// A468
 void sub_0800A468(void)
 {
     s32 var_r2;
@@ -2627,6 +2654,7 @@ void sub_0800A468(void)
     }
 }
 
+// A49C
 void sub_0800A49C(void)
 {
     s32 var_r5;
@@ -2665,6 +2693,7 @@ void sub_0800A49C(void)
     }
 }
 
+// A5B8
 void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
 {
     s32 temp_r0;
@@ -2734,6 +2763,7 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     gUnk_03002920[arg0].unk6 = var_r2;
 }
 
+// A71C
 void sub_0800A71C(s8 arg0, s8 arg1)
 {
     s32 var_r5;
@@ -2813,6 +2843,7 @@ extern void sub_08039D8C(void);
 extern void sub_08024718(void);
 extern void sub_08024C34(void);
 
+// A804
 void sub_0800A804(void)
 {
     u32 var_r2;
@@ -3014,6 +3045,7 @@ extern void sub_08023BC0(u8);
 extern void sub_08025B78(s32, u8);
 extern void sub_0803CE14(u8);
 
+// AC34
 // (99.55%) https://decomp.me/scratch/lRoby
 NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
 {
@@ -3311,25 +3343,9 @@ NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
 }
 END_NONMATCH
 
-extern u8 gUnk_08061FC8[0x80];
-extern u8 gUnk_080627C8[0x80];
-extern u8 gUnk_08063368[0x80];
-extern u8 gUnk_080635E8[0x80];
-extern u8 gUnk_08063FE8[0x80];
-extern u8 gUnk_08064868[0x200];
-extern u8 gUnk_08064A68[0x200];
-extern u8 gUnk_080B8F68[0x80];
-extern u8 gUnk_080B9068[0x80];
-extern u8 gUnk_080B90E8[0x80];
-extern u8 gUnk_080B9168[0x80];
-extern u8 gUnk_080B91E8[0x80];
-extern u8 gUnk_080B9268[0x80];
-extern u8 gUnk_080B92E8[0x80];
-extern u8 gUnk_080B9468[0x200];
-extern u8 gUnk_080B9668[0x200];
-
 extern void sub_08044F6C(u8);
 
+// B3C0
 void sub_0800B3C0(void)
 {
     s32 sp14;
@@ -3450,7 +3466,7 @@ void sub_0800B3C0(void)
         gUnk_03005220.unk10 = gUnk_03002920->unk0 << 0x10;
         gUnk_03005220.unk2F = 0;
     }
-    gUnk_03004C10 = 0;
+    gUnk_03004C10 = NULL;
 
     for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
     {
@@ -3574,9 +3590,9 @@ void sub_0800B3C0(void)
 
             case 0x6D:
                 temp_r3_3 = ((s32) gUnk_03004C20.unk8 >> ((gUnk_03004C20.unkE - 1) * 2)) & 3;
-                if (gUnk_03004C10 == 0)
+                if (gUnk_03004C10 == NULL)
                 {
-                    gUnk_03004C10 = 0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5);
+                    gUnk_03004C10 = (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5);
                 }
 
                 if (temp_r3_3 == 0)
@@ -3658,14 +3674,7 @@ void sub_0800B3C0(void)
     }
 }
 
-struct Unk_0800BEF0 {
-    u16 unk0;
-    u16 unk2;
-    u16 unk4;
-    u16 unk6;
-    s8 unk8;
-};
-
+// BEF0
 void* sub_0800BEF0(s32 *arg0, struct Unk_0800BEF0 arg1)
 {
     u32 temp_r0;

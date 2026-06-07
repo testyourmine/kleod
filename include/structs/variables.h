@@ -496,7 +496,7 @@ extern struct Unk_03003590 gUnk_03003590[];
 extern void (*gUnk_030034A8)(u8);
 
 extern u8 gUnk_030034E0;
-extern s32 gUnk_03004C10;
+extern void *gUnk_03004C10;
 
 extern u16 gUnk_030034DC;
 
