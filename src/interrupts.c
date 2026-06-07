@@ -244,9 +244,6 @@ void sub_0800107C(void)
     }
 }
 
-// TODO: this function requires either old_agbcc or -fprologue-bugfix to match
-// Using old_agbcc breaks the rest of the file, so using -fprologue-bugfix for now
-
 // 111C
 void sub_0800111C(void)
 {

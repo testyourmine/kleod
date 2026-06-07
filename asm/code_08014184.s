@@ -940,12 +940,12 @@ _080148E0:
 	adds r0, r0, r6
 	ldrh r0, [r0, #2]
 	str r0, [sp, #8]
-	ldr r0, _080148FC @ =0x03003630
+	ldr r0, _080148FC @ =gUnk_03003630
 	ldr r6, [r0]
 	b _08015058
 	.align 2, 0
 _080148F8: .4byte gUnk_03002920
-_080148FC: .4byte 0x03003630
+_080148FC: .4byte gUnk_03003630
 _08014900:
 	lsls r1, r6, #3
 	subs r0, r1, r6
@@ -1406,7 +1406,7 @@ _08014D30:
 	adds r0, r6, #0
 	movs r1, #2
 	bl sub_08025B78
-	ldr r0, _08014D58 @ =0x03003610
+	ldr r0, _08014D58 @ =gUnk_03003610
 	mov r3, sl
 	strb r3, [r0, #6]
 	strb r6, [r0, #7]
@@ -1414,7 +1414,7 @@ _08014D30:
 	.align 2, 0
 _08014D50: .4byte gUnk_03002920
 _08014D54: .4byte 0x0000FFF0
-_08014D58: .4byte 0x03003610
+_08014D58: .4byte gUnk_03003610
 _08014D5C:
 	ldr r4, [sp, #0xc]
 	mov r5, sl
@@ -1820,7 +1820,7 @@ _08015052:
 _08015056:
 	mov r6, r8
 _08015058:
-	ldr r0, _0801510C @ =0x03004674
+	ldr r0, _0801510C @ =gUnk_03004674
 	ldr r0, [r0]
 	cmp r6, r0
 	bhi _08015062
@@ -1910,7 +1910,7 @@ _080150FA:
 	.align 2, 0
 _08015104: .4byte gUnk_03002920
 _08015108: .4byte 0x0000FFE0
-_0801510C: .4byte 0x03004674
+_0801510C: .4byte gUnk_03004674
 _08015110: .4byte gUnk_03005220
 _08015114:
 	ldr r7, _08015168 @ =gUnk_03002920
@@ -2035,7 +2035,7 @@ _080151A8:
 	adds r1, r0, #0
 _08015202:
 	adds r7, r1, #0
-	ldr r0, _0801521C @ =0x03003634
+	ldr r0, _0801521C @ =gUnk_03003634
 	ldr r6, [r0]
 	b _080155C8
 	.align 2, 0
@@ -2043,7 +2043,7 @@ _0801520C: .4byte gUnk_03002920
 _08015210: .4byte gUnk_03005220
 _08015214: .4byte gUnk_03004790
 _08015218: .4byte gUnk_03003430
-_0801521C: .4byte 0x03003634
+_0801521C: .4byte gUnk_03003634
 _08015220:
 	ldr r0, _08015254 @ =gUnk_03002920
 	lsls r2, r6, #3
@@ -2366,7 +2366,7 @@ _08015508:
 	.align 2, 0
 _08015558: .4byte gUnk_03002920
 _0801555C:
-	ldr r4, _08015578 @ =0x03003610
+	ldr r4, _08015578 @ =gUnk_03003610
 	ldrb r0, [r4, #6]
 	adds r5, r6, #1
 	mov r8, r5
@@ -2379,7 +2379,7 @@ _0801555C:
 	strb r0, [r4, #6]
 	b _080155C6
 	.align 2, 0
-_08015578: .4byte 0x03003610
+_08015578: .4byte gUnk_03003610
 _0801557C:
 	ldr r1, [sp, #0xc]
 	mov r2, sl
@@ -2423,7 +2423,7 @@ _080155C0:
 _080155C6:
 	mov r6, r8
 _080155C8:
-	ldr r0, _080156BC @ =0x03005430
+	ldr r0, _080156BC @ =gUnk_03005430
 	ldr r0, [r0]
 	cmp r6, r0
 	bhi _080155D2
@@ -2470,13 +2470,13 @@ _080155E0:
 	bl m4aSongNumStart
 	movs r0, #1
 	bl sub_080145A8
-	ldr r0, _080156C4 @ =0x03000824
+	ldr r0, _080156C4 @ =gUnk_03000824
 	ldr r1, [r0]
 	cmp r1, #0
 	bne _08015636
 	bl _08016ECE
 _08015636:
-	ldr r0, _080156C8 @ =0x03005424
+	ldr r0, _080156C8 @ =gUnk_03005424
 	ldr r3, [r0]
 	mov sl, r0
 	cmp r3, #0
@@ -2542,10 +2542,10 @@ _080156A2:
 	.align 2, 0
 _080156B4: .4byte gUnk_03002920
 _080156B8: .4byte gUnk_03004654
-_080156BC: .4byte 0x03005430
+_080156BC: .4byte gUnk_03005430
 _080156C0: .4byte gUnk_03005220
-_080156C4: .4byte 0x03000824
-_080156C8: .4byte 0x03005424
+_080156C4: .4byte gUnk_03000824
+_080156C8: .4byte gUnk_03005424
 _080156CC:
 	mov r3, sl
 	lsls r0, r3, #3
@@ -2783,12 +2783,12 @@ _0801588C:
 	adds r0, r0, r4
 	ldrh r0, [r0]
 	str r0, [sp, #8]
-	ldr r0, _080158A8 @ =0x030034D8
+	ldr r0, _080158A8 @ =gUnk_030034D8
 	ldr r6, [r0]
 	bl _0801637C
 	.align 2, 0
 _080158A4: .4byte gUnk_03002920
-_080158A8: .4byte 0x030034D8
+_080158A8: .4byte gUnk_030034D8
 
 	thumb_func_start sub_080158AC
 sub_080158AC: @ 0x080158AC
@@ -4119,7 +4119,7 @@ _08016376:
 _0801637A:
 	mov r6, r8
 _0801637C:
-	ldr r0, _080163A4 @ =0x0300541C
+	ldr r0, _080163A4 @ =gUnk_0300541C
 	ldr r0, [r0]
 	cmp r6, r0
 	bhi _08016388
@@ -4137,7 +4137,7 @@ _08016388:
 	bl _08016ECE
 	.align 2, 0
 _080163A0: .4byte gUnk_03002920
-_080163A4: .4byte 0x0300541C
+_080163A4: .4byte gUnk_0300541C
 _080163A8:
 	mov r5, sl
 	lsls r0, r5, #3
@@ -4300,11 +4300,11 @@ _080164C0:
 	cmp r0, #0
 	bne _080165B8
 _080164E0:
-	ldr r0, _080165AC @ =0x03000824
+	ldr r0, _080165AC @ =gUnk_03000824
 	ldr r1, [r0]
 	cmp r1, #0
 	beq _0801654E
-	ldr r0, _080165B0 @ =0x03005424
+	ldr r0, _080165B0 @ =gUnk_03005424
 	ldr r3, [r0]
 	cmp r3, #0
 	beq _0801654E
@@ -4396,8 +4396,8 @@ _0801659C: .4byte gUnk_03004790
 _080165A0: .4byte gUnk_03003430
 _080165A4: .4byte gUnk_03004654
 _080165A8: .4byte gUnk_03004C20
-_080165AC: .4byte 0x03000824
-_080165B0: .4byte 0x03005424
+_080165AC: .4byte gUnk_03000824
+_080165B0: .4byte gUnk_03005424
 _080165B4: .4byte 0x0000FFF8
 _080165B8:
 	ldr r5, [sp, #0xc]
@@ -4408,12 +4408,12 @@ _080165B8:
 	adds r0, r0, r7
 	ldrh r0, [r0, #2]
 	str r0, [sp, #8]
-	ldr r0, _080165D4 @ =0x03003630
+	ldr r0, _080165D4 @ =gUnk_03003630
 	ldr r6, [r0]
 	b _08016C8E
 	.align 2, 0
 _080165D0: .4byte gUnk_03002920
-_080165D4: .4byte 0x03003630
+_080165D4: .4byte gUnk_03003630
 _080165D8:
 	lsls r1, r6, #3
 	subs r0, r1, r6
@@ -4917,14 +4917,14 @@ _08016A54:
 	adds r0, r6, #0
 	movs r1, #2
 	bl sub_08025B78
-	ldr r0, _08016A80 @ =0x03003610
+	ldr r0, _08016A80 @ =gUnk_03003610
 	mov r3, sl
 	strb r3, [r0, #6]
 	b _08016C8C
 	.align 2, 0
 _08016A78: .4byte gUnk_03002920
 _08016A7C: .4byte 0x0000FFF0
-_08016A80: .4byte 0x03003610
+_08016A80: .4byte gUnk_03003610
 _08016A84:
 	ldr r1, _08016AE8 @ =gUnk_03002920
 	ldr r4, [sp, #0xc]
@@ -5204,7 +5204,7 @@ _08016C34:
 _08016C8C:
 	mov r6, r8
 _08016C8E:
-	ldr r0, _08016CB4 @ =0x03004674
+	ldr r0, _08016CB4 @ =gUnk_03004674
 	ldr r0, [r0]
 	cmp r6, r0
 	bhi _08016C98
@@ -5223,7 +5223,7 @@ _08016C98:
 	.align 2, 0
 _08016CAC: .4byte gUnk_03002920
 _08016CB0: .4byte 0x0000FFE0
-_08016CB4: .4byte 0x03004674
+_08016CB4: .4byte gUnk_03004674
 _08016CB8:
 	ldr r0, _08016CF4 @ =gUnk_03004C20
 	ldr r0, [r0, #4]
@@ -5978,7 +5978,7 @@ _0801729C:
 	subs r3, r5, r6
 	lsls r3, r3, #2
 	adds r3, r3, r0
-	ldr r4, _080172E4 @ =0x080E2B64
+	ldr r4, _080172E4 @ =gUnk_080E2B64
 	ldr r7, _080172E8 @ =gUnk_03004C20
 	ldrb r1, [r7, #0xe]
 	subs r1, #1
@@ -6004,7 +6004,7 @@ _0801729C:
 	b _080177DC
 	.align 2, 0
 _080172E0: .4byte gUnk_03002920
-_080172E4: .4byte 0x080E2B64
+_080172E4: .4byte gUnk_080E2B64
 _080172E8: .4byte gUnk_03004C20
 _080172EC: .4byte 0x00001130
 _080172F0: .4byte 0x00008980
@@ -6275,7 +6275,7 @@ _080174DE:
 	ldrb r0, [r7, #9]
 	cmp r0, #0
 	bne _08017584
-	ldr r2, _08017570 @ =0x080E2B64
+	ldr r2, _08017570 @ =gUnk_080E2B64
 	mov sb, r2
 	ldr r3, _08017574 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
@@ -6338,7 +6338,7 @@ _080174DE:
 	b _080177DC
 	.align 2, 0
 _0801756C: .4byte gUnk_03002920
-_08017570: .4byte 0x080E2B64
+_08017570: .4byte gUnk_080E2B64
 _08017574: .4byte gUnk_03004C20
 _08017578: .4byte 0x00001130
 _0801757C: .4byte 0x00008980
@@ -6388,7 +6388,7 @@ _080175C4:
 	ands r0, r2
 	orrs r0, r1
 	strb r0, [r4, #0xc]
-	ldr r3, _0801760C @ =0x080E2B64
+	ldr r3, _0801760C @ =gUnk_080E2B64
 	ldr r5, _08017610 @ =gUnk_03004C20
 	ldrb r1, [r5, #0xe]
 	subs r1, #1
@@ -6414,7 +6414,7 @@ _080175C4:
 	b _080177DC
 	.align 2, 0
 _08017608: .4byte gUnk_03002920
-_0801760C: .4byte 0x080E2B64
+_0801760C: .4byte gUnk_080E2B64
 _08017610: .4byte gUnk_03004C20
 _08017614: .4byte 0x00001130
 _08017618: .4byte 0x00008980
@@ -6656,10 +6656,10 @@ _080177DC:
 	orrs r0, r1
 	strb r0, [r6, #0xd]
 _080177FA:
-	ldr r0, _08017854 @ =0x030034CC
+	ldr r0, _08017854 @ =gUnk_030034CC
 	ldr r0, [r0]
 	str r0, [sp, #0x28]
-	ldr r0, _08017858 @ =0x0300529C
+	ldr r0, _08017858 @ =gUnk_0300529C
 	ldr r1, [r0]
 	mov r2, sl
 	lsls r2, r2, #3
@@ -6702,8 +6702,8 @@ _08017844: .4byte gUnk_03004790
 _08017848: .4byte gUnk_03003430
 _0801784C: .4byte gUnk_03002920
 _08017850: .4byte 0x0000FFFF
-_08017854: .4byte 0x030034CC
-_08017858: .4byte 0x0300529C
+_08017854: .4byte gUnk_030034CC
+_08017858: .4byte gUnk_0300529C
 _0801785C: .4byte _08017860
 _08017860: @ jump table
 	.4byte _08017BE4 @ case 0
@@ -7393,7 +7393,7 @@ _08017E40:
 	ldr r3, _08017EA8 @ =gUnk_03002920
 	adds r5, r0, r3
 	ldrb r6, [r5, #9]
-	ldr r4, _08017EAC @ =0x080E2B64
+	ldr r4, _08017EAC @ =gUnk_080E2B64
 	ldr r3, _08017EB0 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -7440,7 +7440,7 @@ _08017E80:
 	b _08017FA4
 	.align 2, 0
 _08017EA8: .4byte gUnk_03002920
-_08017EAC: .4byte 0x080E2B64
+_08017EAC: .4byte gUnk_080E2B64
 _08017EB0: .4byte gUnk_03004C20
 _08017EB4: .4byte 0x00001130
 _08017EB8: .4byte 0x00008980
@@ -7468,7 +7468,7 @@ _08017EE0:
 	bl _0801B02E
 _08017EE6:
 	ldrb r3, [r4, #9]
-	ldr r7, _08017F68 @ =0x080E2B64
+	ldr r7, _08017F68 @ =gUnk_080E2B64
 	mov sb, r7
 	ldr r5, _08017F6C @ =gUnk_03004C20
 	ldrb r1, [r5, #0xe]
@@ -7532,7 +7532,7 @@ _08017EE6:
 	strb r0, [r4, #9]
 	b _08017FA4
 	.align 2, 0
-_08017F68: .4byte 0x080E2B64
+_08017F68: .4byte gUnk_080E2B64
 _08017F6C: .4byte gUnk_03004C20
 _08017F70: .4byte 0x00001130
 _08017F74: .4byte 0x00008980
@@ -7612,7 +7612,7 @@ _08017FF8:
 	ldrh r2, [r4, #2]
 	subs r2, #1
 	strh r2, [r4, #2]
-	ldr r7, _08018084 @ =0x080E2B64
+	ldr r7, _08018084 @ =gUnk_080E2B64
 	mov r8, r7
 	ldrb r1, [r5, #0xe]
 	subs r1, #1
@@ -7671,7 +7671,7 @@ _08018074:
 	b _08018096
 	.align 2, 0
 _08018080: .4byte gUnk_03004C20
-_08018084: .4byte 0x080E2B64
+_08018084: .4byte gUnk_080E2B64
 _08018088: .4byte 0x00001130
 _0801808C: .4byte 0x00008980
 _08018090:
@@ -7729,10 +7729,10 @@ _080180D8:
 	adds r1, r0, #0
 _080180F2:
 	str r1, [sp, #0x34]
-	ldr r0, _08018144 @ =0x03000804
+	ldr r0, _08018144 @ =gUnk_03000804
 	ldr r0, [r0]
 	str r0, [sp, #0x28]
-	ldr r0, _08018148 @ =0x0300082C
+	ldr r0, _08018148 @ =gUnk_0300082C
 	ldr r1, [r0]
 	adds r6, r0, #0
 	ldr r3, [sp, #0x28]
@@ -7771,8 +7771,8 @@ _0801812E:
 _08018138: .4byte gUnk_03004790
 _0801813C: .4byte gUnk_03002920
 _08018140: .4byte gUnk_03003430
-_08018144: .4byte 0x03000804
-_08018148: .4byte 0x0300082C
+_08018144: .4byte gUnk_03000804
+_08018148: .4byte gUnk_0300082C
 _0801814C: .4byte _08018150
 _08018150: @ jump table
 	.4byte _08018280 @ case 0
@@ -8372,8 +8372,8 @@ _08018654:
 	movs r6, #0
 	ldrsh r0, [r0, r6]
 	bl ReciprocalQ8
-	ldr r2, _080186C0 @ =0x03004680
-	ldr r1, _080186C4 @ =0x03005288
+	ldr r2, _080186C0 @ =gUnk_03004680
+	ldr r1, _080186C4 @ =gUnk_03005288
 	ldrb r1, [r1]
 	lsls r1, r1, #3
 	adds r1, r1, r2
@@ -8411,8 +8411,8 @@ _080186B0: .4byte gUnk_03004790
 _080186B4: .4byte gUnk_03003430
 _080186B8: .4byte gUnk_03004654
 _080186BC: .4byte gUnk_03005420
-_080186C0: .4byte 0x03004680
-_080186C4: .4byte 0x03005288
+_080186C0: .4byte gUnk_03004680
+_080186C4: .4byte gUnk_03005288
 _080186C8: .4byte gUnk_03005220
 _080186CC:
 	ldr r2, _080186F0 @ =gUnk_03002920
@@ -8457,8 +8457,8 @@ _080186FE:
 	subs r0, r0, r1
 	subs r0, #0x18
 	bl Abs
-	ldr r2, _08018744 @ =0x03004680
-	ldr r1, _08018748 @ =0x03005288
+	ldr r2, _08018744 @ =gUnk_03004680
+	ldr r1, _08018748 @ =gUnk_03005288
 	ldrb r1, [r1]
 	lsls r1, r1, #3
 	adds r1, r1, r2
@@ -8470,8 +8470,8 @@ _080186FE:
 _08018738: .4byte gUnk_03005220
 _0801873C: .4byte gUnk_03005420
 _08018740: .4byte gUnk_03002920
-_08018744: .4byte 0x03004680
-_08018748: .4byte 0x03005288
+_08018744: .4byte gUnk_03004680
+_08018748: .4byte gUnk_03005288
 _0801874C:
 	ldrh r0, [r4]
 	ldrh r1, [r5]
@@ -8549,10 +8549,10 @@ _080187D8:
 	adds r1, r1, r0
 	strh r1, [r5]
 _080187DE:
-	ldr r0, _08018828 @ =0x030047B4
+	ldr r0, _08018828 @ =gUnk_030047B4
 	ldr r0, [r0]
 	str r0, [sp, #0x28]
-	ldr r0, _0801882C @ =0x03003640
+	ldr r0, _0801882C @ =gUnk_03003640
 	ldr r0, [r0]
 	ldr r1, [sp, #0x28]
 	cmp r1, r0
@@ -8588,8 +8588,8 @@ _08018818:
 	mov pc, r0
 	.align 2, 0
 _08018824: .4byte gUnk_03002920
-_08018828: .4byte 0x030047B4
-_0801882C: .4byte 0x03003640
+_08018828: .4byte gUnk_030047B4
+_0801882C: .4byte gUnk_03003640
 _08018830: .4byte _08018834
 _08018834: @ jump table
 	.4byte _08018A80 @ case 0
@@ -8936,8 +8936,8 @@ _08018B9E:
 	adds r0, #0x18
 _08018BAA:
 	strh r0, [r5, #2]
-	ldr r1, _08018BD4 @ =0x03004680
-	ldr r0, _08018BD8 @ =0x03005288
+	ldr r1, _08018BD4 @ =gUnk_03004680
+	ldr r0, _08018BD8 @ =gUnk_03005288
 	ldrb r2, [r0]
 	lsls r2, r2, #3
 	adds r2, r2, r1
@@ -8955,10 +8955,10 @@ _08018BAA:
 	.align 2, 0
 _08018BCC: .4byte gUnk_03002920
 _08018BD0: .4byte gUnk_03005220
-_08018BD4: .4byte 0x03004680
-_08018BD8: .4byte 0x03005288
+_08018BD4: .4byte gUnk_03004680
+_08018BD8: .4byte gUnk_03005288
 _08018BDC:
-	ldr r4, _08018BF4 @ =0x03003610
+	ldr r4, _08018BF4 @ =gUnk_03003610
 	ldrb r0, [r4, #2]
 	cmp r0, sl
 	beq _08018BE6
@@ -8971,7 +8971,7 @@ _08018BE6:
 	strb r0, [r4, #2]
 	b _08018D34
 	.align 2, 0
-_08018BF4: .4byte 0x03003610
+_08018BF4: .4byte gUnk_03003610
 _08018BF8:
 	ldr r4, [sp, #0x40]
 	mov r5, sl
@@ -9135,7 +9135,7 @@ _08018D34:
 	ldr r3, [sp, #0x28]
 	adds r3, #1
 	str r3, [sp, #0x28]
-	ldr r0, _08018D4C @ =0x03003640
+	ldr r0, _08018D4C @ =gUnk_03003640
 	ldr r0, [r0]
 	cmp r3, r0
 	bhi _08018D44
@@ -9144,7 +9144,7 @@ _08018D44:
 	bl _0801B02E
 	.align 2, 0
 _08018D48: .4byte gUnk_03002920
-_08018D4C: .4byte 0x03003640
+_08018D4C: .4byte gUnk_03003640
 _08018D50:
 	mov r4, sl
 	lsls r0, r4, #3
@@ -9347,10 +9347,10 @@ _08018EE6:
 _08018EE8:
 	str r0, [sp, #0x34]
 _08018EEA:
-	ldr r0, _08018F4C @ =0x030008F4
+	ldr r0, _08018F4C @ =gUnk_030008F4
 	ldr r0, [r0]
 	str r0, [sp, #0x28]
-	ldr r0, _08018F50 @ =0x030008F0
+	ldr r0, _08018F50 @ =gUnk_030008F0
 	ldr r0, [r0]
 	mov r3, sl
 	subs r3, #0xd
@@ -9394,8 +9394,8 @@ _08018F36:
 _08018F40: .4byte gUnk_03004790
 _08018F44: .4byte gUnk_03002920
 _08018F48: .4byte gUnk_03003430
-_08018F4C: .4byte 0x030008F4
-_08018F50: .4byte 0x030008F0
+_08018F4C: .4byte gUnk_030008F4
+_08018F50: .4byte gUnk_030008F0
 _08018F54: .4byte _08018F58
 _08018F58: @ jump table
 	.4byte _080193E4 @ case 0
@@ -11224,7 +11224,7 @@ _08019E6A:
 	movs r2, #2
 	mov r3, sl
 	bl sub_0801E664
-	ldr r2, _08019FB4 @ =0x080E2B64
+	ldr r2, _08019FB4 @ =gUnk_080E2B64
 	mov r8, r2
 	ldr r2, _08019FB8 @ =gUnk_03004C20
 	ldrb r1, [r2, #0xe]
@@ -11277,13 +11277,13 @@ _08019E6A:
 _08019EE6:
 	mov r5, r8
 	str r5, [sp, #0x28]
-	ldr r0, _08019FC4 @ =0x030008F0
+	ldr r0, _08019FC4 @ =gUnk_030008F0
 	ldr r0, [r0]
 	cmp r5, r0
 	bhi _08019EF6
 	bl _08018F04
 _08019EF6:
-	ldr r4, _08019FB4 @ =0x080E2B64
+	ldr r4, _08019FB4 @ =gUnk_080E2B64
 	ldr r3, _08019FB8 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -11381,11 +11381,11 @@ _08019F84:
 	bl _0801B02E
 	.align 2, 0
 _08019FB0: .4byte gUnk_03002920
-_08019FB4: .4byte 0x080E2B64
+_08019FB4: .4byte gUnk_080E2B64
 _08019FB8: .4byte gUnk_03004C20
 _08019FBC: .4byte 0x00001130
 _08019FC0: .4byte 0x00008980
-_08019FC4: .4byte 0x030008F0
+_08019FC4: .4byte gUnk_030008F0
 _08019FC8: .4byte gUnk_03004654
 _08019FCC: .4byte 0xFFFFFEED
 _08019FD0: .4byte 0xFEC90000
@@ -11402,7 +11402,7 @@ _08019FD8:
 	movs r2, #2
 	mov r3, sl
 	bl sub_0801E664
-	ldr r7, _0801A074 @ =0x080E2B64
+	ldr r7, _0801A074 @ =gUnk_080E2B64
 	ldr r2, _0801A078 @ =gUnk_03004C20
 	ldrb r1, [r2, #0xe]
 	subs r1, #1
@@ -11440,7 +11440,7 @@ _0801A030:
 	subs r4, r6, r7
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r5, _0801A074 @ =0x080E2B64
+	ldr r5, _0801A074 @ =gUnk_080E2B64
 	ldr r3, _0801A078 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -11467,7 +11467,7 @@ _0801A030:
 	bl _0801AF28
 	.align 2, 0
 _0801A070: .4byte gUnk_03002920
-_0801A074: .4byte 0x080E2B64
+_0801A074: .4byte gUnk_080E2B64
 _0801A078: .4byte gUnk_03004C20
 _0801A07C: .4byte 0x00001130
 _0801A080: .4byte 0x00008980
@@ -11672,10 +11672,10 @@ _0801A202:
 _0801A21C:
 	str r1, [sp, #0x34]
 _0801A21E:
-	ldr r0, _0801A27C @ =0x030007F0
+	ldr r0, _0801A27C @ =gUnk_030007F0
 	ldr r0, [r0]
 	str r0, [sp, #0x28]
-	ldr r0, _0801A280 @ =0x03004C04
+	ldr r0, _0801A280 @ =gUnk_03004C04
 	ldr r0, [r0]
 	mov r1, sl
 	subs r1, #0xd
@@ -11716,8 +11716,8 @@ _0801A264:
 _0801A270: .4byte gUnk_03004790
 _0801A274: .4byte gUnk_03002920
 _0801A278: .4byte gUnk_03003430
-_0801A27C: .4byte 0x030007F0
-_0801A280: .4byte 0x03004C04
+_0801A27C: .4byte gUnk_030007F0
+_0801A280: .4byte gUnk_03004C04
 _0801A284: .4byte _0801A288
 _0801A288: @ jump table
 	.4byte _0801A4B8 @ case 0
@@ -12131,7 +12131,7 @@ _0801A688:
 	ldr r0, [sp, #0x28]
 	movs r1, #2
 	bl sub_08025B78
-	ldr r0, _0801A6BC @ =0x03003610
+	ldr r0, _0801A6BC @ =gUnk_03003610
 	mov r7, sl
 	strb r7, [r0, #2]
 	add r1, sp, #0x28
@@ -12142,7 +12142,7 @@ _0801A688:
 _0801A6B0: .4byte gUnk_03002920
 _0801A6B4: .4byte gUnk_03004654
 _0801A6B8: .4byte 0x0000FFF0
-_0801A6BC: .4byte 0x03003610
+_0801A6BC: .4byte gUnk_03003610
 _0801A6C0:
 	ldr r2, [sp, #0x40]
 	mov r3, sl
@@ -12976,7 +12976,7 @@ _0801ACE6:
 	movs r2, #2
 	mov r3, sl
 	bl sub_0801E664
-	ldr r1, _0801AE30 @ =0x080E2B64
+	ldr r1, _0801AE30 @ =gUnk_080E2B64
 	mov sb, r1
 	ldr r2, _0801AE34 @ =gUnk_03004C20
 	ldrb r1, [r2, #0xe]
@@ -13026,13 +13026,13 @@ _0801AD76:
 	ldr r7, [sp, #0x28]
 	adds r7, #1
 	str r7, [sp, #0x28]
-	ldr r0, _0801AE40 @ =0x03004C04
+	ldr r0, _0801AE40 @ =gUnk_03004C04
 	ldr r0, [r0]
 	cmp r7, r0
 	bhi _0801AD88
 	bl _0801A238
 _0801AD88:
-	ldr r4, _0801AE30 @ =0x080E2B64
+	ldr r4, _0801AE30 @ =gUnk_080E2B64
 	ldr r3, _0801AE34 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -13118,11 +13118,11 @@ _0801ADFE:
 	b _0801B02E
 	.align 2, 0
 _0801AE2C: .4byte gUnk_03002920
-_0801AE30: .4byte 0x080E2B64
+_0801AE30: .4byte gUnk_080E2B64
 _0801AE34: .4byte gUnk_03004C20
 _0801AE38: .4byte 0x00001130
 _0801AE3C: .4byte 0x00008980
-_0801AE40: .4byte 0x03004C04
+_0801AE40: .4byte gUnk_03004C04
 _0801AE44: .4byte gUnk_03004654
 _0801AE48: .4byte 0xFFFFFEED
 _0801AE4C: .4byte 0xFEC90000
@@ -13140,7 +13140,7 @@ _0801AE58:
 	movs r2, #2
 	mov r3, sl
 	bl sub_0801E664
-	ldr r7, _0801AEF0 @ =0x080E2B64
+	ldr r7, _0801AEF0 @ =gUnk_080E2B64
 	ldr r2, _0801AEF4 @ =gUnk_03004C20
 	ldrb r1, [r2, #0xe]
 	subs r1, #1
@@ -13177,7 +13177,7 @@ _0801AEAC:
 	subs r4, r6, r7
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r5, _0801AEF0 @ =0x080E2B64
+	ldr r5, _0801AEF0 @ =gUnk_080E2B64
 	ldr r3, _0801AEF4 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -13204,7 +13204,7 @@ _0801AEAC:
 	b _0801AF28
 	.align 2, 0
 _0801AEEC: .4byte gUnk_03002920
-_0801AEF0: .4byte 0x080E2B64
+_0801AEF0: .4byte gUnk_080E2B64
 _0801AEF4: .4byte gUnk_03004C20
 _0801AEF8: .4byte 0x00001130
 _0801AEFC: .4byte 0x00008980
@@ -13556,8 +13556,8 @@ _0801B170:
 	lsrs r0, r0, #0x1e
 	cmp r0, #0
 	bne _0801B1AC
-	ldr r2, _0801B1A4 @ =0x03004680
-	ldr r3, _0801B1A8 @ =0x03005288
+	ldr r2, _0801B1A4 @ =gUnk_03004680
+	ldr r3, _0801B1A8 @ =gUnk_03005288
 	ldrb r1, [r3]
 	lsls r1, r1, #3
 	adds r1, r1, r2
@@ -13566,11 +13566,11 @@ _0801B170:
 	b _0801B1BA
 	.align 2, 0
 _0801B1A0: .4byte gUnk_03002920
-_0801B1A4: .4byte 0x03004680
-_0801B1A8: .4byte 0x03005288
+_0801B1A4: .4byte gUnk_03004680
+_0801B1A8: .4byte gUnk_03005288
 _0801B1AC:
-	ldr r2, _0801B1EC @ =0x03004680
-	ldr r3, _0801B1F0 @ =0x03005288
+	ldr r2, _0801B1EC @ =gUnk_03004680
+	ldr r3, _0801B1F0 @ =gUnk_03005288
 	ldrb r1, [r3]
 	lsls r1, r1, #3
 	adds r1, r1, r2
@@ -13603,8 +13603,8 @@ _0801B1BA:
 	adds r2, #0x1a
 	b _0801B20E
 	.align 2, 0
-_0801B1EC: .4byte 0x03004680
-_0801B1F0: .4byte 0x03005288
+_0801B1EC: .4byte gUnk_03004680
+_0801B1F0: .4byte gUnk_03005288
 _0801B1F4:
 	ldrh r0, [r5]
 	adds r1, r0, #0
@@ -13748,8 +13748,8 @@ _0801B2F2:
 	lsrs r0, r0, #0x1e
 	cmp r0, #0
 	bne _0801B37C
-	ldr r4, _0801B370 @ =0x03004680
-	ldr r2, _0801B374 @ =0x03005288
+	ldr r4, _0801B370 @ =gUnk_03004680
+	ldr r2, _0801B374 @ =gUnk_03005288
 	ldrb r1, [r2]
 	adds r1, #1
 	lsls r1, r1, #3
@@ -13803,12 +13803,12 @@ _0801B2F2:
 _0801B364: .4byte gUnk_03002920
 _0801B368: .4byte gUnk_03000830
 _0801B36C: .4byte gUnk_03005220
-_0801B370: .4byte 0x03004680
-_0801B374: .4byte 0x03005288
+_0801B370: .4byte gUnk_03004680
+_0801B374: .4byte gUnk_03005288
 _0801B378: .4byte gSineTable
 _0801B37C:
-	ldr r5, _0801B3E4 @ =0x03004680
-	ldr r3, _0801B3E8 @ =0x03005288
+	ldr r5, _0801B3E4 @ =gUnk_03004680
+	ldr r3, _0801B3E8 @ =gUnk_03005288
 	ldrb r1, [r3]
 	adds r1, #1
 	lsls r1, r1, #3
@@ -13859,8 +13859,8 @@ _0801B37C:
 	strh r1, [r0, #4]
 	b _0801B676
 	.align 2, 0
-_0801B3E4: .4byte 0x03004680
-_0801B3E8: .4byte 0x03005288
+_0801B3E4: .4byte gUnk_03004680
+_0801B3E8: .4byte gUnk_03005288
 _0801B3EC: .4byte gSineTable
 _0801B3F0:
 	adds r0, r2, #0
@@ -13969,8 +13969,8 @@ _0801B4A8:
 	rsbs r0, r0, #0
 	ands r0, r1
 	strb r0, [r3, #0xe]
-	ldr r1, _0801B564 @ =0x03004680
-	ldr r0, _0801B568 @ =0x03005288
+	ldr r1, _0801B564 @ =gUnk_03004680
+	ldr r0, _0801B568 @ =gUnk_03005288
 	ldrb r0, [r0]
 	lsls r0, r0, #3
 	adds r0, r0, r1
@@ -14046,8 +14046,8 @@ _0801B502:
 	b _0801B58E
 	.align 2, 0
 _0801B560: .4byte gUnk_03002920
-_0801B564: .4byte 0x03004680
-_0801B568: .4byte 0x03005288
+_0801B564: .4byte gUnk_03004680
+_0801B568: .4byte gUnk_03005288
 _0801B56C: .4byte gUnk_03005220
 _0801B570: .4byte 0x0000FFFA
 _0801B574: .4byte 0xFFFFFED3
@@ -14400,7 +14400,7 @@ _0801B806:
 	mov sl, r0
 	cmp r1, #0
 	bne _0801B8E0
-	ldr r0, _0801B89C @ =0x080E2B64
+	ldr r0, _0801B89C @ =gUnk_080E2B64
 	mov sb, r0
 	ldr r4, _0801B8A0 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -14462,7 +14462,7 @@ _0801B806:
 _0801B890: .4byte gUnk_03000830
 _0801B894: .4byte gUnk_0300363C
 _0801B898: .4byte gUnk_03002920
-_0801B89C: .4byte 0x080E2B64
+_0801B89C: .4byte gUnk_080E2B64
 _0801B8A0: .4byte gUnk_03004C20
 _0801B8A4: .4byte 0x00001130
 _0801B8A8: .4byte 0x00008980
@@ -14541,7 +14541,7 @@ _0801B938:
 	subs r4, r2, r5
 	lsls r4, r4, #2
 	add r4, sl
-	ldr r7, _0801B994 @ =0x080E2B64
+	ldr r7, _0801B994 @ =gUnk_080E2B64
 	mov r8, r7
 	ldr r3, _0801B998 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
@@ -14583,7 +14583,7 @@ _0801B938:
 	strh r0, [r4, #2]
 	b _0801BB4C
 	.align 2, 0
-_0801B994: .4byte 0x080E2B64
+_0801B994: .4byte gUnk_080E2B64
 _0801B998: .4byte gUnk_03004C20
 _0801B99C: .4byte 0x00001130
 _0801B9A0: .4byte 0x00008980
@@ -14592,7 +14592,7 @@ _0801B9A4:
 	subs r3, r0, r5
 	lsls r3, r3, #2
 	add r3, sl
-	ldr r1, _0801BA00 @ =0x080E2B64
+	ldr r1, _0801BA00 @ =gUnk_080E2B64
 	mov r8, r1
 	ldr r4, _0801BA04 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -14635,7 +14635,7 @@ _0801B9A4:
 	ldrh r0, [r1, #2]
 	b _0801BB4A
 	.align 2, 0
-_0801BA00: .4byte 0x080E2B64
+_0801BA00: .4byte gUnk_080E2B64
 _0801BA04: .4byte gUnk_03004C20
 _0801BA08: .4byte 0x00001130
 _0801BA0C: .4byte 0x00008980
@@ -14644,7 +14644,7 @@ _0801BA10:
 	subs r3, r0, r5
 	lsls r3, r3, #2
 	add r3, sl
-	ldr r1, _0801BA6C @ =0x080E2B64
+	ldr r1, _0801BA6C @ =gUnk_080E2B64
 	mov r8, r1
 	ldr r4, _0801BA70 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -14687,7 +14687,7 @@ _0801BA10:
 	adds r0, r0, r2
 	b _0801BB4A
 	.align 2, 0
-_0801BA6C: .4byte 0x080E2B64
+_0801BA6C: .4byte gUnk_080E2B64
 _0801BA70: .4byte gUnk_03004C20
 _0801BA74: .4byte 0x00001130
 _0801BA78: .4byte 0x00008980
@@ -14696,7 +14696,7 @@ _0801BA7C:
 	subs r3, r7, r5
 	lsls r3, r3, #2
 	add r3, sl
-	ldr r0, _0801BADC @ =0x080E2B64
+	ldr r0, _0801BADC @ =gUnk_080E2B64
 	mov r8, r0
 	ldr r4, _0801BAE0 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -14741,7 +14741,7 @@ _0801BA7C:
 	adds r0, r0, r2
 	b _0801BB4A
 	.align 2, 0
-_0801BADC: .4byte 0x080E2B64
+_0801BADC: .4byte gUnk_080E2B64
 _0801BAE0: .4byte gUnk_03004C20
 _0801BAE4: .4byte 0x00001130
 _0801BAE8: .4byte 0x00008980
@@ -14750,7 +14750,7 @@ _0801BAEC:
 	subs r3, r7, r5
 	lsls r3, r3, #2
 	add r3, sl
-	ldr r0, _0801BB5C @ =0x080E2B64
+	ldr r0, _0801BB5C @ =gUnk_080E2B64
 	mov r8, r0
 	ldr r4, _0801BB60 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -14805,7 +14805,7 @@ _0801BB4C:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801BB5C: .4byte 0x080E2B64
+_0801BB5C: .4byte gUnk_080E2B64
 _0801BB60: .4byte gUnk_03004C20
 _0801BB64: .4byte 0x00001130
 _0801BB68: .4byte 0x00008980
@@ -15169,9 +15169,9 @@ _0801BE26:
 	beq _0801BE30
 	b _0801C142
 _0801BE30:
-	ldr r0, _0801BE98 @ =0x03003500
+	ldr r0, _0801BE98 @ =gUnk_03003500
 	ldr r7, [r0]
-	ldr r0, _0801BE9C @ =0x03004664
+	ldr r0, _0801BE9C @ =gUnk_03004664
 	ldr r0, [r0]
 	cmp r7, r0
 	bls _0801BE3E
@@ -15225,8 +15225,8 @@ _0801BE8A:
 	b _0801C142
 	.align 2, 0
 _0801BE94: .4byte gUnk_03005220
-_0801BE98: .4byte 0x03003500
-_0801BE9C: .4byte 0x03004664
+_0801BE98: .4byte gUnk_03003500
+_0801BE9C: .4byte gUnk_03004664
 _0801BEA0:
 	lsls r2, r4, #3
 	subs r0, r2, r4
@@ -15314,9 +15314,9 @@ _0801BF36:
 	blt _0801BF42
 	b _0801C142
 _0801BF42:
-	ldr r0, _0801BFB8 @ =0x03003500
+	ldr r0, _0801BFB8 @ =gUnk_03003500
 	ldr r7, [r0]
-	ldr r0, _0801BFBC @ =0x03004664
+	ldr r0, _0801BFBC @ =gUnk_03004664
 	ldr r1, [r0]
 	mov sl, r0
 	cmp r7, r1
@@ -15377,8 +15377,8 @@ _0801BFAE:
 	b _0801BFD2
 	.align 2, 0
 _0801BFB4: .4byte gUnk_03005220
-_0801BFB8: .4byte 0x03003500
-_0801BFBC: .4byte 0x03004664
+_0801BFB8: .4byte gUnk_03003500
+_0801BFBC: .4byte gUnk_03004664
 _0801BFC0:
 	ldrb r1, [r3, #0xc]
 	lsrs r0, r1, #4
@@ -15740,7 +15740,7 @@ _0801C204:
 	movs r0, #0xf
 	ands r0, r1
 	strb r0, [r5, #0xc]
-	ldr r1, _0801C288 @ =0x030034E0
+	ldr r1, _0801C288 @ =gUnk_030034E0
 	ldrb r0, [r1]
 	subs r0, #1
 	strb r0, [r1]
@@ -15757,7 +15757,7 @@ _0801C278: .4byte gUnk_0818B8E0
 _0801C27C: .4byte gUnk_03004C20
 _0801C280: .4byte 0x06010000
 _0801C284: .4byte 0x80000040
-_0801C288: .4byte 0x030034E0
+_0801C288: .4byte gUnk_030034E0
 _0801C28C:
 	mov r2, sl
 	lsls r7, r2, #3
@@ -15937,7 +15937,7 @@ _0801C3DE:
 	ldr r6, [r2]
 	lsls r3, r6, #9
 	lsrs r3, r3, #0x18
-	ldr r5, _0801C43C @ =0x080E2B64
+	ldr r5, _0801C43C @ =gUnk_080E2B64
 	ldr r4, _0801C440 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
 	subs r1, #1
@@ -15973,7 +15973,7 @@ _0801C3DE:
 	.align 2, 0
 _0801C434: .4byte gUnk_03002920
 _0801C438: .4byte gUnk_03005220
-_0801C43C: .4byte 0x080E2B64
+_0801C43C: .4byte gUnk_080E2B64
 _0801C440: .4byte gUnk_03004C20
 _0801C444: .4byte 0x00001130
 _0801C448: .4byte 0x00008980
@@ -16003,9 +16003,9 @@ _0801C474:
 	movs r0, #0xf
 	ands r0, r1
 	strb r0, [r2, #0xc]
-	ldr r0, _0801C514 @ =0x030034E0
+	ldr r0, _0801C514 @ =gUnk_030034E0
 	strb r3, [r0]
-	ldr r3, _0801C518 @ =0x080E2B64
+	ldr r3, _0801C518 @ =gUnk_080E2B64
 	ldr r4, _0801C51C @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
 	subs r1, #1
@@ -16082,8 +16082,8 @@ _0801C4D4:
 	bge _0801C4D4
 	b _0801C6D6
 	.align 2, 0
-_0801C514: .4byte 0x030034E0
-_0801C518: .4byte 0x080E2B64
+_0801C514: .4byte gUnk_030034E0
+_0801C518: .4byte gUnk_080E2B64
 _0801C51C: .4byte gUnk_03004C20
 _0801C520: .4byte 0x00001130
 _0801C524: .4byte 0x00008980
@@ -16104,7 +16104,7 @@ _0801C548:
 	b _0801C6D6
 _0801C54E:
 	movs r6, #0
-	ldr r0, _0801C590 @ =0x030008FC
+	ldr r0, _0801C590 @ =gUnk_030008FC
 	ldr r1, [r0]
 	str r7, [sp, #4]
 	cmp r6, r1
@@ -16140,7 +16140,7 @@ _0801C574:
 	strh r0, [r1, #2]
 	b _0801C656
 	.align 2, 0
-_0801C590: .4byte 0x030008FC
+_0801C590: .4byte gUnk_030008FC
 _0801C594: .4byte gUnk_03002920
 _0801C598:
 	ldrb r0, [r0, #0x11]
@@ -16237,12 +16237,12 @@ _0801C648: .4byte gUnk_03002920
 _0801C64C:
 	cmp r6, #0
 	bne _0801C656
-	ldr r0, _0801C6A0 @ =0x03002904
+	ldr r0, _0801C6A0 @ =gUnk_03002904
 	ldr r0, [r0]
 	subs r6, r0, #1
 _0801C656:
 	adds r6, #1
-	ldr r1, _0801C6A4 @ =0x030008FC
+	ldr r1, _0801C6A4 @ =gUnk_030008FC
 	ldr r0, [r1]
 	cmp r6, r0
 	bhi _0801C662
@@ -16279,8 +16279,8 @@ _0801C692:
 	subs r0, #1
 	b _0801C6D4
 	.align 2, 0
-_0801C6A0: .4byte 0x03002904
-_0801C6A4: .4byte 0x030008FC
+_0801C6A0: .4byte gUnk_03002904
+_0801C6A4: .4byte gUnk_030008FC
 _0801C6A8: .4byte gUnk_03002920
 _0801C6AC:
 	mov r1, sl
@@ -16326,9 +16326,9 @@ sub_0801C6EC: @ 0x0801C6EC
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	mov r8, r0
-	ldr r0, _0801C788 @ =0x030034A4
+	ldr r0, _0801C788 @ =gUnk_030034A4
 	ldr r7, [r0]
-	ldr r0, _0801C78C @ =0x030052B0
+	ldr r0, _0801C78C @ =gUnk_030052B0
 	ldr r1, [r0]
 	mov sb, r0
 	ldr r0, _0801C790 @ =gUnk_03002920
@@ -16398,8 +16398,8 @@ _0801C72E:
 	strb r6, [r4]
 	b _0801C7AA
 	.align 2, 0
-_0801C788: .4byte 0x030034A4
-_0801C78C: .4byte 0x030052B0
+_0801C788: .4byte gUnk_030034A4
+_0801C78C: .4byte gUnk_030052B0
 _0801C790: .4byte gUnk_03002920
 _0801C794: .4byte 0x0000FFE9
 _0801C798: .4byte 0x03000810
@@ -16425,7 +16425,7 @@ _0801C7AA:
 	adds r3, #1
 	movs r7, #0
 	strh r3, [r6, #2]
-	ldr r5, _0801C818 @ =0x080E2B64
+	ldr r5, _0801C818 @ =gUnk_080E2B64
 	ldr r4, _0801C81C @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
 	subs r1, #1
@@ -16467,7 +16467,7 @@ _0801C808:
 	bx r0
 	.align 2, 0
 _0801C814: .4byte gUnk_03002920
-_0801C818: .4byte 0x080E2B64
+_0801C818: .4byte gUnk_080E2B64
 _0801C81C: .4byte gUnk_03004C20
 _0801C820: .4byte 0x00001130
 _0801C824: .4byte 0x00008980
@@ -16494,9 +16494,9 @@ sub_0801C82C: @ 0x0801C82C
 	ands r0, r2
 	strb r0, [r1, #0xc]
 	movs r1, #0
-	ldr r0, _0801C8B8 @ =0x03003610
+	ldr r0, _0801C8B8 @ =gUnk_03003610
 	mov r8, r3
-	ldr r5, _0801C8BC @ =0x030047BC
+	ldr r5, _0801C8BC @ =gUnk_030047BC
 	ldrb r0, [r0]
 	cmp sb, r0
 	beq _0801C89A
@@ -16505,11 +16505,11 @@ sub_0801C82C: @ 0x0801C82C
 	rsbs r2, r2, #0
 	add r2, sb
 	mov sl, r2
-	ldr r3, _0801C8B8 @ =0x03003610
+	ldr r3, _0801C8B8 @ =gUnk_03003610
 	ldrb r3, [r3, #1]
 	cmp sb, r3
 	beq _0801C88C
-	ldr r2, _0801C8B8 @ =0x03003610
+	ldr r2, _0801C8B8 @ =gUnk_03003610
 _0801C872:
 	adds r0, r1, #1
 	lsls r0, r0, #0x18
@@ -16526,7 +16526,7 @@ _0801C872:
 	bne _0801C872
 _0801C88C:
 	lsls r0, r1, #2
-	ldr r3, _0801C8B8 @ =0x03003610
+	ldr r3, _0801C8B8 @ =gUnk_03003610
 	adds r2, r0, r3
 	str r0, [sp, #0x18]
 	ldrb r4, [r2]
@@ -16534,7 +16534,7 @@ _0801C88C:
 	bne _0801C8C0
 _0801C89A:
 	lsls r1, r1, #2
-	ldr r2, _0801C8B8 @ =0x03003610
+	ldr r2, _0801C8B8 @ =gUnk_03003610
 	adds r0, r1, r2
 	ldrb r0, [r0, #1]
 	mov r3, sb
@@ -16548,8 +16548,8 @@ _0801C89A:
 	b _0801C8C2
 	.align 2, 0
 _0801C8B4: .4byte gUnk_03002920
-_0801C8B8: .4byte 0x03003610
-_0801C8BC: .4byte 0x030047BC
+_0801C8B8: .4byte gUnk_03003610
+_0801C8BC: .4byte gUnk_030047BC
 _0801C8C0:
 	ldrb r0, [r2]
 _0801C8C2:
@@ -16598,7 +16598,7 @@ _0801C8C2:
 	strb r0, [r2, #0xc]
 _0801C918:
 	ldr r6, [r5]
-	ldr r1, _0801C964 @ =0x030007D4
+	ldr r1, _0801C964 @ =gUnk_030007D4
 	ldr r0, [r1]
 	ldr r2, [sp]
 	lsls r2, r2, #3
@@ -16636,7 +16636,7 @@ _0801C94C:
 	beq _0801C99A
 	b _0801CA00
 	.align 2, 0
-_0801C964: .4byte 0x030007D4
+_0801C964: .4byte gUnk_030007D4
 _0801C968: .4byte gUnk_03002920
 _0801C96C:
 	cmp r0, #0x7d
@@ -16721,7 +16721,7 @@ _0801CA00:
 	add ip, r0
 	adds r7, #0x1c
 	adds r6, #1
-	ldr r1, _0801CAB4 @ =0x030007D4
+	ldr r1, _0801CAB4 @ =gUnk_030007D4
 	ldr r0, [r1]
 	cmp r6, r0
 	bls _0801C94C
@@ -16775,9 +16775,9 @@ _0801CA26:
 	orrs r0, r1
 	strb r0, [r7, #0xc]
 _0801CA6E:
-	ldr r0, _0801CAB8 @ =0x030047F8
+	ldr r0, _0801CAB8 @ =gUnk_030047F8
 	ldr r6, [r0]
-	ldr r0, _0801CABC @ =0x03003504
+	ldr r0, _0801CABC @ =gUnk_03003504
 	ldr r1, [r0]
 	cmp r6, r1
 	bhi _0801CB62
@@ -16811,9 +16811,9 @@ _0801CA94:
 	beq _0801CACA
 	b _0801CB56
 	.align 2, 0
-_0801CAB4: .4byte 0x030007D4
-_0801CAB8: .4byte 0x030047F8
-_0801CABC: .4byte 0x03003504
+_0801CAB4: .4byte gUnk_030007D4
+_0801CAB8: .4byte gUnk_030047F8
+_0801CABC: .4byte gUnk_03003504
 _0801CAC0:
 	cmp r0, #0x7d
 	bgt _0801CB56
@@ -16896,7 +16896,7 @@ _0801CB4C:
 _0801CB56:
 	adds r7, #0x1c
 	adds r6, #1
-	ldr r3, _0801CBC0 @ =0x03003504
+	ldr r3, _0801CBC0 @ =gUnk_03003504
 	ldr r0, [r3]
 	cmp r6, r0
 	bls _0801CA94
@@ -16920,7 +16920,7 @@ _0801CB62:
 	cmp r1, r0
 	bne _0801CBD8
 	ldr r0, [sp, #0x18]
-	ldr r2, _0801CBC4 @ =0x03003610
+	ldr r2, _0801CBC4 @ =gUnk_03003610
 	adds r1, r0, r2
 	ldrb r0, [r1, #2]
 	cmp r0, #1
@@ -16950,8 +16950,8 @@ _0801CBA6:
 	strb r0, [r4, #0xc]
 	b _0801CBE4
 	.align 2, 0
-_0801CBC0: .4byte 0x03003504
-_0801CBC4: .4byte 0x03003610
+_0801CBC0: .4byte gUnk_03003504
+_0801CBC4: .4byte gUnk_03003610
 _0801CBC8:
 	subs r0, r1, #1
 	cmp r2, r0
@@ -16963,14 +16963,14 @@ _0801CBC8:
 	b _0801CBE4
 _0801CBD8:
 	ldr r3, [sp, #0x18]
-	ldr r4, _0801CC3C @ =0x03003610
+	ldr r4, _0801CC3C @ =gUnk_03003610
 	adds r1, r3, r4
 	movs r0, #0
 	strb r0, [r1, #3]
 	strb r0, [r1, #2]
 _0801CBE4:
 	ldr r5, [sp, #0x18]
-	ldr r0, _0801CC3C @ =0x03003610
+	ldr r0, _0801CC3C @ =gUnk_03003610
 	adds r3, r5, r0
 	ldrb r1, [r3]
 	lsls r0, r1, #3
@@ -17014,7 +17014,7 @@ _0801CC0C:
 	strb r0, [r3, #8]
 	b _0801CDB8
 	.align 2, 0
-_0801CC3C: .4byte 0x03003610
+_0801CC3C: .4byte gUnk_03003610
 _0801CC40:
 	adds r0, #1
 	b _0801CC52
@@ -17035,7 +17035,7 @@ _0801CC52:
 	lsls r0, r0, #2
 	mov r3, r8
 	adds r4, r0, r3
-	ldr r3, _0801CD08 @ =0x080E2B64
+	ldr r3, _0801CD08 @ =gUnk_080E2B64
 	ldr r2, _0801CD0C @ =gUnk_03004C20
 	ldrb r1, [r2, #0xe]
 	subs r1, #1
@@ -17097,7 +17097,7 @@ _0801CC52:
 	ldr r3, _0801CD14 @ =0x00008980
 	muls r0, r3, r0
 	adds r1, r1, r0
-	ldr r0, _0801CD08 @ =0x080E2B64
+	ldr r0, _0801CD08 @ =gUnk_080E2B64
 	adds r1, r1, r0
 	lsrs r0, r7, #0x1a
 	ldrh r1, [r1, #2]
@@ -17120,7 +17120,7 @@ _0801CC52:
 	movs r0, #1
 	b _0801CD2A
 	.align 2, 0
-_0801CD08: .4byte 0x080E2B64
+_0801CD08: .4byte gUnk_080E2B64
 _0801CD0C: .4byte gUnk_03004C20
 _0801CD10: .4byte 0x00001130
 _0801CD14: .4byte 0x00008980
@@ -17160,7 +17160,7 @@ _0801CD2C:
 	ldr r1, _0801CD8C @ =0x00008980
 	muls r0, r1, r0
 	adds r2, r2, r0
-	ldr r0, _0801CD90 @ =0x080E2B64
+	ldr r0, _0801CD90 @ =gUnk_080E2B64
 	adds r2, r2, r0
 	ldr r1, [sp, #0x14]
 	mov r4, sb
@@ -17176,7 +17176,7 @@ _0801CD2C:
 	adds r0, r0, r2
 	strh r0, [r3, #2]
 	ldr r0, [sp, #0x18]
-	ldr r2, _0801CD94 @ =0x03003610
+	ldr r2, _0801CD94 @ =gUnk_03003610
 	adds r1, r0, r2
 	ldrb r0, [r1]
 	cmp r0, sb
@@ -17186,8 +17186,8 @@ _0801CD2C:
 	.align 2, 0
 _0801CD88: .4byte 0x00001130
 _0801CD8C: .4byte 0x00008980
-_0801CD90: .4byte 0x080E2B64
-_0801CD94: .4byte 0x03003610
+_0801CD90: .4byte gUnk_080E2B64
+_0801CD94: .4byte gUnk_03003610
 _0801CD98:
 	ldrb r0, [r1]
 _0801CD9A:
@@ -17234,7 +17234,7 @@ _0801CDD0:
 	asrs r1, r1, #0x10
 	adds r0, r5, #0
 	bl MultiplyQ8
-	ldr r2, _0801CE30 @ =0x03004680
+	ldr r2, _0801CE30 @ =gUnk_03004680
 	ldrb r1, [r4, #0xd]
 	lsls r1, r1, #0x1a
 	lsrs r1, r1, #0x1c
@@ -17269,7 +17269,7 @@ _0801CE20:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801CE30: .4byte 0x03004680
+_0801CE30: .4byte gUnk_03004680
 _0801CE34: .4byte gUnk_03002920
 
 	thumb_func_start sub_0801CE38
@@ -17330,7 +17330,7 @@ _0801CEA0: .4byte gUnk_03002920
 _0801CEA4: .4byte gUnk_03004C20
 _0801CEA8: .4byte gSineTable
 _0801CEAC:
-	ldr r0, _0801CF24 @ =0x080E2B64
+	ldr r0, _0801CF24 @ =gUnk_080E2B64
 	mov r8, r0
 	lsls r1, r2, #3
 	adds r2, r4, #0
@@ -17390,7 +17390,7 @@ _0801CEAC:
 	strh r0, [r7, #2]
 	b _0801D0BA
 	.align 2, 0
-_0801CF24: .4byte 0x080E2B64
+_0801CF24: .4byte gUnk_080E2B64
 _0801CF28: .4byte 0x00001130
 _0801CF2C: .4byte 0x00008980
 _0801CF30: .4byte gSineTable
@@ -17527,7 +17527,7 @@ _0801D038:
 	subs r3, r3, r4
 	lsls r3, r3, #2
 	adds r3, r3, r5
-	ldr r6, _0801D0C8 @ =0x080E2B64
+	ldr r6, _0801D0C8 @ =gUnk_080E2B64
 	mov sb, r6
 	lsls r2, r2, #3
 	adds r1, r4, #0
@@ -17596,7 +17596,7 @@ _0801D0BA:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801D0C8: .4byte 0x080E2B64
+_0801D0C8: .4byte gUnk_080E2B64
 _0801D0CC: .4byte 0x00001130
 _0801D0D0: .4byte 0x00008980
 _0801D0D4: .4byte gSineTable
@@ -17659,7 +17659,7 @@ _0801D138:
 	ldrb r0, [r3, #0xc]
 	lsrs r0, r0, #4
 	lsls r0, r0, #4
-	ldr r1, _0801D1CC @ =0x03000790
+	ldr r1, _0801D1CC @ =gUnk_03000790
 	adds r2, r0, r1
 	ldrh r1, [r2]
 	ldr r0, _0801D1C4 @ =gUnk_03002920
@@ -17729,7 +17729,7 @@ _0801D190:
 _0801D1C0: .4byte gUnk_03004C20
 _0801D1C4: .4byte gUnk_03002920
 _0801D1C8: .4byte gUnk_03003430
-_0801D1CC: .4byte 0x03000790
+_0801D1CC: .4byte gUnk_03000790
 _0801D1D0: .4byte gUnk_03005220
 _0801D1D4: .4byte 0x030034C4
 _0801D1D8:
@@ -17804,7 +17804,7 @@ _0801D21C:
 	bl m4aSongNumStart
 	strb r6, [r5]
 _0801D262:
-	ldr r0, _0801D284 @ =0x03000790
+	ldr r0, _0801D284 @ =gUnk_03000790
 	ldrb r1, [r4, #0xc]
 	lsrs r1, r1, #4
 	lsls r1, r1, #4
@@ -17821,7 +17821,7 @@ _0801D262:
 	b _0801D2D2
 	.align 2, 0
 _0801D280: .4byte gUnk_03002920
-_0801D284: .4byte 0x03000790
+_0801D284: .4byte gUnk_03000790
 _0801D288:
 	cmp r1, r0
 	bge _0801D2D2
@@ -17863,16 +17863,16 @@ _0801D298:
 _0801D2D0:
 	strb r0, [r1]
 _0801D2D2:
-	ldr r0, _0801D31C @ =0x03005484
+	ldr r0, _0801D31C @ =gUnk_03005484
 	ldr r6, [r0]
-	ldr r0, _0801D320 @ =0x03004650
+	ldr r0, _0801D320 @ =gUnk_03004650
 	ldr r1, [r0]
 	cmp r6, r1
 	bls _0801D2E0
 	b _0801D412
 _0801D2E0:
 	ldr r0, _0801D314 @ =gUnk_03002920
-	ldr r7, _0801D324 @ =0x03000790
+	ldr r7, _0801D324 @ =gUnk_03000790
 	mov ip, r7
 	mov r2, sl
 	mov r3, r8
@@ -17902,9 +17902,9 @@ _0801D300:
 	.align 2, 0
 _0801D314: .4byte gUnk_03002920
 _0801D318: .4byte 0x030034C4
-_0801D31C: .4byte 0x03005484
-_0801D320: .4byte 0x03004650
-_0801D324: .4byte 0x03000790
+_0801D31C: .4byte gUnk_03005484
+_0801D320: .4byte gUnk_03004650
+_0801D324: .4byte gUnk_03000790
 _0801D328:
 	cmp r0, #0x6f
 	beq _0801D332
@@ -18024,7 +18024,7 @@ _0801D3F6:
 _0801D404:
 	adds r5, #0x1c
 	adds r6, #1
-	ldr r3, _0801D484 @ =0x03004650
+	ldr r3, _0801D484 @ =gUnk_03004650
 	ldr r0, [r3]
 	cmp r6, r0
 	bhi _0801D412
@@ -18042,7 +18042,7 @@ _0801D412:
 	ldrb r0, [r0, #0xc]
 	lsrs r0, r0, #4
 	lsls r0, r0, #4
-	ldr r3, _0801D48C @ =0x03000790
+	ldr r3, _0801D48C @ =gUnk_03000790
 	adds r0, r0, r3
 	ldrh r1, [r0, #8]
 	strh r1, [r0, #4]
@@ -18056,7 +18056,7 @@ _0801D432:
 	ldrb r0, [r4, #0xc]
 	lsrs r0, r0, #4
 	lsls r0, r0, #4
-	ldr r2, _0801D48C @ =0x03000790
+	ldr r2, _0801D48C @ =gUnk_03000790
 	adds r0, r0, r2
 	ldrh r1, [r4, #2]
 	ldrh r0, [r0, #4]
@@ -18079,7 +18079,7 @@ _0801D462:
 	ldrb r0, [r4, #0xc]
 	lsrs r0, r0, #4
 	lsls r0, r0, #4
-	ldr r3, _0801D48C @ =0x03000790
+	ldr r3, _0801D48C @ =gUnk_03000790
 	adds r0, r0, r3
 	ldrh r0, [r0, #6]
 	strh r0, [r4, #2]
@@ -18088,9 +18088,9 @@ _0801D462:
 	movs r0, #0x14
 	b _0801D49A
 	.align 2, 0
-_0801D484: .4byte 0x03004650
+_0801D484: .4byte gUnk_03004650
 _0801D488: .4byte gUnk_03002920
-_0801D48C: .4byte 0x03000790
+_0801D48C: .4byte gUnk_03000790
 _0801D490: .4byte gUnk_03003430
 _0801D494: .4byte gUnk_03004C20
 _0801D498:
@@ -18153,7 +18153,7 @@ _0801D4F2:
 	adds r5, r1, #0
 	cmp r0, #0x13
 	bhi _0801D53C
-	ldr r2, _0801D538 @ =0x03004680
+	ldr r2, _0801D538 @ =gUnk_03004680
 	ldrb r0, [r3, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -18180,11 +18180,11 @@ _0801D4F2:
 	strh r1, [r0]
 	b _0801D57C
 	.align 2, 0
-_0801D538: .4byte 0x03004680
+_0801D538: .4byte gUnk_03004680
 _0801D53C:
 	cmp r0, #0x27
 	bhi _0801D568
-	ldr r2, _0801D564 @ =0x03004680
+	ldr r2, _0801D564 @ =gUnk_03004680
 	ldrb r0, [r3, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -18203,9 +18203,9 @@ _0801D53C:
 	strh r1, [r0, #4]
 	b _0801D57C
 	.align 2, 0
-_0801D564: .4byte 0x03004680
+_0801D564: .4byte gUnk_03004680
 _0801D568:
-	ldr r0, _0801D5A0 @ =0x03004680
+	ldr r0, _0801D5A0 @ =gUnk_03004680
 	ldrb r1, [r3, #0xd]
 	lsls r1, r1, #0x1a
 	lsrs r1, r1, #0x1c
@@ -18234,9 +18234,9 @@ _0801D590:
 	bl sub_0801E664
 	b _0801D6AA
 	.align 2, 0
-_0801D5A0: .4byte 0x03004680
+_0801D5A0: .4byte gUnk_03004680
 _0801D5A4:
-	ldr r0, _0801D5F0 @ =0x030047B8
+	ldr r0, _0801D5F0 @ =gUnk_030047B8
 	mov ip, r0
 	ldrb r6, [r0]
 	movs r1, #0
@@ -18261,7 +18261,7 @@ _0801D5B2:
 	beq _0801D6AA
 	cmp r2, #1
 	bne _0801D67C
-	ldr r1, _0801D5FC @ =0x03004680
+	ldr r1, _0801D5FC @ =gUnk_03004680
 	ldrb r0, [r3, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -18275,14 +18275,14 @@ _0801D5B2:
 	adds r0, #8
 	b _0801D696
 	.align 2, 0
-_0801D5F0: .4byte 0x030047B8
+_0801D5F0: .4byte gUnk_030047B8
 _0801D5F4: .4byte gUnk_03005284
 _0801D5F8: .4byte gUnk_03005220
-_0801D5FC: .4byte 0x03004680
+_0801D5FC: .4byte gUnk_03004680
 _0801D600: .4byte 0x000001FF
 _0801D604:
 	subs r1, r6, #1
-	ldr r2, _0801D61C @ =0x03005470
+	ldr r2, _0801D61C @ =gUnk_03005470
 	ldrb r0, [r2]
 	subs r0, #1
 	lsls r1, r1, #0x18
@@ -18293,7 +18293,7 @@ _0801D604:
 	ldrb r1, [r0]
 	b _0801D622
 	.align 2, 0
-_0801D61C: .4byte 0x03005470
+_0801D61C: .4byte gUnk_03005470
 _0801D620:
 	ldrb r1, [r2]
 _0801D622:
@@ -18345,7 +18345,7 @@ _0801D666:
 	.align 2, 0
 _0801D678: .4byte gUnk_03005428
 _0801D67C:
-	ldr r1, _0801D69C @ =0x03004680
+	ldr r1, _0801D69C @ =gUnk_03004680
 	ldrb r0, [r3, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -18363,7 +18363,7 @@ _0801D696:
 	strh r0, [r2]
 	b _0801D6AA
 	.align 2, 0
-_0801D69C: .4byte 0x03004680
+_0801D69C: .4byte gUnk_03004680
 _0801D6A0:
 	movs r0, #0xf
 	ands r0, r5
@@ -18386,7 +18386,7 @@ sub_0801D6B0: @ 0x0801D6B0
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	str r0, [sp]
-	ldr r0, _0801D700 @ =0x03004C38
+	ldr r0, _0801D700 @ =gUnk_03004C38
 	ldrb r0, [r0]
 	ldr r1, [sp]
 	adds r0, r1, r0
@@ -18417,7 +18417,7 @@ sub_0801D6B0: @ 0x0801D6B0
 	str r0, [sp, #0x28]
 	b _0801D8F6
 	.align 2, 0
-_0801D700: .4byte 0x03004C38
+_0801D700: .4byte gUnk_03004C38
 _0801D704: .4byte gUnk_03002920
 _0801D708: .4byte gUnk_03005220
 _0801D70C:
@@ -18439,10 +18439,10 @@ _0801D71C:
 	bne _0801D72C
 	b _0801D8F6
 _0801D72C:
-	ldr r0, _0801D83C @ =0x030007F4
+	ldr r0, _0801D83C @ =gUnk_030007F4
 	ldr r0, [r0]
 	mov ip, r0
-	ldr r0, _0801D840 @ =0x0300290C
+	ldr r0, _0801D840 @ =gUnk_0300290C
 	ldr r1, [r0]
 	str r3, [sp, #0x2c]
 	ldr r2, [sp]
@@ -18581,8 +18581,8 @@ _0801D7FE:
 	subs r0, #4
 	b _0801D85A
 	.align 2, 0
-_0801D83C: .4byte 0x030007F4
-_0801D840: .4byte 0x0300290C
+_0801D83C: .4byte gUnk_030007F4
+_0801D840: .4byte gUnk_0300290C
 _0801D844: .4byte gUnk_03002920
 _0801D848: .4byte gUnk_03005220
 _0801D84C:
@@ -18671,7 +18671,7 @@ _0801D8E2:
 	adds r7, #0x1c
 	movs r3, #1
 	add ip, r3
-	ldr r4, _0801D940 @ =0x0300290C
+	ldr r4, _0801D940 @ =gUnk_0300290C
 	ldr r0, [r4]
 	cmp ip, r0
 	bhi _0801D8F6
@@ -18715,7 +18715,7 @@ _0801D90A:
 	str r5, [sp, #0x20]
 	b _0801D95C
 	.align 2, 0
-_0801D940: .4byte 0x0300290C
+_0801D940: .4byte gUnk_0300290C
 _0801D944: .4byte gUnk_03002920
 _0801D948:
 	adds r0, r1, #1
@@ -19223,7 +19223,7 @@ _0801DCEE:
 	ldrsb r0, [r4, r0]
 	cmp r0, #0
 	ble _0801DD3C
-	ldr r3, _0801DD38 @ =0x03004680
+	ldr r3, _0801DD38 @ =gUnk_03004680
 	ldrb r0, [r4, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -19249,11 +19249,11 @@ _0801DCEE:
 	b _0801DDAC
 	.align 2, 0
 _0801DD34: .4byte gUnk_03002920
-_0801DD38: .4byte 0x03004680
+_0801DD38: .4byte gUnk_03004680
 _0801DD3C:
 	cmp r0, #0
 	bge _0801DD78
-	ldr r3, _0801DD70 @ =0x03004680
+	ldr r3, _0801DD70 @ =gUnk_03004680
 	ldrb r1, [r4, #0xd]
 	lsls r1, r1, #0x1a
 	lsrs r1, r1, #0x1c
@@ -19277,14 +19277,14 @@ _0801DD3C:
 	strh r2, [r0, #2]
 	b _0801DDAC
 	.align 2, 0
-_0801DD70: .4byte 0x03004680
+_0801DD70: .4byte gUnk_03004680
 _0801DD74: .4byte 0xFFFFFD80
 _0801DD78:
 	movs r0, #9
 	ldrsb r0, [r4, r0]
 	cmp r0, #0
 	bge _0801DDAC
-	ldr r2, _0801DDFC @ =0x03004680
+	ldr r2, _0801DDFC @ =gUnk_03004680
 	ldrb r0, [r4, #0xd]
 	lsls r0, r0, #0x1a
 	lsrs r0, r0, #0x1c
@@ -19318,7 +19318,7 @@ _0801DDAC:
 	orrs r0, r1
 	cmp r0, #0
 	beq _0801DE10
-	ldr r2, _0801DE08 @ =0x03004C38
+	ldr r2, _0801DE08 @ =gUnk_03004C38
 	ldrb r1, [r2]
 	adds r1, r5, r1
 	lsls r0, r1, #3
@@ -19348,10 +19348,10 @@ _0801DDAC:
 	strh r1, [r3, #2]
 	b _0801DE22
 	.align 2, 0
-_0801DDFC: .4byte 0x03004680
+_0801DDFC: .4byte gUnk_03004680
 _0801DE00: .4byte 0xFFFFFD80
 _0801DE04: .4byte gUnk_03002920
-_0801DE08: .4byte 0x03004C38
+_0801DE08: .4byte gUnk_03004C38
 _0801DE0C: .4byte 0x0000FFFC
 _0801DE10:
 	ldr r0, _0801DE34 @ =0x0000FFE0
@@ -19405,7 +19405,7 @@ sub_0801DE44: @ 0x0801DE44
 	ldrb r2, [r6, #8]
 	cmp r2, #5
 	bhi _0801DE94
-	ldr r0, _0801DEC4 @ =0x0300528C
+	ldr r0, _0801DEC4 @ =gUnk_0300528C
 	ldrb r0, [r0]
 	subs r0, r5, r0
 	lsls r1, r0, #3
@@ -19426,7 +19426,7 @@ _0801DE94:
 	ands r0, r4
 	cmp r0, #0
 	bne _0801DEC8
-	ldr r0, _0801DEC4 @ =0x0300528C
+	ldr r0, _0801DEC4 @ =gUnk_0300528C
 	ldrb r3, [r0]
 	subs r3, r5, r3
 	lsls r1, r3, #3
@@ -19442,14 +19442,14 @@ _0801DE94:
 	b _0801DF3E
 	.align 2, 0
 _0801DEC0: .4byte gUnk_03002920
-_0801DEC4: .4byte 0x0300528C
+_0801DEC4: .4byte gUnk_0300528C
 _0801DEC8:
 	movs r0, #0x56
 	bl m4aSongNumStart
 	ldrb r0, [r6, #8]
 	cmp r0, #9
 	bls _0801DF02
-	ldr r2, _0801DFBC @ =0x0300528C
+	ldr r2, _0801DFBC @ =gUnk_0300528C
 	ldrb r1, [r2]
 	adds r1, r5, r1
 	lsls r0, r1, #3
@@ -19482,7 +19482,7 @@ _0801DF02:
 	ldrb r0, [r6, #8]
 	cmp r0, #9
 	bne _0801DF3E
-	ldr r2, _0801DFBC @ =0x0300528C
+	ldr r2, _0801DFBC @ =gUnk_0300528C
 	ldrb r1, [r2]
 	adds r1, r5, r1
 	lsls r0, r1, #3
@@ -19505,7 +19505,7 @@ _0801DF3E:
 	subs r0, r0, r5
 	lsls r0, r0, #2
 	adds r4, r0, r3
-	ldr r6, _0801DFBC @ =0x0300528C
+	ldr r6, _0801DFBC @ =gUnk_0300528C
 	ldrb r1, [r6]
 	subs r1, r5, r1
 	lsls r0, r1, #3
@@ -19564,7 +19564,7 @@ _0801DFB0:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801DFBC: .4byte 0x0300528C
+_0801DFBC: .4byte gUnk_0300528C
 _0801DFC0: .4byte gUnk_03002920
 
 	thumb_func_start sub_0801DFC4
@@ -19650,7 +19650,7 @@ _0801E060: .4byte gUnk_03003430
 _0801E064: .4byte gUnk_03002920
 _0801E068:
 	movs r6, #0
-	ldr r0, _0801E0A0 @ =0x03002908
+	ldr r0, _0801E0A0 @ =gUnk_03002908
 	ldr r1, [r0]
 	mov sl, r0
 	cmp r6, r1
@@ -19681,7 +19681,7 @@ _0801E08C:
 	beq _0801E150
 	b _0801E180
 	.align 2, 0
-_0801E0A0: .4byte 0x03002908
+_0801E0A0: .4byte gUnk_03002908
 _0801E0A4:
 	cmp r0, #0x6f
 	beq _0801E0B2
@@ -19746,7 +19746,7 @@ _0801E0E8:
 	ble _0801E180
 	cmp r6, #0
 	bne _0801E140
-	ldr r0, _0801E138 @ =0x03003638
+	ldr r0, _0801E138 @ =gUnk_03003638
 	ldr r0, [r0]
 	subs r6, r0, #1
 	ldr r0, _0801E13C @ =gUnk_03005220
@@ -19758,7 +19758,7 @@ _0801E0E8:
 	bl sub_08014624
 	b _0801E030
 	.align 2, 0
-_0801E138: .4byte 0x03003638
+_0801E138: .4byte gUnk_03003638
 _0801E13C: .4byte gUnk_03005220
 _0801E140:
 	lsls r3, r6, #0x18
@@ -19797,7 +19797,7 @@ _0801E17A:
 _0801E180:
 	cmp r6, #0
 	bne _0801E18A
-	ldr r0, _0801E1A4 @ =0x03003638
+	ldr r0, _0801E1A4 @ =gUnk_03003638
 	ldr r0, [r0]
 	subs r6, r0, #1
 _0801E18A:
@@ -19816,7 +19816,7 @@ _0801E196:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801E1A4: .4byte 0x03003638
+_0801E1A4: .4byte gUnk_03003638
 
 	thumb_func_start sub_0801E1A8
 sub_0801E1A8: @ 0x0801E1A8
@@ -20160,7 +20160,7 @@ _0801E426:
 _0801E436:
 	movs r0, #0
 	mov r8, r0
-	ldr r0, _0801E47C @ =0x030051C4
+	ldr r0, _0801E47C @ =gUnk_030051C4
 	ldr r1, [r0]
 	mov sl, r0
 	cmp r8, r1
@@ -20196,7 +20196,7 @@ _0801E46C:
 	.align 2, 0
 _0801E474: .4byte gUnk_03002920
 _0801E478: .4byte gUnk_03000830
-_0801E47C: .4byte 0x030051C4
+_0801E47C: .4byte gUnk_030051C4
 _0801E480: .4byte 0x0000FFF1
 _0801E484:
 	cmp r1, #0x6f
@@ -20337,7 +20337,7 @@ _0801E57C:
 	strb r5, [r2, #0x10]
 	movs r0, #0x46
 	strb r0, [r2, #9]
-	ldr r4, _0801E5D0 @ =0x03003610
+	ldr r4, _0801E5D0 @ =gUnk_03003610
 	ldrb r0, [r4, #6]
 	cmp r8, r0
 	bne _0801E5AE
@@ -20363,7 +20363,7 @@ _0801E5BC:
 	bl sub_080145A8
 	b _0801E622
 	.align 2, 0
-_0801E5D0: .4byte 0x03003610
+_0801E5D0: .4byte gUnk_03003610
 _0801E5D4: .4byte gUnk_03005220
 _0801E5D8:
 	mov r1, r8
@@ -20403,12 +20403,12 @@ _0801E614:
 	movs r2, #2
 	bl sub_0801E664
 _0801E622:
-	ldr r3, _0801E65C @ =0x030051C4
+	ldr r3, _0801E65C @ =gUnk_030051C4
 	mov sl, r3
 	mov r4, r8
 	cmp r4, #0
 	bne _0801E634
-	ldr r0, _0801E660 @ =0x030052B4
+	ldr r0, _0801E660 @ =gUnk_030052B4
 	ldr r0, [r0]
 	subs r0, #1
 	mov r8, r0
@@ -20436,8 +20436,8 @@ _0801E64C:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801E65C: .4byte 0x030051C4
-_0801E660: .4byte 0x030052B4
+_0801E65C: .4byte gUnk_030051C4
+_0801E660: .4byte gUnk_030052B4
 
 	thumb_func_start sub_0801E664
 sub_0801E664: @ 0x0801E664
@@ -20656,7 +20656,7 @@ _0801E804: .4byte gUnk_03002920
 _0801E808: .4byte gUnk_03005220
 _0801E80C: .4byte gUnk_03004C20
 _0801E810:
-	ldr r6, _0801E8A0 @ =0x080E2B64
+	ldr r6, _0801E8A0 @ =gUnk_080E2B64
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
 	lsls r1, r1, #3
@@ -20729,7 +20729,7 @@ _0801E860:
 	strb r0, [r3, #0xc]
 	b _0801E8E8
 	.align 2, 0
-_0801E8A0: .4byte 0x080E2B64
+_0801E8A0: .4byte gUnk_080E2B64
 _0801E8A4: .4byte 0x00001130
 _0801E8A8: .4byte 0x00008980
 _0801E8AC: .4byte gUnk_03002920
@@ -20772,7 +20772,7 @@ _0801E8E8:
 	ldrb r0, [r0, #0x11]
 	cmp r0, #0x7a
 	bls _0801E9DC
-	ldr r4, _0801E9C4 @ =0x03003610
+	ldr r4, _0801E9C4 @ =gUnk_03003610
 	ldrb r5, [r4, #2]
 	cmp r7, r5
 	bne _0801E90E
@@ -20782,7 +20782,7 @@ _0801E8E8:
 	movs r0, #0
 	strb r0, [r4, #2]
 _0801E90E:
-	ldr r0, _0801E9C8 @ =0x0300528C
+	ldr r0, _0801E9C8 @ =gUnk_0300528C
 	mov ip, r0
 	ldrb r2, [r0]
 	adds r0, r7, r2
@@ -20837,7 +20837,7 @@ _0801E94A:
 	subs r3, r3, r2
 	lsls r3, r3, #2
 	adds r3, r3, r5
-	ldr r5, _0801E9CC @ =0x080E2B64
+	ldr r5, _0801E9CC @ =gUnk_080E2B64
 	ldr r4, _0801E9D0 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
 	subs r1, #1
@@ -20874,9 +20874,9 @@ _0801E94A:
 	b _0801EA90
 	.align 2, 0
 _0801E9C0: .4byte gUnk_03002920
-_0801E9C4: .4byte 0x03003610
-_0801E9C8: .4byte 0x0300528C
-_0801E9CC: .4byte 0x080E2B64
+_0801E9C4: .4byte gUnk_03003610
+_0801E9C8: .4byte gUnk_0300528C
+_0801E9CC: .4byte gUnk_080E2B64
 _0801E9D0: .4byte gUnk_03004C20
 _0801E9D4: .4byte 0x00001130
 _0801E9D8: .4byte 0x00008980
@@ -21088,7 +21088,7 @@ _0801EB38:
 	bne _0801EBB0
 	ldr r4, _0801EB9C @ =gUnk_03005220
 	adds r4, #0x58
-	ldr r5, _0801EBA0 @ =0x080E2B64
+	ldr r5, _0801EBA0 @ =gUnk_080E2B64
 	ldr r3, _0801EBA4 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -21118,14 +21118,14 @@ _0801EB38:
 	.align 2, 0
 _0801EB98: .4byte gUnk_03002920
 _0801EB9C: .4byte gUnk_03005220
-_0801EBA0: .4byte 0x080E2B64
+_0801EBA0: .4byte gUnk_080E2B64
 _0801EBA4: .4byte gUnk_03004C20
 _0801EBA8: .4byte 0x00001130
 _0801EBAC: .4byte 0x00008980
 _0801EBB0:
 	ldr r4, _0801EC10 @ =gUnk_03005220
 	adds r4, #0x58
-	ldr r5, _0801EC14 @ =0x080E2B64
+	ldr r5, _0801EC14 @ =gUnk_080E2B64
 	ldr r3, _0801EC18 @ =gUnk_03004C20
 	ldrb r1, [r3, #0xe]
 	subs r1, #1
@@ -21173,7 +21173,7 @@ _0801EBE8:
 	b _0801EC34
 	.align 2, 0
 _0801EC10: .4byte gUnk_03005220
-_0801EC14: .4byte 0x080E2B64
+_0801EC14: .4byte gUnk_080E2B64
 _0801EC18: .4byte gUnk_03004C20
 _0801EC1C: .4byte 0x00001130
 _0801EC20: .4byte 0x00008980
@@ -21234,19 +21234,19 @@ _0801EC9A:
 	lsrs r0, r0, #4
 	cmp r0, #0
 	bne _0801ECB0
-	ldr r1, _0801ECAC @ =0x030034E0
+	ldr r1, _0801ECAC @ =gUnk_030034E0
 	ldrb r0, [r1]
 	subs r0, #1
 	strb r0, [r1]
 	b _0801ED04
 	.align 2, 0
-_0801ECAC: .4byte 0x030034E0
+_0801ECAC: .4byte gUnk_030034E0
 _0801ECB0:
-	ldr r0, _0801ED50 @ =0x030034E0
+	ldr r0, _0801ED50 @ =gUnk_030034E0
 	ldrb r3, [r0]
 	adds r3, #1
 	strb r3, [r0]
-	ldr r5, _0801ED54 @ =0x080E2B64
+	ldr r5, _0801ED54 @ =gUnk_080E2B64
 	ldr r4, _0801ED58 @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
 	subs r1, #1
@@ -21322,8 +21322,8 @@ _0801ED04:
 	ldr r0, [r3, #8]
 	b _0801EF40
 	.align 2, 0
-_0801ED50: .4byte 0x030034E0
-_0801ED54: .4byte 0x080E2B64
+_0801ED50: .4byte gUnk_030034E0
+_0801ED54: .4byte gUnk_080E2B64
 _0801ED58: .4byte gUnk_03004C20
 _0801ED5C: .4byte 0x00001130
 _0801ED60: .4byte 0x00008980
@@ -21396,10 +21396,10 @@ _0801EDD2:
 	strb r0, [r6, #0xc]
 	movs r0, #0x5b
 	bl m4aSongNumStart
-	ldr r3, _0801EE20 @ =0x030047B8
+	ldr r3, _0801EE20 @ =gUnk_030047B8
 	ldrb r1, [r3]
 	subs r1, #1
-	ldr r2, _0801EE24 @ =0x03005470
+	ldr r2, _0801EE24 @ =gUnk_03005470
 	ldrb r0, [r2]
 	subs r0, #1
 	lsls r1, r1, #0x18
@@ -21410,8 +21410,8 @@ _0801EDD2:
 	b _0801EE2A
 	.align 2, 0
 _0801EE1C: .4byte gUnk_03005220
-_0801EE20: .4byte 0x030047B8
-_0801EE24: .4byte 0x03005470
+_0801EE20: .4byte gUnk_030047B8
+_0801EE24: .4byte gUnk_03005470
 _0801EE28:
 	ldrb r0, [r2]
 _0801EE2A:
@@ -21431,7 +21431,7 @@ _0801EE2A:
 	ldrb r0, [r0, #0x11]
 	cmp r0, #0x35
 	bne _0801EEA2
-	ldr r4, _0801EEC8 @ =0x080E2B64
+	ldr r4, _0801EEC8 @ =gUnk_080E2B64
 	mov sb, r4
 	ldr r6, _0801EECC @ =gUnk_03004C20
 	adds r5, r1, #0
@@ -21494,7 +21494,7 @@ _0801EEA2:
 _0801EEBC: .4byte gUnk_03005428
 _0801EEC0: .4byte gUnk_0818B8E0
 _0801EEC4: .4byte gUnk_03002920
-_0801EEC8: .4byte 0x080E2B64
+_0801EEC8: .4byte gUnk_080E2B64
 _0801EECC: .4byte gUnk_03004C20
 _0801EED0: .4byte 0x00001130
 _0801EED4: .4byte 0x00008980
@@ -21679,7 +21679,7 @@ sub_0801F02C: @ 0x0801F02C
 	ble _0801F11E
 	cmp r0, #0x19
 	bne _0801F11E
-	ldr r0, _0801F0B8 @ =0x080E2B64
+	ldr r0, _0801F0B8 @ =gUnk_080E2B64
 	mov r8, r0
 	ldrb r1, [r7, #8]
 	lsls r1, r1, #3
@@ -21726,19 +21726,19 @@ sub_0801F02C: @ 0x0801F02C
 	strb r0, [r7, #8]
 	movs r0, #0x80
 	strb r0, [r7, #9]
-	ldr r0, _0801F0C8 @ =0x03003590
+	ldr r0, _0801F0C8 @ =gUnk_03003590
 	strh r6, [r0, #0xa]
 	strh r6, [r0, #8]
 	b _0801F11E
 	.align 2, 0
 _0801F0B4: .4byte gUnk_03002920
-_0801F0B8: .4byte 0x080E2B64
+_0801F0B8: .4byte gUnk_080E2B64
 _0801F0BC: .4byte gUnk_03004C20
 _0801F0C0: .4byte 0x00001130
 _0801F0C4: .4byte 0x00008980
-_0801F0C8: .4byte 0x03003590
+_0801F0C8: .4byte gUnk_03003590
 _0801F0CC:
-	ldr r6, _0801F108 @ =0x03003590
+	ldr r6, _0801F108 @ =gUnk_03003590
 	ldrb r5, [r7, #9]
 	ldr r4, _0801F10C @ =gSineTable
 	ldr r0, _0801F110 @ =gUnk_03004C20
@@ -21767,7 +21767,7 @@ _0801F0CC:
 	strb r0, [r7, #9]
 	b _0801F11E
 	.align 2, 0
-_0801F108: .4byte 0x03003590
+_0801F108: .4byte gUnk_03003590
 _0801F10C: .4byte gSineTable
 _0801F110: .4byte gUnk_03004C20
 _0801F114:
@@ -23116,7 +23116,7 @@ _0801FB98:
 	movs r0, #1
 	strb r0, [r2, #0x10]
 	strb r4, [r2, #0xf]
-	ldr r1, _0801FC04 @ =0x03003590
+	ldr r1, _0801FC04 @ =gUnk_03003590
 	mov r2, sl
 	lsls r0, r2, #3
 	adds r0, r0, r1
@@ -23127,7 +23127,7 @@ _0801FB98:
 	.align 2, 0
 _0801FBFC: .4byte gUnk_03002920
 _0801FC00: .4byte 0x080E2AF5
-_0801FC04: .4byte 0x03003590
+_0801FC04: .4byte gUnk_03003590
 _0801FC08:
 	ldr r4, _0801FC8C @ =gUnk_03004C20
 	ldr r3, _0801FC90 @ =0x080E2AF5
@@ -23243,7 +23243,7 @@ _0801FC98:
 	movs r1, #8
 	orrs r0, r1
 	strb r0, [r5, #0xc]
-	ldr r1, _0801FD3C @ =0x03003590
+	ldr r1, _0801FD3C @ =gUnk_03003590
 	mov r2, sl
 	lsls r0, r2, #3
 	adds r0, r0, r1
@@ -23279,7 +23279,7 @@ _0801FD1E:
 _0801FD30: .4byte gUnk_03002920
 _0801FD34: .4byte 0x080E2AF5
 _0801FD38: .4byte gUnk_03003430
-_0801FD3C: .4byte 0x03003590
+_0801FD3C: .4byte gUnk_03003590
 _0801FD40: .4byte 0x0000FFC0
 _0801FD44:
 	lsls r1, r6, #3
@@ -23452,7 +23452,7 @@ _0801FE8C:
 	rsbs r0, r0, #0
 	ands r0, r2
 	strb r0, [r1, #0xc]
-	ldr r0, _0801FEB4 @ =0x03003590
+	ldr r0, _0801FEB4 @ =gUnk_03003590
 	add r0, r8
 	movs r2, #0
 	movs r1, #0
@@ -23462,7 +23462,7 @@ _0801FE8C:
 	b _0801FFD4
 	.align 2, 0
 _0801FEB0: .4byte gUnk_03002920
-_0801FEB4: .4byte 0x03003590
+_0801FEB4: .4byte gUnk_03003590
 _0801FEB8:
 	lsls r4, r6, #3
 	subs r0, r4, r6
@@ -23535,7 +23535,7 @@ _0801FF40:
 	lsls r7, r6, #3
 	cmp r0, #0
 	bne _0801FF80
-	ldr r0, _0801FF70 @ =0x03003590
+	ldr r0, _0801FF70 @ =gUnk_03003590
 	mov r5, sl
 	lsls r1, r5, #3
 	adds r1, r1, r0
@@ -23552,7 +23552,7 @@ _0801FF40:
 	b _0801FF80
 	.align 2, 0
 _0801FF6C: .4byte gUnk_03004C20
-_0801FF70: .4byte 0x03003590
+_0801FF70: .4byte gUnk_03003590
 _0801FF74:
 	subs r0, r7, r6
 	lsls r0, r0, #2
@@ -23572,7 +23572,7 @@ _0801FF80:
 	.align 2, 0
 _0801FF90: .4byte gUnk_03002920
 _0801FF94:
-	ldr r0, _0801FFE4 @ =0x03003590
+	ldr r0, _0801FFE4 @ =gUnk_03003590
 	mov r7, sl
 	lsls r1, r7, #3
 	adds r1, r1, r0
@@ -23615,7 +23615,7 @@ _0801FFD4:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0801FFE4: .4byte 0x03003590
+_0801FFE4: .4byte gUnk_03003590
 _0801FFE8: .4byte gUnk_03002920
 _0801FFEC: .4byte 0x01670000
 
@@ -24175,7 +24175,7 @@ _0802044C:
 	subs r4, r6, r1
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r5, _080204A8 @ =0x080E2B64
+	ldr r5, _080204A8 @ =gUnk_080E2B64
 	ldr r3, _080204AC @ =gUnk_03004C20
 	ldrb r2, [r3, #0xe]
 	subs r2, #1
@@ -24211,7 +24211,7 @@ _0802044C:
 _0802049C: .4byte gUnk_03000830
 _080204A0: .4byte gUnk_0300363C
 _080204A4: .4byte gUnk_03002920
-_080204A8: .4byte 0x080E2B64
+_080204A8: .4byte gUnk_080E2B64
 _080204AC: .4byte gUnk_03004C20
 _080204B0: .4byte 0x00001130
 _080204B4: .4byte 0x00008980
@@ -24973,7 +24973,7 @@ _08020A90:
 	beq _08020AAA
 	b _08020F70
 _08020AAA:
-	ldr r0, _08020ABC @ =0x030034DC
+	ldr r0, _08020ABC @ =gUnk_030034DC
 	strh r1, [r0]
 	ldrb r1, [r2, #9]
 	movs r0, #4
@@ -24983,7 +24983,7 @@ _08020AB2:
 	b _08020F70
 	.align 2, 0
 _08020AB8: .4byte gUnk_03002920
-_08020ABC: .4byte 0x030034DC
+_08020ABC: .4byte gUnk_030034DC
 _08020AC0:
 	mov r1, sp
 	ldrh r0, [r4]
@@ -25229,7 +25229,7 @@ _08020CB8: .4byte 0x00000216
 _08020CBC: .4byte 0x00000232
 _08020CC0: .4byte 0x0000023F
 _08020CC4:
-	ldr r0, _08020CD8 @ =0x03003590
+	ldr r0, _08020CD8 @ =gUnk_03003590
 	ldr r6, [sp, #0x20]
 	lsls r1, r6, #3
 	adds r1, r1, r0
@@ -25240,7 +25240,7 @@ _08020CD0:
 	strb r0, [r4, #0xf]
 	b _08020F70
 	.align 2, 0
-_08020CD8: .4byte 0x03003590
+_08020CD8: .4byte gUnk_03003590
 _08020CDC:
 	mov r0, sl
 	cmp r0, #0x15
@@ -25331,7 +25331,7 @@ _08020D8C: .4byte 0x80000010
 _08020D90: .4byte 0x0000FFFF
 _08020D94: .4byte 0x81000010
 _08020D98:
-	ldr r0, _08020DD0 @ =0x03003590
+	ldr r0, _08020DD0 @ =gUnk_03003590
 	ldr r6, [sp, #0x20]
 	lsls r1, r6, #3
 	adds r1, r1, r0
@@ -25359,7 +25359,7 @@ _08020D98:
 	strh r0, [r1, #2]
 	b _08020F70
 	.align 2, 0
-_08020DD0: .4byte 0x03003590
+_08020DD0: .4byte gUnk_03003590
 _08020DD4: .4byte gSineTable
 _08020DD8: .4byte gUnk_03004C20
 _08020DDC:
@@ -25376,7 +25376,7 @@ _08020DDC:
 	ldrh r0, [r7, #2]
 	strh r0, [r1, #2]
 	mov r3, sp
-	ldr r5, _08020EB8 @ =0x080E2B64
+	ldr r5, _08020EB8 @ =gUnk_080E2B64
 	mov sb, r5
 	ldr r4, _08020EBC @ =gUnk_03004C20
 	ldrb r1, [r4, #0xe]
@@ -25471,7 +25471,7 @@ _08020DDC:
 	b _08020F70
 	.align 2, 0
 _08020EB4: .4byte gUnk_03002920
-_08020EB8: .4byte 0x080E2B64
+_08020EB8: .4byte gUnk_080E2B64
 _08020EBC: .4byte gUnk_03004C20
 _08020EC0: .4byte 0x00001130
 _08020EC4: .4byte 0x00008980
@@ -25564,7 +25564,7 @@ _08020F70:
 	ldrb r0, [r1, #0xf]
 	cmp r0, #0xf
 	bne _08020FA0
-	ldr r0, _08020FB4 @ =0x03003590
+	ldr r0, _08020FB4 @ =gUnk_03003590
 	ldr r6, [sp, #0x20]
 	lsls r3, r6, #3
 	adds r3, r3, r0
@@ -25590,7 +25590,7 @@ _08020FA0:
 	bx r0
 	.align 2, 0
 _08020FB0: .4byte gUnk_03002920
-_08020FB4: .4byte 0x03003590
+_08020FB4: .4byte gUnk_03003590
 
 	thumb_func_start sub_08020FB8
 sub_08020FB8: @ 0x08020FB8
@@ -25631,13 +25631,13 @@ _08020FEC:
 	movs r1, #0x1c
 	orrs r0, r1
 	strb r0, [r2, #0xd]
-	ldr r0, _08021010 @ =0x03003590
+	ldr r0, _08021010 @ =gUnk_03003590
 	adds r0, #0x24
 	movs r1, #0
 	b _08021058
 	.align 2, 0
 _0802100C: .4byte gUnk_03002920
-_08021010: .4byte 0x03003590
+_08021010: .4byte gUnk_03003590
 _08021014:
 	ldr r3, _08021034 @ =gUnk_03002920
 	movs r1, #0xb6
@@ -25650,13 +25650,13 @@ _08021014:
 	movs r1, #0x20
 	orrs r0, r1
 	strb r0, [r2, #0xd]
-	ldr r0, _08021038 @ =0x03003590
+	ldr r0, _08021038 @ =gUnk_03003590
 	adds r0, #0x2c
 	movs r1, #0x20
 	b _08021058
 	.align 2, 0
 _08021034: .4byte gUnk_03002920
-_08021038: .4byte 0x03003590
+_08021038: .4byte gUnk_03003590
 _0802103C:
 	ldr r3, _080210B8 @ =gUnk_03002920
 	movs r0, #0xbd
@@ -25669,7 +25669,7 @@ _0802103C:
 	movs r1, #0x24
 	orrs r0, r1
 	strb r0, [r2, #0xd]
-	ldr r0, _080210BC @ =0x03003590
+	ldr r0, _080210BC @ =gUnk_03003590
 	adds r0, #0x34
 	movs r1, #0xe0
 _08021058:
@@ -25723,7 +25723,7 @@ _08021072:
 	b _0802116E
 	.align 2, 0
 _080210B8: .4byte gUnk_03002920
-_080210BC: .4byte 0x03003590
+_080210BC: .4byte gUnk_03003590
 _080210C0:
 	cmp r5, #0x1b
 	beq _080210F2
@@ -26094,7 +26094,7 @@ _080213C4:
 	mov sl, r0
 	mov r1, r8
 	subs r1, #0x14
-	ldr r4, _080214BC @ =0x03002B6C
+	ldr r4, _080214BC @ =gUnk_03002920+0x24C
 	ldrh r3, [r4]
 	adds r0, r3, #0
 	adds r0, #0x14
@@ -26109,7 +26109,7 @@ _080213EA:
 	ble _080214E8
 	mov r1, sl
 	subs r1, #0x34
-	ldr r0, _080214C0 @ =0x03002B6E
+	ldr r0, _080214C0 @ =gUnk_03002920+0x24E
 	ldrh r2, [r0]
 	adds r0, r2, #0
 	subs r0, #0xa
@@ -26160,13 +26160,13 @@ _080213EA:
 	adds r1, r2, r4
 	movs r0, #0x19
 	strb r0, [r1]
-	ldr r0, _080214BC @ =0x03002B6C
+	ldr r0, _080214BC @ =gUnk_03002920+0x24C
 	ldrh r1, [r0]
 	movs r3, #0xee
 	lsls r3, r3, #1
 	adds r0, r2, r3
 	strh r1, [r0]
-	ldr r4, _080214C0 @ =0x03002B6E
+	ldr r4, _080214C0 @ =gUnk_03002920+0x24E
 	ldrh r0, [r4]
 	adds r3, #2
 	adds r1, r2, r3
@@ -26203,8 +26203,8 @@ _080213EA:
 	b _0802190C
 	.align 2, 0
 _080214B8: .4byte gUnk_03002920
-_080214BC: .4byte 0x03002B6C
-_080214C0: .4byte 0x03002B6E
+_080214BC: .4byte gUnk_03002920+0x24C
+_080214C0: .4byte gUnk_03002920+0x24E
 _080214C4: .4byte gUnk_03005400
 _080214C8: .4byte gUnk_03000830
 _080214CC: .4byte gUnk_0300363C
@@ -26602,7 +26602,7 @@ _080217C4:
 	movs r4, #0
 	movs r1, #0xf
 	strb r1, [r0, #0xf]
-	ldr r0, _080217F4 @ =0x030034DC
+	ldr r0, _080217F4 @ =gUnk_030034DC
 	strh r4, [r0]
 	movs r0, #0x12
 	movs r1, #0xa
@@ -26612,7 +26612,7 @@ _080217C4:
 	b _0802190C
 	.align 2, 0
 _080217F0: .4byte gUnk_03002920
-_080217F4: .4byte 0x030034DC
+_080217F4: .4byte gUnk_030034DC
 _080217F8: .4byte 0x03000004
 _080217FC:
 	mov r1, sp
@@ -26630,7 +26630,7 @@ _080217FC:
 	adds r4, r3, r0
 	ldrh r0, [r4]
 	strh r0, [r1, #4]
-	ldr r2, _0802187C @ =0x03002B1A
+	ldr r2, _0802187C @ =gUnk_03002920+0x1FA
 	ldrh r0, [r2]
 	subs r0, #0x40
 	strh r0, [r1, #6]
@@ -26664,7 +26664,7 @@ _08021852:
 	bgt _0802185C
 	b _080215CA
 _0802185C:
-	ldr r3, _0802187C @ =0x03002B1A
+	ldr r3, _0802187C @ =gUnk_03002920+0x1FA
 	ldrh r1, [r3]
 	subs r1, #0x40
 	ldrh r0, [r6, #2]
@@ -26680,7 +26680,7 @@ _0802186C:
 	b _0802190C
 	.align 2, 0
 _08021878: .4byte gUnk_03002920
-_0802187C: .4byte 0x03002B1A
+_0802187C: .4byte gUnk_03002920+0x1FA
 _08021880:
 	ldr r2, _080218C4 @ =gUnk_03000830
 	ldr r0, _080218C8 @ =gUnk_0300363C
@@ -27093,7 +27093,7 @@ _08021BE2:
 	subs r0, r0, r7
 	lsls r0, r0, #2
 	adds r5, r0, r2
-	ldr r6, _08021CA4 @ =0x080E2B64
+	ldr r6, _08021CA4 @ =gUnk_080E2B64
 	ldr r2, _08021CA8 @ =gUnk_03004C20
 	ldrb r0, [r2, #0xc]
 	subs r0, #1
@@ -27188,7 +27188,7 @@ _08021C9A:
 	strb r0, [r5, #0xf]
 	b _08021D9C
 	.align 2, 0
-_08021CA4: .4byte 0x080E2B64
+_08021CA4: .4byte gUnk_080E2B64
 _08021CA8: .4byte gUnk_03004C20
 _08021CAC: .4byte 0x00001130
 _08021CB0: .4byte 0x00008980
@@ -27399,7 +27399,7 @@ _08021E64:
 	adds r3, r3, r0
 	movs r0, #1
 	strb r0, [r3, #0x10]
-	ldr r4, _08021F5C @ =0x080E2B64
+	ldr r4, _08021F5C @ =gUnk_080E2B64
 	mov sb, r4
 	adds r1, r2, #0
 	subs r1, #0xd
@@ -27440,7 +27440,7 @@ _08021E64:
 	adds r0, #0x10
 	strh r0, [r1, #6]
 	strh r0, [r1, #4]
-	ldr r0, _08021F74 @ =0x03003590
+	ldr r0, _08021F74 @ =gUnk_03003590
 	adds r0, #0x24
 	mov r1, r8
 	strb r1, [r0]
@@ -27513,13 +27513,13 @@ _08021F24:
 	bl _08022C38
 	.align 2, 0
 _08021F58: .4byte gUnk_03002920
-_08021F5C: .4byte 0x080E2B64
+_08021F5C: .4byte gUnk_080E2B64
 _08021F60: .4byte gUnk_03004C20
 _08021F64: .4byte 0x00001130
 _08021F68: .4byte 0x00008980
 _08021F6C: .4byte gUnk_03005400
 _08021F70: .4byte gUnk_030034AC
-_08021F74: .4byte 0x03003590
+_08021F74: .4byte gUnk_03003590
 _08021F78: .4byte 0x040000D4
 _08021F7C: .4byte 0x0818B7DC
 _08021F80: .4byte gUnk_0818B8E0
@@ -27531,7 +27531,7 @@ _08021F94: .4byte 0x0000041B
 _08021F98: .4byte 0x000003FF
 _08021F9C: .4byte 0x0000046F
 _08021FA0:
-	ldr r7, _0802202C @ =0x03003590
+	ldr r7, _0802202C @ =gUnk_03003590
 	ldrh r2, [r7, #0x20]
 	movs r1, #0x20
 	ldrsh r6, [r7, r1]
@@ -27599,7 +27599,7 @@ _08021FA0:
 	movs r1, #0x40
 	b _0802204C
 	.align 2, 0
-_0802202C: .4byte 0x03003590
+_0802202C: .4byte gUnk_03003590
 _08022030: .4byte gUnk_03002920
 _08022034: .4byte 0x00000453
 _08022038: .4byte 0x00000437
@@ -27746,13 +27746,13 @@ _0802214E:
 	ldrh r0, [r4, #2]
 	adds r0, #1
 	strh r0, [r4, #2]
-	ldr r0, _08022178 @ =0x03003590
+	ldr r0, _08022178 @ =gUnk_03003590
 	adds r0, #0x24
 	movs r1, #0x20
 	strb r1, [r0]
 	b _080221AE
 	.align 2, 0
-_08022178: .4byte 0x03003590
+_08022178: .4byte gUnk_03003590
 _0802217C:
 	ldr r0, _08022194 @ =gUnk_03004C20
 	ldr r0, [r0]
@@ -27776,7 +27776,7 @@ _0802219C:
 	subs r0, #2
 	strh r0, [r4, #2]
 _080221A4:
-	ldr r1, _080221D4 @ =0x03003590
+	ldr r1, _080221D4 @ =gUnk_03003590
 	adds r1, #0x24
 	ldrb r0, [r1]
 	adds r0, #8
@@ -27800,7 +27800,7 @@ _080221BA:
 	strb r2, [r0, #0x10]
 	bl _08022C38
 	.align 2, 0
-_080221D4: .4byte 0x03003590
+_080221D4: .4byte gUnk_03003590
 _080221D8: .4byte gUnk_03005498
 _080221DC: .4byte gUnk_03002920
 _080221E0:
@@ -27827,7 +27827,7 @@ _080221E0:
 	adds r0, #0x10
 	strh r0, [r1, #2]
 _0802220C:
-	ldr r3, _080222E4 @ =0x03003590
+	ldr r3, _080222E4 @ =gUnk_03003590
 	ldr r2, _080222E8 @ =gSineTable
 	ldr r5, _080222EC @ =gUnk_03004C20
 	ldr r1, [r5]
@@ -27935,7 +27935,7 @@ _080222D4:
 	bl _08022C38
 	.align 2, 0
 _080222E0: .4byte gUnk_03005400
-_080222E4: .4byte 0x03003590
+_080222E4: .4byte gUnk_03003590
 _080222E8: .4byte gSineTable
 _080222EC: .4byte gUnk_03004C20
 _080222F0: .4byte gUnk_03000830
@@ -28375,7 +28375,7 @@ _08022676:
 	ands r1, r0
 	adds r0, r3, #0
 	bl sub_08025B78
-	ldr r1, _080226B4 @ =0x03003590
+	ldr r1, _080226B4 @ =gUnk_03003590
 	movs r0, #0
 	strh r0, [r1, #0x22]
 	strh r0, [r1, #0x20]
@@ -28388,7 +28388,7 @@ _080226A4: .4byte gUnk_0818B8E0
 _080226A8: .4byte gUnk_03004C20
 _080226AC: .4byte 0x05000200
 _080226B0: .4byte 0x80000010
-_080226B4: .4byte 0x03003590
+_080226B4: .4byte gUnk_03003590
 _080226B8:
 	ldrb r0, [r1, #2]
 	cmp r0, #0
@@ -28493,7 +28493,7 @@ _08022784:
 	subs r0, r5, r2
 	lsls r0, r0, #2
 	adds r7, r0, r1
-	ldr r4, _080227E4 @ =0x080E2B64
+	ldr r4, _080227E4 @ =gUnk_080E2B64
 	adds r1, r2, #0
 	subs r1, #0xd
 	movs r0, #0x2c
@@ -28536,7 +28536,7 @@ _080227DA:
 	b _08022C38
 	.align 2, 0
 _080227E0: .4byte gUnk_03002920
-_080227E4: .4byte 0x080E2B64
+_080227E4: .4byte gUnk_080E2B64
 _080227E8: .4byte gUnk_03004C20
 _080227EC: .4byte 0x00001130
 _080227F0: .4byte 0x00008980
@@ -28594,7 +28594,7 @@ _08022828:
 	ldr r0, [sp]
 	movs r1, #0x1a
 	bl sub_08025B78
-	ldr r0, _080228C4 @ =0x03003590
+	ldr r0, _080228C4 @ =gUnk_03003590
 	adds r0, #0x24
 	strb r4, [r0]
 	ldr r4, _080228C8 @ =0x040000D4
@@ -28640,7 +28640,7 @@ _080228AC:
 _080228B8: .4byte gUnk_03002920
 _080228BC: .4byte gUnk_03000830
 _080228C0: .4byte gUnk_0300363C
-_080228C4: .4byte 0x03003590
+_080228C4: .4byte gUnk_03003590
 _080228C8: .4byte 0x040000D4
 _080228CC: .4byte 0x0818B7DC
 _080228D0: .4byte gUnk_0818B8E0
@@ -28648,7 +28648,7 @@ _080228D4: .4byte gUnk_03004C20
 _080228D8: .4byte 0x05000200
 _080228DC: .4byte 0x80000010
 _080228E0:
-	ldr r4, _08022910 @ =0x03003590
+	ldr r4, _08022910 @ =gUnk_03003590
 	ldr r3, _08022914 @ =gSineTable
 	ldr r0, _08022918 @ =gUnk_03004C20
 	ldrb r1, [r0]
@@ -28672,11 +28672,11 @@ _080228E0:
 	strh r0, [r4, #0x22]
 	b _08022C38
 	.align 2, 0
-_08022910: .4byte 0x03003590
+_08022910: .4byte gUnk_03003590
 _08022914: .4byte gSineTable
 _08022918: .4byte gUnk_03004C20
 _0802291C:
-	ldr r0, _08022954 @ =0x03003590
+	ldr r0, _08022954 @ =gUnk_03003590
 	movs r6, #0x20
 	ldrsh r0, [r0, r6]
 	bl Abs
@@ -28703,7 +28703,7 @@ _08022948:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_08022954: .4byte 0x03003590
+_08022954: .4byte gUnk_03003590
 _08022958: .4byte gUnk_03004C20
 _0802295C: .4byte _08022960
 _08022960: @ jump table
@@ -28766,7 +28766,7 @@ _080229CA:
 	subs r4, r6, r1
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r2, _08022A58 @ =0x080E2B64
+	ldr r2, _08022A58 @ =gUnk_080E2B64
 	mov sb, r2
 	movs r0, #0x2c
 	adds r2, r5, #0
@@ -28821,7 +28821,7 @@ _08022A48: .4byte gUnk_03004C20
 _08022A4C: .4byte 0x05000200
 _08022A50: .4byte 0x80000010
 _08022A54: .4byte gUnk_03002920
-_08022A58: .4byte 0x080E2B64
+_08022A58: .4byte gUnk_080E2B64
 _08022A5C: .4byte 0x00001130
 _08022A60: .4byte 0x00008980
 _08022A64: .4byte gSineTable
@@ -28878,7 +28878,7 @@ _08022ABA:
 	subs r4, r6, r1
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r2, _08022B4C @ =0x080E2B64
+	ldr r2, _08022B4C @ =gUnk_080E2B64
 	mov sl, r2
 	movs r0, #0x2c
 	adds r2, r5, #0
@@ -28935,7 +28935,7 @@ _08022B3C: .4byte gUnk_03004C20
 _08022B40: .4byte 0x05000200
 _08022B44: .4byte 0x80000010
 _08022B48: .4byte gUnk_03002920
-_08022B4C: .4byte 0x080E2B64
+_08022B4C: .4byte gUnk_080E2B64
 _08022B50: .4byte 0x00001130
 _08022B54: .4byte 0x00008980
 _08022B58: .4byte gSineTable
@@ -28992,7 +28992,7 @@ _08022BAE:
 	subs r4, r6, r1
 	lsls r4, r4, #2
 	adds r4, r4, r0
-	ldr r2, _08022C8C @ =0x080E2B64
+	ldr r2, _08022C8C @ =gUnk_080E2B64
 	mov sl, r2
 	movs r0, #0x2c
 	adds r2, r5, #0
@@ -29054,7 +29054,7 @@ _08022C2E:
 	adds r0, r0, r2
 	strh r0, [r4, #2]
 _08022C38:
-	ldr r3, _08022C9C @ =0x03003590
+	ldr r3, _08022C9C @ =gUnk_03003590
 	ldr r1, _08022C88 @ =gUnk_03002920
 	ldr r4, [sp, #8]
 	ldr r5, [sp]
@@ -29089,11 +29089,11 @@ _08022C7C: .4byte gUnk_03004C20
 _08022C80: .4byte 0x05000200
 _08022C84: .4byte 0x80000010
 _08022C88: .4byte gUnk_03002920
-_08022C8C: .4byte 0x080E2B64
+_08022C8C: .4byte gUnk_080E2B64
 _08022C90: .4byte 0x00001130
 _08022C94: .4byte 0x00008980
 _08022C98: .4byte gSineTable
-_08022C9C: .4byte 0x03003590
+_08022C9C: .4byte gUnk_03003590
 
 	thumb_func_start sub_08022CA0
 sub_08022CA0: @ 0x08022CA0
@@ -29115,7 +29115,7 @@ sub_08022CA0: @ 0x08022CA0
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	mov sl, r0
-	ldr r3, _08022D00 @ =0x03003590
+	ldr r3, _08022D00 @ =gUnk_03003590
 	ldrb r1, [r4, #8]
 	lsls r1, r1, #0x1a
 	lsrs r1, r1, #0x1f
@@ -29144,7 +29144,7 @@ _08022CF0:
 	mov pc, r0
 	.align 2, 0
 _08022CFC: .4byte gUnk_03005400
-_08022D00: .4byte 0x03003590
+_08022D00: .4byte gUnk_03003590
 _08022D04: .4byte gUnk_03002920
 _08022D08: .4byte _08022D0C
 _08022D0C: @ jump table
@@ -29737,7 +29737,7 @@ _08023204:
 	movs r1, #0x11
 	bl sub_08025B78
 _0802321E:
-	ldr r2, _08023258 @ =0x03003590
+	ldr r2, _08023258 @ =gUnk_03003590
 	ldrb r1, [r2, #0x15]
 	movs r0, #2
 	rsbs r0, r0, #0
@@ -29765,7 +29765,7 @@ _0802321E:
 	.align 2, 0
 _08023250: .4byte gUnk_03000830
 _08023254: .4byte gUnk_0300363C
-_08023258: .4byte 0x03003590
+_08023258: .4byte gUnk_03003590
 _0802325C: .4byte gUnk_03004C20
 _08023260: .4byte gUnk_03002920
 _08023264:
@@ -29862,7 +29862,7 @@ _080232F0:
 	beq _08023322
 	adds r0, r2, #4
 	strh r0, [r4, #2]
-	ldr r1, _0802337C @ =0x03003590
+	ldr r1, _0802337C @ =gUnk_03003590
 	lsrs r0, r2, #0x10
 	strb r0, [r1, #0x14]
 _08023322:
@@ -29911,7 +29911,7 @@ _0802336A:
 _08023370: .4byte 0x0000FFFC
 _08023374: .4byte gUnk_03002920
 _08023378: .4byte 0x0000FFFF
-_0802337C: .4byte 0x03003590
+_0802337C: .4byte gUnk_03003590
 _08023380:
 	mov r6, sb
 	ldrb r1, [r6, #0x15]
@@ -30271,7 +30271,7 @@ _08023644:
 	movs r1, #5
 	bl __umodsi3
 	strb r0, [r5, #9]
-	ldr r0, _08023694 @ =0x03003590
+	ldr r0, _08023694 @ =gUnk_03003590
 	strb r4, [r0, #0x14]
 	ldr r1, _08023698 @ =0x0000FFE0
 	strh r1, [r0, #0x12]
@@ -30299,7 +30299,7 @@ _08023644:
 	.align 2, 0
 _0802368C: .4byte gUnk_03002920
 _08023690: .4byte 0x00000366
-_08023694: .4byte 0x03003590
+_08023694: .4byte gUnk_03003590
 _08023698: .4byte 0x0000FFE0
 _0802369C: .4byte gUnk_03003430
 _080236A0:
@@ -30513,7 +30513,7 @@ _08023824:
 	movs r0, #1
 	strb r0, [r6, #0xd]
 _08023840:
-	ldr r0, _08023854 @ =0x03003590
+	ldr r0, _08023854 @ =gUnk_03003590
 	ldrh r1, [r0, #0x10]
 	adds r1, #1
 	strh r1, [r0, #0x10]
@@ -30523,7 +30523,7 @@ _08023840:
 	b _08023896
 	.align 2, 0
 _08023850: .4byte gUnk_03004C20
-_08023854: .4byte 0x03003590
+_08023854: .4byte gUnk_03003590
 _08023858:
 	ldr r0, _080238C8 @ =gUnk_03004C20
 	ldr r0, [r0]
@@ -30550,7 +30550,7 @@ _0802387A:
 	movs r1, #1
 	orrs r0, r1
 	strb r0, [r3, #0xc]
-	ldr r1, _080238CC @ =0x03003590
+	ldr r1, _080238CC @ =gUnk_03003590
 	ldrh r0, [r1, #0x10]
 	adds r0, #0xa
 	strh r0, [r1, #0x10]
@@ -30566,7 +30566,7 @@ _08023896:
 	ldrb r0, [r4, #8]
 	cmp r0, #0x70
 	bne _080238F0
-	ldr r1, _080238CC @ =0x03003590
+	ldr r1, _080238CC @ =gUnk_03003590
 	movs r0, #0
 	strh r0, [r1, #0x12]
 	strh r0, [r1, #0x10]
@@ -30585,7 +30585,7 @@ _08023896:
 	b _080238EE
 	.align 2, 0
 _080238C8: .4byte gUnk_03004C20
-_080238CC: .4byte 0x03003590
+_080238CC: .4byte gUnk_03003590
 _080238D0: .4byte gUnk_03002920
 _080238D4: .4byte gUnk_03005400
 _080238D8:
@@ -30601,7 +30601,7 @@ _080238D8:
 _080238EE:
 	strb r0, [r4, #0xf]
 _080238F0:
-	ldr r0, _0802394C @ =0x03003590
+	ldr r0, _0802394C @ =gUnk_03003590
 	ldrh r0, [r0, #0x10]
 	subs r0, #0x81
 	lsls r0, r0, #0x10
@@ -30646,7 +30646,7 @@ _080238F0:
 	bl sub_08014624
 	b _08023972
 	.align 2, 0
-_0802394C: .4byte 0x03003590
+_0802394C: .4byte gUnk_03003590
 _08023950: .4byte gUnk_03002920
 _08023954: .4byte gUnk_03005220
 _08023958:
@@ -30819,14 +30819,14 @@ _08023A80:
 	b _08023BA6
 _08023AAE:
 	strh r2, [r4, #2]
-	ldr r1, _08023AC0 @ =0x03003590
+	ldr r1, _08023AC0 @ =gUnk_03003590
 	lsrs r0, r2, #0x10
 	strb r0, [r1, #0x1c]
 	b _08023BA6
 	.align 2, 0
 _08023AB8: .4byte gUnk_03004C20
 _08023ABC: .4byte 0xFFFF0000
-_08023AC0: .4byte 0x03003590
+_08023AC0: .4byte gUnk_03003590
 _08023AC4:
 	ldrb r0, [r4, #0xc]
 	lsls r0, r0, #0x1c
@@ -30882,7 +30882,7 @@ _08023AF8:
 	adds r0, r2, #0
 	adds r0, #0x10
 	strh r0, [r5, #2]
-	ldr r1, _08023B6C @ =0x03003590
+	ldr r1, _08023B6C @ =gUnk_03003590
 	lsrs r0, r2, #0x10
 	strb r0, [r1, #0x1c]
 _08023B36:
@@ -30908,7 +30908,7 @@ _08023B5C: .4byte 0x080E2B5E
 _08023B60: .4byte gUnk_03005400
 _08023B64: .4byte gUnk_03002920
 _08023B68: .4byte 0xFFFF0000
-_08023B6C: .4byte 0x03003590
+_08023B6C: .4byte gUnk_03003590
 _08023B70:
 	ldrh r1, [r5]
 	adds r1, #8
@@ -30967,7 +30967,7 @@ _08023BD6:
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 _08023BDE:
-	ldr r1, _08023C20 @ =0x03003590
+	ldr r1, _08023C20 @ =gUnk_03003590
 	mov r8, r1
 	lsls r0, r0, #3
 	mov sb, r0
@@ -31002,7 +31002,7 @@ _08023C16:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_08023C20: .4byte 0x03003590
+_08023C20: .4byte gUnk_03003590
 _08023C24: .4byte gUnk_03002920
 _08023C28: .4byte _08023C2C
 _08023C2C: @ jump table
@@ -31547,7 +31547,7 @@ _08024086:
 	adds r0, #0x28
 _080240B2:
 	strb r0, [r4, #8]
-	ldr r0, _080240C8 @ =0x03003590
+	ldr r0, _080240C8 @ =gUnk_03003590
 	add r0, sb
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -31557,7 +31557,7 @@ _080240B2:
 	strb r0, [r4, #0xf]
 	b _080240E4
 	.align 2, 0
-_080240C8: .4byte 0x03003590
+_080240C8: .4byte gUnk_03003590
 _080240CC:
 	subs r0, r6, r7
 	lsls r0, r0, #2

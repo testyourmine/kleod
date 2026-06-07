@@ -1170,7 +1170,7 @@ void sub_08002AC4(void)
     sub_0803D15C();
     if (gUnk_03004C20.world == 1)
     {
-        gUnk_03003430.unk26 = ((u16) gUnk_03005420 / 3) - 0x28;
+        gUnk_03003430.unk26 = (gUnk_03005420 / 3) - 0x28;
     }
 }
 
@@ -1254,7 +1254,7 @@ void sub_08002FD0(void)
         gUnk_03003510.unk28[0] = InputHandler_Normal;
         gUnk_03003510.unk28[1] = sub_080453F0;
         gUnk_03003510.unk28[2] = sub_0800C45C;
-        gUnk_03003410.pad0[5] = 0;
+        gUnk_03003410.unk5 = 0;
         gUnk_03003510.unk34 = &sub_08048028;
         gUnk_03003510.unk38 = &sub_080242C0;
         gUnk_03003510.unk3C = 1;
@@ -1351,7 +1351,6 @@ void sub_0800343C(u8 arg0)
 // 350C
 void sub_0800350C(void)
 {
-    s32 tmp;
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     REG_DISPCNT = DISPCNT_BG2_ON | DISPCNT_BG1_ON | DISPCNT_BG0_ON | DISPCNT_MODE_4;
@@ -1359,10 +1358,12 @@ void sub_0800350C(void)
     REG_WININ = REG_WINOUT = REG_WIN0H = REG_WIN0V = REG_WIN1H = REG_WIN1V = 0;
     REG_BG2CNT = BGCNT_PRIORITY(1);
 
-    // FAKE!
-    if (&gUnk_03003430);
-    tmp = 0;
-    gUnk_03003430.unk8 = gUnk_03003430.unkA = gUnk_03003430.unk24 = gUnk_03003430.unk26 = gUnk_03003470 = gUnk_03003472 = tmp = 0;
+    gUnk_03003430.unk42 = 0;
+    gUnk_03003430.unk40 = 0;
+    gUnk_03003430.unk26 = 0;
+    gUnk_03003430.unk24 = 0;
+    gUnk_03003430.unkA = 0;
+    gUnk_03003430.unk8 = 0;
     gUnk_03002910 = 0;
 
     gUnk_030034AC = gUnk_03005420 = 0x500;
@@ -1372,8 +1373,8 @@ void sub_0800350C(void)
     gUnk_030051BC = MultiplyQ8(-SIN(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
     gUnk_03000808 = MultiplyQ8(COS(gUnk_03002910), ReciprocalQ8(gUnk_03005420));
 
-    gUnk_030007FC = (((gUnk_03003470 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
-    gUnk_030051D0 = (((gUnk_03003472 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
+    gUnk_030007FC = (((gUnk_03003430.unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
+    gUnk_030051D0 = (((gUnk_03003430.unk42 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 
     DmaCopy16(3, &gUnk_080D927C, BG_PLTT, BG_PLTT_SIZE);
     DmaCopy16(3, &gUnk_080D947C, VRAM, 0x9600);
@@ -1397,7 +1398,7 @@ void sub_08003750(void)
     gUnk_030007FC = (((gUnk_03003430.unk40 + 0x78) << 8) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x50);
     gUnk_030051D0 = (((gUnk_03003430.unk42 + 0x50) << 8) - (gUnk_030051BC * 0x78)) - (gUnk_03000808 * 0x50);
 
-    if ((u16) gUnk_030034AC != 0x100)
+    if (gUnk_030034AC != 0x100)
     {
         gUnk_03002910 += 8;
         gUnk_030034AC -= 0x10;
