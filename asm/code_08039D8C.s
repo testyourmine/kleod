@@ -246,7 +246,7 @@ _08039F38:
 	ldrb r0, [r2, #4]
 	cmp r0, #0
 	beq _0803A004
-	ldr r1, _0803A064 @ =0x030051F0
+	ldr r1, _0803A064 @ =gUnk_030051F0
 	ldr r2, _0803A068 @ =gUnk_03005498
 	ldrb r0, [r2]
 	strb r0, [r1, #0xe]
@@ -340,7 +340,7 @@ _0803A054: .4byte 0x040000D4
 _0803A058: .4byte gUnk_03003430
 _0803A05C: .4byte 0x80000400
 _0803A060: .4byte 0x0000BFFF
-_0803A064: .4byte 0x030051F0
+_0803A064: .4byte gUnk_030051F0
 _0803A068: .4byte gUnk_03005498
 _0803A06C: .4byte 0x04000050
 _0803A070: .4byte 0x04000008
@@ -655,7 +655,7 @@ _0803A314:
 	str r0, [r2, #8]
 	ldr r0, [r2, #8]
 	ldr r2, _0803A3DC @ =gUnk_03005498
-	ldr r1, _0803A3E0 @ =0x030051F0
+	ldr r1, _0803A3E0 @ =gUnk_030051F0
 	ldrb r0, [r1, #0xe]
 	strb r0, [r2]
 	ldr r2, _0803A3E4 @ =0x04000050
@@ -749,7 +749,7 @@ _0803A3D0: .4byte gUnk_03003430
 _0803A3D4: .4byte gUnk_03000900+0x800
 _0803A3D8: .4byte 0x80000240
 _0803A3DC: .4byte gUnk_03005498
-_0803A3E0: .4byte 0x030051F0
+_0803A3E0: .4byte gUnk_030051F0
 _0803A3E4: .4byte 0x04000050
 _0803A3E8: .4byte gUnk_03004C20
 _0803A3EC: .4byte 0x04000042

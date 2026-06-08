@@ -50,8 +50,10 @@ struct Unk_080D2E88 {
 extern struct Unk_080D2E88 gUnk_080D2E88[6][0x7][0x14];
 
 struct Unk_080D48C8 {
-    u8 pad0[0x4 - 0x0];
-    u8 unk4;
+    u16 unk0;
+    u16 unk2;
+    u8 unk4_0:2;
+    u8 unk4_2:6;
     u8 pad5[0x8 - 0x5];
 };
 extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
@@ -1224,7 +1226,7 @@ void sub_08002FD0(void)
             var_r6 = 2;
         }
 
-        gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4 >> 2;
+        gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_2;
         gUnk_03005468.unk0 = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].unk0;
         gUnk_03005468.unk2 = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].unk2;
         gUnk_03005468.unk4 = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].unk4;
