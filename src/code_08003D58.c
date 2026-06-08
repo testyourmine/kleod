@@ -430,7 +430,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gUnk_03005468.unk2; var_r3_3 -= 8)
                 {
-                    if (gUnk_03004654[0x18] <= gUnk_03004790.pBufBg2Tilemap[(arg2 >> 3) + (gUnk_03003478 * (var_r3_3 >> 3))])
+                    if (gUnk_03004654[0x18] <= gUnk_03004790.pBufBg2Tilemap[(arg2 >> 3) + (gUnk_03003430.unk48 * (var_r3_3 >> 3))])
                     {
                         gUnk_03000790[arg4].unk4 = var_r3_3 + 8;
                         gUnk_03000790[arg4].unk8 = var_r3_3 + 8;
@@ -3045,8 +3045,7 @@ extern void sub_08025B78(s32, u8);
 extern void sub_0803CE14(u8);
 
 // AC34
-// (99.55%) https://decomp.me/scratch/lRoby
-NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
+void sub_0800AC34(void)
 {
     s32 var_r6;
     struct Unk_03002920 *temp_r1_2;
@@ -3303,9 +3302,7 @@ NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
 
                         while (1)
                         {
-                            s32 tmp = (((u16) gUnk_03002920[var_r6].unk2 >> 3) * gUnk_03003478);
-                            s32 tmp1 = ((u16) gUnk_03002920[var_r6].unk0 >> 3);
-                            u32 tmp2 = gUnk_03004790.pBufBg2Tilemap[tmp1 + tmp];
+                            u32 tmp2 = gUnk_03004790.pBufBg2Tilemap[((u16) gUnk_03002920[var_r6].unk0 >> 3) + (((u16) gUnk_03002920[var_r6].unk2 >> 3) * gUnk_03003430.unk48)];
                             if (gUnk_03004654[0x1B] <= tmp2)
                             {
                                 gUnk_03002920[var_r6].unk2 += 0xA;
@@ -3340,7 +3337,6 @@ NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
         sub_08014318();
     }
 }
-END_NONMATCH
 
 extern void sub_08044F6C(u8);
 
@@ -3366,8 +3362,8 @@ void sub_0800B3C0(void)
     sub_08003DA0();
     gUnk_03005428 = 0xD;
 
-    // gUnk_03003610->pad2[1] = 0;
-    // gUnk_03003610->pad2[0] = 0;
+    // gUnk_03003610->unk3 = 0;
+    // gUnk_03003610->unk2 = 0;
     // gUnk_03004C38 = 0;
     // gUnk_030052A8 = 0;
     // gUnk_030034E0 = 0;

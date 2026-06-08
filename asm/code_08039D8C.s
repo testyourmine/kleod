@@ -11114,7 +11114,7 @@ _0803F8BE:
 	movs r2, #0x80
 	lsls r2, r2, #0x18
 	mov ip, r2
-	ldr r7, _0803F94C @ =gUnk_03003478
+	ldr r7, _0803F94C @ =gUnk_03003430+0x48
 	mov sl, r7
 _0803F8D4:
 	str r3, [r4]
@@ -11178,7 +11178,7 @@ _0803F93C: .4byte gUnk_03004790
 _0803F940: .4byte gUnk_03003430
 _0803F944: .4byte 0x040000D4
 _0803F948: .4byte 0x80000004
-_0803F94C: .4byte gUnk_03003478
+_0803F94C: .4byte gUnk_03003430+0x48
 
 	thumb_func_start sub_0803F950
 sub_0803F950: @ 0x0803F950
@@ -15859,7 +15859,7 @@ _08041EE8:
 	movs r4, #0
 	ldr r2, _08041F28 @ =0x040000D4
 	ldr r6, _08041F2C @ =0x80000003
-	ldr r0, _08041F30 @ =gUnk_03003478
+	ldr r0, _08041F30 @ =gUnk_03003430+0x48
 	ldrh r5, [r0]
 _08041F04:
 	str r1, [r2]
@@ -15882,7 +15882,7 @@ _08041F20: .4byte 0x03003790
 _08041F24: .4byte gUnk_03004790
 _08041F28: .4byte 0x040000D4
 _08041F2C: .4byte 0x80000003
-_08041F30: .4byte gUnk_03003478
+_08041F30: .4byte gUnk_03003430+0x48
 
 	thumb_func_start sub_08041F34
 sub_08041F34: @ 0x08041F34

@@ -325,19 +325,17 @@ void sub_08001158(void)
 }
 
 // 1CD0
-// (97.78%) https://decomp.me/scratch/TRwiK
-NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1))
+void sub_08001CD0(u8 arg0, struct Unk_08001CD0 arg1)
 {
     s32 temp_r1;
     u32 temp_r0_3;
     u32 temp_r0_7;
     u32 temp_r2;
-    u32 temp_r2_3;
     u32 var_r3;
 
     s32 var_r5;
     s32 var_r6;
-    u32 var_r7;
+    s32 var_r7;
 
     if (arg0 & 0x10)
     {
@@ -350,7 +348,6 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
         if (temp_r2 != gUnk_03003430.unk44)
         {
             gUnk_03003430.unk44 = temp_r2;
-            gUnk_03003478 += 0; // better match, fake
             temp_r0_3 = temp_r2 + 0x1E;
             var_r7 = temp_r0_3 & 0x1F;
             var_r5 = temp_r0_3 % gUnk_03003430.unk48;
@@ -358,7 +355,7 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
             for (var_r3 = 0; var_r3 < 0x15; var_r3++)
             {
                 temp_r1 = var_r3 + var_r6;
-                gUnk_03004DB0[((temp_r1 & 0x1F) << 5) + var_r7] = gUnk_03004790.pBufBg2Tilemap[(temp_r1 * gUnk_03003478) + var_r5];
+                gUnk_03004DB0[((temp_r1 & 0x1F) << 5) + var_r7] = gUnk_03004790.pBufBg2Tilemap[(temp_r1 * gUnk_03003430.unk48) + var_r5];
             }
         }
     }
@@ -373,14 +370,13 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
         if (temp_r2 != gUnk_03003430.unk44)
         {
             gUnk_03003430.unk44 = temp_r2;
-            gUnk_03003478 += 0; // better match, fake
             var_r7 = temp_r2 & 0x1F;
             var_r5 = (temp_r2 + gUnk_03003430.unk48) % gUnk_03003430.unk48;
             var_r6 = gUnk_03003430.bg2VOfs >> 3;
             for (var_r3 = 0; var_r3 < 0x15; var_r3++)
             {
                 temp_r1 = var_r3 + var_r6;
-                gUnk_03004DB0[((temp_r1 & 0x1F) << 5) + var_r7] = gUnk_03004790.pBufBg2Tilemap[(temp_r1 * gUnk_03003478) + var_r5];
+                gUnk_03004DB0[((temp_r1 & 0x1F) << 5) + var_r7] = gUnk_03004790.pBufBg2Tilemap[(temp_r1 * gUnk_03003430.unk48) + var_r5];
             }
         }
     }
@@ -392,13 +388,13 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
         {
             gUnk_03003430.bg2VOfs = gUnk_03005468.unk2;
         }
-        temp_r2_3 = gUnk_03003430.bg2VOfs >> 3;
-        if (temp_r2_3 != gUnk_03003430.unk46)
+        temp_r2 = gUnk_03003430.bg2VOfs >> 3;
+        if (temp_r2 != gUnk_03003430.unk46)
         {
-            gUnk_03003430.unk46 = temp_r2_3;
+            gUnk_03003430.unk46 = temp_r2;
             var_r6 = gUnk_03003430.bg2HOfs >> 3;
-            var_r7 = (temp_r2_3 & 0x1F) << 5;
-            var_r5 = (((u32) (temp_r2_3 + gUnk_03003430.unk4A) % gUnk_03003430.unk4A) * gUnk_03003430.unk48) + var_r6;
+            var_r7 = (temp_r2 & 0x1F) << 5;
+            var_r5 = (((temp_r2 + gUnk_03003430.unk4A) % gUnk_03003430.unk4A) * gUnk_03003430.unk48) + var_r6;
             for (var_r3 = 0; var_r3 < 0x1F; var_r3++)
             {
                 gUnk_03004DB0[(var_r7) + (((var_r3 + var_r6) & 0x1F))] = gUnk_03004790.pBufBg2Tilemap[var_r5 + var_r3];
@@ -416,12 +412,12 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
         {
             gUnk_03003430.bg2VOfs = gUnk_03005468.unk6 - 0xA0;
         }
-        temp_r2_3 = gUnk_03003430.bg2VOfs >> 3;
-        if (temp_r2_3 != gUnk_03003430.unk46)
+        temp_r2 = gUnk_03003430.bg2VOfs >> 3;
+        if (temp_r2 != gUnk_03003430.unk46)
         {
-            gUnk_03003430.unk46 = temp_r2_3;
+            gUnk_03003430.unk46 = temp_r2;
             var_r6 = gUnk_03003430.bg2HOfs >> 3;
-            temp_r0_7 = temp_r2_3 + 0x14;
+            temp_r0_7 = temp_r2 + 0x14;
             var_r7 = (temp_r0_7 & 0x1F) << 5;
             var_r5 = ((temp_r0_7 % gUnk_03003430.unk4A) * gUnk_03003430.unk48) + var_r6;
             for (var_r3 = 0; var_r3 < 0x1F; var_r3++)
@@ -431,7 +427,6 @@ NONMATCH("asm/nonmatching/sub_08001CD0.inc", void sub_08001CD0(u8 arg0, struct U
         }
     }
 }
-END_NONMATCH
 
 // 1F58
 void sub_08001F58(void)
@@ -442,7 +437,6 @@ void sub_08001F58(void)
     struct Unk_08001CD0 var_r3;
     u16 var_r8;
     u8 var_r7;
-    struct Unk_03003430 *new_var;
 
     sp0 = 0;
     var_r7 = 0;
@@ -464,6 +458,7 @@ void sub_08001F58(void)
                     break;
                 }
                 var_r2++;
+                // TODO: what?
                 if (var_r2 == (struct Unk_0300542C *)0xC)
                 {
                     break;
@@ -666,14 +661,13 @@ void sub_08001F58(void)
         gUnk_03003430.bg1VOfs = 0x50;
     }
 
-    new_var = &gUnk_03003430; // FAKE
-    gUnk_03005474 = gUnk_03003472;
+    gUnk_03005474 = gUnk_03003430.bg2VOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = ((((*new_var).bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gUnk_03003472 + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gUnk_03003430.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gUnk_03003430.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 247C
@@ -684,7 +678,6 @@ void sub_0800247C(void)
     u16 var_r8;
     struct Unk_08001CD0 var_r6;
     u8 var_r7;
-    struct Unk_03003430 *new_var;
 
     var_r8 = 0;
     var_r7 = 0;
@@ -806,14 +799,13 @@ void sub_0800247C(void)
         }
     }
 
-    new_var = &gUnk_03003430; // FAKE
-    gUnk_03005474 = gUnk_03003472;
+    gUnk_03005474 = gUnk_03003430.bg2VOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = ((((*new_var).bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gUnk_03003472 + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gUnk_03003430.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gUnk_03003430.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 27C4
@@ -821,8 +813,6 @@ void sub_080027C4(void)
 {
     struct Unk_08001CD0 var_r2;
     u8 var_r4;
-    struct Unk_03003430 *new_var;
-    struct Unk_03002920 *new_var2;
 
     var_r4 = 0;
     if (gUnk_03005220.unk46 == 0)
@@ -838,10 +828,10 @@ void sub_080027C4(void)
         }
     }
 
-    new_var2 = &gUnk_03002920[0]; // FAKE!
+    gUnk_03002920[0].unk2 = gUnk_03002920[0].unk2; // FAKE!
     if ((gUnk_03005220.unk2F == 0) || (gUnk_03005220.unk31 == 0))
     {
-        if ((u16) (*new_var2).unk2 > (gUnk_03003430.bg2VOfs + 0x6E))
+        if ((u16) gUnk_03002920[0].unk2 > (gUnk_03003430.bg2VOfs + 0x6E))
         {
             var_r4 |= 0x80;
             if ((u16) gUnk_03002920[0].unk2 > (gUnk_03003430.bg2VOfs + 0xA))
@@ -924,14 +914,13 @@ void sub_080027C4(void)
         }
     }
 
-    new_var = &gUnk_03003430; // FAKE
-    gUnk_03005474 = gUnk_03003472;
+    gUnk_03005474 = gUnk_03003430.bg2VOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = ((((*new_var).bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gUnk_03003472 + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gUnk_03003430.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gUnk_03003430.bg2VOfs + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 2AC4
@@ -1298,7 +1287,7 @@ void sub_08002FD0(void)
         DmaFill16(3, 0, &gUnk_03003650, 0x1000);
         for (var_r6 = 0; var_r6 < 0x28; var_r6++)
         {
-            DmaCopy16Wait(3, &gUnk_03004790.pBufBg2Tilemap[var_r6 * gUnk_03003478], (void *) ((var_r6 << 6) + &gUnk_03003650), 0x1E * 2);
+            DmaCopy16Wait(3, &gUnk_03004790.pBufBg2Tilemap[var_r6 * gUnk_03003430.unk48], (void *) ((var_r6 << 6) + &gUnk_03003650), 0x1E * 2);
         }
         DmaCopy16Wait(3, &gUnk_03003650, gUnk_03003430.pVramBg2Tilemap, 0x1000);
     }
