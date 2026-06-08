@@ -344,7 +344,11 @@ struct Unk_03005400 {
     u8 unkB;
     u8 unkC;
     u8 unkD;
-    u8 unkE;
+    u8 unkE_0:1;
+    u8 unkE_1:1;
+    u8 unkE_2:1;
+    u8 unkE_3:4; // TODO: verify
+    u8 unkE_7:1;
     u8 padF[0x14 - 0xF];
     u8 unk14;
     u8 pad15[0x16 - 0x15];
@@ -540,5 +544,11 @@ struct Unk_030051F0 {
     u8 unkE;
 };
 extern struct Unk_030051F0 gUnk_030051F0;
+
+extern u8 gUnk_03000810;
+extern u8 gUnk_030034C4;
+extern u16 gUnk_03003508;
+extern struct Unk_080D821C *gUnk_03004D80;
+extern u16 gUnk_030051E0;
 
 #endif // GUARD_VARIABLES_H

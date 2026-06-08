@@ -1,5 +1,6 @@
 #include "global.h"
 #include "code_08003D58.h"
+#include "code_0800BFF4.h"
 #include "math.h"
 #include "data/trig.h"
 #include "structs/variables.h"
@@ -2816,7 +2817,6 @@ void sub_0800A71C(s8 arg0, s8 arg1)
     }
 }
 
-extern void sub_0800BFF4(void);
 extern void sub_0800D188(void);
 extern void sub_08014318(void);
 extern void sub_08014760(u8);
@@ -3026,7 +3026,6 @@ void sub_0800A804(void)
     }
 }
 
-extern void sub_0800C108();
 extern void sub_0801F02C(u8);
 extern void sub_0801F128(u8);
 extern void sub_0801F4D0(s32);
@@ -3326,7 +3325,7 @@ NONMATCH("asm/nonmatching/sub_0800AC34.inc", void sub_0800AC34(void))
         }
     }
 
-    if ((gUnk_03005400.unkE & 0x80) && (gUnk_03003510.unk10 != sub_08024C34) && (gUnk_03003510.unk10 != sub_08024718))
+    if (gUnk_03005400.unkE_7 && (gUnk_03003510.unk10 != sub_08024C34) && (gUnk_03003510.unk10 != sub_08024718))
     {
         sub_0800D188();
     }

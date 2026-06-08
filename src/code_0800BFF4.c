@@ -8,6 +8,50 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
+struct Unk_080D48C8 {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4_0:2;
+    u8 unk4_2:6;
+    u8 pad5[0x8 - 0x5];
+};
+extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
+
+struct Unk_080D6458 {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4_0:2;
+    u8 pad5[0x8 - 0x5];
+};
+extern struct Unk_080D6458 gUnk_080D6458[6];
+
+struct Unk_080D821C {
+    u8 pad0[0x8 - 0x0];
+    u8 unk8;
+    u8 unk9;
+    u8 padA[0xC - 0xA];
+};
+extern struct Unk_080D821C gUnk_080D821C[0xD];
+
+struct Unk_080D89A8 {
+    s32 unk0;
+    s32 unk4;
+};
+extern struct Unk_080D89A8 gUnk_080D89A8[6][5];
+
+extern struct Unk_0300542C *gUnk_0818B704[6][7];
+
+extern void sub_080242C0();
+extern void sub_08026374();
+extern void sub_0803C808();
+extern void sub_08046DB8(s32, s32);
+
+extern void sub_08039D8C();
+extern void sub_0803A410();
+extern void sub_0803A8B8();
+extern void sub_0803AAA0();
+
+// BFF4
 void sub_0800BFF4(void)
 {
     sub_0800A49C();
@@ -40,18 +84,15 @@ void sub_0800BFF4(void)
     gUnk_03003420 = 1;
 }
 
+// TODO: likely static variables inside sub_0800C108
 extern u8 gUnk_03000000;
 extern u8 gUnk_03000001;
-extern u8 gUnk_03000002;
-extern u8 gUnk_03000003;
+extern u8 gUnk_03000002; // vu8?
+extern u8 gUnk_03000003; // vu8?
 
-extern void sub_08039D8C();
-extern void sub_0803A410();
-extern void sub_0803A8B8();
-extern void sub_0803AAA0();
-
-// https://decomp.me/scratch/Q7319
-void sub_0800C108(void)
+// C108
+// (97.72%): https://decomp.me/scratch/Q7319
+NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
 {
     s8 sp0;
     s8 sp4;
@@ -64,18 +105,18 @@ void sub_0800C108(void)
     u32 var_r6;
     u8 temp_r4;
 
-    if (gUnk_03005400.unkE & 2)
+    if (gUnk_03005400.unkE_1)
     {
         gUnk_03000001 = gUnk_03005400.unkD * 2;
         gUnk_03000003 = 0x20;
-        gUnk_03005400.unkE = (s8)gUnk_03005400.unkE & -3;
+        gUnk_03005400.unkE_1 = 0;
     }
 
-    if (gUnk_03005400.unkE & 1)
+    if (gUnk_03005400.unkE_0)
     {
         gUnk_03000000 = gUnk_03005400.unkD * 2;
         gUnk_03000002 = 0x20;
-        gUnk_03005400.unkE = (s8)gUnk_03005400.unkE & -2;
+        gUnk_03005400.unkE_0 = 0;
     }
 
     if (gUnk_03000000 != 0)
@@ -178,7 +219,9 @@ void sub_0800C108(void)
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
+END_NONMATCH
 
+// C45C
 void sub_0800C45C(void)
 {
     sub_080098C8();
@@ -208,6 +251,7 @@ void sub_0800C45C(void)
     gUnk_03003420 = 1;
 }
 
+// C564
 void sub_0800C564(void)
 {
     sub_08005CF4();
@@ -253,6 +297,7 @@ void sub_0800C564(void)
     gUnk_03003420 = 1;
 }
 
+// C7EC
 void sub_0800C7EC(void)
 {
     sub_0800A49C();
@@ -285,6 +330,7 @@ void sub_0800C7EC(void)
     gUnk_03003420 = 1;
 }
 
+// C900
 void sub_0800C900(void)
 {
     VBlankIntrWait();
@@ -314,49 +360,7 @@ void sub_0800C900(void)
     gUnk_03003420 = 1;
 }
 
-extern void sub_080242C0();
-extern void sub_08026374();
-extern void sub_0803C808();
-extern void sub_08046DB8(s32, s32);
-
-extern u8 gUnk_03000810;
-extern u8 gUnk_030034C4;
-extern u16 gUnk_03003508;
-extern struct Unk_080D821C *gUnk_03004D80;
-extern u16 gUnk_030051E0;
-
-struct Unk_080D48C8 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 unk4_2:6;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
-
-struct Unk_080D6458 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D6458 gUnk_080D6458[];
-
-struct Unk_080D821C {
-    u8 pad0[0x8 - 0x0];
-    u8 unk8;
-    u8 unk9;
-    u8 padA[0xC - 0xA];
-};
-extern struct Unk_080D821C gUnk_080D821C[];
-
-struct Unk_080D89A8 {
-    s32 unk0;
-    s32 unk4;
-};
-extern struct Unk_080D89A8 gUnk_080D89A8[][5];
-extern struct Unk_0300542C *gUnk_0818B704[][7];
-
+// CA0C
 void sub_0800CA0C(u32 arg0)
 {
     u32 var_r4;
@@ -608,6 +612,7 @@ void sub_0800CA0C(u32 arg0)
     gUnk_0300542C = gUnk_0818B704[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
 }
 
+// D0C4
 void sub_0800D0C4(void)
 {
     sub_08005CF4();

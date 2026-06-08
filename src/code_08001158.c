@@ -1,6 +1,7 @@
 #include "global.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
+#include "code_0800BFF4.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -10,8 +11,6 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern void sub_0800C45C();
-extern void sub_0800CA0C();
 extern void sub_080144C4();
 extern void sub_080242C0();
 extern void sub_080245E8();
@@ -1090,7 +1089,7 @@ void sub_08002AC4(void)
 
     if (gUnk_03004C20.world == 4)
     {
-        if ((gUnk_03005400.unkE & 4) == 0)
+        if (gUnk_03005400.unkE_2 == 0)
         {
             gUnk_03005400.unk16 = gUnk_03002910;
             gUnk_03005400.unk14 = 0;

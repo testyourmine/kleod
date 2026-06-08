@@ -1,5 +1,6 @@
 #include "global.h"
 #include "main.h"
+#include "code_0800BFF4.h"
 #include "eeprom.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -14,7 +15,6 @@ extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
 extern void IntrMain(void);
 
 extern void sub_080245E8();
-extern void sub_0800BFF4();
 extern void sub_080477A8();
 extern void sub_08048768();
 
@@ -90,8 +90,7 @@ void AgbMain(void)
     }
 
     while (1)
-    {
-        
+    {   
         for (var_r4 = 0; var_r4 < (gUnk_03003510.unk78 - 1); var_r4++)
         {
             gUnk_03003510.unk0[var_r4]();
