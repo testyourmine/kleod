@@ -9,8 +9,8 @@ void sub_080009D8(void)
     // VBlankHandler_Normal
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
     DmaCopy16Wait(3, &gUnk_03004DB0, gUnk_03003430.pVramBg2Tilemap, 0x400);
 
     DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
@@ -41,10 +41,10 @@ void sub_08000AC8(void)
     // VBlankHandler_ModeA
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
 
     DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
 
@@ -64,10 +64,10 @@ void sub_08000BD4(void)
     // VBlankHandler_ModeB
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
 
     DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
 
@@ -87,8 +87,8 @@ void sub_08000CE0(void)
     // VBlankDmaTransfer
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
     DmaCopy16Wait(3, &gUnk_03003650, gUnk_03003430.pVramBg2Tilemap, 0x1000);
 
     DmaCopy32Wait(3, &gUnk_03004800, OAM, OAM_SIZE / 2);
@@ -150,8 +150,8 @@ void sub_08000E68(void)
     REG_WIN1H = ((gUnk_030034A0->unkC << 0x4) & ~0xFF) | ((gUnk_030034A0->unk14 >> 0x4) & 0xFF);
     REG_WIN1V = ((gUnk_030034A0->unkE << 0x4) & ~0xFF) | ((gUnk_030034A0->unk16 >> 0x4) & 0xFF);
 
-    DmaCopy16Wait(3, &gUnk_03000900[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03000900[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
 
     DmaCopy32(3, &gUnk_03004800, OAM, OAM_SIZE);
 
@@ -197,8 +197,8 @@ void sub_08000FCC(void)
     s32 temp_r1;
 
     vCount = REG_VCOUNT_L;
-    temp_r2 = gUnk_030007FC + (gUnk_03004678 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
-    temp_r1 = gUnk_030051D0 + (gUnk_030051B0 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
+    temp_r2 = gBg2X + (gUnk_03004678 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
+    temp_r1 = gBg2Y + (gUnk_030051B0 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
 
     REG_BG2X_L = temp_r2;
     REG_BG2X_H = temp_r2 >> 0x10;
@@ -234,13 +234,13 @@ void sub_0800107C(void)
     if (gUnk_03004C20.unk0 & 1)
     {
         gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.unk0) * 4) & 0xFF;
-        REG_BG2HOFS = (gUnk_03003430.unk40 >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
-        REG_BG3HOFS = (gUnk_03003430.unk5C >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
+        REG_BG2HOFS = (gUnk_03003430.bg2HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
+        REG_BG3HOFS = (gUnk_03003430.bg3HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
     }
     else
     {
-        REG_BG2HOFS = gUnk_03003430.unk40 >> 4;
-        REG_BG3HOFS = gUnk_03003430.unk5C >> 4;
+        REG_BG2HOFS = gUnk_03003430.bg2HOfs >> 4;
+        REG_BG3HOFS = gUnk_03003430.bg3HOfs >> 4;
     }
 }
 

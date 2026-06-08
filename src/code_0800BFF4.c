@@ -59,19 +59,19 @@ void sub_0800BFF4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.unk8 >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.unkA >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2X_L = gUnk_030007FC;
-    REG_BG2X_H = (gUnk_030007FC & 0x0FFF0000) >> 0x10;
-    REG_BG2Y_L = gUnk_030051D0;
-    REG_BG2Y_H = (gUnk_030051D0 & 0x0FFF0000) >> 0x10;
+    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2X_L = gBg2X;
+    REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
+    REG_BG2Y_L = gBg2Y;
+    REG_BG2Y_H = (gBg2Y & 0x0FFF0000) >> 0x10;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
@@ -184,30 +184,30 @@ NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
         }
     }
 
-    var_r3_2 = gUnk_03003430.unk40;
-    var_r2_2 = gUnk_03003430.unk42;
+    var_r3_2 = gUnk_03003430.bg2HOfs;
+    var_r2_2 = gUnk_03003430.bg2VOfs;
     if (gUnk_03004C20.world == 0x4 && gUnk_03004C20.level == 0x8)
     {
         var_r2_2 += 0x20;
     }
-    gUnk_030007FC = (((var_r3_2 << 8) - (var_r3_2 * gUnk_030047B0)) - (var_r2_2 * gUnk_03005464)) + ((gUnk_03003430.unk40 + sp0) << 8);
-    gUnk_030051D0 = (((var_r2_2 << 8) - (var_r3_2 * gUnk_030051BC)) - (var_r2_2 * gUnk_03000808)) + ((gUnk_03003430.unk42 + sp4) << 8);
+    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gUnk_03003430.bg2HOfs + sp0) << 8);
+    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gUnk_03003430.bg2VOfs + sp4) << 8);
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.unk8 >> 4) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.unkA >> 7) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2X_L = gUnk_030007FC;
-    REG_BG2X_H = (gUnk_030007FC & 0x0FFF0000) >> 0x10;
-    REG_BG2Y_L = gUnk_030051D0;
-    REG_BG2Y_H = (gUnk_030051D0 & 0x0FFF0000) >> 0x10;
+    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 4) & 0x1FF;
+    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 7) & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2X_L = gBg2X;
+    REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
+    REG_BG2Y_L = gBg2Y;
+    REG_BG2Y_H = (gBg2Y & 0x0FFF0000) >> 0x10;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
@@ -225,8 +225,8 @@ END_NONMATCH
 void sub_0800C45C(void)
 {
     sub_080098C8();
-    gUnk_03004678 = gSineTable[gUnk_03002910];
-    gUnk_030051B0 = gSineTable[gUnk_03002910 + 0x40];
+    gUnk_03004678 = SIN(gBg2Alpha);
+    gUnk_030051B0 = COS(gBg2Alpha);
 
     VBlankIntrWait();
 
@@ -234,16 +234,16 @@ void sub_0800C45C(void)
     REG_BLDY = gUnk_03005498;
     REG_MOSAIC = (gUnk_030007D8 << 4) | gUnk_030007D8;
 
-    REG_BG0HOFS = (gUnk_03003430.unk8 >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.unkA >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
+    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     gUnk_03004C20.unk4 += 1;
     gUnk_03004C20.unk0 += 1;
@@ -258,37 +258,37 @@ void sub_0800C564(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gUnk_03003430.unk8 & 0x1FF;
-    REG_BG0VOFS = gUnk_03003430.unkA & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2HOFS = (gUnk_03003430.unk40 >> 4) & 0x1FF;
-    REG_BG2VOFS = (gUnk_03003430.unk42 >> 4) & 0x1FF;
-    REG_BG3HOFS = (gUnk_03003430.unk5C >> 4) & 0x1FF;
-    REG_BG3VOFS = (gUnk_03003430.unk5E >> 4) & 0x1FF;
+    REG_BG0HOFS = gUnk_03003430.bg0HOfs & 0x1FF;
+    REG_BG0VOFS = gUnk_03003430.bg0VOfs & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2HOFS = (gUnk_03003430.bg2HOfs >> 4) & 0x1FF;
+    REG_BG2VOFS = (gUnk_03003430.bg2VOfs >> 4) & 0x1FF;
+    REG_BG3HOFS = (gUnk_03003430.bg3HOfs >> 4) & 0x1FF;
+    REG_BG3VOFS = (gUnk_03003430.bg3VOfs >> 4) & 0x1FF;
 
-    REG_BG2X_L = gUnk_030007FC;
-    REG_BG2X_H = (gUnk_030007FC & 0x0FFF0000) >> 0x10;
-    REG_BG2Y_L = gUnk_030051D0;
-    REG_BG2Y_H = (gUnk_030051D0 & 0x0FFF0000) >> 0x10;
+    REG_BG2X_L = gBg2X;
+    REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
+    REG_BG2Y_L = gBg2Y;
+    REG_BG2Y_H = (gBg2Y & 0x0FFF0000) >> 0x10;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 * 0x10) | gUnk_030007D8;
+    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
 
-    gUnk_030034F8 = MultiplyQ8(gSineTable[(gUnk_03004C20.unk0 * 0x10) & 0xFF], MultiplyQ8(0x200, gSineTable[(gUnk_03004C20.unk0 * 4) & 0x7F]));
-    gUnk_030047B0 = MultiplyQ8(gSineTable[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_030034AC));
-    gUnk_03005464 = MultiplyQ8(gSineTable[gUnk_03002910], ReciprocalQ8(gUnk_030034AC));
-    gUnk_030051BC = MultiplyQ8(-gSineTable[gUnk_03002910], ReciprocalQ8(gUnk_03005420));
-    gUnk_03000808 = MultiplyQ8(gSineTable[gUnk_03002910 + 0x40], ReciprocalQ8(gUnk_03005420));
+    gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.unk0 * 0x10) & 0xFF), MultiplyQ8(0x200, SIN((gUnk_03004C20.unk0 * 4) & 0x7F)));
+    gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
+    gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
+    gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
+    gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gUnk_030007FC = ((gUnk_03003430.unk40 * 0x10) - (gUnk_030047B0 * 0x78)) - (gUnk_03005464 * 0x78);
-    gUnk_030051D0 = ((gUnk_03003430.unk42 * 0x10) - (gUnk_030051BC * 0x28)) - (gUnk_03000808 * 0x28);
+    gBg2X = ((gUnk_03003430.bg2HOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
+    gBg2Y = ((gUnk_03003430.bg2VOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -305,23 +305,23 @@ void sub_0800C7EC(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.unk8 >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.unkA >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2X_L = gUnk_030007FC;
-    REG_BG2X_H = (gUnk_030007FC & 0x0FFF0000) >> 0x10;
-    REG_BG2Y_L = gUnk_030051D0;
-    REG_BG2Y_H = (gUnk_030051D0 & 0x0FFF0000) >> 0x10;
+    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2X_L = gBg2X;
+    REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
+    REG_BG2Y_L = gBg2Y;
+    REG_BG2Y_H = (gBg2Y & 0x0FFF0000) >> 0x10;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 * 0x10) | gUnk_030007D8;
+    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -335,23 +335,23 @@ void sub_0800C900(void)
 {
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.unk8 >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.unkA >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2X_L = gUnk_030007FC;
-    REG_BG2X_H = (gUnk_030007FC & 0x0FFF0000) >> 0x10;
-    REG_BG2Y_L = gUnk_030051D0;
-    REG_BG2Y_H = (gUnk_030051D0 & 0x0FFF0000) >> 0x10;
+    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2X_L = gBg2X;
+    REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
+    REG_BG2Y_L = gBg2Y;
+    REG_BG2Y_H = (gBg2Y & 0x0FFF0000) >> 0x10;
 
-    REG_BG2PA = gUnk_030047B0;
-    REG_BG2PB = gUnk_03005464;
-    REG_BG2PC = gUnk_030051BC;
-    REG_BG2PD = gUnk_03000808;
+    REG_BG2PA = gBg2PA;
+    REG_BG2PB = gBg2PB;
+    REG_BG2PC = gBg2PC;
+    REG_BG2PD = gBg2PD;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 * 0x10) | gUnk_030007D8;
+    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -619,16 +619,16 @@ void sub_0800D0C4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gUnk_03003430.unk8 & 0x1FF;
-    REG_BG0VOFS = gUnk_03003430.unkA & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.unk24 & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.unk26 & 0x1FF;
-    REG_BG2HOFS = gUnk_03003430.unk40 & 0x1FF;
-    REG_BG2VOFS = gUnk_03003430.unk42 & 0x1FF;
+    REG_BG0HOFS = gUnk_03003430.bg0HOfs & 0x1FF;
+    REG_BG0VOFS = gUnk_03003430.bg0VOfs & 0x1FF;
+    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG2HOFS = gUnk_03003430.bg2HOfs & 0x1FF;
+    REG_BG2VOFS = gUnk_03003430.bg2VOfs & 0x1FF;
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 * 0x10) | gUnk_030007D8;
+    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;

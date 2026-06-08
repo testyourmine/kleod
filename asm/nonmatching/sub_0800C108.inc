@@ -244,13 +244,13 @@ _0800C2D4:
 	lsrs r2, r0, #0x10
 _0800C2F8:
 	lsls r1, r3, #8
-	ldr r5, _0800C418 @ =gUnk_030047B0
+	ldr r5, _0800C418 @ =gBg2PA
 	mov sl, r5
 	movs r6, #0
 	ldrsh r0, [r5, r6]
 	muls r0, r3, r0
 	subs r1, r1, r0
-	ldr r0, _0800C41C @ =gUnk_03005464
+	ldr r0, _0800C41C @ =gBg2PB
 	mov sb, r0
 	movs r4, #0
 	ldrsh r0, [r0, r4]
@@ -262,17 +262,17 @@ _0800C2F8:
 	adds r0, r3, r0
 	lsls r0, r0, #8
 	adds r1, r1, r0
-	ldr r6, _0800C420 @ =gUnk_030007FC
+	ldr r6, _0800C420 @ =gBg2X
 	str r1, [r6]
-	ldr r4, _0800C424 @ =gUnk_030051D0
+	ldr r4, _0800C424 @ =gBg2Y
 	lsls r1, r2, #8
-	ldr r0, _0800C428 @ =gUnk_030051BC
+	ldr r0, _0800C428 @ =gBg2PC
 	mov r8, r0
 	movs r5, #0
 	ldrsh r0, [r0, r5]
 	muls r0, r3, r0
 	subs r1, r1, r0
-	ldr r6, _0800C42C @ =gUnk_03000808
+	ldr r6, _0800C42C @ =gBg2PD
 	movs r3, #0
 	ldrsh r0, [r6, r3]
 	muls r0, r2, r0
@@ -309,7 +309,7 @@ _0800C2F8:
 	ands r1, r0
 	strh r1, [r2]
 	ldr r1, _0800C440 @ =0x04000028
-	ldr r5, _0800C420 @ =gUnk_030007FC
+	ldr r5, _0800C420 @ =gBg2X
 	ldr r0, [r5]
 	strh r0, [r1]
 	adds r1, #2
@@ -383,12 +383,12 @@ _0800C2F8:
 	.align 2, 0
 _0800C410: .4byte gUnk_03003430
 _0800C414: .4byte gUnk_03004C20
-_0800C418: .4byte gUnk_030047B0
-_0800C41C: .4byte gUnk_03005464
-_0800C420: .4byte gUnk_030007FC
-_0800C424: .4byte gUnk_030051D0
-_0800C428: .4byte gUnk_030051BC
-_0800C42C: .4byte gUnk_03000808
+_0800C418: .4byte gBg2PA
+_0800C41C: .4byte gBg2PB
+_0800C420: .4byte gBg2X
+_0800C424: .4byte gBg2Y
+_0800C428: .4byte gBg2PC
+_0800C42C: .4byte gBg2PD
 _0800C430: .4byte 0x04000010
 _0800C434: .4byte 0x000001FF
 _0800C438: .4byte 0x04000014

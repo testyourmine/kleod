@@ -140,8 +140,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     {
         gUnk_03002920[arg0].unk0 = arg2;
         gUnk_03002920[arg0].unk2 = arg3;
-        gUnk_03002920[arg0].unk4 = arg2 - gUnk_03003430.unk40;
-        gUnk_03002920[arg0].unk6 = arg3 - gUnk_03003430.unk42;
+        gUnk_03002920[arg0].unk4 = arg2 - gUnk_03003430.bg2HOfs;
+        gUnk_03002920[arg0].unk6 = arg3 - gUnk_03003430.bg2VOfs;
     }
     gUnk_03002920[arg0].unkA = arg1;
     gUnk_03002920[arg0].unk10 = 0;
@@ -258,9 +258,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case 0x41:
             gUnk_03002920[arg0].unkE_0 = 1;
             gUnk_03002920[arg0].unkD_2 = gUnk_03005288 + 1;
-            gUnk_03004680[gUnk_03005288 + 1].unk0 = gUnk_03004680[gUnk_03005288 + 1].unk6 = gSineTable[0x40];
-            gUnk_03004680[gUnk_03005288 + 1].unk4 = gSineTable[0];
-            gUnk_03004680[gUnk_03005288 + 1].unk2 = -gSineTable[0];
+            gUnk_03004680[gUnk_03005288 + 1].unk0 = gUnk_03004680[gUnk_03005288 + 1].unk6 = COS(0);
+            gUnk_03004680[gUnk_03005288 + 1].unk4 = SIN(0);
+            gUnk_03004680[gUnk_03005288 + 1].unk2 = -SIN(0);
             gUnk_03002920[arg0].unkC_2 = arg6;
             break;
 
@@ -340,10 +340,10 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03003610[gUnk_03005298].unk0 = arg0;
                 gUnk_03002920[arg0].unkD_2 = gUnk_03005288;
-                gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(gSineTable[0], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-gSineTable[0], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gUnk_03002920[arg0].unk8));
+                gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8));
                 gUnk_03005288 += 1;
                 gUnk_03002920[arg0].unk2 += (u8)-gUnk_03002920[arg0].unk8 >> 3;
                 gUnk_03002920[arg0 - 1].unk2 += (u8)-gUnk_03002920[arg0].unk8 >> 2;
@@ -352,10 +352,10 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03003610[gUnk_03005298++].unk1 = arg0;
                 gUnk_03002920[arg0].unkD_2 = gUnk_03005288;
-                gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(gSineTable[0], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-gSineTable[0], ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gUnk_03002920[arg0].unk8));
+                gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
+                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8));
                 gUnk_03005288 += 1;
                 gUnk_03002920[arg0].unk2 += (u8)-gUnk_03002920[arg0].unk8 >> 3;
                 gUnk_03002920[arg0 - 1].unk2 += (u8)-gUnk_03002920[arg0].unk8 >> 2;
@@ -2660,15 +2660,15 @@ void sub_0800A49C(void)
 {
     s32 var_r5;
 
-    gUnk_03002920[0].unk4 = gUnk_03002920[0].unk0 - gUnk_03003430.unk40;
-    gUnk_03002920[0].unk6 = gUnk_03002920[0].unk2 - gUnk_03003430.unk42;
+    gUnk_03002920[0].unk4 = gUnk_03002920[0].unk0 - gUnk_03003430.bg2HOfs;
+    gUnk_03002920[0].unk6 = gUnk_03002920[0].unk2 - gUnk_03003430.bg2VOfs;
 
     if (gUnk_03002920[0x9].unk10 == 1)
     {
-        gUnk_03002920[0x9].unk4 = gUnk_03002920[0x9].unk0 - gUnk_03003430.unk40;
-        gUnk_03002920[0x9].unk6 = gUnk_03002920[0x9].unk2 - gUnk_03003430.unk42;
-        gUnk_03002920[0xA].unk4 = gUnk_03002920[0xA].unk0 - gUnk_03003430.unk40;
-        gUnk_03002920[0xA].unk6 = gUnk_03002920[0xA].unk2 - gUnk_03003430.unk42;
+        gUnk_03002920[0x9].unk4 = gUnk_03002920[0x9].unk0 - gUnk_03003430.bg2HOfs;
+        gUnk_03002920[0x9].unk6 = gUnk_03002920[0x9].unk2 - gUnk_03003430.bg2VOfs;
+        gUnk_03002920[0xA].unk4 = gUnk_03002920[0xA].unk0 - gUnk_03003430.bg2HOfs;
+        gUnk_03002920[0xA].unk6 = gUnk_03002920[0xA].unk2 - gUnk_03003430.bg2VOfs;
     }
 
     for (var_r5 = 1; var_r5 < gUnk_03005428; var_r5++)
@@ -2680,8 +2680,8 @@ void sub_0800A49C(void)
 
         if (gUnk_03002920[var_r5].unkF < 0x19)
         {
-            gUnk_03002920[var_r5].unk4 = gUnk_03002920[var_r5].unk0 - gUnk_03003430.unk40;
-            gUnk_03002920[var_r5].unk6 = gUnk_03002920[var_r5].unk2 - gUnk_03003430.unk42;
+            gUnk_03002920[var_r5].unk4 = gUnk_03002920[var_r5].unk0 - gUnk_03003430.bg2HOfs;
+            gUnk_03002920[var_r5].unk6 = gUnk_03002920[var_r5].unk2 - gUnk_03003430.bg2VOfs;
             if ((gUnk_03002920[var_r5].unk4 >= 0x113 && gUnk_03002920[var_r5].unk4 <= 0xFFDC) || (gUnk_03002920[var_r5].unk6 >= 0xE0 && gUnk_03002920[var_r5].unk6 <= 0xFFDC))
             {
                 gUnk_03002920[var_r5].unk10 = 0;
@@ -2706,27 +2706,27 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     struct Unk_0300466C_4 *var_r0;
 
     arg1++,arg1--; //fake
-    gUnk_03002920[arg0].unk4 = gUnk_03002920[arg0].unk0 - arg1 - gUnk_03003430.unk40;
-    gUnk_03002920[arg0].unk6 = gUnk_03002920[arg0].unk2 - arg2 - gUnk_03003430.unk42;
+    gUnk_03002920[arg0].unk4 = gUnk_03002920[arg0].unk0 - arg1 - gUnk_03003430.bg2HOfs;
+    gUnk_03002920[arg0].unk6 = gUnk_03002920[arg0].unk2 - arg2 - gUnk_03003430.bg2VOfs;
 
-    temp_r1 = gUnk_03003430.unk40 - gUnk_03002920[arg0].unk4;
-    temp_r2 = gUnk_03003430.unk42 - gUnk_03002920[arg0].unk6;
+    temp_r1 = gUnk_03003430.bg2HOfs - gUnk_03002920[arg0].unk4;
+    temp_r2 = gUnk_03003430.bg2VOfs - gUnk_03002920[arg0].unk6;
 
-    temp_r0 = temp_r1 * gUnk_030034AC;
+    temp_r0 = temp_r1 * gBg2XMag;
     if (temp_r0 < 0)
     {
         temp_r0 += 0xFF;
     }
     var_r4 = temp_r0 >> 8;
 
-    temp_r0_2 = temp_r2 * gUnk_03005420;
+    temp_r0_2 = temp_r2 * gBg2YMag;
     if (temp_r0_2 < 0)
     {
         temp_r0_2 += 0xFF;
     }
     var_r2 = temp_r0_2 >> 8;
 
-    var_r4 = gUnk_03003430.unk40 - var_r4;
+    var_r4 = gUnk_03003430.bg2HOfs - var_r4;
     if (arg0 > 0xC)
     {
         var_r0 = (void*)gUnk_030051DC[arg0 - 0xD].unk4;
@@ -2740,23 +2740,23 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     {
         case 3:
         case 11:
-            var_r2 = gUnk_03003430.unk42 - var_r2 + ((0x100 - gUnk_03005420) >> 3);
+            var_r2 = gUnk_03003430.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 3);
             break;
 
         case 1:
         case 6:
         case 8:
-            var_r2 = gUnk_03003430.unk42 - var_r2 + ((0x100 - gUnk_03005420) >> 5);
+            var_r2 = gUnk_03003430.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 5);
             break;
 
         case 0:
         case 4:
         case 5:
-            var_r2 = gUnk_03003430.unk42 - var_r2 + ((0x100 - gUnk_03005420) >> 6);
+            var_r2 = gUnk_03003430.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 6);
             break;
 
         default:
-            var_r2 = gUnk_03003430.unk42 - var_r2 + ((0x100 - gUnk_03005420) >> 4);
+            var_r2 = gUnk_03003430.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 4);
             break;
     }
 

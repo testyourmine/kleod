@@ -118,7 +118,7 @@ extern void *gUnk_03005290;
 extern u8 gUnk_03003420;
 extern u8 gUnk_03005428;
 
-extern u16 gUnk_03000900[4][0x400]; // BG tilemaps
+extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
 extern u8 gUnk_03004DB0[]; // BG2 tilemap data
 extern void gUnk_03003650; // todo: type
 
@@ -154,8 +154,8 @@ extern struct Unk_03002920 gUnk_03002920[];
 struct Unk_03003430 {
     void *pVramBg0Tiles; // BG0 tiles
     void *pVramBg0Tilemap; // BG0 tilemap
-    u16 unk8; // BG0HOFS
-    u16 unkA; // BG0VOFS
+    u16 bg0HOfs; // BG0HOFS
+    u16 bg0VOfs; // BG0VOFS
     u8 padC[0x10 - 0xC];
     u16 unk10;
     u16 unk12;
@@ -166,8 +166,8 @@ struct Unk_03003430 {
 
     void *pVramBg1Tiles; // BG1 tiles
     void *pVramBg1Tilemap; // BG1 tilemap
-    u16 unk24; // BG1HOFS
-    u16 unk26; // BG1VOFS
+    u16 bg1HOfs; // BG1HOFS
+    u16 bg1VOfs; // BG1VOFS
     u8 pad28[0x2C - 0x28];
     u16 unk2C;
     u16 unk2E;
@@ -178,8 +178,8 @@ struct Unk_03003430 {
 
     void *pVramBg2Tiles; // BG2 tiles
     void *pVramBg2Tilemap; // BG2 tilemap
-    u16 unk40; // BG2X
-    u16 unk42; // BG2Y
+    u16 bg2HOfs; // BG2HOFS
+    u16 bg2VOfs; // BG2VOFS
     u16 unk44;
     u16 unk46;
     u16 unk48;
@@ -191,8 +191,8 @@ struct Unk_03003430 {
 
     void *pVramBg3Tiles; // BG3 tiles
     void *pVramBg3Tilemap; // BG3 tilemap
-    u16 unk5C; // BG3X
-    u16 unk5E; // BG3Y
+    u16 bg3HOfs; // BG3HOFS
+    u16 bg3VOfs; // BG3VOFS
 };
 extern struct Unk_03003430 gUnk_03003430;
 
@@ -227,22 +227,22 @@ struct Unk_03004C20 {
 };
 extern struct Unk_03004C20 gUnk_03004C20;
 
-extern s32 gUnk_030007FC; // BG2X
+extern s32 gBg2X; // BG2X
 extern s16 gUnk_03004678;
 extern s16 gUnk_030051B0;
-extern s32 gUnk_030051D0; // BG2Y
+extern s32 gBg2Y; // BG2Y
 
 extern s16 gUnk_030034F8;
 
-extern s16 gUnk_03000808; // BG2PD
-extern u8 gUnk_03002910; // alpha
-extern u16 gUnk_030034AC; // xMag
+extern s16 gBg2PD; // BG2PD
+extern u8 gBg2Alpha; // alpha
+extern u16 gBg2XMag; // xMag
 extern u8 gUnk_03004660;
-extern s16 gUnk_030047B0; // BG2PA
-extern s16 gUnk_030051BC; // BG2PC
+extern s16 gBg2PA; // BG2PA
+extern s16 gBg2PC; // BG2PC
 extern u8 gUnk_030052A0;
-extern u16 gUnk_03005420; // yMag
-extern s16 gUnk_03005464; // BG2PB
+extern u16 gBg2YMag; // yMag
+extern s16 gBg2PB; // BG2PB
 
 struct Unk_03005468 {
     u16 unk0;

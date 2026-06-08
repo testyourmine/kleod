@@ -8368,7 +8368,7 @@ _08018654:
 	ldrb r0, [r0, #0x1a]
 	cmp r5, r0
 	bhi _080186CC
-	ldr r0, _080186BC @ =gUnk_03005420
+	ldr r0, _080186BC @ =gBg2YMag
 	movs r6, #0
 	ldrsh r0, [r0, r6]
 	bl ReciprocalQ8
@@ -8410,7 +8410,7 @@ _080186AC: .4byte gUnk_03002920
 _080186B0: .4byte gUnk_03004790
 _080186B4: .4byte gUnk_03003430
 _080186B8: .4byte gUnk_03004654
-_080186BC: .4byte gUnk_03005420
+_080186BC: .4byte gBg2YMag
 _080186C0: .4byte gUnk_03004680
 _080186C4: .4byte gUnk_03005288
 _080186C8: .4byte gUnk_03005220
@@ -8441,7 +8441,7 @@ _080186F8:
 	movs r1, #2
 _080186FE:
 	strb r1, [r0]
-	ldr r0, _0801873C @ =gUnk_03005420
+	ldr r0, _0801873C @ =gBg2YMag
 	movs r5, #0
 	ldrsh r0, [r0, r5]
 	bl ReciprocalQ8
@@ -8468,7 +8468,7 @@ _080186FE:
 	b _080187DE
 	.align 2, 0
 _08018738: .4byte gUnk_03005220
-_0801873C: .4byte gUnk_03005420
+_0801873C: .4byte gBg2YMag
 _08018740: .4byte gUnk_03002920
 _08018744: .4byte gUnk_03004680
 _08018748: .4byte gUnk_03005288
@@ -17429,7 +17429,7 @@ _0801CF4A:
 	bne _0801CF72
 	movs r3, #2
 _0801CF72:
-	ldr r2, _0801CFCC @ =gUnk_03000900
+	ldr r2, _0801CFCC @ =gBgTilemapBufs
 	ldr r4, _0801CFD0 @ =0x00000247
 	adds r1, r3, r4
 	lsls r1, r1, #1
@@ -17474,7 +17474,7 @@ _0801CF72:
 	strh r0, [r1]
 	b _0801D0BA
 	.align 2, 0
-_0801CFCC: .4byte gUnk_03000900
+_0801CFCC: .4byte gBgTilemapBufs
 _0801CFD0: .4byte 0x00000247
 _0801CFD4: .4byte 0x00000286
 _0801CFD8:
@@ -19926,7 +19926,7 @@ _0801E264:
 	beq _0801E26E
 	adds r2, #1
 _0801E26E:
-	ldr r3, _0801E2F0 @ =gUnk_03000900
+	ldr r3, _0801E2F0 @ =gBgTilemapBufs
 	lsls r2, r2, #1
 	ldr r7, _0801E2F4 @ =0x0000024D
 	adds r1, r2, r7
@@ -19985,7 +19985,7 @@ _0801E2E0: .4byte gUnk_03005498
 _0801E2E4: .4byte 0x04000050
 _0801E2E8: .4byte gUnk_03002920
 _0801E2EC: .4byte 0x0000FFF8
-_0801E2F0: .4byte gUnk_03000900
+_0801E2F0: .4byte gBgTilemapBufs
 _0801E2F4: .4byte 0x0000024D
 _0801E2F8: .4byte 0x0000026D
 _0801E2FC: .4byte 0x0000026E
@@ -27434,7 +27434,7 @@ _08021E64:
 	ldrh r0, [r2, #2]
 	strh r0, [r3, #2]
 	ldr r1, _08021F6C @ =gUnk_03005400
-	ldr r0, _08021F70 @ =gUnk_030034AC
+	ldr r0, _08021F70 @ =gBg2XMag
 	ldrh r0, [r0]
 	rsbs r0, r0, #0
 	adds r0, #0x10
@@ -27518,7 +27518,7 @@ _08021F60: .4byte gUnk_03004C20
 _08021F64: .4byte 0x00001130
 _08021F68: .4byte 0x00008980
 _08021F6C: .4byte gUnk_03005400
-_08021F70: .4byte gUnk_030034AC
+_08021F70: .4byte gBg2XMag
 _08021F74: .4byte gUnk_03003590
 _08021F78: .4byte 0x040000D4
 _08021F7C: .4byte 0x0818B7DC
@@ -29925,7 +29925,7 @@ _08023380:
 	strh r0, [r6, #0x10]
 	movs r0, #0x10
 	ldrsh r1, [r6, r0]
-	ldr r0, _080233BC @ =gUnk_030034AC
+	ldr r0, _080233BC @ =gBg2XMag
 	ldrh r0, [r0]
 	cmn r1, r0
 	ble _080233A2
@@ -29944,7 +29944,7 @@ _080233A2:
 	strb r0, [r6, #0x14]
 	b _08023972
 	.align 2, 0
-_080233BC: .4byte gUnk_030034AC
+_080233BC: .4byte gBg2XMag
 _080233C0: .4byte gUnk_03002920
 _080233C4:
 	movs r2, #0

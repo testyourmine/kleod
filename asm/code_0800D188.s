@@ -13613,7 +13613,7 @@ _08013ED0:
 	strh r0, [r2]
 	lsls r0, r0, #0x10
 	ldr r1, _08014110 @ =0x26790000
-	ldr r7, _08014114 @ =gUnk_03000900
+	ldr r7, _08014114 @ =gBgTilemapBufs
 	cmp r0, r1
 	bls _08013F88
 	adds r0, r6, #0
@@ -13890,7 +13890,7 @@ _08014104: .4byte gUnk_03003410
 _08014108: .4byte 0xFFFFFF00
 _0801410C: .4byte 0x633B6300
 _08014110: .4byte 0x26790000
-_08014114: .4byte gUnk_03000900
+_08014114: .4byte gBgTilemapBufs
 _08014118: .4byte 0x00000332
 _0801411C: .4byte gUnk_0300547C
 _08014120: .4byte 0x040000D4
