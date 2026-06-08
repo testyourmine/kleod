@@ -5701,7 +5701,7 @@ _0800FF4E:
 	adds r0, r5, #0
 	adds r0, #0x4a
 	strb r2, [r0]
-	ldr r4, _080100C0 @ =0x0300526B
+	ldr r4, _080100C0 @ =gUnk_03005220+0x4B
 	strb r2, [r4]
 	ldr r6, _080100B4 @ =gUnk_03002920
 	ldrh r0, [r6]
@@ -5762,7 +5762,7 @@ _0800FFBC:
 	cmp r1, r4
 	bhi _0800FFD0
 	movs r0, #1
-	ldr r5, _080100C0 @ =0x0300526B
+	ldr r5, _080100C0 @ =gUnk_03005220+0x4B
 	strb r0, [r5]
 _0800FFD0:
 	mov r7, r8
@@ -5891,7 +5891,7 @@ _08010098:
 _080100B4: .4byte gUnk_03002920
 _080100B8: .4byte gUnk_03005220
 _080100BC: .4byte gUnk_03004C20
-_080100C0: .4byte 0x0300526B
+_080100C0: .4byte gUnk_03005220+0x4B
 _080100C4: .4byte gUnk_03003430
 _080100C8: .4byte gUnk_03004790
 _080100CC: .4byte gUnk_03004654

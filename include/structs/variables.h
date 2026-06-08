@@ -129,24 +129,24 @@ extern u16 gUnk_030052C0[];
 extern u32 gUnk_03005488;
 
 struct Unk_03002920 {
-    /* 0x00 */ u16 unk0;
-    /* 0x02 */ s16 unk2;
-    /* 0x04 */ u16 unk4;
-    /* 0x06 */ u16 unk6;
+    /* 0x00 */ u16 xPosBg2; // X position in bg2
+    /* 0x02 */ u16 yPosBg2; // Y position in bg2
+    /* 0x04 */ u16 xPosScreen; // X position on screen
+    /* 0x06 */ u16 yPosScreen; // Y position on screen
     /* 0x08 */ u8 unk8;
     /* 0x09 */ u8 unk9;
     /* 0x0A */ u8 unkA;
-    /* 0x0B */ u8 unkB;
-    /* 0x0C_0 */ u32 unkC_0:2;
-    /* 0x0C_2 */ u32 unkC_2:2;
-    /* 0x0C_4 */ u32 unkC_4:4;
-    /* 0x0D_0 */ u32 unkD_0:2;
-    /* 0x0D_2 */ u32 unkD_2:4;
+    /* 0x0B */ u8 unkB; // related to position, bottom 4 bits is X, top 4 bits is Y
+    /* 0x0C_0 */ u32 priority:2; // priority
+    /* 0x0C_2 */ u32 unkC_2:2; // related to direction, bit 1 is hFlip, bit 2 is vFlip
+    /* 0x0C_4 */ u32 unkC_4:4; // related to direction/rotation?
+    /* 0x0D_0 */ u32 objMode:2; // objMode
+    /* 0x0D_2 */ u32 affineHFlip_matrixNum:4; // bottom 3 bits is matrix number (0-7), 4th bit is hFlip
     /* 0x0D_6 */ u32 unkD_6:2; // TODO: verify
-    /* 0x0E_0 */ u32 unkE_0:1;
-    /* 0x0E_1 */ u32 unkE_1:1;
+    /* 0x0E_0 */ u32 affineEnable:1; // affine flag
+    /* 0x0E_1 */ u32 affineDouble:1; // affine doubled or non-affine obj disable
     /* 0x0F */ u8 unkF;
-    /* 0x10 */ u8 unk10;
+    /* 0x10 */ u8 unk10; // sprite blinking/visible, or possibly enabled/active
     /* 0x11 */ u8 unk11;
     /* 0x12 */ u8 pad12[0x1C - 0x12];
 }; /* size = 0x1C */
@@ -255,12 +255,12 @@ struct Unk_03005468 {
 extern struct Unk_03005468 gUnk_03005468;
 
 struct Unk_0300542C {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ s16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ s16 unk6;
-    /* 0x8 */ s8 unk8;
-    /* 0x9 */ s8 unk9;
+    /* 0x0 */ u16 unk0; // related to X position
+    /* 0x2 */ u16 unk2; // related to Y position
+    /* 0x4 */ u16 unk4; // related to X position
+    /* 0x6 */ u16 unk6; // related to Y position
+    /* 0x8 */ s8 unk8; // related to X position
+    /* 0x9 */ s8 unk9; // related to Y position
     /* 0xA */ u8 padA[0xC - 0xA];
 }; /* size = 0xC */
 extern struct Unk_0300542C *gUnk_0300542C;
@@ -390,11 +390,11 @@ extern struct Unk_03000830 gUnk_03000830[];
 extern u8 gUnk_0300363C;
 
 struct Unk_0300466C_4 {
-    u16 unk0;
-    u8 unk2;
-    s8 unk3;
-    u8 unk4;
-    u8 unk5;
+    u16 tileNum; // tileNum
+    u8 bpp_paletteNum; // bottom 7 bits is paletteNum, top bit is bpp
+    s8 unk3; // related to xPos
+    u8 unk4; // related to yPos
+    u8 shape_size; // bottom 2 bits is size, next two bits is shape
 };
 struct Unk_0300466C {
     u8 unk0;
@@ -497,14 +497,14 @@ union Unk_03000820 {
     struct {
         /* 0x0_0 */ u32 y:8;
 
-        /* 0x1_0 */ u32 objDisable:2;
+        /* 0x1_0 */ u32 affineMode:2;
         /* 0x1_2 */ u32 objMode:2;
         /* 0x1_4 */ u32 mosaic:1;
         /* 0x1_5 */ u32 bpp:1;
         /* 0x1_6 */ u8 shape:2;
 
         /* 0x2_0 */ u16 x:9;
-        /* 0x3_1 */ u8 unk3_1:3;
+        /* 0x3_1 */ u8 matrixNum:3;
         /* 0x3_4 */ u32 hFlip:1;
         /* 0x3_5 */ u8 vFlip:1;
         /* 0x3_6 */ u8 size:2;
