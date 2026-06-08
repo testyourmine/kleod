@@ -83,7 +83,6 @@ void sub_08001158(void)
     u32 temp_r3;
     u32 temp_r4;
     u32 var_r4;
-    s32 tmp;
 
     sp0 = 0;
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -249,7 +248,6 @@ void sub_08001158(void)
         gBgTilemapBufs[0][var_r4] = gUnk_03004790.pBufBg0Tilemap[var_r4];
     }
 
-    tmp = 0;
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
 
@@ -267,9 +265,9 @@ void sub_08001158(void)
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
     REG_BG2X_L = gUnk_03003430.bg2HOfs << 8;
-    REG_BG2X_H = 0;
+    REG_BG2X_H = gUnk_03003430.bg2HOfs >> 0x10; // FAKE
     REG_BG2Y_L = gUnk_03003430.bg2VOfs << 8;
-    REG_BG2Y_H = tmp; // FAKE
+    REG_BG2Y_H = gUnk_03003430.bg2VOfs >> 0x10; // FAKE
 
     REG_BG2PA = gBg2PA;
     REG_BG2PB = gBg2PB;
@@ -278,12 +276,7 @@ void sub_08001158(void)
 
     gBg2YMag = 0x100;
     gBg2XMag = 0x100;
-    // FAKE!
-    {
-        register s32 tmp asm("r0");
-        tmp = 0;
-    gBg2Alpha = tmp;
-    }
+    gBg2Alpha = 0;
 
     REG_WIN0H = WIN_RANGE(0, DISPLAY_WIDTH);
     REG_WIN0V = WIN_RANGE((s32)(DISPLAY_HEIGHT * 0.9f), DISPLAY_HEIGHT);
