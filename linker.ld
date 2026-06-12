@@ -14,6 +14,10 @@ SECTIONS {
     } >ewram
 
     iwram (NOLOAD) : ALIGN(4) {
+        . = 0x00000000; gUnk_03000000 = .;
+        . = 0x00000001; gUnk_03000001 = .;
+        . = 0x00000002; gUnk_03000002 = .;
+        . = 0x00000003; gUnk_03000003 = .;
         . = 0x00000008; gMPlayTrack_0 = .;
         . = 0x00000288; gMPlayTrack_1 = .;
         . = 0x000002D8; gMPlayTrack_2 = .;

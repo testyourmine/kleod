@@ -84,15 +84,14 @@ void sub_0800BFF4(void)
     gUnk_03003420 = 1;
 }
 
-// TODO: likely static variables inside sub_0800C108
+// TODO: should be static variables inside sub_0800C108
 extern u8 gUnk_03000000;
 extern u8 gUnk_03000001;
-extern u8 gUnk_03000002; // vu8?
-extern u8 gUnk_03000003; // vu8?
+extern u8 gUnk_03000002;
+extern u8 gUnk_03000003;
 
 // C108
-// (97.72%): https://decomp.me/scratch/Q7319
-NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
+void sub_0800C108(void)
 {
     s8 sp0;
     s8 sp4;
@@ -122,8 +121,8 @@ NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
     if (gUnk_03000000 != 0)
     {
         gUnk_03000002 += 0x20;
-        gUnk_03000002 = gUnk_03000002;
-        if (!(gUnk_03000002 & 0x7F))
+        gUnk_03000002 %= 0x100;
+        if ((gUnk_03000002 % 0x80) == 0)
         {
             gUnk_03000000 -= 1;
         }
@@ -131,8 +130,8 @@ NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
     if (gUnk_03000001 != 0)
     {
         gUnk_03000003 += 0x20;
-        gUnk_03000003 = gUnk_03000003;
-        if (!(gUnk_03000003 & 0x7F))
+        gUnk_03000003 %= 0x100;
+        if ((gUnk_03000003 % 0x80) == 0)
         {
             gUnk_03000001 -= 1;
         }
@@ -219,7 +218,6 @@ NONMATCH("asm/nonmatching/sub_0800C108.inc", void sub_0800C108(void))
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
-END_NONMATCH
 
 // C45C
 void sub_0800C45C(void)
