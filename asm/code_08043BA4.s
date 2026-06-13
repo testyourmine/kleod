@@ -14,7 +14,7 @@ sub_08043BA4: @ 0x08043BA4
 	push {r5, r6, r7}
 	sub sp, #0x14
 	ldr r2, _08043F10 @ =gUnk_03005498
-	ldr r1, _08043F14 @ =gUnk_030007D8
+	ldr r1, _08043F14 @ =gMosaicSize
 	movs r0, #0
 	strb r0, [r1]
 	strb r0, [r2]
@@ -476,7 +476,7 @@ _08043F0A:
 	b _08043FBC
 	.align 2, 0
 _08043F10: .4byte gUnk_03005498
-_08043F14: .4byte gUnk_030007D8
+_08043F14: .4byte gMosaicSize
 _08043F18: .4byte 0x04000200
 _08043F1C: .4byte 0x0000FFFE
 _08043F20: .4byte 0x04000004
@@ -1015,7 +1015,7 @@ _08044388:
 	ldr r0, _08044438 @ =0x0000EFFF
 	ands r0, r1
 	strh r0, [r2]
-	ldr r1, _0804443C @ =gUnk_030007D8
+	ldr r1, _0804443C @ =gMosaicSize
 	movs r0, #0xf
 	strb r0, [r1]
 	ldr r1, _08044440 @ =gUnk_03005498
@@ -1086,7 +1086,7 @@ _08044388:
 _08044430: .4byte 0x04000044
 _08044434: .4byte 0x04000050
 _08044438: .4byte 0x0000EFFF
-_0804443C: .4byte gUnk_030007D8
+_0804443C: .4byte gMosaicSize
 _08044440: .4byte gUnk_03005498
 _08044444: .4byte 0x04000054
 _08044448: .4byte gUnk_03003410
@@ -9265,7 +9265,7 @@ _08048644:
 	lsls r4, r4, #0x18
 	adds r3, r1, #0
 	ldr r5, _08048750 @ =gUnk_03005498
-	ldr r6, _08048754 @ =gUnk_030007D8
+	ldr r6, _08048754 @ =gMosaicSize
 	ldr r1, _08048758 @ =gIntrTable
 	mov r8, r1
 	ldr r7, _0804875C @ =sub_080009D8
@@ -9355,7 +9355,7 @@ _08048744: .4byte 0xFFFFF800
 _08048748: .4byte 0x80000400
 _0804874C: .4byte gBgTilemapBufs+0x800
 _08048750: .4byte gUnk_03005498
-_08048754: .4byte gUnk_030007D8
+_08048754: .4byte gMosaicSize
 _08048758: .4byte gIntrTable
 _0804875C: .4byte sub_080009D8
 _08048760: .4byte 0x04000050
@@ -9513,7 +9513,7 @@ sub_0804886C: @ 0x0804886C
 	ldr r1, _08048BFC @ =gUnk_03005498
 	movs r0, #0x10
 	strb r0, [r1]
-	ldr r0, _08048C00 @ =gUnk_030007D8
+	ldr r0, _08048C00 @ =gMosaicSize
 	strb r5, [r0]
 	bl sub_08003D58
 	ldr r6, _08048C04 @ =0x040000D4
@@ -9963,7 +9963,7 @@ _08048BDE:
 _08048BF4: .4byte gUnk_03005284
 _08048BF8: .4byte gUnk_03004C20
 _08048BFC: .4byte gUnk_03005498
-_08048C00: .4byte gUnk_030007D8
+_08048C00: .4byte gMosaicSize
 _08048C04: .4byte 0x040000D4
 _08048C08: .4byte gUnk_03004800
 _08048C0C: .4byte 0x84000100
@@ -11753,7 +11753,7 @@ _08049AC0:
 	ldr r1, _08049B10 @ =0x03004D9C
 	movs r0, #0
 	strb r0, [r1]
-	ldr r1, _08049B14 @ =gUnk_030007D8
+	ldr r1, _08049B14 @ =gMosaicSize
 	movs r0, #0xf
 	strb r0, [r1]
 	movs r0, #0x10
@@ -11786,7 +11786,7 @@ _08049AF2:
 _08049B08: .4byte gUnk_03005498
 _08049B0C: .4byte gUnk_03004C20
 _08049B10: .4byte 0x03004D9C
-_08049B14: .4byte gUnk_030007D8
+_08049B14: .4byte gMosaicSize
 _08049B18: .4byte gUnk_03005220
 _08049B1C:
 	cmp r2, #1
@@ -16235,7 +16235,7 @@ _0804BE86:
 	ldrb r0, [r1, #0x1c]
 	orrs r0, r4
 	strb r0, [r1, #0x1c]
-	ldr r1, _0804BF68 @ =gUnk_030007D8
+	ldr r1, _0804BF68 @ =gMosaicSize
 	ldr r0, _0804BF6C @ =gBg2Alpha
 	strb r2, [r0]
 	strb r2, [r1]
@@ -16277,7 +16277,7 @@ _0804BF58: .4byte gUnk_03004670
 _0804BF5C: .4byte gUnk_03005284
 _0804BF60: .4byte gUnk_03005498
 _0804BF64: .4byte gUnk_030034A0
-_0804BF68: .4byte gUnk_030007D8
+_0804BF68: .4byte gMosaicSize
 _0804BF6C: .4byte gBg2Alpha
 _0804BF70: .4byte 0x0000FFFD
 _0804BF74: .4byte 0x0000FFEF
@@ -17201,7 +17201,7 @@ sub_0804C6A8: @ 0x0804C6A8
 	ldrh r0, [r1]
 	orrs r0, r2
 	strh r0, [r1]
-	ldr r4, _0804C6D8 @ =gUnk_030007D8
+	ldr r4, _0804C6D8 @ =gMosaicSize
 	ldr r3, _0804C6DC @ =0x03004D84
 	ldr r1, [r3]
 	ldrb r2, [r1, #2]
@@ -17215,7 +17215,7 @@ sub_0804C6A8: @ 0x0804C6A8
 	bx r0
 	.align 2, 0
 _0804C6D4: .4byte 0x0400000C
-_0804C6D8: .4byte gUnk_030007D8
+_0804C6D8: .4byte gMosaicSize
 _0804C6DC: .4byte 0x03004D84
 
 	thumb_func_start sub_0804C6E0
@@ -20705,7 +20705,7 @@ _0804E20C:
 	beq _0804E216
 	b _0804E3C8
 _0804E216:
-	ldr r1, _0804E25C @ =gUnk_030007D8
+	ldr r1, _0804E25C @ =gMosaicSize
 	movs r0, #0xf
 	strb r0, [r1]
 	movs r4, #0
@@ -20740,7 +20740,7 @@ _0804E216:
 	b _0804E3C8
 	.align 2, 0
 _0804E258: .4byte gUnk_03004C20
-_0804E25C: .4byte gUnk_030007D8
+_0804E25C: .4byte gMosaicSize
 _0804E260: .4byte gUnk_03003410
 _0804E264: .4byte gUnk_03003510
 _0804E268: .4byte sub_08001158
@@ -20754,7 +20754,7 @@ _0804E278:
 	bne _0804E282
 	b _0804E3C4
 _0804E282:
-	ldr r1, _0804E2D4 @ =gUnk_030007D8
+	ldr r1, _0804E2D4 @ =gMosaicSize
 	movs r0, #0xf
 	strb r0, [r1]
 	ldr r1, _0804E2D8 @ =0x0805769C
@@ -20794,7 +20794,7 @@ _0804E282:
 	b _0804E3C4
 	.align 2, 0
 _0804E2D0: .4byte gUnk_03004C20
-_0804E2D4: .4byte gUnk_030007D8
+_0804E2D4: .4byte gMosaicSize
 _0804E2D8: .4byte 0x0805769C
 _0804E2DC: .4byte gUnk_03005284
 _0804E2E0: .4byte gUnk_03003410
@@ -20837,7 +20837,7 @@ _0804E2F8:
 	strb r0, [r1]
 	subs r0, #5
 	str r0, [r4]
-	ldr r0, _0804E360 @ =gUnk_030007D8
+	ldr r0, _0804E360 @ =gMosaicSize
 	strb r2, [r0]
 	ldr r0, _0804E364 @ =gUnk_03005498
 	strb r2, [r0]
@@ -20850,7 +20850,7 @@ _0804E350: .4byte gUnk_03003510
 _0804E354: .4byte InputHandler_Normal
 _0804E358: .4byte sub_08025818
 _0804E35C: .4byte sub_0800BFF4
-_0804E360: .4byte gUnk_030007D8
+_0804E360: .4byte gMosaicSize
 _0804E364: .4byte gUnk_03005498
 _0804E368:
 	ldr r1, _0804E3A4 @ =gUnk_03003510
@@ -20889,7 +20889,7 @@ _0804E3B0: .4byte sub_0800BFF4
 _0804E3B4: .4byte 0x03004D9C
 _0804E3B8: .4byte gUnk_03004C20
 _0804E3BC:
-	ldr r1, _0804E3D0 @ =gUnk_030007D8
+	ldr r1, _0804E3D0 @ =gMosaicSize
 	ldrb r0, [r1]
 	adds r0, #1
 	strb r0, [r1]
@@ -20900,7 +20900,7 @@ _0804E3C8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804E3D0: .4byte gUnk_030007D8
+_0804E3D0: .4byte gMosaicSize
 
 	thumb_func_start sub_0804E3D4
 sub_0804E3D4: @ 0x0804E3D4

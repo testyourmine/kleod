@@ -265,9 +265,9 @@ void sub_08001158(void)
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
     REG_BG2X_L = gUnk_03003430.bg2HOfs << 8;
-    REG_BG2X_H = gUnk_03003430.bg2HOfs >> 0x10; // FAKE
+    REG_BG2X_H = gUnk_03003430.bg2HOfs >> 0x10;
     REG_BG2Y_L = gUnk_03003430.bg2VOfs << 8;
-    REG_BG2Y_H = gUnk_03003430.bg2VOfs >> 0x10; // FAKE
+    REG_BG2Y_H = gUnk_03003430.bg2VOfs >> 0x10;
 
     REG_BG2PA = gBg2PA;
     REG_BG2PB = gBg2PB;
@@ -1382,7 +1382,7 @@ void sub_08003750(void)
     }
     else if ((gUnk_03004C20.unk0 == 0x258) || (gNewKeys & (START_BUTTON | B_BUTTON | A_BUTTON)))
     {
-        gUnk_030007D8 = 0;
+        gMosaicSize = 0;
         gUnk_03003410.unk7 = 1;
         gUnk_03004C20.world = 6;
         gUnk_03004C20.level = 3;

@@ -215,7 +215,7 @@ void sub_08001028(void)
     u32 temp_r2;
 
     temp_r1 = REG_VCOUNT - (gUnk_03005488 >> 1);
-    temp_r2 = (u8)Sqrt((temp_r1 + 12) * ((s32)(DISPLAY_WIDTH * 0.95f) - gUnk_03005488 - temp_r1) * 4) >> 1; ;
+    temp_r2 = (u8)Sqrt((temp_r1 + 12) * ((s32)(DISPLAY_WIDTH * 0.95f) - gUnk_03005488 - temp_r1) * 4) >> 1;
 
     if (temp_r2 <= (s32)(DISPLAY_WIDTH * 0.5f))
     {

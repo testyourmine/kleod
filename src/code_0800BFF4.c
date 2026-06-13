@@ -75,7 +75,7 @@ void sub_0800BFF4(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -210,7 +210,7 @@ void sub_0800C108(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -230,7 +230,7 @@ void sub_0800C45C(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, 0, 0);
 
     REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
     REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
@@ -277,7 +277,7 @@ void sub_0800C564(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.unk0 * 0x10) & 0xFF), MultiplyQ8(0x200, SIN((gUnk_03004C20.unk0 * 4) & 0x7F)));
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
@@ -319,7 +319,7 @@ void sub_0800C7EC(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -349,7 +349,7 @@ void sub_0800C900(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;
@@ -626,7 +626,7 @@ void sub_0800D0C4(void)
 
     REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
     REG_BLDY = gUnk_03005498;
-    REG_MOSAIC = (gUnk_030007D8 << 0xC) | (gUnk_030007D8 << 8) | (gUnk_030007D8 << 4) | gUnk_030007D8;
+    REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
     gUnk_03004C20.unk4 += 1;

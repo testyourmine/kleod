@@ -65,7 +65,7 @@ void AgbMain(void)
     gUnk_030047FC = thunk_HeapAlloc(0x2C, 0);
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
-    gUnk_03005498 = gUnk_030007D8 = 0;
+    gUnk_03005498 = gMosaicSize = 0;
     gUnk_03005428 = 1;
     gUnk_03005284->unk16 = 0;
     gUnk_03004C20.unk8 = 0;
@@ -162,7 +162,7 @@ void InputHandler_AttractMode(void)
     {
         // End attract demo
         gUnk_030034E4 = 1;
-        gUnk_030007D8 = gUnk_03005498 = 0;
+        gMosaicSize = gUnk_03005498 = 0;
         gUnk_03003410.unk7 = 2;
 
         for (var_r3 = 0; var_r3 < (gUnk_03003510.unk78 + 1); var_r3 += 1)

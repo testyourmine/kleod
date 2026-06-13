@@ -95,7 +95,7 @@ extern s8 gUnk_03004784;
 extern u16 gUnk_03005210;
 extern u8 gUnk_0300548C;
 extern u8 gUnk_03005498; // BLDALPHA/BLDY
-extern u8 gUnk_030007D8; // MOSAIC
+extern u8 gMosaicSize; // MOSAIC
 
 extern u16 gUnk_030034F0; // jump timer count
 extern u16 gNewKeys;
