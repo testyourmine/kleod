@@ -56,7 +56,7 @@ struct Unk_03003410 {
 };
 extern struct Unk_03003410 gUnk_03003410;
 
-extern volatile void *gUnk_030034FC;
+extern volatile u16 *gUnk_030034FC;
 extern volatile void *gUnk_03004658;
 
 struct Unk_03004670 {
@@ -88,7 +88,9 @@ struct Unk_03005284 {
     /* 0x14 */ u16 unk14;
     /* 0x16 */ u16 unk16;
     /* 0x18 */ u32 unk18;
-}; /* size = 0x1C? */ // TODO: allocated 0x24 bytes on heap
+    /* 0x1C */ u8 unk1C;
+    /* 0x1D */ u8 unk1D;
+}; /* size = 0x20? */ // TODO: allocated 0x24 bytes on heap
 extern struct Unk_03005284 *gUnk_03005284;
 
 extern s8 gUnk_03004784;
@@ -148,7 +150,12 @@ struct Unk_03002920 {
     /* 0x0F */ u8 unkF;
     /* 0x10 */ u8 unk10; // sprite blinking/visible, or possibly enabled/active
     /* 0x11 */ u8 unk11;
-    /* 0x12 */ u8 pad12[0x1C - 0x12];
+    /* 0x12 */ u8 unk12;
+    /* 0x13 */ u8 pad13[0x16 - 0x13];
+    /* 0x16 */ u8 unk16;
+    /* 0x17 */ u8 pad17[0x18 - 0x17];
+    /* 0x18 */ u8 unk18;
+    /* 0x19 */ u8 pad19[0x1C - 0x19];
 }; /* size = 0x1C */
 extern struct Unk_03002920 gUnk_03002920[];
 
@@ -222,7 +229,7 @@ struct Unk_03004C20 {
     /* 0x0E */ u8 room;
     /* 0x0F */ u8 unkF;
     /* 0x10 */ u8 unk10;
-    /* 0x11 */ u8 pad11[0x12 - 0x11];
+    /* 0x11 */ u8 unk11;
     /* 0x12 */ u8 demoNumber;
     /* 0x13 */ u8 demoInputIndex;
     /* 0x14 */ u8 demoNextInputTimer;
@@ -274,35 +281,72 @@ struct Unk_03005220 {
     /* 0x02_7 */ u32 unk2_7:6;
     /* 0x03_5 */ u32 unk3_5:1;
     /* 0x03_6 */ u32 unk3_6:1;
+    /* 0x03_7 */ u32 unk3_7:1;
     /* 0x04 */ u32 unk4;
     /* 0x08 */ u32 unk8;
     /* 0x0C */ u32 unkC;
     /* 0x10 */ u32 unk10;
     /* 0x14 */ u16 unk14;
-    /* 0x16 */ u8 pad16[0x1A - 0x16];
+    /* 0x16 */ u16 unk16;
+    /* 0x18 */ u16 unk18;
     /* 0x1A */ u16 unk1A;
     /* 0x1D */ u16 unk1C;
-    /* 0x1E */ u8 pad1E[0x2E - 0x1E];
+    /* 0x1E */ u16 unk1E;
+    /* 0x20 */ u16 unk20;
+    /* 0x22 */ u16 unk22;
+    /* 0x24 */ u16 unk24;
+    /* 0x26 */ s16 unk26;
+    /* 0x28 */ s16 unk28;
+    /* 0x2A */ u16 unk2A;
+    /* 0x2C */ u16 unk2C;
     /* 0x2E */ u8 unk2E;
     /* 0x2F */ s8 unk2F;
     /* 0x30 */ u8 unk30;
     /* 0x31 */ u8 unk31;
-    /* 0x32 */ u8 pad32[0x35 - 0x32];
+    /* 0x32 */ u8 unk32;
+    /* 0x33 */ u8 unk33;
+    /* 0x34 */ u8 unk34;
     /* 0x35 */ u8 unk35;
     /* 0x36 */ u8 unk36;
     /* 0x37 */ u8 unk37;
-    /* 0x38 */ u8 pad38[0x3F - 0x38];
+    /* 0x38 */ u8 unk38;
+    /* 0x39 */ u8 unk39;
+    /* 0x3A */ u8 unk3A;
+    /* 0x3B */ u8 unk3B;
+    /* 0x3C */ u8 unk3C;
+    /* 0x3D */ u8 unk3D;
+    /* 0x3E */ u8 unk3E;
     /* 0x3F */ u8 unk3F;
-    /* 0x40 */ u8 pad40[0x46 - 0x40];
+    /* 0x40 */ u8 unk40;
+    /* 0x41 */ u8 unk41;
+    /* 0x42 */ u8 unk42;
+    /* 0x43 */ u8 unk43;
+    /* 0x44 */ u8 unk44;
+    /* 0x45 */ u8 unk45;
     /* 0x46 */ u8 unk46;
-    /* 0x47 */ u8 pad47[0x4C - 0x47];
-    /* 0x4C */ u8 unk4C;
+    /* 0x47 */ u8 unk47;
+    /* 0x48 */ u8 unk48;
+    /* 0x49 */ u8 unk49;
+    /* 0x4A */ u8 unk4A;
+    /* 0x4B */ u8 unk4B;
+    /* 0x4C */ s8 unk4C;
     /* 0x4D */ u8 unk4D;
     /* 0x4E */ u8 unk4E;
     /* 0x4F */ u8 unk4F;
-    /* 0x50 */ u8 pad50[0x58 - 0x50];
+    /* 0x50 */ u8 unk50;
+    /* 0x51 */ u8 unk51;
+    /* 0x52 */ u8 unk52;
+    /* 0x53 */ u8 unk53;
+    /* 0x54 */ u8 unk54;
+    /* 0x55 */ u8 unk55;
+    /* 0x56 */ s8 unk56;
+    /* 0x57 */ u8 unk57;
     /* 0x58 */ u8 unk58;
-    /* 0x59 */ u8 pad59[0x5E - 0x59];
+    /* 0x59 */ u8 unk59;
+    /* 0x5A */ u8 unk5A;
+    /* 0x5B */ u8 unk5B;
+    /* 0x5C */ u8 unk5C;
+    /* 0x5D */ u8 pad5D[0x5E - 0x5D];
     /* 0x5E */ u8 unk5E;
     /* 0x5F */ u8 unk5F;
     /* 0x60 */ u16 unk60;
@@ -341,7 +385,8 @@ struct Unk_03005400 {
     /* 0x2 */ u16 unk2;
     /* 0x4 */ u8 pad4[0x6 - 0x4];
     /* 0x6 */ u16 unk6;
-    /* 0x8 */ u8 pad8[0xA - 0x8];
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 pad9[0xA - 0x9];
     /* 0xA */ u8 unkA;
     /* 0xB */ u8 unkB;
     /* 0xC */ u8 unkC;
@@ -383,7 +428,8 @@ extern void *gUnk_030007DC; // OBJ palette ptr
 struct Unk_03000830 {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 unk1;
-    /* 0x2 */ u8 pad2[0x4 - 0x2];
+    /* 0x2 */ vu8 unk2;
+    /* 0x3 */ u8 pad3[0x4 - 0x3];
 }; /* size = 0x4 */
 extern struct Unk_03000830 gUnk_03000830[];
 
@@ -538,7 +584,11 @@ extern u16 gUnk_030034DC;
 
 struct Unk_030051F0 {
     s32 unk0;
-    u8 pad4[0xE - 0x4];
+    u16 unk4;
+    u16 unk6;
+    u16 unk8;
+    u16 unkA;
+    u16 unkC;
     u8 unkE;
 };
 extern struct Unk_030051F0 gUnk_030051F0;
@@ -548,5 +598,14 @@ extern u8 gUnk_030034C4;
 extern u16 gUnk_03003508;
 extern struct Unk_080D821C *gUnk_03004D80;
 extern u16 gUnk_030051E0;
+
+struct Unk_03004D90 {
+    u8 pad0[0x8 - 0x0];
+    u8 unk8;
+    u8 unk9;
+};
+extern struct Unk_03004D90 gUnk_03004D90;
+
+extern u8 gUnk_03005200;
 
 #endif // GUARD_VARIABLES_H

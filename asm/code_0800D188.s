@@ -10692,7 +10692,7 @@ _08012706:
 	bl sub_08025B78
 	movs r0, #0x28
 	bl m4aSongNumStart
-	ldr r0, _0801276C @ =0x03005200
+	ldr r0, _0801276C @ =gUnk_03005200
 	strb r5, [r0]
 	ldrh r0, [r4]
 	ldrh r1, [r4, #2]
@@ -10720,7 +10720,7 @@ _0801275C: .4byte gUnk_03005220
 _08012760: .4byte gNewKeys
 _08012764: .4byte gUnk_03005284
 _08012768: .4byte gUnk_03002920
-_0801276C: .4byte 0x03005200
+_0801276C: .4byte gUnk_03005200
 _08012770: .4byte gUnk_03004C20
 _08012774:
 	adds r0, r6, #0
@@ -12744,7 +12744,7 @@ _080137E6:
 	ldr r0, _080138B0 @ =sub_0800BFF4
 	mov sl, r0
 	ldr r7, _080138B4 @ =gUnk_030051F0
-	ldr r1, _080138B8 @ =0x03004D90
+	ldr r1, _080138B8 @ =gUnk_03004D90
 	mov r8, r1
 	ldr r3, _080138BC @ =sub_08047B1C
 	mov sb, r3
@@ -12843,7 +12843,7 @@ _08013884:
 _080138AC: .4byte gUnk_03005220
 _080138B0: .4byte sub_0800BFF4
 _080138B4: .4byte gUnk_030051F0
-_080138B8: .4byte 0x03004D90
+_080138B8: .4byte gUnk_03004D90
 _080138BC: .4byte sub_08047B1C
 _080138C0: .4byte gUnk_03003510
 _080138C4: .4byte gUnk_03005498
@@ -13473,16 +13473,16 @@ _08013DA0:
 	beq _08013DEA
 	movs r0, #0x8c
 	bl m4aSongNumStart
-	ldr r0, _08013DD0 @ =0x03005200
+	ldr r0, _08013DD0 @ =gUnk_03005200
 	strb r4, [r0]
 	b _08013DEA
 	.align 2, 0
 _08013DCC: .4byte gUnk_03000830
-_08013DD0: .4byte 0x03005200
+_08013DD0: .4byte gUnk_03005200
 _08013DD4:
 	movs r0, #0
 	strh r0, [r3, #0x1c]
-	ldr r4, _08013E24 @ =0x03005200
+	ldr r4, _08013E24 @ =gUnk_03005200
 	ldrb r0, [r4]
 	cmp r0, #0
 	beq _08013DEA
@@ -13520,7 +13520,7 @@ _08013E04:
 	bl sub_08025B78
 	b _08013E44
 	.align 2, 0
-_08013E24: .4byte 0x03005200
+_08013E24: .4byte gUnk_03005200
 _08013E28: .4byte gUnk_03005220
 _08013E2C: .4byte gUnk_03000830
 _08013E30: .4byte gHeldKeys

@@ -601,11 +601,11 @@ void sub_0800CA0C(u32 arg0)
 
     if ((gUnk_03004C20.world == 5) && (gUnk_03004C20.level == 2 || gUnk_03004C20.level == 3))
     {
-        gUnk_03004C20.pad11[0] = 1;
+        gUnk_03004C20.unk11 = 1;
     }
     else
     {
-        gUnk_03004C20.pad11[0] = 0;
+        gUnk_03004C20.unk11 = 0;
     }
     gUnk_0300542C = gUnk_0818B704[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
 }
