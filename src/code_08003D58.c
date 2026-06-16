@@ -27,7 +27,7 @@ extern const union Unk_03000820 gUnk_080E2A7C;
 
 extern const u8 gUnk_080E2A84[0x6][0x8];
 
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
+extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern u8 gUnk_08061FC8[0x80];
 extern u8 gUnk_080627C8[0x80];
@@ -3530,11 +3530,11 @@ void sub_0800B3C0(void)
             case 0x6B:
                 if (gUnk_03002920[var_sb].unkC_4 == 0)
                 {
-                    DmaCopy16(3, &gUnk_08063FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                    DmaCopy16(3, &gUnk_08063FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                 }
                 else
                 {
-                    DmaCopy16(3, &gUnk_080B9268, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                    DmaCopy16(3, &gUnk_080B9268, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                 }
                 break;
 
@@ -3545,15 +3545,15 @@ void sub_0800B3C0(void)
                     {
                         if (gUnk_03002920[var_sb].unkC_4 == 0)
                         {
-                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
-                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x70 / 2)] << 5), 0x80);
-                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x78 / 2)] << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xE].tileNum << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xF].tileNum << 5), 0x80);
                         }
                         else
                         {
-                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
-                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x70 / 2)] << 5), 0x80);
-                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x78 / 2)] << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xE].tileNum << 5), 0x80);
+                            DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xF].tileNum << 5), 0x80);
                         }
                     }
                 }
@@ -3561,11 +3561,11 @@ void sub_0800B3C0(void)
                 {
                     if (gUnk_03002920[var_sb].unkC_4 == 0)
                     {
-                        DmaCopy16(3, &gUnk_08061FC8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                        DmaCopy16(3, &gUnk_08061FC8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                     }
                     else
                     {
-                        DmaCopy16(3, &gUnk_080B8F68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                        DmaCopy16(3, &gUnk_080B8F68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                     }
                     break;
                 }
@@ -3575,11 +3575,11 @@ void sub_0800B3C0(void)
                 gUnk_03002920[var_sb].unkC_4 = gUnk_03005220.unk3_6;
                 if (gUnk_03005220.unk3_6 == 0)
                 {
-                    DmaCopy16(3, &gUnk_08063368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                    DmaCopy16(3, &gUnk_08063368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                 }
                 else
                 {
-                    DmaCopy16(3, &gUnk_080B92E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x80);
+                    DmaCopy16(3, &gUnk_080B92E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                 }
                 break;
 
@@ -3587,7 +3587,7 @@ void sub_0800B3C0(void)
                 temp_r3_3 = ((s32) gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (gUnk_03004C10 == NULL)
                 {
-                    gUnk_03004C10 = OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5);
+                    gUnk_03004C10 = OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5);
                 }
 
                 if (temp_r3_3 == 0)
@@ -3611,22 +3611,22 @@ void sub_0800B3C0(void)
             case 0x30:
                 if ((gUnk_03002920[var_sb].unkC_4 == 3) || (gUnk_03002920[var_sb].unkC_4 == 1))
                 {
-                    DmaCopy16(3, &gUnk_08064868, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x200);
+                    DmaCopy16(3, &gUnk_08064868, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x200);
                 }
                 else
                 {
-                    DmaCopy16(3, &gUnk_080B9468, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x200);
+                    DmaCopy16(3, &gUnk_080B9468, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x200);
                 }
                 break;
 
             case 0x6F:
                 if ((gUnk_03002920[var_sb].unkC_4 == 3) || (gUnk_03002920[var_sb].unkC_4 == 1))
                 {
-                    DmaCopy16(3, &gUnk_08064A68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x200);
+                    DmaCopy16(3, &gUnk_08064A68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x200);
                 }
                 else
                 {
-                    DmaCopy16(3, &gUnk_080B9668, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(var_sb * 4) - (0x68 / 2)] << 5), 0x200);
+                    DmaCopy16(3, &gUnk_080B9668, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x200);
                 }
                 break;
 

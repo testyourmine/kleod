@@ -402,12 +402,7 @@ struct Unk_0300466C {
     struct Unk_0300466C_4 *unk4;
 };
 extern struct Unk_0300466C *gUnk_0300466C;
-
-struct Unk_0818B8E0 {
-    u8 pad0[0x4 - 0x0];
-    u16 *unk4;
-};
-extern struct Unk_0818B8E0 *gUnk_030051DC;
+extern struct Unk_0300466C *gUnk_030051DC;
 
 extern void *gUnk_03005294;
 extern void *gUnk_03005418;

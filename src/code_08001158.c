@@ -72,7 +72,7 @@ extern u32 *gUnk_08189574[6]; // pointers to BG1 tilemaps (overworld)
 
 extern void *gUnk_08189A24[6][9];
 extern u32 *gUnk_0818B7AC[6*2];
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
+extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 // 1158
 void sub_08001158(void)

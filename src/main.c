@@ -10,7 +10,7 @@
 extern u8 gUnk_080D9150[][0x64];
 
 extern void *gUnk_0818B8A8[];
-extern struct Unk_0818B8E0 *gUnk_0818B8E0[6][9];
+extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern void IntrMain(void);
 
@@ -201,7 +201,7 @@ void sub_0800087C(u8 arg0, u8 arg1)
     DmaCopy16(
         3,
         gUnk_0818B8A8[arg1],
-        OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[(arg0 << 2) - (0x68/2)] * 0x20),
+        OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xD].tileNum * 0x20),
         0x20
     );
 }
