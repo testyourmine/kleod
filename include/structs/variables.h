@@ -138,7 +138,8 @@ struct Unk_03002920 {
     /* 0x08 */ u8 unk8;
     /* 0x09 */ u8 unk9;
     /* 0x0A */ u8 unkA;
-    /* 0x0B */ u8 unkB; // related to position, bottom 4 bits is X, top 4 bits is Y
+    /* 0x0B_0 */ s32 unkB_0:4; // related to X position
+    /* 0x0B_4 */ s32 unkB_4:4; // related to Y position
     /* 0x0C_0 */ u32 priority:2; // priority
     /* 0x0C_2 */ u32 unkC_2:2; // related to direction, bit 1 is hFlip, bit 2 is vFlip
     /* 0x0C_4 */ u32 unkC_4:4; // related to direction/rotation?
@@ -547,8 +548,8 @@ union Unk_03000820 {
         /* 0x2_0 */ u16 x:9;
         /* 0x3_1 */ u8 matrixNum:3;
         /* 0x3_4 */ u32 hFlip:1;
-        /* 0x3_5 */ u8 vFlip:1;
-        /* 0x3_6 */ u8 size:2;
+        /* 0x3_5 */ u32 vFlip:1;
+        /* 0x3_6 */ u32 size:2;
 
         /* 0x4_0 */ u16 tileNum:10;
         /* 0x5_2 */ u8 priority:2;
