@@ -25,12 +25,6 @@ struct Unk_080D6458 {
 };
 extern struct Unk_080D6458 gUnk_080D6458[6];
 
-struct Unk_080D821C {
-    u8 pad0[0x8 - 0x0];
-    u8 unk8;
-    u8 unk9;
-    u8 padA[0xC - 0xA];
-};
 extern struct Unk_080D821C gUnk_080D821C[0xD];
 
 struct Unk_080D89A8 {

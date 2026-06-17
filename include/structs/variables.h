@@ -340,7 +340,7 @@ struct Unk_03005220 {
     /* 0x54 */ u8 unk54;
     /* 0x55 */ u8 unk55;
     /* 0x56 */ s8 unk56;
-    /* 0x57 */ u8 unk57;
+    /* 0x57 */ s8 unk57;
     /* 0x58 */ u8 unk58;
     /* 0x59 */ u8 unk59;
     /* 0x5A */ u8 unk5A;
@@ -596,7 +596,24 @@ extern struct Unk_030051F0 gUnk_030051F0;
 extern u8 gUnk_03000810;
 extern u8 gUnk_030034C4;
 extern u16 gUnk_03003508;
+
+struct Unk_080D821C_4 {
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+    u16 unk6;
+    u8 unk8;
+};
+struct Unk_080D821C {
+    u16 unk0;
+    u16 unk2;
+    struct Unk_080D821C_4 *unk4;
+    u8 unk8;
+    u8 unk9;
+    u8 padA[0xC - 0xA];
+};
 extern struct Unk_080D821C *gUnk_03004D80;
+
 extern u16 gUnk_030051E0;
 
 struct Unk_03004D90 {

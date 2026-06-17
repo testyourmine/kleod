@@ -15,8 +15,15 @@
 
 */
 
-void sub_08014184(s32 *, u16, u16, s32);               /* extern */
-void sub_08014230(u32 *, u16, u16, u8);               /* extern */
+struct Unk_08014184 {
+    u16 unk0;
+    u8 unk2;
+    u8 pad3[0x4 - 0x3];
+};
+
+extern struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
+extern struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
+
 void sub_080145A8(s32);                                /* extern */
 void sub_08014624(s32);                                /* extern */
 void sub_0801E664(u16, u16, s32, u8);                  /* extern */
@@ -57,19 +64,21 @@ extern void *gUnk_0818B9B8[][4];
 
 void sub_0800D188(void)
 {
-    s32 sp0;
-    s32 sp4;
-    s32 sp8;
-    u32 spC;
-    u32 sp10;
-    u32 sp14;
+    struct Unk_08014184 sp0;
+    struct Unk_08014184 sp4;
+    struct Unk_08014184 sp8;
+    struct Unk_08014184 spC;
+    struct Unk_08014184 sp10;
+    struct Unk_08014184 sp14;
     u32 sp18;
     u16 sp1C;
     u8 sp20;
     u32 sp24;
     s32 sp38;
     s32 temp_r5_26;
-    s32 var_r1;
+    struct Unk_08014184 temp_r0;
+    struct Unk_08014184 temp_r1;
+    struct Unk_08014184 temp_r1_1;
     s32 var_r6;
     s32 var_r7;
     s32 var_r7_15;
@@ -545,21 +554,21 @@ void sub_0800D188(void)
             if (gUnk_03002920[0].unkC_2 & 1)
             {
                 sub_08014184(&sp0, (u16) (gUnk_03002920[0].xPosBg2 - 0x10), gUnk_03002920[0].yPosBg2, 0x18);
-                var_r1 = sp0;
+                temp_r1 = sp0;
             }
             else
             {
                 sub_08014184(&sp4, (u16) (gUnk_03002920[0].xPosBg2 + 0x10), gUnk_03002920[0].yPosBg2, 0x18);
-                var_r1 = sp4;
+                temp_r1 = sp4;
             }
         }
         else
         {
             sub_08014184(&sp8, (u16) (gUnk_03002920[0].xPosBg2 + 8), gUnk_03002920[0].yPosBg2, 0x18);
-            var_r1 = sp8;
+            temp_r1 = sp8;
         }
 
-        if ((var_r1 << 0x10) != 0xFFFF0000)
+        if (temp_r1.unk0 != 0xFFFF)
         {
             sp20 = gUnk_03004654[0x1B];
             if (gUnk_03003410.unkB == 1)
@@ -1536,7 +1545,8 @@ block_410:
             else
             {
                 sub_08014230(&spC, gUnk_03002920[0].xPosBg2, (u16) (gUnk_03002920[0].yPosBg2 + 1), 0x18);
-                if ((spC << 0x10) != 0xFFFF0000)
+                temp_r0 = spC;
+                if (temp_r0.unk0 != 0xFFFF)
                 {
                     sp20 = gUnk_03004654[0x1B];
                 }
@@ -2089,7 +2099,7 @@ block_680:
         }
     }
 
-    if ((gUnk_03002920[0].yPosBg2 != sp1C) || ((gUnk_03005220.unk35 | (s8) gUnk_03005220.unk57 | gUnk_03005220.unk3D) != 0))
+    if ((gUnk_03002920[0].yPosBg2 != sp1C) || ((gUnk_03005220.unk35 | gUnk_03005220.unk57 | gUnk_03005220.unk3D) != 0))
     {
         if (gUnk_03004C20.unkA == 0)
         {
@@ -2163,16 +2173,18 @@ block_680:
                 var_r6 = 0xFFFC;
             }
             sub_08014230(&sp10, (u16) (gUnk_03002920[0].xPosBg2 + var_r6), gUnk_03002920[0].yPosBg2, 0x18);
-            if (((u16) sp10) != 0xFFFF)
+            temp_r1_1 = sp10;
+            if (temp_r1_1.unk0 != 0xFFFF)
             {
-                sp1C = gUnk_03002920[0].yPosBg2 = sp10;
-                gUnk_03005220.unk2F = sp10 >> 0x10;
+                sp1C = gUnk_03002920[0].yPosBg2 = temp_r1_1.unk0;
+                gUnk_03005220.unk2F = temp_r1_1.unk2;
                 sp20 = gUnk_03004654[0x1B];
             }
             else
             {
                 sub_08014230(&sp14, (u16) (gUnk_03002920[0].xPosBg2 + var_r6), (u16) (gUnk_03002920[0].yPosBg2 - 0x18), 0x14);
-                if ((u16) sp14 != 0xFFFF)
+                temp_r1_1 = sp14;
+                if (temp_r1_1.unk0 != 0xFFFF)
                 {
                     sp1C = gUnk_03002920[0].yPosBg2 += 3;
                     gUnk_03005220.unk28 = 0x60;
