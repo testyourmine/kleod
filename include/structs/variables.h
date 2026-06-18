@@ -154,7 +154,7 @@ struct Unk_03002920 {
     /* 0x12 */ u8 unk12;
     /* 0x13 */ u8 pad13[0x16 - 0x13];
     /* 0x16 */ u8 unk16;
-    /* 0x17 */ u8 pad17[0x18 - 0x17];
+    /* 0x17 */ u8 unk17;
     /* 0x18 */ u8 unk18;
     /* 0x19 */ u8 pad19[0x1C - 0x19];
 }; /* size = 0x1C */
@@ -338,8 +338,8 @@ struct Unk_03005220 {
     /* 0x51 */ u8 unk51;
     /* 0x52 */ u8 unk52;
     /* 0x53 */ u8 unk53;
-    /* 0x54 */ u8 unk54;
-    /* 0x55 */ u8 unk55;
+    /* 0x54 */ s8 unk54;
+    /* 0x55 */ s8 unk55;
     /* 0x56 */ s8 unk56;
     /* 0x57 */ s8 unk57;
     /* 0x58 */ u8 unk58;
@@ -347,7 +347,7 @@ struct Unk_03005220 {
     /* 0x5A */ u8 unk5A;
     /* 0x5B */ u8 unk5B;
     /* 0x5C */ u8 unk5C;
-    /* 0x5D */ u8 pad5D[0x5E - 0x5D];
+    /* 0x5D */ u8 unk5D;
     /* 0x5E */ u8 unk5E;
     /* 0x5F */ u8 unk5F;
     /* 0x60 */ u16 unk60;

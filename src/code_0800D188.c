@@ -26,7 +26,7 @@ extern struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u1
 
 void sub_080145A8(s32);                                /* extern */
 void sub_08014624(s32);                                /* extern */
-void sub_0801E664(u16, u16, s32, u8);                  /* extern */
+void sub_0801E664(u16, u16, u8, u8);                  /* extern */
 void sub_0801EAA4(u8);                                 /* extern */
 void sub_0801EF5C(u8);                                 /* extern */
 void sub_08024D84();                                /* extern */

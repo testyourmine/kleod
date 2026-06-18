@@ -2789,9 +2789,7 @@ _0801588C:
 	.align 2, 0
 _080158A4: .4byte gUnk_03002920
 _080158A8: .4byte gUnk_030034D8
-
-	thumb_func_start sub_080158AC
-sub_080158AC: @ 0x080158AC
+_080158AC:
 	lsls r1, r6, #3
 	subs r0, r1, r6
 	lsls r0, r0, #2
@@ -4123,7 +4121,7 @@ _0801637C:
 	ldr r0, [r0]
 	cmp r6, r0
 	bhi _08016388
-	bl sub_080158AC
+	bl _080158AC
 _08016388:
 	ldr r1, [sp, #0xc]
 	mov r2, sl
@@ -4350,7 +4348,7 @@ _0801650C:
 	subs r0, #0x1b
 	cmp r2, r0
 	ble _08016546
-	bl sub_08016E28
+	bl _08016E28
 _08016546:
 	adds r5, #0x1c
 	adds r6, #1
@@ -5414,9 +5412,7 @@ _08016E10:
 	.align 2, 0
 _08016E20: .4byte gUnk_03002920
 _08016E24: .4byte 0x0000FFF4
-
-	thumb_func_start sub_08016E28
-sub_08016E28: @ 0x08016E28
+_08016E28:
 	adds r0, r1, #0
 	subs r0, #0x18
 	strh r0, [r4, #2]
@@ -6868,7 +6864,7 @@ _08017A10:
 	ldr r0, [sp, #0x30]
 	cmp r0, r3
 	ble _08017A7E
-	bl sub_0801AF88
+	bl _0801AF88
 _08017A7E:
 	ldr r1, [sp, #0x40]
 	mov r2, sl
@@ -7894,7 +7890,7 @@ _080182C6:
 	ldrb r0, [r5, #0x11]
 	cmp r0, #0x75
 	bls _080182D0
-	bl sub_0801AF90
+	bl _0801AF90
 _080182D0:
 	adds r0, r1, #0
 	subs r0, #0x17
@@ -8184,7 +8180,7 @@ _080184A0:
 	ldrb r0, [r4, #0x11]
 	cmp r0, #0x7a
 	bls _080184FA
-	bl sub_0801AF98
+	bl _0801AF98
 _080184FA:
 	mov r1, ip
 	ldr r0, [r1]
@@ -8825,7 +8821,7 @@ _08018AD0:
 _08018AE0:
 	cmp r0, #8
 	beq _08018AE8
-	bl sub_0801AFA4
+	bl _0801AFA4
 _08018AE8:
 	bl _0801AFB4
 	.align 2, 0
@@ -13279,31 +13275,23 @@ _0801AF54:
 	.align 2, 0
 _0801AF80: .4byte gUnk_03004C20
 _0801AF84: .4byte gUnk_03002920
-
-	thumb_func_start sub_0801AF88
-sub_0801AF88: @ 0x0801AF88
+_0801AF88:
 	movs r0, #0x2b
 	bl m4aSongNumStart
 	b _0801AFB4
-
-	thumb_func_start sub_0801AF90
-sub_0801AF90: @ 0x0801AF90
+_0801AF90:
 	adds r0, r1, #0
 	subs r0, #0x19
 	strh r0, [r5, #2]
 	b _0801B02E
-
-	thumb_func_start sub_0801AF98
-sub_0801AF98: @ 0x0801AF98
+_0801AF98:
 	ldr r3, _0801AFA0 @ =0x0000FFF8
 	adds r0, r1, r3
 	strh r0, [r4, #2]
 	b _0801B02E
 	.align 2, 0
 _0801AFA0: .4byte 0x0000FFF8
-
-	thumb_func_start sub_0801AFA4
-sub_0801AFA4: @ 0x0801AFA4
+_0801AFA4:
 	ldrh r0, [r5]
 	ldrh r1, [r5, #2]
 	ldr r4, [sp, #0x28]
