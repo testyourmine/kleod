@@ -14120,7 +14120,7 @@ _0801B604:
 	cmp r1, r0
 	bne _0801B676
 	movs r3, #0
-	ldr r1, _0801B638 @ =gUnk_03003510
+	ldr r1, _0801B638 @ =gCallbackQueue
 	adds r5, r1, #0
 	adds r5, #0x78
 	ldrb r0, [r5]
@@ -14140,7 +14140,7 @@ _0801B628:
 	.align 2, 0
 _0801B630: .4byte gUnk_03005468
 _0801B634: .4byte gUnk_03000830
-_0801B638: .4byte gUnk_03003510
+_0801B638: .4byte gCallbackQueue
 _0801B63C: .4byte sub_080264A4
 _0801B640:
 	cmp r3, #4
@@ -21528,7 +21528,7 @@ _0801EF28:
 	bne _0801EF40
 	movs r0, #0x41
 	strb r0, [r1]
-	ldr r1, _0801EF54 @ =gUnk_03003510
+	ldr r1, _0801EF54 @ =gCallbackQueue
 	ldr r0, _0801EF58 @ =sub_08044BB8
 	str r0, [r1, #4]
 	movs r0, #0x61
@@ -21543,7 +21543,7 @@ _0801EF40:
 	bx r0
 	.align 2, 0
 _0801EF50: .4byte gUnk_030052A0
-_0801EF54: .4byte gUnk_03003510
+_0801EF54: .4byte gCallbackQueue
 _0801EF58: .4byte sub_08044BB8
 
 	thumb_func_start sub_0801EF5C

@@ -2853,25 +2853,25 @@ void sub_0800A804(void)
     {
         for (var_r2 = 0; var_r2 < 10; var_r2++)
         {
-            gUnk_03003510.unk50[var_r2] = gUnk_03003510.unk0[var_r2];
+            gCallbackQueue.previous[var_r2] = gCallbackQueue.current[var_r2];
         }
 
-        gUnk_03003510.unk7A = gUnk_03003510.unk78;
+        gCallbackQueue.previousCount = gCallbackQueue.currentCount;
         gUnk_030034BC = 0;
         gUnk_03003410.unk4 = 1;
-        gUnk_03003510.unk28[0] = sub_08039D8C;
-        gUnk_03003510.unk28[1] = sub_0800BFF4;
-        gUnk_03003510.unk28[2] = (void (*)())1; // TODO: what?
-        gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-        gUnk_03003510.unk79 = 3;
-        gUnk_03003510.unk78 = 1;
-        gUnk_03003510.unk0[0] = NULL;
+        gCallbackQueue.next[0] = sub_08039D8C;
+        gCallbackQueue.next[1] = sub_0800BFF4;
+        gCallbackQueue.next[2] = NULL + 1; // TODO: what?
+        gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+        gCallbackQueue.nextCount = 3;
+        gCallbackQueue.currentCount = 1;
+        gCallbackQueue.current[0] = NULL;
         return;
     }
 
     if (gUnk_030052A0 == 0xFE)
     {
-        if ((gUnk_03003510.unk10 != &sub_08024C34) && (gUnk_03003510.unk10 != &sub_08024718))
+        if ((gCallbackQueue.current[4] != sub_08024C34) && (gCallbackQueue.current[4] != sub_08024718))
         {
             sub_0800D188();
         }
@@ -3061,10 +3061,10 @@ void sub_0800AC34(void)
     {
         for (var_r2 = 0; var_r2 < 10; var_r2++)
         {
-            gUnk_03003510.unk50[var_r2] = gUnk_03003510.unk0[var_r2];
+            gCallbackQueue.previous[var_r2] = gCallbackQueue.current[var_r2];
         }
 
-        gUnk_03003510.unk7A = gUnk_03003510.unk78;
+        gCallbackQueue.previousCount = gCallbackQueue.currentCount;
         if ((gUnk_03004C20.world == 5) && ((gUnk_03005400.unkA == 5) || (gUnk_03005400.unkA == 7) || (gUnk_03005400.unkA == 9)))
         {
             gUnk_030034BC = 1;
@@ -3075,13 +3075,13 @@ void sub_0800AC34(void)
         }
 
         gUnk_03003410.unk4 = 1;
-        gUnk_03003510.unk28[0] = sub_08039D8C;
-        gUnk_03003510.unk28[1] = sub_0800C108;
-        gUnk_03003510.unk28[2] = (void (*)())1; // TODO: what?
-        gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-        gUnk_03003510.unk79 = 3;
-        gUnk_03003510.unk78 = 1;
-        gUnk_03003510.unk0[0] = NULL;
+        gCallbackQueue.next[0] = sub_08039D8C;
+        gCallbackQueue.next[1] = sub_0800C108;
+        gCallbackQueue.next[2] = NULL + 1; // TODO: what?
+        gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+        gCallbackQueue.nextCount = 3;
+        gCallbackQueue.currentCount = 1;
+        gCallbackQueue.current[0] = NULL;
         return;
     }
 
@@ -3322,7 +3322,7 @@ void sub_0800AC34(void)
         }
     }
 
-    if (gUnk_03005400.unkE_7 && (gUnk_03003510.unk10 != sub_08024C34) && (gUnk_03003510.unk10 != sub_08024718))
+    if (gUnk_03005400.unkE_7 && (gCallbackQueue.current[4] != sub_08024C34) && (gCallbackQueue.current[4] != sub_08024718))
     {
         sub_0800D188();
     }

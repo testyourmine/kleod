@@ -1226,15 +1226,15 @@ void sub_08002FD0(void)
     else
     {
         gUnk_030034E4 = 1;
-        gUnk_03003510.unk28[0] = InputHandler_Normal;
-        gUnk_03003510.unk28[1] = sub_080453F0;
-        gUnk_03003510.unk28[2] = sub_0800C45C;
+        gCallbackQueue.next[0] = InputHandler_Normal;
+        gCallbackQueue.next[1] = sub_080453F0;
+        gCallbackQueue.next[2] = sub_0800C45C;
         gUnk_03003410.unk5 = 0;
-        gUnk_03003510.unk34 = &sub_08048028;
-        gUnk_03003510.unk38 = &sub_080242C0;
-        gUnk_03003510.unk3C = 1;
-        gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = 0;
-        gUnk_03003510.unk79 = 6;
+        gCallbackQueue.next[3] = sub_08048028;
+        gCallbackQueue.next[4] = sub_080242C0;
+        gCallbackQueue.next[5] = NULL + 1;
+        gCallbackQueue.current[gCallbackQueue.currentCount - 1] = 0;
+        gCallbackQueue.nextCount = 6;
     }
     if (gUnk_03002920[0].xPosBg2 < (gUnk_03005468.unk0 + 0x78))
     {
@@ -1355,7 +1355,7 @@ void sub_0800350C(void)
     DmaCopy16(3, &gUnk_080D947C, VRAM, 0x9600);
 
     gUnk_03004C20.unk0 = 0;
-    gUnk_03003510.unk0[1] = sub_08003750;
+    gCallbackQueue.current[1] = sub_08003750;
     gIntrTable.vBlank = sub_08000DC0;
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -1386,7 +1386,7 @@ void sub_08003750(void)
         gUnk_03003410.unk7 = 1;
         gUnk_03004C20.world = 6;
         gUnk_03004C20.level = 3;
-        gUnk_03003510.unk0[1] = sub_080245E8;
+        gCallbackQueue.current[1] = sub_080245E8;
     }
 }
 

@@ -40980,7 +40980,7 @@ _08039B86:
 	bne _08039B98
 	b _08039CAA
 _08039B98:
-	ldr r0, _08039BF8 @ =gUnk_03003510
+	ldr r0, _08039BF8 @ =gCallbackQueue
 	ldr r0, [r0, #0x38]
 	ldr r3, _08039BFC @ =sub_08026374
 	cmp r0, r3
@@ -41011,7 +41011,7 @@ _08039BE8: .4byte 0x80000040
 _08039BEC: .4byte gUnk_03003410
 _08039BF0: .4byte 0x0805C9E8
 _08039BF4: .4byte 0x80000400
-_08039BF8: .4byte gUnk_03003510
+_08039BF8: .4byte gCallbackQueue
 _08039BFC: .4byte sub_08026374
 _08039C00:
 	ldr r0, _08039C10 @ =gUnk_03002920
@@ -41130,7 +41130,7 @@ _08039CAA:
 	movs r1, #0x80
 	lsls r1, r1, #0x18
 	ldr r2, _08039D10 @ =gUnk_03002920
-	ldr r6, _08039D24 @ =gUnk_03003510
+	ldr r6, _08039D24 @ =gCallbackQueue
 	ldr r3, _08039D28 @ =sub_08026374
 	cmp r0, #0
 	bge _08039CF2
@@ -41160,7 +41160,7 @@ _08039D14: .4byte 0x040000D4
 _08039D18: .4byte 0x080A4888
 _08039D1C: .4byte 0x80000400
 _08039D20: .4byte 0x0818B800
-_08039D24: .4byte gUnk_03003510
+_08039D24: .4byte gCallbackQueue
 _08039D28: .4byte sub_08026374
 _08039D2C:
 	movs r0, #0xb0

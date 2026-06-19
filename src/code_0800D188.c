@@ -140,19 +140,19 @@ void sub_0800D188(void)
         gHeldKeys = 0;
         if (gUnk_03005220.unk46 == 1)
         {
-            gUnk_03003510.unk28[0] = InputHandler_Normal;
+            gCallbackQueue.next[0] = InputHandler_Normal;
             if (gUnk_03004C20.level == 8)
             {
-                gUnk_03003510.unk28[2] = sub_0800C108;
+                gCallbackQueue.next[2] = sub_0800C108;
             }
             else
             {
-                gUnk_03003510.unk28[2] = sub_0800BFF4;
+                gCallbackQueue.next[2] = sub_0800BFF4;
             }
 
-            gUnk_03003510.unk34 = (void *)1;
-            gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-            gUnk_03003510.unk79 = 4;
+            gCallbackQueue.next[3] = NULL + 1;
+            gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+            gCallbackQueue.nextCount = 4;
             if (gUnk_03004C20.level == 8)
             {
                 gUnk_03002920[0x12].unkF = 0x1C;
@@ -166,16 +166,16 @@ void sub_0800D188(void)
                 gUnk_03005220.unk37 = 1;
                 sub_080008DC();
                 m4aMPlayAllStop();
-                gUnk_03003510.unk28[1] = sub_080446F8;
-                gUnk_03003510.unk28[2] = sub_0800C7EC;
+                gCallbackQueue.next[1] = sub_080446F8;
+                gCallbackQueue.next[2] = sub_0800C7EC;
                 gUnk_03004C20.unk0 = 0;
-                gUnk_03003510.unk78 = 1;
-                gUnk_03003510.unk0[0] = NULL;
+                gCallbackQueue.currentCount = 1;
+                gCallbackQueue.current[0] = NULL;
             }
             else
             {
                 gUnk_03004C20.unkF = 0;
-                gUnk_03003510.unk28[1] = sub_08024D84;
+                gCallbackQueue.next[1] = sub_08024D84;
             }
         }
         else
@@ -575,25 +575,25 @@ void sub_0800D188(void)
             {
                 gUnk_03003410.unkB = 2;
 
-                for (var_r3 = 0; var_r3 < (gUnk_03003510.unk78 + 1); var_r3++)
+                for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount + 1); var_r3++)
                 {
                     if (var_r3 == 4)
                     {
-                        gUnk_03003510.unk38 = &sub_080264A4;
+                        gCallbackQueue.next[4] = &sub_080264A4;
                     }
                     else if (var_r3 > 4)
                     {
-                        gUnk_03003510.unk28[var_r3] = gUnk_03003510.unk0[var_r3 - 1];
+                        gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 - 1];
                     }
                     else
                     {
-                        gUnk_03003510.unk28[var_r3] = gUnk_03003510.unk0[var_r3];
+                        gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
                     }
                 }
                 if (var_r3 > 3)
                 {
-                    gUnk_03003510.unk79 = gUnk_03003510.unk78 + 1;
-                    gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
+                    gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
+                    gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 }
 
                 sub_08025B78(0, 0x13);
@@ -668,25 +668,25 @@ void sub_0800D188(void)
                     gUnk_030051C8 = sp20;
                     gUnk_030034E4 = 1;
 
-                    for (var_r3_2 = 0; var_r3_2 < (gUnk_03003510.unk78 + 1); var_r3_2++)
+                    for (var_r3_2 = 0; var_r3_2 < (gCallbackQueue.currentCount + 1); var_r3_2++)
                     {
                         if (var_r3_2 == 4)
                         {
-                            gUnk_03003510.unk38 = &sub_08024718;
+                            gCallbackQueue.next[4] = &sub_08024718;
                         }
                         else if (var_r3_2 > 4)
                         {
-                            gUnk_03003510.unk28[var_r3_2] = gUnk_03003510.unk0[var_r3_2 - 1];
+                            gCallbackQueue.next[var_r3_2] = gCallbackQueue.current[var_r3_2 - 1];
                         }
                         else
                         {
-                            gUnk_03003510.unk28[var_r3_2] = gUnk_03003510.unk0[var_r3_2];
+                            gCallbackQueue.next[var_r3_2] = gCallbackQueue.current[var_r3_2];
                         }
                     }
                     if (var_r3_2 > 3)
                     {
-                        gUnk_03003510.unk79 = gUnk_03003510.unk78 + 1;
-                        gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
+                        gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
+                        gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                     }
 
                     gUnk_03005498 = 0;
@@ -3527,25 +3527,25 @@ block_1352:
                 gUnk_030051C8 = sp20;
                 gUnk_030034E4 = 1;
 
-                for (var_r3_3 = 0; var_r3_3 < (gUnk_03003510.unk78 + 1); var_r3_3++)
+                for (var_r3_3 = 0; var_r3_3 < (gCallbackQueue.currentCount + 1); var_r3_3++)
                 {
                     if (var_r3_3 == 4)
                     {
-                        gUnk_03003510.unk38 = &sub_08024718;
+                        gCallbackQueue.next[4] = &sub_08024718;
                     }
                     else if (var_r3_3 > 4)
                     {
-                        gUnk_03003510.unk28[var_r3_3] = gUnk_03003510.unk0[var_r3_3 - 1];
+                        gCallbackQueue.next[var_r3_3] = gCallbackQueue.current[var_r3_3 - 1];
                     }
                     else
                     {
-                        gUnk_03003510.unk28[var_r3_3] = gUnk_03003510.unk0[var_r3_3];
+                        gCallbackQueue.next[var_r3_3] = gCallbackQueue.current[var_r3_3];
                     }
                 }
                 if (var_r3_3 > 3)
                 {
-                    gUnk_03003510.unk79 = gUnk_03003510.unk78 + 1;
-                    gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
+                    gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
+                    gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 }
                 gUnk_03005498 = 0;
                 return;
@@ -4457,25 +4457,25 @@ block_1696:
                 return;
             }
 
-            for (var_r3_4 = 0; var_r3_4 < (gUnk_03003510.unk78 + 1); var_r3_4++)
+            for (var_r3_4 = 0; var_r3_4 < (gCallbackQueue.currentCount + 1); var_r3_4++)
             {
                 if (var_r3_4 == 4)
                 {
-                    gUnk_03003510.unk38 = &sub_080264A4;
+                    gCallbackQueue.next[4] = &sub_080264A4;
                 }
                 else if (var_r3_4 > 4)
                 {
-                    gUnk_03003510.unk28[var_r3_4] = gUnk_03003510.unk0[var_r3_4 - 1];
+                    gCallbackQueue.next[var_r3_4] = gCallbackQueue.current[var_r3_4 - 1];
                 }
                 else
                 {
-                    gUnk_03003510.unk28[var_r3_4] = gUnk_03003510.unk0[var_r3_4];
+                    gCallbackQueue.next[var_r3_4] = gCallbackQueue.current[var_r3_4];
                 }
             }
             if (var_r3_4 > 3)
             {
-                gUnk_03003510.unk79 = gUnk_03003510.unk78 + 1;
-                gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
+                gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
+                gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             }
             gUnk_03003410.unkB = 2;
             sub_08025B78(0, 0x25);
@@ -4492,9 +4492,9 @@ block_1696:
         {
             for (var_r2_13 = 0; var_r2_13 < 10; var_r2_13++)
             {
-                gUnk_03003510.unk50[var_r2_13] = gUnk_03003510.unk0[var_r2_13];
+                gCallbackQueue.previous[var_r2_13] = gCallbackQueue.current[var_r2_13];
             }
-            gUnk_03003510.unk7A = gUnk_03003510.unk78;
+            gCallbackQueue.previousCount = gCallbackQueue.currentCount;
             gUnk_030051F0.unkE = gUnk_03005498;
             gUnk_030051F0.unk4 = REG_BLDCNT;
             gUnk_030051F0.unk6 = REG_BG0CNT;
@@ -4505,19 +4505,19 @@ block_1696:
             gUnk_03004D90.unk8 = 1;
             gUnk_03004D90.unk9 = 0;
             gUnk_03005498 = 0;
-            gUnk_03003510.unk28[0] = sub_08047B1C;
-            gUnk_03003510.unk28[1] = sub_0800BFF4;
-            gUnk_03003510.unk28[2] = (void (*)())1;
-            gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-            gUnk_03003510.unk79 = 3;
+            gCallbackQueue.next[0] = sub_08047B1C;
+            gCallbackQueue.next[1] = sub_0800BFF4;
+            gCallbackQueue.next[2] = NULL + 1;
+            gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+            gCallbackQueue.nextCount = 3;
             if ((gUnk_03005220.unk42 == 0) && ((u32) gUnk_03005220.unk3E <= 0x78))
             {
                 sub_08025B78(0, 0x23);
             }
             REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
             REG_BLDY = gUnk_03005498;
-            gUnk_03003510.unk78 = 1;
-            gUnk_03003510.unk0[0] = NULL;
+            gCallbackQueue.currentCount = 1;
+            gCallbackQueue.current[0] = NULL;
         }
         else
         {

@@ -138,7 +138,7 @@ void sub_0800C108(void)
 
     if (gUnk_03004C20.world == 0x5 || gUnk_03004C20.world == 0x6)
     {
-        if ((gUnk_03003510.unk0[1] == &sub_0803A410) || (gUnk_03003510.unk0[0] == &sub_08039D8C) || (gUnk_03003510.unk0[1] == &sub_08039D8C) || (gUnk_03003510.unk0[1] == &sub_0803AAA0) || (gUnk_03003510.unk0[1] == &sub_0803A8B8))
+        if ((gCallbackQueue.current[1] == sub_0803A410) || (gCallbackQueue.current[0] == sub_08039D8C) || (gCallbackQueue.current[1] == sub_08039D8C) || (gCallbackQueue.current[1] == sub_0803AAA0) || (gCallbackQueue.current[1] == sub_0803A8B8))
         {
             if (gUnk_030034BC == 0)
             {
@@ -492,11 +492,11 @@ void sub_0800CA0C(u32 arg0)
 
     if (gUnk_03003410.unkA == 0)
     {
-        gUnk_03003510.unk28[0] = InputHandler_Normal;
+        gCallbackQueue.next[0] = InputHandler_Normal;
     }
     else
     {
-        gUnk_03003510.unk28[0] = InputHandler_AttractMode;
+        gCallbackQueue.next[0] = InputHandler_AttractMode;
     }
 
     gUnk_03003410.unk5 = 0;
@@ -509,58 +509,58 @@ void sub_0800CA0C(u32 arg0)
 
     if (gUnk_03004C20.level == 8)
     {
-        gUnk_03003510.unk28[1] = sub_0803C808;
-        gUnk_03003510.unk28[2] = sub_08002AC4;
-        gUnk_03003510.unk34 = sub_0800AC34;
-        gUnk_03003510.unk38 = sub_080242C0;
-        gUnk_03003510.unk3C = (u32) sub_08026374;
-        gUnk_03003510.unk40 = sub_0800C108;
-        gUnk_03003510.unk44 = 1;
-        gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-        gUnk_03003510.unk79 = 8;
+        gCallbackQueue.next[1] = sub_0803C808;
+        gCallbackQueue.next[2] = sub_08002AC4;
+        gCallbackQueue.next[3] = sub_0800AC34;
+        gCallbackQueue.next[4] = sub_080242C0;
+        gCallbackQueue.next[5] = sub_08026374;
+        gCallbackQueue.next[6] = sub_0800C108;
+        gCallbackQueue.next[7] = NULL + 1;
+        gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+        gCallbackQueue.nextCount = 8;
     }
     else
     {
-        gUnk_03003510.unk28[1] = sub_0800A804;
+        gCallbackQueue.next[1] = sub_0800A804;
         if (gUnk_03004C20.unkB == 1)
         {
-            gUnk_03003510.unk28[2] = sub_080027C4;
+            gCallbackQueue.next[2] = sub_080027C4;
         }
         else if (gUnk_03004C20.level == 6)
         {
-            gUnk_03003510.unk28[2] = sub_0800247C;
+            gCallbackQueue.next[2] = sub_0800247C;
         }
         else
         {
-            gUnk_03003510.unk28[2] = sub_08001F58;
+            gCallbackQueue.next[2] = sub_08001F58;
         }
-        gUnk_03003510.unk34 = sub_080242C0;
+        gCallbackQueue.next[3] = sub_080242C0;
 
         if (arg0 < 2)
         {
             if (gUnk_03003410.unkA == 0)
             {
-                gUnk_03003510.unk38 = sub_08026374;
-                gUnk_03003510.unk3C = (u32) sub_0800BFF4;
-                gUnk_03003510.unk40 = (void (*)())1;
-                gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-                gUnk_03003510.unk79 = 7;
+                gCallbackQueue.next[4] = sub_08026374;
+                gCallbackQueue.next[5] = sub_0800BFF4;
+                gCallbackQueue.next[6] = NULL + 1;
+                gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+                gCallbackQueue.nextCount = 7;
             }
             else
             {
-                gUnk_03003510.unk38 = sub_0800BFF4;
-                gUnk_03003510.unk3C = 1;
-                gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-                gUnk_03003510.unk79 = 6;
+                gCallbackQueue.next[4] = sub_0800BFF4;
+                gCallbackQueue.next[5] = NULL + 1;
+                gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+                gCallbackQueue.nextCount = 6;
             }
         }
         else
         {
             gUnk_03003410.unk5 = 1;
-            gUnk_03003510.unk38 = sub_0800BFF4;
-            gUnk_03003510.unk3C = 1;
-            gUnk_03003510.unk0[gUnk_03003510.unk78 - 1] = NULL;
-            gUnk_03003510.unk79 = 6;
+            gCallbackQueue.next[4] = sub_0800BFF4;
+            gCallbackQueue.next[5] = NULL + 1;
+            gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
+            gCallbackQueue.nextCount = 6;
         }
         
     }
