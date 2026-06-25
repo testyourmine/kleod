@@ -15,7 +15,7 @@ sub_0802688C: @ 0x0802688C
 	ldr r2, _08026BE8 @ =0x040000D4
 	ldr r0, _08026BEC @ =0x08077E68
 	str r0, [r2]
-	ldr r0, _08026BF0 @ =gUnk_030007DC
+	ldr r0, _08026BF0 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r2, #4]
 	ldr r0, _08026BF4 @ =0x80000010
@@ -25,7 +25,7 @@ sub_0802688C: @ 0x0802688C
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	ldr r4, _08026BF8 @ =0x0805D9E8
-	ldr r1, _08026BFC @ =gUnk_03005490
+	ldr r1, _08026BFC @ =gObjVramPtr
 	cmp r0, #0
 	bge _080268BE
 _080268B6:
@@ -52,11 +52,11 @@ _080268D6:
 	cmp r0, #0
 	bne _080268D6
 _080268DE:
-	ldr r4, _08026BF0 @ =gUnk_030007DC
+	ldr r4, _08026BF0 @ =gObjPalRamPtr
 	ldr r0, [r4]
 	adds r0, #0x20
 	str r0, [r4]
-	ldr r1, _08026BFC @ =gUnk_03005490
+	ldr r1, _08026BFC @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -87,7 +87,7 @@ _0802691C:
 	ldr r2, _08026BE8 @ =0x040000D4
 	ldr r0, _08026C08 @ =0x0805DBE8
 	str r0, [r2]
-	ldr r1, _08026BFC @ =gUnk_03005490
+	ldr r1, _08026BFC @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08026C0C @ =0x80000180
@@ -96,7 +96,7 @@ _0802691C:
 	ldr r0, [r2, #8]
 	movs r3, #0x80
 	lsls r3, r3, #0x18
-	ldr r4, _08026BF0 @ =gUnk_030007DC
+	ldr r4, _08026BF0 @ =gObjPalRamPtr
 	ldr r6, _08026C10 @ =0x08077EA8
 	ldr r5, _08026C14 @ =0x0805E0E8
 	mov ip, r5
@@ -477,10 +477,10 @@ _08026BD2:
 	.align 2, 0
 _08026BE8: .4byte 0x040000D4
 _08026BEC: .4byte 0x08077E68
-_08026BF0: .4byte gUnk_030007DC
+_08026BF0: .4byte gObjPalRamPtr
 _08026BF4: .4byte 0x80000010
 _08026BF8: .4byte 0x0805D9E8
-_08026BFC: .4byte gUnk_03005490
+_08026BFC: .4byte gObjVramPtr
 _08026C00: .4byte 0x80000100
 _08026C04: .4byte 0x08077E88
 _08026C08: .4byte 0x0805DBE8
@@ -930,7 +930,7 @@ sub_08026F68: @ 0x08026F68
 	ldr r2, _080272C0 @ =0x040000D4
 	ldr r0, _080272C4 @ =0x08077EE8
 	str r0, [r2]
-	ldr r1, _080272C8 @ =gUnk_030007DC
+	ldr r1, _080272C8 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _080272CC @ =0x80000010
@@ -940,7 +940,7 @@ sub_08026F68: @ 0x08026F68
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	ldr r5, _080272D0 @ =0x0805EAE8
-	ldr r4, _080272D4 @ =gUnk_03005490
+	ldr r4, _080272D4 @ =gObjVramPtr
 	ldr r6, _080272D8 @ =0x08077F88
 	ldr r7, _080272DC @ =0x08077FC8
 	mov ip, r7
@@ -1390,10 +1390,10 @@ _0802729A:
 	.align 2, 0
 _080272C0: .4byte 0x040000D4
 _080272C4: .4byte 0x08077EE8
-_080272C8: .4byte gUnk_030007DC
+_080272C8: .4byte gObjPalRamPtr
 _080272CC: .4byte 0x80000010
 _080272D0: .4byte 0x0805EAE8
-_080272D4: .4byte gUnk_03005490
+_080272D4: .4byte gObjVramPtr
 _080272D8: .4byte 0x08077F88
 _080272DC: .4byte 0x08077FC8
 _080272E0: .4byte 0x08077FE8
@@ -1462,7 +1462,7 @@ sub_08027364: @ 0x08027364
 	ldr r3, _080276BC @ =0x040000D4
 	ldr r0, _080276C0 @ =0x08077EE8
 	str r0, [r3]
-	ldr r1, _080276C4 @ =gUnk_030007DC
+	ldr r1, _080276C4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080276C8 @ =0x80000010
@@ -1473,7 +1473,7 @@ sub_08027364: @ 0x08027364
 	lsls r2, r2, #0x18
 	adds r6, r1, #0
 	ldr r4, _080276CC @ =0x0805EAE8
-	ldr r5, _080276D0 @ =gUnk_03005490
+	ldr r5, _080276D0 @ =gObjVramPtr
 	ldr r7, _080276D4 @ =0x08078048
 	ldr r1, _080276D8 @ =0x08078068
 	mov r8, r1
@@ -1759,7 +1759,7 @@ _08027586:
 	cmp r0, #0
 	bne _08027586
 _0802758E:
-	ldr r1, _080276D0 @ =gUnk_03005490
+	ldr r1, _080276D0 @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -1771,7 +1771,7 @@ _0802758E:
 	ldr r1, _080276BC @ =0x040000D4
 	ldr r0, _080276EC @ =0x08078088
 	str r0, [r1]
-	ldr r0, _080276C4 @ =gUnk_030007DC
+	ldr r0, _080276C4 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _080276C8 @ =0x80000010
@@ -1788,14 +1788,14 @@ _080275BE:
 	cmp r0, #0
 	bne _080275BE
 _080275C6:
-	ldr r1, _080276C4 @ =gUnk_030007DC
+	ldr r1, _080276C4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r3, _080276BC @ =0x040000D4
 	ldr r0, _080276F0 @ =0x02001D04
 	str r0, [r3]
-	ldr r2, _080276D0 @ =gUnk_03005490
+	ldr r2, _080276D0 @ =gObjVramPtr
 	ldr r0, [r2]
 	str r0, [r3, #4]
 	ldr r0, _080276DC @ =0x80000100
@@ -1924,10 +1924,10 @@ _080276A8:
 	.align 2, 0
 _080276BC: .4byte 0x040000D4
 _080276C0: .4byte 0x08077EE8
-_080276C4: .4byte gUnk_030007DC
+_080276C4: .4byte gObjPalRamPtr
 _080276C8: .4byte 0x80000010
 _080276CC: .4byte 0x0805EAE8
-_080276D0: .4byte gUnk_03005490
+_080276D0: .4byte gObjVramPtr
 _080276D4: .4byte 0x08078048
 _080276D8: .4byte 0x08078068
 _080276DC: .4byte 0x80000100
@@ -2053,7 +2053,7 @@ sub_080277CC: @ 0x080277CC
 	ldr r3, _08027B28 @ =0x040000D4
 	ldr r0, _08027B2C @ =0x08077EE8
 	str r0, [r3]
-	ldr r1, _08027B30 @ =gUnk_030007DC
+	ldr r1, _08027B30 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08027B34 @ =0x80000010
@@ -2064,7 +2064,7 @@ sub_080277CC: @ 0x080277CC
 	lsls r2, r2, #0x18
 	adds r6, r1, #0
 	ldr r4, _08027B38 @ =0x0805EAE8
-	ldr r5, _08027B3C @ =gUnk_03005490
+	ldr r5, _08027B3C @ =gObjVramPtr
 	ldr r7, _08027B40 @ =0x08078128
 	cmp r0, #0
 	bge _08027804
@@ -2302,7 +2302,7 @@ _0802799A:
 	cmp r0, #0
 	bne _0802799A
 _080279A2:
-	ldr r1, _08027B3C @ =gUnk_03005490
+	ldr r1, _08027B3C @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #4
@@ -2314,7 +2314,7 @@ _080279A2:
 	ldr r1, _08027B28 @ =0x040000D4
 	ldr r0, _08027B50 @ =0x08078148
 	str r0, [r1]
-	ldr r0, _08027B30 @ =gUnk_030007DC
+	ldr r0, _08027B30 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08027B34 @ =0x80000010
@@ -2331,14 +2331,14 @@ _080279D2:
 	cmp r0, #0
 	bne _080279D2
 _080279DA:
-	ldr r1, _08027B30 @ =gUnk_030007DC
+	ldr r1, _08027B30 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r3, _08027B28 @ =0x040000D4
 	ldr r0, _08027B54 @ =0x02002304
 	str r0, [r3]
-	ldr r2, _08027B3C @ =gUnk_03005490
+	ldr r2, _08027B3C @ =gObjVramPtr
 	ldr r0, [r2]
 	str r0, [r3, #4]
 	ldr r0, _08027B44 @ =0x80000100
@@ -2515,10 +2515,10 @@ _08027B18:
 	.align 2, 0
 _08027B28: .4byte 0x040000D4
 _08027B2C: .4byte 0x08077EE8
-_08027B30: .4byte gUnk_030007DC
+_08027B30: .4byte gObjPalRamPtr
 _08027B34: .4byte 0x80000010
 _08027B38: .4byte 0x0805EAE8
-_08027B3C: .4byte gUnk_03005490
+_08027B3C: .4byte gObjVramPtr
 _08027B40: .4byte 0x08078128
 _08027B44: .4byte 0x80000100
 _08027B48: .4byte 0x02000904
@@ -2740,7 +2740,7 @@ sub_08027CF8: @ 0x08027CF8
 	ldr r3, _0802804C @ =0x040000D4
 	ldr r0, _08028050 @ =0x08077EE8
 	str r0, [r3]
-	ldr r1, _08028054 @ =gUnk_030007DC
+	ldr r1, _08028054 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08028058 @ =0x80000010
@@ -2751,7 +2751,7 @@ sub_08027CF8: @ 0x08027CF8
 	lsls r2, r2, #0x18
 	adds r6, r1, #0
 	ldr r4, _0802805C @ =0x0805EAE8
-	ldr r5, _08028060 @ =gUnk_03005490
+	ldr r5, _08028060 @ =gObjVramPtr
 	ldr r7, _08028064 @ =0x08078248
 	cmp r0, #0
 	bge _08027D28
@@ -2989,7 +2989,7 @@ _08027EBE:
 	cmp r0, #0
 	bne _08027EBE
 _08027EC6:
-	ldr r1, _08028060 @ =gUnk_03005490
+	ldr r1, _08028060 @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -3001,7 +3001,7 @@ _08027EC6:
 	ldr r1, _0802804C @ =0x040000D4
 	ldr r0, _08028070 @ =0x08078268
 	str r0, [r1]
-	ldr r0, _08028054 @ =gUnk_030007DC
+	ldr r0, _08028054 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08028058 @ =0x80000010
@@ -3018,14 +3018,14 @@ _08027EF6:
 	cmp r0, #0
 	bne _08027EF6
 _08027EFE:
-	ldr r1, _08028054 @ =gUnk_030007DC
+	ldr r1, _08028054 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r1, _0802804C @ =0x040000D4
 	ldr r0, _08028074 @ =0x02001104
 	str r0, [r1]
-	ldr r0, _08028060 @ =gUnk_03005490
+	ldr r0, _08028060 @ =gObjVramPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08028078 @ =0x80000400
@@ -3042,7 +3042,7 @@ _08027F22:
 	cmp r0, #0
 	bne _08027F22
 _08027F2A:
-	ldr r1, _08028060 @ =gUnk_03005490
+	ldr r1, _08028060 @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #4
@@ -3054,7 +3054,7 @@ _08027F2A:
 	ldr r1, _0802804C @ =0x040000D4
 	ldr r0, _0802807C @ =0x08078288
 	str r0, [r1]
-	ldr r0, _08028054 @ =gUnk_030007DC
+	ldr r0, _08028054 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08028058 @ =0x80000010
@@ -3071,14 +3071,14 @@ _08027F5A:
 	cmp r0, #0
 	bne _08027F5A
 _08027F62:
-	ldr r1, _08028054 @ =gUnk_030007DC
+	ldr r1, _08028054 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r3, _0802804C @ =0x040000D4
 	ldr r0, _08028080 @ =0x02000904
 	str r0, [r3]
-	ldr r2, _08028060 @ =gUnk_03005490
+	ldr r2, _08028060 @ =gObjVramPtr
 	ldr r0, [r2]
 	str r0, [r3, #4]
 	ldr r0, _08028078 @ =0x80000400
@@ -3201,10 +3201,10 @@ _08028040:
 	.align 2, 0
 _0802804C: .4byte 0x040000D4
 _08028050: .4byte 0x08077EE8
-_08028054: .4byte gUnk_030007DC
+_08028054: .4byte gObjPalRamPtr
 _08028058: .4byte 0x80000010
 _0802805C: .4byte 0x0805EAE8
-_08028060: .4byte gUnk_03005490
+_08028060: .4byte gObjVramPtr
 _08028064: .4byte 0x08078248
 _08028068: .4byte 0x80000100
 _0802806C: .4byte 0x02004704
@@ -3289,7 +3289,7 @@ sub_08028108: @ 0x08028108
 	ldr r2, _080283F4 @ =0x040000D4
 	ldr r0, _080283F8 @ =0x08078308
 	str r0, [r2]
-	ldr r1, _080283FC @ =gUnk_030007DC
+	ldr r1, _080283FC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08028400 @ =0x80000010
@@ -3300,7 +3300,7 @@ sub_08028108: @ 0x08028108
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
 	ldr r5, _08028404 @ =0x0805ECE8
-	ldr r1, _08028408 @ =gUnk_03005490
+	ldr r1, _08028408 @ =gObjVramPtr
 	ldr r6, _0802840C @ =0x0805EEE8
 	ldr r7, _08028410 @ =0x08078348
 	mov r8, r7
@@ -3692,10 +3692,10 @@ _080283DA:
 	.align 2, 0
 _080283F4: .4byte 0x040000D4
 _080283F8: .4byte 0x08078308
-_080283FC: .4byte gUnk_030007DC
+_080283FC: .4byte gObjPalRamPtr
 _08028400: .4byte 0x80000010
 _08028404: .4byte 0x0805ECE8
-_08028408: .4byte gUnk_03005490
+_08028408: .4byte gObjVramPtr
 _0802840C: .4byte 0x0805EEE8
 _08028410: .4byte 0x08078348
 _08028414: .4byte 0x0805F0E8
@@ -3720,7 +3720,7 @@ sub_08028440: @ 0x08028440
 	ldr r2, _080286FC @ =0x040000D4
 	ldr r0, _08028700 @ =0x08078308
 	str r0, [r2]
-	ldr r1, _08028704 @ =gUnk_030007DC
+	ldr r1, _08028704 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08028708 @ =0x80000010
@@ -3731,7 +3731,7 @@ sub_08028440: @ 0x08028440
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802870C @ =0x0805ECE8
-	ldr r1, _08028710 @ =gUnk_03005490
+	ldr r1, _08028710 @ =gObjVramPtr
 	ldr r7, _08028714 @ =0x0805EEE8
 	ldr r6, _08028718 @ =0x080783C8
 	mov ip, r6
@@ -4097,10 +4097,10 @@ _080286E2:
 	.align 2, 0
 _080286FC: .4byte 0x040000D4
 _08028700: .4byte 0x08078308
-_08028704: .4byte gUnk_030007DC
+_08028704: .4byte gObjPalRamPtr
 _08028708: .4byte 0x80000010
 _0802870C: .4byte 0x0805ECE8
-_08028710: .4byte gUnk_03005490
+_08028710: .4byte gObjVramPtr
 _08028714: .4byte 0x0805EEE8
 _08028718: .4byte 0x080783C8
 _0802871C: .4byte 0x0805F488
@@ -4127,7 +4127,7 @@ sub_08028750: @ 0x08028750
 	ldr r3, _08028AA4 @ =0x040000D4
 	ldr r0, _08028AA8 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08028AAC @ =gUnk_030007DC
+	ldr r1, _08028AAC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08028AB0 @ =0x80000010
@@ -4138,7 +4138,7 @@ sub_08028750: @ 0x08028750
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08028AB4 @ =0x0805ECE8
-	ldr r1, _08028AB8 @ =gUnk_03005490
+	ldr r1, _08028AB8 @ =gObjVramPtr
 	ldr r6, _08028ABC @ =0x08078328
 	ldr r7, _08028AC0 @ =0x08078348
 	mov ip, r7
@@ -4588,10 +4588,10 @@ _08028A9E:
 	.align 2, 0
 _08028AA4: .4byte 0x040000D4
 _08028AA8: .4byte 0x08078308
-_08028AAC: .4byte gUnk_030007DC
+_08028AAC: .4byte gObjPalRamPtr
 _08028AB0: .4byte 0x80000010
 _08028AB4: .4byte 0x0805ECE8
-_08028AB8: .4byte gUnk_03005490
+_08028AB8: .4byte gObjVramPtr
 _08028ABC: .4byte 0x08078328
 _08028AC0: .4byte 0x08078348
 _08028AC4: .4byte 0x0805F0E8
@@ -4657,7 +4657,7 @@ sub_08028B4C: @ 0x08028B4C
 	ldr r2, _08028E38 @ =0x040000D4
 	ldr r0, _08028E3C @ =0x0805FA08
 	str r0, [r2]
-	ldr r1, _08028E40 @ =gUnk_03005490
+	ldr r1, _08028E40 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08028E44 @ =0x80000080
@@ -4666,7 +4666,7 @@ sub_08028B4C: @ 0x08028B4C
 	ldr r0, [r2, #8]
 	movs r3, #0x80
 	lsls r3, r3, #0x18
-	ldr r4, _08028E48 @ =gUnk_030007DC
+	ldr r4, _08028E48 @ =gObjPalRamPtr
 	ldr r7, _08028E4C @ =0x0805EEE8
 	ldr r5, _08028E50 @ =0x08078348
 	mov ip, r5
@@ -5059,9 +5059,9 @@ _08028E1C:
 	.align 2, 0
 _08028E38: .4byte 0x040000D4
 _08028E3C: .4byte 0x0805FA08
-_08028E40: .4byte gUnk_03005490
+_08028E40: .4byte gObjVramPtr
 _08028E44: .4byte 0x80000080
-_08028E48: .4byte gUnk_030007DC
+_08028E48: .4byte gObjPalRamPtr
 _08028E4C: .4byte 0x0805EEE8
 _08028E50: .4byte 0x08078348
 _08028E54: .4byte 0x0805F0E8
@@ -5089,7 +5089,7 @@ sub_08028E8C: @ 0x08028E8C
 	ldr r3, _080291E4 @ =0x040000D4
 	ldr r0, _080291E8 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _080291EC @ =gUnk_030007DC
+	ldr r1, _080291EC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080291F0 @ =0x80000010
@@ -5100,7 +5100,7 @@ sub_08028E8C: @ 0x08028E8C
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _080291F4 @ =0x0805ECE8
-	ldr r1, _080291F8 @ =gUnk_03005490
+	ldr r1, _080291F8 @ =gObjVramPtr
 	ldr r5, _080291FC @ =0x0805EEE8
 	mov ip, r5
 	ldr r7, _08029200 @ =0x08078348
@@ -5551,10 +5551,10 @@ _080291E0:
 	.align 2, 0
 _080291E4: .4byte 0x040000D4
 _080291E8: .4byte 0x08078308
-_080291EC: .4byte gUnk_030007DC
+_080291EC: .4byte gObjPalRamPtr
 _080291F0: .4byte 0x80000010
 _080291F4: .4byte 0x0805ECE8
-_080291F8: .4byte gUnk_03005490
+_080291F8: .4byte gObjVramPtr
 _080291FC: .4byte 0x0805EEE8
 _08029200: .4byte 0x08078348
 _08029204: .4byte 0x0805F0E8
@@ -5877,7 +5877,7 @@ sub_0802946C: @ 0x0802946C
 	ldr r2, _080297C4 @ =0x040000D4
 	ldr r0, _080297C8 @ =0x08078468
 	str r0, [r2]
-	ldr r1, _080297CC @ =gUnk_030007DC
+	ldr r1, _080297CC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _080297D0 @ =0x80000010
@@ -5887,7 +5887,7 @@ sub_0802946C: @ 0x0802946C
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
-	ldr r1, _080297D4 @ =gUnk_03005490
+	ldr r1, _080297D4 @ =gObjVramPtr
 	ldr r5, _080297D8 @ =0x08078348
 	mov ip, r5
 	ldr r7, _080297DC @ =0x0805F0E8
@@ -6339,9 +6339,9 @@ _080297BC:
 	.align 2, 0
 _080297C4: .4byte 0x040000D4
 _080297C8: .4byte 0x08078468
-_080297CC: .4byte gUnk_030007DC
+_080297CC: .4byte gObjPalRamPtr
 _080297D0: .4byte 0x80000010
-_080297D4: .4byte gUnk_03005490
+_080297D4: .4byte gObjVramPtr
 _080297D8: .4byte 0x08078348
 _080297DC: .4byte 0x0805F0E8
 _080297E0: .4byte 0x08078448
@@ -6549,7 +6549,7 @@ sub_08029968: @ 0x08029968
 	ldr r3, _08029CC0 @ =0x040000D4
 	ldr r0, _08029CC4 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08029CC8 @ =gUnk_030007DC
+	ldr r1, _08029CC8 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08029CCC @ =0x80000010
@@ -6560,7 +6560,7 @@ sub_08029968: @ 0x08029968
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08029CD0 @ =0x0805ECE8
-	ldr r1, _08029CD4 @ =gUnk_03005490
+	ldr r1, _08029CD4 @ =gObjVramPtr
 	ldr r6, _08029CD8 @ =0x0805EEE8
 	mov ip, r6
 	ldr r7, _08029CDC @ =0x08078448
@@ -7011,10 +7011,10 @@ _08029CBC:
 	.align 2, 0
 _08029CC0: .4byte 0x040000D4
 _08029CC4: .4byte 0x08078308
-_08029CC8: .4byte gUnk_030007DC
+_08029CC8: .4byte gObjPalRamPtr
 _08029CCC: .4byte 0x80000010
 _08029CD0: .4byte 0x0805ECE8
-_08029CD4: .4byte gUnk_03005490
+_08029CD4: .4byte gObjVramPtr
 _08029CD8: .4byte 0x0805EEE8
 _08029CDC: .4byte 0x08078448
 _08029CE0: .4byte 0x0805FC08
@@ -7251,7 +7251,7 @@ sub_08029EAC: @ 0x08029EAC
 	ldr r2, _0802A218 @ =0x040000D4
 	ldr r0, _0802A21C @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _0802A220 @ =gUnk_030007DC
+	ldr r1, _0802A220 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802A224 @ =0x80000010
@@ -7262,7 +7262,7 @@ sub_08029EAC: @ 0x08029EAC
 	lsls r5, r5, #0x18
 	adds r3, r1, #0
 	ldr r6, _0802A228 @ =0x08060A08
-	ldr r7, _0802A22C @ =gUnk_03005490
+	ldr r7, _0802A22C @ =gObjVramPtr
 	ldr r4, _0802A230 @ =0x080784C8
 	ldr r1, _0802A234 @ =0x08060A88
 	mov r8, r1
@@ -7449,7 +7449,7 @@ _0802A020:
 	cmp r0, #0
 	bne _0802A020
 _0802A028:
-	ldr r1, _0802A22C @ =gUnk_03005490
+	ldr r1, _0802A22C @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #4
@@ -7461,7 +7461,7 @@ _0802A028:
 	ldr r1, _0802A218 @ =0x040000D4
 	ldr r0, _0802A258 @ =0x08078328
 	str r0, [r1]
-	ldr r0, _0802A220 @ =gUnk_030007DC
+	ldr r0, _0802A220 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _0802A224 @ =0x80000010
@@ -7481,7 +7481,7 @@ _0802A060:
 	ldr r4, _0802A218 @ =0x040000D4
 	ldr r2, _0802A25C @ =0x0805EEE8
 	str r2, [r4]
-	ldr r1, _0802A22C @ =gUnk_03005490
+	ldr r1, _0802A22C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r4, #4]
 	ldr r0, _0802A260 @ =0x80000100
@@ -7490,7 +7490,7 @@ _0802A060:
 	ldr r0, [r4, #8]
 	movs r5, #0x80
 	lsls r5, r5, #0x18
-	ldr r3, _0802A220 @ =gUnk_030007DC
+	ldr r3, _0802A220 @ =gObjPalRamPtr
 	adds r7, r1, #0
 	cmp r0, #0
 	bge _0802A08A
@@ -7527,7 +7527,7 @@ _0802A0B2:
 	cmp r0, #0
 	bne _0802A0B2
 _0802A0BA:
-	ldr r1, _0802A22C @ =gUnk_03005490
+	ldr r1, _0802A22C @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -7542,7 +7542,7 @@ _0802A0BA:
 	ldr r1, _0802A218 @ =0x040000D4
 	ldr r0, _0802A264 @ =0x08078528
 	str r0, [r1]
-	ldr r0, _0802A220 @ =gUnk_030007DC
+	ldr r0, _0802A220 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _0802A224 @ =0x80000010
@@ -7559,7 +7559,7 @@ _0802A0F2:
 	cmp r0, #0
 	bne _0802A0F2
 _0802A0FA:
-	ldr r3, _0802A220 @ =gUnk_030007DC
+	ldr r3, _0802A220 @ =gObjPalRamPtr
 	ldr r0, [r3]
 	adds r0, #0x20
 	str r0, [r3]
@@ -7579,7 +7579,7 @@ _0802A0FA:
 	ldr r0, [r0]
 	ldr r0, [r0]
 	str r0, [r5]
-	ldr r1, _0802A22C @ =gUnk_03005490
+	ldr r1, _0802A22C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r5, #4]
 	ldr r0, _0802A250 @ =0x80000400
@@ -7715,10 +7715,10 @@ _0802A20E:
 	.align 2, 0
 _0802A218: .4byte 0x040000D4
 _0802A21C: .4byte 0x080784A8
-_0802A220: .4byte gUnk_030007DC
+_0802A220: .4byte gObjPalRamPtr
 _0802A224: .4byte 0x80000010
 _0802A228: .4byte 0x08060A08
-_0802A22C: .4byte gUnk_03005490
+_0802A22C: .4byte gObjVramPtr
 _0802A230: .4byte 0x080784C8
 _0802A234: .4byte 0x08060A88
 _0802A238: .4byte 0x080784E8
@@ -7831,7 +7831,7 @@ sub_0802A31C: @ 0x0802A31C
 	ldr r3, _0802A674 @ =0x040000D4
 	ldr r0, _0802A678 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802A67C @ =gUnk_030007DC
+	ldr r1, _0802A67C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802A680 @ =0x80000010
@@ -7842,7 +7842,7 @@ sub_0802A31C: @ 0x0802A31C
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802A684 @ =0x0805ECE8
-	ldr r1, _0802A688 @ =gUnk_03005490
+	ldr r1, _0802A688 @ =gObjVramPtr
 	ldr r7, _0802A68C @ =0x0805EEE8
 	ldr r6, _0802A690 @ =0x08078348
 	mov r8, r6
@@ -8292,10 +8292,10 @@ _0802A64E:
 	.align 2, 0
 _0802A674: .4byte 0x040000D4
 _0802A678: .4byte 0x08078308
-_0802A67C: .4byte gUnk_030007DC
+_0802A67C: .4byte gObjPalRamPtr
 _0802A680: .4byte 0x80000010
 _0802A684: .4byte 0x0805ECE8
-_0802A688: .4byte gUnk_03005490
+_0802A688: .4byte gObjVramPtr
 _0802A68C: .4byte 0x0805EEE8
 _0802A690: .4byte 0x08078348
 _0802A694: .4byte 0x0805F0E8
@@ -8650,7 +8650,7 @@ sub_0802A948: @ 0x0802A948
 	ldr r3, _0802ACA4 @ =0x040000D4
 	ldr r0, _0802ACA8 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802ACAC @ =gUnk_030007DC
+	ldr r1, _0802ACAC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802ACB0 @ =0x80000010
@@ -8661,7 +8661,7 @@ sub_0802A948: @ 0x0802A948
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _0802ACB4 @ =0x0805ECE8
-	ldr r1, _0802ACB8 @ =gUnk_03005490
+	ldr r1, _0802ACB8 @ =gObjVramPtr
 	ldr r5, _0802ACBC @ =0x0805EEE8
 	ldr r7, _0802ACC0 @ =0x08078348
 	mov r8, r7
@@ -9112,10 +9112,10 @@ _0802AC78:
 	.align 2, 0
 _0802ACA4: .4byte 0x040000D4
 _0802ACA8: .4byte 0x08078308
-_0802ACAC: .4byte gUnk_030007DC
+_0802ACAC: .4byte gObjPalRamPtr
 _0802ACB0: .4byte 0x80000010
 _0802ACB4: .4byte 0x0805ECE8
-_0802ACB8: .4byte gUnk_03005490
+_0802ACB8: .4byte gObjVramPtr
 _0802ACBC: .4byte 0x0805EEE8
 _0802ACC0: .4byte 0x08078348
 _0802ACC4: .4byte 0x0805F0E8
@@ -9589,7 +9589,7 @@ sub_0802B05C: @ 0x0802B05C
 	ldr r3, _0802B3B8 @ =0x040000D4
 	ldr r0, _0802B3BC @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802B3C0 @ =gUnk_030007DC
+	ldr r1, _0802B3C0 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802B3C4 @ =0x80000010
@@ -9600,7 +9600,7 @@ sub_0802B05C: @ 0x0802B05C
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802B3C8 @ =0x0805ECE8
-	ldr r1, _0802B3CC @ =gUnk_03005490
+	ldr r1, _0802B3CC @ =gObjVramPtr
 	ldr r6, _0802B3D0 @ =0x0805EEE8
 	mov ip, r6
 	ldr r7, _0802B3D4 @ =0x08078348
@@ -10052,10 +10052,10 @@ _0802B38E:
 	.align 2, 0
 _0802B3B8: .4byte 0x040000D4
 _0802B3BC: .4byte 0x08078308
-_0802B3C0: .4byte gUnk_030007DC
+_0802B3C0: .4byte gObjPalRamPtr
 _0802B3C4: .4byte 0x80000010
 _0802B3C8: .4byte 0x0805ECE8
-_0802B3CC: .4byte gUnk_03005490
+_0802B3CC: .4byte gObjVramPtr
 _0802B3D0: .4byte 0x0805EEE8
 _0802B3D4: .4byte 0x08078348
 _0802B3D8: .4byte 0x0805F0E8
@@ -10528,7 +10528,7 @@ sub_0802B768: @ 0x0802B768
 	ldr r2, _0802BA28 @ =0x040000D4
 	ldr r0, _0802BA2C @ =0x0805FA08
 	str r0, [r2]
-	ldr r1, _0802BA30 @ =gUnk_03005490
+	ldr r1, _0802BA30 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802BA34 @ =0x80000080
@@ -10538,7 +10538,7 @@ sub_0802B768: @ 0x0802B768
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	ldr r5, _0802BA38 @ =0x08078328
-	ldr r4, _0802BA3C @ =gUnk_030007DC
+	ldr r4, _0802BA3C @ =gObjPalRamPtr
 	ldr r6, _0802BA40 @ =0x0805EEE8
 	ldr r7, _0802BA44 @ =0x0805F0E8
 	mov ip, r7
@@ -10907,10 +10907,10 @@ _0802BA0E:
 	.align 2, 0
 _0802BA28: .4byte 0x040000D4
 _0802BA2C: .4byte 0x0805FA08
-_0802BA30: .4byte gUnk_03005490
+_0802BA30: .4byte gObjVramPtr
 _0802BA34: .4byte 0x80000080
 _0802BA38: .4byte 0x08078328
-_0802BA3C: .4byte gUnk_030007DC
+_0802BA3C: .4byte gObjPalRamPtr
 _0802BA40: .4byte 0x0805EEE8
 _0802BA44: .4byte 0x0805F0E8
 _0802BA48: .4byte 0x080783C8
@@ -10939,7 +10939,7 @@ sub_0802BA84: @ 0x0802BA84
 	ldr r3, _0802BDDC @ =0x040000D4
 	ldr r0, _0802BDE0 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802BDE4 @ =gUnk_030007DC
+	ldr r1, _0802BDE4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802BDE8 @ =0x80000010
@@ -10950,7 +10950,7 @@ sub_0802BA84: @ 0x0802BA84
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _0802BDEC @ =0x0805ECE8
-	ldr r1, _0802BDF0 @ =gUnk_03005490
+	ldr r1, _0802BDF0 @ =gObjVramPtr
 	ldr r5, _0802BDF4 @ =0x0805EEE8
 	mov ip, r5
 	ldr r7, _0802BDF8 @ =0x08078348
@@ -11401,10 +11401,10 @@ _0802BDD8:
 	.align 2, 0
 _0802BDDC: .4byte 0x040000D4
 _0802BDE0: .4byte 0x08078308
-_0802BDE4: .4byte gUnk_030007DC
+_0802BDE4: .4byte gObjPalRamPtr
 _0802BDE8: .4byte 0x80000010
 _0802BDEC: .4byte 0x0805ECE8
-_0802BDF0: .4byte gUnk_03005490
+_0802BDF0: .4byte gObjVramPtr
 _0802BDF4: .4byte 0x0805EEE8
 _0802BDF8: .4byte 0x08078348
 _0802BDFC: .4byte 0x0805F0E8
@@ -11932,7 +11932,7 @@ sub_0802C1F8: @ 0x0802C1F8
 	ldr r2, _0802C550 @ =0x040000D4
 	ldr r0, _0802C554 @ =0x08078468
 	str r0, [r2]
-	ldr r1, _0802C558 @ =gUnk_030007DC
+	ldr r1, _0802C558 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802C55C @ =0x80000010
@@ -11942,7 +11942,7 @@ sub_0802C1F8: @ 0x0802C1F8
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
-	ldr r1, _0802C560 @ =gUnk_03005490
+	ldr r1, _0802C560 @ =gObjVramPtr
 	ldr r5, _0802C564 @ =0x08078328
 	mov ip, r5
 	ldr r6, _0802C568 @ =0x0805EEE8
@@ -12393,9 +12393,9 @@ _0802C52E:
 	.align 2, 0
 _0802C550: .4byte 0x040000D4
 _0802C554: .4byte 0x08078468
-_0802C558: .4byte gUnk_030007DC
+_0802C558: .4byte gObjPalRamPtr
 _0802C55C: .4byte 0x80000010
-_0802C560: .4byte gUnk_03005490
+_0802C560: .4byte gObjVramPtr
 _0802C564: .4byte 0x08078328
 _0802C568: .4byte 0x0805EEE8
 _0802C56C: .4byte 0x08078348
@@ -12841,7 +12841,7 @@ sub_0802C8B0: @ 0x0802C8B0
 	ldr r3, _0802CC08 @ =0x040000D4
 	ldr r0, _0802CC0C @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802CC10 @ =gUnk_030007DC
+	ldr r1, _0802CC10 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802CC14 @ =0x80000010
@@ -12852,7 +12852,7 @@ sub_0802C8B0: @ 0x0802C8B0
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802CC18 @ =0x0805ECE8
-	ldr r1, _0802CC1C @ =gUnk_03005490
+	ldr r1, _0802CC1C @ =gObjVramPtr
 	ldr r7, _0802CC20 @ =0x0805EEE8
 	ldr r6, _0802CC24 @ =0x08078348
 	mov r8, r6
@@ -13303,10 +13303,10 @@ _0802CC02:
 	.align 2, 0
 _0802CC08: .4byte 0x040000D4
 _0802CC0C: .4byte 0x08078308
-_0802CC10: .4byte gUnk_030007DC
+_0802CC10: .4byte gObjPalRamPtr
 _0802CC14: .4byte 0x80000010
 _0802CC18: .4byte 0x0805ECE8
-_0802CC1C: .4byte gUnk_03005490
+_0802CC1C: .4byte gObjVramPtr
 _0802CC20: .4byte 0x0805EEE8
 _0802CC24: .4byte 0x08078348
 _0802CC28: .4byte 0x0805F0E8
@@ -13832,7 +13832,7 @@ sub_0802D028: @ 0x0802D028
 	ldr r2, _0802D394 @ =0x040000D4
 	ldr r0, _0802D398 @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _0802D39C @ =gUnk_030007DC
+	ldr r1, _0802D39C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802D3A0 @ =0x80000010
@@ -13843,7 +13843,7 @@ sub_0802D028: @ 0x0802D028
 	lsls r5, r5, #0x18
 	adds r4, r1, #0
 	ldr r7, _0802D3A4 @ =0x08060A08
-	ldr r3, _0802D3A8 @ =gUnk_03005490
+	ldr r3, _0802D3A8 @ =gObjVramPtr
 	ldr r1, _0802D3AC @ =0x080784C8
 	mov ip, r1
 	ldr r1, _0802D3B0 @ =0x08060A88
@@ -14299,10 +14299,10 @@ _0802D37E:
 	.align 2, 0
 _0802D394: .4byte 0x040000D4
 _0802D398: .4byte 0x080784A8
-_0802D39C: .4byte gUnk_030007DC
+_0802D39C: .4byte gObjPalRamPtr
 _0802D3A0: .4byte 0x80000010
 _0802D3A4: .4byte 0x08060A08
-_0802D3A8: .4byte gUnk_03005490
+_0802D3A8: .4byte gObjVramPtr
 _0802D3AC: .4byte 0x080784C8
 _0802D3B0: .4byte 0x08060A88
 _0802D3B4: .4byte 0x080784E8
@@ -14520,7 +14520,7 @@ sub_0802D558: @ 0x0802D558
 	ldr r3, _0802D8B0 @ =0x040000D4
 	ldr r0, _0802D8B4 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802D8B8 @ =gUnk_030007DC
+	ldr r1, _0802D8B8 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802D8BC @ =0x80000010
@@ -14531,7 +14531,7 @@ sub_0802D558: @ 0x0802D558
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802D8C0 @ =0x0805ECE8
-	ldr r1, _0802D8C4 @ =gUnk_03005490
+	ldr r1, _0802D8C4 @ =gObjVramPtr
 	ldr r6, _0802D8C8 @ =0x0805EEE8
 	mov r8, r6
 	ldr r7, _0802D8CC @ =0x08078448
@@ -14982,10 +14982,10 @@ _0802D8AA:
 	.align 2, 0
 _0802D8B0: .4byte 0x040000D4
 _0802D8B4: .4byte 0x08078308
-_0802D8B8: .4byte gUnk_030007DC
+_0802D8B8: .4byte gObjPalRamPtr
 _0802D8BC: .4byte 0x80000010
 _0802D8C0: .4byte 0x0805ECE8
-_0802D8C4: .4byte gUnk_03005490
+_0802D8C4: .4byte gObjVramPtr
 _0802D8C8: .4byte 0x0805EEE8
 _0802D8CC: .4byte 0x08078448
 _0802D8D0: .4byte 0x0805FC08
@@ -15379,7 +15379,7 @@ sub_0802DBC4: @ 0x0802DBC4
 	ldr r3, _0802DF18 @ =0x040000D4
 	ldr r0, _0802DF1C @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802DF20 @ =gUnk_030007DC
+	ldr r1, _0802DF20 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802DF24 @ =0x80000010
@@ -15390,7 +15390,7 @@ sub_0802DBC4: @ 0x0802DBC4
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _0802DF28 @ =0x0805ECE8
-	ldr r1, _0802DF2C @ =gUnk_03005490
+	ldr r1, _0802DF2C @ =gObjVramPtr
 	ldr r6, _0802DF30 @ =0x0805F0E8
 	mov ip, r6
 	ldr r7, _0802DF34 @ =0x08078448
@@ -15840,10 +15840,10 @@ _0802DF14:
 	.align 2, 0
 _0802DF18: .4byte 0x040000D4
 _0802DF1C: .4byte 0x08078308
-_0802DF20: .4byte gUnk_030007DC
+_0802DF20: .4byte gObjPalRamPtr
 _0802DF24: .4byte 0x80000010
 _0802DF28: .4byte 0x0805ECE8
-_0802DF2C: .4byte gUnk_03005490
+_0802DF2C: .4byte gObjVramPtr
 _0802DF30: .4byte 0x0805F0E8
 _0802DF34: .4byte 0x08078448
 _0802DF38: .4byte 0x0805FC08
@@ -16405,7 +16405,7 @@ sub_0802E374: @ 0x0802E374
 	ldr r3, _0802E6CC @ =0x040000D4
 	ldr r0, _0802E6D0 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802E6D4 @ =gUnk_030007DC
+	ldr r1, _0802E6D4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802E6D8 @ =0x80000010
@@ -16415,7 +16415,7 @@ sub_0802E374: @ 0x0802E374
 	movs r2, #0x80
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
-	ldr r1, _0802E6DC @ =gUnk_03005490
+	ldr r1, _0802E6DC @ =gObjVramPtr
 	ldr r5, _0802E6E0 @ =0x08078348
 	mov ip, r5
 	ldr r5, _0802E6E4 @ =0x0805F0E8
@@ -16866,9 +16866,9 @@ _0802E6C2:
 	.align 2, 0
 _0802E6CC: .4byte 0x040000D4
 _0802E6D0: .4byte 0x08078308
-_0802E6D4: .4byte gUnk_030007DC
+_0802E6D4: .4byte gObjPalRamPtr
 _0802E6D8: .4byte 0x80000010
-_0802E6DC: .4byte gUnk_03005490
+_0802E6DC: .4byte gObjVramPtr
 _0802E6E0: .4byte 0x08078348
 _0802E6E4: .4byte 0x0805F0E8
 _0802E6E8: .4byte 0x08078448
@@ -17477,7 +17477,7 @@ sub_0802EB78: @ 0x0802EB78
 	ldr r2, _0802EE64 @ =0x040000D4
 	ldr r0, _0802EE68 @ =0x0805FA08
 	str r0, [r2]
-	ldr r1, _0802EE6C @ =gUnk_03005490
+	ldr r1, _0802EE6C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802EE70 @ =0x80000080
@@ -17487,7 +17487,7 @@ sub_0802EB78: @ 0x0802EB78
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	ldr r5, _0802EE74 @ =0x08078328
-	ldr r4, _0802EE78 @ =gUnk_030007DC
+	ldr r4, _0802EE78 @ =gObjPalRamPtr
 	ldr r6, _0802EE7C @ =0x0805EEE8
 	ldr r7, _0802EE80 @ =0x0805F0E8
 	mov ip, r7
@@ -17879,10 +17879,10 @@ _0802EE48:
 	.align 2, 0
 _0802EE64: .4byte 0x040000D4
 _0802EE68: .4byte 0x0805FA08
-_0802EE6C: .4byte gUnk_03005490
+_0802EE6C: .4byte gObjVramPtr
 _0802EE70: .4byte 0x80000080
 _0802EE74: .4byte 0x08078328
-_0802EE78: .4byte gUnk_030007DC
+_0802EE78: .4byte gObjPalRamPtr
 _0802EE7C: .4byte 0x0805EEE8
 _0802EE80: .4byte 0x0805F0E8
 _0802EE84: .4byte 0x080783C8
@@ -17911,7 +17911,7 @@ sub_0802EEC0: @ 0x0802EEC0
 	ldr r3, _0802F214 @ =0x040000D4
 	ldr r0, _0802F218 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802F21C @ =gUnk_030007DC
+	ldr r1, _0802F21C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802F220 @ =0x80000010
@@ -17921,7 +17921,7 @@ sub_0802EEC0: @ 0x0802EEC0
 	movs r2, #0x80
 	lsls r2, r2, #0x18
 	ldr r5, _0802F224 @ =0x0805ECE8
-	ldr r4, _0802F228 @ =gUnk_03005490
+	ldr r4, _0802F228 @ =gObjVramPtr
 	ldr r6, _0802F22C @ =0x08078448
 	ldr r7, _0802F230 @ =0x080786A8
 	mov ip, r7
@@ -18371,10 +18371,10 @@ _0802F20C:
 	.align 2, 0
 _0802F214: .4byte 0x040000D4
 _0802F218: .4byte 0x08078308
-_0802F21C: .4byte gUnk_030007DC
+_0802F21C: .4byte gObjPalRamPtr
 _0802F220: .4byte 0x80000010
 _0802F224: .4byte 0x0805ECE8
-_0802F228: .4byte gUnk_03005490
+_0802F228: .4byte gObjVramPtr
 _0802F22C: .4byte 0x08078448
 _0802F230: .4byte 0x080786A8
 _0802F234: .4byte 0x080628C8
@@ -18772,7 +18772,7 @@ sub_0802F53C: @ 0x0802F53C
 	ldr r2, _0802F894 @ =0x040000D4
 	ldr r0, _0802F898 @ =0x08078468
 	str r0, [r2]
-	ldr r1, _0802F89C @ =gUnk_030007DC
+	ldr r1, _0802F89C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0802F8A0 @ =0x80000010
@@ -18782,7 +18782,7 @@ sub_0802F53C: @ 0x0802F53C
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
-	ldr r1, _0802F8A4 @ =gUnk_03005490
+	ldr r1, _0802F8A4 @ =gObjVramPtr
 	ldr r5, _0802F8A8 @ =0x08078328
 	mov ip, r5
 	ldr r5, _0802F8AC @ =0x0805EEE8
@@ -19232,9 +19232,9 @@ _0802F86C:
 	.align 2, 0
 _0802F894: .4byte 0x040000D4
 _0802F898: .4byte 0x08078468
-_0802F89C: .4byte gUnk_030007DC
+_0802F89C: .4byte gObjPalRamPtr
 _0802F8A0: .4byte 0x80000010
-_0802F8A4: .4byte gUnk_03005490
+_0802F8A4: .4byte gObjVramPtr
 _0802F8A8: .4byte 0x08078328
 _0802F8AC: .4byte 0x0805EEE8
 _0802F8B0: .4byte 0x08078348
@@ -19427,7 +19427,7 @@ sub_0802FA28: @ 0x0802FA28
 	ldr r3, _0802FD7C @ =0x040000D4
 	ldr r0, _0802FD80 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0802FD84 @ =gUnk_030007DC
+	ldr r1, _0802FD84 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0802FD88 @ =0x80000010
@@ -19437,7 +19437,7 @@ sub_0802FA28: @ 0x0802FA28
 	movs r2, #0x80
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
-	ldr r1, _0802FD8C @ =gUnk_03005490
+	ldr r1, _0802FD8C @ =gObjVramPtr
 	ldr r5, _0802FD90 @ =0x08078348
 	mov ip, r5
 	ldr r5, _0802FD94 @ =0x0805F0E8
@@ -19886,9 +19886,9 @@ _0802FD72:
 	.align 2, 0
 _0802FD7C: .4byte 0x040000D4
 _0802FD80: .4byte 0x08078308
-_0802FD84: .4byte gUnk_030007DC
+_0802FD84: .4byte gObjPalRamPtr
 _0802FD88: .4byte 0x80000010
-_0802FD8C: .4byte gUnk_03005490
+_0802FD8C: .4byte gObjVramPtr
 _0802FD90: .4byte 0x08078348
 _0802FD94: .4byte 0x0805F0E8
 _0802FD98: .4byte 0x08078568
@@ -20430,7 +20430,7 @@ sub_080301A8: @ 0x080301A8
 	ldr r2, _0803050C @ =0x040000D4
 	ldr r0, _08030510 @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _08030514 @ =gUnk_030007DC
+	ldr r1, _08030514 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08030518 @ =0x80000010
@@ -20441,7 +20441,7 @@ sub_080301A8: @ 0x080301A8
 	lsls r5, r5, #0x18
 	adds r4, r1, #0
 	ldr r6, _0803051C @ =0x08060A08
-	ldr r3, _08030520 @ =gUnk_03005490
+	ldr r3, _08030520 @ =gObjVramPtr
 	ldr r1, _08030524 @ =0x080784C8
 	mov ip, r1
 	ldr r1, _08030528 @ =0x08060A88
@@ -20895,10 +20895,10 @@ _080304F4:
 	.align 2, 0
 _0803050C: .4byte 0x040000D4
 _08030510: .4byte 0x080784A8
-_08030514: .4byte gUnk_030007DC
+_08030514: .4byte gObjPalRamPtr
 _08030518: .4byte 0x80000010
 _0803051C: .4byte 0x08060A08
-_08030520: .4byte gUnk_03005490
+_08030520: .4byte gObjVramPtr
 _08030524: .4byte 0x080784C8
 _08030528: .4byte 0x08060A88
 _0803052C: .4byte gUnk_08189A24
@@ -21072,7 +21072,7 @@ sub_08030680: @ 0x08030680
 	ldr r3, _080309D8 @ =0x040000D4
 	ldr r0, _080309DC @ =0x08078308
 	str r0, [r3]
-	ldr r1, _080309E0 @ =gUnk_030007DC
+	ldr r1, _080309E0 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080309E4 @ =0x80000010
@@ -21083,7 +21083,7 @@ sub_08030680: @ 0x08030680
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _080309E8 @ =0x0805ECE8
-	ldr r1, _080309EC @ =gUnk_03005490
+	ldr r1, _080309EC @ =gObjVramPtr
 	ldr r6, _080309F0 @ =0x08078328
 	ldr r7, _080309F4 @ =0x08078348
 	mov r8, r7
@@ -21534,10 +21534,10 @@ _080309D4:
 	.align 2, 0
 _080309D8: .4byte 0x040000D4
 _080309DC: .4byte 0x08078308
-_080309E0: .4byte gUnk_030007DC
+_080309E0: .4byte gObjPalRamPtr
 _080309E4: .4byte 0x80000010
 _080309E8: .4byte 0x0805ECE8
-_080309EC: .4byte gUnk_03005490
+_080309EC: .4byte gObjVramPtr
 _080309F0: .4byte 0x08078328
 _080309F4: .4byte 0x08078348
 _080309F8: .4byte 0x0805F0E8
@@ -21966,7 +21966,7 @@ sub_08030D38: @ 0x08030D38
 	ldr r3, _08031090 @ =0x040000D4
 	ldr r0, _08031094 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08031098 @ =gUnk_030007DC
+	ldr r1, _08031098 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0803109C @ =0x80000010
@@ -21977,7 +21977,7 @@ sub_08030D38: @ 0x08030D38
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _080310A0 @ =0x0805ECE8
-	ldr r1, _080310A4 @ =gUnk_03005490
+	ldr r1, _080310A4 @ =gObjVramPtr
 	ldr r6, _080310A8 @ =0x08078328
 	ldr r7, _080310AC @ =0x08078348
 	mov r8, r7
@@ -22426,10 +22426,10 @@ _0803106E:
 	.align 2, 0
 _08031090: .4byte 0x040000D4
 _08031094: .4byte 0x08078308
-_08031098: .4byte gUnk_030007DC
+_08031098: .4byte gObjPalRamPtr
 _0803109C: .4byte 0x80000010
 _080310A0: .4byte 0x0805ECE8
-_080310A4: .4byte gUnk_03005490
+_080310A4: .4byte gObjVramPtr
 _080310A8: .4byte 0x08078328
 _080310AC: .4byte 0x08078348
 _080310B0: .4byte 0x0805F0E8
@@ -22860,7 +22860,7 @@ sub_080313F8: @ 0x080313F8
 	ldr r3, _08031750 @ =0x040000D4
 	ldr r0, _08031754 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08031758 @ =gUnk_030007DC
+	ldr r1, _08031758 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _0803175C @ =0x80000010
@@ -22871,7 +22871,7 @@ sub_080313F8: @ 0x080313F8
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08031760 @ =0x0805ECE8
-	ldr r1, _08031764 @ =gUnk_03005490
+	ldr r1, _08031764 @ =gObjVramPtr
 	ldr r7, _08031768 @ =0x0805F0E8
 	ldr r6, _0803176C @ =0x08078588
 	mov r8, r6
@@ -23322,10 +23322,10 @@ _0803174C:
 	.align 2, 0
 _08031750: .4byte 0x040000D4
 _08031754: .4byte 0x08078308
-_08031758: .4byte gUnk_030007DC
+_08031758: .4byte gObjPalRamPtr
 _0803175C: .4byte 0x80000010
 _08031760: .4byte 0x0805ECE8
-_08031764: .4byte gUnk_03005490
+_08031764: .4byte gObjVramPtr
 _08031768: .4byte 0x0805F0E8
 _0803176C: .4byte 0x08078588
 _08031770: .4byte 0x08061DC8
@@ -23779,7 +23779,7 @@ sub_08031ADC: @ 0x08031ADC
 	ldr r2, _08031E10 @ =0x040000D4
 	ldr r0, _08031E14 @ =0x0805FA08
 	str r0, [r2]
-	ldr r1, _08031E18 @ =gUnk_03005490
+	ldr r1, _08031E18 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08031E1C @ =0x80000080
@@ -23788,7 +23788,7 @@ sub_08031ADC: @ 0x08031ADC
 	ldr r0, [r2, #8]
 	movs r3, #0x80
 	lsls r3, r3, #0x18
-	ldr r4, _08031E20 @ =gUnk_030007DC
+	ldr r4, _08031E20 @ =gObjPalRamPtr
 	ldr r7, _08031E24 @ =0x0805EEE8
 	ldr r5, _08031E28 @ =0x08078348
 	mov ip, r5
@@ -24221,9 +24221,9 @@ _08031E00:
 	.align 2, 0
 _08031E10: .4byte 0x040000D4
 _08031E14: .4byte 0x0805FA08
-_08031E18: .4byte gUnk_03005490
+_08031E18: .4byte gObjVramPtr
 _08031E1C: .4byte 0x80000080
-_08031E20: .4byte gUnk_030007DC
+_08031E20: .4byte gObjPalRamPtr
 _08031E24: .4byte 0x0805EEE8
 _08031E28: .4byte 0x08078348
 _08031E2C: .4byte 0x0805F0E8
@@ -24262,7 +24262,7 @@ sub_08031E7C: @ 0x08031E7C
 	ldr r3, _080321D4 @ =0x040000D4
 	ldr r0, _080321D8 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _080321DC @ =gUnk_030007DC
+	ldr r1, _080321DC @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080321E0 @ =0x80000010
@@ -24273,7 +24273,7 @@ sub_08031E7C: @ 0x08031E7C
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _080321E4 @ =0x0805ECE8
-	ldr r1, _080321E8 @ =gUnk_03005490
+	ldr r1, _080321E8 @ =gObjVramPtr
 	ldr r5, _080321EC @ =0x0805EEE8
 	mov ip, r5
 	ldr r7, _080321F0 @ =0x080783E8
@@ -24724,10 +24724,10 @@ _080321CC:
 	.align 2, 0
 _080321D4: .4byte 0x040000D4
 _080321D8: .4byte 0x08078308
-_080321DC: .4byte gUnk_030007DC
+_080321DC: .4byte gObjPalRamPtr
 _080321E0: .4byte 0x80000010
 _080321E4: .4byte 0x0805ECE8
-_080321E8: .4byte gUnk_03005490
+_080321E8: .4byte gObjVramPtr
 _080321EC: .4byte 0x0805EEE8
 _080321F0: .4byte 0x080783E8
 _080321F4: .4byte 0x0805F508
@@ -25390,7 +25390,7 @@ sub_080326E8: @ 0x080326E8
 	ldr r3, _08032A44 @ =0x040000D4
 	ldr r0, _08032A48 @ =0x08078468
 	str r0, [r3]
-	ldr r1, _08032A4C @ =gUnk_030007DC
+	ldr r1, _08032A4C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08032A50 @ =0x80000010
@@ -25401,7 +25401,7 @@ sub_080326E8: @ 0x080326E8
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08032A54 @ =0x0805FE08
-	ldr r1, _08032A58 @ =gUnk_03005490
+	ldr r1, _08032A58 @ =gObjVramPtr
 	ldr r6, _08032A5C @ =0x0805EEE8
 	mov r8, r6
 	ldr r6, _08032A60 @ =0x0805F0E8
@@ -25853,10 +25853,10 @@ _08032A28:
 	.align 2, 0
 _08032A44: .4byte 0x040000D4
 _08032A48: .4byte 0x08078468
-_08032A4C: .4byte gUnk_030007DC
+_08032A4C: .4byte gObjPalRamPtr
 _08032A50: .4byte 0x80000010
 _08032A54: .4byte 0x0805FE08
-_08032A58: .4byte gUnk_03005490
+_08032A58: .4byte gObjVramPtr
 _08032A5C: .4byte 0x0805EEE8
 _08032A60: .4byte 0x0805F0E8
 _08032A64: .4byte 0x0805FC08
@@ -26240,7 +26240,7 @@ sub_08032D3C: @ 0x08032D3C
 	ldr r3, _08033094 @ =0x040000D4
 	ldr r0, _08033098 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _0803309C @ =gUnk_030007DC
+	ldr r1, _0803309C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080330A0 @ =0x80000010
@@ -26251,7 +26251,7 @@ sub_08032D3C: @ 0x08032D3C
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _080330A4 @ =0x0805ECE8
-	ldr r1, _080330A8 @ =gUnk_03005490
+	ldr r1, _080330A8 @ =gObjVramPtr
 	ldr r6, _080330AC @ =0x08078328
 	ldr r7, _080330B0 @ =0x08078348
 	mov r8, r7
@@ -26701,10 +26701,10 @@ _0803308A:
 	.align 2, 0
 _08033094: .4byte 0x040000D4
 _08033098: .4byte 0x08078308
-_0803309C: .4byte gUnk_030007DC
+_0803309C: .4byte gObjPalRamPtr
 _080330A0: .4byte 0x80000010
 _080330A4: .4byte 0x0805ECE8
-_080330A8: .4byte gUnk_03005490
+_080330A8: .4byte gObjVramPtr
 _080330AC: .4byte 0x08078328
 _080330B0: .4byte 0x08078348
 _080330B4: .4byte 0x0805F0E8
@@ -27381,7 +27381,7 @@ sub_080335D4: @ 0x080335D4
 	ldr r2, _08033938 @ =0x040000D4
 	ldr r0, _0803393C @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _08033940 @ =gUnk_030007DC
+	ldr r1, _08033940 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08033944 @ =0x80000010
@@ -27392,7 +27392,7 @@ sub_080335D4: @ 0x080335D4
 	lsls r3, r3, #0x18
 	adds r6, r1, #0
 	ldr r4, _08033948 @ =0x08060A08
-	ldr r5, _0803394C @ =gUnk_03005490
+	ldr r5, _0803394C @ =gObjVramPtr
 	ldr r7, _08033950 @ =0x080784C8
 	ldr r1, _08033954 @ =0x08060A88
 	mov ip, r1
@@ -27580,7 +27580,7 @@ _0803374A:
 	cmp r0, #0
 	bne _0803374A
 _08033752:
-	ldr r1, _0803394C @ =gUnk_03005490
+	ldr r1, _0803394C @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #4
@@ -27592,7 +27592,7 @@ _08033752:
 	ldr r1, _08033938 @ =0x040000D4
 	ldr r0, _08033978 @ =0x08078328
 	str r0, [r1]
-	ldr r0, _08033940 @ =gUnk_030007DC
+	ldr r0, _08033940 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08033944 @ =0x80000010
@@ -27612,7 +27612,7 @@ _0803378A:
 	ldr r3, _08033938 @ =0x040000D4
 	ldr r2, _0803397C @ =0x0805EEE8
 	str r2, [r3]
-	ldr r1, _0803394C @ =gUnk_03005490
+	ldr r1, _0803394C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08033980 @ =0x80000100
@@ -27621,7 +27621,7 @@ _0803378A:
 	ldr r0, [r3, #8]
 	movs r4, #0x80
 	lsls r4, r4, #0x18
-	ldr r6, _08033940 @ =gUnk_030007DC
+	ldr r6, _08033940 @ =gObjPalRamPtr
 	adds r5, r1, #0
 	ldr r1, _08033984 @ =0x080788C8
 	mov ip, r1
@@ -27845,10 +27845,10 @@ _0803391E:
 	.align 2, 0
 _08033938: .4byte 0x040000D4
 _0803393C: .4byte 0x080784A8
-_08033940: .4byte gUnk_030007DC
+_08033940: .4byte gObjPalRamPtr
 _08033944: .4byte 0x80000010
 _08033948: .4byte 0x08060A08
-_0803394C: .4byte gUnk_03005490
+_0803394C: .4byte gObjVramPtr
 _08033950: .4byte 0x080784C8
 _08033954: .4byte 0x08060A88
 _08033958: .4byte 0x080784E8
@@ -28023,7 +28023,7 @@ sub_08033AAC: @ 0x08033AAC
 	ldr r3, _08033E04 @ =0x040000D4
 	ldr r0, _08033E08 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08033E0C @ =gUnk_030007DC
+	ldr r1, _08033E0C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08033E10 @ =0x80000010
@@ -28034,7 +28034,7 @@ sub_08033AAC: @ 0x08033AAC
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08033E14 @ =0x0805ECE8
-	ldr r1, _08033E18 @ =gUnk_03005490
+	ldr r1, _08033E18 @ =gObjVramPtr
 	ldr r6, _08033E1C @ =0x0805EEE8
 	mov ip, r6
 	ldr r7, _08033E20 @ =0x080783C8
@@ -28483,10 +28483,10 @@ _08033DDE:
 	.align 2, 0
 _08033E04: .4byte 0x040000D4
 _08033E08: .4byte 0x08078308
-_08033E0C: .4byte gUnk_030007DC
+_08033E0C: .4byte gObjPalRamPtr
 _08033E10: .4byte 0x80000010
 _08033E14: .4byte 0x0805ECE8
-_08033E18: .4byte gUnk_03005490
+_08033E18: .4byte gObjVramPtr
 _08033E1C: .4byte 0x0805EEE8
 _08033E20: .4byte 0x080783C8
 _08033E24: .4byte 0x0805F488
@@ -28792,7 +28792,7 @@ sub_08034078: @ 0x08034078
 	ldr r3, _080343D0 @ =0x040000D4
 	ldr r0, _080343D4 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _080343D8 @ =gUnk_030007DC
+	ldr r1, _080343D8 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080343DC @ =0x80000010
@@ -28803,7 +28803,7 @@ sub_08034078: @ 0x08034078
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _080343E0 @ =0x0805ECE8
-	ldr r1, _080343E4 @ =gUnk_03005490
+	ldr r1, _080343E4 @ =gObjVramPtr
 	ldr r5, _080343E8 @ =0x0805EEE8
 	mov ip, r5
 	ldr r7, _080343EC @ =0x08078348
@@ -29252,10 +29252,10 @@ _080343AA:
 	.align 2, 0
 _080343D0: .4byte 0x040000D4
 _080343D4: .4byte 0x08078308
-_080343D8: .4byte gUnk_030007DC
+_080343D8: .4byte gObjPalRamPtr
 _080343DC: .4byte 0x80000010
 _080343E0: .4byte 0x0805ECE8
-_080343E4: .4byte gUnk_03005490
+_080343E4: .4byte gObjVramPtr
 _080343E8: .4byte 0x0805EEE8
 _080343EC: .4byte 0x08078348
 _080343F0: .4byte 0x0805F0E8
@@ -29882,7 +29882,7 @@ sub_080348B0: @ 0x080348B0
 	ldr r3, _08034C08 @ =0x040000D4
 	ldr r0, _08034C0C @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08034C10 @ =gUnk_030007DC
+	ldr r1, _08034C10 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08034C14 @ =0x80000010
@@ -29893,7 +29893,7 @@ sub_080348B0: @ 0x080348B0
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08034C18 @ =0x0805ECE8
-	ldr r1, _08034C1C @ =gUnk_03005490
+	ldr r1, _08034C1C @ =gObjVramPtr
 	ldr r7, _08034C20 @ =0x0805EEE8
 	ldr r6, _08034C24 @ =0x080783C8
 	mov sb, r6
@@ -30344,10 +30344,10 @@ _08034C00:
 	.align 2, 0
 _08034C08: .4byte 0x040000D4
 _08034C0C: .4byte 0x08078308
-_08034C10: .4byte gUnk_030007DC
+_08034C10: .4byte gObjPalRamPtr
 _08034C14: .4byte 0x80000010
 _08034C18: .4byte 0x0805ECE8
-_08034C1C: .4byte gUnk_03005490
+_08034C1C: .4byte gObjVramPtr
 _08034C20: .4byte 0x0805EEE8
 _08034C24: .4byte 0x080783C8
 _08034C28: .4byte 0x08064F68
@@ -31136,7 +31136,7 @@ sub_08035210: @ 0x08035210
 	ldr r2, _08035568 @ =0x040000D4
 	ldr r0, _0803556C @ =0x0805FA08
 	str r0, [r2]
-	ldr r1, _08035570 @ =gUnk_03005490
+	ldr r1, _08035570 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08035574 @ =0x80000080
@@ -31145,7 +31145,7 @@ sub_08035210: @ 0x08035210
 	ldr r0, [r2, #8]
 	movs r3, #0x80
 	lsls r3, r3, #0x18
-	ldr r4, _08035578 @ =gUnk_030007DC
+	ldr r4, _08035578 @ =gObjPalRamPtr
 	ldr r6, _0803557C @ =0x0805EEE8
 	ldr r5, _08035580 @ =0x08078348
 	mov ip, r5
@@ -31598,9 +31598,9 @@ _08035564:
 	.align 2, 0
 _08035568: .4byte 0x040000D4
 _0803556C: .4byte 0x0805FA08
-_08035570: .4byte gUnk_03005490
+_08035570: .4byte gObjVramPtr
 _08035574: .4byte 0x80000080
-_08035578: .4byte gUnk_030007DC
+_08035578: .4byte gObjPalRamPtr
 _0803557C: .4byte 0x0805EEE8
 _08035580: .4byte 0x08078348
 _08035584: .4byte 0x0805F0E8
@@ -31784,7 +31784,7 @@ sub_080356E4: @ 0x080356E4
 	ldr r3, _08035A40 @ =0x040000D4
 	ldr r0, _08035A44 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08035A48 @ =gUnk_030007DC
+	ldr r1, _08035A48 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08035A4C @ =0x80000010
@@ -31795,7 +31795,7 @@ sub_080356E4: @ 0x080356E4
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _08035A50 @ =0x0805ECE8
-	ldr r1, _08035A54 @ =gUnk_03005490
+	ldr r1, _08035A54 @ =gObjVramPtr
 	ldr r6, _08035A58 @ =0x08078328
 	ldr r7, _08035A5C @ =0x08078348
 	mov ip, r7
@@ -32246,10 +32246,10 @@ _08035A14:
 	.align 2, 0
 _08035A40: .4byte 0x040000D4
 _08035A44: .4byte 0x08078308
-_08035A48: .4byte gUnk_030007DC
+_08035A48: .4byte gObjPalRamPtr
 _08035A4C: .4byte 0x80000010
 _08035A50: .4byte 0x0805ECE8
-_08035A54: .4byte gUnk_03005490
+_08035A54: .4byte gObjVramPtr
 _08035A58: .4byte 0x08078328
 _08035A5C: .4byte 0x08078348
 _08035A60: .4byte 0x0805F0E8
@@ -32852,7 +32852,7 @@ sub_08035EF8: @ 0x08035EF8
 	ldr r2, _08036254 @ =0x040000D4
 	ldr r0, _08036258 @ =0x08078468
 	str r0, [r2]
-	ldr r1, _0803625C @ =gUnk_030007DC
+	ldr r1, _0803625C @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08036260 @ =0x80000010
@@ -32862,7 +32862,7 @@ sub_08035EF8: @ 0x08035EF8
 	movs r3, #0x80
 	lsls r3, r3, #0x18
 	adds r4, r1, #0
-	ldr r1, _08036264 @ =gUnk_03005490
+	ldr r1, _08036264 @ =gObjVramPtr
 	ldr r5, _08036268 @ =0x08078328
 	mov r8, r5
 	ldr r6, _0803626C @ =0x0805EEE8
@@ -33315,9 +33315,9 @@ _08036230:
 	.align 2, 0
 _08036254: .4byte 0x040000D4
 _08036258: .4byte 0x08078468
-_0803625C: .4byte gUnk_030007DC
+_0803625C: .4byte gObjPalRamPtr
 _08036260: .4byte 0x80000010
-_08036264: .4byte gUnk_03005490
+_08036264: .4byte gObjVramPtr
 _08036268: .4byte 0x08078328
 _0803626C: .4byte 0x0805EEE8
 _08036270: .4byte 0x08078348
@@ -33719,7 +33719,7 @@ sub_08036564: @ 0x08036564
 	ldr r3, _080368BC @ =0x040000D4
 	ldr r0, _080368C0 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _080368C4 @ =gUnk_030007DC
+	ldr r1, _080368C4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _080368C8 @ =0x80000010
@@ -33730,7 +33730,7 @@ sub_08036564: @ 0x08036564
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r5, _080368CC @ =0x0805ECE8
-	ldr r1, _080368D0 @ =gUnk_03005490
+	ldr r1, _080368D0 @ =gObjVramPtr
 	ldr r7, _080368D4 @ =0x0805EEE8
 	ldr r6, _080368D8 @ =0x08078348
 	mov sb, r6
@@ -34181,10 +34181,10 @@ _080368B6:
 	.align 2, 0
 _080368BC: .4byte 0x040000D4
 _080368C0: .4byte 0x08078308
-_080368C4: .4byte gUnk_030007DC
+_080368C4: .4byte gObjPalRamPtr
 _080368C8: .4byte 0x80000010
 _080368CC: .4byte 0x0805ECE8
-_080368D0: .4byte gUnk_03005490
+_080368D0: .4byte gObjVramPtr
 _080368D4: .4byte 0x0805EEE8
 _080368D8: .4byte 0x08078348
 _080368DC: .4byte 0x0805F0E8
@@ -35164,7 +35164,7 @@ sub_08037038: @ 0x08037038
 	ldr r2, _080373AC @ =0x040000D4
 	ldr r0, _080373B0 @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _080373B4 @ =gUnk_030007DC
+	ldr r1, _080373B4 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _080373B8 @ =0x80000010
@@ -35175,7 +35175,7 @@ sub_08037038: @ 0x08037038
 	lsls r5, r5, #0x18
 	adds r7, r1, #0
 	ldr r6, _080373BC @ =0x08060A08
-	ldr r3, _080373C0 @ =gUnk_03005490
+	ldr r3, _080373C0 @ =gObjVramPtr
 	ldr r1, _080373C4 @ =0x080784C8
 	mov ip, r1
 	ldr r1, _080373C8 @ =0x08060A88
@@ -35432,7 +35432,7 @@ _0803722C:
 	cmp r0, #0
 	bne _0803722C
 _08037234:
-	ldr r1, _080373C0 @ =gUnk_03005490
+	ldr r1, _080373C0 @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -35447,7 +35447,7 @@ _08037234:
 	ldr r1, _080373AC @ =0x040000D4
 	ldr r0, _080373F8 @ =0x08078968
 	str r0, [r1]
-	ldr r0, _080373B4 @ =gUnk_030007DC
+	ldr r0, _080373B4 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _080373B8 @ =0x80000010
@@ -35464,7 +35464,7 @@ _0803726C:
 	cmp r0, #0
 	bne _0803726C
 _08037274:
-	ldr r3, _080373B4 @ =gUnk_030007DC
+	ldr r3, _080373B4 @ =gObjPalRamPtr
 	ldr r0, [r3]
 	adds r0, #0x20
 	str r0, [r3]
@@ -35484,7 +35484,7 @@ _08037274:
 	ldr r0, [r0]
 	ldr r0, [r0]
 	str r0, [r5]
-	ldr r1, _080373C0 @ =gUnk_03005490
+	ldr r1, _080373C0 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r5, #4]
 	ldr r0, _080373E4 @ =0x80000400
@@ -35631,10 +35631,10 @@ _08037382:
 	.align 2, 0
 _080373AC: .4byte 0x040000D4
 _080373B0: .4byte 0x080784A8
-_080373B4: .4byte gUnk_030007DC
+_080373B4: .4byte gObjPalRamPtr
 _080373B8: .4byte 0x80000010
 _080373BC: .4byte 0x08060A08
-_080373C0: .4byte gUnk_03005490
+_080373C0: .4byte gObjVramPtr
 _080373C4: .4byte 0x080784C8
 _080373C8: .4byte 0x08060A88
 _080373CC: .4byte 0x080784E8
@@ -35878,7 +35878,7 @@ sub_080375A0: @ 0x080375A0
 	ldr r3, _080378FC @ =0x040000D4
 	ldr r0, _08037900 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08037904 @ =gUnk_030007DC
+	ldr r1, _08037904 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08037908 @ =0x80000010
@@ -35888,7 +35888,7 @@ sub_080375A0: @ 0x080375A0
 	movs r2, #0x80
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
-	ldr r1, _0803790C @ =gUnk_03005490
+	ldr r1, _0803790C @ =gObjVramPtr
 	ldr r5, _08037910 @ =0x08078328
 	mov ip, r5
 	ldr r6, _08037914 @ =0x0805EEE8
@@ -36340,9 +36340,9 @@ _080378D6:
 	.align 2, 0
 _080378FC: .4byte 0x040000D4
 _08037900: .4byte 0x08078308
-_08037904: .4byte gUnk_030007DC
+_08037904: .4byte gObjPalRamPtr
 _08037908: .4byte 0x80000010
-_0803790C: .4byte gUnk_03005490
+_0803790C: .4byte gObjVramPtr
 _08037910: .4byte 0x08078328
 _08037914: .4byte 0x0805EEE8
 _08037918: .4byte 0x08078348
@@ -36979,7 +36979,7 @@ sub_08037DD4: @ 0x08037DD4
 	ldr r3, _0803812C @ =0x040000D4
 	ldr r0, _08038130 @ =0x08078308
 	str r0, [r3]
-	ldr r1, _08038134 @ =gUnk_030007DC
+	ldr r1, _08038134 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08038138 @ =0x80000010
@@ -36990,7 +36990,7 @@ sub_08037DD4: @ 0x08037DD4
 	lsls r2, r2, #0x18
 	adds r4, r1, #0
 	ldr r6, _0803813C @ =0x0805ECE8
-	ldr r1, _08038140 @ =gUnk_03005490
+	ldr r1, _08038140 @ =gObjVramPtr
 	ldr r5, _08038144 @ =0x0805EEE8
 	mov ip, r5
 	ldr r7, _08038148 @ =0x08078348
@@ -37441,10 +37441,10 @@ _08038128:
 	.align 2, 0
 _0803812C: .4byte 0x040000D4
 _08038130: .4byte 0x08078308
-_08038134: .4byte gUnk_030007DC
+_08038134: .4byte gObjPalRamPtr
 _08038138: .4byte 0x80000010
 _0803813C: .4byte 0x0805ECE8
-_08038140: .4byte gUnk_03005490
+_08038140: .4byte gObjVramPtr
 _08038144: .4byte 0x0805EEE8
 _08038148: .4byte 0x08078348
 _0803814C: .4byte 0x0805F0E8
@@ -38350,7 +38350,7 @@ sub_0803881C: @ 0x0803881C
 	ldr r4, _08038B7C @ =0x040000D4
 	ldr r0, _08038B80 @ =0x08078308
 	str r0, [r4]
-	ldr r1, _08038B84 @ =gUnk_030007DC
+	ldr r1, _08038B84 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r4, #4]
 	ldr r0, _08038B88 @ =0x80000010
@@ -38362,7 +38362,7 @@ sub_0803881C: @ 0x0803881C
 	str r2, [sp]
 	adds r6, r1, #0
 	ldr r1, _08038B8C @ =0x0805ECE8
-	ldr r3, _08038B90 @ =gUnk_03005490
+	ldr r3, _08038B90 @ =gObjVramPtr
 	ldr r2, _08038B94 @ =0x08078328
 	mov r8, r2
 	ldr r5, _08038B98 @ =0x0805EEE8
@@ -38813,10 +38813,10 @@ _08038B56:
 	.align 2, 0
 _08038B7C: .4byte 0x040000D4
 _08038B80: .4byte 0x08078308
-_08038B84: .4byte gUnk_030007DC
+_08038B84: .4byte gObjPalRamPtr
 _08038B88: .4byte 0x80000010
 _08038B8C: .4byte 0x0805ECE8
-_08038B90: .4byte gUnk_03005490
+_08038B90: .4byte gObjVramPtr
 _08038B94: .4byte 0x08078328
 _08038B98: .4byte 0x0805EEE8
 _08038B9C: .4byte 0x0805F0E8
@@ -39782,7 +39782,7 @@ sub_080392A4: @ 0x080392A4
 	ldr r2, _08039610 @ =0x040000D4
 	ldr r0, _08039614 @ =0x080784A8
 	str r0, [r2]
-	ldr r1, _08039618 @ =gUnk_030007DC
+	ldr r1, _08039618 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0803961C @ =0x80000010
@@ -39793,7 +39793,7 @@ sub_080392A4: @ 0x080392A4
 	lsls r5, r5, #0x18
 	adds r4, r1, #0
 	ldr r7, _08039620 @ =0x08060A08
-	ldr r3, _08039624 @ =gUnk_03005490
+	ldr r3, _08039624 @ =gObjVramPtr
 	ldr r1, _08039628 @ =0x080784C8
 	mov r8, r1
 	ldr r1, _0803962C @ =0x08060A88
@@ -40249,10 +40249,10 @@ _080395DE:
 	.align 2, 0
 _08039610: .4byte 0x040000D4
 _08039614: .4byte 0x080784A8
-_08039618: .4byte gUnk_030007DC
+_08039618: .4byte gObjPalRamPtr
 _0803961C: .4byte 0x80000010
 _08039620: .4byte 0x08060A08
-_08039624: .4byte gUnk_03005490
+_08039624: .4byte gObjVramPtr
 _08039628: .4byte 0x080784C8
 _0803962C: .4byte 0x08060A88
 _08039630: .4byte 0x080784E8
@@ -40645,7 +40645,7 @@ sub_08039920: @ 0x08039920
 	ldr r1, _08039BB0 @ =0x040000D4
 	ldr r0, _08039BB4 @ =0x08077E28
 	str r0, [r1]
-	ldr r0, _08039BB8 @ =gUnk_030007DC
+	ldr r0, _08039BB8 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08039BBC @ =0x80000010
@@ -40662,7 +40662,7 @@ _08039946:
 	cmp r0, #0
 	bne _08039946
 _0803994E:
-	ldr r4, _08039BB8 @ =gUnk_030007DC
+	ldr r4, _08039BB8 @ =gObjPalRamPtr
 	ldr r0, [r4]
 	adds r0, #0x20
 	str r0, [r4]
@@ -40672,7 +40672,7 @@ _0803994E:
 	ldr r1, _08039BC0 @ =gUnk_03002920
 	movs r0, #1
 	strb r0, [r1, #0x10]
-	ldr r1, _08039BC4 @ =gUnk_03005490
+	ldr r1, _08039BC4 @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r2, #0x80
 	lsls r2, r2, #2
@@ -40700,7 +40700,7 @@ _08039992:
 	ldr r3, _08039BB0 @ =0x040000D4
 	ldr r2, _08039BCC @ =0x0805C6E8
 	str r2, [r3]
-	ldr r1, _08039BC4 @ =gUnk_03005490
+	ldr r1, _08039BC4 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08039BD0 @ =0x80000100
@@ -40709,16 +40709,16 @@ _08039992:
 	ldr r0, [r3, #8]
 	movs r4, #0x80
 	lsls r4, r4, #0x18
-	ldr r7, _08039BB8 @ =gUnk_030007DC
+	ldr r7, _08039BB8 @ =gObjPalRamPtr
 	adds r5, r1, #0
 	ldr r1, _08039BD4 @ =0x0805C8E8
 	mov ip, r1
 	ldr r1, _08039BD8 @ =0x0805C968
 	mov r8, r1
 	ldr r6, _08039BDC @ =gUnk_03004C20
-	ldr r1, _08039BE0 @ =0x030034F4
+	ldr r1, _08039BE0 @ =gUnk_030034F4
 	mov sb, r1
-	ldr r1, _08039BE4 @ =0x030052AC
+	ldr r1, _08039BE4 @ =gUnk_030052AC
 	mov sl, r1
 	cmp r0, #0
 	bge _080399CE
@@ -40995,18 +40995,18 @@ _08039B98:
 	.align 2, 0
 _08039BB0: .4byte 0x040000D4
 _08039BB4: .4byte 0x08077E28
-_08039BB8: .4byte gUnk_030007DC
+_08039BB8: .4byte gObjPalRamPtr
 _08039BBC: .4byte 0x80000010
 _08039BC0: .4byte gUnk_03002920
-_08039BC4: .4byte gUnk_03005490
+_08039BC4: .4byte gObjVramPtr
 _08039BC8: .4byte 0x08077E48
 _08039BCC: .4byte 0x0805C6E8
 _08039BD0: .4byte 0x80000100
 _08039BD4: .4byte 0x0805C8E8
 _08039BD8: .4byte 0x0805C968
 _08039BDC: .4byte gUnk_03004C20
-_08039BE0: .4byte 0x030034F4
-_08039BE4: .4byte 0x030052AC
+_08039BE0: .4byte gUnk_030034F4
+_08039BE4: .4byte gUnk_030052AC
 _08039BE8: .4byte 0x80000040
 _08039BEC: .4byte gUnk_03003410
 _08039BF0: .4byte 0x0805C9E8

@@ -1416,8 +1416,8 @@ void sub_08003904(void)
     }
     gUnk_030051DC = gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
-    gUnk_030007DC = OBJ_PLTT;
-    gUnk_03005490 = OBJ_VRAM0;
+    gObjPalRamPtr = OBJ_PLTT;
+    gObjVramPtr = OBJ_VRAM0;
 
     sub_08003D80();
     sub_08003DC0(0, 0, gUnk_03002920[0].xPosBg2, gUnk_03002920[0].yPosBg2, 0, 0, gUnk_03002920[0].unkC_2, 0, 0x6E);

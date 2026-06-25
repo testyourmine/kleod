@@ -2641,7 +2641,6 @@ void sub_0800A468(void)
     s32 var_r2;
     u16 *var_r5;
     union Unk_03000820 var;
-    
 
     var_r5 = (u16*)gUnk_03004680;
     var = gUnk_080E2A7C;

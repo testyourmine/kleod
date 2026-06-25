@@ -61,12 +61,12 @@ sub_08043BA4: @ 0x08043BA4
 	ldr r1, _08043F4C @ =gUnk_03005428
 	movs r0, #0xd
 	strb r0, [r1]
-	ldr r1, _08043F50 @ =gUnk_030007DC
-	ldr r0, _08043F54 @ =0x030034F4
+	ldr r1, _08043F50 @ =gObjPalRamPtr
+	ldr r0, _08043F54 @ =gUnk_030034F4
 	ldr r2, [r0]
 	str r2, [r1]
-	ldr r1, _08043F58 @ =gUnk_03005490
-	ldr r0, _08043F5C @ =0x030052AC
+	ldr r1, _08043F58 @ =gObjVramPtr
+	ldr r0, _08043F5C @ =gUnk_030052AC
 	ldr r0, [r0]
 	str r0, [r1]
 	ldr r1, _08043F60 @ =0x040000D4
@@ -90,7 +90,7 @@ _08043C4A:
 	ldr r3, _08043F60 @ =0x040000D4
 	ldr r0, _08043F6C @ =0x080657C8
 	str r0, [r3]
-	ldr r1, _08043F58 @ =gUnk_03005490
+	ldr r1, _08043F58 @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r3, #4]
 	ldr r0, _08043F70 @ =0x80000200
@@ -99,7 +99,7 @@ _08043C4A:
 	ldr r0, [r3, #8]
 	movs r2, #0x80
 	lsls r2, r2, #0x18
-	ldr r4, _08043F50 @ =gUnk_030007DC
+	ldr r4, _08043F50 @ =gObjPalRamPtr
 	ldr r5, _08043F74 @ =0x08065BC8
 	ldr r6, _08043F78 @ =0x08078AA8
 	ldr r7, _08043F7C @ =0x08078AC8
@@ -491,10 +491,10 @@ _08043F40: .4byte sub_08001028
 _08043F44: .4byte gUnk_030051DC
 _08043F48: .4byte 0x0807D248
 _08043F4C: .4byte gUnk_03005428
-_08043F50: .4byte gUnk_030007DC
-_08043F54: .4byte 0x030034F4
-_08043F58: .4byte gUnk_03005490
-_08043F5C: .4byte 0x030052AC
+_08043F50: .4byte gObjPalRamPtr
+_08043F54: .4byte gUnk_030034F4
+_08043F58: .4byte gObjVramPtr
+_08043F5C: .4byte gUnk_030052AC
 _08043F60: .4byte 0x040000D4
 _08043F64: .4byte 0x08078A88
 _08043F68: .4byte 0x80000010
@@ -9530,12 +9530,12 @@ sub_0804886C: @ 0x0804886C
 	ldr r0, _08048C10 @ =gUnk_03003410
 	strb r5, [r0, #8]
 	bl sub_08003904
-	ldr r4, _08048C14 @ =gUnk_030007DC
-	ldr r0, _08048C18 @ =0x030034F4
+	ldr r4, _08048C14 @ =gObjPalRamPtr
+	ldr r0, _08048C18 @ =gUnk_030034F4
 	ldr r0, [r0]
 	str r0, [r4]
-	ldr r1, _08048C1C @ =gUnk_03005490
-	ldr r0, _08048C20 @ =0x030052AC
+	ldr r1, _08048C1C @ =gObjVramPtr
+	ldr r0, _08048C20 @ =gUnk_030052AC
 	ldr r0, [r0]
 	str r0, [r1]
 	ldr r2, _08048C24 @ =0x04000200
@@ -9570,13 +9570,13 @@ _0804890E:
 	cmp r0, #0
 	bne _0804890E
 _08048916:
-	ldr r1, _08048C14 @ =gUnk_030007DC
+	ldr r1, _08048C14 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r2, _08048C04 @ =0x040000D4
 	str r5, [r2]
-	ldr r1, _08048C1C @ =gUnk_03005490
+	ldr r1, _08048C1C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08048C40 @ =0x80000400
@@ -9775,7 +9775,7 @@ _08048A88:
 	cmp r0, #0
 	bne _08048A88
 _08048A90:
-	ldr r1, _08048C1C @ =gUnk_03005490
+	ldr r1, _08048C1C @ =gObjVramPtr
 	ldr r0, [r1]
 	movs r3, #0x80
 	lsls r3, r3, #4
@@ -9789,7 +9789,7 @@ _08048A90:
 	ldr r1, _08048C04 @ =0x040000D4
 	ldr r0, _08048C48 @ =0x08078FA8
 	str r0, [r1]
-	ldr r0, _08048C14 @ =gUnk_030007DC
+	ldr r0, _08048C14 @ =gObjPalRamPtr
 	ldr r0, [r0]
 	str r0, [r1, #4]
 	ldr r0, _08048C3C @ =0x80000010
@@ -9806,13 +9806,13 @@ _08048AC6:
 	cmp r0, #0
 	bne _08048AC6
 _08048ACE:
-	ldr r1, _08048C14 @ =gUnk_030007DC
+	ldr r1, _08048C14 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	adds r0, #0x20
 	str r0, [r1]
 	ldr r2, _08048C04 @ =0x040000D4
 	str r5, [r2]
-	ldr r1, _08048C1C @ =gUnk_03005490
+	ldr r1, _08048C1C @ =gObjVramPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _08048C4C @ =0x80000080
@@ -9968,10 +9968,10 @@ _08048C04: .4byte 0x040000D4
 _08048C08: .4byte gUnk_03004800
 _08048C0C: .4byte 0x84000100
 _08048C10: .4byte gUnk_03003410
-_08048C14: .4byte gUnk_030007DC
-_08048C18: .4byte 0x030034F4
-_08048C1C: .4byte gUnk_03005490
-_08048C20: .4byte 0x030052AC
+_08048C14: .4byte gObjPalRamPtr
+_08048C18: .4byte gUnk_030034F4
+_08048C1C: .4byte gObjVramPtr
+_08048C20: .4byte gUnk_030052AC
 _08048C24: .4byte 0x04000200
 _08048C28: .4byte 0x0000FFFE
 _08048C2C: .4byte 0x04000004
@@ -16347,12 +16347,12 @@ sub_0804BFD0: @ 0x0804BFD0
 	ldr r1, _0804C03C @ =gUnk_03005428
 	movs r0, #0xd
 	strb r0, [r1]
-	ldr r1, _0804C040 @ =gUnk_030007DC
-	ldr r0, _0804C044 @ =0x030034F4
+	ldr r1, _0804C040 @ =gObjPalRamPtr
+	ldr r0, _0804C044 @ =gUnk_030034F4
 	ldr r0, [r0]
 	str r0, [r1]
-	ldr r1, _0804C048 @ =gUnk_03005490
-	ldr r0, _0804C04C @ =0x030052AC
+	ldr r1, _0804C048 @ =gObjVramPtr
+	ldr r0, _0804C04C @ =gUnk_030052AC
 	ldr r0, [r0]
 	str r0, [r1]
 	add sp, #4
@@ -16366,10 +16366,10 @@ _0804C030: .4byte 0x81000080
 _0804C034: .4byte gUnk_03004800
 _0804C038: .4byte 0x84000100
 _0804C03C: .4byte gUnk_03005428
-_0804C040: .4byte gUnk_030007DC
-_0804C044: .4byte 0x030034F4
-_0804C048: .4byte gUnk_03005490
-_0804C04C: .4byte 0x030052AC
+_0804C040: .4byte gObjPalRamPtr
+_0804C044: .4byte gUnk_030034F4
+_0804C048: .4byte gObjVramPtr
+_0804C04C: .4byte gUnk_030052AC
 
 	thumb_func_start sub_0804C050
 sub_0804C050: @ 0x0804C050
@@ -16403,12 +16403,12 @@ _0804C07C:
 	ldr r1, _0804C0A8 @ =gUnk_03005428
 	movs r0, #0xd
 	strb r0, [r1]
-	ldr r1, _0804C0AC @ =gUnk_030007DC
-	ldr r0, _0804C0B0 @ =0x030034F4
+	ldr r1, _0804C0AC @ =gObjPalRamPtr
+	ldr r0, _0804C0B0 @ =gUnk_030034F4
 	ldr r0, [r0]
 	str r0, [r1]
-	ldr r1, _0804C0B4 @ =gUnk_03005490
-	ldr r0, _0804C0B8 @ =0x030052AC
+	ldr r1, _0804C0B4 @ =gObjVramPtr
+	ldr r0, _0804C0B8 @ =gUnk_030052AC
 	ldr r0, [r0]
 	str r0, [r1]
 	pop {r4, r5, r6, r7}
@@ -16417,10 +16417,10 @@ _0804C07C:
 	.align 2, 0
 _0804C0A4: .4byte 0x030007C8
 _0804C0A8: .4byte gUnk_03005428
-_0804C0AC: .4byte gUnk_030007DC
-_0804C0B0: .4byte 0x030034F4
-_0804C0B4: .4byte gUnk_03005490
-_0804C0B8: .4byte 0x030052AC
+_0804C0AC: .4byte gObjPalRamPtr
+_0804C0B0: .4byte gUnk_030034F4
+_0804C0B4: .4byte gObjVramPtr
+_0804C0B8: .4byte gUnk_030052AC
 
 	thumb_func_start sub_0804C0BC
 sub_0804C0BC: @ 0x0804C0BC
@@ -16455,7 +16455,7 @@ sub_0804C0EC: @ 0x0804C0EC
 	adds r7, r0, #0
 	mov r8, r1
 	movs r6, #0
-	ldr r0, _0804C180 @ =0x030052AC
+	ldr r0, _0804C180 @ =gUnk_030052AC
 	ldr r0, [r0]
 	ldr r1, _0804C184 @ =0xF9FF0000
 	adds r0, r0, r1
@@ -16500,7 +16500,7 @@ _0804C122:
 	adds r0, r0, r1
 	ldr r0, [r0]
 	str r0, [r2]
-	ldr r1, _0804C198 @ =gUnk_030007DC
+	ldr r1, _0804C198 @ =gObjPalRamPtr
 	ldr r0, [r1]
 	str r0, [r2, #4]
 	ldr r0, _0804C19C @ =0x80000010
@@ -16527,13 +16527,13 @@ _0804C174:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804C180: .4byte 0x030052AC
+_0804C180: .4byte gUnk_030052AC
 _0804C184: .4byte 0xF9FF0000
 _0804C188: .4byte 0x030007C8
 _0804C18C: .4byte 0x08057954
 _0804C190: .4byte 0x040000D4
 _0804C194: .4byte 0x08189DCC
-_0804C198: .4byte gUnk_030007DC
+_0804C198: .4byte gObjPalRamPtr
 _0804C19C: .4byte 0x80000010
 
 	thumb_func_start sub_0804C1A0

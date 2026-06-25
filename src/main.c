@@ -7,7 +7,7 @@
 #include "rand.h"
 #include "structs/variables.h"
 
-extern u8 gUnk_080D9150[][0x64];
+extern u8 gUnk_080D9150[][100]; // value pairs: input, input timer
 
 extern void *gUnk_0818B8A8[];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
@@ -23,8 +23,8 @@ extern void sub_08048768();
 // 470
 void AgbMain(void)
 {
-    u32 var_r4;
-    void *temp_r0;
+    u32 i;
+    void *pIntrMainBuf;
 
     DmaFill32(3, 0, EWRAM_START, EWRAM_END - EWRAM_START);
     DmaFill32(3, 0, IWRAM_START, IWRAM_END - IWRAM_START - 0x200);
@@ -45,11 +45,11 @@ void AgbMain(void)
     gIntrTable.gamePak = InterruptHandler_Normal;
 
     thunk_HeapInit();
-    temp_r0 = thunk_HeapAlloc(0x200, 2);
-    DmaCopy32(3, &IntrMain, temp_r0, 0x800);
-    INTR_VECTOR = temp_r0;
+    pIntrMainBuf = thunk_HeapAlloc(0x200, 2);
+    DmaCopy32(3, &IntrMain, pIntrMainBuf, 0x800);
+    INTR_VECTOR = pIntrMainBuf;
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
-    INTR_VECTOR = temp_r0;
+    INTR_VECTOR = pIntrMainBuf;
     IdentifyEeprom(4);
     REG_IME = 1;
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -91,9 +91,9 @@ void AgbMain(void)
 
     while (1)
     {   
-        for (var_r4 = 0; var_r4 < (gCallbackQueue.currentCount - 1); var_r4++)
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            gCallbackQueue.current[var_r4]();
+            gCallbackQueue.current[i]();
         }
 
         if (gCallbackQueue.current[gCallbackQueue.currentCount - 1] != 0)
@@ -101,9 +101,9 @@ void AgbMain(void)
             continue;
         }
         
-        for (var_r4 = 0; var_r4 < gCallbackQueue.nextCount; var_r4++)
+        for (i = 0; i < gCallbackQueue.nextCount; i++)
         {
-            gCallbackQueue.current[var_r4] = gCallbackQueue.next[var_r4];
+            gCallbackQueue.current[i] = gCallbackQueue.next[i];
         }
 
         gCallbackQueue.currentCount = gCallbackQueue.nextCount;
@@ -141,7 +141,7 @@ void InputHandler_Normal(void)
 void InputHandler_AttractMode(void)
 {
     u16 keyInput;
-    u32 var_r3;
+    u32 i;
 
     keyInput = REG_KEYINPUT ^ KEYS_MASK;
     gNewKeysAttract = keyInput & ~gHeldKeysAttract;
@@ -165,23 +165,23 @@ void InputHandler_AttractMode(void)
         gMosaicSize = gUnk_03005498 = 0;
         gUnk_03003410.unk7 = 2;
 
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount + 1); var_r3 += 1)
+        for (i = 0; i < (gCallbackQueue.currentCount + 1); i += 1)
         {
-            if (var_r3 == 4)
+            if (i == 4)
             {
                 gCallbackQueue.next[4] = sub_080245E8;
             }
-            else if (var_r3 > 4)
+            else if (i > 4)
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 - 1];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i - 1];
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
 
-        if (var_r3 > 3)
+        if (i > 3)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -197,7 +197,6 @@ void InputHandler_AttractMode(void)
 // 87C
 void sub_0800087C(u8 arg0, u8 arg1)
 {
-    // TODO: clean up dest
     DmaCopy16(
         3,
         gUnk_0818B8A8[arg1],

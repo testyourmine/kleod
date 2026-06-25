@@ -264,13 +264,13 @@ struct Unk_0300542C {
 extern struct Unk_0300542C *gUnk_0300542C;
 
 struct Unk_03005220 {
-    /* 0x00_0 */ u32 unk0_0:2;
-    /* 0x00_2 */ u32 unk0_2:3;
-    /* 0x00_5 */ u32 unk0_5:7;
-    /* 0x01_4 */ u32 unk1_4:3;
+    /* 0x00_0 */ u32 unk0_0:2; // hearts
+    /* 0x00_2 */ u32 unk0_2:3; // bitfield of stars
+    /* 0x00_5 */ u32 unk0_5:7; // dream stones
+    /* 0x01_4 */ u32 unk1_4:3; // bitfield of keys
     /* 0x01_7 */ u32 unk1_7:8;
-    /* 0x02_7 */ u32 unk2_7:6;
-    /* 0x03_5 */ u32 unk3_5:1;
+    /* 0x02_7 */ u32 unk2_7:6; // relates to collecting hearts and 1 ups
+    /* 0x03_5 */ u32 unk3_5:1; // moon door open
     /* 0x03_6 */ u32 unk3_6:1;
     /* 0x03_7 */ u32 unk3_7:1;
     /* 0x04 */ u32 unk4;
@@ -414,7 +414,7 @@ struct Unk_030051CC {
 extern struct Unk_030051CC gUnk_030051CC;
 
 extern u8 gUnk_030007C4;
-extern void *gUnk_030007DC; // OBJ palette ptr
+extern void * volatile gObjPalRamPtr; // OBJ palette ptr
 
 struct Unk_03000830 {
     /* 0x0 */ u8 unk0;
@@ -443,7 +443,7 @@ extern struct Unk_0300466C *gUnk_030051DC;
 
 extern void *gUnk_03005294;
 extern void *gUnk_03005418;
-extern void *gUnk_03005490; // OBJ vram ptr
+extern void * volatile gObjVramPtr; // OBJ vram ptr
 
 struct Unk_03000790 {
     /* 0x0 */ u16 unk0;
@@ -464,12 +464,12 @@ struct Unk_03003610 {
 extern struct Unk_03003610 gUnk_03003610[];
 
 struct Unk_03004680 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ u16 unk6;
+    /* 0x0 */ u16 unk0; // object affine PA
+    /* 0x2 */ u16 unk2; // object affine PB
+    /* 0x4 */ u16 unk4; // object affine PC
+    /* 0x6 */ u16 unk6; // object affine PD
 }; /* size = 0x8 */ 
-extern struct Unk_03004680 gUnk_03004680[];
+extern struct Unk_03004680 gUnk_03004680[]; // OAM affine buffer
 
 extern s32 gUnk_030007D4;
 extern s32 gUnk_030007F0;
@@ -510,7 +510,7 @@ extern u8 gUnk_030051B4;
 extern s32 gUnk_030051C4;
 extern s32 gUnk_030051D4;
 extern s32 gUnk_030051D8;
-extern u8 gUnk_03005288;
+extern u8 gUnk_03005288; // OAM affine matrix number
 extern u8 gUnk_0300528C;
 extern u8 gUnk_03005298;
 extern s32 gUnk_0300529C;
@@ -615,5 +615,8 @@ struct Unk_03004D90 {
 extern struct Unk_03004D90 gUnk_03004D90;
 
 extern u8 gUnk_03005200;
+
+extern void *gUnk_030034F4;
+extern void *gUnk_030052AC;
 
 #endif // GUARD_VARIABLES_H
