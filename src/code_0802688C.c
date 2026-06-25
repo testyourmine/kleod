@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_0802688C.h"
 #include "structs/variables.h"
 
 extern void sub_08025B78(s32, u8);
