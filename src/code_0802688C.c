@@ -180,6 +180,7 @@ extern u8 gUnk_080786E8[0x20];
 extern u8 gUnk_08078708[0x20];
 extern u8 gUnk_08078728[0x20];
 extern u8 gUnk_08078748[0x20];
+extern u8 gUnk_08078768[0x20]; // Unused?
 extern u8 gUnk_08078788[0x20];
 extern u8 gUnk_080787A8[0x20];
 extern u8 gUnk_080787C8[0x20];
@@ -200,6 +201,7 @@ extern u8 gUnk_08078988[0x20];
 extern u8 gUnk_080789A8[0x20];
 extern u8 gUnk_080789C8[0x20];
 extern u8 gUnk_080789E8[0x20];
+extern u8 gUnk_08078A08[0x20]; // Unused?
 extern u8 gUnk_08078A28[0x20];
 extern u8 gUnk_08078A48[0x20];
 extern u8 gUnk_08078A68[0x20];
@@ -1467,7 +1469,7 @@ void sub_0802C1F8(void)
     gObjVramPtr += 0x200;
     DmaCopy16Wait(3, &gUnk_08060808, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, &gUnk_08060608, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, &gUnk_08060608, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
     DmaCopy16Wait(3, &gUnk_08062248, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -1918,7 +1920,7 @@ void sub_0802E374(void)
     DmaCopy16Wait(3, &gUnk_0805F388, gObjVramPtr, 0x80);
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08078388, gObjPalRamPtr, 0x20);
+    DmaCopy16Wait(3, &gUnk_080783A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805F408, gObjVramPtr, 0x80);
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x80;

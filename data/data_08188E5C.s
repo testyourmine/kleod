@@ -33,7 +33,10 @@ gUnk_0818B704:: @ 0x0818B704
 gUnk_0818B7AC:: @ 0x0818B7AC
     .incbin "baserom.gba", 0x18B7AC, 0xC*0x4
 
-    .incbin "baserom.gba", 0x18B7DC, 0x18B8A8-0x18B7DC
+    .incbin "baserom.gba", 0x18B7DC, 0x18B800-0x18B7DC
+
+gUnk_0818B800:: @ 0x0818B800
+    .incbin "baserom.gba", 0x18B800, 0x6*0x7*0x4
 
 gUnk_0818B8A8:: @ 0x0818B8A8
     .incbin "baserom.gba", 0x18B8A8, 0x1
