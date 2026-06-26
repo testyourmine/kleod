@@ -108,23 +108,23 @@ void sub_08014318(void)
     var_r3 = 0;
     if (gUnk_03005220.unk56 > 0)
     {
-        var_r3 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.unk48)];
+        var_r3 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.bg2HLength)];
 
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]);
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.bg2HLength)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.bg2HLength)]);
     }
     else if (gUnk_03005220.unk56 < 0)
     {
-        var_r3 = gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.unk48)];
+        var_r3 = gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.bg2HLength)];
 
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.unk48)]);
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.unk48)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0xC) >> 3) * gUnk_03003430.bg2HLength)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x14) >> 3) * gUnk_03003430.bg2HLength)]);
     }
 
     if (gUnk_03005220.unk57 != 0)
@@ -132,8 +132,8 @@ void sub_08014318(void)
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x1A) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x1A) >> 3) * gUnk_03003430.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.unk48)]) ? (gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[0].xPosBg2 + gUnk_03005220.unk56) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x1A) >> 3) * gUnk_03003430.unk48)]);
-        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.unk48)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[0].xPosBg2 + gUnk_03005220.unk56) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 0x1A) >> 3) * gUnk_03003430.bg2HLength)]);
+        var_r3 = MAX(var_r3, gUnk_03004790.pBufBg2Tilemap[((gUnk_03005220.unk56 + gUnk_03002920[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gUnk_03002920[0].yPosBg2) - 4) >> 3) * gUnk_03003430.bg2HLength)]);
     }
 
     if (var_r3 < gUnk_03004654[0x1A])
@@ -333,9 +333,9 @@ void sub_08014760(u8 arg0)
 
             gUnk_03002920[arg0].unk17 = 1;
 
-            var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + ((s32) (gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.unk48];
+            var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + ((s32) (gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.bg2HLength];
 
-            var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + ((s32) (gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.unk48]);
+            var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + ((s32) (gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.bg2HLength]);
 
             if ((gUnk_03004654[0x18] <= var_r7) && (gUnk_03002920[arg0].unkF == 0))
             {
@@ -743,9 +743,9 @@ void sub_08014760(u8 arg0)
                 gUnk_03005220.unk54 += gUnk_03002920[arg0].xPosBg2 - sp0;
                 gUnk_03005220.unk55 += gUnk_03002920[arg0].yPosBg2 - sp4;
 
-                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((s32) ((u16) gUnk_03002920[arg0].yPosBg2 - 0x1E) >> 3) * gUnk_03003430.unk48)];
+                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((s32) ((u16) gUnk_03002920[arg0].yPosBg2 - 0x1E) >> 3) * gUnk_03003430.bg2HLength)];
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((s32) ((u16) gUnk_03002920[arg0].yPosBg2 - 0x1E) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((s32) ((u16) gUnk_03002920[arg0].yPosBg2 - 0x1E) >> 3) * gUnk_03003430.bg2HLength)]);
 
                 for (var_r6 = gUnk_03003634; var_r6 <= gUnk_03005430; var_r6++)
                 {
@@ -946,11 +946,11 @@ block_240:
                     gUnk_03005220.unk56 = sp8;
                     gUnk_03005220.unk57 = 0;
                 }
-                var_r7 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 4) >> 3) * gUnk_03003430.unk48)];
+                var_r7 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 4) >> 3) * gUnk_03003430.bg2HLength)];
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x10) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x10) >> 3) * gUnk_03003430.bg2HLength)]);
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x1C) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 + 8) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x1C) >> 3) * gUnk_03003430.bg2HLength)]);
             }
             else
             {
@@ -968,11 +968,11 @@ block_240:
                     gUnk_03005220.unk56 = -sp8;
                     gUnk_03005220.unk57 = 0;
                 }
-                var_r7 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 4) >> 3) * gUnk_03003430.unk48)];
+                var_r7 = gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 4) >> 3) * gUnk_03003430.bg2HLength)];
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x10) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x10) >> 3) * gUnk_03003430.bg2HLength)]);
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x1C) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((gUnk_03002920[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gUnk_03002920[arg0].yPosBg2 - 0x1C) >> 3) * gUnk_03003430.bg2HLength)]);
             }
 
             if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))
@@ -1515,9 +1515,9 @@ block_379:
                     gUnk_03005220.unk57 = -2;
                     gUnk_03005220.unk56 = 0;
                 }
-                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 0x18) >> 3) * gUnk_03003430.unk48)];
+                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 0x18) >> 3) * gUnk_03003430.bg2HLength)];
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 0x18) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 0x18) >> 3) * gUnk_03003430.bg2HLength)]);
             }
             else
             {
@@ -1542,9 +1542,9 @@ block_379:
                     gUnk_03005220.unk57 = sp8;
                     gUnk_03005220.unk56 = 0;
                 }
-                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.unk48)];
+                var_r7 = gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 + 6) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.bg2HLength)];
 
-                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.unk48)]);
+                var_r7 = MAX(var_r7, gUnk_03004790.pBufBg2Tilemap[((s32) (gUnk_03002920[arg0].xPosBg2 - 0xF) >> 3) + (((gUnk_03002920[arg0].yPosBg2 - 2) >> 3) * gUnk_03003430.bg2HLength)]);
             }
 
             if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))

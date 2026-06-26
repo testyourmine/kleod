@@ -426,9 +426,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gUnk_03000790[arg4].unk6 = arg3;
             if (arg7 == 0)
             {
-                for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gUnk_03005468.unk2; var_r3_3 -= 8)
+                for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gCurrentRoomBg2Bounds.top; var_r3_3 -= 8)
                 {
-                    if (gUnk_03004654[0x18] <= gUnk_03004790.pBufBg2Tilemap[(arg2 >> 3) + (gUnk_03003430.unk48 * (var_r3_3 >> 3))])
+                    if (gUnk_03004654[0x18] <= gUnk_03004790.pBufBg2Tilemap[(arg2 >> 3) + (gUnk_03003430.bg2HLength * (var_r3_3 >> 3))])
                     {
                         gUnk_03000790[arg4].unk4 = var_r3_3 + 8;
                         gUnk_03000790[arg4].unk8 = var_r3_3 + 8;
@@ -3301,7 +3301,7 @@ void sub_0800AC34(void)
 
                         while (1)
                         {
-                            u32 tmp2 = gUnk_03004790.pBufBg2Tilemap[(gUnk_03002920[var_r6].xPosBg2 >> 3) + ((gUnk_03002920[var_r6].yPosBg2 >> 3) * gUnk_03003430.unk48)];
+                            u32 tmp2 = gUnk_03004790.pBufBg2Tilemap[(gUnk_03002920[var_r6].xPosBg2 >> 3) + ((gUnk_03002920[var_r6].yPosBg2 >> 3) * gUnk_03003430.bg2HLength)];
                             if (gUnk_03004654[0x1B] <= tmp2)
                             {
                                 gUnk_03002920[var_r6].yPosBg2 += 0xA;

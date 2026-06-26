@@ -180,10 +180,10 @@ struct Unk_03003430 {
     /* 0x3C */ void *pVramBg2Tilemap; // BG2 tilemap
     /* 0x40 */ u16 bg2HOfs; // BG2HOFS
     /* 0x42 */ u16 bg2VOfs; // BG2VOFS
-    /* 0x44 */ u16 unk44;
-    /* 0x46 */ u16 unk46;
-    /* 0x48 */ u16 unk48;
-    /* 0x4A */ u16 unk4A;
+    /* 0x44 */ u16 bg2TileCol; // BG2 left column
+    /* 0x46 */ u16 bg2TileRow; // BG2 top row
+    /* 0x48 */ u16 bg2HLength; // BG2 X length
+    /* 0x4A */ u16 bg2VLength; // BG2 Y length
     /* 0x4C */ u16 unk4C;
     /* 0x4E */ u16 unk4E; // BG2 tile length y?
     /* 0x50 */ u8 unk50;  // BG2 tile length x?
@@ -244,13 +244,13 @@ extern u8 gUnk_030052A0;
 extern u16 gBg2YMag; // yMag
 extern s16 gBg2PB; // BG2PB
 
-struct Unk_03005468 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ u16 unk6;
+struct CurrentRoomBg2Bounds {
+    /* 0x0 */ u16 left; // screen left edge
+    /* 0x2 */ u16 top; // screen top edge
+    /* 0x4 */ u16 right; // screen right edge
+    /* 0x6 */ u16 bottom; // screen bottom edge
 }; /* size = 0x8 */
-extern struct Unk_03005468 gUnk_03005468;
+extern struct CurrentRoomBg2Bounds gCurrentRoomBg2Bounds;
 
 struct Unk_0300542C {
     /* 0x0 */ u16 unk0; // related to X position
@@ -355,7 +355,7 @@ struct Unk_030034E8 {
     /* 0x4 */ s32 unk4;
 }; /* size = 0x8 */
 extern struct Unk_030034E8 gUnk_030034E8;
-extern u8 gUnk_030051B8;
+extern u8 gUnk_030051B8; // related to scrollFlags, only for level 6?
 extern s32 gUnk_03005480;
 
 struct Unk_030007E0 {

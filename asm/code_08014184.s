@@ -14063,7 +14063,7 @@ _0801B590:
 	bne _0801B5B8
 	ldrh r0, [r5]
 	adds r2, r0, #3
-	ldr r1, _0801B5B4 @ =gUnk_03005468
+	ldr r1, _0801B5B4 @ =gCurrentRoomBg2Bounds
 	ldrh r0, [r1, #4]
 	adds r0, #0x18
 	cmp r2, r0
@@ -14071,11 +14071,11 @@ _0801B590:
 	b _0801B5C6
 	.align 2, 0
 _0801B5B0: .4byte gUnk_03003430
-_0801B5B4: .4byte gUnk_03005468
+_0801B5B4: .4byte gCurrentRoomBg2Bounds
 _0801B5B8:
 	ldrh r0, [r5]
 	subs r2, r0, #3
-	ldr r1, _0801B630 @ =gUnk_03005468
+	ldr r1, _0801B630 @ =gCurrentRoomBg2Bounds
 	ldrh r0, [r1]
 	subs r0, #0x18
 	cmp r2, r0
@@ -14138,7 +14138,7 @@ _0801B628:
 	str r6, [r7, #0x38]
 	b _0801B64C
 	.align 2, 0
-_0801B630: .4byte gUnk_03005468
+_0801B630: .4byte gCurrentRoomBg2Bounds
 _0801B634: .4byte gUnk_03000830
 _0801B638: .4byte gCallbackQueue
 _0801B63C: .4byte sub_080264A4

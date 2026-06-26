@@ -231,6 +231,7 @@ extern u8 gUnk_080A5888[0x800];
     gObjVramPtr += sizeof(gfx);                         \
 }
 
+// 2688C
 void sub_0802688C(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E68, gObjPalRamPtr, 0x20);
@@ -317,6 +318,7 @@ void sub_0802688C(void)
     gObjVramPtr += 0x200;
 }
 
+// 26F68
 void sub_08026F68(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
@@ -369,6 +371,7 @@ void sub_08026F68(void)
     gObjVramPtr += 0x200;
 }
 
+// 27364
 void sub_08027364(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
@@ -428,6 +431,7 @@ void sub_08027364(void)
     gObjVramPtr += 0x200;
 }
 
+// 277CC
 void sub_080277CC(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
@@ -497,6 +501,7 @@ void sub_080277CC(void)
     gObjVramPtr += 0x200;
 }
 
+// 27CF8
 void sub_08027CF8(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
@@ -553,11 +558,13 @@ void sub_08027CF8(void)
     gObjVramPtr += 0x200;
 }
 
+// 28104
 void sub_08028104(void)
 {
     return;
 }
 
+// 28108
 void sub_08028108(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -601,6 +608,7 @@ void sub_08028108(void)
     gObjVramPtr += 0x80;
 }
 
+// 28440
 void sub_08028440(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -643,6 +651,7 @@ void sub_08028440(void)
     gObjVramPtr += 0x80;
 }
 
+// 28750
 void sub_08028750(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -697,6 +706,7 @@ void sub_08028750(void)
     gObjVramPtr += 0x80;
 }
 
+// 28B4C
 void sub_08028B4C(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
@@ -741,6 +751,7 @@ void sub_08028B4C(void)
     gObjVramPtr += 0x80;
 }
 
+// 28E8C
 void sub_08028E8C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -818,6 +829,7 @@ void sub_08028E8C(void)
     gObjVramPtr += 0x80;
 }
 
+// 2946C
 void sub_0802946C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
@@ -881,6 +893,7 @@ void sub_0802946C(void)
     gObjVramPtr += 0x80;
 }
 
+// 29968
 void sub_08029968(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -950,6 +963,7 @@ void sub_08029968(void)
     gObjVramPtr += 0x80;
 }
 
+// 29EAC
 void sub_08029EAC(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -1006,6 +1020,7 @@ void sub_08029EAC(void)
     gObjVramPtr += 0x20;
 }
 
+// 2A31C
 void sub_0802A31C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1085,6 +1100,7 @@ void sub_0802A31C(void)
     gObjVramPtr += 0x80;
 }
 
+// 2A948
 void sub_0802A948(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1175,6 +1191,7 @@ void sub_0802A948(void)
     gObjVramPtr += 0x80;
 }
 
+// 2B05C
 void sub_0802B05C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1265,6 +1282,7 @@ void sub_0802B05C(void)
     gObjVramPtr += 0x80;
 }
 
+// 2B768
 void sub_0802B768(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
@@ -1308,6 +1326,7 @@ void sub_0802B768(void)
     gObjVramPtr += 0x80;
 }
 
+// 2BA84
 void sub_0802BA84(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1403,6 +1422,7 @@ void sub_0802BA84(void)
     gObjVramPtr += 0x80;
 }
 
+// 2C1F8
 void sub_0802C1F8(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
@@ -1488,6 +1508,7 @@ void sub_0802C1F8(void)
     gObjVramPtr += 0x80;
 }
 
+// 2C8B0
 void sub_0802C8B0(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1582,6 +1603,7 @@ void sub_0802C8B0(void)
     gObjVramPtr += 0x80;
 }
 
+// 2D028
 void sub_0802D028(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -1644,6 +1666,7 @@ void sub_0802D028(void)
     gObjVramPtr += 0x80;
 }
 
+// 2D558
 void sub_0802D558(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1728,6 +1751,7 @@ void sub_0802D558(void)
     gObjVramPtr += 0x80;
 }
 
+// 2DBC4
 void sub_0802DBC4(void)
 {
 
@@ -1826,6 +1850,7 @@ void sub_0802DBC4(void)
     gObjVramPtr += 0x80;
 }
 
+// 2E374
 void sub_0802E374(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1927,6 +1952,7 @@ void sub_0802E374(void)
     gObjVramPtr += 0x80;
 }
 
+// 2EB78
 void sub_0802EB78(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
@@ -1972,6 +1998,7 @@ void sub_0802EB78(void)
     gObjVramPtr += 0x80;
 }
 
+// 2EEC0
 void sub_0802EEC0(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2053,6 +2080,7 @@ void sub_0802EEC0(void)
     gObjVramPtr += 0x80;
 }
 
+// 2F53C
 void sub_0802F53C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
@@ -2116,6 +2144,7 @@ void sub_0802F53C(void)
     gObjVramPtr += 0x80;
 }
 
+// 2FA28
 void sub_0802FA28(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2211,6 +2240,7 @@ void sub_0802FA28(void)
     gObjVramPtr += 0x80;
 }
 
+// 301A8
 void sub_080301A8(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -2269,6 +2299,7 @@ void sub_080301A8(void)
     gObjVramPtr += 0x80;
 }
 
+// 30680
 void sub_08030680(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2357,6 +2388,7 @@ void sub_08030680(void)
     gObjVramPtr += 0x80;
 }
 
+// 30D38
 void sub_08030D38(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2444,6 +2476,7 @@ void sub_08030D38(void)
     gObjVramPtr += 0x80;
 }
 
+// 313F8
 void sub_080313F8(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2532,6 +2565,7 @@ void sub_080313F8(void)
     gObjVramPtr += 0x80;
 }
 
+// 31ADC
 void sub_08031ADC(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
@@ -2581,6 +2615,7 @@ void sub_08031ADC(void)
     gObjVramPtr += 0x80;
 }
 
+// 31E7C
 void sub_08031E7C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2687,6 +2722,7 @@ void sub_08031E7C(void)
     gObjVramPtr += 0x80;
 }
 
+// 326E8
 void sub_080326E8(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
@@ -2767,6 +2803,7 @@ void sub_080326E8(void)
     gObjVramPtr += 0x80;
 }
 
+// 32D3C
 void sub_08032D3C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -2874,6 +2911,7 @@ void sub_08032D3C(void)
     gObjVramPtr += 0x80;
 }
 
+// 335D4
 void sub_080335D4(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -2935,6 +2973,7 @@ void sub_080335D4(void)
     gObjVramPtr += 0x80;
 }
 
+// 33AAC
 void sub_08033AAC(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3008,6 +3047,7 @@ void sub_08033AAC(void)
     gObjVramPtr += 0x80;
 }
 
+// 34078
 void sub_08034078(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3110,6 +3150,7 @@ void sub_08034078(void)
     gObjVramPtr += 0x80;
 }
 
+// 348B0
 void sub_080348B0(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3226,6 +3267,7 @@ void sub_080348B0(void)
     gObjVramPtr += 0x80;
 }
 
+// 35210
 void sub_08035210(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
@@ -3289,6 +3331,7 @@ void sub_08035210(void)
     gObjVramPtr += 0x80;
 }
 
+// 356E4
 void sub_080356E4(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3391,6 +3434,7 @@ void sub_080356E4(void)
     gObjVramPtr += 0x80;
 }
 
+// 35EF8
 void sub_08035EF8(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
@@ -3472,6 +3516,7 @@ void sub_08035EF8(void)
     gObjVramPtr += 0x80;
 }
 
+// 36564
 void sub_08036564(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3607,6 +3652,7 @@ void sub_08036564(void)
     gObjVramPtr += 0x80;
 }
 
+// 37038
 void sub_08037038(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -3667,6 +3713,7 @@ void sub_08037038(void)
     gObjVramPtr += 0x80;
 }
 
+// 375A0
 void sub_080375A0(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3772,6 +3819,7 @@ void sub_080375A0(void)
     gObjVramPtr += 0x80;
 }
 
+// 37DD4
 void sub_08037DD4(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -3901,6 +3949,7 @@ void sub_08037DD4(void)
     gObjVramPtr += 0x80;
 }
 
+// 3881C
 void sub_0803881C(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -4032,6 +4081,7 @@ void sub_0803881C(void)
     gObjVramPtr += 0x80;
 }
 
+// 392A4
 void sub_080392A4(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
@@ -4106,6 +4156,7 @@ void sub_080392A4(void)
     gObjVramPtr += 0x80;
 }
 
+// 39920
 void sub_08039920(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);

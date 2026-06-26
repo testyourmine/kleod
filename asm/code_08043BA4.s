@@ -2069,7 +2069,7 @@ _08044C34:
 	beq _08044C48
 	adds r0, r5, #0
 	adds r1, r2, #0
-	bl sub_08001CD0
+	bl ScrollBg2LevelData
 	b _08044F36
 	.align 2, 0
 _08044C44: .4byte 0xFFFF0000
@@ -2733,7 +2733,7 @@ sub_0804517C: @ 0x0804517C
 	blo _08045196
 	b _080452D6
 _08045196:
-	ldr r2, _080452C0 @ =gUnk_03005468
+	ldr r2, _080452C0 @ =gCurrentRoomBg2Bounds
 	ldrh r0, [r2]
 	adds r0, #0x18
 	asrs r7, r0, #3
@@ -2889,7 +2889,7 @@ _080452AA:
 	str r1, [sp, #4]
 	b _080451BE
 	.align 2, 0
-_080452C0: .4byte gUnk_03005468
+_080452C0: .4byte gCurrentRoomBg2Bounds
 _080452C4: .4byte gUnk_03003430+0x48
 _080452C8: .4byte gUnk_03004790
 _080452CC:
