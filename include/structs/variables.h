@@ -120,13 +120,21 @@ extern u16 gUnk_030052C0[];
 
 extern u32 gUnk_03005488;
 
+// TODO: figure out if unk8 can be loaded as u16 without union, or what the real solution is
+union __attribute__((packed)) Unk_03002920_8 {
+    struct __attribute__((packed)) {
+        u8 unk8;
+        u8 unk9;
+    } split;
+    u16 all;
+};
 struct Unk_03002920 {
     /* 0x00 */ u16 xPosBg2; // X position in bg2
     /* 0x02 */ u16 yPosBg2; // Y position in bg2
     /* 0x04 */ u16 xPosScreen; // X position on screen
     /* 0x06 */ u16 yPosScreen; // Y position on screen
-    /* 0x08 */ u8 unk8;
-    /* 0x09 */ u8 unk9;
+    /* 0x08 */ union Unk_03002920_8 unk8;
+    // /* 0x09 */ u8 unk9;
     /* 0x0A */ u8 unkA;
     /* 0x0B_0 */ s32 unkB_0:4; // related to X position
     /* 0x0B_4 */ s32 unkB_4:4; // related to Y position
@@ -142,7 +150,8 @@ struct Unk_03002920 {
     /* 0x10 */ u8 unk10; // sprite blinking/visible, or possibly enabled/active
     /* 0x11 */ u8 unk11;
     /* 0x12 */ u8 unk12;
-    /* 0x13 */ u8 pad13[0x16 - 0x13];
+    /* 0x13 */ u8 pad13[0x14 - 0x13];
+    /* 0x14 */ u16 unk14;
     /* 0x16 */ u8 unk16;
     /* 0x17 */ u8 unk17;
     /* 0x18 */ u8 unk18;
@@ -288,8 +297,8 @@ struct Unk_03005220 {
     /* 0x24 */ u16 unk24;
     /* 0x26 */ s16 unk26;
     /* 0x28 */ s16 unk28;
-    /* 0x2A */ u16 unk2A;
-    /* 0x2C */ u16 unk2C;
+    /* 0x2A */ s16 unk2A;
+    /* 0x2C */ s16 unk2C;
     /* 0x2E */ u8 unk2E;
     /* 0x2F */ s8 unk2F;
     /* 0x30 */ u8 unk30;

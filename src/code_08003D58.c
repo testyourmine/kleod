@@ -143,7 +143,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     }
     gUnk_03002920[arg0].unkA = arg1;
     gUnk_03002920[arg0].unk10 = 0;
-    gUnk_03002920[arg0].unk8 = arg4;
+    gUnk_03002920[arg0].unk8.split.unk8 = arg4;
     gUnk_03002920[arg0].unkF = arg7;
     gUnk_03002920[arg0].unkC_2 = 0;
 
@@ -157,7 +157,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
 
         case 8:
-            gUnk_03002920[arg0].unk9 = 0xFF;
+            gUnk_03002920[arg0].unk8.split.unk9 = 0xFF;
             /* fallthrough */
         case 13:
             gUnk_03002920[arg0].priority = 2;
@@ -185,8 +185,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     {
         case 0x71:
             gUnk_03002920[arg0].unkC_4 = 0;
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             if (arg4 == 1 && ((gUnk_03005220.unk1_7 >> gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xC].unk0[gUnk_03004C20.room - 1].unk5) & arg4))
             {
                 gUnk_03002920[arg0].unkC_4 = 1;
@@ -205,7 +205,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03004C00 = 0;
             }
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_4 = arg6;
             break;
 
@@ -227,8 +227,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03002920[arg0].unkF = 0x1C;
             }
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_4 = 0;
             break;
 
@@ -236,8 +236,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case 0x27:
         case 0x28:
         case 0x29:
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_4 = arg6;
             break;
 
@@ -249,7 +249,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gUnk_03002920[arg0].unkC_4 = arg6;
             if (arg6 == 0)
             {
-                gUnk_03002920[arg0].unk8 = 0;
+                gUnk_03002920[arg0].unk8.split.unk8 = 0;
             }
             break;
 
@@ -272,7 +272,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
 
         case 0x73:
-            gUnk_03002920[arg0].unk9 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = 0;
             break;
 
         case 0x34:
@@ -333,7 +333,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case 0x3C:
             gUnk_03002920[arg0].affineEnable = 1;
             gUnk_03002920[arg0].unkC_4 = arg6;
-            gUnk_03002920[arg0].unk8 = 0x80;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0x80;
             if (gUnk_03003610[gUnk_03005298].unk0 == 0)
             {
                 gUnk_03003610[gUnk_03005298].unk0 = arg0;
@@ -341,10 +341,10 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
                 gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
                 gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
                 gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8));
+                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8.split.unk8));
                 gUnk_03005288 += 1;
-                gUnk_03002920[arg0].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8 >> 3;
-                gUnk_03002920[arg0 - 1].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8 >> 2;
+                gUnk_03002920[arg0].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8.split.unk8 >> 3;
+                gUnk_03002920[arg0 - 1].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8.split.unk8 >> 2;
             }
             else
             {
@@ -353,10 +353,10 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
                 gUnk_03004680[gUnk_03005288].unk0 = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
                 gUnk_03004680[gUnk_03005288].unk2 = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
                 gUnk_03004680[gUnk_03005288].unk4 = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
-                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8));
+                gUnk_03004680[gUnk_03005288].unk6 = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_03002920[arg0].unk8.split.unk8));
                 gUnk_03005288 += 1;
-                gUnk_03002920[arg0].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8 >> 3;
-                gUnk_03002920[arg0 - 1].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8 >> 2;
+                gUnk_03002920[arg0].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8.split.unk8 >> 3;
+                gUnk_03002920[arg0 - 1].yPosBg2 += (u8)-gUnk_03002920[arg0].unk8.split.unk8 >> 2;
             }
             break;
 
@@ -367,8 +367,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case 0x75:
         case 0x76:
         case 0x78:
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_2 = arg6 & 1;
             if (arg8 == 0x79)
             {
@@ -381,15 +381,15 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             /* fallthrough */
         case 0x77:
         case 0x79:
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_4 = arg6;
             break;
 
         case 0x5:
         case 0x7:
-            gUnk_03002920[arg0].unk8 = 0;
-            gUnk_03002920[arg0].unk9 = arg4;
+            gUnk_03002920[arg0].unk8.split.unk8 = 0;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg4;
             gUnk_03002920[arg0].unkC_4 = arg6 & 1;
             if (arg6 & 2)
             {
@@ -456,7 +456,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03002920[arg0].unkF = 0x1C;
             }
-            gUnk_03002920[arg0].unk9 = arg6;
+            gUnk_03002920[arg0].unk8.split.unk9 = arg6;
             break;
 
         case 0x2D:
@@ -2373,7 +2373,7 @@ void sub_080098C8(void)
             if ((gUnk_03002920[var_sb].unk11 == 0x52) && (gUnk_03002920[var_sb].xPosScreen > (sp4 - 0x10)) && (gUnk_03002920[var_sb].xPosScreen < (sp4 + 0x10)) && (gUnk_03002920[var_sb].yPosScreen <= (sp0 + 0xA)) && (gUnk_03002920[var_sb].yPosScreen >= (u32)sp0))
             {
             }
-            else if ((gUnk_03002920[var_sb].yPosScreen + gUnk_03002920[var_sb].unk8) <= sp0)
+            else if ((gUnk_03002920[var_sb].yPosScreen + gUnk_03002920[var_sb].unk8.split.unk8) <= sp0)
             {
             }
             else
@@ -2571,7 +2571,7 @@ void sub_080098C8(void)
                 }
             }
 
-            if ((gUnk_03002920[var_sb].yPosScreen + gUnk_03002920[var_sb].unk8) <= sp0)
+            if ((gUnk_03002920[var_sb].yPosScreen + gUnk_03002920[var_sb].unk8.split.unk8) <= sp0)
             {
                 temp_r0_5 = gUnk_03002920[var_sb].unkA;
                 if (gUnk_03002920[var_sb].unkA < 0xD)
@@ -2883,7 +2883,7 @@ void sub_0800A804(void)
                 {
                     case 0x24:
                     case 0x6E:
-                        if (gUnk_03002920[var_r4].unk8 != 1)
+                        if (gUnk_03002920[var_r4].unk8.split.unk8 != 1)
                         {
                             sub_08014760(var_r4);
                         }
@@ -2973,9 +2973,9 @@ void sub_0800A804(void)
                         break;
 
                     case 0x74:
-                        if (gUnk_03002920[var_r4].unk8 != 0)
+                        if (gUnk_03002920[var_r4].unk8.split.unk8 != 0)
                         {
-                            gUnk_03002920[var_r4].unk8 -= 1;
+                            gUnk_03002920[var_r4].unk8.split.unk8 -= 1;
                         }
                         break;
 
@@ -3092,7 +3092,7 @@ void sub_0800AC34(void)
         {
             if (gUnk_03002920[var_r6].unkF == 0x1C)
             {
-                if (gUnk_03002920[var_r6].unk8 == 0)
+                if (gUnk_03002920[var_r6].unk8.split.unk8 == 0)
                 {
                     if (gUnk_03005400.unk2 < 0xE10)
                     {
@@ -3540,7 +3540,7 @@ void sub_0800B3C0(void)
             case 0x6C:
                 if (gUnk_03002920[var_sb].yPosBg2 & 1)
                 {
-                    if (gUnk_03002920[var_sb].unk9 == 1)
+                    if (gUnk_03002920[var_sb].unk8.split.unk9 == 1)
                     {
                         if (gUnk_03002920[var_sb].unkC_4 == 0)
                         {
