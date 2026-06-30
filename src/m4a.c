@@ -13,10 +13,10 @@ EWRAM_DATA struct MP2KTrack gMPlayTrack_SE3[16] = {};
 
 // TODO: convert sound_data to C
 // const struct MusicPlayer gMPlayTable[] = {
-//     { &gMPlayInfo_BGM, gMPlayTrack_BGM, 16 },
-//     { &gMPlayInfo_SE1, gMPlayTrack_SE1, 16 },
-//     { &gMPlayInfo_SE2, gMPlayTrack_SE2, 16 },
-//     { &gMPlayInfo_SE3, gMPlayTrack_SE3, 16 },
+//     { &gMPlayInfo_0, gMPlayTrack_BGM, 16 },
+//     { &gMPlayInfo_1, gMPlayTrack_SE1, 16 },
+//     { &gMPlayInfo_2, gMPlayTrack_SE2, 16 },
+//     { &gMPlayInfo_3, gMPlayTrack_SE3, 16 },
 // };
 
 EWRAM_DATA struct SoundMixerState gSoundInfo = {};
@@ -24,11 +24,11 @@ EWRAM_DATA void *gMPlayJumpTable[36] = {};
 EWRAM_DATA struct MixerSource gCgbChans[4] = {};
 
 // For some reason these were declared in this order
-EWRAM_DATA struct MP2KPlayerState gMPlayInfo_BGM = {};
-EWRAM_DATA struct MP2KPlayerState gMPlayInfo_SE1 = {};
-EWRAM_DATA struct MP2KPlayerState gMPlayInfo_SE2 = {};
+EWRAM_DATA struct MP2KPlayerState gMPlayInfo_0 = {};
+EWRAM_DATA struct MP2KPlayerState gMPlayInfo_1 = {};
+EWRAM_DATA struct MP2KPlayerState gMPlayInfo_2 = {};
 EWRAM_DATA u8 gMPlayMemAccArea[4 * sizeof(uintptr_t)] = {};
-EWRAM_DATA struct MP2KPlayerState gMPlayInfo_SE3 = {};
+EWRAM_DATA struct MP2KPlayerState gMPlayInfo_3 = {};
 
 static void MP2K_event_null(void);
 

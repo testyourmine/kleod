@@ -1217,7 +1217,7 @@ _0803A790:
 	movs r0, #5
 	strb r0, [r4, #0xd]
 _0803A7BA:
-	ldr r3, _0803A7E4 @ =0x030034B0
+	ldr r3, _0803A7E4 @ =gUnk_030034B0
 	ldrb r1, [r4, #0xc]
 	lsls r1, r1, #4
 	ldrb r2, [r3, #6]
@@ -1235,7 +1235,7 @@ _0803A7D4: .4byte gUnk_03005284
 _0803A7D8: .4byte gUnk_03005220
 _0803A7DC: .4byte gUnk_03005498
 _0803A7E0: .4byte gUnk_03004C20
-_0803A7E4: .4byte 0x030034B0
+_0803A7E4: .4byte gUnk_030034B0
 _0803A7E8: .4byte gCallbackQueue
 _0803A7EC: .4byte sub_08024C34
 _0803A7F0:
@@ -1293,7 +1293,7 @@ _0803A864:
 	movs r2, #0
 	movs r0, #9
 	strb r0, [r1, #0xc]
-	ldr r0, _0803A8A8 @ =0x03004D9C
+	ldr r0, _0803A8A8 @ =gUnk_03004D9C
 	strb r2, [r0]
 	bl sub_0800A468
 	ldr r1, _0803A8AC @ =gCallbackQueue
@@ -1316,7 +1316,7 @@ _0803A88E:
 	.align 2, 0
 _0803A8A0: .4byte gUnk_03005498
 _0803A8A4: .4byte gUnk_03004C20
-_0803A8A8: .4byte 0x03004D9C
+_0803A8A8: .4byte gUnk_03004D9C
 _0803A8AC: .4byte gCallbackQueue
 _0803A8B0: .4byte sub_08025900
 _0803A8B4: .4byte gUnk_03004790
@@ -4154,7 +4154,7 @@ _0803BFFC:
 	movs r6, #0
 	strb r0, [r4, #0xd]
 	strb r6, [r4, #0xc]
-	ldr r2, _0803C07C @ =0x030034B0
+	ldr r2, _0803C07C @ =gUnk_030034B0
 	ldrb r1, [r2, #6]
 	movs r0, #0xf
 	ands r0, r1
@@ -4193,7 +4193,7 @@ _0803C06C: .4byte gNewKeys
 _0803C070: .4byte gUnk_03005498
 _0803C074: .4byte gUnk_03004C20
 _0803C078: .4byte 0x03004C08
-_0803C07C: .4byte 0x030034B0
+_0803C07C: .4byte gUnk_030034B0
 _0803C080: .4byte gUnk_03005284
 _0803C084: .4byte gUnk_03005220
 _0803C088:

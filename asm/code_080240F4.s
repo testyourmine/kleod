@@ -271,7 +271,7 @@ _080242DE:
 	cmp r0, #0
 	bne _080242FA
 	bl m4aSoundVSyncOn
-	ldr r0, _08024328 @ =0x030052B8
+	ldr r0, _08024328 @ =gUnk_030052B8
 	ldrh r0, [r0]
 	bl m4aSongNumContinue
 _080242FA:
@@ -287,7 +287,7 @@ _080242FA:
 	ldrb r0, [r5, #0xd]
 	cmp r0, #6
 	bne _08024334
-	ldr r1, _08024328 @ =0x030052B8
+	ldr r1, _08024328 @ =gUnk_030052B8
 	movs r0, #0xb
 	b _08024376
 	.align 2, 0
@@ -295,42 +295,42 @@ _08024318: .4byte gUnk_030034E4
 _0802431C: .4byte gUnk_03004C20
 _08024320: .4byte gUnk_03005498
 _08024324: .4byte gUnk_03003410
-_08024328: .4byte 0x030052B8
+_08024328: .4byte gUnk_030052B8
 _0802432C: .4byte gUnk_03005210
 _08024330: .4byte 0x0000FFFF
 _08024334:
-	ldr r1, _0802433C @ =0x030052B8
+	ldr r1, _0802433C @ =gUnk_030052B8
 	movs r0, #0xa
 	b _08024376
 	.align 2, 0
-_0802433C: .4byte 0x030052B8
+_0802433C: .4byte gUnk_030052B8
 _08024340:
 	cmp r1, #0
 	bne _08024350
-	ldr r1, _0802434C @ =0x030052B8
+	ldr r1, _0802434C @ =gUnk_030052B8
 	movs r0, #0x1c
 	b _08024376
 	.align 2, 0
-_0802434C: .4byte 0x030052B8
+_0802434C: .4byte gUnk_030052B8
 _08024350:
 	ldrb r0, [r5, #0xa]
 	cmp r0, #1
 	bne _08024360
-	ldr r1, _0802435C @ =0x030052B8
+	ldr r1, _0802435C @ =gUnk_030052B8
 	movs r0, #0x1e
 	b _08024376
 	.align 2, 0
-_0802435C: .4byte 0x030052B8
+_0802435C: .4byte gUnk_030052B8
 _08024360:
 	cmp r1, #6
 	bne _08024370
-	ldr r1, _0802436C @ =0x030052B8
+	ldr r1, _0802436C @ =gUnk_030052B8
 	movs r0, #0x22
 	b _08024376
 	.align 2, 0
-_0802436C: .4byte 0x030052B8
+_0802436C: .4byte gUnk_030052B8
 _08024370:
-	ldr r1, _080243C8 @ =0x030052B8
+	ldr r1, _080243C8 @ =gUnk_030052B8
 	ldrb r0, [r5, #0xd]
 	adds r0, #3
 _08024376:
@@ -354,51 +354,51 @@ _08024386:
 	ldrh r0, [r4]
 	adds r0, #0x10
 	strh r0, [r4]
-	ldr r0, _080243D8 @ =0x030065E0
+	ldr r0, _080243D8 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _080243DC @ =0x03006620
+	ldr r0, _080243DC @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _080243E0 @ =0x03006660
+	ldr r0, _080243E0 @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _080243E4 @ =0x030066B0
+	ldr r0, _080243E4 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
 	b _0802441A
 	.align 2, 0
-_080243C8: .4byte 0x030052B8
+_080243C8: .4byte gUnk_030052B8
 _080243CC: .4byte gUnk_03003410
 _080243D0: .4byte gUnk_03005498
 _080243D4: .4byte gUnk_03005210
-_080243D8: .4byte 0x030065E0
-_080243DC: .4byte 0x03006620
-_080243E0: .4byte 0x03006660
-_080243E4: .4byte 0x030066B0
+_080243D8: .4byte gMPlayInfo_0
+_080243DC: .4byte gMPlayInfo_1
+_080243E0: .4byte gMPlayInfo_2
+_080243E4: .4byte gMPlayInfo_3
 _080243E8:
 	ldr r4, _08024480 @ =gUnk_03005210
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r1, #0
 	strh r0, [r4]
-	ldr r0, _08024484 @ =0x030065E0
+	ldr r0, _08024484 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024488 @ =0x03006620
+	ldr r0, _08024488 @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802448C @ =0x03006660
+	ldr r0, _0802448C @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024490 @ =0x030066B0
+	ldr r0, _08024490 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -458,10 +458,10 @@ _0802446E:
 	b _080244B2
 	.align 2, 0
 _08024480: .4byte gUnk_03005210
-_08024484: .4byte 0x030065E0
-_08024488: .4byte 0x03006620
-_0802448C: .4byte 0x03006660
-_08024490: .4byte 0x030066B0
+_08024484: .4byte gMPlayInfo_0
+_08024488: .4byte gMPlayInfo_1
+_0802448C: .4byte gMPlayInfo_2
+_08024490: .4byte gMPlayInfo_3
 _08024494: .4byte 0x04000050
 _08024498: .4byte gUnk_03005498
 _0802449C: .4byte gMosaicSize
@@ -505,19 +505,19 @@ _080244DC:
 	mov r1, r8
 	strh r0, [r1]
 	ldrh r2, [r1]
-	ldr r0, _08024528 @ =0x030065E0
+	ldr r0, _08024528 @ =gMPlayInfo_0
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802452C @ =0x03006620
+	ldr r0, _0802452C @ =gMPlayInfo_1
 	mov r5, r8
 	ldrh r2, [r5]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024530 @ =0x03006660
+	ldr r0, _08024530 @ =gMPlayInfo_2
 	ldrh r2, [r5]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024534 @ =0x030066B0
+	ldr r0, _08024534 @ =gMPlayInfo_3
 	ldrh r2, [r5]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -531,10 +531,10 @@ _080244DC:
 	strh r0, [r1]
 	b _0802454C
 	.align 2, 0
-_08024528: .4byte 0x030065E0
-_0802452C: .4byte 0x03006620
-_08024530: .4byte 0x03006660
-_08024534: .4byte 0x030066B0
+_08024528: .4byte gMPlayInfo_0
+_0802452C: .4byte gMPlayInfo_1
+_08024530: .4byte gMPlayInfo_2
+_08024534: .4byte gMPlayInfo_3
 _08024538: .4byte gUnk_03005498
 _0802453C: .4byte 0x04000050
 _08024540:
@@ -739,7 +739,7 @@ _080246BC:
 	movs r0, #4
 	strb r0, [r1]
 	str r7, [r5]
-	ldr r0, _08024700 @ =0x03004D9C
+	ldr r0, _08024700 @ =gUnk_03004D9C
 	strb r4, [r0]
 	b _0802470C
 	.align 2, 0
@@ -747,7 +747,7 @@ _080246F0: .4byte gUnk_03002920
 _080246F4: .4byte gMosaicSize
 _080246F8: .4byte sub_08049724
 _080246FC: .4byte sub_0800D0C4
-_08024700: .4byte 0x03004D9C
+_08024700: .4byte gUnk_03004D9C
 _08024704:
 	ldr r1, _08024714 @ =gMosaicSize
 	ldrb r0, [r1]
@@ -786,19 +786,19 @@ _0802472E:
 	lsrs r0, r0, #0x10
 	cmp r0, #0x10
 	bls _08024790
-	ldr r0, _08024780 @ =0x030065E0
+	ldr r0, _08024780 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024784 @ =0x03006620
+	ldr r0, _08024784 @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024788 @ =0x03006660
+	ldr r0, _08024788 @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802478C @ =0x030066B0
+	ldr r0, _0802478C @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -808,24 +808,24 @@ _08024770: .4byte gUnk_030034E4
 _08024774: .4byte gUnk_03004C20
 _08024778: .4byte gUnk_03005498
 _0802477C: .4byte gUnk_03005210
-_08024780: .4byte 0x030065E0
-_08024784: .4byte 0x03006620
-_08024788: .4byte 0x03006660
-_0802478C: .4byte 0x030066B0
+_08024780: .4byte gMPlayInfo_0
+_08024784: .4byte gMPlayInfo_1
+_08024788: .4byte gMPlayInfo_2
+_0802478C: .4byte gMPlayInfo_3
 _08024790:
-	ldr r0, _08024840 @ =0x030065E0
+	ldr r0, _08024840 @ =gMPlayInfo_0
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024844 @ =0x03006620
+	ldr r0, _08024844 @ =gMPlayInfo_1
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024848 @ =0x03006660
+	ldr r0, _08024848 @ =gMPlayInfo_2
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802484C @ =0x030066B0
+	ldr r0, _0802484C @ =gMPlayInfo_3
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
@@ -901,10 +901,10 @@ _08024830:
 	movs r4, #1
 	b _0802487E
 	.align 2, 0
-_08024840: .4byte 0x030065E0
-_08024844: .4byte 0x03006620
-_08024848: .4byte 0x03006660
-_0802484C: .4byte 0x030066B0
+_08024840: .4byte gMPlayInfo_0
+_08024844: .4byte gMPlayInfo_1
+_08024848: .4byte gMPlayInfo_2
+_0802484C: .4byte gMPlayInfo_3
 _08024850: .4byte 0x04000050
 _08024854: .4byte gUnk_03005498
 _08024858: .4byte gMosaicSize
@@ -946,19 +946,19 @@ _080248A6:
 	ldr r4, _08024920 @ =gUnk_03005210
 	movs r0, #0
 	strh r0, [r4]
-	ldr r0, _08024924 @ =0x030065E0
+	ldr r0, _08024924 @ =gMPlayInfo_0
 	movs r1, #0xff
 	movs r2, #0
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024928 @ =0x03006620
+	ldr r0, _08024928 @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802492C @ =0x03006660
+	ldr r0, _0802492C @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024930 @ =0x030066B0
+	ldr r0, _08024930 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -995,10 +995,10 @@ _080248A6:
 	.align 2, 0
 _0802491C: .4byte gCallbackQueue
 _08024920: .4byte gUnk_03005210
-_08024924: .4byte 0x030065E0
-_08024928: .4byte 0x03006620
-_0802492C: .4byte 0x03006660
-_08024930: .4byte 0x030066B0
+_08024924: .4byte gMPlayInfo_0
+_08024928: .4byte gMPlayInfo_1
+_0802492C: .4byte gMPlayInfo_2
+_08024930: .4byte gMPlayInfo_3
 _08024934: .4byte 0x04000200
 _08024938: .4byte 0x0000FFFE
 _0802493C: .4byte 0x04000004
@@ -1608,19 +1608,19 @@ _08024E30:
 	lsrs r0, r0, #0x10
 	cmp r0, #0x10
 	bls _08024EA8
-	ldr r0, _08024E98 @ =0x030065E0
+	ldr r0, _08024E98 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024E9C @ =0x03006620
+	ldr r0, _08024E9C @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024EA0 @ =0x03006660
+	ldr r0, _08024EA0 @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024EA4 @ =0x030066B0
+	ldr r0, _08024EA4 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -1637,24 +1637,24 @@ _08024E88: .4byte 0x04000050
 _08024E8C: .4byte 0x04000048
 _08024E90: .4byte 0x00000121
 _08024E94: .4byte gUnk_03005210
-_08024E98: .4byte 0x030065E0
-_08024E9C: .4byte 0x03006620
-_08024EA0: .4byte 0x03006660
-_08024EA4: .4byte 0x030066B0
+_08024E98: .4byte gMPlayInfo_0
+_08024E9C: .4byte gMPlayInfo_1
+_08024EA0: .4byte gMPlayInfo_2
+_08024EA4: .4byte gMPlayInfo_3
 _08024EA8:
-	ldr r0, _08024F24 @ =0x030065E0
+	ldr r0, _08024F24 @ =gMPlayInfo_0
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F28 @ =0x03006620
+	ldr r0, _08024F28 @ =gMPlayInfo_1
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F2C @ =0x03006660
+	ldr r0, _08024F2C @ =gMPlayInfo_2
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F30 @ =0x030066B0
+	ldr r0, _08024F30 @ =gMPlayInfo_3
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
@@ -1673,19 +1673,19 @@ _08024ED0:
 	lsls r1, r1, #1
 	adds r0, r1, #0
 	strh r0, [r4]
-	ldr r0, _08024F24 @ =0x030065E0
+	ldr r0, _08024F24 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F28 @ =0x03006620
+	ldr r0, _08024F28 @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F2C @ =0x03006660
+	ldr r0, _08024F2C @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08024F30 @ =0x030066B0
+	ldr r0, _08024F30 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -1694,10 +1694,10 @@ _08024ED0:
 	bl sub_08025F94
 	b _08024F4C
 	.align 2, 0
-_08024F24: .4byte 0x030065E0
-_08024F28: .4byte 0x03006620
-_08024F2C: .4byte 0x03006660
-_08024F30: .4byte 0x030066B0
+_08024F24: .4byte gMPlayInfo_0
+_08024F28: .4byte gMPlayInfo_1
+_08024F2C: .4byte gMPlayInfo_2
+_08024F30: .4byte gMPlayInfo_3
 _08024F34: .4byte gUnk_03005498
 _08024F38: .4byte gUnk_03005210
 _08024F3C:
@@ -1754,19 +1754,19 @@ _08024F92:
 	lsls r6, r6, #1
 	adds r0, r6, #0
 	strh r0, [r4]
-	ldr r0, _08025000 @ =0x030065E0
+	ldr r0, _08025000 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08025004 @ =0x03006620
+	ldr r0, _08025004 @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _08025008 @ =0x03006660
+	ldr r0, _08025008 @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802500C @ =0x030066B0
+	ldr r0, _0802500C @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -1789,10 +1789,10 @@ _08024FF0: .4byte 0x04000048
 _08024FF4: .4byte 0x00002121
 _08024FF8: .4byte 0x0400004A
 _08024FFC: .4byte gUnk_03005210
-_08025000: .4byte 0x030065E0
-_08025004: .4byte 0x03006620
-_08025008: .4byte 0x03006660
-_0802500C: .4byte 0x030066B0
+_08025000: .4byte gMPlayInfo_0
+_08025004: .4byte gMPlayInfo_1
+_08025008: .4byte gMPlayInfo_2
+_0802500C: .4byte gMPlayInfo_3
 _08025010: .4byte gCallbackQueue
 _08025014: .4byte sub_0802502C
 _08025018: .4byte gUnk_03005498
@@ -2193,19 +2193,19 @@ sub_0802534C: @ 0x0802534C
 	lsrs r0, r0, #0x10
 	cmp r0, #0x10
 	bls _080253A8
-	ldr r0, _08025398 @ =0x030065E0
+	ldr r0, _08025398 @ =gMPlayInfo_0
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _0802539C @ =0x03006620
+	ldr r0, _0802539C @ =gMPlayInfo_1
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _080253A0 @ =0x03006660
+	ldr r0, _080253A0 @ =gMPlayInfo_2
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
-	ldr r0, _080253A4 @ =0x030066B0
+	ldr r0, _080253A4 @ =gMPlayInfo_3
 	ldrh r2, [r4]
 	movs r1, #0xff
 	bl m4aMPlayVolumeControl
@@ -2213,24 +2213,24 @@ sub_0802534C: @ 0x0802534C
 	.align 2, 0
 _08025390: .4byte gUnk_030034E4
 _08025394: .4byte gUnk_03005210
-_08025398: .4byte 0x030065E0
-_0802539C: .4byte 0x03006620
-_080253A0: .4byte 0x03006660
-_080253A4: .4byte 0x030066B0
+_08025398: .4byte gMPlayInfo_0
+_0802539C: .4byte gMPlayInfo_1
+_080253A0: .4byte gMPlayInfo_2
+_080253A4: .4byte gMPlayInfo_3
 _080253A8:
-	ldr r0, _0802545C @ =0x030065E0
+	ldr r0, _0802545C @ =gMPlayInfo_0
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08025460 @ =0x03006620
+	ldr r0, _08025460 @ =gMPlayInfo_1
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08025464 @ =0x03006660
+	ldr r0, _08025464 @ =gMPlayInfo_2
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
-	ldr r0, _08025468 @ =0x030066B0
+	ldr r0, _08025468 @ =gMPlayInfo_3
 	movs r1, #0xff
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
@@ -2303,10 +2303,10 @@ _08025400:
 	ldr r0, [r1, #8]
 	b _080254B4
 	.align 2, 0
-_0802545C: .4byte 0x030065E0
-_08025460: .4byte 0x03006620
-_08025464: .4byte 0x03006660
-_08025468: .4byte 0x030066B0
+_0802545C: .4byte gMPlayInfo_0
+_08025460: .4byte gMPlayInfo_1
+_08025464: .4byte gMPlayInfo_2
+_08025468: .4byte gMPlayInfo_3
 _0802546C: .4byte 0x04000050
 _08025470: .4byte 0x04000048
 _08025474: .4byte 0x00003F3F
@@ -2403,7 +2403,7 @@ _08025550: .4byte 0x04000004
 _08025554:
 	cmp r2, #0
 	bne _08025570
-	ldr r2, _0802556C @ =0x030034B0
+	ldr r2, _0802556C @ =gUnk_030034B0
 	lsls r3, r3, #4
 	ldrb r1, [r2, #6]
 	movs r0, #0xf
@@ -2413,7 +2413,7 @@ _08025554:
 	strb r5, [r4, #0xc]
 	b _080255E4
 	.align 2, 0
-_0802556C: .4byte 0x030034B0
+_0802556C: .4byte gUnk_030034B0
 _08025570:
 	cmp r2, #2
 	bne _0802559C
@@ -4413,7 +4413,7 @@ _08026578:
 	bhi _0802657E
 	b _0802687C
 _0802657E:
-	ldr r4, _080265EC @ =0x030034B0
+	ldr r4, _080265EC @ =gUnk_030034B0
 	mov r0, ip
 	ldrb r1, [r0, #0xc]
 	lsls r3, r1, #4
@@ -4471,7 +4471,7 @@ _080265C2:
 	strb r0, [r1, #4]
 	b _0802661E
 	.align 2, 0
-_080265EC: .4byte 0x030034B0
+_080265EC: .4byte gUnk_030034B0
 _080265F0: .4byte gUnk_03005498
 _080265F4: .4byte gUnk_03005428
 _080265F8: .4byte gUnk_03002920

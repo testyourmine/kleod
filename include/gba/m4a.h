@@ -5,10 +5,10 @@
 
 extern struct SoundMixerState gSoundInfo;
 
-extern struct MP2KPlayerState gMPlayInfo_BGM;
-extern struct MP2KPlayerState gMPlayInfo_SE1;
-extern struct MP2KPlayerState gMPlayInfo_SE2;
-extern struct MP2KPlayerState gMPlayInfo_SE3;
+extern struct MP2KPlayerState gMPlayInfo_0;
+extern struct MP2KPlayerState gMPlayInfo_1;
+extern struct MP2KPlayerState gMPlayInfo_2;
+extern struct MP2KPlayerState gMPlayInfo_3;
 
 void m4aSoundVSync(void);
 
@@ -18,6 +18,7 @@ void m4aSongNumStart(u16);
 void m4aSongNumStartOrChange(u16);
 void m4aSongNumStartOrContinue(u16);
 void m4aSongNumStop(u16 n);
+void m4aSongNumContinue(u16 n);
 void m4aMPlayAllStop(void);
 void m4aMPlayAllContinue(void);
 void m4aMPlayContinue(struct MP2KPlayerState *mplayInfo);
