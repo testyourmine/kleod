@@ -31,7 +31,7 @@ void sub_080240F4(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
@@ -56,8 +56,8 @@ void sub_080240F4(void)
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         }
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
         gUnk_030034E4 = 0;
     }
     else
@@ -78,7 +78,7 @@ void sub_080241EC(void)
         return;
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
@@ -189,7 +189,7 @@ void sub_080242C0(void)
         }
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == (u8)-1)
@@ -225,7 +225,7 @@ void sub_080242C0(void)
         m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
 
         gUnk_03005498 = 9;
-        REG_BLDCNT = 0x340;
+        REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1;
     }
     else
     {
@@ -245,7 +245,7 @@ void sub_08024560(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -271,7 +271,7 @@ void sub_080245E8(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -356,7 +356,7 @@ void sub_08024718(void)
         }
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x11)
@@ -399,8 +399,8 @@ void sub_08024718(void)
         m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
         m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
 
-        REG_IE &= ~1;
-        REG_DISPSTAT &= ~8;
+        REG_IE &= ~INTR_FLAG_VBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
         sub_08002FD0();
@@ -416,8 +416,8 @@ void sub_08024718(void)
         }
         sub_08046DB8(0, 1);
 
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
     }
     else
@@ -439,7 +439,7 @@ NONMATCH("asm/nonmatching/sub_080249A4.inc", void sub_080249A4(void))
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
@@ -479,7 +479,7 @@ void sub_08024A78(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -490,8 +490,8 @@ void sub_08024A78(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
@@ -517,7 +517,7 @@ void sub_08024B54(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -528,8 +528,8 @@ void sub_08024B54(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
         gCallbackQueue.next[0] += 0; // FAKE
@@ -557,7 +557,7 @@ void sub_08024C34(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -568,8 +568,8 @@ void sub_08024C34(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
         gUnk_03004658[0xC] = 0;
 
         if (gUnk_03005220.unk37 == 0)
@@ -634,12 +634,12 @@ block_9:
         {
             REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | 0xFFFF8F00;
             gIntrTable.vCount = sub_0800111C;
-            REG_IE |= 4;
-            REG_DISPSTAT |= 0x20;
-            REG_BLDCNT = 0xE7;
+            REG_IE |= INTR_FLAG_VCOUNT;
+            REG_DISPSTAT |= DISPSTAT_VCOUNT_INTR;
+            REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BD;
             if ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3)))
             {
-                REG_WININ = 0x121;
+                REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0;
             }
         }
 
@@ -685,9 +685,9 @@ block_9:
 
         if ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3)))
         {
-            REG_WININ = 0x2121;
+            REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0 | WININ_WIN1_CLR;
         }
-        REG_WINOUT = 0x30;
+        REG_WINOUT = WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
 
         gUnk_03005210 = 0x100;
         m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
@@ -716,10 +716,10 @@ void sub_0802502C(void)
 
     if (gUnk_03005498 == 0)
     {
-        REG_IE &= ~0x4;
-        REG_DISPSTAT &= ~0x20;
+        REG_IE &= ~INTR_FLAG_VCOUNT;
+        REG_DISPSTAT &= ~DISPSTAT_VCOUNT_INTR;
     }
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 != 0x10)
@@ -735,9 +735,9 @@ void sub_0802502C(void)
 
     if (gUnk_03005220.unk37 == 0)
     {
-        REG_DISPCNT = 0x3741;
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
         *(vu16 *)PLTT = 0;
         gUnk_03003410.unk9 = 1;
         gUnk_03003410.unkA = 0;
@@ -763,8 +763,8 @@ void sub_0802502C(void)
         gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
         gUnk_03005284->unk0 = gUnk_03005220.unk4C;
 
-        REG_IE &= ~1;
-        REG_DISPSTAT &= ~8;
+        REG_IE &= ~INTR_FLAG_VBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
         if (gUnk_03005284->unk6 == 0)
@@ -773,8 +773,8 @@ void sub_0802502C(void)
         }
         sub_08046DB8(0, 1);
 
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
     }
     gUnk_03004C20.unk0 = -1;
@@ -789,12 +789,12 @@ void sub_0802528C(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     if (gUnk_03003410.unkC == 1)
     {
-        REG_WININ = 0x3F3F;
-        REG_WINOUT = 0x3F3F;
+        REG_WININ = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR;
+        REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR;
     }
 
     gUnk_03005498 += 1;
@@ -842,17 +842,17 @@ void sub_0802534C(void)
         m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, 0x10);
     }
 
-    REG_BLDCNT = 0xBF;
-    REG_WININ = 0x3F3F;
-    REG_WINOUT = 0x3F3F;
-    REG_DISPCNT &= ~0x6000;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
+    REG_WININ = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR;
+    REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR;
+    REG_DISPCNT &= ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
     {
         m4aMPlayAllStop();
-        REG_IE &= ~1;
-        REG_DISPSTAT &= ~8;
+        REG_IE &= ~INTR_FLAG_VBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
         gUnk_030034E4 = 0;
@@ -875,8 +875,8 @@ void sub_0802534C(void)
         sub_080471F4();
         gUnk_03004670->unk38 += 1;
 
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
 
         gUnk_03005220.unk4C = gUnk_03005284->unk0;
@@ -942,7 +942,7 @@ void sub_08025634(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -951,8 +951,8 @@ void sub_08025634(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
         gUnk_03004C20.unk0 = -1;
@@ -986,7 +986,7 @@ NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
         return;
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
@@ -1013,9 +1013,9 @@ NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
 
         gUnk_03004C20.unk0 = 0;
         gUnk_030034E4 = 0;
-        REG_WININ = 0x3F;
-        REG_WINOUT = 0x3B;
-        REG_BLDCNT = 0x1B44;
+        REG_WININ = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR;
+        REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
+        REG_BLDCNT = BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND | BLDCNT_TGT1_BG2;
     }
     else
     {
@@ -1033,7 +1033,7 @@ void sub_08025818(void)
         return;
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -1043,8 +1043,8 @@ void sub_08025818(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
         gUnk_03004C20.unk0 = -1;
@@ -1073,7 +1073,7 @@ void sub_08025900(void)
         return;
     }
 
-    REG_BLDCNT = 0xBF;
+    REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
@@ -1098,7 +1098,7 @@ void sub_08025954(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
@@ -1140,13 +1140,13 @@ void sub_08025A28(void)
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
     gUnk_03005498 += 1;
     if (gUnk_03005498 == 0x10)
     {
-        REG_IE &= ~1;
-        REG_DISPSTAT &= ~8;
+        REG_IE &= ~INTR_FLAG_VBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
         m4aMPlayAllStop();
@@ -1161,8 +1161,8 @@ void sub_08025A28(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
@@ -1173,8 +1173,8 @@ void sub_08025A28(void)
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
 
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
     }
     else
