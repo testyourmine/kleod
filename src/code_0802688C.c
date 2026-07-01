@@ -4160,7 +4160,7 @@ void sub_08039920(void)
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
     sub_08025B78(0, 0);
-    gUnk_03002920[0].unk10 = 1;
+    gEntityInfo[0].unk10 = 1;
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077E48, gObjPalRamPtr, 0x20);
@@ -4197,11 +4197,11 @@ void sub_08039920(void)
             {
                 if (gCallbackQueue.next[4] == sub_08026374)
                 {
-                    gUnk_03002920[0xB].unk10 = 1;
+                    gEntityInfo[0xB].unk10 = 1;
                 }
                 else
                 {
-                    gUnk_03002920[0xB].unk10 = 0;
+                    gEntityInfo[0xB].unk10 = 0;
                 }
             }
         }
@@ -4210,19 +4210,19 @@ void sub_08039920(void)
             DmaCopy16Wait(3, &gUnk_080A5888, gObjVramPtr, 0x800);
             gObjVramPtr += 0x800;
 
-            gUnk_03002920[0xB].xPosScreen = 0x48;
-            gUnk_03002920[0xB].yPosScreen = 0x20;
-            gUnk_03002920[0xB].unk10 = 1;
+            gEntityInfo[0xB].xPosScreen = 0x48;
+            gEntityInfo[0xB].yPosScreen = 0x20;
+            gEntityInfo[0xB].unk10 = 1;
         }
     }
     else
     {
-        gUnk_03002920[0xB].yPosScreen = 0x50;
+        gEntityInfo[0xB].yPosScreen = 0x50;
 
         DmaCopy16Wait(3, &gUnk_080A4888, gObjVramPtr, 0x800);
         gObjVramPtr += 0x800;
 
-        gUnk_03002920[0xB].unk10 = 1;
+        gEntityInfo[0xB].unk10 = 1;
     }
 
     if ((gUnk_03004C20.level - 1) >= 0 && (gUnk_03004C20.level - 1) <= 6)
@@ -4232,11 +4232,11 @@ void sub_08039920(void)
 
         if (gCallbackQueue.next[4] == sub_08026374)
         {
-            gUnk_03002920[0xC].unk10 = 1;
+            gEntityInfo[0xC].unk10 = 1;
         }
         else
         {
-            gUnk_03002920[0xC].unk10 = 0;
+            gEntityInfo[0xC].unk10 = 0;
         }
     }
     else

@@ -5,13 +5,13 @@
 	ldr r0, _08024DBC @ =gUnk_030034E4
 	movs r1, #1
 	strb r1, [r0]
-	ldr r0, _08024DC0 @ =gUnk_03005498
+	ldr r0, _08024DC0 @ =gBlendValue
 	ldrb r2, [r0]
 	cmp r2, #0
 	bne _08024DCC
 	movs r1, #1
 	ldr r2, _08024DC4 @ =gUnk_03005428
-	ldr r5, _08024DC8 @ =gUnk_03002920
+	ldr r5, _08024DC8 @ =gEntityInfo
 	ldrb r0, [r2]
 	cmp r1, r0
 	bhs _08024DB6
@@ -33,9 +33,9 @@ _08024DB6:
 	b _08024DE0
 	.align 2, 0
 _08024DBC: .4byte gUnk_030034E4
-_08024DC0: .4byte gUnk_03005498
+_08024DC0: .4byte gBlendValue
 _08024DC4: .4byte gUnk_03005428
-_08024DC8: .4byte gUnk_03002920
+_08024DC8: .4byte gEntityInfo
 _08024DCC:
 	ldr r0, _08024E6C @ =gUnk_03004C20
 	ldr r0, [r0, #4]
@@ -49,7 +49,7 @@ _08024DDA:
 	bls _08024DE0
 	b _08024F4C
 _08024DE0:
-	ldr r0, _08024E70 @ =gUnk_03005498
+	ldr r0, _08024E70 @ =gBlendValue
 	ldrb r0, [r0]
 	cmp r0, #1
 	bne _08024E30
@@ -91,7 +91,7 @@ _08024E28:
 	adds r0, r6, #0
 	strh r0, [r1]
 _08024E30:
-	ldr r4, _08024E94 @ =gUnk_03005210
+	ldr r4, _08024E94 @ =gSoundVolume
 	ldrh r0, [r4]
 	subs r0, #0x10
 	strh r0, [r4]
@@ -118,7 +118,7 @@ _08024E30:
 	b _08024ED0
 	.align 2, 0
 _08024E6C: .4byte gUnk_03004C20
-_08024E70: .4byte gUnk_03005498
+_08024E70: .4byte gBlendValue
 _08024E74: .4byte 0x04000004
 _08024E78: .4byte 0xFFFF8F00
 _08024E7C: .4byte gIntrTable
@@ -127,7 +127,7 @@ _08024E84: .4byte 0x04000200
 _08024E88: .4byte 0x04000050
 _08024E8C: .4byte 0x04000048
 _08024E90: .4byte 0x00000121
-_08024E94: .4byte gUnk_03005210
+_08024E94: .4byte gSoundVolume
 _08024E98: .4byte gMPlayInfo_0
 _08024E9C: .4byte gMPlayInfo_1
 _08024EA0: .4byte gMPlayInfo_2
@@ -150,7 +150,7 @@ _08024EA8:
 	movs r2, #0x10
 	bl m4aMPlayVolumeControl
 _08024ED0:
-	ldr r1, _08024F34 @ =gUnk_03005498
+	ldr r1, _08024F34 @ =gBlendValue
 	ldrb r0, [r1]
 	adds r0, #1
 	strb r0, [r1]
@@ -159,7 +159,7 @@ _08024ED0:
 	cmp r0, #0x10
 	bne _08024F3C
 	bl m4aMPlayAllStop
-	ldr r4, _08024F38 @ =gUnk_03005210
+	ldr r4, _08024F38 @ =gSoundVolume
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r1, #0
@@ -189,12 +189,12 @@ _08024F24: .4byte gMPlayInfo_0
 _08024F28: .4byte gMPlayInfo_1
 _08024F2C: .4byte gMPlayInfo_2
 _08024F30: .4byte gMPlayInfo_3
-_08024F34: .4byte gUnk_03005498
-_08024F38: .4byte gUnk_03005210
+_08024F34: .4byte gBlendValue
+_08024F38: .4byte gSoundVolume
 _08024F3C:
 	cmp r0, #9
 	bne _08024F4C
-	ldr r2, _08024FDC @ =gUnk_03002920
+	ldr r2, _08024FDC @ =gEntityInfo
 	ldrb r1, [r2, #0xc]
 	movs r0, #4
 	rsbs r0, r0, #0
@@ -240,7 +240,7 @@ _08024F92:
 	ldr r1, _08024FF8 @ =0x0400004A
 	movs r0, #0x30
 	strh r0, [r1]
-	ldr r4, _08024FFC @ =gUnk_03005210
+	ldr r4, _08024FFC @ =gSoundVolume
 	movs r6, #0x80
 	lsls r6, r6, #1
 	adds r0, r6, #0
@@ -264,14 +264,14 @@ _08024F92:
 	ldr r1, _08025010 @ =gCallbackQueue
 	ldr r0, _08025014 @ =sub_0802502C
 	str r0, [r1, #4]
-	ldr r2, _08025018 @ =gUnk_03005498
+	ldr r2, _08025018 @ =gBlendValue
 	ldr r1, _0802501C @ =gMosaicSize
 	movs r0, #0
 	strb r0, [r1]
 	strb r0, [r2]
 	b _08025026
 	.align 2, 0
-_08024FDC: .4byte gUnk_03002920
+_08024FDC: .4byte gEntityInfo
 _08024FE0: .4byte gNewKeys
 _08024FE4: .4byte gUnk_03003410
 _08024FE8: .4byte gUnk_03005220
@@ -279,14 +279,14 @@ _08024FEC: .4byte gUnk_03004C20
 _08024FF0: .4byte 0x04000048
 _08024FF4: .4byte 0x00002121
 _08024FF8: .4byte 0x0400004A
-_08024FFC: .4byte gUnk_03005210
+_08024FFC: .4byte gSoundVolume
 _08025000: .4byte gMPlayInfo_0
 _08025004: .4byte gMPlayInfo_1
 _08025008: .4byte gMPlayInfo_2
 _0802500C: .4byte gMPlayInfo_3
 _08025010: .4byte gCallbackQueue
 _08025014: .4byte sub_0802502C
-_08025018: .4byte gUnk_03005498
+_08025018: .4byte gBlendValue
 _0802501C: .4byte gMosaicSize
 _08025020:
 	ldr r0, [r1]

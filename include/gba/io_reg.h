@@ -618,6 +618,7 @@
 #define BLDALPHA_BLEND(target1, target2) (((target2) << 8) | (target1))
 #define BLDALPHA_BLEND2(target1, target2) ((target1) | ((target2) << 8))
 
+#define BLEND_MAX 16
 #define BLDALPHA_MAX 16
 #define BLDY_MAX 16
 

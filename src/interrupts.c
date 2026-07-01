@@ -9,11 +9,11 @@ void sub_080009D8(void)
     // VBlankHandler_Normal
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03004DB0, gUnk_03003430.pVramBg2Tilemap, 0x400);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gUnk_03004DB0, gBgInfo.pVramBg2Tilemap, 0x400);
 
-    DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
     if (gUnk_03003420 == 0)
     {
@@ -41,12 +41,12 @@ void sub_08000AC8(void)
     // VBlankHandler_ModeA
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo.pVramBg2Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo.pVramBg3Tilemap, 0x800);
 
-    DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
     if (gUnk_03003420 == 0)
     {
@@ -64,12 +64,12 @@ void sub_08000BD4(void)
     // VBlankHandler_ModeB
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[2], gUnk_03003430.pVramBg2Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[3], gUnk_03003430.pVramBg3Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo.pVramBg2Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo.pVramBg3Tilemap, 0x800);
 
-    DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
     if (gUnk_03003420 == 0)
     {
@@ -87,11 +87,11 @@ void sub_08000CE0(void)
     // VBlankDmaTransfer
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03003650, gUnk_03003430.pVramBg2Tilemap, 0x1000);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gUnk_03003650, gBgInfo.pVramBg2Tilemap, 0x1000);
 
-    DmaCopy32Wait(3, &gUnk_03004800, OAM, OAM_SIZE / 2);
+    DmaCopy32Wait(3, &gOamBuffer, OAM, OAM_SIZE / 2);
 
     if (gUnk_03003420 == 0)
     {
@@ -108,7 +108,7 @@ void sub_08000DC0(void)
     // VBlankHandler_OamOnly
     m4aSoundVSync();
 
-    DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
     if (gUnk_03003420 == 0)
     {
@@ -126,7 +126,7 @@ void sub_08000E14(void)
     // VBlankHandler_OamOnlyAlt
     m4aSoundVSync();
 
-    DmaCopy32(3, &gUnk_03004800, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
     if (gUnk_03003420 == 0)
     {
@@ -150,10 +150,10 @@ void sub_08000E68(void)
     REG_WIN1H = ((gUnk_030034A0->unkC << 0x4) & ~0xFF) | ((gUnk_030034A0->unk14 >> 0x4) & 0xFF);
     REG_WIN1V = ((gUnk_030034A0->unkE << 0x4) & ~0xFF) | ((gUnk_030034A0->unk16 >> 0x4) & 0xFF);
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gUnk_03003430.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gUnk_03003430.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
 
-    DmaCopy32(3, &gUnk_03004800, OAM, OAM_SIZE);
+    DmaCopy32(3, &gOamBuffer, OAM, OAM_SIZE);
 
     if (gUnk_03003420 == 0)
     {
@@ -170,7 +170,7 @@ void sub_08000F70(void)
     // UpdateFadeEffect
     u32 bldAlpha;
 
-    bldAlpha = REG_VCOUNT_L / gUnk_03002920[0].unk8.split.unk8;
+    bldAlpha = REG_VCOUNT_L / gEntityInfo[0].unk8.split.unk8;
     if (bldAlpha <= BLDALPHA_MAX)
     {
         REG_BLDALPHA = BLDALPHA_BLEND(bldAlpha, bldAlpha);
@@ -231,16 +231,16 @@ void sub_08001028(void)
 void sub_0800107C(void)
 {
     // UpdateBGScrollWithWave
-    if (gUnk_03004C20.unk0 & 1)
+    if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
     {
-        gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.unk0) * 4) & 0xFF;
-        REG_BG2HOFS = (gUnk_03003430.bg2HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
-        REG_BG3HOFS = (gUnk_03003430.bg3HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
+        gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.sceneFrameCounter) * 4) & 0xFF;
+        REG_BG2HOFS = (gBgInfo.bg2HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
+        REG_BG3HOFS = (gBgInfo.bg3HOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
     }
     else
     {
-        REG_BG2HOFS = gUnk_03003430.bg2HOfs >> 4;
-        REG_BG3HOFS = gUnk_03003430.bg3HOfs >> 4;
+        REG_BG2HOFS = gBgInfo.bg2HOfs >> 4;
+        REG_BG3HOFS = gBgInfo.bg3HOfs >> 4;
     }
 }
 

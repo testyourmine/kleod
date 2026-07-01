@@ -26,15 +26,15 @@ void sub_080240F4(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == 0)
+    gBlendValue -= 1;
+    if (gBlendValue == 0)
     {
         // Remove sub_080240F4 from callback queue
         removed = FALSE;
@@ -73,15 +73,15 @@ void sub_080241EC(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == 0)
+    gBlendValue -= 1;
+    if (gBlendValue == 0)
     {
         // Remove sub_080241EC from callback queue
         removed = FALSE;
@@ -118,12 +118,12 @@ void sub_080242C0(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
-    if (gUnk_03005498 == 0x10)
+    if (gBlendValue == BLEND_MAX)
     {
         if (gUnk_03003410.unkA == 0)
         {
@@ -131,9 +131,9 @@ void sub_080242C0(void)
             m4aSongNumContinue(gUnk_030052B8);
         }
 
-        if (gUnk_03005210 == 0xFFFF)
+        if (gSoundVolume == 0xFFFF)
         {
-            gUnk_03005210 = 0;
+            gSoundVolume = 0;
             if (gUnk_03004C20.level == 8)
             {
                 if (gUnk_03004C20.world == 6)
@@ -169,33 +169,33 @@ void sub_080242C0(void)
         }
     }
 
-    if (gUnk_03005498 != 0)
+    if (gBlendValue != 0)
     {
         if (gUnk_03003410.unk5 == 1)
         {
-            gUnk_03005210 += 0x10;
-            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+            gSoundVolume += 0x10;
+            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
         }
         else
         {
-            gUnk_03005210 = 0x100;
-            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+            gSoundVolume = 0x100;
+            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
         }
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == (u8)-1)
+    gBlendValue -= 1;
+    if (gBlendValue == (u8)-1)
     {
         gMosaicSize = 0;
-        gUnk_03005498 = 0;
+        gBlendValue = 0;
 
         // Remove sub_080242C0 from callback queue
         removed = FALSE;
@@ -218,13 +218,13 @@ void sub_080242C0(void)
         }
 
         gUnk_030034E4 = 0;
-        gUnk_03005210 = 0x100;
-        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+        gSoundVolume = 0x100;
+        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
 
-        gUnk_03005498 = 9;
+        gBlendValue = 9;
         REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1;
     }
     else
@@ -240,18 +240,18 @@ void sub_080242C0(void)
 void sub_08024560(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         sub_0800A468();
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_0804AF00;
         gCallbackQueue.next[2] = sub_080249A4;
@@ -266,19 +266,19 @@ void sub_08024560(void)
 void sub_080245E8(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         sub_080008DC();
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
         gCallbackQueue.next[0] = InputHandler_Normal;
         if (gUnk_03003410.unk7 == 1)
         {
@@ -304,18 +304,18 @@ void sub_080245E8(void)
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 3;
             }
-            gUnk_03004C20.unk0 = -1;
+            gUnk_03004C20.sceneFrameCounter = -1;
         }
         else
         {
-            gUnk_03002920[0xB].unk10 = 0;
+            gEntityInfo[0xB].unk10 = 0;
             gMosaicSize = 0;
             gCallbackQueue.next[1] = sub_08049724;
             gCallbackQueue.next[2] = sub_0800D0C4;
             gCallbackQueue.next[3] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 4;
-            gUnk_03004C20.unk0 = -1;
+            gUnk_03004C20.sceneFrameCounter = -1;
             gUnk_03004D9C = 0;
         }
     }
@@ -332,20 +332,20 @@ void sub_08024718(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
-    if (gUnk_03005498 != 0x10)
+    if (gBlendValue != BLEND_MAX)
     {
-        gUnk_03005210 -= 0x10;
-        if (gUnk_03005210 > 0x10)
+        gSoundVolume -= 0x10;
+        if (gSoundVolume > 0x10)
         {
-            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
         }
         else
         {
@@ -358,10 +358,10 @@ void sub_08024718(void)
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x11)
+    gBlendValue += 1;
+    if (gBlendValue == 0x11)
     {
-        gUnk_03005498 = 0x10;
+        gBlendValue = BLEND_MAX;
         gMosaicSize = 0xF;
         gUnk_030034E4 = 0;
         sub_0800A468();
@@ -369,8 +369,8 @@ void sub_08024718(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
         
-        gUnk_03002920[0xC].unk10 = 0;
-        gUnk_03002920[0xB].unk10 = 0;
+        gEntityInfo[0xC].unk10 = 0;
+        gEntityInfo[0xB].unk10 = 0;
 
         // Remove sub_08026374 from callback queue
         removed = FALSE;
@@ -393,11 +393,11 @@ void sub_08024718(void)
         }
 
         m4aMPlayAllStop();
-        gUnk_03005210 = 0;
-        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+        gSoundVolume = 0;
+        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
 
         REG_IE &= ~INTR_FLAG_VBLANK;
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -433,15 +433,15 @@ void sub_080249A4(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == 0)
+    gBlendValue -= 1;
+    if (gBlendValue == 0)
     {
         // remove sub_080249A4 from callback queue
         // TODO: do while required to match, callback removal possibly a macro
@@ -466,7 +466,7 @@ void sub_080249A4(void)
         }
         } while (0);
 
-        gUnk_03004C20.unk0 = 0;
+        gUnk_03004C20.sceneFrameCounter = 0;
         gUnk_030034E4 = 0;
     }
 }
@@ -475,15 +475,15 @@ void sub_080249A4(void)
 void sub_08024A78(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         sub_080008DC();
@@ -501,7 +501,7 @@ void sub_08024A78(void)
         gCallbackQueue.next[3] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 4;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -513,15 +513,15 @@ void sub_08024A78(void)
 void sub_08024B54(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         sub_080008DC();
@@ -541,7 +541,7 @@ void sub_08024B54(void)
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -553,15 +553,15 @@ void sub_08024B54(void)
 void sub_08024C34(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         sub_080008DC();
@@ -578,7 +578,7 @@ void sub_08024C34(void)
             if ((gUnk_03004C20.world != 6) && (gUnk_03004C20.level == 8))
             {
                 gUnk_03005284->unk4 = gUnk_03004C20.world * 3;
-                gUnk_03005498 = 0x10;
+                gBlendValue = BLEND_MAX;
                 gCallbackQueue.next[0] = sub_0804BE58;
                 gCallbackQueue.next[1] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -597,7 +597,7 @@ void sub_08024C34(void)
                 gCallbackQueue.nextCount = 3;
             }
         }
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -612,26 +612,26 @@ NONMATCH("asm/nonmatching/sub_08024D84.inc", void sub_08024D84(void))
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03005498 == 0)
+    if (gBlendValue == 0)
     {
         for (i = 1; i < gUnk_03005428; i++)
         {
-            gUnk_03002920[i].unk10 = 0;
-            gUnk_03002920[i].unkF = 0x1C;
+            gEntityInfo[i].unk10 = 0;
+            gEntityInfo[i].unkF = 0x1C;
         }
 
-        gUnk_03002920->unk10 = 1;
+        gEntityInfo->unk10 = 1;
         goto block_9;
     }
 
-    if (gUnk_03004C20.unk4 & 7)
+    if ((gUnk_03004C20.globalFrameCounter % 8) != 0)
     {
 
     }
-    else if (gUnk_03005498 < 0x10)
+    else if (gBlendValue < BLEND_MAX)
     {
 block_9:
-        if (gUnk_03005498 == 1)
+        if (gBlendValue == 1)
         {
             REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | 0xFFFF8F00;
             gIntrTable.vCount = sub_0800111C;
@@ -644,13 +644,13 @@ block_9:
             }
         }
 
-        gUnk_03005210 -= 0x10;
-        if (gUnk_03005210 > 0x10)
+        gSoundVolume -= 0x10;
+        if (gSoundVolume > 0x10)
         {
-            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
         }
         else
         {
@@ -660,27 +660,27 @@ block_9:
             m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, 0x10);
         }
 
-        gUnk_03005498 += 1;
-        if (gUnk_03005498 == 0x10)
+        gBlendValue += 1;
+        if (gBlendValue == BLEND_MAX)
         {
             m4aMPlayAllStop();
-            gUnk_03005210 = 0x100;
-            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+            gSoundVolume = 0x100;
+            m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+            m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
             m4aSongNumStart(0x78);
             sub_08025F94();
         }
-        else if (gUnk_03005498 == 9)
+        else if (gBlendValue == 9)
         {
-            gUnk_03002920->priority = 0;
+            gEntityInfo->priority = 0;
         }
     }
 
     if (((gNewKeys & (START_BUTTON | A_BUTTON)) || (gUnk_03003410.unk0 > 0xFA)) && (gUnk_03003410.unk0 != 0))
     {
-        gUnk_03005220.unk0_0 = 3;
+        gUnk_03005220.hearts = 3;
         m4aMPlayAllStop();
         VBlankIntrWait();
 
@@ -690,14 +690,14 @@ block_9:
         }
         REG_WINOUT = WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
 
-        gUnk_03005210 = 0x100;
-        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+        gSoundVolume = 0x100;
+        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
 
         gCallbackQueue.current[1] = sub_0802502C;
-        gUnk_03005498 = gMosaicSize = 0;
+        gBlendValue = gMosaicSize = 0;
     }
     else
     {
@@ -710,20 +710,20 @@ END_NONMATCH
 void sub_0802502C(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
-    if (gUnk_03005498 == 0)
+    if (gBlendValue == 0)
     {
         REG_IE &= ~INTR_FLAG_VCOUNT;
         REG_DISPSTAT &= ~DISPSTAT_VCOUNT_INTR;
     }
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 != 0x10)
+    gBlendValue += 1;
+    if (gBlendValue != BLEND_MAX)
     {
         return;
     }
@@ -731,7 +731,7 @@ void sub_0802502C(void)
     
     gBg2XMag = gBg2YMag = 0x100;
     gBg2Alpha = 0;
-    gUnk_03005498 = 0x10;
+    gBlendValue = BLEND_MAX;
     gMosaicSize = 0xF;
 
     if (gUnk_03005220.unk37 == 0)
@@ -748,11 +748,11 @@ void sub_0802502C(void)
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
-        gUnk_03005210 = 0xFFFF;
+        gSoundVolume = 0xFFFF;
 
-        gUnk_03005220.unk0_2 = gUnk_03005284->unk8_2;
-        gUnk_03005220.unk0_5 = gUnk_03005284->unk8_5;
-        gUnk_03005220.unk1_4 = gUnk_03005284->unk9_4;
+        gUnk_03005220.stars = gUnk_03005284->unk8_2;
+        gUnk_03005220.dreamStones = gUnk_03005284->unk8_5;
+        gUnk_03005220.keys = gUnk_03005284->unk9_4;
         gUnk_03005220.unk14 = gUnk_03005284->unk14;
         gUnk_03005220.unk3_5 = gUnk_03005284->unkB_5;
         gUnk_03005220.unk3_6 = gUnk_03005284->unkB_6;
@@ -762,7 +762,7 @@ void sub_0802502C(void)
         gUnk_03005220.unk2E = gUnk_03005284->unk5;
         gUnk_03005220.unk58 = gUnk_03005284->unk7;
         gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
-        gUnk_03005284->unk0 = gUnk_03005220.unk4C;
+        gUnk_03005284->unk0 = gUnk_03005220.lives;
 
         REG_IE &= ~INTR_FLAG_VBLANK;
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -778,14 +778,14 @@ void sub_0802502C(void)
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
     }
-    gUnk_03004C20.unk0 = -1;
+    gUnk_03004C20.sceneFrameCounter = -1;
 }
 
 // 2528C
 void sub_0802528C(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
@@ -798,8 +798,8 @@ void sub_0802528C(void)
         REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR;
     }
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
 
@@ -815,7 +815,7 @@ void sub_0802528C(void)
         gCallbackQueue.next[1] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 2;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -827,13 +827,13 @@ void sub_0802528C(void)
 void sub_0802534C(void)
 {
     gUnk_030034E4 = 1;
-    gUnk_03005210 -= 0x10;
-    if (gUnk_03005210 > 0x10)
+    gSoundVolume -= 0x10;
+    if (gSoundVolume > 0x10)
     {
-        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gUnk_03005210);
-        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
+        m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
+        m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
     }
     else
     {
@@ -848,8 +848,8 @@ void sub_0802534C(void)
     REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR;
     REG_DISPCNT &= ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         m4aMPlayAllStop();
         REG_IE &= ~INTR_FLAG_VBLANK;
@@ -869,7 +869,7 @@ void sub_0802534C(void)
             DmaFill32(3, 0, &gUnk_03005284->unk0, 0x24);
             gUnk_03004C20.world = 1;
             gUnk_03005284->unk1 = 1;
-            gUnk_03005284->unk0 = gUnk_03005220.unk4C = 3;
+            gUnk_03005284->unk0 = gUnk_03005220.lives = 3;
             gUnk_03005284->unk1C = 2;
             gUnk_03005284->unk1D = 1;
         }
@@ -880,7 +880,7 @@ void sub_0802534C(void)
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
 
-        gUnk_03005220.unk4C = gUnk_03005284->unk0;
+        gUnk_03005220.lives = gUnk_03005284->unk0;
         gUnk_03004C20.world = gUnk_03005284->unk1;
         gUnk_03004C20.level = gUnk_03005284->unk2;
 
@@ -912,7 +912,7 @@ void sub_0802534C(void)
             gCallbackQueue.next[4] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 5;
-            gUnk_03004C20.unk0 = -1;
+            gUnk_03004C20.sceneFrameCounter = -1;
             return;
         }
         else
@@ -938,15 +938,15 @@ block_17:
 void sub_08025634(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         gBg2XMag = gBg2YMag = 0x100;
@@ -956,7 +956,7 @@ void sub_08025634(void)
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
         sub_08003D58();
         gUnk_03003410.unk9 = 0;
         gUnk_03003410.unkA = 0;
@@ -966,7 +966,7 @@ void sub_08025634(void)
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -981,15 +981,15 @@ void sub_08025718(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == 0)
+    gBlendValue -= 1;
+    if (gBlendValue == 0)
     {
         // remove sub_08025718 from callback queue
         // TODO: do while required to match, callback removal possibly a macro
@@ -1014,7 +1014,7 @@ void sub_08025718(void)
         }
         } while(0);
 
-        gUnk_03004C20.unk0 = 0;
+        gUnk_03004C20.sceneFrameCounter = 0;
         gUnk_030034E4 = 0;
         REG_WININ = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR;
         REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
@@ -1030,15 +1030,15 @@ void sub_08025718(void)
 void sub_08025818(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         gUnk_030034E4 = 0;
         
@@ -1049,7 +1049,7 @@ void sub_08025818(void)
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
         gUnk_03004658[0xC] = 0;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
         sub_0800A468();
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_0803B600;
@@ -1058,7 +1058,7 @@ void sub_08025818(void)
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
     }
     else
     {
@@ -1070,15 +1070,15 @@ void sub_08025818(void)
 void sub_08025900(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_LIGHTEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         SoftResetRom(0xFF);
     }
@@ -1095,15 +1095,15 @@ void sub_08025954(void)
     u32 i;
 
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 -= 1;
-    if (gUnk_03005498 == 0)
+    gBlendValue -= 1;
+    if (gBlendValue == 0)
     {
         // remove sub_08025718 from callback queue
         removed = FALSE;
@@ -1137,15 +1137,15 @@ void sub_08025954(void)
 void sub_08025A28(void)
 {
     gUnk_030034E4 = 1;
-    if (gUnk_03004C20.unk4 & 1)
+    if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
         return;
     }
 
     REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_ALL;
 
-    gUnk_03005498 += 1;
-    if (gUnk_03005498 == 0x10)
+    gBlendValue += 1;
+    if (gBlendValue == BLEND_MAX)
     {
         REG_IE &= ~INTR_FLAG_VBLANK;
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -1158,7 +1158,7 @@ void sub_08025A28(void)
         gUnk_030034E4 = 0;
         sub_08003D58();
         sub_080008DC();
-        gUnk_03004C20.unk0 = -1;
+        gUnk_03004C20.sceneFrameCounter = -1;
         
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
@@ -1195,9 +1195,9 @@ void sub_08025B78(s32 arg0, u8 arg1)
         arg0 = arg0 + (9 - gUnk_030007C4);
     }
 
-    gUnk_03000830[arg0].unk0 = arg1;
-    gUnk_03000830[arg0].unk1 = 1;
-    gUnk_03000830[arg0].unk2 = 0xFF;
+    gEntityAnimationInfo[arg0].state = arg1;
+    gEntityAnimationInfo[arg0].timer = 1;
+    gEntityAnimationInfo[arg0].frame = 0xFF;
 }
 
 // 25BA4
@@ -1208,15 +1208,15 @@ void sub_08025BA4(void)
     struct Unk_03005294_03005418_0 **temp_r7;
     struct Unk_03005294_03005418_0 *var_r4;
 
-    for (sp0 = 0; sp0 <= 0x2C; sp0++)
+    for (sp0 = 0; sp0 < 0x2D; sp0++)
     {
-        if (sp0 <= 8)
+        if (sp0 < 9)
         {
             var_r5 = &gUnk_03005418[sp0];
         }
         else
         {
-            var_r5 = &gUnk_03005294[sp0] - 0x9;
+            var_r5 = &gUnk_03005294[sp0] - 9;
         }
         if (var_r5->unk0 == NULL)
         {
@@ -1227,48 +1227,49 @@ void sub_08025BA4(void)
             continue;
         }
 
-        if (gUnk_03000830[sp0].unk1 != 0xFF)
+        if (gEntityAnimationInfo[sp0].timer == 0xFF)
         {
-            if (--gUnk_03000830[sp0].unk1 == 0)
+            continue;
+        }
+
+        if (--gEntityAnimationInfo[sp0].timer != 0)
+        {
+            continue;
+        }
+
+        temp_r7 = var_r5->unk0;
+        var_r4 = temp_r7[gEntityAnimationInfo[sp0].state];
+        if (var_r4[++gEntityAnimationInfo[sp0].frame].src == -1)
+        {
+            gEntityAnimationInfo[sp0].frame = 0;
+        }
+        else if (var_r4[gEntityAnimationInfo[sp0].frame].src == -2)
+        {
+            gEntityAnimationInfo[sp0].timer |= 0xFF;
+            gEntityInfo[var_r5->unkA].unk10 = 0;
+            gEntityInfo[var_r5->unkA].unkF = 0x1C;
+            gEntityInfo[var_r5->unkA].unk8.split.unk8 = 0;
+            continue;
+        }
+        else if (var_r4[gEntityAnimationInfo[sp0].frame].src > 9999)
+        {
+            if (var_r4[gEntityAnimationInfo[sp0].frame].src == -3)
             {
-                temp_r7 = var_r5->unk0;
-                var_r4 = temp_r7[gUnk_03000830[sp0].unk0];
-                if (var_r4[++gUnk_03000830[sp0].unk2].unk0 == -1)
-                {
-                    gUnk_03000830[sp0].unk2 = 0;
-                    goto block_15;
-                }
-                else if (var_r4[gUnk_03000830[sp0].unk2].unk0 == -2)
-                {
-                    gUnk_03000830[sp0].unk1 |= 0xFF;
-                    gUnk_03002920[var_r5->unkA].unk10 = 0;
-                    gUnk_03002920[var_r5->unkA].unkF = 0x1C;
-                    gUnk_03002920[var_r5->unkA].unk8.split.unk8 = 0;
-                }
-                else if (var_r4[gUnk_03000830[sp0].unk2].unk0 > 0x270F)
-                {
-                    if (var_r4[gUnk_03000830[sp0].unk2].unk0 == -3)
-                    {
-                        gUnk_03000830[sp0].unk1 |= 0xFF;
-                    }
-                    else
-                    {
-                        goto block_15;
-                    }
-                }
-                else
-                {
-                    gUnk_03000830[sp0].unk0 = var_r4[gUnk_03000830[sp0].unk2].unk0;
-                    gUnk_03000830[sp0].unk2 = 0;
-                    var_r4 = temp_r7[gUnk_03000830[sp0].unk0];
-block_15:
-                    gUnk_03000830[sp0].unk1 = var_r4[gUnk_03000830[sp0].unk2].unk4;
-                    DmaCopy16(3, var_r4[gUnk_03000830[sp0].unk2].unk0, var_r5->unk4, var_r5->unk8);
-                    gUnk_03002920[var_r5->unkA].unkB_0 = var_r4[gUnk_03000830[sp0].unk2].unk5_0;
-                    gUnk_03002920[var_r5->unkA].unkB_4 = var_r4[gUnk_03000830[sp0].unk2].unk5_4;
-                }
+                gEntityAnimationInfo[sp0].timer |= 0xFF;
+                continue;
             }
         }
+        else
+        {
+            gEntityAnimationInfo[sp0].state = var_r4[gEntityAnimationInfo[sp0].frame].src;
+            gEntityAnimationInfo[sp0].frame = 0;
+            var_r4 = temp_r7[gEntityAnimationInfo[sp0].state];
+        }
+
+        gEntityAnimationInfo[sp0].timer = var_r4[gEntityAnimationInfo[sp0].frame].unk4;
+        DmaCopy16(3, var_r4[gEntityAnimationInfo[sp0].frame].src, var_r5->dest, var_r5->size);
+        gEntityInfo[var_r5->unkA].unkB_0 = var_r4[gEntityAnimationInfo[sp0].frame].unk5_0;
+        gEntityInfo[var_r5->unkA].unkB_4 = var_r4[gEntityAnimationInfo[sp0].frame].unk5_4;
     }
 }
 
@@ -1280,7 +1281,7 @@ void sub_08025DD4(void)
 
     for (var_r6 = 0; var_r6 < 3; var_r6++)
     {
-        if (var_r6 < gUnk_03005220.unk0_0)
+        if (var_r6 < gUnk_03005220.hearts)
         {
             var_r5 = 0;
         }
@@ -1310,7 +1311,7 @@ s32 sub_08025E68(void)
     {
         var_r5 = 0x1E;
     }
-    if (var_r5 == gUnk_03005220.unk0_5)
+    if (var_r5 == gUnk_03005220.dreamStones)
     {
         var_sb = 1;
     }
@@ -1318,7 +1319,7 @@ s32 sub_08025E68(void)
     if ((gUnk_03004C20.unkA == 1) || (gUnk_03004C20.level == 6))
     {
         var_r5 = 1;
-        if (gUnk_03005220.unk0_5 > 0x63)
+        if (gUnk_03005220.dreamStones > 0x63)
         {
             gBgTilemapBufs[0][0x252] += 0;
             gBgTilemapBufs[0][0x252] = gBgTilemapBufs[0][0x293];
@@ -1331,44 +1332,44 @@ s32 sub_08025E68(void)
         var_r5 = 0;
     }
 
-    if (gUnk_03005220.unk0_5 > 9)
+    if (gUnk_03005220.dreamStones > 9)
     {
-        gBgTilemapBufs[0][0x254 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.unk0_5 / 10) + 0x292];
-        gBgTilemapBufs[0][0x274 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.unk0_5 / 10) + 0x2B2];
+        gBgTilemapBufs[0][0x254 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x292];
+        gBgTilemapBufs[0][0x274 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x2B2];
     }
 
-    gBgTilemapBufs[0][0x255 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.unk0_5 % 10) + 0x292];
-    gBgTilemapBufs[0][0x275 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.unk0_5 % 10) + 0x2B2];
+    gBgTilemapBufs[0][0x255 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x292];
+    gBgTilemapBufs[0][0x275 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x2B2];
     return var_sb;
 }
 
 // 25F94
 void sub_08025F94(void)
 {
-    if ((u8) gUnk_03005220.unk4C > 9)
+    if ((u8) gUnk_03005220.lives > 9)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x292];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x2B2];
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x292];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x2B2];
     }
-    else if ((u8) gUnk_03005220.unk4C == 9)
+    else if ((u8) gUnk_03005220.lives == 9)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x25E];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x27E];
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x25E];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x27E];
     }
-    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x292];
-    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x2B2];
+    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x292];
+    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x2B2];
 }
 
 // 26090
 void sub_08026090(void)
 {
-    if ((u8) gUnk_03005220.unk4C > 9)
+    if ((u8) gUnk_03005220.lives > 9)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x293];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C / 10) + 0x2B3];
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x293];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x2B3];
     }
-    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x293];
-    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x2B3];
+    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x293];
+    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x2B3];
 }
 
 // 26128
@@ -1433,26 +1434,26 @@ void sub_08026374(void)
         return;
     }
 
-    if (gUnk_03004C20.unk0 <= 0x4BU)
+    if (gUnk_03004C20.sceneFrameCounter <= 75)
     {
-        gUnk_03002920[0xB].xPosScreen += 2;
+        gEntityInfo[0xB].xPosScreen += 2;
     }
-    else if (gUnk_03004C20.unk0 > 0xD8U)
+    else if (gUnk_03004C20.sceneFrameCounter > 216)
     {
-        gUnk_03002920[0xB].unk10 = 0;
+        gEntityInfo[0xB].unk10 = 0;
     }
-    else if (gUnk_03004C20.unk0 > 0xB0U)
+    else if (gUnk_03004C20.sceneFrameCounter > 176)
     {
-        gUnk_03002920[0xB].xPosScreen += 4;
+        gEntityInfo[0xB].xPosScreen += 4;
     }
 
-    if ((u32) (gUnk_03004C20.unk0 - 0x15) <= 0x4AU)
+    if (gUnk_03004C20.sceneFrameCounter > 20 && gUnk_03004C20.sceneFrameCounter <= 95)
     {
-        gUnk_03002920[0xC].xPosScreen += 2;
+        gEntityInfo[0xC].xPosScreen += 2;
     }
-    else if (gUnk_03004C20.unk0 > 0xECU)
+    else if (gUnk_03004C20.sceneFrameCounter > 236)
     {
-        gUnk_03002920[0xC].unk10 = 0;
+        gEntityInfo[0xC].unk10 = 0;
         if (gUnk_030034E4 == 0)
         {
             // remove sub_08026374 from callback queue
@@ -1476,9 +1477,9 @@ void sub_08026374(void)
             }
         }
     }
-    else if (gUnk_03004C20.unk0 > 0xC4U)
+    else if (gUnk_03004C20.sceneFrameCounter > 196)
     {
-        gUnk_03002920[0xC].xPosScreen += 4;
+        gEntityInfo[0xC].xPosScreen += 4;
     }
 }
 
@@ -1496,29 +1497,29 @@ void sub_080264A4(void)
     if (gUnk_03003410.unkB == 2)
     {
         gUnk_03003410.unkB = 3;
-        gUnk_03004C20.unk0 = 0;
-        gUnk_03002920[0xC].unk10 = 1;
-        gUnk_03002920[0xB].unk10 = 1;
-        gUnk_03002920[0xC].xPosScreen = DISPLAY_WIDTH_CENTER;
-        gUnk_03002920[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
-        gUnk_03002920[0xC].yPosScreen = 0;
-        gUnk_03002920[0xB].yPosScreen = 0;
+        gUnk_03004C20.sceneFrameCounter = 0;
+        gEntityInfo[0xC].unk10 = 1;
+        gEntityInfo[0xB].unk10 = 1;
+        gEntityInfo[0xC].xPosScreen = DISPLAY_WIDTH_CENTER;
+        gEntityInfo[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
+        gEntityInfo[0xC].yPosScreen = 0;
+        gEntityInfo[0xB].yPosScreen = 0;
         DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 << 5), 0x800);
         m4aSongNumStart(0x1F);
     }
 
-    if (gUnk_03004C20.unk0 <= 0x19U)
+    if (gUnk_03004C20.sceneFrameCounter <= 25)
     {
-        gUnk_03002920[0xB].yPosScreen += 2;
+        gEntityInfo[0xB].yPosScreen += 2;
     }
 
-    if (gUnk_03004C20.unk0 >= 0x15 && gUnk_03004C20.unk0 <= 0x50)
+    if (gUnk_03004C20.sceneFrameCounter > 20 && gUnk_03004C20.sceneFrameCounter <= 80)
     {
-        gUnk_03002920[0xC].yPosScreen += 2;
+        gEntityInfo[0xC].yPosScreen += 2;
         return;
     }
 
-    if (gUnk_03004C20.unk0 <= 0x92U)
+    if (gUnk_03004C20.sceneFrameCounter <= 146)
     {
         return;
     }
@@ -1526,14 +1527,14 @@ void sub_080264A4(void)
     gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
     if (gUnk_03004C20.level == 8)
     {
-        if (gUnk_03005498 != 0)
+        if (gBlendValue != 0)
         {
             return;
         }
 
         for (i = 0xD; i < gUnk_03005428; i++)
         {
-            gUnk_03002920[i].unkF = 0x1A;
+            gEntityInfo[i].unkF = 0x1A;
         }
 
         sub_080008DC();
@@ -1560,7 +1561,7 @@ void sub_080264A4(void)
     }
     else if (gUnk_03004C20.world == 0x6 && gUnk_03004C20.level == 0x3)
     {
-        gUnk_03005498 = 0;
+        gBlendValue = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_08025A28;
         gCallbackQueue.next[2] = sub_0800BFF4;
@@ -1572,7 +1573,7 @@ void sub_080264A4(void)
     }
     else
     {
-        gUnk_03005498 = 0;
+        gBlendValue = 0;
         gUnk_03003410.unk7 = 1;
 
         // add sub_080245E8 to index 5 of callback queue
@@ -1601,13 +1602,13 @@ void sub_080264A4(void)
         gCallbackQueue.currentCount = 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     }
-    gUnk_03005284->unk0 = gUnk_03005220.unk4C;
+    gUnk_03005284->unk0 = gUnk_03005220.lives;
 
-    if ((gUnk_03005220.unk0_5 > (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & 0x7F)) || (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
+    if ((gUnk_03005220.dreamStones > (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & 0x7F)) || (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
     {
         // Required to match
         do {
-        gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.unk0_5;
+        gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.dreamStones;
         } while(0);
     }
     gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= 0x80;

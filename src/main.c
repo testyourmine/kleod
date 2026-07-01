@@ -55,8 +55,8 @@ void AgbMain(void)
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
 
-    gUnk_03004C20.unk4 = 0;
-    gUnk_03004C20.unk0 = 0;
+    gUnk_03004C20.globalFrameCounter = 0;
+    gUnk_03004C20.sceneFrameCounter = 0;
     gUnk_03004C20.demoNumber = 0xFF;
 
     gUnk_03004658 = thunk_HeapAlloc(0x18, 0);
@@ -65,7 +65,7 @@ void AgbMain(void)
     gUnk_030047FC = thunk_HeapAlloc(0x2C, 0);
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
-    gUnk_03005498 = gMosaicSize = 0;
+    gBlendValue = gMosaicSize = 0;
     gUnk_03005428 = 1;
     gUnk_03005284->unk16 = 0;
     gUnk_03004C20.unk8 = 0;
@@ -82,7 +82,7 @@ void AgbMain(void)
     gUnk_0300548C = 0;
     gUnk_03004784 = 0;
     m4aSoundInit();
-    gUnk_03005210 = 0x100;
+    gSoundVolume = 0x100;
 
     if ((gHeldKeys & DELETE_SAVE_DATA_KEYS) == DELETE_SAVE_DATA_KEYS)
     {
@@ -162,7 +162,7 @@ void InputHandler_AttractMode(void)
     {
         // End attract demo
         gUnk_030034E4 = 1;
-        gMosaicSize = gUnk_03005498 = 0;
+        gMosaicSize = gBlendValue = 0;
         gUnk_03003410.unk7 = 2;
 
         for (i = 0; i < (gCallbackQueue.currentCount + 1); i += 1)
@@ -188,9 +188,9 @@ void InputHandler_AttractMode(void)
         }
     }
 
-    if (!(gUnk_03004C20.unk0 & 0x1F))
+    if ((gUnk_03004C20.sceneFrameCounter % 0x20) == 0)
     {
-        gUnk_03002920[0xB].unk10 ^= 1;
+        gEntityInfo[0xB].unk10 ^= 1;
     }
 }
 
@@ -209,12 +209,12 @@ void sub_0800087C(u8 arg0, u8 arg1)
 void sub_080008DC(void)
 {
     // Called on gameplay transitions
-    thunk_HeapFree(gUnk_03004790.pBufBg0Tilemap - 2);
-    thunk_HeapFree(gUnk_03004790.pBufBg0Tiles - 4);
-    thunk_HeapFree(gUnk_03004790.pBufBg1Tilemap - 2);
-    thunk_HeapFree(gUnk_03004790.pBufBg1Tiles - 4);
-    thunk_HeapFree(gUnk_03004790.pBufBg2Tilemap - 4);
-    thunk_HeapFree(gUnk_03004790.pBufBg2Tiles - 4);
+    thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
+    thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
+    thunk_HeapFree(gBgDataPtrs.pBufBg1Tilemap - 2);
+    thunk_HeapFree(gBgDataPtrs.pBufBg1Tiles - 4);
+    thunk_HeapFree(gBgDataPtrs.pBufBg2Tilemap - 4);
+    thunk_HeapFree(gBgDataPtrs.pBufBg2Tiles - 4);
 
     if (gUnk_03005290 != 0)
     {

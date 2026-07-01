@@ -52,10 +52,10 @@ void sub_0800BFF4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -66,13 +66,13 @@ void sub_0800BFF4(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -156,8 +156,8 @@ void sub_0800C108(void)
         {
             var_sb = 1;
             var_r8 = 1;
-            temp_r4 = (8 - Abs(8 - gUnk_03005498)) * 8;
-            var_r5_2 = gUnk_03004C20.unk0;
+            temp_r4 = (8 - Abs(8 - gBlendValue)) * 8;
+            var_r5_2 = gUnk_03004C20.sceneFrameCounter;
         }
 
         for (var_r6 = 0; var_r6 < 0xA0; var_r6++)
@@ -176,21 +176,21 @@ void sub_0800C108(void)
         }
     }
 
-    var_r3_2 = gUnk_03003430.bg2HOfs;
-    var_r2_2 = gUnk_03003430.bg2VOfs;
+    var_r3_2 = gBgInfo.bg2HOfs;
+    var_r2_2 = gBgInfo.bg2VOfs;
     if (gUnk_03004C20.world == 0x4 && gUnk_03004C20.level == 0x8)
     {
         var_r2_2 += 0x20;
     }
-    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gUnk_03003430.bg2HOfs + sp0) << 8);
-    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gUnk_03003430.bg2VOfs + sp4) << 8);
+    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gBgInfo.bg2HOfs + sp0) << 8);
+    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gBgInfo.bg2VOfs + sp4) << 8);
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 4) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 7) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 4) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 7) & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -201,13 +201,13 @@ void sub_0800C108(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -221,14 +221,14 @@ void sub_0800C45C(void)
 
     VBlankIntrWait();
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, 0, 0);
 
-    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
 
     REG_BG2PA = gBg2PA;
     REG_BG2PA = gBg2PA;
@@ -236,8 +236,8 @@ void sub_0800C45C(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -249,14 +249,14 @@ void sub_0800C564(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gUnk_03003430.bg0HOfs & 0x1FF;
-    REG_BG0VOFS = gUnk_03003430.bg0VOfs & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
-    REG_BG2HOFS = (gUnk_03003430.bg2HOfs >> 4) & 0x1FF;
-    REG_BG2VOFS = (gUnk_03003430.bg2VOfs >> 4) & 0x1FF;
-    REG_BG3HOFS = (gUnk_03003430.bg3HOfs >> 4) & 0x1FF;
-    REG_BG3VOFS = (gUnk_03003430.bg3VOfs >> 4) & 0x1FF;
+    REG_BG0HOFS = gBgInfo.bg0HOfs & 0x1FF;
+    REG_BG0VOFS = gBgInfo.bg0VOfs & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG2HOFS = (gBgInfo.bg2HOfs >> 4) & 0x1FF;
+    REG_BG2VOFS = (gBgInfo.bg2VOfs >> 4) & 0x1FF;
+    REG_BG3HOFS = (gBgInfo.bg3HOfs >> 4) & 0x1FF;
+    REG_BG3VOFS = (gBgInfo.bg3VOfs >> 4) & 0x1FF;
 
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
@@ -268,22 +268,22 @@ void sub_0800C564(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
-    gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.unk0 * 0x10) & 0xFF), MultiplyQ8(0x200, SIN((gUnk_03004C20.unk0 * 4) & 0x7F)));
+    gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.sceneFrameCounter * 0x10) & 0xFF), MultiplyQ8(0x200, SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0x7F)));
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gBg2X = ((gUnk_03003430.bg2HOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
-    gBg2Y = ((gUnk_03003430.bg2VOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
+    gBg2X = ((gBgInfo.bg2HOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
+    gBg2Y = ((gBgInfo.bg2VOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -296,10 +296,10 @@ void sub_0800C7EC(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -310,13 +310,13 @@ void sub_0800C7EC(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -326,10 +326,10 @@ void sub_0800C900(void)
 {
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gUnk_03003430.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gUnk_03003430.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -340,13 +340,13 @@ void sub_0800C900(void)
     REG_BG2PC = gBg2PC;
     REG_BG2PD = gBg2PD;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }
@@ -378,15 +378,15 @@ void sub_0800CA0C(u32 arg0)
     gUnk_03000810 = 0;
     if (gUnk_03004C20.level == 8)
     {
-        gUnk_03002920->xPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk0;
-        gUnk_03002920->yPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk2;
-        gUnk_03002920->unkC_2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk4_0;
+        gEntityInfo->xPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk0;
+        gEntityInfo->yPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk2;
+        gEntityInfo->unkC_2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk4_0;
     }
     else
     {
-        gUnk_03002920->xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk0;
-        gUnk_03002920->yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk2;
-        gUnk_03002920->unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_0;
+        gEntityInfo->xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk0;
+        gEntityInfo->yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk2;
+        gEntityInfo->unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_0;
     }
 
     if (arg0 == 0)
@@ -400,10 +400,10 @@ void sub_0800CA0C(u32 arg0)
             sub_08046DB8(0, 1);
             sub_08046DB8(1, 0);
         }
-        gUnk_03005220.unk0_2 = 0;
-        gUnk_03005220.unk0_5 = 0;
-        gUnk_03005220.unk0_0 = 3;
-        gUnk_03005220.unk1_4 = 0;
+        gUnk_03005220.stars = 0;
+        gUnk_03005220.dreamStones = 0;
+        gUnk_03005220.hearts = 3;
+        gUnk_03005220.keys = 0;
         gUnk_03005220.unk14 = 0;
         gUnk_03005220.unk3_6 = gUnk_03005220.unk3_5 = 0;
         if ((gUnk_03004C20.unkB != 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
@@ -431,11 +431,11 @@ void sub_0800CA0C(u32 arg0)
 
     if (arg0 == 1)
     {
-        gUnk_03005220.unk4C = gUnk_03005284->unk0;
-        gUnk_03005220.unk0_0 = gUnk_03005284->unk8_0;
-        gUnk_03005220.unk0_2 = gUnk_03005284->unk8_2;
-        gUnk_03005220.unk0_5 = gUnk_03005284->unk8_5;
-        gUnk_03005220.unk1_4 = gUnk_03005284->unk9_4;
+        gUnk_03005220.lives = gUnk_03005284->unk0;
+        gUnk_03005220.hearts = gUnk_03005284->unk8_0;
+        gUnk_03005220.stars = gUnk_03005284->unk8_2;
+        gUnk_03005220.dreamStones = gUnk_03005284->unk8_5;
+        gUnk_03005220.keys = gUnk_03005284->unk9_4;
         gUnk_03005220.unk4 = gUnk_03005284->unk18;
         gUnk_03005220.unk2_7 = gUnk_03005284->unkA_7;
         gUnk_03005220.unk3_5 = gUnk_03005284->unkB_5;
@@ -459,13 +459,13 @@ void sub_0800CA0C(u32 arg0)
     }
     else
     {
-        gUnk_03005284->unk0 = gUnk_03005220.unk4C;
+        gUnk_03005284->unk0 = gUnk_03005220.lives;
         gUnk_03005284->unk1 = gUnk_03004C20.world;
         gUnk_03005284->unk2 = gUnk_03004C20.level;
-        gUnk_03005284->unk8_0 = gUnk_03005220.unk0_0;
+        gUnk_03005284->unk8_0 = gUnk_03005220.hearts;
         gUnk_03005284->unk16 = gUnk_03004C20.unk8;
-        gUnk_03005284->unk8_2 = gUnk_03005220.unk0_2;
-        gUnk_03005284->unk9_4 = gUnk_03005220.unk1_4;
+        gUnk_03005284->unk8_2 = gUnk_03005220.stars;
+        gUnk_03005284->unk9_4 = gUnk_03005220.keys;
         gUnk_03005284->unk14 = gUnk_03005220.unk14;
         gUnk_03005284->unkB_5 = gUnk_03005220.unk3_5;
         gUnk_03005284->unkB_6 = gUnk_03005220.unk3_6;
@@ -475,7 +475,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005284->unk18 = gUnk_03005220.unk4;
         if (gUnk_03004C20.unkB == 0)
         {
-            gUnk_03005284->unk8_5 = gUnk_03005220.unk0_5;
+            gUnk_03005284->unk8_5 = gUnk_03005220.dreamStones;
             gUnk_03005284->unkC = gUnk_03005220.unk8;
             gUnk_03005284->unk10 = gUnk_03005220.unkC;
             gUnk_03005284->unkA_7 = gUnk_03005220.unk2_7;
@@ -503,8 +503,8 @@ void sub_0800CA0C(u32 arg0)
     gUnk_03003410.unkB = 0;
     gUnk_030051E0 = 0;
     gUnk_030034C4 = 0xFE;
-    gUnk_03003430.bg2TileRow = 0;
-    gUnk_03003430.bg2TileCol = 0;
+    gBgInfo.bg2TileRow = 0;
+    gBgInfo.bg2TileCol = 0;
 
     if (gUnk_03004C20.level == 8)
     {
@@ -610,20 +610,20 @@ void sub_0800D0C4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gUnk_03003430.bg0HOfs & 0x1FF;
-    REG_BG0VOFS = gUnk_03003430.bg0VOfs & 0x1FF;
-    REG_BG1HOFS = gUnk_03003430.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gUnk_03003430.bg1VOfs & 0x1FF;
-    REG_BG2HOFS = gUnk_03003430.bg2HOfs & 0x1FF;
-    REG_BG2VOFS = gUnk_03003430.bg2VOfs & 0x1FF;
+    REG_BG0HOFS = gBgInfo.bg0HOfs & 0x1FF;
+    REG_BG0VOFS = gBgInfo.bg0VOfs & 0x1FF;
+    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG2HOFS = gBgInfo.bg2HOfs & 0x1FF;
+    REG_BG2VOFS = gBgInfo.bg2VOfs & 0x1FF;
 
-    REG_BLDALPHA = gUnk_03005498 | ((0x10 - gUnk_03005498) << 8);
-    REG_BLDY = gUnk_03005498;
+    REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
+    REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
     thunk_UpdateRng();
-    gUnk_03004C20.unk4 += 1;
-    gUnk_03004C20.unk0 += 1;
+    gUnk_03004C20.globalFrameCounter += 1;
+    gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
     gUnk_03003420 = 1;
 }

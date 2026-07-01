@@ -95,9 +95,9 @@ struct Unk_03005284 {
 extern struct Unk_03005284 *gUnk_03005284;
 
 extern s8 gUnk_03004784;
-extern u16 gUnk_03005210;
+extern u16 gSoundVolume;
 extern u8 gUnk_0300548C;
-extern u8 gUnk_03005498; // BLDALPHA/BLDY
+extern u8 gBlendValue; // BLDALPHA/BLDY
 extern u8 gMosaicSize; // MOSAIC
 
 extern u16 gUnk_030034F0; // jump timer count
@@ -108,7 +108,7 @@ extern u16 gHeldKeysAttract;
 extern u16 gNewKeysAttract;
 extern u8 gUnk_030034E4;
 
-struct Unk_03004790 {
+struct BgDataPtrs {
     /* 0x00 */ void *pBufBg0Tiles; // BG0 tiles
     /* 0x04 */ u16 *pBufBg0Tilemap; // BG0 tilemap
     /* 0x08 */ void *pBufBg1Tiles; // BG1 tiles
@@ -116,7 +116,7 @@ struct Unk_03004790 {
     /* 0x10 */ void *pBufBg2Tiles; // BG2 tiles
     /* 0x14 */ u8 *pBufBg2Tilemap; // BG2 tilemap? (TODO: verify)
 }; /* size = 0x18? */ // TODO: may be BG3 tiles/tilemap, pushing it to size = 0x20
-extern struct Unk_03004790 gUnk_03004790; // TODO: array or struct?
+extern struct BgDataPtrs gBgDataPtrs; // TODO: array or struct?
 extern void *gUnk_03005290;
 
 extern u8 gUnk_03003420;
@@ -132,19 +132,19 @@ extern u16 gUnk_030052C0[];
 extern u32 gUnk_03005488;
 
 // TODO: figure out if unk8 can be loaded as u16 without union, or what the real solution is
-union __attribute__((packed)) Unk_03002920_8 {
+union __attribute__((packed)) EntityInfo_8 {
     struct __attribute__((packed)) {
         u8 unk8;
         u8 unk9;
     } split;
     u16 all;
 };
-struct Unk_03002920 {
+struct EntityInfo {
     /* 0x00 */ u16 xPosBg2; // X position in bg2
     /* 0x02 */ u16 yPosBg2; // Y position in bg2
     /* 0x04 */ u16 xPosScreen; // X position on screen
     /* 0x06 */ u16 yPosScreen; // Y position on screen
-    /* 0x08 */ union Unk_03002920_8 unk8;
+    /* 0x08 */ union EntityInfo_8 unk8;
     // /* 0x09 */ u8 unk9;
     /* 0x0A */ u8 unkA;
     /* 0x0B_0 */ s32 unkB_0:4; // related to X position
@@ -168,10 +168,10 @@ struct Unk_03002920 {
     /* 0x18 */ u8 unk18;
     /* 0x19 */ u8 pad19[0x1C - 0x19];
 }; /* size = 0x1C */
-extern struct Unk_03002920 gUnk_03002920[];
+extern struct EntityInfo gEntityInfo[];
 
 // TODO: struct might only be one set, and uses array to access each bg
-struct Unk_03003430 {
+struct BgInfo {
     /* 0x00 */ void *pVramBg0Tiles; // BG0 tiles
     /* 0x04 */ void *pVramBg0Tilemap; // BG0 tilemap
     /* 0x08 */ u16 bg0HOfs; // BG0HOFS
@@ -214,7 +214,7 @@ struct Unk_03003430 {
     /* 0x5C */ u16 bg3HOfs; // BG3HOFS
     /* 0x5E */ u16 bg3VOfs; // BG3VOFS
 }; /* size = 0x60? */ // TODO: likely unused variables at the end, pushing it to size = 0x70
-extern struct Unk_03003430 gUnk_03003430;
+extern struct BgInfo gBgInfo;
 
 struct Unk_030034A0 {
     /* 0x00 */ u8 pad0[0x8 - 0x0];
@@ -230,8 +230,8 @@ struct Unk_030034A0 {
 extern struct Unk_030034A0 *gUnk_030034A0;
 
 struct Unk_03004C20 {
-    /* 0x00 */ s32 unk0; // frame counter, per scene, pausing and then later unpausing restores value from before pause
-    /* 0x04 */ s32 unk4; // frame counter, global, restarts upon returning to title screen
+    /* 0x00 */ u32 sceneFrameCounter; // frame counter, per scene, pausing and then later unpausing restores value from before pause
+    /* 0x04 */ u32 globalFrameCounter; // frame counter, global, restarts upon returning to title screen
     /* 0x08 */ u16 unk8;
     /* 0x0A */ u8 unkA;
     /* 0x0B */ u8 unkB;
@@ -284,10 +284,10 @@ struct Unk_0300542C {
 extern struct Unk_0300542C *gUnk_0300542C;
 
 struct Unk_03005220 {
-    /* 0x00_0 */ u32 unk0_0:2; // hearts
-    /* 0x00_2 */ u32 unk0_2:3; // bitfield of stars
-    /* 0x00_5 */ u32 unk0_5:7; // dream stones
-    /* 0x01_4 */ u32 unk1_4:3; // bitfield of keys
+    /* 0x00_0 */ u32 hearts:2; // hearts
+    /* 0x00_2 */ u32 stars:3; // bitfield of stars
+    /* 0x00_5 */ u32 dreamStones:7; // dream stones
+    /* 0x01_4 */ u32 keys:3; // bitfield of keys
     /* 0x01_7 */ u32 unk1_7:8;
     /* 0x02_7 */ u32 unk2_7:6; // relates to collecting hearts and 1 ups
     /* 0x03_5 */ u32 unk3_5:1; // moon door open
@@ -340,7 +340,7 @@ struct Unk_03005220 {
     /* 0x49 */ u8 unk49;
     /* 0x4A */ u8 unk4A;
     /* 0x4B */ u8 unk4B;
-    /* 0x4C */ s8 unk4C;
+    /* 0x4C */ s8 lives;
     /* 0x4D */ u8 unk4D;
     /* 0x4E */ u8 unk4E;
     /* 0x4F */ u8 unk4F;
@@ -436,13 +436,13 @@ extern struct Unk_030051CC gUnk_030051CC;
 extern u8 gUnk_030007C4;
 extern void * volatile gObjPalRamPtr; // OBJ palette ptr
 
-struct Unk_03000830 {
-    /* 0x0 */ u8 unk0;
-    /* 0x1 */ u8 unk1;
-    /* 0x2 */ vu8 unk2;
+struct EntityAnimationInfo {
+    /* 0x0 */ u8 state; // entity state
+    /* 0x1 */ u8 timer; // timer of current animation frame
+    /* 0x2 */ vu8 frame; // current animation frame index
     /* 0x3 */ u8 pad3[0x4 - 0x3];
 }; /* size = 0x4 */
-extern struct Unk_03000830 gUnk_03000830[];
+extern struct EntityAnimationInfo gEntityAnimationInfo[];
 
 extern u8 gUnk_0300363C;
 
@@ -462,15 +462,15 @@ extern struct Unk_0300466C *gUnk_0300466C;
 extern struct Unk_0300466C *gUnk_030051DC;
 
 struct Unk_03005294_03005418_0 {
-    u32 unk0;
+    u32 src;
     u8 unk4;
     s32 unk5_0:4;
     s32 unk5_4:4;
 };
 struct Unk_03005294_03005418 {
     struct Unk_03005294_03005418_0 **unk0;
-    void *unk4;
-    u16 unk8;
+    void *dest;
+    u16 size;
     u8 unkA;
     u8 padB[0xC - 0xB];
 };
@@ -480,11 +480,11 @@ extern struct Unk_03005294_03005418 *gUnk_03005418;
 extern void * volatile gObjVramPtr; // OBJ vram ptr
 
 struct Unk_03000790 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ u16 unk6;
-    /* 0x8 */ u16 unk8;
+    /* 0x0 */ u16 unk0; // related to X position
+    /* 0x2 */ u16 unk2; // related to X position
+    /* 0x4 */ u16 unk4; // related to Y position
+    /* 0x6 */ u16 unk6; // related to Y position
+    /* 0x8 */ u16 unk8; // related to Y Position?
     /* 0xA */ u8 padA[0x10 - 0xA];
 }; /* size = 0x10 */
 extern struct Unk_03000790 gUnk_03000790[];
@@ -498,12 +498,12 @@ struct Unk_03003610 {
 extern struct Unk_03003610 gUnk_03003610[];
 
 struct Unk_03004680 {
-    /* 0x0 */ u16 unk0; // object affine PA
-    /* 0x2 */ u16 unk2; // object affine PB
-    /* 0x4 */ u16 unk4; // object affine PC
-    /* 0x6 */ u16 unk6; // object affine PD
+    /* 0x0 */ u16 pa; // object affine PA
+    /* 0x2 */ u16 pb; // object affine PB
+    /* 0x4 */ u16 pc; // object affine PC
+    /* 0x6 */ u16 pd; // object affine PD
 }; /* size = 0x8 */ 
-extern struct Unk_03004680 gUnk_03004680[]; // OAM affine buffer
+extern struct Unk_03004680 gOamAffineBuffer[]; // OAM affine buffer
 
 extern s32 gUnk_030007D4;
 extern s32 gUnk_030007F0;
@@ -544,7 +544,7 @@ extern u8 gUnk_030051B4;
 extern s32 gUnk_030051C4;
 extern s32 gUnk_030051D4;
 extern s32 gUnk_030051D8;
-extern u8 gUnk_03005288; // OAM affine matrix number
+extern u8 gOamAffineMatrixNum; // OAM affine matrix number
 extern u8 gUnk_0300528C;
 extern u8 gUnk_03005298;
 extern s32 gUnk_0300529C;
@@ -586,9 +586,9 @@ union Unk_03000820 {
         /* 0x6 */ u16 affineParam;
     } all;
 }; /* size = 0x8 */
-extern union Unk_03000820 *gUnk_03000820; // OAM buffer pointer
+extern union Unk_03000820 *gOamBufferPtr; // OAM buffer pointer
 
-extern union Unk_03000820 gUnk_03004800[]; // OAM buffer
+extern union Unk_03000820 gOamBuffer[]; // OAM buffer
 
 extern u8 gUnk_030034BC;
 
