@@ -1,17 +1,11 @@
 #include "global.h"
+#include "code_080240F4.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
 #include "interrupts.h"
 #include "main.h"
 #include "structs/variables.h"
-
-void sub_080249A4(void);
-void sub_0802502C(void);
-void sub_08025718(void);
-void sub_08025F94(void);
-void sub_08026374(void);
-void sub_080264A4();
 
 extern void sub_0803B600();                                /* extern */
 extern void sub_08046DB8(s32, s32);
@@ -25,6 +19,7 @@ extern void sub_0804BE58();                                /* extern */
 extern u16 gUnk_08057C70;
 extern u8 gUnk_080A5088[0x800];
 
+// 240F4
 void sub_080240F4(void)
 {
     u32 var_r4;
@@ -35,6 +30,7 @@ void sub_080240F4(void)
     {
         return;
     }
+
     REG_BLDCNT = 0xFF;
 
     gUnk_03005498 -= 1;
@@ -70,6 +66,7 @@ void sub_080240F4(void)
     }
 }
 
+// 241EC
 void sub_080241EC(void)
 {
     u32 var_r4;
@@ -80,6 +77,7 @@ void sub_080241EC(void)
     {
         return;
     }
+
     REG_BLDCNT = 0xBF;
 
     gUnk_03005498 -= 1;
@@ -113,6 +111,7 @@ void sub_080241EC(void)
     }
 }
 
+// 242C0
 void sub_080242C0(void)
 {
     u32 var_r4;
@@ -189,7 +188,9 @@ void sub_080242C0(void)
             m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gUnk_03005210);
         }
     }
+
     REG_BLDCNT = 0xBF;
+
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == (u8)-1)
     {
@@ -235,14 +236,15 @@ void sub_080242C0(void)
     }
 }
 
+// 24560
 void sub_08024560(void)
 {
-
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
     {
         return;
     }
+
     REG_BLDCNT = 0xFF;
 
     gUnk_03005498 += 1;
@@ -260,6 +262,7 @@ void sub_08024560(void)
     }
 }
 
+// 245E8
 void sub_080245E8(void)
 {
     gUnk_030034E4 = 1;
@@ -267,6 +270,7 @@ void sub_080245E8(void)
     {
         return;
     }
+
     REG_BLDCNT = 0xFF;
 
     gUnk_03005498 += 1;
@@ -321,6 +325,7 @@ void sub_080245E8(void)
     }
 }
 
+// 24718
 void sub_08024718(void)
 {
     u32 var_r4;
@@ -421,8 +426,9 @@ void sub_08024718(void)
     }
 }
 
-// https://decomp.me/scratch/KOjFQ
-void sub_080249A4(void)
+// 249A4
+// (95.65%) https://decomp.me/scratch/KOjFQ
+NONMATCH("asm/nonmatching/sub_080249A4.inc", void sub_080249A4(void))
 {
     u32 var_r4;
     u32 var_r3;
@@ -462,7 +468,9 @@ void sub_080249A4(void)
         gUnk_030034E4 = 0;
     }
 }
+END_NONMATCH
 
+// 24A78
 void sub_08024A78(void)
 {
     gUnk_030034E4 = 1;
@@ -500,6 +508,7 @@ void sub_08024A78(void)
     }
 }
 
+// 24B54
 void sub_08024B54(void)
 {
     gUnk_030034E4 = 1;
@@ -539,6 +548,7 @@ void sub_08024B54(void)
     }
 }
 
+// 24C34
 void sub_08024C34(void)
 {
     gUnk_030034E4 = 1;
@@ -594,8 +604,9 @@ void sub_08024C34(void)
     }
 }
 
-// https://decomp.me/scratch/1c0hJ
-void sub_08024D84(void)
+// 24D84
+// (97.92%) https://decomp.me/scratch/1c0hJ
+NONMATCH("asm/nonmatching/sub_08024D84.inc", void sub_08024D84(void))
 {
     u32 var_r1;
 
@@ -692,7 +703,9 @@ block_9:
         gUnk_03003410.unk0 += 1;
     }
 }
+END_NONMATCH
 
+// 2502C
 void sub_0802502C(void)
 {
     gUnk_030034E4 = 1;
@@ -767,6 +780,7 @@ void sub_0802502C(void)
     gUnk_03004C20.unk0 = -1;
 }
 
+// 2528C
 void sub_0802528C(void)
 {
     gUnk_030034E4 = 1;
@@ -808,6 +822,7 @@ void sub_0802528C(void)
     }
 }
 
+// 2534C
 void sub_0802534C(void)
 {
     gUnk_030034E4 = 1;
@@ -918,9 +933,9 @@ block_17:
     }
 }
 
+// 25634
 void sub_08025634(void)
 {
-
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
     {
@@ -958,8 +973,9 @@ void sub_08025634(void)
     }
 }
 
+// 25718
 // https://decomp.me/scratch/RbqH3
-void sub_08025718(void)
+NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
 {
     u32 var_r4;
     u32 var_r3;
@@ -1006,7 +1022,9 @@ void sub_08025718(void)
         gMosaicSize -= 1;
     }
 }
+END_NONMATCH
 
+// 25818
 void sub_08025818(void)
 {
     gUnk_030034E4 = 1;
@@ -1046,6 +1064,7 @@ void sub_08025818(void)
     }
 }
 
+// 25900
 void sub_08025900(void)
 {
     gUnk_030034E4 = 1;
@@ -1067,6 +1086,7 @@ void sub_08025900(void)
     }
 }
 
+// 25954
 void sub_08025954(void)
 {
     u32 var_r4;
@@ -1111,6 +1131,7 @@ void sub_08025954(void)
     }
 }
 
+// 25A28
 void sub_08025A28(void)
 {
     gUnk_030034E4 = 1;
@@ -1164,6 +1185,7 @@ void sub_08025A28(void)
 
 // file split?
 
+// 25B78
 void sub_08025B78(s32 arg0, u8 arg1)
 {
     if (arg0 > 8)
@@ -1176,6 +1198,7 @@ void sub_08025B78(s32 arg0, u8 arg1)
     gUnk_03000830[arg0].unk2 = 0xFF;
 }
 
+// 25BA4
 void sub_08025BA4(void)
 {
     vu32 sp0;
@@ -1247,6 +1270,7 @@ block_15:
     }
 }
 
+// 25DD4
 void sub_08025DD4(void)
 {
     u32 var_r5;
@@ -1269,6 +1293,7 @@ void sub_08025DD4(void)
     }
 }
 
+// 25E68
 s32 sub_08025E68(void)
 {
     s32 var_r5;
@@ -1315,6 +1340,7 @@ s32 sub_08025E68(void)
     return var_sb;
 }
 
+// 25F94
 void sub_08025F94(void)
 {
     if ((u8) gUnk_03005220.unk4C > 9)
@@ -1331,6 +1357,7 @@ void sub_08025F94(void)
     gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x2B2];
 }
 
+// 26090
 void sub_08026090(void)
 {
     if ((u8) gUnk_03005220.unk4C > 9)
@@ -1342,8 +1369,9 @@ void sub_08026090(void)
     gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.unk4C % 10) + 0x2B3];
 }
 
-// https://decomp.me/scratch/d3zGu
-void sub_08026128(void)
+// 26128
+// (99.78% https://decomp.me/scratch/d3zGu
+NONMATCH("asm/nonmatching/sub_08026128.inc", void sub_08026128(void))
 {
     u32 var_r4;
 
@@ -1390,7 +1418,9 @@ void sub_08026128(void)
     gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][(gUnk_03005220.unk4F / 10) + 0x332];
     gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][(gUnk_03005220.unk4F % 10) + 0x332];
 }
+END_NONMATCH
 
+// 26374
 void sub_08026374(void)
 {
     u32 var_r4;
@@ -1450,8 +1480,9 @@ void sub_08026374(void)
     }
 }
 
+// 264A4
 // https://decomp.me/scratch/x79ol
-void sub_080264A4(void)
+NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
 {
     u32 var_r2;
     u32 var_r3;
@@ -1580,29 +1611,30 @@ void sub_080264A4(void)
         var_r3 = 0;
         if (gUnk_03004C20.level == 1)
         {
-            if (gUnk_03005220.unk4D >= gUnk_03004670->unk1)
+            if (gUnk_03005220.unk4D < gUnk_03004670->unk1)
+            {
+                var_r3 = 1;
+            }
+            else
             {
                 if (gUnk_03005220.unk4D == gUnk_03004670->unk1)
                 {
-                    if (gUnk_03005220.unk4E >= gUnk_03004670->unk2)
+                    if (gUnk_03005220.unk4E < gUnk_03004670->unk2)
+                    {
+                        var_r3 = 1;
+                    }
+                    else
                     {
                         if ((gUnk_03005220.unk4E == gUnk_03004670->unk2) && (gUnk_03005220.unk4F < gUnk_03004670->unk3))
                         {
                             var_r3 = 1;
                         }
-                        goto block_45;
                     }
-                    goto block_46;
-                }
-block_45:
-                if (var_r3 != 0)
-                {
-                    goto block_46;
                 }
             }
-            else
+
+            if (var_r3 != 0)
             {
-block_46:
                 gUnk_03004670->unk1 = gUnk_03005220.unk4D;
                 gUnk_03004670->unk2 = gUnk_03005220.unk4E;
                 gUnk_03004670->unk3 = gUnk_03005220.unk4F;
@@ -1610,29 +1642,30 @@ block_46:
         }
         else
         {
-            if (gUnk_03005220.unk4D >= gUnk_03004670->unk4)
+            if (gUnk_03005220.unk4D < gUnk_03004670->unk4)
+            {
+                var_r3 = 1;
+            }
+            else
             {
                 if (gUnk_03005220.unk4D == gUnk_03004670->unk4)
                 {
-                    if (gUnk_03005220.unk4E >= gUnk_03004670->unk5)
+                    if (gUnk_03005220.unk4E < gUnk_03004670->unk5)
+                    {
+                        var_r3 = 1;
+                    }
+                    else
                     {
                         if ((gUnk_03005220.unk4E == gUnk_03004670->unk5) && (gUnk_03005220.unk4F < gUnk_03004670->unk6))
                         {
                             var_r3 = 1;
                         }
-                        goto block_53;
                     }
-                    goto block_54;
-                }
-block_53:
-                if (var_r3 != 0)
-                {
-                    goto block_54;
                 }
             }
-            else
+
+            if (var_r3 != 0)
             {
-block_54:
                 gUnk_03004670->unk4 = gUnk_03005220.unk4D;
                 gUnk_03004670->unk5 = gUnk_03005220.unk4E;
                 gUnk_03004670->unk6 = gUnk_03005220.unk4F;
@@ -1640,3 +1673,4 @@ block_54:
         }
     }
 }
+END_NONMATCH

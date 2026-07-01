@@ -1,6 +1,7 @@
 #include "global.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_080240F4.h"
 #include "main.h"
 #include "rand.h"
 #include "util.h"
@@ -29,10 +30,6 @@ void sub_08014624(s32);                                /* extern */
 void sub_0801E664(u16, u16, u8, u8);                  /* extern */
 void sub_0801EAA4(u8);                                 /* extern */
 void sub_0801EF5C(u8);                                 /* extern */
-void sub_08024D84();                                /* extern */
-void sub_08025B78(u32, u8);                           /* extern */
-void sub_08025DD4();                                   /* extern */
-s32 sub_08025E68();                                 /* extern */
 void sub_080446F8();                                /* extern */
 void sub_08047B1C();                                /* extern */
 u8 thunk_GetRandomValue();                          /* extern */
@@ -51,8 +48,6 @@ extern void gUnk_080B9368;
 extern void gUnk_080D8A70;
 extern void gUnk_080D8AF0;
 extern void gUnk_080D8B30;
-extern void sub_08024718;
-extern void sub_080264A4;
 
 extern u8 gUnk_080D8E10[];
 extern s8 gUnk_080D90B8[];

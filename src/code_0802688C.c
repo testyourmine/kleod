@@ -1,9 +1,7 @@
 #include "global.h"
 #include "code_0802688C.h"
+#include "code_080240F4.h"
 #include "structs/variables.h"
-
-extern void sub_08025B78(s32, u8);
-extern void sub_08026374(void);
 
 // TODO: proper pointers
 struct Unk_08189A24 {

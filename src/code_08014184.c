@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_080240F4.h"
 #include "math.h"
 #include "util.h"
 #include "data/trig.h"
@@ -10,9 +11,6 @@ extern u8 thunk_GetRandomValueEx();                       /* extern */
 extern void sub_080145A8(s32);
 extern void sub_0801E664(u16, u16, u8, u8);
 extern void sub_0801EAA4(u8);
-extern void sub_08025B78(u32, u8);
-extern void sub_08025DD4(void);
-extern void sub_080264A4();
 extern void sub_08044F6C(u8);
 
 struct Unk_080E2B64_0 {

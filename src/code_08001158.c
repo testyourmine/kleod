@@ -2,6 +2,7 @@
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_080240F4.h"
 #include "code_0802688C.h"
 #include "decompress.h"
 #include "heap.h"
@@ -13,13 +14,6 @@
 #include "structs/variables.h"
 
 extern void sub_080144C4();
-extern void sub_080242C0();
-extern void sub_080245E8();
-extern void sub_08025DD4();
-extern void sub_08025E68();
-extern void sub_08025F94();
-extern void sub_08026090();
-extern void sub_08026128(void);
 extern void sub_0803D15C(void);
 extern void sub_0804517C(u8);
 extern void sub_080453F0();
