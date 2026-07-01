@@ -22,8 +22,8 @@ extern u8 gUnk_080A5088[0x800];
 // 240F4
 void sub_080240F4(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -36,21 +36,21 @@ void sub_080240F4(void)
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
     {
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // Remove sub_080240F4 from callback queue
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r3] == sub_080240F4) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_080240F4) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -69,8 +69,8 @@ void sub_080240F4(void)
 // 241EC
 void sub_080241EC(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -83,21 +83,21 @@ void sub_080241EC(void)
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
     {
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // Remove sub_080241EC from callback queue
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r3] == sub_080241EC) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_080241EC) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -114,8 +114,8 @@ void sub_080241EC(void)
 // 242C0
 void sub_080242C0(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -197,21 +197,21 @@ void sub_080242C0(void)
         gMosaicSize = 0;
         gUnk_03005498 = 0;
 
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // Remove sub_080242C0 from callback queue
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-                if ((gCallbackQueue.current[var_r3] == sub_080242C0) || (var_r4 == 1))
+                if ((gCallbackQueue.current[i] == sub_080242C0) || (removed == TRUE))
                 {
-                    gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                    var_r4 = 1;
+                    gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                    removed = TRUE;
                 }
                 else
                 {
-                    gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                    gCallbackQueue.next[i] = gCallbackQueue.current[i];
                 }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -328,8 +328,8 @@ void sub_080245E8(void)
 // 24718
 void sub_08024718(void)
 {
-    u32 var_r4;
-    u32 var_r1;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -372,21 +372,21 @@ void sub_08024718(void)
         gUnk_03002920[0xC].unk10 = 0;
         gUnk_03002920[0xB].unk10 = 0;
 
-        var_r4 = 0;
-        for (var_r1 = 0; var_r1 < (gCallbackQueue.currentCount - 1); var_r1++)
+        // Remove sub_08026374 from callback queue
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r1] == sub_08026374) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_08026374) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r1] = gCallbackQueue.current[var_r1 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r1] = gCallbackQueue.current[var_r1];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -427,11 +427,10 @@ void sub_08024718(void)
 }
 
 // 249A4
-// (95.65%) https://decomp.me/scratch/KOjFQ
-NONMATCH("asm/nonmatching/sub_080249A4.inc", void sub_080249A4(void))
+void sub_080249A4(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -444,31 +443,33 @@ NONMATCH("asm/nonmatching/sub_080249A4.inc", void sub_080249A4(void))
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
     {
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // remove sub_080249A4 from callback queue
+        // TODO: do while required to match, callback removal possibly a macro
+        do {
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r3] == sub_080249A4) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_080249A4) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         }
+        } while (0);
 
         gUnk_03004C20.unk0 = 0;
         gUnk_030034E4 = 0;
     }
 }
-END_NONMATCH
 
 // 24A78
 void sub_08024A78(void)
@@ -608,15 +609,15 @@ void sub_08024C34(void)
 // (97.92%) https://decomp.me/scratch/1c0hJ
 NONMATCH("asm/nonmatching/sub_08024D84.inc", void sub_08024D84(void))
 {
-    u32 var_r1;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03005498 == 0)
     {
-        for (var_r1 = 1; var_r1 < gUnk_03005428; var_r1++)
+        for (i = 1; i < gUnk_03005428; i++)
         {
-            gUnk_03002920[var_r1].unk10 = 0;
-            gUnk_03002920[var_r1].unkF = 0x1C;
+            gUnk_03002920[i].unk10 = 0;
+            gUnk_03002920[i].unkF = 0x1C;
         }
 
         gUnk_03002920->unk10 = 1;
@@ -974,11 +975,10 @@ void sub_08025634(void)
 }
 
 // 25718
-// https://decomp.me/scratch/RbqH3
-NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
+void sub_08025718(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -991,25 +991,28 @@ NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
     {
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // remove sub_08025718 from callback queue
+        // TODO: do while required to match, callback removal possibly a macro
+        do {
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r3] == sub_08025718) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_08025718) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         }
+        } while(0);
 
         gUnk_03004C20.unk0 = 0;
         gUnk_030034E4 = 0;
@@ -1022,7 +1025,6 @@ NONMATCH("asm/nonmatching/sub_08025718.inc", void sub_08025718(void))
         gMosaicSize -= 1;
     }
 }
-END_NONMATCH
 
 // 25818
 void sub_08025818(void)
@@ -1089,8 +1091,8 @@ void sub_08025900(void)
 // 25954
 void sub_08025954(void)
 {
-    u32 var_r4;
-    u32 var_r3;
+    u32 removed;
+    u32 i;
 
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.unk4 & 1)
@@ -1103,21 +1105,21 @@ void sub_08025954(void)
     gUnk_03005498 -= 1;
     if (gUnk_03005498 == 0)
     {
-        var_r4 = 0;
-        for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+        // remove sub_08025718 from callback queue
+        removed = FALSE;
+        for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[var_r3] == sub_08025954) || (var_r4 == 1))
+            if ((gCallbackQueue.current[i] == sub_08025954) || (removed == TRUE))
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-                var_r4 = 1;
+                gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                removed = TRUE;
             }
             else
             {
-                gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+                gCallbackQueue.next[i] = gCallbackQueue.current[i];
             }
         }
-
-        if (var_r4 == 1)
+        if (removed == TRUE)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1370,14 +1372,14 @@ void sub_08026090(void)
 }
 
 // 26128
-// (99.78% https://decomp.me/scratch/d3zGu
+// (99.78%) https://decomp.me/scratch/d3zGu
 NONMATCH("asm/nonmatching/sub_08026128.inc", void sub_08026128(void))
 {
-    u32 var_r4;
+    u32 i;
 
-    for (var_r4 = 0; var_r4 < 2; var_r4++)
+    for (i = 0; i < 2; i++)
     {
-        DmaCopy16(3, &gBgTilemapBufs[0][0x2D2] + var_r4 * 0x20, &gBgTilemapBufs[0][0x14] + var_r4 * 0x20, 0x14);
+        DmaCopy16(3, &gBgTilemapBufs[0][0x2D2] + i * 0x20, &gBgTilemapBufs[0][0x14] + i * 0x20, 0x14);
     }
 
     if (gUnk_03004C20.level == 1)
@@ -1423,8 +1425,8 @@ END_NONMATCH
 // 26374
 void sub_08026374(void)
 {
-    u32 var_r4;
-    u32 var_r1;
+    u32 removed;
+    u32 i;
 
     if (gCallbackQueue.current[4] == sub_080264A4)
     {
@@ -1453,21 +1455,21 @@ void sub_08026374(void)
         gUnk_03002920[0xC].unk10 = 0;
         if (gUnk_030034E4 == 0)
         {
-            var_r4 = 0;
-            for (var_r1 = 0; var_r1 < (gCallbackQueue.currentCount - 1); var_r1++)
+            // remove sub_08026374 from callback queue
+            removed = FALSE;
+            for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
             {
-                if ((gCallbackQueue.current[var_r1] == sub_08026374) || (var_r4 == 1))
+                if ((gCallbackQueue.current[i] == sub_08026374) || (removed == TRUE))
                 {
-                    gCallbackQueue.next[var_r1] = gCallbackQueue.current[var_r1 + 1];
-                    var_r4 = 1;
+                    gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+                    removed = TRUE;
                 }
                 else
                 {
-                    gCallbackQueue.next[var_r1] = gCallbackQueue.current[var_r1];
+                    gCallbackQueue.next[i] = gCallbackQueue.current[i];
                 }
             }
-
-            if (var_r4 == 1)
+            if (removed == TRUE)
             {
                 gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1481,11 +1483,10 @@ void sub_08026374(void)
 }
 
 // 264A4
-// https://decomp.me/scratch/x79ol
-NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
+void sub_080264A4(void)
 {
-    u32 var_r2;
-    u32 var_r3;
+    u32 i;
+    u32 j;
 
     if (gCallbackQueue.current[5] == sub_080245E8)
     {
@@ -1498,11 +1499,11 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
         gUnk_03004C20.unk0 = 0;
         gUnk_03002920[0xC].unk10 = 1;
         gUnk_03002920[0xB].unk10 = 1;
-        gUnk_03002920[0xC].xPosScreen = 0x78;
-        gUnk_03002920[0xB].xPosScreen = 0x78;
+        gUnk_03002920[0xC].xPosScreen = DISPLAY_WIDTH_CENTER;
+        gUnk_03002920[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
         gUnk_03002920[0xC].yPosScreen = 0;
         gUnk_03002920[0xB].yPosScreen = 0;
-        DmaCopy16(3, &gUnk_080A5088, (void*)0x06010000 + (gUnk_08057C70 << 5), 0x800);
+        DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 << 5), 0x800);
         m4aSongNumStart(0x1F);
     }
 
@@ -1530,9 +1531,9 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
             return;
         }
 
-        for (var_r3 = 0xD; var_r3 < gUnk_03005428; var_r3++)
+        for (i = 0xD; i < gUnk_03005428; i++)
         {
-            gUnk_03002920[var_r3].unkF = 0x1A;
+            gUnk_03002920[i].unkF = 0x1A;
         }
 
         sub_080008DC();
@@ -1574,23 +1575,24 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
         gUnk_03005498 = 0;
         gUnk_03003410.unk7 = 1;
 
-        for (var_r2 = 0; var_r2 < (gCallbackQueue.currentCount + 1); var_r2++)
+        // add sub_080245E8 to index 5 of callback queue
+        for (j = 0; j < (gCallbackQueue.currentCount + 1); j++)
         {
-            if (var_r2 == 5)
+            if (j == 5)
             {
-                gCallbackQueue.next[5] = sub_080245E8;
+                gCallbackQueue.next[j] = sub_080245E8;
             }
-            else if (var_r2 > 5)
+            else if (j > 5)
             {
-                gCallbackQueue.next[var_r2] = gCallbackQueue.current[var_r2 - 1];
+                gCallbackQueue.next[j] = gCallbackQueue.current[j - 1];
             }
             else
             {
-                gCallbackQueue.next[var_r2] = gCallbackQueue.current[var_r2];
+                gCallbackQueue.next[j] = gCallbackQueue.current[j];
             }
         }
         
-        if (var_r2 > 4)
+        if (j >= 5)
         {
             gCallbackQueue.nextCount = gCallbackQueue.currentCount + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1603,17 +1605,20 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
 
     if ((gUnk_03005220.unk0_5 > (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & 0x7F)) || (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
     {
+        // Required to match
+        do {
         gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.unk0_5;
+        } while(0);
     }
     gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= 0x80;
     if (gUnk_03004C20.unk10 == 1)
     {
-        var_r3 = 0;
+        i = 0;
         if (gUnk_03004C20.level == 1)
         {
             if (gUnk_03005220.unk4D < gUnk_03004670->unk1)
             {
-                var_r3 = 1;
+                i = 1;
             }
             else
             {
@@ -1621,19 +1626,19 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
                 {
                     if (gUnk_03005220.unk4E < gUnk_03004670->unk2)
                     {
-                        var_r3 = 1;
+                        i = 1;
                     }
                     else
                     {
                         if ((gUnk_03005220.unk4E == gUnk_03004670->unk2) && (gUnk_03005220.unk4F < gUnk_03004670->unk3))
                         {
-                            var_r3 = 1;
+                            i = 1;
                         }
                     }
                 }
             }
 
-            if (var_r3 != 0)
+            if (i != 0)
             {
                 gUnk_03004670->unk1 = gUnk_03005220.unk4D;
                 gUnk_03004670->unk2 = gUnk_03005220.unk4E;
@@ -1644,7 +1649,7 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
         {
             if (gUnk_03005220.unk4D < gUnk_03004670->unk4)
             {
-                var_r3 = 1;
+                i = 1;
             }
             else
             {
@@ -1652,19 +1657,19 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
                 {
                     if (gUnk_03005220.unk4E < gUnk_03004670->unk5)
                     {
-                        var_r3 = 1;
+                        i = 1;
                     }
                     else
                     {
                         if ((gUnk_03005220.unk4E == gUnk_03004670->unk5) && (gUnk_03005220.unk4F < gUnk_03004670->unk6))
                         {
-                            var_r3 = 1;
+                            i = 1;
                         }
                     }
                 }
             }
 
-            if (var_r3 != 0)
+            if (i != 0)
             {
                 gUnk_03004670->unk4 = gUnk_03005220.unk4D;
                 gUnk_03004670->unk5 = gUnk_03005220.unk4E;
@@ -1673,4 +1678,3 @@ NONMATCH("asm/nonmatching/sub_080264A4.inc", void sub_080264A4(void))
         }
     }
 }
-END_NONMATCH
