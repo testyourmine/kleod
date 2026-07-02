@@ -348,15 +348,15 @@ void sub_0800D188(void)
 
         if (gUnk_03004C20.level == 6)
         {
-            if ((gEntityInfo[0].xPosBg2 < (gBgInfo.bg2HOfs + 8)) && (gUnk_030034E4 == 0))
+            if ((gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 8)) && (gUnk_030034E4 == 0))
             {
                 gUnk_03005220.hearts = 1;
                 sub_08014624(1);
             }
 
-            if (gEntityInfo[0].xPosBg2 < (gBgInfo.bg2HOfs + 0x10))
+            if (gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 0x10))
             {
-                gEntityInfo[0].xPosBg2 = gBgInfo.bg2HOfs + 0x10;
+                gEntityInfo[0].xPosBg2 = gBgInfo[2].hOfs + 0x10;
                 if (gUnk_03005220.unk34 == 1)
                 {
                     sub_08025B78(0, 0);
@@ -370,9 +370,9 @@ void sub_0800D188(void)
             }
             else
             {
-                if (gEntityInfo[0].xPosBg2 > (gBgInfo.bg2HOfs + 0xF0))
+                if (gEntityInfo[0].xPosBg2 > (gBgInfo[2].hOfs + 0xF0))
                 {
-                    gEntityInfo[0].xPosBg2 = gBgInfo.bg2HOfs + 0xF0;
+                    gEntityInfo[0].xPosBg2 = gBgInfo[2].hOfs + 0xF0;
                 }
             }
         }
@@ -381,11 +381,11 @@ void sub_0800D188(void)
         {
             gUnk_03005220.unk4A = 0;
 
-            sp20 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)];
+            sp20 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
             if ((gUnk_03005220.unk43 != 1) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x6F) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x25))
             {
@@ -393,20 +393,20 @@ void sub_0800D188(void)
             }
             else
             {
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo[2].hLength)]) : sp20;
             }
         }
         else if (sp18 > gEntityInfo[0].xPosBg2)
         {
-            sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)];
+            sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
             if ((gUnk_03005220.unk43 != 1) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x6F) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x25))
             {
@@ -414,11 +414,11 @@ void sub_0800D188(void)
             }
             else
             {
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2C) >> 3) * gBgInfo[2].hLength)]) : sp20;
             }
         }
     }
@@ -531,16 +531,16 @@ void sub_0800D188(void)
                 gUnk_03005220.unk10 = gUnk_03005220.unk10 + ((gEntityInfo[0].xPosBg2 - gUnk_03005220.unk1A) << 0x10) + ((gUnk_03005220.unk16 + gUnk_03005220.unk18) << 8);
                 gEntityInfo[0].xPosBg2 = gUnk_03005220.unk10 >> 0x10;
                 gUnk_03005220.unk1A = gUnk_03005220.unk10 >> 0x10;
-                if ((gEntityInfo[0].xPosBg2 < (gBgInfo.bg2HOfs + 0x10)) && (gUnk_030034E4 == 0))
+                if ((gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 0x10)) && (gUnk_030034E4 == 0))
                 {
                     gUnk_03005220.hearts = 1;
                     sub_08014624(1);
                 }
             }
 
-            if (gEntityInfo[0].xPosBg2 <= (gBgInfo.bg2HOfs + 0x11))
+            if (gEntityInfo[0].xPosBg2 <= (gBgInfo[2].hOfs + 0x11))
             {
-                gEntityInfo[0].xPosBg2 = gBgInfo.bg2HOfs + 0x11;
+                gEntityInfo[0].xPosBg2 = gBgInfo[2].hOfs + 0x11;
             }
         }
 
@@ -603,7 +603,7 @@ void sub_0800D188(void)
         }
         else
         {
-            sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)];
+            sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
         }
 
         gUnk_030034FC[gUnk_030034FC[0] + 1] = gEntityInfo[0].yPosBg2;
@@ -1531,11 +1531,11 @@ block_410:
         {
             if (gUnk_03004C20.unkA == 0)
             {
-                sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo.bg2HLength)];
+                sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo[2].hLength)];
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo.bg2HLength)]) ? gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo.bg2HLength)] : sp20;
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo[2].hLength)]) ? gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((u16) gEntityInfo[0].yPosBg2 >> 3) * gBgInfo[2].hLength)] : sp20;
             }
             else
             {
@@ -1781,7 +1781,7 @@ block_612:
 block_680:
             if (gUnk_03004C20.unkA == 0)
             {
-                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x18) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x18) >> 3) * gBgInfo.bg2HLength)]) : (sp20);
+                sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x18) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x18) >> 3) * gBgInfo[2].hLength)]) : (sp20);
             }
 
             if ((u32) gUnk_03004654[0x16] <= sp20)
@@ -1997,7 +1997,7 @@ block_680:
                         {
                             gEntityInfo[0].xPosBg2 = sp18;
                         }
-                        else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo.bg2HOfs + 0x10))
+                        else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo[2].hOfs + 0x10))
                         {
                             gEntityInfo[0].xPosBg2 = sp18;
                         }
@@ -2014,7 +2014,7 @@ block_680:
                         {
                             gEntityInfo[0].xPosBg2 = sp18;
                         }
-                        else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo.bg2HOfs + 0x10))
+                        else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo[2].hOfs + 0x10))
                         {
                             gEntityInfo[0].xPosBg2 = sp18;
                         }
@@ -2101,30 +2101,30 @@ block_680:
             gUnk_03005220.unk4A = 0;
             gUnk_03005220.unk4B = 0;
 
-            sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)];
+            sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+            sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
             if (gUnk_03004654[0x18] <= sp20)
             {
                 gUnk_03005220.unk4B = 1;
             }
 
-            var_r5_3 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo.bg2HLength)];
+            var_r5_3 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)];
 
-            var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo.bg2HLength)]) : var_r5_3;
+            var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]) : var_r5_3;
 
-            var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo.bg2HLength)]) : var_r5_3;
+            var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]) : var_r5_3;
 
             if ((gUnk_03005220.unk43 == 1) && (gEntityInfo[gUnk_03005220.unk42].unk11 <= 0x6F))
             {
-                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) : var_r5_3;
+                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) : var_r5_3;
 
-                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) : var_r5_3;
+                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) : var_r5_3;
 
-                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo.bg2HLength)]) : var_r5_3;
+                var_r5_3 = (var_r5_3 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]) : var_r5_3;
             }
 
             if ((u32) var_r5_3 >= (u32) gUnk_03004654[0x1B])
@@ -2137,12 +2137,12 @@ block_680:
             {
 
             }
-            else if ((u32) gEntityInfo[0].yPosBg2 < (u32) gBgInfo.bg2VOfs)
+            else if ((u32) gEntityInfo[0].yPosBg2 < (u32) gBgInfo[2].vOfs)
             {
-                gEntityInfo[0].yPosBg2 = gBgInfo.bg2VOfs;
+                gEntityInfo[0].yPosBg2 = gBgInfo[2].vOfs;
                 gUnk_03005220.unk3C = 0;
             }
-            else if ((s32) gEntityInfo[0].yPosBg2 <= (s32) (gBgInfo.bg2VOfs + 0xC8))
+            else if ((s32) gEntityInfo[0].yPosBg2 <= (s32) (gBgInfo[2].vOfs + 0xC8))
             {
 
             }
@@ -2191,7 +2191,7 @@ block_680:
                 }
                 else
                 {
-                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)];
+                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
                 }
             }
         }
@@ -3461,7 +3461,7 @@ block_1317:
                 {
                     gEntityInfo[0].xPosBg2 = sp18;
                 }
-                else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo.bg2HOfs + 0x10))
+                else if ((s32) gEntityInfo[0].xPosBg2 > (s32) (gBgInfo[2].hOfs + 0x10))
                 {
                     gEntityInfo[0].xPosBg2 = sp18;
                 }
@@ -3495,9 +3495,9 @@ block_1317:
             gUnk_03005220.unk31 = 0;
         }
 
-        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)];
+        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)];
 
-        sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+        sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
         if (((u32) gUnk_03004654[1] <= sp20) && (sp20 <= (u32) gUnk_03004654[0x14]))
         {
@@ -3562,11 +3562,11 @@ block_1365:
                 }
                 if (gNewKeys & DPAD_RIGHT)
                 {
-                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)];
+                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
-                    sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                    sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                    var_r1_25 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                    var_r1_25 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) : sp20;
                     if ((u32) gUnk_03004654[0x18] > (u32) var_r1_25)
                     {
                         gUnk_03005220.unk28 = 0;
@@ -3585,11 +3585,11 @@ block_1365:
                 }
                 if (gNewKeys & DPAD_LEFT)
                 {
-                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo.bg2HLength)];
+                    sp20 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
-                    sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                    sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                    var_r1_26 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                    var_r1_26 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) : sp20;
                     if ((u32) gUnk_03004654[0x18] > (u32) var_r1_26)
                     {
                         gUnk_03005220.unk28 = 0;
@@ -3699,11 +3699,11 @@ block_1397:
                     }
                     if (gNewKeys & (DPAD_LEFT | DPAD_RIGHT))
                     {
-                        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo.bg2HLength)];
+                        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)];
 
-                        sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1C) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1C) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                        sp20 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]) : sp20;
 
-                        var_r1_24 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo.bg2HLength)]) : sp20;
+                        var_r1_24 = (sp20 < gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) ? (gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]) : sp20;
                         if ((u32) gUnk_03004654[0x17] < (u32) var_r1_24)
                         {
                             if (gNewKeys & DPAD_RIGHT)
@@ -4436,7 +4436,7 @@ block_1672:
         }
     }
 block_1696:
-    temp_r7_3 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)];
+    temp_r7_3 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
     if (gUnk_03004654[0] == temp_r7_3)
     {
         if (gUnk_03003410.unkB == 0)
@@ -4478,7 +4478,7 @@ block_1696:
     }
     else
     {
-        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x10) >> 3) * gBgInfo.bg2HLength)];
+        sp20 = gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 0x10) >> 3) * gBgInfo[2].hLength)];
         if (gUnk_03004654[0x15] > sp20)
         {
             goto block_1722;
@@ -4599,7 +4599,7 @@ block_1756:
                         goto block_1770;
                     }
                     gUnk_03005220.unk5C = 0;
-                    if ((gUnk_03004C20.unk11 != 0) && (sp20 = (u32) gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo.bg2HLength)], ((u32) gUnk_03004654[1] <= sp20)) && (sp20 <= (u32) gUnk_03004654[0x14]))
+                    if ((gUnk_03004C20.unk11 != 0) && (sp20 = (u32) gBgDataPtrs.pBufBg2Tilemap[((u16) gEntityInfo[0].xPosBg2 >> 3) + (((s32) (gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], ((u32) gUnk_03004654[1] <= sp20)) && (sp20 <= (u32) gUnk_03004654[0x14]))
                     {
                         sub_08025B78(0, 0x22);
                     }

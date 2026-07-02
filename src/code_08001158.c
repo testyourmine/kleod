@@ -145,43 +145,43 @@ void sub_08001158(void)
         DecompressDma(gUnk_08188F5C[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
     }
 
-    gBgInfo.bg0HOfs = 0;
-    gBgInfo.bg0VOfs = 0;
-    gBgInfo.unk14 = 0;
-    gBgInfo.pVramBg0Tiles = VRAM;
-    gBgInfo.pVramBg0Tilemap = VRAM + 0xE000;
-    gBgInfo.unk10 = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo.unk12 = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo.unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo.unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo.bg1HOfs = 0;
-    gBgInfo.bg1VOfs = 0;
-    gBgInfo.unk30 = 0;
-    gBgInfo.pVramBg1Tiles = VRAM + 0x4000;
-    gBgInfo.pVramBg1Tilemap = VRAM + 0xE800;
+    gBgInfo[0].hOfs = 0;
+    gBgInfo[0].vOfs = 0;
+    gBgInfo[0].unk14 = 0;
+    gBgInfo[0].pTiles = VRAM;
+    gBgInfo[0].pTilemap = VRAM + 0xE000;
+    gBgInfo[0].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[1].hOfs = 0;
+    gBgInfo[1].vOfs = 0;
+    gBgInfo[1].unk14 = 0;
+    gBgInfo[1].pTiles = VRAM + 0x4000;
+    gBgInfo[1].pTilemap = VRAM + 0xE800;
 
     if ((gUnk_03004C20.level == 0) && (sp0 == 1))
     {
-        gBgInfo.unk2C = gUnk_0805265A[gUnk_03004C20.world - 1];
-        gBgInfo.unk2E = gUnk_08052666[gUnk_03004C20.world - 1];
-        gBgInfo.unk32 = gUnk_08052672[gUnk_03004C20.world - 1];
-        gBgInfo.unk34 = gUnk_0805267E[gUnk_03004C20.world - 1];
+        gBgInfo[1].hLength = gUnk_0805265A[gUnk_03004C20.world - 1];
+        gBgInfo[1].vLength = gUnk_08052666[gUnk_03004C20.world - 1];
+        gBgInfo[1].unk16 = gUnk_08052672[gUnk_03004C20.world - 1];
+        gBgInfo[1].unk18 = gUnk_0805267E[gUnk_03004C20.world - 1];
     }
     else
     {
-        gBgInfo.unk2C = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo.unk2E = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo.unk32 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo.unk34 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
     }
 
-    gBgInfo.unk4C = 0;
-    gBgInfo.pVramBg2Tiles = VRAM + 0x8000;
-    gBgInfo.pVramBg2Tilemap = VRAM + 0xF000;
-    gBgInfo.bg2HLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo.bg2VLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo.unk4E = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo.unk50 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].unk14 = 0;
+    gBgInfo[2].pTiles = VRAM + 0x8000;
+    gBgInfo[2].pTilemap = VRAM + 0xF000;
+    gBgInfo[2].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gUnk_030052A0 = 0xFE;
 
     if (gUnk_03004C20.level >= 1 && gUnk_03004C20.level <= 7)
@@ -226,9 +226,9 @@ void sub_08001158(void)
     }
     sub_08002FD0();
 
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo.pVramBg0Tiles, gBgInfo.unk18 * gBgInfo.unk16);
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo.pVramBg1Tiles, gBgInfo.unk34 * gBgInfo.unk32);
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo.pVramBg2Tiles, gBgInfo.unk50 * gBgInfo.unk4E);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].unk18 * gBgInfo[0].unk16);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].unk18 * gBgInfo[1].unk16);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo[2].pTiles, gBgInfo[2].unk18 * gBgInfo[2].unk16);
 
     for (var_r4 = 0; var_r4 < 0x400; var_r4++)
     {
@@ -236,26 +236,26 @@ void sub_08001158(void)
         gBgTilemapBufs[0][var_r4] = gBgDataPtrs.pBufBg0Tilemap[var_r4];
     }
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo.pVramBg0Tilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo.pVramBg1Tilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
 
     REG_BG0CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_MOSAIC | BGCNT_CHARBASE(0);
     REG_BG1CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(2) | BGCNT_SCREENBASE(29) | BGCNT_MOSAIC | BGCNT_CHARBASE(1);
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 4) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 7) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 4) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 7) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
 
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    REG_BG2X_L = gBgInfo.bg2HOfs << 8;
-    REG_BG2X_H = gBgInfo.bg2HOfs >> 0x10; // evaluates to 0
-    REG_BG2Y_L = gBgInfo.bg2VOfs << 8;
-    REG_BG2Y_H = gBgInfo.bg2VOfs >> 0x10; // evaluates to 0
+    REG_BG2X_L = gBgInfo[2].hOfs << 8;
+    REG_BG2X_H = gBgInfo[2].hOfs >> 0x10; // evaluates to 0
+    REG_BG2Y_L = gBgInfo[2].vOfs << 8;
+    REG_BG2Y_H = gBgInfo[2].vOfs >> 0x10; // evaluates to 0
 
     REG_BG2PA = gBg2PA;
     REG_BG2PB = gBg2PB;
@@ -322,44 +322,44 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
     // Scroll right
     if (scrollFlags & SCROLL_RIGHT)
     {
-        gBgInfo.bg2HOfs += scrollOffset.x;
-        if (gBgInfo.bg2HOfs > (gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH))
+        gBgInfo[2].hOfs += scrollOffset.x;
+        if (gBgInfo[2].hOfs > (gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH))
         {
-            gBgInfo.bg2HOfs = gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH;
+            gBgInfo[2].hOfs = gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH;
         }
 
-        newTileOffset = gBgInfo.bg2HOfs / 8;
-        if (newTileOffset != gBgInfo.bg2TileCol)
+        newTileOffset = gBgInfo[2].hOfs / 8;
+        if (newTileOffset != gBgInfo[2].tileCol)
         {
-            gBgInfo.bg2TileCol = newTileOffset;
+            gBgInfo[2].tileCol = newTileOffset;
             dest = (newTileOffset + (DISPLAY_WIDTH / 8)) % 0x20;
-            src = (newTileOffset + (DISPLAY_WIDTH / 8)) % gBgInfo.bg2HLength;
-            tile = gBgInfo.bg2VOfs >> 3;
+            src = (newTileOffset + (DISPLAY_WIDTH / 8)) % gBgInfo[2].hLength;
+            tile = gBgInfo[2].vOfs >> 3;
             for (i = 0; i < (DISPLAY_HEIGHT / 8) + 1; i++)
             {
-                gUnk_03004DB0[(((i + tile) % 0x20) << 5) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo.bg2HLength) + src];
+                gUnk_03004DB0[(((i + tile) % 0x20) << 5) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
             }
         }
     }
     // Scroll left
     else if (scrollFlags & SCROLL_LEFT)
     {
-        gBgInfo.bg2HOfs += scrollOffset.x;
-        if (((u16)(gBgInfo.bg2HOfs - gCurrentRoomBg2Bounds.left)) > (u16)-0x100)
+        gBgInfo[2].hOfs += scrollOffset.x;
+        if (((u16)(gBgInfo[2].hOfs - gCurrentRoomBg2Bounds.left)) > (u16)-0x100)
         {
-            gBgInfo.bg2HOfs = gCurrentRoomBg2Bounds.left;
+            gBgInfo[2].hOfs = gCurrentRoomBg2Bounds.left;
         }
 
-        newTileOffset = gBgInfo.bg2HOfs / 8;
-        if (newTileOffset != gBgInfo.bg2TileCol)
+        newTileOffset = gBgInfo[2].hOfs / 8;
+        if (newTileOffset != gBgInfo[2].tileCol)
         {
-            gBgInfo.bg2TileCol = newTileOffset;
+            gBgInfo[2].tileCol = newTileOffset;
             dest = newTileOffset % 0x20;
-            src = (newTileOffset + gBgInfo.bg2HLength) % gBgInfo.bg2HLength;
-            tile = gBgInfo.bg2VOfs / 8;
+            src = (newTileOffset + gBgInfo[2].hLength) % gBgInfo[2].hLength;
+            tile = gBgInfo[2].vOfs / 8;
             for (i = 0; i < (DISPLAY_HEIGHT / 8) + 1; i++)
             {
-                gUnk_03004DB0[(((i + tile) % 0x20) << 5) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo.bg2HLength) + src];
+                gUnk_03004DB0[(((i + tile) % 0x20) << 5) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
             }
         }
     }
@@ -367,19 +367,19 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
     // Scroll up
     if (scrollFlags & SCROLL_UP)
     {
-        gBgInfo.bg2VOfs += scrollOffset.y;
-        if (((u16)(gBgInfo.bg2VOfs - gCurrentRoomBg2Bounds.top)) > (u16)-0x100)
+        gBgInfo[2].vOfs += scrollOffset.y;
+        if (((u16)(gBgInfo[2].vOfs - gCurrentRoomBg2Bounds.top)) > (u16)-0x100)
         {
-            gBgInfo.bg2VOfs = gCurrentRoomBg2Bounds.top;
+            gBgInfo[2].vOfs = gCurrentRoomBg2Bounds.top;
         }
 
-        newTileOffset = gBgInfo.bg2VOfs / 8;
-        if (newTileOffset != gBgInfo.bg2TileRow)
+        newTileOffset = gBgInfo[2].vOfs / 8;
+        if (newTileOffset != gBgInfo[2].tileRow)
         {
-            gBgInfo.bg2TileRow = newTileOffset;
-            tile = gBgInfo.bg2HOfs / 8;
+            gBgInfo[2].tileRow = newTileOffset;
+            tile = gBgInfo[2].hOfs / 8;
             dest = (newTileOffset % 0x20) << 5;
-            src = (((newTileOffset + gBgInfo.bg2VLength) % gBgInfo.bg2VLength) * gBgInfo.bg2HLength) + tile;
+            src = (((newTileOffset + gBgInfo[2].vLength) % gBgInfo[2].vLength) * gBgInfo[2].hLength) + tile;
             for (i = 0; i < (DISPLAY_WIDTH / 8) + 1; i++)
             {
                 gUnk_03004DB0[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
@@ -389,24 +389,24 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
     // Scroll down
     else if (scrollFlags & SCROLL_DOWN)
     {
-        if (gBgInfo.bg2VOfs == 0)
+        if (gBgInfo[2].vOfs == 0)
         {
-            gBgInfo.bg2TileRow = 0xF000;
+            gBgInfo[2].tileRow = 0xF000;
         }
 
-        gBgInfo.bg2VOfs += scrollOffset.y;
-        if (gBgInfo.bg2VOfs >= (gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT))
+        gBgInfo[2].vOfs += scrollOffset.y;
+        if (gBgInfo[2].vOfs >= (gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT))
         {
-            gBgInfo.bg2VOfs = gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT;
+            gBgInfo[2].vOfs = gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT;
         }
 
-        newTileOffset = gBgInfo.bg2VOfs / 8;
-        if (newTileOffset != gBgInfo.bg2TileRow)
+        newTileOffset = gBgInfo[2].vOfs / 8;
+        if (newTileOffset != gBgInfo[2].tileRow)
         {
-            gBgInfo.bg2TileRow = newTileOffset;
-            tile = gBgInfo.bg2HOfs / 8;
+            gBgInfo[2].tileRow = newTileOffset;
+            tile = gBgInfo[2].hOfs / 8;
             dest = ((newTileOffset + (DISPLAY_HEIGHT / 8)) % 0x20) << 5;
-            src = (((newTileOffset + (DISPLAY_HEIGHT / 8)) % gBgInfo.bg2VLength) * gBgInfo.bg2HLength) + tile;
+            src = (((newTileOffset + (DISPLAY_HEIGHT / 8)) % gBgInfo[2].vLength) * gBgInfo[2].hLength) + tile;
             for (i = 0; i < (DISPLAY_WIDTH / 8) + 1; i++)
             {
                 gUnk_03004DB0[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
@@ -453,20 +453,20 @@ void sub_08001F58(void)
             }
         }
 
-        if ((s16)(var_r8 + gEntityInfo[0].xPosBg2) > (s16)(gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER))
+        if ((s16)(var_r8 + gEntityInfo[0].xPosBg2) > (s16)(gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER))
         {
             scrollFlags = SCROLL_RIGHT;
             if (gUnk_0300358C != 0)
             {
                 scrollOffset.x = 1;
-                if ((s16)(gEntityInfo[0].xPosBg2) > (s16)(gBgInfo.bg2HOfs + 0xD8))
+                if ((s16)(gEntityInfo[0].xPosBg2) > (s16)(gBgInfo[2].hOfs + 0xD8))
                 {
                     gUnk_0300358C = 0;
                 }
             }
             else
             {
-                if ((gEntityInfo[0].xPosBg2 - (gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER)) > 5)
+                if ((gEntityInfo[0].xPosBg2 - (gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER)) > 5)
                 {
                     scrollOffset.x = 2;
                 }
@@ -481,20 +481,20 @@ void sub_08001F58(void)
                 scrollOffset.x = 0;
             }
         }
-        else if ((s16)(var_r8 + gEntityInfo[0].xPosBg2) < (s16)(gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER))
+        else if ((s16)(var_r8 + gEntityInfo[0].xPosBg2) < (s16)(gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER))
         {
             scrollFlags = SCROLL_LEFT;
             if (gUnk_0300358C != 0)
             {
                 scrollOffset.x = -1;
-                if ((s16)(gEntityInfo[0].xPosBg2) < (s16)(gBgInfo.bg2HOfs + 0x18))
+                if ((s16)(gEntityInfo[0].xPosBg2) < (s16)(gBgInfo[2].hOfs + 0x18))
                 {
                     gUnk_0300358C = 0;
                 }
             }
             else
             {
-                if ((((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) - gEntityInfo[0].xPosBg2) > 5) && ((var_r8 | gUnk_0300358C) == 0))
+                if ((((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) - gEntityInfo[0].xPosBg2) > 5) && ((var_r8 | gUnk_0300358C) == 0))
                 {
                     scrollOffset.x = -2;
                 }
@@ -529,7 +529,7 @@ void sub_08001F58(void)
             else
             {
                 scrollOffset.y = 1;
-                if ((s16)gEntityInfo[0].yPosBg2 <= (s16)(gBgInfo.bg2VOfs + 0x90))
+                if ((s16)gEntityInfo[0].yPosBg2 <= (s16)(gBgInfo[2].vOfs + 0x90))
                 {
                     flag = 0;
                 }
@@ -563,7 +563,7 @@ void sub_08001F58(void)
             else
             {
                 scrollOffset.y = -1;
-                if ((s16)gEntityInfo[0].yPosBg2 >= (s16) (gBgInfo.bg2VOfs + 0x18))
+                if ((s16)gEntityInfo[0].yPosBg2 >= (s16) (gBgInfo[2].vOfs + 0x18))
                 {
                     flag = 0;
                 }
@@ -630,32 +630,32 @@ void sub_08001F58(void)
         }
     }
 
-    gBgInfo.bg1HOfs = (gBgInfo.bg2HOfs >> 1);
-    if (gBgInfo.bg2VOfs >= gUnk_03005474)
+    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
+    if (gBgInfo[2].vOfs >= gUnk_03005474)
     {
-        gBgInfo.bg1VOfs += (gBgInfo.bg2VOfs - gUnk_03005474) & 1;
+        gBgInfo[1].vOfs += (gBgInfo[2].vOfs - gUnk_03005474) & 1;
     }
     else
     {
-        gBgInfo.bg1VOfs -= (gUnk_03005474 - gBgInfo.bg2VOfs) & 1;
+        gBgInfo[1].vOfs -= (gUnk_03005474 - gBgInfo[2].vOfs) & 1;
     }
 
-    if (gBgInfo.bg1VOfs & 0x8000)
+    if (gBgInfo[1].vOfs & 0x8000)
     {
-        gBgInfo.bg1VOfs = 0;
+        gBgInfo[1].vOfs = 0;
     }
-    else if (gBgInfo.bg1VOfs > DISPLAY_HEIGHT_CENTER)
+    else if (gBgInfo[1].vOfs > DISPLAY_HEIGHT_CENTER)
     {
-        gBgInfo.bg1VOfs = DISPLAY_HEIGHT_CENTER;
+        gBgInfo[1].vOfs = DISPLAY_HEIGHT_CENTER;
     }
 
-    gUnk_03005474 = gBgInfo.bg2VOfs;
+    gUnk_03005474 = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 247C
@@ -673,10 +673,10 @@ void sub_0800247C(void)
 
     if (!(gUnk_030051B8 & SCROLL_HORIZONTAL))
     {
-        if ((s16) gEntityInfo[0].xPosBg2 > (s16) (gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER))
+        if ((s16) gEntityInfo[0].xPosBg2 > (s16) (gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER))
         {
             scrollFlags = SCROLL_RIGHT;
-            if ((gEntityInfo[0].xPosBg2 - (gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER)) > 5)
+            if ((gEntityInfo[0].xPosBg2 - (gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER)) > 5)
             {
                 scrollOffset.x = 2;
             }
@@ -692,10 +692,10 @@ void sub_0800247C(void)
             }
         }
 
-        else if ((s16) gEntityInfo[0].xPosBg2 < (s16) (gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER))
+        else if ((s16) gEntityInfo[0].xPosBg2 < (s16) (gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER))
         {
             scrollFlags = SCROLL_LEFT;
-            if (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) - gEntityInfo[0].xPosBg2) > 5)
+            if (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) - gEntityInfo[0].xPosBg2) > 5)
             {
                 scrollOffset.x = -2;
             }
@@ -766,35 +766,35 @@ void sub_0800247C(void)
         ScrollBg2LevelData(scrollFlags, scrollOffset);
     }
 
-    gBgInfo.bg1HOfs = (gBgInfo.bg2HOfs >> 1);
+    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
     if ((gUnk_03004C20.globalFrameCounter % 4) == 0 && (gUnk_03004660 == 0))
     {
-        if (gBgInfo.bg2VOfs >= gUnk_03005474)
+        if (gBgInfo[2].vOfs >= gUnk_03005474)
         {
-            gBgInfo.bg1VOfs += ((gBgInfo.bg2VOfs - gUnk_03005474) & 1);
+            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gUnk_03005474) & 1);
         }
         else
         {
-            gBgInfo.bg1VOfs -= ((gUnk_03005474 - gBgInfo.bg2VOfs) & 1);
+            gBgInfo[1].vOfs -= ((gUnk_03005474 - gBgInfo[2].vOfs) & 1);
         }
 
-        if (gBgInfo.bg1VOfs & 0x8000)
+        if (gBgInfo[1].vOfs & 0x8000)
         {
-            gBgInfo.bg1VOfs = 0;
+            gBgInfo[1].vOfs = 0;
         }
-        else if (gBgInfo.bg1VOfs > 0x50)
+        else if (gBgInfo[1].vOfs > 0x50)
         {
-            gBgInfo.bg1VOfs = 0x50;
+            gBgInfo[1].vOfs = 0x50;
         }
     }
 
-    gUnk_03005474 = gBgInfo.bg2VOfs;
+    gUnk_03005474 = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 27C4
@@ -807,9 +807,9 @@ void sub_080027C4(void)
     if (gUnk_03005220.unk46 == 0)
     {
         scrollFlags = SCROLL_RIGHT;
-        if ((gEntityInfo[0].xPosBg2 - (gBgInfo.bg2HOfs + 0x28)) > 0)
+        if ((gEntityInfo[0].xPosBg2 - (gBgInfo[2].hOfs + 0x28)) > 0)
         {
-            scrollOffset.x = gEntityInfo[0].xPosBg2 - (gBgInfo.bg2HOfs + 0x28);
+            scrollOffset.x = gEntityInfo[0].xPosBg2 - (gBgInfo[2].hOfs + 0x28);
         }
         else
         {
@@ -820,10 +820,10 @@ void sub_080027C4(void)
     gEntityInfo[0].yPosBg2 = gEntityInfo[0].yPosBg2; // FAKE!
     if ((gUnk_03005220.unk2F == 0) || (gUnk_03005220.unk31 == 0))
     {
-        if (gEntityInfo[0].yPosBg2 > (gBgInfo.bg2VOfs + 0x6E))
+        if (gEntityInfo[0].yPosBg2 > (gBgInfo[2].vOfs + 0x6E))
         {
             scrollFlags |= SCROLL_DOWN;
-            if (gEntityInfo[0].yPosBg2 > (gBgInfo.bg2VOfs + 0xA))
+            if (gEntityInfo[0].yPosBg2 > (gBgInfo[2].vOfs + 0xA))
             {
                 scrollOffset.y = 3;
             }
@@ -833,10 +833,10 @@ void sub_080027C4(void)
             }
         }
 
-        else if (gEntityInfo[0].yPosBg2 < (gBgInfo.bg2VOfs + 0x6E))
+        else if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x6E))
         {
             scrollFlags |= SCROLL_UP;
-            if (gEntityInfo[0].yPosBg2 < (gBgInfo.bg2VOfs + 0x64))
+            if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x64))
             {
                 scrollOffset.y = -3;
             }
@@ -849,10 +849,10 @@ void sub_080027C4(void)
 
     else if (gUnk_03005220.unk2F > 0)
     {
-        if ((gEntityInfo[0].yPosBg2 - 0x28) > gBgInfo.bg2VOfs)
+        if ((gEntityInfo[0].yPosBg2 - 0x28) > gBgInfo[2].vOfs)
         {
             scrollFlags |= SCROLL_DOWN;
-            if (gEntityInfo[0].yPosBg2 > (gBgInfo.bg2VOfs + 0x32))
+            if (gEntityInfo[0].yPosBg2 > (gBgInfo[2].vOfs + 0x32))
             {
                 scrollOffset.y = 3;
             }
@@ -863,10 +863,10 @@ void sub_080027C4(void)
         }
     }
 
-    else if (gEntityInfo[0].yPosBg2 < (gBgInfo.bg2VOfs + 0x82))
+    else if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x82))
     {
         scrollFlags |= SCROLL_UP;
-        if (gEntityInfo[0].yPosBg2 < (gBgInfo.bg2VOfs + 0x78))
+        if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x78))
         {
             scrollOffset.y = -3;
         }
@@ -881,35 +881,35 @@ void sub_080027C4(void)
         ScrollBg2LevelData(scrollFlags, scrollOffset);
     }
 
-    gBgInfo.bg1HOfs = (gBgInfo.bg2HOfs >> 1);
+    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
     if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
     {
-        if (gBgInfo.bg2VOfs >= gUnk_03005474)
+        if (gBgInfo[2].vOfs >= gUnk_03005474)
         {
-            gBgInfo.bg1VOfs += ((gBgInfo.bg2VOfs - gUnk_03005474) & 1);
+            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gUnk_03005474) & 1);
         }
         else
         {
-            gBgInfo.bg1VOfs -= ((gUnk_03005474 - gBgInfo.bg2VOfs) & 1);
+            gBgInfo[1].vOfs -= ((gUnk_03005474 - gBgInfo[2].vOfs) & 1);
         }
 
-        if (gBgInfo.bg1VOfs & 0x8000)
+        if (gBgInfo[1].vOfs & 0x8000)
         {
-            gBgInfo.bg1VOfs = 0;
+            gBgInfo[1].vOfs = 0;
         }
-        else if (gBgInfo.bg1VOfs > 0x50)
+        else if (gBgInfo[1].vOfs > 0x50)
         {
-            gBgInfo.bg1VOfs = 0x50;
+            gBgInfo[1].vOfs = 0x50;
         }
     }
 
-    gUnk_03005474 = gBgInfo.bg2VOfs;
+    gUnk_03005474 = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo.bg2VOfs + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gBgInfo[2].vOfs + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 2AC4
@@ -1001,16 +1001,16 @@ void sub_08002AC4(void)
         gUnk_030007E0.unk2 = 0xA0;
     }
 
-    gBgInfo.bg2HOfs = (u16) gUnk_030007E0.unk0;
+    gBgInfo[2].hOfs = (u16) gUnk_030007E0.unk0;
     if (gBg2Alpha == 0)
     {
-        gBgInfo.bg2VOfs = (u16) gUnk_030007E0.unk2 + 0x10;
+        gBgInfo[2].vOfs = (u16) gUnk_030007E0.unk2 + 0x10;
     }
     else
     {
-        gBgInfo.bg2VOfs = (u16) gUnk_030007E0.unk2;
+        gBgInfo[2].vOfs = (u16) gUnk_030007E0.unk2;
     }
-    gBgInfo.bg1HOfs = ((s16) gUnk_030007E0.unk0 / 15);
+    gBgInfo[1].hOfs = ((s16) gUnk_030007E0.unk0 / 15);
 
     switch (gUnk_030007E0.unkC_4)
     {
@@ -1126,7 +1126,7 @@ void sub_08002AC4(void)
             gBg2Alpha = -0x14;
         }
 
-        gBgInfo.bg2VOfs = 0x58;
+        gBgInfo[2].vOfs = 0x58;
         gUnk_03005440.unk0 += 0xF0;
         gUnk_03005440.unk4 += 0xF0;
         gUnk_03005440.unk2 += 0xDC;
@@ -1141,7 +1141,7 @@ void sub_08002AC4(void)
     sub_0803D15C();
     if (gUnk_03004C20.world == 1)
     {
-        gBgInfo.bg1VOfs = (gBg2YMag / 3) - 0x28;
+        gBgInfo[1].vOfs = (gBg2YMag / 3) - 0x28;
     }
 }
 
@@ -1239,57 +1239,57 @@ void sub_08002FD0(void)
 
     if (gEntityInfo[0].xPosBg2 < (gCurrentRoomBg2Bounds.left + DISPLAY_WIDTH_CENTER))
     {
-        gBgInfo.bg2HOfs = gCurrentRoomBg2Bounds.left;
+        gBgInfo[2].hOfs = gCurrentRoomBg2Bounds.left;
     }
     else if ((gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH_CENTER) < gEntityInfo[0].xPosBg2)
     {
-        gBgInfo.bg2HOfs = gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH;
+        gBgInfo[2].hOfs = gCurrentRoomBg2Bounds.right - DISPLAY_WIDTH;
     }
     else
     {
-        gBgInfo.bg2HOfs = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
+        gBgInfo[2].hOfs = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
     }
 
     if (gEntityInfo[0].yPosBg2 < (gCurrentRoomBg2Bounds.top + DISPLAY_WIDTH_CENTER))
     {
-        gBgInfo.bg2VOfs = gCurrentRoomBg2Bounds.top;
+        gBgInfo[2].vOfs = gCurrentRoomBg2Bounds.top;
     }
     else if ((gCurrentRoomBg2Bounds.bottom - (DISPLAY_HEIGHT / 4)) < gEntityInfo[0].yPosBg2)
     {
-        gBgInfo.bg2VOfs = gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT;
+        gBgInfo[2].vOfs = gCurrentRoomBg2Bounds.bottom - DISPLAY_HEIGHT;
     }
     else
     {
-        gBgInfo.bg2VOfs = gEntityInfo[0].yPosBg2 - DISPLAY_WIDTH_CENTER;
+        gBgInfo[2].vOfs = gEntityInfo[0].yPosBg2 - DISPLAY_WIDTH_CENTER;
     }
 
     if ((gUnk_03004C20.level == 6) && (gUnk_030034E8.unk0 == 0) && (gUnk_030034E8.unk4 != 0))
     {
-        gBgInfo.bg2VOfs += 0x30;
+        gBgInfo[2].vOfs += 0x30;
     }
 
     if (gUnk_03004C20.level != 8)
     {
         sub_0800343C(0);
-        DmaCopy16Wait(3, &gUnk_03004DB0, gBgInfo.pVramBg2Tilemap, 0x400);
+        DmaCopy16Wait(3, &gUnk_03004DB0, gBgInfo[2].pTilemap, 0x400);
     }
     else
     {
         DmaFill16(3, 0, &gUnk_03003650, 0x1000);
         for (var_r6 = 0; var_r6 < 0x28; var_r6++)
         {
-            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[var_r6 * gBgInfo.bg2HLength], (void *) ((var_r6 << 6) + &gUnk_03003650), 0x3C);
+            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[var_r6 * gBgInfo[2].hLength], (void *) ((var_r6 << 6) + &gUnk_03003650), 0x3C);
         }
-        DmaCopy16Wait(3, &gUnk_03003650, gBgInfo.pVramBg2Tilemap, 0x1000);
+        DmaCopy16Wait(3, &gUnk_03003650, gBgInfo[2].pTilemap, 0x1000);
     }
 
     if (gUnk_03004C20.level == 8)
     {
-        gBgInfo.bg1VOfs = 0;
+        gBgInfo[1].vOfs = 0;
     }
     else
     {
-        gBgInfo.bg1VOfs = DISPLAY_HEIGHT_CENTER;
+        gBgInfo[1].vOfs = DISPLAY_HEIGHT_CENTER;
     }
 }
 
@@ -1300,29 +1300,29 @@ void sub_0800343C(u8 arg0)
     u32 temp_r2;
     u32 srcIdx;
 
-    gBgInfo.bg2VOfs -= arg0 * 8;
+    gBgInfo[2].vOfs -= arg0 * 8;
 
     for (srcIdx = 0; srcIdx < 0x400; srcIdx++)
     {
-        // (gBgInfo.bg2HOfs / 8) is tile column
-        // (gBgInfo.bg2VOfs / 8) is tile row
+        // (gBgInfo[2].hOfs / 8) is tile column
+        // (gBgInfo[2].vOfs / 8) is tile row
         // (srcIdx % 0x20) is src buffer column
         // (srcIdx / 0x20) is src buffer row
 
-        temp_r2 = ((gBgInfo.bg2HOfs / 8) + (srcIdx % 0x20)) / 0x20;
-        destIdx = (((gBgInfo.bg2VOfs / 8) % 0x20) * 0x20) + srcIdx;
+        temp_r2 = ((gBgInfo[2].hOfs / 8) + (srcIdx % 0x20)) / 0x20;
+        destIdx = (((gBgInfo[2].vOfs / 8) % 0x20) * 0x20) + srcIdx;
         if (temp_r2 != 0)
         {
-            destIdx += (gBgInfo.bg2HOfs / 8) - (temp_r2 * 0x20);
+            destIdx += (gBgInfo[2].hOfs / 8) - (temp_r2 * 0x20);
         }
         else
         {
-            destIdx += gBgInfo.bg2HOfs / 8;
+            destIdx += gBgInfo[2].hOfs / 8;
         }
-        gUnk_03004DB0[destIdx % 0x400] = gBgDataPtrs.pBufBg2Tilemap[(gBgInfo.bg2HLength * (srcIdx / 0x20)) + (srcIdx % 0x20) + ((gBgInfo.bg2VOfs / 8) * gBgInfo.bg2HLength) + (gBgInfo.bg2HOfs / 8)];
+        gUnk_03004DB0[destIdx % 0x400] = gBgDataPtrs.pBufBg2Tilemap[(gBgInfo[2].hLength * (srcIdx / 0x20)) + (srcIdx % 0x20) + ((gBgInfo[2].vOfs / 8) * gBgInfo[2].hLength) + (gBgInfo[2].hOfs / 8)];
     }
 
-    gBgInfo.bg2VOfs += arg0 * 8;
+    gBgInfo[2].vOfs += arg0 * 8;
 }
 
 // 350C
@@ -1335,12 +1335,12 @@ void sub_0800350C(void)
     REG_WININ = REG_WINOUT = REG_WIN0H = REG_WIN0V = REG_WIN1H = REG_WIN1V = 0;
     REG_BG2CNT = BGCNT_PRIORITY(1);
 
-    gBgInfo.bg2VOfs = 0;
-    gBgInfo.bg2HOfs = 0;
-    gBgInfo.bg1VOfs = 0;
-    gBgInfo.bg1HOfs = 0;
-    gBgInfo.bg0VOfs = 0;
-    gBgInfo.bg0HOfs = 0;
+    gBgInfo[2].vOfs = 0;
+    gBgInfo[2].hOfs = 0;
+    gBgInfo[1].vOfs = 0;
+    gBgInfo[1].hOfs = 0;
+    gBgInfo[0].vOfs = 0;
+    gBgInfo[0].hOfs = 0;
     gBg2Alpha = 0;
 
     gBg2XMag = gBg2YMag = 0x500;
@@ -1350,8 +1350,8 @@ void sub_0800350C(void)
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gBg2X = (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 
     DmaCopy16(3, &gUnk_080D927C, BG_PLTT, BG_PLTT_SIZE);
     DmaCopy16(3, &gUnk_080D947C, VRAM, 0x9600);
@@ -1372,8 +1372,8 @@ void sub_08003750(void)
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gBg2X = (((gBgInfo.bg2HOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo.bg2VOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 
     if (gBg2XMag != 0x100)
     {

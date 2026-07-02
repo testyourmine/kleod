@@ -139,8 +139,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     {
         gEntityInfo[arg0].xPosBg2 = arg2;
         gEntityInfo[arg0].yPosBg2 = arg3;
-        gEntityInfo[arg0].xPosScreen = arg2 - gBgInfo.bg2HOfs;
-        gEntityInfo[arg0].yPosScreen = arg3 - gBgInfo.bg2VOfs;
+        gEntityInfo[arg0].xPosScreen = arg2 - gBgInfo[2].hOfs;
+        gEntityInfo[arg0].yPosScreen = arg3 - gBgInfo[2].vOfs;
     }
     gEntityInfo[arg0].unkA = arg1;
     gEntityInfo[arg0].unk10 = 0;
@@ -429,7 +429,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gCurrentRoomBg2Bounds.top; var_r3_3 -= 8)
                 {
-                    if (gUnk_03004654[0x18] <= gBgDataPtrs.pBufBg2Tilemap[(arg2 >> 3) + (gBgInfo.bg2HLength * (var_r3_3 >> 3))])
+                    if (gUnk_03004654[0x18] <= gBgDataPtrs.pBufBg2Tilemap[(arg2 >> 3) + (gBgInfo[2].hLength * (var_r3_3 >> 3))])
                     {
                         gUnk_03000790[arg4].unk4 = var_r3_3 + 8;
                         gUnk_03000790[arg4].unk8 = var_r3_3 + 8;
@@ -2658,15 +2658,15 @@ void sub_0800A49C(void)
 {
     s32 var_r5;
 
-    gEntityInfo[0].xPosScreen = gEntityInfo[0].xPosBg2 - gBgInfo.bg2HOfs;
-    gEntityInfo[0].yPosScreen = gEntityInfo[0].yPosBg2 - gBgInfo.bg2VOfs;
+    gEntityInfo[0].xPosScreen = gEntityInfo[0].xPosBg2 - gBgInfo[2].hOfs;
+    gEntityInfo[0].yPosScreen = gEntityInfo[0].yPosBg2 - gBgInfo[2].vOfs;
 
     if (gEntityInfo[0x9].unk10 == 1)
     {
-        gEntityInfo[0x9].xPosScreen = gEntityInfo[0x9].xPosBg2 - gBgInfo.bg2HOfs;
-        gEntityInfo[0x9].yPosScreen = gEntityInfo[0x9].yPosBg2 - gBgInfo.bg2VOfs;
-        gEntityInfo[0xA].xPosScreen = gEntityInfo[0xA].xPosBg2 - gBgInfo.bg2HOfs;
-        gEntityInfo[0xA].yPosScreen = gEntityInfo[0xA].yPosBg2 - gBgInfo.bg2VOfs;
+        gEntityInfo[0x9].xPosScreen = gEntityInfo[0x9].xPosBg2 - gBgInfo[2].hOfs;
+        gEntityInfo[0x9].yPosScreen = gEntityInfo[0x9].yPosBg2 - gBgInfo[2].vOfs;
+        gEntityInfo[0xA].xPosScreen = gEntityInfo[0xA].xPosBg2 - gBgInfo[2].hOfs;
+        gEntityInfo[0xA].yPosScreen = gEntityInfo[0xA].yPosBg2 - gBgInfo[2].vOfs;
     }
 
     for (var_r5 = 1; var_r5 < gUnk_03005428; var_r5++)
@@ -2678,8 +2678,8 @@ void sub_0800A49C(void)
 
         if (gEntityInfo[var_r5].unkF < 0x19)
         {
-            gEntityInfo[var_r5].xPosScreen = gEntityInfo[var_r5].xPosBg2 - gBgInfo.bg2HOfs;
-            gEntityInfo[var_r5].yPosScreen = gEntityInfo[var_r5].yPosBg2 - gBgInfo.bg2VOfs;
+            gEntityInfo[var_r5].xPosScreen = gEntityInfo[var_r5].xPosBg2 - gBgInfo[2].hOfs;
+            gEntityInfo[var_r5].yPosScreen = gEntityInfo[var_r5].yPosBg2 - gBgInfo[2].vOfs;
             if ((gEntityInfo[var_r5].xPosScreen >= (DISPLAY_WIDTH + 35) && gEntityInfo[var_r5].xPosScreen <= (u16)(-36))
                 || (gEntityInfo[var_r5].yPosScreen >= (DISPLAY_HEIGHT + 64) && gEntityInfo[var_r5].yPosScreen <= (u16)(-36)))
             {
@@ -2705,11 +2705,11 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     struct Unk_0300466C_4 *var_r0;
 
     arg1++,arg1--; //fake
-    gEntityInfo[arg0].xPosScreen = gEntityInfo[arg0].xPosBg2 - arg1 - gBgInfo.bg2HOfs;
-    gEntityInfo[arg0].yPosScreen = gEntityInfo[arg0].yPosBg2 - arg2 - gBgInfo.bg2VOfs;
+    gEntityInfo[arg0].xPosScreen = gEntityInfo[arg0].xPosBg2 - arg1 - gBgInfo[2].hOfs;
+    gEntityInfo[arg0].yPosScreen = gEntityInfo[arg0].yPosBg2 - arg2 - gBgInfo[2].vOfs;
 
-    temp_r1 = gBgInfo.bg2HOfs - gEntityInfo[arg0].xPosScreen;
-    temp_r2 = gBgInfo.bg2VOfs - gEntityInfo[arg0].yPosScreen;
+    temp_r1 = gBgInfo[2].hOfs - gEntityInfo[arg0].xPosScreen;
+    temp_r2 = gBgInfo[2].vOfs - gEntityInfo[arg0].yPosScreen;
 
     temp_r0 = temp_r1 * gBg2XMag;
     if (temp_r0 < 0)
@@ -2725,7 +2725,7 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     }
     var_r2 = temp_r0_2 >> 8;
 
-    var_r4 = gBgInfo.bg2HOfs - var_r4;
+    var_r4 = gBgInfo[2].hOfs - var_r4;
     if (arg0 > 0xC)
     {
         var_r0 = (void*)gUnk_030051DC[arg0 - 0xD].unk4;
@@ -2739,23 +2739,23 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     {
         case 3:
         case 11:
-            var_r2 = gBgInfo.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 3);
+            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 3);
             break;
 
         case 1:
         case 6:
         case 8:
-            var_r2 = gBgInfo.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 5);
+            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 5);
             break;
 
         case 0:
         case 4:
         case 5:
-            var_r2 = gBgInfo.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 6);
+            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 6);
             break;
 
         default:
-            var_r2 = gBgInfo.bg2VOfs - var_r2 + ((0x100 - gBg2YMag) >> 4);
+            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 4);
             break;
     }
 
@@ -3298,7 +3298,7 @@ void sub_0800AC34(void)
 
                         while (1)
                         {
-                            u32 tmp2 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[var_r6].xPosBg2 >> 3) + ((gEntityInfo[var_r6].yPosBg2 >> 3) * gBgInfo.bg2HLength)];
+                            u32 tmp2 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[var_r6].xPosBg2 >> 3) + ((gEntityInfo[var_r6].yPosBg2 >> 3) * gBgInfo[2].hLength)];
                             if (gUnk_03004654[0x1B] <= tmp2)
                             {
                                 gEntityInfo[var_r6].yPosBg2 += 0xA;

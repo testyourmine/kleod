@@ -52,10 +52,10 @@ void sub_0800BFF4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -176,21 +176,21 @@ void sub_0800C108(void)
         }
     }
 
-    var_r3_2 = gBgInfo.bg2HOfs;
-    var_r2_2 = gBgInfo.bg2VOfs;
+    var_r3_2 = gBgInfo[2].hOfs;
+    var_r2_2 = gBgInfo[2].vOfs;
     if (gUnk_03004C20.world == 0x4 && gUnk_03004C20.level == 0x8)
     {
         var_r2_2 += 0x20;
     }
-    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gBgInfo.bg2HOfs + sp0) << 8);
-    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gBgInfo.bg2VOfs + sp4) << 8);
+    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gBgInfo[2].hOfs + sp0) << 8);
+    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gBgInfo[2].vOfs + sp4) << 8);
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 4) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 7) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 4) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 7) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -225,10 +225,10 @@ void sub_0800C45C(void)
     REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, 0, 0);
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
 
     REG_BG2PA = gBg2PA;
     REG_BG2PA = gBg2PA;
@@ -249,14 +249,14 @@ void sub_0800C564(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gBgInfo.bg0HOfs & 0x1FF;
-    REG_BG0VOFS = gBgInfo.bg0VOfs & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
-    REG_BG2HOFS = (gBgInfo.bg2HOfs >> 4) & 0x1FF;
-    REG_BG2VOFS = (gBgInfo.bg2VOfs >> 4) & 0x1FF;
-    REG_BG3HOFS = (gBgInfo.bg3HOfs >> 4) & 0x1FF;
-    REG_BG3VOFS = (gBgInfo.bg3VOfs >> 4) & 0x1FF;
+    REG_BG0HOFS = gBgInfo[0].hOfs & 0x1FF;
+    REG_BG0VOFS = gBgInfo[0].vOfs & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
+    REG_BG2HOFS = (gBgInfo[2].hOfs >> 4) & 0x1FF;
+    REG_BG2VOFS = (gBgInfo[2].vOfs >> 4) & 0x1FF;
+    REG_BG3HOFS = (gBgInfo[3].hOfs >> 4) & 0x1FF;
+    REG_BG3VOFS = (gBgInfo[3].vOfs >> 4) & 0x1FF;
 
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
@@ -278,8 +278,8 @@ void sub_0800C564(void)
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gBg2X = ((gBgInfo.bg2HOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
-    gBg2Y = ((gBgInfo.bg2VOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
+    gBg2X = ((gBgInfo[2].hOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
+    gBg2Y = ((gBgInfo[2].vOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
 
     thunk_UpdateRng();
     gUnk_03004C20.globalFrameCounter += 1;
@@ -296,10 +296,10 @@ void sub_0800C7EC(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -326,10 +326,10 @@ void sub_0800C900(void)
 {
     VBlankIntrWait();
 
-    REG_BG0HOFS = (gBgInfo.bg0HOfs >> 2) & 0x1FF;
-    REG_BG0VOFS = (gBgInfo.bg0VOfs >> 5) & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
+    REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;
+    REG_BG0VOFS = (gBgInfo[0].vOfs >> 5) & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
     REG_BG2X_L = gBg2X;
     REG_BG2X_H = (gBg2X & 0x0FFF0000) >> 0x10;
     REG_BG2Y_L = gBg2Y;
@@ -503,8 +503,8 @@ void sub_0800CA0C(u32 arg0)
     gUnk_03003410.unkB = 0;
     gUnk_030051E0 = 0;
     gUnk_030034C4 = 0xFE;
-    gBgInfo.bg2TileRow = 0;
-    gBgInfo.bg2TileCol = 0;
+    gBgInfo[2].tileRow = 0;
+    gBgInfo[2].tileCol = 0;
 
     if (gUnk_03004C20.level == 8)
     {
@@ -610,12 +610,12 @@ void sub_0800D0C4(void)
 
     VBlankIntrWait();
 
-    REG_BG0HOFS = gBgInfo.bg0HOfs & 0x1FF;
-    REG_BG0VOFS = gBgInfo.bg0VOfs & 0x1FF;
-    REG_BG1HOFS = gBgInfo.bg1HOfs & 0x1FF;
-    REG_BG1VOFS = gBgInfo.bg1VOfs & 0x1FF;
-    REG_BG2HOFS = gBgInfo.bg2HOfs & 0x1FF;
-    REG_BG2VOFS = gBgInfo.bg2VOfs & 0x1FF;
+    REG_BG0HOFS = gBgInfo[0].hOfs & 0x1FF;
+    REG_BG0VOFS = gBgInfo[0].vOfs & 0x1FF;
+    REG_BG1HOFS = gBgInfo[1].hOfs & 0x1FF;
+    REG_BG1VOFS = gBgInfo[1].vOfs & 0x1FF;
+    REG_BG2HOFS = gBgInfo[2].hOfs & 0x1FF;
+    REG_BG2VOFS = gBgInfo[2].vOfs & 0x1FF;
 
     REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, BLEND_MAX - gBlendValue);
     REG_BLDY = gBlendValue;

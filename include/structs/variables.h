@@ -114,8 +114,10 @@ struct BgDataPtrs {
     /* 0x08 */ void *pBufBg1Tiles; // BG1 tiles
     /* 0x0C */ u16 *pBufBg1Tilemap; // BG1 tilemap
     /* 0x10 */ void *pBufBg2Tiles; // BG2 tiles
-    /* 0x14 */ u8 *pBufBg2Tilemap; // BG2 tilemap? (TODO: verify)
-}; /* size = 0x18? */ // TODO: may be BG3 tiles/tilemap, pushing it to size = 0x20
+    /* 0x14 */ u8 *pBufBg2Tilemap; // BG2 tilemap
+    /* 0x18 */ void *pBufBg3Tiles; // BG3 tiles
+    /* 0x1C */ u16 *pBufBg3Tilemap; // BG3 tilemap
+}; /* size = 0x20 */
 extern struct BgDataPtrs gBgDataPtrs; // TODO: array or struct?
 extern void *gUnk_03005290;
 
@@ -170,51 +172,21 @@ struct EntityInfo {
 }; /* size = 0x1C */
 extern struct EntityInfo gEntityInfo[];
 
-// TODO: struct might only be one set, and uses array to access each bg
 struct BgInfo {
-    /* 0x00 */ void *pVramBg0Tiles; // BG0 tiles
-    /* 0x04 */ void *pVramBg0Tilemap; // BG0 tilemap
-    /* 0x08 */ u16 bg0HOfs; // BG0HOFS
-    /* 0x0A */ u16 bg0VOfs; // BG0VOFS
-    /* 0x0C */ u8 padC[0x10 - 0xC];
-    /* 0x10 */ u16 unk10;
-    /* 0x12 */ u16 unk12;
+    /* 0x00 */ void *pTiles; // BG tiles
+    /* 0x04 */ void *pTilemap; // BG tilemap
+    /* 0x08 */ u16 hOfs; // BGXHOFS
+    /* 0x0A */ u16 vOfs; // BGXVOFS
+    /* 0x0C */ u16 tileCol; // BG left column
+    /* 0x0E */ u16 tileRow; // BG top row
+    /* 0x10 */ u16 hLength; // BG X length
+    /* 0x12 */ u16 vLength; // BG Y length
     /* 0x14 */ u16 unk14;
-    /* 0x16 */ u16 unk16; // BG0 tile length y?
-    /* 0x18 */ u8 unk18;  // BG0 tile length x?
+    /* 0x16 */ u16 unk16; // BG tile length y?
+    /* 0x18 */ u8 unk18;  // BG tile length x?
     /* 0x19 */ u8 pad19[0x1C - 0x19];
-
-    /* 0x1C */ void *pVramBg1Tiles; // BG1 tiles
-    /* 0x20 */ void *pVramBg1Tilemap; // BG1 tilemap
-    /* 0x24 */ u16 bg1HOfs; // BG1HOFS
-    /* 0x26 */ u16 bg1VOfs; // BG1VOFS
-    /* 0x28 */ u8 pad28[0x2C - 0x28];
-    /* 0x2C */ u16 unk2C;
-    /* 0x2E */ u16 unk2E;
-    /* 0x30 */ u16 unk30;
-    /* 0x32 */ u16 unk32; // BG1 tile length y?
-    /* 0x34 */ u8 unk34;  // BG1 tile length x?
-    /* 0x35 */ u8 pad35[0x38 - 0x35];
-
-    /* 0x38 */ void *pVramBg2Tiles; // BG2 tiles
-    /* 0x3C */ void *pVramBg2Tilemap; // BG2 tilemap
-    /* 0x40 */ u16 bg2HOfs; // BG2HOFS
-    /* 0x42 */ u16 bg2VOfs; // BG2VOFS
-    /* 0x44 */ u16 bg2TileCol; // BG2 left column
-    /* 0x46 */ u16 bg2TileRow; // BG2 top row
-    /* 0x48 */ u16 bg2HLength; // BG2 X length
-    /* 0x4A */ u16 bg2VLength; // BG2 Y length
-    /* 0x4C */ u16 unk4C;
-    /* 0x4E */ u16 unk4E; // BG2 tile length y?
-    /* 0x50 */ u8 unk50;  // BG2 tile length x?
-    /* 0x51 */ u8 pad51[0x54 - 0x51];
-
-    /* 0x54 */ void *pVramBg3Tiles; // BG3 tiles
-    /* 0x58 */ void *pVramBg3Tilemap; // BG3 tilemap
-    /* 0x5C */ u16 bg3HOfs; // BG3HOFS
-    /* 0x5E */ u16 bg3VOfs; // BG3VOFS
-}; /* size = 0x60? */ // TODO: likely unused variables at the end, pushing it to size = 0x70
-extern struct BgInfo gBgInfo;
+}; /* size = 0x1C */
+extern struct BgInfo gBgInfo[4];
 
 struct Unk_030034A0 {
     /* 0x00 */ u8 pad0[0x8 - 0x0];
