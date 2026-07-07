@@ -20,7 +20,7 @@ extern void sub_080453F0();
 extern void sub_0804575C();
 extern void sub_08048028();
 
-extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 1 = 256 color mode)
+extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 extern u16 gUnk_08051C76[6][9][3];
 extern u16 gUnk_08051DBA[6][9][3];
 extern u16 gUnk_08051EFE[6][9][3]; // BG tile length y?

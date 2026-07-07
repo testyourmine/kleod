@@ -26,7 +26,7 @@ extern void sub_08042E64(u8);                              /* extern */
 extern void sub_080452E8();                                /* extern */
 extern void sub_08046DB8(s32, s32);
 
-extern const u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 1 = 256 color mode)
+extern const u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 
 extern u8 gUnk_08064868[0x200];
 extern const u8 gUnk_08078508[0x20];
@@ -116,8 +116,8 @@ void sub_08039D8C(void)
         var_sl = 0;
     }
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
@@ -183,7 +183,7 @@ void sub_08039D8C(void)
 
     DmaCopy16(3, &gBgTilemapBufs[gUnk_030034BC], gBgInfo[gUnk_030034BC].pTilemap, 0x800);
 
-    REG_DISPCNT &= ~0x4000;
+    REG_DISPCNT &= ~DISPCNT_WIN1_ON;
 
     if (gUnk_03003410.unk4 != 0)
     {
@@ -224,7 +224,7 @@ void sub_08039D8C(void)
 
     if (gUnk_030034C0 == 1)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, (void*)0x06000000 + (var_sl * 0x20), 0xB60);
+        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, BG_VRAM + (var_sl * 0x20), 0xB60);
     }
     else if (gUnk_030034C0 == 2)
     {
@@ -235,8 +235,8 @@ void sub_08039D8C(void)
         DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gUnk_030034BC].pTiles + (var_sl * 0x20), 0xCE0);
     }
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
     m4aSongNumStart(0x55);
 
@@ -257,18 +257,18 @@ void sub_08039D8C(void)
     {
         if (gUnk_030034BC == 0)
         {
-            REG_BG0CNT &= ~3;
-            REG_BG0CNT = REG_BG0CNT;
-            REG_BG1CNT += 1;
-            REG_BG2CNT += 1;
-            REG_BG3CNT += 1;
-            REG_BLDCNT = 0xD6;
+            REG_BG0CNT &= ~3; // set priority to 0
+            REG_BG0CNT += 0;
+            REG_BG1CNT += 1; // increment priority
+            REG_BG2CNT += 1; // increment priority
+            REG_BG3CNT += 1; // increment priority
+            REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN;
         }
         else
         {
-            REG_BG1CNT &= ~3;
-            REG_BG1CNT = REG_BG1CNT;
-            REG_BLDCNT = 0xD5;
+            REG_BG1CNT &= ~3; // set priority to 0
+            REG_BG1CNT += 0;
+            REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN;
         }
     }
 }
@@ -286,8 +286,8 @@ void sub_0803A22C(void)
     sub_08005CF4();
 
     VBlankIntrWait();
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
@@ -295,7 +295,7 @@ void sub_0803A22C(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg3Tiles);
     if (gUnk_030034BC == 0)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo->unk18 * gBgInfo->unk16);
+        DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].unk18 * gBgInfo[0].unk16);
         DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap, &gBgTilemapBufs[0], 0x480);
     }
     else
@@ -314,11 +314,11 @@ void sub_0803A22C(void)
 
     if ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3)))
     {
-        REG_WIN1H = 0xA0F0;
-        REG_WIN1V = 0x10;
-        REG_WININ = 0x2121;
-        REG_WINOUT = 0x3F;
-        REG_DISPCNT = 0x7741;
+        REG_WIN1H = WIN_RANGE(0xA0, 0xF0);
+        REG_WIN1V = WIN_RANGE(0, 0x10);
+        REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0 | WININ_WIN1_CLR;
+        REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
+        REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON;
         sub_08026128();
     }
 
@@ -329,8 +329,8 @@ void sub_0803A22C(void)
         sub_08026128();
     }
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
 }
 
 // 3A410
@@ -508,8 +508,8 @@ void sub_0803A8B8(void)
         var_r7 = 0;
     }
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
     gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EC8F4 & 0x7FFFFFFF, 0);
@@ -526,16 +526,16 @@ void sub_0803A8B8(void)
         gBgTilemapBufs[gUnk_030034BC][var_r6] = gBgDataPtrs.pBufBg3Tilemap[var_r5 + 2] + var_r7;
     }
 
-    REG_WIN1H = 0xF0;
-    REG_WIN1V = 0x1E90;
+    REG_WIN1H = WIN_RANGE(0, 0xF0);
+    REG_WIN1V = WIN_RANGE(0x1E, 0x90);
 
     if (gUnk_030034BC == 0)
     {
-        REG_WININ = 0x3621;
+        REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_OBJ | WININ_WIN1_CLR;
     }
     else
     {
-        REG_WININ = 0x3521;
+        REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0 | WININ_WIN1_BG2 | WININ_WIN1_OBJ | WININ_WIN1_CLR;
     }
 
     if (gUnk_03004C20.level == 8)
@@ -554,9 +554,9 @@ void sub_0803A8B8(void)
 
     DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gUnk_030034BC].pTiles + (var_r7 << 5), 0xB80);
 
-    REG_DISPCNT |= 0x4000;
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_DISPCNT |= DISPCNT_WIN1_ON;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 
     gUnk_03004C20.sceneFrameCounter = 0;
@@ -633,11 +633,11 @@ void sub_0803AAA0(void)
     {
         if (gUnk_03005284->unk1C == 1)
         {
-            REG_WIN1H = 0xE0 - gUnk_03004C20.sceneFrameCounter;
+            REG_WIN1H = WIN_RANGE(0, 0xE0 - gUnk_03004C20.sceneFrameCounter);
         }
         else
         {
-            REG_WIN1H = ((gUnk_03004C20.sceneFrameCounter + 0x18) << 8) | 0xE0;
+            REG_WIN1H = WIN_RANGE(gUnk_03004C20.sceneFrameCounter + 0x18, 0xE0);
         }
     }
 }
@@ -990,7 +990,7 @@ void sub_0803B378(void)
             {
                 if ((gUnk_03004C20.sceneFrameCounter % 4) == 0)
                 {
-                    DmaCopy16(3, &gUnk_08116780[thunk_GetRandomValue() % 8], (void*)0x05000160, 0x20);
+                    DmaCopy16(3, &gUnk_08116780[thunk_GetRandomValue() % 8], BG_PLTT + 0x160, 0x20);
                     sub_0803AE88(gUnk_03004C08.unk0_0, 0xB);
                 }
             }
@@ -1030,7 +1030,7 @@ void sub_0803B600(void)
     temp_r6 = gUnk_03004C20.world;
     temp_r8 = gUnk_03004C20.level;
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, (void *)0x07000000, 0x400);
+    DmaCopy32(3, gOamBuffer, OAM, OAM_SIZE);
     gUnk_03003410.unk8 = 0;
     gUnk_03004C20.world = 1;
     gUnk_03004C20.level = 1;
@@ -1050,23 +1050,23 @@ void sub_0803B600(void)
         gEntityInfo[var_r4].unk10 = 0;
     }
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
-    REG_IE &= ~2;
-    REG_DISPSTAT &= ~0x10;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
+    REG_IE &= ~INTR_FLAG_HBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
     REG_DISPCNT = 0;
 
-    gBgInfo[0].pTiles = (void *)0x06000000;
-    gBgInfo[1].pTiles = (void *)0x06004000;
-    gBgInfo[2].pTiles = (void *)0x06008000;
-    gBgInfo[3].pTiles = (void *)0x0600C000;
-    gBgInfo[0].pTilemap = (void *)0x0600E000;
-    gBgInfo[1].pTilemap = (void *)0x0600E800;
-    gBgInfo[2].pTilemap = (void *)0x0600F000;
-    gBgInfo[3].pTilemap = (void *)0x0600F800;
-    DecompressDma(&gUnk_083128F8, (void *)0x05000000, 0x200);
+    gBgInfo[0].pTiles = BG_VRAM;
+    gBgInfo[1].pTiles = BG_VRAM + 0x4000;
+    gBgInfo[2].pTiles = BG_VRAM + 0x8000;
+    gBgInfo[3].pTiles = BG_VRAM + 0xC000;
+    gBgInfo[0].pTilemap = BG_VRAM + 0xE000;
+    gBgInfo[1].pTilemap = BG_VRAM + 0xE800;
+    gBgInfo[2].pTilemap = BG_VRAM + 0xF000;
+    gBgInfo[3].pTilemap = BG_VRAM + 0xF800;
+    DecompressDma(&gUnk_083128F8, BG_PLTT, BG_PLTT_SIZE);
 
     gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58 & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70 & 0x7FFFFFFF, 0);
@@ -1139,8 +1139,8 @@ void sub_0803B600(void)
     REG_BG2CNT = 0x1E48;
     REG_BG3CNT = 0x1F4F;
 
-    REG_WININ = 0x3B;
-    REG_WINOUT = 0x3B;
+    REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR;
+    REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
 
     REG_WIN0H = gUnk_08116728[gUnk_03004C08.unk0_4][0];
     REG_WIN0V = gUnk_08116728[gUnk_03004C08.unk0_4][1];
@@ -1178,22 +1178,22 @@ void sub_0803B600(void)
         gBgTilemapBufs[0][0x4F] = 0xA00F;
         gBgTilemapBufs[0][0x50] = 0xA010;
 
-        gBgTilemapBufs[0][0x6D] = ((gUnk_03004670->unk1 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x6E] = ((gUnk_03004670->unk1 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk1 / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk1 % 10) + 1);
         gBgTilemapBufs[0][0x6F] = 0xA00B;
-        gBgTilemapBufs[0][0x70] = ((gUnk_03004670->unk2 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x71] = ((gUnk_03004670->unk2 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk2 / 10) + 1);
+        gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk2 % 10) + 1);
         gBgTilemapBufs[0][0x72] = 0xA00B;
-        gBgTilemapBufs[0][0x73] = ((gUnk_03004670->unk3 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x74] = ((gUnk_03004670->unk3 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk3 / 10) + 1);
+        gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk3 % 10) + 1);
 
         gBgTilemapBufs[0][0x2C] = 0xA011;
         gBgTilemapBufs[0][0x30] = 0xA010;
         gBgTilemapBufs[0][0x31] = 0xA004;
         gBgTilemapBufs[0][0x32] = 0xA001;
 
-        gBgTilemapBufs[0][0x2E] = (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x2F] = (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1);
     }
     else if (gUnk_03004C08.unk0_4 == 6)
     {
@@ -1217,8 +1217,8 @@ void sub_0803B600(void)
         gBgTilemapBufs[0][0x31] = 0xA004;
         gBgTilemapBufs[0][0x32] = 0xA001;
 
-        gBgTilemapBufs[0][0x2E] = (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x2F] = (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1);
     }
     else if (gUnk_03004C08.unk0_4 == 7)
     {
@@ -1228,14 +1228,14 @@ void sub_0803B600(void)
         gBgTilemapBufs[0][0x4F] = 0xA00F;
         gBgTilemapBufs[0][0x50] = 0xA010;
 
-        gBgTilemapBufs[0][0x6D] = ((gUnk_03004670->unk4 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x6E] = ((gUnk_03004670->unk4 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk4 / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk4 % 10) + 1);
         gBgTilemapBufs[0][0x6F] = 0xA00B;
-        gBgTilemapBufs[0][0x70] = ((gUnk_03004670->unk5 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x71] = ((gUnk_03004670->unk5 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk5 / 10) + 1);
+        gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk5 % 10) + 1);
         gBgTilemapBufs[0][0x72] = 0xA00B;
-        gBgTilemapBufs[0][0x73] = ((gUnk_03004670->unk6 / 10) + 1) | 0xA000;
-        gBgTilemapBufs[0][0x74] = ((gUnk_03004670->unk6 % 10) + 1) | 0xA000;
+        gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk6 / 10) + 1);
+        gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk6 % 10) + 1);
 
         gBgTilemapBufs[0][0x2C] = 0xA000;
         gBgTilemapBufs[0][0x30] = 0xA000;
@@ -1265,8 +1265,8 @@ void sub_0803B600(void)
     sub_08046DB8(0, 7);
     sub_08046DB8(1, 0);
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
     m4aSongNumStart(3);
 }
@@ -1283,7 +1283,7 @@ void sub_0803BF84(void)
         return;
     }
 
-    if ((gBlendValue < 0x10) && ((gUnk_03004C20.sceneFrameCounter % 2) != 0))
+    if ((gBlendValue < BLEND_MAX) && ((gUnk_03004C20.sceneFrameCounter % 2) != 0))
     {
         gBlendValue += 1;
     }
@@ -1294,17 +1294,17 @@ void sub_0803BF84(void)
     {
         if (gUnk_03004C08.unk0_4 > 4)
         {
-            if (gBgInfo->vOfs != 0)
+            if (gBgInfo[0].vOfs != 0)
             {
-                gBgInfo->vOfs -= 0x80;
+                gBgInfo[0].vOfs -= 0x80;
             }
         }
-        else if (gBgInfo->vOfs < 0x400)
+        else if (gBgInfo[0].vOfs < 0x400)
         {
-            gBgInfo->vOfs += 0x80;
+            gBgInfo[0].vOfs += 0x80;
         }
 
-        if (gNewKeys & (9 | 1))
+        if (gNewKeys & (START_BUTTON | A_BUTTON))
         {
             gBlendValue = 0;
             gUnk_03004C20.world = gUnk_03004C08.unk0_4 + 1;
@@ -1345,14 +1345,14 @@ void sub_0803BF84(void)
         switch (gUnk_03004C08.unk0_4)
         {
             case 0:
-                if ((gHeldKeys & (0x80 | 0x10)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 1);
                 }
 
-                if ((gHeldKeys & 0x40) && (sub_0803AC18(6) != 0))
+                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(6) != 0))
                 {
                     gUnk_03004C08.unk1 = 7;
                     m4aSongNumStart(0x51);
@@ -1364,14 +1364,14 @@ void sub_0803BF84(void)
                     gBgTilemapBufs[0][0x4F] = 0xA00F;
                     gBgTilemapBufs[0][0x50] = 0xA010;
 
-                    gBgTilemapBufs[0][0x6D] = ((gUnk_03004670->unk4 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x6E] = ((gUnk_03004670->unk4 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk4 / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk4 % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = 0xA00B;
-                    gBgTilemapBufs[0][0x70] = ((gUnk_03004670->unk5 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x71] = ((gUnk_03004670->unk5 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk5 / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk5 % 10) + 1);
                     gBgTilemapBufs[0][0x72] = 0xA00B;
-                    gBgTilemapBufs[0][0x73] = ((gUnk_03004670->unk6 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x74] = ((gUnk_03004670->unk6 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk6 / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk6 % 10) + 1);
 
                     gBgTilemapBufs[0][0x2C] = 0xA000;
                     gBgTilemapBufs[0][0x30] = 0xA000;
@@ -1384,14 +1384,14 @@ void sub_0803BF84(void)
                 break;
 
             case 1:
-                if ((gHeldKeys & 0x40) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 0x25);
                 }
 
-                if (gHeldKeys & 0x20)
+                if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(0x51);
@@ -1400,14 +1400,14 @@ void sub_0803BF84(void)
                 break;
 
             case 2:
-                if ((gHeldKeys & 0x10) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_RIGHT) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 1);
                 }
 
-                if (gHeldKeys & 0x80)
+                if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(0x51);
@@ -1416,14 +1416,14 @@ void sub_0803BF84(void)
                 break;
 
             case 3:
-                if ((gHeldKeys & (0x80 | 0x10)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 1);
                 }
 
-                if (gHeldKeys & 0x20)
+                if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(0x51);
@@ -1432,7 +1432,7 @@ void sub_0803BF84(void)
                 break;
 
             case 4:
-                if ((gHeldKeys & 0x40) && (sub_0803AC18(gUnk_03004C08.unk0_4 + 1) != 0))
+                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4 + 1) != 0))
                 {
                     gUnk_03004C08.unk1 = 2;
                     m4aSongNumStart(0x51);
@@ -1458,11 +1458,11 @@ void sub_0803BF84(void)
                     gBgTilemapBufs[0][0x31] = 0xA004;
                     gBgTilemapBufs[0][0x32] = 0xA001;
 
-                    gBgTilemapBufs[0][0x2E] = (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x2F] = (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1);
                 }
 
-                if ((gHeldKeys & 0x80) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_DOWN) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(0x51);
@@ -1474,25 +1474,25 @@ void sub_0803BF84(void)
                     gBgTilemapBufs[0][0x4F] = 0xA00F;
                     gBgTilemapBufs[0][0x50] = 0xA010;
 
-                    gBgTilemapBufs[0][0x6D] = ((gUnk_03004670->unk1 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x6E] = ((gUnk_03004670->unk1 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk1 / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk1 % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = 0xA00B;
-                    gBgTilemapBufs[0][0x70] = ((gUnk_03004670->unk2 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x71] = ((gUnk_03004670->unk2 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk2 / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk2 % 10) + 1);
                     gBgTilemapBufs[0][0x72] = 0xA00B;
-                    gBgTilemapBufs[0][0x73] = ((gUnk_03004670->unk3 / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x74] = ((gUnk_03004670->unk3 % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk3 / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk3 % 10) + 1);
 
                     gBgTilemapBufs[0][0x2C] = 0xA011;
                     gBgTilemapBufs[0][0x30] = 0xA010;
                     gBgTilemapBufs[0][0x31] = 0xA004;
                     gBgTilemapBufs[0][0x32] = 0xA001;
 
-                    gBgTilemapBufs[0][0x2E] = (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1) | 0xA000;
-                    gBgTilemapBufs[0][0x2F] = (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1) | 0xA000;
+                    gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1);
                 }
 
-                if (gHeldKeys & 0x20)
+                if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(0x51);
@@ -1501,7 +1501,7 @@ void sub_0803BF84(void)
                 break;
 
             case 5:
-                if (gHeldKeys & (0x40 | 0x10))
+                if (gHeldKeys & (DPAD_UP | DPAD_RIGHT))
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(0x51);
@@ -1510,7 +1510,7 @@ void sub_0803BF84(void)
                 break;
 
             case 6:
-                if (gHeldKeys & 0x80)
+                if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xFE;
                     m4aSongNumStart(0x51);
@@ -1519,7 +1519,7 @@ void sub_0803BF84(void)
                 break;
 
             case 7:
-                if (gHeldKeys & 0x80)
+                if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xF9;
                     m4aSongNumStart(0x51);
@@ -1554,29 +1554,29 @@ void sub_0803BF84(void)
 
         if ((gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1) > 4)
         {
-            if (gBgInfo->vOfs != 0)
+            if (gBgInfo[0].vOfs != 0)
             {
-                gBgInfo->vOfs -= 0x80;
+                gBgInfo[0].vOfs -= 0x80;
             }
         }
-        else if (gBgInfo->vOfs < 0x400)
+        else if (gBgInfo[0].vOfs < 0x400)
         {
-            gBgInfo->vOfs += 0x80;
+            gBgInfo[0].vOfs += 0x80;
         }
 
         if ((gEntityInfo[0].xPosBg2 == gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][0]) && (gEntityInfo[0].yPosBg2 == gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][1]))
         {
             gUnk_03004C08.unk0_4 += gUnk_03004C08.unk1;
             gUnk_03004C08.unk1 = 0;
-            if (gEntityAnimationInfo->state == 1)
+            if (gEntityAnimationInfo[0].state == 1)
             {
                 sub_08025B78(0, 0);
             }
-            if (gEntityAnimationInfo->state == 0x25)
+            if (gEntityAnimationInfo[0].state == 0x25)
             {
                 sub_08025B78(0, 0x23);
             }
-            if (gEntityAnimationInfo->state == 0x24)
+            if (gEntityAnimationInfo[0].state == 0x24)
             {
                 sub_08025B78(0, 0x22);
             }
@@ -1633,10 +1633,10 @@ void sub_0803C808(void)
     gUnk_03005400.unk12 = 0;
     gUnk_03005400.unk2 = 0;
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
-    REG_IE &= ~2;
-    REG_DISPSTAT &= ~0x10;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
+    REG_IE &= ~INTR_FLAG_HBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
@@ -1736,9 +1736,9 @@ void sub_0803C808(void)
                 gEntityInfo[var_r4].priority = 0;
             }
 
-            REG_BG0CNT = 3 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
-            REG_BG1CNT = 1 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
-            REG_BG2CNT = 0 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E48;
+            REG_BG0CNT = BGCNT_PRIORITY(3) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
+            REG_BG1CNT = BGCNT_PRIORITY(1) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
+            REG_BG2CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E48;
 
             sub_0803F68C(0, 0, 0);
             sub_0803F68C(1, 0, 0);
@@ -1752,9 +1752,9 @@ void sub_0803C808(void)
             gOamAffineMatrixNum = 0xF;
             gUnk_030034A8 = sub_08040F1C;
 
-            REG_BG0CNT = 3 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
-            REG_BG1CNT = 0 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
-            REG_BG2CNT = 0 | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E49;
+            REG_BG0CNT = BGCNT_PRIORITY(3) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
+            REG_BG1CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
+            REG_BG2CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E49;
 
             gUnk_03005440.unkC = 0x30;
             gUnk_03005440.unkE = 0;
@@ -1806,8 +1806,8 @@ void sub_0803C808(void)
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     }
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 }
 
@@ -1880,16 +1880,16 @@ void sub_0803CF08(u8 arg0)
             gUnk_03005220.unk38 = 0;
             gUnk_03005220.unk43 = 0;
             gUnk_03005220.unk42 = 0;
-            if (gEntityAnimationInfo->state >= 0x16)
+            if (gEntityAnimationInfo[0].state >= 0x16)
             {
-                sub_08025B78(0, gEntityAnimationInfo->state - 0x16);
+                sub_08025B78(0, gEntityAnimationInfo[0].state - 0x16);
             }
         }
 
         gEntityInfo[0].priority = 0;
         gUnk_03005400.unkE_4 = 0;
-        REG_BLDCNT = 0x740;
-        gBlendValue = 0x10;
+        REG_BLDCNT = BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_EFFECT_BLEND;
+        gBlendValue = BLEND_MAX;
 
         for (var_r6 = 0x12; var_r6 < gUnk_03005428; var_r6++)
         {
@@ -1969,10 +1969,10 @@ void sub_0803D15C(void)
     s16 temp_sl;
     u8 var_r4;
 
-    temp_sl = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gBg2XMag));
-    temp_sb = MultiplyQ8(gSineTable[0], ReciprocalQ8(gBg2XMag));
-    temp_r7 = MultiplyQ8(-gSineTable[0], ReciprocalQ8(gBg2YMag));
-    temp_r4 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gBg2YMag));
+    temp_sl = MultiplyQ8(COS(0), ReciprocalQ8(gBg2XMag));
+    temp_sb = MultiplyQ8(SIN(0), ReciprocalQ8(gBg2XMag));
+    temp_r7 = MultiplyQ8(-SIN(0), ReciprocalQ8(gBg2YMag));
+    temp_r4 = MultiplyQ8(COS(0), ReciprocalQ8(gBg2YMag));
 
     gOamAffineBuffer[0].pa = temp_sl;
     gOamAffineBuffer[0].pb = temp_sb;
@@ -1989,10 +1989,10 @@ void sub_0803D15C(void)
     gOamAffineBuffer[2].pc = temp_r7;
     gOamAffineBuffer[2].pd = -temp_r4;
 
-    temp_sl = MultiplyQ8(gSineTable[gUnk_03003590[0].unk4 + 0x40], ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
-    temp_sb = MultiplyQ8(gSineTable[gUnk_03003590[0].unk4], ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
-    temp_r7 = MultiplyQ8(-gSineTable[gUnk_03003590[0].unk4], ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
-    temp_r4 = MultiplyQ8(gSineTable[gUnk_03003590[0].unk4 + 0x40], ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
+    temp_sl = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
+    temp_sb = MultiplyQ8(SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
+    temp_r7 = MultiplyQ8(-SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
+    temp_r4 = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
 
     if (gUnk_03003590[0].unk5_0 == 0)
     {
@@ -2018,10 +2018,10 @@ void sub_0803D15C(void)
             var_r4 = -gUnk_03003590[sp0].unk4;
         }
 
-        temp_sl = MultiplyQ8(gSineTable[var_r4 + 0x40], ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
-        temp_sb = MultiplyQ8(gSineTable[var_r4], ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
-        temp_r7 = MultiplyQ8(-gSineTable[var_r4], ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
-        temp_r4 = MultiplyQ8(gSineTable[var_r4 + 0x40], ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
+        temp_sl = MultiplyQ8(COS(var_r4), ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
+        temp_sb = MultiplyQ8(SIN(var_r4), ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
+        temp_r7 = MultiplyQ8(-SIN(var_r4), ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
+        temp_r4 = MultiplyQ8(COS(var_r4), ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
 
         if (gUnk_03003590[sp0].unk5_0 == 0)
         {
@@ -2310,7 +2310,7 @@ void sub_0803D90C(u8 arg0)
 
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078508, (void*)0x05000200 + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
                     if (gUnk_03005400.unkC == 0)
                     {
                         sub_0801E664(gEntityInfo[0x13].xPosBg2, gEntityInfo[0x13].yPosBg2, 2, 0x13);
@@ -2331,11 +2331,11 @@ void sub_0803D90C(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078508, (void*)0x05000200 + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, (void*)0x05000200 + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
                     }
                 }
                 break;
@@ -2561,8 +2561,8 @@ void sub_0803D90C(u8 arg0)
                             gEntityInfo[arg0].unk8.split.unk8 -= var_r2;
                         }
 
-                        gEntityInfo[arg0].xPosBg2 = ((gUnk_03005400.unk13 * gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40]) >> 8) + gUnk_03005400.unk4;
-                        gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8] * 5) >> 4) + gUnk_03005400.unk6;
+                        gEntityInfo[arg0].xPosBg2 = ((gUnk_03005400.unk13 * COS(gEntityInfo[arg0].unk8.split.unk8)) >> 8) + gUnk_03005400.unk4;
+                        gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8) * 5) >> 4) + gUnk_03005400.unk6;
                         if ((gEntityInfo[arg0].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40)) || (gEntityInfo[arg0].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0])))
                         {
                             gEntityInfo[arg0].xPosBg2 = var_r9;
@@ -2886,7 +2886,7 @@ void sub_0803E904(u8 arg0)
 
             case 1:
                 gUnk_03005400.unk13 += 4;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[gUnk_03005400.unk13 + 0x40] * 2) >> 5);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 5);
 
                 if ((s16) gUnk_03003590[0].unk0 < gUnk_081168E2[gUnk_03005400.unkC])
                 {
@@ -2945,26 +2945,26 @@ void sub_0803E904(u8 arg0)
 
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078628, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
 
                     if (gEntityInfo[0x13].unkF != 0x1C)
                     {
-                        sub_0801E664(gEntityInfo[0x13].xPosBg2, gEntityInfo[0x13].yPosBg2, 2U, 0x13);
+                        sub_0801E664(gEntityInfo[0x13].xPosBg2, gEntityInfo[0x13].yPosBg2, 2, 0x13);
                         gEntityInfo[0x13].unkF = 0x1C;
                     }
                     if (gEntityInfo[0x14].unkF != 0x1C)
                     {
-                        sub_0801E664(gEntityInfo[0x14].xPosBg2, gEntityInfo[0x14].yPosBg2, 2U, 0x14);
+                        sub_0801E664(gEntityInfo[0x14].xPosBg2, gEntityInfo[0x14].yPosBg2, 2, 0x14);
                         gEntityInfo[0x14].unkF = 0x1C;
                     }
                     if (gEntityInfo[0x15].unkF != 0x1C)
                     {
-                        sub_0801E664(gEntityInfo[0x15].xPosBg2, gEntityInfo[0x15].yPosBg2, 2U, 0x15);
+                        sub_0801E664(gEntityInfo[0x15].xPosBg2, gEntityInfo[0x15].yPosBg2, 2, 0x15);
                         gEntityInfo[0x15].unkF = 0x1C;
                     }
                     if (gEntityInfo[0x16].unkF != 0x1C)
                     {
-                        sub_0801E664(gEntityInfo[0x16].xPosBg2, gEntityInfo[0x16].yPosBg2, 2U, 0x16);
+                        sub_0801E664(gEntityInfo[0x16].xPosBg2, gEntityInfo[0x16].yPosBg2, 2, 0x16);
                         gEntityInfo[0x16].unkF = 0x1C;
                     }
 
@@ -2992,12 +2992,12 @@ void sub_0803E904(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078628, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
 
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
                 break;
@@ -3021,7 +3021,7 @@ void sub_0803E904(u8 arg0)
                 }
 
                 gUnk_03005400.unk13 += gUnk_08116A02[gUnk_03005400.unkC][1];
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[gUnk_03005400.unk13 + 0x40] * 2) >> 4);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 4);
                 if ((gUnk_03005400.unk13 % 0x80) == 0)
                 {
                     m4aSongNumStart(0x66);
@@ -3101,7 +3101,7 @@ void sub_0803E904(u8 arg0)
 
             case 10:
                 gUnk_03005400.unk13 += 2;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[gUnk_03005400.unk13 + 0x40] * 5) >> 7);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 5) >> 7);
 
                 if (gEntityInfo[arg0].unk8.split.unk8 == 0x32)
                 {
@@ -3511,7 +3511,7 @@ void sub_0803F9EC(u8 arg0)
     {
         gUnk_03005400.unk0 -= 1;
     }
-    DmaCopy16(3, &gUnk_080D8C30[(gUnk_03004C20.sceneFrameCounter / 12) % 6], (void*)0x05000100, 0x40);
+    DmaCopy16(3, &gUnk_080D8C30[(gUnk_03004C20.sceneFrameCounter / 12) % 6], BG_PLTT + 0x100, 0x40);
     if ((gEntityInfo[0].yPosBg2 > 0x147) && (gUnk_03005220.hearts != 0))
     {
         gUnk_03005220.hearts = 1;
@@ -3756,16 +3756,16 @@ void sub_0803F9EC(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078628, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
                 else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078768, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078768, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     sub_08025B78(arg0, 3);
                     if (gUnk_03005400.unkC == 0)
                     {
@@ -3800,7 +3800,7 @@ void sub_0803F9EC(u8 arg0)
                     gUnk_03005400.unk4 = 1;
                     gUnk_03005400.unkA = 8;
                     gEntityInfo[arg0].unkF = 0x1A;
-                    DmaCopy16Wait(3, &gUnk_08078728, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     sub_08025B78(arg0, 6);
                 }
                 break;
@@ -3906,7 +3906,7 @@ void sub_0803F9EC(u8 arg0)
                     break;
                 }
 
-                DmaCopy16Wait(3, &gUnk_08078728, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                 gUnk_03005400.unk15 = 0;
                 gUnk_03005400.unk16 = 0;
                 if (gUnk_03005400.unk4 != 0)
@@ -3948,7 +3948,7 @@ void sub_0803F9EC(u8 arg0)
                     return;
                 }
 
-                DmaCopy16Wait(3, &gUnk_08078728, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                 for (var_r4 = 0; var_r4 < 6; var_r4++)
                 {
                     sub_0803F68C(var_r4, 0, 0);
@@ -4165,11 +4165,11 @@ void sub_08040B50(u8 arg0)
 
             if ((gEntityInfo[var_sb + 0x18].unkC_4 == 3) || (gEntityInfo[var_sb + 0x18].unkC_4 == 1))
             {
-                DmaCopy16(3, &gUnk_08064868, (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb + 0xC].tileNum * 0x20), 0x200);
+                DmaCopy16(3, &gUnk_08064868, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb + 0xC].tileNum * 0x20), 0x200);
             }
             else
             {
-                DmaCopy16(3, &gUnk_080B9468, (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb + 0xC].tileNum * 0x20), 0x200);
+                DmaCopy16(3, &gUnk_080B9468, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb + 0xC].tileNum * 0x20), 0x200);
             }
         }
     }
@@ -4335,7 +4335,7 @@ void sub_08040F1C(u8 arg0)
                 break;
 
             case 0x1:
-                gEntityInfo[0x12].yPosBg2 = gSineTable[gEntityInfo[0x12].unk8.split.unk8++ + 0x8];
+                gEntityInfo[0x12].yPosBg2 = SIN(gEntityInfo[0x12].unk8.split.unk8++ + 0x8);
                 gUnk_03003590[0].unk0 += 2;
                 gUnk_03003590[0].unk2 += 2;
 
@@ -4479,7 +4479,7 @@ void sub_08040F1C(u8 arg0)
                     sub_08025B78(arg0, 0);
                 }
 
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (gSineTable[(gUnk_03004C20.sceneFrameCounter * 4) & 0xFF] >> 5);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
                 if ((gEntityInfo[0x15].unkF == 0x1C) && (gEntityInfo[0x16].unkF == 0x1C) && (gEntityInfo[0x13].unkF == 0x1C) && (gEntityInfo[0x14].unkF == 0x1C))
                 {
                     gUnk_03005400.unkA = 6;
@@ -4558,8 +4558,8 @@ block_89:
 
                         if (gUnk_03005220.unk31 != 0)
                         {
-                            gEntityInfo[0].yPosBg2 += (((gEntityInfo[0].xPosBg2 - 0xF0) * gSineTable[gBg2Alpha]) >> 8);
-                            if ((s16) ((gEntityInfo[0].xPosBg2 - 0xF0) * gSineTable[gBg2Alpha]) < 0)
+                            gEntityInfo[0].yPosBg2 += (((gEntityInfo[0].xPosBg2 - 0xF0) * SIN(gBg2Alpha)) >> 8);
+                            if ((s16) ((gEntityInfo[0].xPosBg2 - 0xF0) * SIN(gBg2Alpha)) < 0)
                             {
                                 gEntityInfo[0].yPosBg2 -= 0x20;
                             }
@@ -4721,7 +4721,7 @@ block_89:
                 break;
 
             case 8:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (gSineTable[(gUnk_03004C20.sceneFrameCounter * 4) & 0xFF] >> 5);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
                 {
 
@@ -4733,7 +4733,7 @@ block_89:
                 break;
 
             case 4:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (gSineTable[(gUnk_03004C20.sceneFrameCounter * 4) & 0xFF] >> 5);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
                 {
 
@@ -4842,7 +4842,7 @@ block_89:
                         }
                     }
 
-                    gEntityInfo[0x12].yPosBg2 = gSineTable[gEntityInfo[0x12].unk8.split.unk8++ + 0x8];
+                    gEntityInfo[0x12].yPosBg2 = SIN(gEntityInfo[0x12].unk8.split.unk8++ + 0x8);
                     if (gEntityInfo[0x12].unk8.split.unk8 == 0x70)
                     {
                         gEntityInfo[0x12].priority = 1;
@@ -5066,10 +5066,10 @@ void sub_08042024(u8 arg0)
                     gEntityInfo[0x14].unkF = 0x19;
                     gEntityInfo[0x13].unkF = 0x19;
 
-                    gBlendValue = 0x10;
-                    REG_BLDCNT = 0x142;
-                    REG_BLDALPHA = 0x10;
-                    REG_BLDY = 0x10;
+                    gBlendValue = BLEND_MAX;
+                    REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0;
+                    REG_BLDALPHA = BLDALPHA_MAX;
+                    REG_BLDY = BLDY_MAX;
                 }
                 break;
         }
@@ -5104,8 +5104,8 @@ void sub_08042024(u8 arg0)
                 }
 
                 goto b;
-                gUnk_03003590[0].unk0 = (gSineTable[((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) + 0x40] << 0x10) >> 0x12;
-                gUnk_03003590[0].unk2 = (gSineTable[(gUnk_03004C20.sceneFrameCounter * 8) & 0xFF] << 0x10) >> 0x13;
+                gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x12;
+                gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x13;
                 break;
 
             case 13:
@@ -5130,14 +5130,14 @@ void sub_08042024(u8 arg0)
                     gEntityInfo[0x1C].yPosBg2 = 0;
                     gEntityInfo[0x1C].xPosBg2 = 0;
 
-                    REG_IE |= 2;
-                    REG_DISPSTAT |= 0x10;
+                    REG_IE |= INTR_FLAG_HBLANK;
+                    REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
                 }
                 else
                 {
 b:
-                    gUnk_03003590[0].unk0 = (gSineTable[((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) + 0x40] << 0x10) >> 0x12;
-                    gUnk_03003590[0].unk2 = (gSineTable[(gUnk_03004C20.sceneFrameCounter * 8) & 0xFF] << 0x10) >> 0x13;
+                    gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x12;
+                    gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x13;
                 }
                 break;
 
@@ -5186,7 +5186,7 @@ b:
                 }
 
                 gEntityInfo[arg0].xPosBg2 += 1 - (gEntityInfo[arg0].unkC_2 * 2);
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((gSineTable[gEntityInfo[arg0].unk8.split.unk8] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
                 tmp = temp_r8 & 1;
                 if (tmp != 1)
                 {
@@ -5208,7 +5208,7 @@ b:
 
             case 3:
                 gEntityInfo[arg0].unk8.split.unk8 += 1;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((gSineTable[gEntityInfo[arg0].unk8.split.unk8] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
 
                 if (gEntityInfo[0x18].unkF != 0x1C)
                 {
@@ -5220,7 +5220,7 @@ b:
 
             case 12:
                 gEntityInfo[arg0].unk8.split.unk8 += 1;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((gSineTable[gEntityInfo[arg0].unk8.split.unk8] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
 
                 if (gEntityInfo[0x18].unk11 == 0x1A)
                 {
@@ -5267,7 +5267,7 @@ b:
                 {
                     break;
                 }
-                REG_BLDCNT = 0x142;
+                REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0;
                 if (gBlendValue <= 8)
                 {
                     gUnk_03005400.unkA = 7;
@@ -5306,9 +5306,9 @@ b:
                 gUnk_03005400.unkA = 5;
                 sub_08041F34(1);
 
-                REG_BG1CNT = (REG_BG1CNT & ~3) | 3;
-                REG_BG0CNT = (REG_BG0CNT & ~3) | 2;
-                REG_BG2CNT = (REG_BG2CNT & ~3) | 1;
+                REG_BG1CNT = (REG_BG1CNT & ~3) | BGCNT_PRIORITY(3);
+                REG_BG0CNT = (REG_BG0CNT & ~3) | BGCNT_PRIORITY(2);
+                REG_BG2CNT = (REG_BG2CNT & ~3) | BGCNT_PRIORITY(1);
                 REG_BLDCNT = 0;
                 gBgInfo[1].hOfs = 0;
                 gBgInfo[0].hOfs = 0;
@@ -5316,8 +5316,8 @@ b:
                 REG_BG0HOFS = temp_r2 >> 0x1C;
                 REG_BG1HOFS = 0;
 
-                REG_IE &= ~2;
-                REG_DISPSTAT &= ~0x10;
+                REG_IE &= ~INTR_FLAG_HBLANK;
+                REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 m4aSongNumStop(0x73);
                 if (gUnk_03005400.unkC)
                 {
@@ -5334,12 +5334,12 @@ b:
                 {
                     break;
                 }
-                REG_BG1CNT = (REG_BG1CNT & ~3) | 2;
-                REG_BG0CNT = (REG_BG0CNT & ~3) | 3;
-                REG_BG2CNT = (REG_BG2CNT & ~3) | 1;
-                REG_BLDCNT = 0x142;
-                REG_IE |= 2;
-                REG_DISPSTAT |= 0x10;
+                REG_BG1CNT = (REG_BG1CNT & ~3) | BGCNT_PRIORITY(2);
+                REG_BG0CNT = (REG_BG0CNT & ~3) | BGCNT_PRIORITY(3);
+                REG_BG2CNT = (REG_BG2CNT & ~3) | BGCNT_PRIORITY(1);
+                REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0;
+                REG_IE |= INTR_FLAG_HBLANK;
+                REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
 
                 if (gBlendValue > 8)
                 {
@@ -5364,7 +5364,7 @@ b:
                 break;
 
             case 10:
-                if (gBlendValue < 0x10)
+                if (gBlendValue < BLEND_MAX)
                 {
                     if (gUnk_03004C20.sceneFrameCounter & 3)
                     {
@@ -5378,8 +5378,8 @@ b:
                 gBgInfo[0].hOfs = 0;
                 REG_BG0HOFS = 0;
                 REG_BG1HOFS = 0;
-                REG_IE &= ~2;
-                REG_DISPSTAT &= ~0x10;
+                REG_IE &= ~INTR_FLAG_HBLANK;
+                REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 REG_BLDCNT = 0;
 
                 gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
@@ -5412,7 +5412,7 @@ b:
                 break;
 
             case 11:
-                REG_BLDCNT = 0x340;
+                REG_BLDCNT = BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND;
                 gBlendValue = 0xA;
                 if (gUnk_03005220.unk31 != 0)
                 {
@@ -5440,7 +5440,7 @@ void sub_08042BEC(void)
     }
     else if (temp_r6 < 300)
     {
-        DmaCopy16(3, gUnk_0818B9F8[1], (void*)0x05000000, 0x60);
+        DmaCopy16(3, gUnk_0818B9F8[1], BG_PLTT, 0x60);
     }
     else if (temp_r6 >= 300 && temp_r6 <= 1500)
     {
@@ -5454,7 +5454,7 @@ void sub_08042BEC(void)
 
         if ((gUnk_03004C20.sceneFrameCounter % gEntityInfo[0x12].unk8.split.unk9) == 0)
         {
-            DmaCopy16(3, gUnk_0818B9F8[1 + (gUnk_03005400.unk8_7 * 4) + gEntityInfo[0x12].unk8.split.unk8], (void*)0x05000000, 0x60);
+            DmaCopy16(3, gUnk_0818B9F8[1 + (gUnk_03005400.unk8_7 * 4) + gEntityInfo[0x12].unk8.split.unk8], BG_PLTT, 0x60);
             gEntityInfo[0x12].unk8.split.unk8 = ((gEntityInfo[0x12].unk8.split.unk8 + 1) % 0x100u) % 4;
         }
     }
@@ -5470,13 +5470,13 @@ void sub_08042BEC(void)
 
         if ((gUnk_03004C20.sceneFrameCounter % gEntityInfo[0x12].unk8.split.unk9) == 0)
         {
-            DmaCopy16(3, gUnk_0818B9F8[1 + (gUnk_03005400.unk8_7 * 4) + gEntityInfo[0x12].unk8.split.unk8], (void*)0x05000000, 0x60);
+            DmaCopy16(3, gUnk_0818B9F8[1 + (gUnk_03005400.unk8_7 * 4) + gEntityInfo[0x12].unk8.split.unk8], BG_PLTT, 0x60);
             gEntityInfo[0x12].unk8.split.unk8 = ((gEntityInfo[0x12].unk8.split.unk8 + 1) % 0x100u) % 4;
         }
     }
     else if (temp_r6 <= 1800)
     {
-        DmaCopy16(3, gUnk_0818B9F8[1], (void*)0x05000000, 0x60);
+        DmaCopy16(3, gUnk_0818B9F8[1], BG_PLTT, 0x60);
     }
 
     if ((temp_r6 >= 300 && temp_r6 <= 1700) && ((gUnk_03004C20.sceneFrameCounter % (gEntityInfo[0x12].unk8.split.unk9 - 4)) == 0) && (gUnk_03005220.unk31 != 0))
@@ -5588,8 +5588,8 @@ void sub_08042E64(u8 arg0)
                 gUnk_03003590[4].unk0 = -gBg2XMag + 0x10;
 
                 gIntrTable.hBlank = sub_08000FA0;
-                REG_IE &= ~2;
-                REG_DISPSTAT &= ~0x10;
+                REG_IE &= ~INTR_FLAG_HBLANK;
+                REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 gUnk_03005400.unk0 = 0x40;
                 gUnk_03005400.unkA = 1;
                 sub_08025B78(arg0, 0x18);
@@ -5720,7 +5720,7 @@ void sub_08042E64(u8 arg0)
                 {
 
                 }
-                else if (gBlendValue < 0x10)
+                else if (gBlendValue < BLEND_MAX)
                 {
                     gBlendValue += 1;
                 }
@@ -5748,8 +5748,8 @@ void sub_08042E64(u8 arg0)
                 {
                     gUnk_03005400.unkA = 9;
                     gUnk_03005400.unkE_4 = 1;
-                    REG_IE &= ~2;
-                    REG_DISPSTAT &= ~0x10;
+                    REG_IE &= ~INTR_FLAG_HBLANK;
+                    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 }
                 break;
 
@@ -5776,7 +5776,7 @@ void sub_08042E64(u8 arg0)
                         gEntityInfo[arg0].yPosBg2 -= 1;
                     }
 
-                    if (gBlendValue == 0x10)
+                    if (gBlendValue == BLEND_MAX)
                     {
                         gUnk_03005400.unk16 = 0;
                         gUnk_03005400.unk4 = 0;
@@ -5818,7 +5818,7 @@ void sub_08042E64(u8 arg0)
             case 2:
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_080789C8, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
 
                     gEntityInfo[arg0].unkF = 0x1A;
                     if (gEntityInfo[0x14].unkF != 0x1C)
@@ -5845,11 +5845,11 @@ void sub_08042E64(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_080789C8, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0x1F, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0x1F, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
                 break;
@@ -5901,13 +5901,13 @@ void sub_08042E64(u8 arg0)
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 2) == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 = (gSineTable[(u8) gUnk_03005400.unk4] >> 0x1) + 0xF0;
+                        gEntityInfo[arg0].xPosBg2 = (SIN((u8) gUnk_03005400.unk4) >> 0x1) + 0xF0;
                     }
                 }
             // case 4:                     /* switch 4 */
 
                 goto block_145;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((gSineTable[(u8) gUnk_03005400.unk4] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
 
             case 9:
@@ -5924,15 +5924,15 @@ void sub_08042E64(u8 arg0)
                     }
                 }
                 goto block_146;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((gSineTable[(u8) gUnk_03005400.unk4] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
 
             case 5:
                 gUnk_03005400.unk8_6 = 0;
                 gUnk_03005400.unk8_0 = 0;
-                if (gBlendValue < 0x10)
+                if (gBlendValue < BLEND_MAX)
                 {
-                    REG_BLDCNT = 0xBF;
+                    REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
                     if (gUnk_03004C20.sceneFrameCounter % 4)
                     {
 
@@ -5948,8 +5948,8 @@ void sub_08042E64(u8 arg0)
                     gEntityInfo[0x1F].unkF = 0x10;
                     gEntityInfo[0x21].unkF = 0x1A;
                     gEntityInfo[0x20].unkF = 0x1A;
-                    REG_IE &= ~2;
-                    REG_DISPSTAT &= ~0x10;
+                    REG_IE &= ~INTR_FLAG_HBLANK;
+                    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                     gUnk_03005400.unkA = 6;
                 }
                 break;
@@ -6000,7 +6000,7 @@ block_146:
                 }
             case 4:
 block_145:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((gSineTable[(u8) gUnk_03005400.unk4] << 0x10) >> 0x15);
+                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
         }
     }
