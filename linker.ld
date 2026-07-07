@@ -220,7 +220,7 @@ SECTIONS {
         asm/code_08014184.o(.text);
         src/code_080240F4.o(.text);
         src/code_0802688C.o(.text);
-        asm/code_08039D8C.o(.text);
+        src/code_08039D8C.o(.text);
         src/decompress.o(.text);
         asm/code_08043BA4.o(.text);
         asm/m4a0.o(.text);

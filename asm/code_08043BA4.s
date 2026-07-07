@@ -7031,7 +7031,7 @@ _08047376:
 	movs r2, #0x80
 	lsls r2, r2, #2
 	bl DecompressDma
-	ldr r7, _08047580 @ =0x08312A58
+	ldr r7, _08047580 @ =gUnk_08312A58
 	ldr r0, [r7]
 	ldr r5, _08047584 @ =0x7FFFFFFF
 	ands r0, r5
@@ -7039,7 +7039,7 @@ _08047376:
 	bl thunk_HeapAlloc
 	ldr r4, _08047588 @ =gBgDataPtrs
 	str r0, [r4]
-	ldr r0, _0804758C @ =0x08312B70
+	ldr r0, _0804758C @ =gUnk_08312B70
 	mov sl, r0
 	ldr r0, [r0]
 	ands r0, r5
@@ -7234,10 +7234,10 @@ _08047570: .4byte 0x06007000
 _08047574: .4byte gBg2XMag
 _08047578: .4byte gBg2YMag
 _0804757C: .4byte 0x082ECEA8
-_08047580: .4byte 0x08312A58
+_08047580: .4byte gUnk_08312A58
 _08047584: .4byte 0x7FFFFFFF
 _08047588: .4byte gBgDataPtrs
-_0804758C: .4byte 0x08312B70
+_0804758C: .4byte gUnk_08312B70
 _08047590: .4byte 0x082ECEF8
 _08047594: .4byte 0x082ED1FC
 _08047598: .4byte 0x80000130

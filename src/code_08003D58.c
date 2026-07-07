@@ -2,6 +2,7 @@
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
 #include "code_080240F4.h"
+#include "code_08039D8C.h"
 #include "math.h"
 #include "data/trig.h"
 #include "structs/variables.h"
@@ -2838,7 +2839,6 @@ extern void sub_0801DFC4(u8);
 extern void sub_0801E1A8(u8);
 extern void sub_0801E354(u8);
 extern void sub_0801E3FC(void);
-extern void sub_08039D8C(void);
 
 // A804
 void sub_0800A804(void)
@@ -3038,7 +3038,6 @@ extern void sub_08021DAC(s32);
 extern void sub_08022CA0(u8);
 extern void sub_08023988(u8);
 extern void sub_08023BC0(u8);
-extern void sub_0803CE14(u8);
 
 // AC34
 void sub_0800AC34(void)

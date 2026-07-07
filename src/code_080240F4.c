@@ -3,11 +3,11 @@
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_08039D8C.h"
 #include "interrupts.h"
 #include "main.h"
 #include "structs/variables.h"
 
-extern void sub_0803B600();                                /* extern */
 extern void sub_08046DB8(s32, s32);
 extern u16 sub_08046F6C(s32);                              /* extern */
 extern void sub_080471F4(void);
