@@ -2,6 +2,7 @@
 #define GUARD_CODE_08039D8C_H
 
 #include "global.h"
+#include "structs/variables.h"
 
 void sub_08039D8C(void);
 void sub_0803A22C(void);
