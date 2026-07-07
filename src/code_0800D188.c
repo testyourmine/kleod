@@ -1298,7 +1298,7 @@ block_410:
                         {
 
                         }
-                        else if (gUnk_03005400.unk8 & 1)
+                        else if (gUnk_03005400.unk8_0)
                         {
 
                         }
@@ -1388,7 +1388,7 @@ block_410:
                         {
 
                         }
-                        else if (gUnk_03005400.unk8 & 1)
+                        else if (gUnk_03005400.unk8_0)
                         {
 
                         }
@@ -3165,7 +3165,7 @@ block_1115:
                         {
 
                         }
-                        else if (gUnk_03005400.unk8 & 1)
+                        else if (gUnk_03005400.unk8_0)
                         {
 
                         }
@@ -3292,7 +3292,7 @@ block_1115:
                         {
 
                         }
-                        else if (gUnk_03005400.unk8 & 1)
+                        else if (gUnk_03005400.unk8_0)
                         {
 
                         }

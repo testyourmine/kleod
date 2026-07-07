@@ -26848,7 +26848,7 @@ _080219C0:
 	movs r0, #4
 	ands r1, r0
 	lsrs r1, r1, #2
-	ldr r3, _08021A44 @ =0x03003790
+	ldr r3, _08021A44 @ =gUnk_03003790
 	mov r0, r8
 	adds r5, r0, r3
 	ldr r2, _08021A48 @ =gBgDataPtrs
@@ -26899,7 +26899,7 @@ _08021A04:
 	b _08021A68
 	.align 2, 0
 _08021A40: .4byte gUnk_03004C20
-_08021A44: .4byte 0x03003790
+_08021A44: .4byte gUnk_03003790
 _08021A48: .4byte gBgDataPtrs
 _08021A4C: .4byte gBgInfo
 _08021A50: .4byte 0x040000D4

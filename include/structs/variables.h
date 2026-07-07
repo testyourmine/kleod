@@ -91,6 +91,7 @@ struct Unk_03005284 {
     /* 0x18 */ u32 unk18;
     /* 0x1C */ u8 unk1C;
     /* 0x1D */ u8 unk1D;
+    /* 0x1E */ u8 unk1E;
 }; /* size = 0x20? */ // TODO: allocated 0x24 bytes on heap
 extern struct Unk_03005284 *gUnk_03005284;
 
@@ -126,7 +127,7 @@ extern u8 gUnk_03005428;
 
 extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
 extern u8 gUnk_03004DB0[]; // BG2 tilemap data
-extern void gUnk_03003650; // todo: type
+extern u8 gUnk_03003650[][0x40];
 
 extern u16 gUnk_03004C40[];
 extern u16 gUnk_030052C0[];
@@ -364,35 +365,58 @@ struct Unk_030007E0 {
 extern struct Unk_030007E0 gUnk_030007E0;
 
 struct Unk_03005400 {
-    /* 0x0 */ u8 pad0[0x2 - 0x0];
-    /* 0x2 */ u16 unk2;
-    /* 0x4 */ u8 pad4[0x6 - 0x4];
-    /* 0x6 */ u16 unk6;
-    /* 0x8 */ u8 unk8;
-    /* 0x9 */ u8 pad9[0xA - 0x9];
-    /* 0xA */ u8 unkA;
-    /* 0xB */ u8 unkB;
-    /* 0xC */ u8 unkC;
-    /* 0xD */ u8 unkD;
-    /* 0xE_0 */ u8 unkE_0:1;
-    /* 0xE_1 */ u8 unkE_1:1;
-    /* 0xE_2 */ u8 unkE_2:1;
-    /* 0xE_3 */ u8 unkE_3:4; // TODO: verify
-    /* 0xE_4 */ u8 unkE_7:1;
-    /* 0x0F */ u8 padF[0x14 - 0xF];
+    /* 0x00 */ u16 unk0;
+    /* 0x02 */ u16 unk2;
+    /* 0x04 */ u16 unk4;
+    /* 0x06 */ u16 unk6;
+    /* 0x08_0 */u8 unk8_0:1;
+    /* 0x08_1 */u8 unk8_1:1;
+    /* 0x08_2 */u8 unk8_2:1;
+    /* 0x08_3 */u8 unk8_3:1;
+    /* 0x08_4 */u8 unk8_4:1;
+    /* 0x08_5 */u8 unk8_5:1; // TODO: verify
+    /* 0x08_6 */u8 unk8_6:1;
+    /* 0x08_7 */u8 unk8_7:1;
+    /* 0x09 */ u8 unk9;
+    /* 0x0A */ u8 unkA;
+    /* 0x0B */ u8 unkB;
+    /* 0x0C */ u8 unkC;
+    /* 0x0D */ u8 unkD;
+    /* 0x0E_0 */ u8 unkE_0:1;
+    /* 0x0E_1 */ u8 unkE_1:1;
+    /* 0x0E_2 */ u8 unkE_2:1;
+    /* 0x0E_3 */ u8 unkE_3:1;
+    /* 0x0E_4 */ u8 unkE_4:1;
+    /* 0x0E_5 */ u8 unkE_5:2; // TODO: verify
+    /* 0x0E_4 */ u8 unkE_7:1;
+    /* 0x0F */ s8 unkF;
+    /* 0x10 */ s8 unk10;
+    /* 0x11 */ u8 unk11;
+    /* 0x12 */ u8 unk12;
+    /* 0x13 */ u8 unk13;
     /* 0x14 */ u8 unk14;
-    /* 0x15 */ u8 pad15[0x16 - 0x15];
+    /* 0x15 */ u8 unk15;
     /* 0x16 */ s8 unk16;
     /* 0z17 */ u8 pad17[0x18 - 0x17];
 }; /* size = 0x18 */
 extern struct Unk_03005400 gUnk_03005400;
 
 struct Unk_03005440 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ u16 unk6;
-}; /* size = 0x8 */
+    /* 0x00 */ u16 unk0;
+    /* 0x02 */ u16 unk2;
+    /* 0x04 */ u16 unk4;
+    /* 0x06 */ u16 unk6;
+    /* 0x08 */ u8 pad8[0xC - 0x8];
+    /* 0x0C */ u16 unkC;
+    /* 0x0E */ u16 unkE;
+    /* 0x10 */ u16 unk10;
+    /* 0x12 */ u16 unk12;
+    /* 0x14 */ u8 pad14[0x18 - 0x14];
+    /* 0x18 */ u16 unk18;
+    /* 0x1A */ u16 unk1A;
+    /* 0x1C */ u16 unk1C;
+    /* 0x1E */ u16 unk1E;
+}; /* size = 0x20 */
 extern struct Unk_03005440 gUnk_03005440;
 
 extern u8 gUnk_03000800;
@@ -411,7 +435,7 @@ extern void * volatile gObjPalRamPtr; // OBJ palette ptr
 struct EntityAnimationInfo {
     /* 0x0 */ u8 state; // entity state
     /* 0x1 */ u8 timer; // timer of current animation frame
-    /* 0x2 */ vu8 frame; // current animation frame index
+    /* 0x2 */ volatile u8 frame; // current animation frame index
     /* 0x3 */ u8 pad3[0x4 - 0x3];
 }; /* size = 0x4 */
 extern struct EntityAnimationInfo gEntityAnimationInfo[];
@@ -634,5 +658,36 @@ struct Unk_030034B0 {
     u8 unk6_4:4;
 };
 extern struct Unk_030034B0 gUnk_030034B0;
+
+extern u8 gUnk_030034C0;
+
+struct Unk_03004C08 {
+    u8 unk0_0:4;
+    u8 unk0_4:4;
+    s8 unk1;
+    u8 unk2;
+    u8 pad3[0x4 - 0x3];
+};
+extern struct Unk_03004C08 gUnk_03004C08;
+
+extern u8 gUnk_030007CC;
+
+struct Unk_0803D4AC {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    s8 unk3;
+    s8 unk4;
+    u8 unk5;
+    u8 unk6;
+};
+extern struct Unk_0803D4AC gUnk_03003620;
+
+extern u8 gUnk_03003D16[][8]; // TODO: type
+extern u8 gUnk_03003DD6[][8]; // TODO: type
+extern u8 gUnk_03003E96[][8]; // TODO: type
+extern u8 gUnk_03003F56[][8]; // TODO: type
+
+extern u8 gUnk_03003790[][0x40]; // TODO: type
 
 #endif // GUARD_VARIABLES_H

@@ -2972,7 +2972,7 @@ _08045354:
 	lsls r1, r1, #0x18
 	cmp r1, #0
 	blt _08045380
-	ldr r1, _0804537C @ =0x030007CC
+	ldr r1, _0804537C @ =gUnk_030007CC
 	ldrb r0, [r1]
 	cmp r0, #0x4f
 	bhi _0804538C
@@ -2982,9 +2982,9 @@ _08045354:
 _08045370: .4byte gCallbackQueue
 _08045374: .4byte sub_0800AC34
 _08045378: .4byte gUnk_03003590
-_0804537C: .4byte 0x030007CC
+_0804537C: .4byte gUnk_030007CC
 _08045380:
-	ldr r1, _08045394 @ =0x030007CC
+	ldr r1, _08045394 @ =gUnk_030007CC
 	ldrb r0, [r1]
 	cmp r0, #0
 	beq _0804538C
@@ -2996,7 +2996,7 @@ _0804538C:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08045394: .4byte 0x030007CC
+_08045394: .4byte gUnk_030007CC
 
 	thumb_func_start sub_08045398
 sub_08045398: @ 0x08045398

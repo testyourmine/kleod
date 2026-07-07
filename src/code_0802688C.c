@@ -179,7 +179,7 @@ extern u8 gUnk_080786E8[0x20];
 extern u8 gUnk_08078708[0x20];
 extern u8 gUnk_08078728[0x20];
 extern u8 gUnk_08078748[0x20];
-extern u8 gUnk_08078768[0x20]; // Unused?
+extern u8 gUnk_08078768[0x20];
 extern u8 gUnk_08078788[0x20];
 extern u8 gUnk_080787A8[0x20];
 extern u8 gUnk_080787C8[0x20];

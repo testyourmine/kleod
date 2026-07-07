@@ -24,6 +24,7 @@ struct Unk_0800BEF0 {
     u16 unk4;
     u16 unk6;
     s8 unk8;
+    s8 unk9;
 };
 void* sub_0800BEF0(s32 *arg0, struct Unk_0800BEF0 arg1);
 

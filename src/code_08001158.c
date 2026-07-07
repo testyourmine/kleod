@@ -1278,7 +1278,7 @@ void sub_08002FD0(void)
         DmaFill16(3, 0, &gUnk_03003650, 0x1000);
         for (var_r6 = 0; var_r6 < 0x28; var_r6++)
         {
-            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[var_r6 * gBgInfo[2].hLength], (void *) ((var_r6 << 6) + &gUnk_03003650), 0x3C);
+            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[var_r6 * gBgInfo[2].hLength], &gUnk_03003650[var_r6], 0x3C);
         }
         DmaCopy16Wait(3, &gUnk_03003650, gBgInfo[2].pTilemap, 0x1000);
     }
