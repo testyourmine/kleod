@@ -2043,12 +2043,19 @@ void sub_0803D15C(void)
     }
 }
 
-// (97.85%) https://decomp.me/scratch/YFibq
-// 3D4AC
-NONMATCH("asm/nonmatching/sub_0803D4AC.inc", void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1))
+static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
 {
-    struct Unk_08014184 sp0;
-    struct Unk_08014184 sp4;
+    struct Unk_08014184 sp;
+
+    sub_08014230(&sp, arg1, arg2, arg3);
+    return sp;
+}
+
+// 3D4AC
+void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
+{
+    struct Unk_08014184 temp_r0;
+    struct Unk_08014184 temp_r0_1;
     u16 sp10;
     u16 temp_sl;
     u32 var_r3;
@@ -2071,8 +2078,8 @@ NONMATCH("asm/nonmatching/sub_0803D4AC.inc", void sub_0803D4AC(u8 arg0, struct U
         }
         else
         {
-            sub_08014230(&sp0, gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
-            if (sp0.unk0 != 0xFFFF)
+            temp_r0 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
+            if (temp_r0.unk0 != 0xFFFF)
             {
                 var_r3 = gUnk_03004654[0x1B];
             }
@@ -2112,8 +2119,8 @@ NONMATCH("asm/nonmatching/sub_0803D4AC.inc", void sub_0803D4AC(u8 arg0, struct U
         }
         else
         {
-            sub_08014230(&sp4, gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
-            if (sp4.unk0 != 0xFFFF)
+            temp_r0_1 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
+            if (temp_r0_1.unk0 != 0xFFFF)
             {
                 var_r3 = gUnk_03004654[0x1B];
             }
@@ -2179,7 +2186,6 @@ NONMATCH("asm/nonmatching/sub_0803D4AC.inc", void sub_0803D4AC(u8 arg0, struct U
         gUnk_03005400.unk8_3 = 0;
     }
 }
-END_NONMATCH
 
 // 3D90C
 void sub_0803D90C(u8 arg0)

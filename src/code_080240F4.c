@@ -606,8 +606,7 @@ void sub_08024C34(void)
 }
 
 // 24D84
-// (97.92%) https://decomp.me/scratch/1c0hJ
-NONMATCH("asm/nonmatching/sub_08024D84.inc", void sub_08024D84(void))
+void sub_08024D84(void)
 {
     u32 i;
 
@@ -633,7 +632,7 @@ NONMATCH("asm/nonmatching/sub_08024D84.inc", void sub_08024D84(void))
 block_9:
         if (gBlendValue == 1)
         {
-            REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | 0xFFFF8F00;
+            REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | ({0xFFFF8F00;});
             gIntrTable.vCount = sub_0800111C;
             REG_IE |= INTR_FLAG_VCOUNT;
             REG_DISPSTAT |= DISPSTAT_VCOUNT_INTR;
@@ -704,7 +703,6 @@ block_9:
         gUnk_03003410.unk0 += 1;
     }
 }
-END_NONMATCH
 
 // 2502C
 void sub_0802502C(void)
