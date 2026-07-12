@@ -10,7 +10,7 @@
 
 extern u8 gUnk_080D9150[][100]; // value pairs: input, input timer
 
-extern void *gUnk_0818B8A8[];
+extern void *gUnk_0818B8A8[10];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern void IntrMain(void);

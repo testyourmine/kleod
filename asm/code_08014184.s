@@ -19344,9 +19344,9 @@ _0801DE0C: .4byte 0x0000FFFC
 _0801DE10:
 	ldr r0, _0801DE34 @ =0x0000FFE0
 	strh r0, [r3]
-	ldr r3, _0801DE38 @ =0x03004D88
-	ldr r2, _0801DE3C @ =0x03003628
-	ldr r1, _0801DE40 @ =0x030034D0
+	ldr r3, _0801DE38 @ =gUnk_03004D88
+	ldr r2, _0801DE3C @ =gUnk_03003628
+	ldr r1, _0801DE40 @ =gUnk_030034D0
 	movs r0, #0x64
 	str r0, [r1]
 	str r0, [r2]
@@ -19362,9 +19362,9 @@ _0801DE22:
 	bx r0
 	.align 2, 0
 _0801DE34: .4byte 0x0000FFE0
-_0801DE38: .4byte 0x03004D88
-_0801DE3C: .4byte 0x03003628
-_0801DE40: .4byte 0x030034D0
+_0801DE38: .4byte gUnk_03004D88
+_0801DE3C: .4byte gUnk_03003628
+_0801DE40: .4byte gUnk_030034D0
 
 	thumb_func_start sub_0801DE44
 sub_0801DE44: @ 0x0801DE44
@@ -26595,13 +26595,13 @@ _080217C4:
 	movs r0, #0x12
 	movs r1, #0xa
 	bl sub_08025B78
-	ldr r0, _080217F8 @ =0x03000004
+	ldr r0, _080217F8 @ =gUnk_03000004
 	str r4, [r0]
 	b _0802190C
 	.align 2, 0
 _080217F0: .4byte gEntityInfo
 _080217F4: .4byte gUnk_030034DC
-_080217F8: .4byte 0x03000004
+_080217F8: .4byte gUnk_03000004
 _080217FC:
 	mov r1, sp
 	lsls r5, r7, #3

@@ -43,8 +43,7 @@ struct Unk_080E2B64_0 {
     u16 unk2;
     u8 unk4;
     u8 unk5;
-    u8 unk6;
-    u8 pad7[0x8 - 0x7];
+    u16 unk6;
 };
 struct Unk_080E2B64 {
     struct Unk_080E2B64_0 unk0[5];
