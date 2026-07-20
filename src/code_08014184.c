@@ -56,6 +56,7 @@ extern void *gUnk_0818B7DC[];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern u8 gUnk_08061FC8[0x80];
+extern u8 gUnk_08062148[0x100];
 extern u8 gUnk_080635E8[0x80];
 extern u8 gUnk_08063368[0x80];
 extern u8 gUnk_08063FE8[0x80];
@@ -71,6 +72,7 @@ extern u8 gUnk_080B8FE8[0x80];
 extern u8 gUnk_080B9068[0x80];
 extern u8 gUnk_080B9268[0x80];
 extern u8 gUnk_080B92E8[0x80];
+extern u8 gUnk_080B9368[0x100];
 extern u8 gUnk_080B9668[0x200];
 
 struct Unk_08014184 {
@@ -376,9 +378,6 @@ void sub_08014624(s32 arg0)
     gUnk_03005220.unk26 = 0;
     gUnk_03005220.unk28 = 0;
 }
-
-extern void gUnk_08062148;
-extern void gUnk_080B9368;
 
 void sub_08014760(u8 arg0)
 {
@@ -7376,7 +7375,7 @@ void sub_08023BC0(u8 arg0)
             {
                 gEntityInfo[arg0].yPosBg2 += 1;
                 temp_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x10U);
-                if (temp_r2.unk0 == 0xFFFF)
+                if (temp_r2.unk0 != 0xFFFF)
                 {
                     gEntityInfo[arg0].yPosBg2 = temp_r2.unk0;
                     gEntityInfo[arg0].unk8.split.unk8 = 0x78;

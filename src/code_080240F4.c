@@ -1371,14 +1371,13 @@ void sub_08026090(void)
 }
 
 // 26128
-// (99.78%) https://decomp.me/scratch/d3zGu
-NONMATCH("asm/nonmatching/sub_08026128.inc", void sub_08026128(void))
+void sub_08026128(void)
 {
     u32 i;
 
     for (i = 0; i < 2; i++)
     {
-        DmaCopy16(3, &gBgTilemapBufs[0][0x2D2] + i * 0x20, &gBgTilemapBufs[0][0x14] + i * 0x20, 0x14);
+        DmaCopy16(3, &gBgTilemapBufs[0][(0x16 + i) * 0x20 + 0x12], &gBgTilemapBufs[0][i * 0x20 + 0x14], 0x14);
     }
 
     if (gUnk_03004C20.level == 1)
@@ -1419,7 +1418,6 @@ NONMATCH("asm/nonmatching/sub_08026128.inc", void sub_08026128(void))
     gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][(gUnk_03005220.unk4F / 10) + 0x332];
     gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][(gUnk_03005220.unk4F % 10) + 0x332];
 }
-END_NONMATCH
 
 // 26374
 void sub_08026374(void)
