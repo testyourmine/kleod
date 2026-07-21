@@ -2888,7 +2888,7 @@ _0800E8F0:
 	orrs r0, r1
 	strb r0, [r2, #0xc]
 	ldr r3, _0800E95C @ =0x040000D4
-	ldr r0, _0800E960 @ =0x080B9368
+	ldr r0, _0800E960 @ =gUnk_080B9368
 	str r0, [r3]
 	ldr r4, _0800E964 @ =gUnk_0818B8E0
 	ldr r2, _0800E968 @ =gUnk_03004C20
@@ -2922,7 +2922,7 @@ _0800E8F0:
 _0800E954: .4byte gUnk_03005220
 _0800E958: .4byte gEntityInfo
 _0800E95C: .4byte 0x040000D4
-_0800E960: .4byte 0x080B9368
+_0800E960: .4byte gUnk_080B9368
 _0800E964: .4byte gUnk_0818B8E0
 _0800E968: .4byte gUnk_03004C20
 _0800E96C: .4byte 0x06010000
@@ -2949,7 +2949,7 @@ _0800E992:
 	ands r0, r1
 	strb r0, [r2, #3]
 	ldr r3, _0800E9E4 @ =0x040000D4
-	ldr r0, _0800E9E8 @ =0x08062148
+	ldr r0, _0800E9E8 @ =gUnk_08062148
 	str r0, [r3]
 	ldr r4, _0800E9EC @ =gUnk_0818B8E0
 	ldr r2, _0800E9F0 @ =gUnk_03004C20
@@ -2982,7 +2982,7 @@ _0800E992:
 _0800E9DC: .4byte gEntityInfo
 _0800E9E0: .4byte gUnk_03005220
 _0800E9E4: .4byte 0x040000D4
-_0800E9E8: .4byte 0x08062148
+_0800E9E8: .4byte gUnk_08062148
 _0800E9EC: .4byte gUnk_0818B8E0
 _0800E9F0: .4byte gUnk_03004C20
 _0800E9F4: .4byte 0x06010000
@@ -12040,13 +12040,13 @@ _0801321C:
 	strb r0, [r4, #0xc]
 	ldr r4, _080132E4 @ =gUnk_03005400
 	strb r6, [r4, #0x16]
-	ldr r1, _080132E8 @ =0x080D8E10
+	ldr r1, _080132E8 @ =gUnk_080D8E10
 	ldrb r0, [r4, #0x14]
 	adds r0, r0, r1
 	ldrb r0, [r0]
 	strb r0, [r5, #9]
 	ldr r3, _080132EC @ =0x040000D4
-	ldr r1, _080132F0 @ =0x0818B7DC
+	ldr r1, _080132F0 @ =gUnk_0818B7DC
 	ldrb r0, [r5, #9]
 	adds r0, #3
 	lsls r0, r0, #2
@@ -12098,9 +12098,9 @@ _080132CA:
 _080132DC: .4byte gEntityInfo
 _080132E0: .4byte gUnk_03005220
 _080132E4: .4byte gUnk_03005400
-_080132E8: .4byte 0x080D8E10
+_080132E8: .4byte gUnk_080D8E10
 _080132EC: .4byte 0x040000D4
-_080132F0: .4byte 0x0818B7DC
+_080132F0: .4byte gUnk_0818B7DC
 _080132F4: .4byte gUnk_03004C20
 _080132F8: .4byte gUnk_0818B8E0
 _080132FC: .4byte 0x05000200
@@ -12110,7 +12110,7 @@ _08013304:
 	ldrb r0, [r1]
 	strb r0, [r5, #9]
 	ldr r3, _08013368 @ =0x040000D4
-	ldr r1, _0801336C @ =0x0818B7DC
+	ldr r1, _0801336C @ =gUnk_0818B7DC
 	ldrb r0, [r5, #9]
 	adds r0, #3
 	lsls r0, r0, #2
@@ -12159,7 +12159,7 @@ _0801335A:
 	.align 2, 0
 _08013364: .4byte gEntityInfo+0x271
 _08013368: .4byte 0x040000D4
-_0801336C: .4byte 0x0818B7DC
+_0801336C: .4byte gUnk_0818B7DC
 _08013370: .4byte gUnk_03004C20
 _08013374: .4byte gUnk_0818B8E0
 _08013378: .4byte 0x05000200

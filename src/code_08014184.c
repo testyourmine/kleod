@@ -18,15 +18,15 @@ extern void sub_0801EAA4(u8);
 extern void sub_08044BB8();                                /* extern */
 extern void sub_08044F6C(u8);
 
-extern const s8 gUnk_080E2AB4[][6];
+extern const s8 gUnk_080E2AB4[7][6];
 extern const u8 gUnk_080E2ADE[][2];
-extern const u8 gUnk_080E2AF2[];
+extern const u8 gUnk_080E2AF2[3];
 extern const s8 gUnk_080E2AF5[][6];
 
-extern const u8 gUnk_080E2B49[];
+extern const u8 gUnk_080E2B49[3];
 extern const s8 gUnk_080E2B4C[][2];
 extern const u8 gUnk_080E2B52[];
-extern const u8 gUnk_080E2B5E[];
+extern const u8 gUnk_080E2B5E[3];
 
 struct Unk_080E2B64_0 {
     u16 unk0;
@@ -43,7 +43,7 @@ struct Unk_080E2B64 {
 };
 extern struct Unk_080E2B64 gUnk_080E2B64[6][8][0x64];
 
-extern u8 gUnk_080D8E10[];
+extern u8 gUnk_080D8E10[3];
 
 struct Unk_080D90D0 {
     u8 unk0;
@@ -57,7 +57,8 @@ extern const s8 gUnk_081168AC[][4];
 extern const s8 gUnk_081168C4[][4];
 extern const u8 gUnk_08116A26[][4];
 extern const u8 gUnk_08116A36[][4];
-extern const s8 gUnk_0818B8D0[][2];
+
+extern const s8 gUnk_0818B8D0[8][2];
 
 extern void *gUnk_0818B7DC[];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
@@ -5530,12 +5531,13 @@ void sub_0801C6EC(u8 arg0)
     }
 }
 
-// https://decomp.me/scratch/113rN
+// Need to fix fakematches https://decomp.me/scratch/113rN
 void sub_0801C82C(u8 arg0)
 {
     u32 var_r6;
     u8 var_r1;
     u32 sp0;
+    u32 tmp;
 
     gEntityInfo[arg0].unkC_4 = 0;
 
@@ -5552,12 +5554,13 @@ void sub_0801C82C(u8 arg0)
     }
     if (arg0 == gUnk_03003610[var_r1].unk0)
     {
-        sp0 = gUnk_03003610[var_r1].unk1;
+        tmp = gUnk_03003610[var_r1].unk1;
     }
     else
     {
-        sp0 = gUnk_03003610[var_r1].unk0;
+        tmp = gUnk_03003610[var_r1].unk0;
     }
+    sp0 = tmp;
     
     if (((gEntityInfo[arg0 - 1].xPosBg2 - 0xC) < (gEntityInfo[0].xPosBg2 + 0xC)) && (((gEntityInfo[arg0 - 1].xPosBg2 - 0xC) + 0x18) > ((gEntityInfo[0].xPosBg2 + 0xC) - 0x18)))
     {
@@ -5681,7 +5684,10 @@ block_71:
 block_76:
         if (gEntityInfo[gUnk_03003610[var_r1].unk0].unkC_4 == gEntityInfo[gUnk_03003610[var_r1].unk1].unkC_4)
         {
-            goto block_96;
+            if (gUnk_03005220.unk3F == (arg0 - 1))
+            {
+                gUnk_03005220.unk57 = 0;
+            }
         }
         else if (gEntityInfo[arg0].unkC_4 < gEntityInfo[sp0].unkC_4)
         {
@@ -5699,11 +5705,7 @@ block_76:
         else if (gEntityInfo[arg0].unk8.split.unk8 == 2)
         {
             gEntityInfo[sp0].unk8.split.unk8 = 0xFE;
-block_96:
-            if (gUnk_03005220.unk3F == arg0 - 1)
-            {
-                gUnk_03005220.unk57 = 0;
-            }
+            goto block_96;
         }
         else
         {
@@ -5737,11 +5739,22 @@ block_85:
             {
                 gEntityInfo[gUnk_03003610[var_r1].unk0].unkC_4 = gEntityInfo[arg0].unkC_4 ^ 1;
             }
+
+            // TODO: fix this mess
+            goto skip;
+            block_96:
+            if (gUnk_03005220.unk3F == (arg0 - 1))
+            {
+                gUnk_03005220.unk57 = 0;
+            }
+            goto exit;
+            skip:
             
             gOamAffineBuffer[gEntityInfo[arg0].affineHFlip_matrixNum].pd = MultiplyQ8(0x100, ReciprocalQ8(gEntityInfo[arg0].unk8.split.unk8));
         }
     }
 
+    exit:
     if (sp0 < arg0)
     {
         gEntityInfo[arg0].unk8.split.unk8 = -gEntityInfo[sp0].unk8.split.unk8;
@@ -7815,7 +7828,7 @@ block_36:
 }
 
 // https://decomp.me/scratch/TBZiC
-void sub_080202D4(u8 arg0)
+NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
 {
     struct Unk_0800BEF0 sp0;
     s32 sp10;
@@ -8254,6 +8267,7 @@ void sub_080202D4(u8 arg0)
         gUnk_03003590[sp20].unk5_0 = gEntityInfo[arg0].unkC_2;
     }
 }
+END_NONMATCH
 
 void sub_08020FB8(u8 arg0)
 {
