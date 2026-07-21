@@ -1,6 +1,7 @@
 #include "global.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_08014184.h"
 #include "code_080240F4.h"
 #include "main.h"
 #include "rand.h"
@@ -16,20 +17,6 @@
 
 */
 
-struct Unk_08014184 {
-    u16 unk0;
-    u8 unk2;
-    u8 pad3[0x4 - 0x3];
-};
-
-extern struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
-extern struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
-
-void sub_080145A8(s32);                                /* extern */
-void sub_08014624(s32);                                /* extern */
-void sub_0801E664(u16, u16, u8, u8);                  /* extern */
-void sub_0801EAA4(u8);                                 /* extern */
-void sub_0801EF5C(u8);                                 /* extern */
 void sub_080446F8();                                /* extern */
 void sub_08047B1C();                                /* extern */
 u8 thunk_GetRandomValue();                          /* extern */

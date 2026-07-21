@@ -2,6 +2,7 @@
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_08014184.h"
 #include "code_080240F4.h"
 #include "code_0802688C.h"
 #include "code_08039D8C.h"
@@ -14,7 +15,6 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern void sub_080144C4();
 extern void sub_0804517C(u8);
 extern void sub_080453F0();
 extern void sub_0804575C();

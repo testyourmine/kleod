@@ -1,6 +1,7 @@
 #include "global.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_08014184.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
 #include "math.h"
@@ -2818,26 +2819,7 @@ void sub_0800A71C(s8 arg0, s8 arg1)
 }
 
 extern void sub_0800D188(void);
-extern void sub_08014318(void);
-extern void sub_08014760(u8);
-extern void sub_08016EEC(u8);
-extern void sub_0801B044(u8);
-extern void sub_0801B688(u8);
-extern void sub_0801BB6C(u8);
-extern void sub_0801BCC0(u8);
-extern void sub_0801BD48(u8);
-extern void sub_0801C150(u8);
-extern void sub_0801C6EC(u8);
 extern void sub_0801C82C(u32); // should be u8 param
-extern void sub_0801CE38(u8);
-extern void sub_0801D0D8(u8);
-extern void sub_0801D4AC(u8);
-extern void sub_0801D6B0(u8);
-extern void sub_0801DE44(u8);
-extern void sub_0801DFC4(u8);
-extern void sub_0801E1A8(u8);
-extern void sub_0801E354(u8);
-extern void sub_0801E3FC(void);
 
 // A804
 void sub_0800A804(void)
@@ -3022,21 +3004,8 @@ void sub_0800A804(void)
     }
 }
 
-extern void sub_0801F02C(u8);
-extern void sub_0801F128(u8);
-extern void sub_0801F4D0(s32);
-extern void sub_0801F648(u8);
-extern void sub_0801FADC(u8);
-extern void sub_0801FFF0(u8);
-extern void sub_080202D4(u8);
-extern void sub_08020FB8(u8);
-extern void sub_08021194(u8);
-extern void sub_0802192C(u8);
-extern void sub_08021AD4(u8);
-extern void sub_08021DAC(s32);
-extern void sub_08022CA0(u8);
-extern void sub_08023988(u8);
-extern void sub_08023BC0(u8);
+extern void sub_0801F4D0(s32); // should be u8 param
+extern void sub_08021DAC(s32); // should be u8 param
 
 // AC34
 void sub_0800AC34(void)

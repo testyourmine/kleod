@@ -3,6 +3,7 @@
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
+#include "code_08014184.h"
 #include "code_080240F4.h"
 #include "decompress.h"
 #include "heap.h"
@@ -14,14 +15,6 @@
 #include "structs/variables.h"
 
 extern u8 thunk_GetRandomValue();                          /* extern */
-struct Unk_08014184 {
-    u16 unk0;
-    u8 unk2;
-    u8 pad3[0x4 - 0x3];
-};
-extern struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
-extern void sub_08014624(s32 arg0);
-extern void sub_0801E664(u16, u16, u8, u8);
 extern void sub_08042E64(u8);                              /* extern */
 extern void sub_080452E8();                                /* extern */
 extern void sub_08046DB8(s32, s32);

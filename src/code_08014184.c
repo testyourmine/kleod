@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_08014184.h"
 #include "code_08003D58.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
@@ -11,10 +12,6 @@
 extern u8 thunk_GetRandomValue();                          /* extern */
 extern u8 thunk_GetRandomValueEx();                       /* extern */
 
-extern void sub_080145A8(s32);
-extern void sub_0801EF5C(u8);                                 /* extern */
-extern void sub_0801E664(u16, u16, u8, u8);
-extern void sub_0801EAA4(u8);
 extern void sub_08044BB8();                                /* extern */
 extern void sub_08044F6C(u8);
 
@@ -83,12 +80,7 @@ extern u8 gUnk_080B92E8[0x80];
 extern u8 gUnk_080B9368[0x100];
 extern u8 gUnk_080B9668[0x200];
 
-struct Unk_08014184 {
-    u16 unk0;
-    u8 unk2;
-    u8 pad3[0x4 - 0x3];
-};
-
+// 14184
 struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3)
 {
     u32 var_r3;
@@ -120,6 +112,7 @@ static inline struct Unk_08014184 Call_sub_08014184(u16 arg1, u16 arg2, u8 arg3)
     return sp;
 }
 
+// 14230
 struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3)
 {
     s32 temp_r1_2;
@@ -190,6 +183,7 @@ static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
 
 #define	MAX(a,b) (((a) >= (b)) ? (a) : (b))
 
+// 14318
 void sub_08014318(void)
 {
     u8 var_r3;
@@ -246,6 +240,7 @@ void sub_08014318(void)
     }
 }
 
+// 144C4
 void sub_080144C4(void)
 {
     sub_080145A8(1);
@@ -301,6 +296,7 @@ void sub_080144C4(void)
     sub_08025B78(0, 0);
 }
 
+// 145A8
 void sub_080145A8(s32 arg0)
 {
     if (gUnk_03003410.unkB == 0)
@@ -324,6 +320,7 @@ void sub_080145A8(s32 arg0)
     }
 }
 
+// 14624
 void sub_08014624(s32 arg0)
 {
     if ((gUnk_03005220.unk46 | gUnk_03003410.unkB | gUnk_030034E4) != 0)
@@ -387,6 +384,7 @@ void sub_08014624(s32 arg0)
     gUnk_03005220.unk28 = 0;
 }
 
+// 14760
 void sub_08014760(u8 arg0)
 {
     u16 sp0;
@@ -2101,6 +2099,7 @@ block_379:
     }
 }
 
+// 16EEC
 void sub_08016EEC(u8 arg0)
 {
     struct Unk_08014184 sp0;
@@ -4532,6 +4531,7 @@ block_716:
     }
 }
 
+// 1B044
 void sub_0801B044(u8 arg0)
 {
     u32 var_r3;
@@ -4836,6 +4836,7 @@ void sub_0801B044(u8 arg0)
     gUnk_03005220.unk28 = 0;
 }
 
+// 1B688
 void sub_0801B688(u8 arg0)
 {
     s32 var_r2;
@@ -4967,6 +4968,7 @@ void sub_0801B688(u8 arg0)
     }
 }
 
+// 1BB6C
 void sub_0801BB6C(u8 arg0)
 {
     if (gUnk_03005220.unk46 != 0)
@@ -5033,6 +5035,7 @@ void sub_0801BB6C(u8 arg0)
     gEntityInfo[arg0].unk8.split.unk8 -= 1;
 }
 
+// 1BCC0
 void sub_0801BCC0(u8 arg0)
 {
     if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[arg0].xPosBg2 + 0x27)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[arg0].xPosBg2 - 7)))
@@ -5052,6 +5055,7 @@ void sub_0801BCC0(u8 arg0)
     }
 }
 
+// 1BD48
 void sub_0801BD48(u8 arg0)
 {
     u32 var_r7;
@@ -5275,6 +5279,7 @@ void sub_0801BD48(u8 arg0)
     }
 }
 
+// 1C150
 void sub_0801C150(u8 arg0)
 {
     s32 var_r4;
@@ -5497,6 +5502,7 @@ void sub_0801C150(u8 arg0)
     }
 }
 
+// 1C6EC
 void sub_0801C6EC(u8 arg0)
 {
     u32 var_r7;
@@ -5532,6 +5538,7 @@ void sub_0801C6EC(u8 arg0)
 }
 
 // Need to fix fakematches https://decomp.me/scratch/113rN
+// 1C82C
 void sub_0801C82C(u8 arg0)
 {
     u32 var_r6;
@@ -5761,6 +5768,7 @@ block_85:
     }
 }
 
+// 1CE38
 void sub_0801CE38(u8 arg0)
 {
     s32 var_r3;
@@ -5829,6 +5837,7 @@ void sub_0801CE38(u8 arg0)
     }
 }
 
+// 1D0D8
 void sub_0801D0D8(u8 arg0)
 {
     u32 var_r6;
@@ -6023,6 +6032,7 @@ block_35:
     }
 }
 
+// 1D4AC
 void sub_0801D4AC(u8 arg0)
 {
     u8 var_r1;
@@ -6127,6 +6137,7 @@ extern s32 gUnk_030034D0;
 extern s32 gUnk_03003628;
 extern s32 gUnk_03004D88;
 
+// 1D6B0
 void sub_0801D6B0(u8 arg0)
 {
     u8 sp0;
@@ -6488,6 +6499,7 @@ check_unk9: // TODO: get rid of gotos with this label
     }
 }
 
+// 1DE44
 void sub_0801DE44(u8 arg0)
 {
     if (--gEntityInfo[arg0].unk8.split.unk9 == 0xFF)
@@ -6531,6 +6543,7 @@ void sub_0801DE44(u8 arg0)
     }
 }
 
+// 1DFC4
 void sub_0801DFC4(u8 arg0)
 {
     u32 var_r6;
@@ -6633,6 +6646,7 @@ void sub_0801DFC4(u8 arg0)
     }
 }
 
+// 1E1A8
 void sub_0801E1A8(u8 arg0)
 {
     s32 var_r2;
@@ -6706,6 +6720,7 @@ void sub_0801E1A8(u8 arg0)
     }
 }
 
+// 1E354
 void sub_0801E354(u8 arg0)
 {
     if (gEntityInfo[arg0].yPosScreen >= 0x90)
@@ -6738,6 +6753,7 @@ void sub_0801E354(u8 arg0)
     gEntityInfo[arg0].xPosBg2 += ((gBgInfo[2].hOfs + 0xEC - gEntityInfo[arg0].xPosBg2) / 12);
 }
 
+// 1E3FC
 void sub_0801E3FC(void)
 {
     u16 var_r1;
@@ -6881,6 +6897,7 @@ void sub_0801E3FC(void)
     }
 }
 
+// 1E664
 void sub_0801E664(u16 arg0, u16 arg1, u8 arg2, u8 arg3)
 {
     u32 var_r2;
@@ -7026,6 +7043,7 @@ void sub_0801E664(u16 arg0, u16 arg1, u8 arg2, u8 arg3)
     }
 }
 
+// 1EAA4
 void sub_0801EAA4(u8 arg0)
 {
     u32 var_r0_4;
@@ -7159,6 +7177,7 @@ void sub_0801EAA4(u8 arg0)
     }
 }
 
+// 1EF5C
 void sub_0801EF5C(u8 arg0)
 {
     gEntityInfo[arg0].unkC_4 = (gEntityInfo[arg0].unkC_4 + 1) & 3;
@@ -7183,6 +7202,7 @@ void sub_0801EF5C(u8 arg0)
     }
 }
 
+// 1F02C
 void sub_0801F02C(u8 arg0)
 {
     switch (gEntityInfo[arg0].unkF)
@@ -7220,6 +7240,7 @@ void sub_0801F02C(u8 arg0)
     }
 }
 
+// 1F128
 void sub_0801F128(u8 arg0)
 {
     u32 var_r6;
@@ -7306,6 +7327,7 @@ void sub_0801F128(u8 arg0)
     }
 }
 
+// 1F4D0
 void sub_0801F4D0(u8 arg0)
 {
     u8 temp_r5;
@@ -7372,6 +7394,7 @@ void sub_0801F4D0(u8 arg0)
     }
 }
 
+// 1F648
 void sub_0801F648(u8 arg0)
 {
     u8 var_r5;
@@ -7520,6 +7543,7 @@ void sub_0801F648(u8 arg0)
     }
 }
 
+// 1FADC
 void sub_0801FADC(u8 arg0)
 {
     u8 temp_r0;
@@ -7693,6 +7717,7 @@ void sub_0801FADC(u8 arg0)
     }
 }
 
+// 1FFF0
 void sub_0801FFF0(u8 arg0)
 {
     u16 temp_r1;
@@ -7828,6 +7853,7 @@ block_36:
 }
 
 // https://decomp.me/scratch/TBZiC
+// 202D4
 NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
 {
     struct Unk_0800BEF0 sp0;
@@ -8269,6 +8295,7 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
 }
 END_NONMATCH
 
+// 20FB8
 void sub_08020FB8(u8 arg0)
 {
     switch (arg0)
@@ -8342,6 +8369,7 @@ void sub_08020FB8(u8 arg0)
 
 extern s32 gUnk_03000004; // TODO: should be static variable inside sub_08021194 (?)
 
+// 21194
 void sub_08021194(u8 arg0)
 {
     struct Unk_0800BEF0 sp0;
@@ -8622,6 +8650,7 @@ block_40:
     }
 }
 
+// 2192C
 void sub_0802192C(u8 arg0)
 {
     u8 *var_r5;
@@ -8722,6 +8751,7 @@ void sub_0802192C(u8 arg0)
     }
 }
 
+// 21AD4
 void sub_08021AD4(u8 arg0)
 {
     u8 temp_r3;
@@ -8808,6 +8838,7 @@ void sub_08021AD4(u8 arg0)
     }
 }
 
+// 21DAC
 void sub_08021DAC(u8 arg0)
 {
     u8 sp4;
@@ -9133,6 +9164,7 @@ void sub_08021DAC(u8 arg0)
     gUnk_03003590[4].unk5_0 = gEntityInfo[arg0].unkC_2;
 }
 
+// 22CA0
 void sub_08022CA0(u8 arg0)
 {
     struct Unk_08014184 temp_r2;
@@ -9648,6 +9680,7 @@ void sub_08022CA0(u8 arg0)
     }
 }
 
+// 23988
 void sub_08023988(u8 arg0)
 {
     struct Unk_08014184 var_r2;
@@ -9730,6 +9763,7 @@ void sub_08023988(u8 arg0)
     }
 }
 
+// 23BC0
 void sub_08023BC0(u8 arg0)
 {
     struct Unk_08014184 temp_r2;
