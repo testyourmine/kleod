@@ -5,12 +5,10 @@
 #include "code_08039D8C.h"
 #include "main.h"
 #include "math.h"
+#include "rand.h"
 #include "util.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern u8 thunk_GetRandomValue();                          /* extern */
-extern u8 thunk_GetRandomValueEx();                       /* extern */
 
 extern void sub_08044BB8();                                /* extern */
 extern void sub_08044F6C(u8);

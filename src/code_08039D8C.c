@@ -10,11 +10,11 @@
 #include "interrupts.h"
 #include "main.h"
 #include "math.h"
+#include "rand.h"
 #include "util.h"
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern u8 thunk_GetRandomValue();                          /* extern */
 extern void sub_08042E64(u8);                              /* extern */
 extern void sub_080452E8();                                /* extern */
 extern void sub_08046DB8(s32, s32);

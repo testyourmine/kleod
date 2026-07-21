@@ -19,7 +19,6 @@
 
 void sub_080446F8();                                /* extern */
 void sub_08047B1C();                                /* extern */
-u8 thunk_GetRandomValue();                          /* extern */
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
