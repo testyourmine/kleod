@@ -61,11 +61,29 @@ struct Unk_03004670 {
     u8 unk7;
     u8 unk8[6][8];
     s32 unk38;
-    u8 pad3C[0x40 - 0x3C];
+    u8 unk3C;
+    u8 unk3D;
+    u8 pad3E[0x40 - 0x3E];
 };
 extern struct Unk_03004670 *gUnk_03004670;
 
-extern volatile void *gUnk_030047FC;
+struct Unk_030047FC {
+    u8 unk0[9];
+    u8 pad9[0x10 - 0x9];
+    u8 unk10;
+    u8 unk11;
+    u8 unk12;
+    u8 pad13[0x14 - 0x13];
+    u8 unk14[3];
+    u8 unk17[3];
+    u8 unk1A[3];
+    u8 unk1D[3];
+    u8 unk20[3];
+    u8 unk23[3];
+    u8 unk26[3];
+    u8 unk29[3];
+};
+extern struct Unk_030047FC *gUnk_030047FC;
 
 struct Unk_03005284 {
     /* 0x00 */ u8 unk0;
@@ -92,7 +110,11 @@ struct Unk_03005284 {
     /* 0x1C */ u8 unk1C;
     /* 0x1D */ u8 unk1D;
     /* 0x1E */ u8 unk1E;
-}; /* size = 0x20? */ // TODO: allocated 0x24 bytes on heap
+    /* 0x1F */ u8 pad1F[0x20 - 0x1F];
+    /* 0x20 */ u8 unk20;
+    /* 0x21 */ u8 unk21;
+    /* 0x22 */ u8 pad22[0x24 - 0x22];
+}; /* size = 0x24 */
 extern struct Unk_03005284 *gUnk_03005284;
 
 extern s8 gUnk_03004784;
@@ -708,5 +730,10 @@ struct Unk_030034D4 {
     u16 unk2;
 };
 extern struct Unk_030034D4 *gUnk_030034D4;
+
+extern u16 gUnk_030008E4; // DMA3CNT_H
+extern u16 gUnk_0300465C; // DMA2CNT_H
+extern u16 gUnk_03005208; // DMA1CNT_H
+extern u16 gUnk_0300520C; // DMA0CNT_H
 
 #endif // GUARD_VARIABLES_H

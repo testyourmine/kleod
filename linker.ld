@@ -53,6 +53,7 @@ SECTIONS {
         . = 0x00000824; gUnk_03000824 = .;
         . = 0x0000082C; gUnk_0300082C = .;
         . = 0x00000830; gEntityAnimationInfo = .;
+        . = 0x000008E4; gUnk_030008E4 = .;
         . = 0x000008E8; gUnk_030008E8 = .;
         . = 0x000008EC; gUnk_030008EC = .;
         . = 0x000008F0; gUnk_030008F0 = .;
@@ -112,6 +113,7 @@ SECTIONS {
         . = 0x00004650; gUnk_03004650 = .;
         . = 0x00004654; gUnk_03004654 = .;
         . = 0x00004658; gUnk_03004658 = .;
+        . = 0x0000465C; gUnk_0300465C = .;
         . = 0x00004660; gUnk_03004660 = .;
         . = 0x00004664; gUnk_03004664 = .;
         . = 0x00004668; gNewKeysAttract = .;
@@ -160,6 +162,8 @@ SECTIONS {
         . = 0x000051E4; gHeldKeys = .;
         . = 0x000051F0; gUnk_030051F0 = .;
         . = 0x00005200; gUnk_03005200 = .;
+        . = 0x00005208; gUnk_03005208 = .;
+        . = 0x0000520C; gUnk_0300520C = .;
         . = 0x00005210; gSoundVolume = .;
         . = 0x00005220; gUnk_03005220 = .;
         . = 0x00005284; gUnk_03005284 = .;
@@ -230,7 +234,7 @@ SECTIONS {
         src/decompress.o(.text);
         src/code_08043BA4.o(.text);
         asm/code_08046B6C.o(.text);
-        asm/code_080472C8.o(.text);
+        asm/code_080472B0.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         asm/libagbsyscall.o(.text);

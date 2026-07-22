@@ -5,6 +5,23 @@
 
 	.text
 
+	thumb_func_start sub_080472B0
+sub_080472B0: @ 0x080472B0
+	ldr r0, _080472C0 @ =gHeldKeys
+	ldrh r1, [r0]
+	movs r0, #0x40
+	ands r0, r1
+	cmp r0, #0
+	bne _080472C4
+	movs r0, #0
+	b _080472C6
+	.align 2, 0
+_080472C0: .4byte gHeldKeys
+_080472C4:
+	movs r0, #1
+_080472C6:
+	bx lr
+
 	thumb_func_start sub_080472C8
 sub_080472C8: @ 0x080472C8
 	push {r4, r5, r6, r7, lr}
