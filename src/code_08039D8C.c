@@ -5,6 +5,7 @@
 #include "code_0800BFF4.h"
 #include "code_08014184.h"
 #include "code_080240F4.h"
+#include "code_08043BA4.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -16,7 +17,6 @@
 #include "structs/variables.h"
 
 extern void sub_08042E64(u8);                              /* extern */
-extern void sub_080452E8();                                /* extern */
 extern void sub_08046DB8(s32, s32);
 
 extern const u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)

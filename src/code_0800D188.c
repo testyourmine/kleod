@@ -3,6 +3,7 @@
 #include "code_0800BFF4.h"
 #include "code_08014184.h"
 #include "code_080240F4.h"
+#include "code_08043BA4.h"
 #include "main.h"
 #include "rand.h"
 #include "util.h"
@@ -17,7 +18,6 @@
 
 */
 
-void sub_080446F8();                                /* extern */
 void sub_08047B1C();                                /* extern */
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];

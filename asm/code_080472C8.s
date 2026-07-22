@@ -5359,7 +5359,7 @@ _08049F50:
 	bl m4aSongNumStart
 _08049F6E:
 	ldr r4, _08049FB0 @ =gEntityInfo
-	ldr r2, _08049FB4 @ =0x0811717C
+	ldr r2, _08049FB4 @ =gUnk_0811717C
 	ldr r0, _08049FAC @ =gUnk_03004658
 	ldr r3, [r0]
 	ldrb r1, [r3, #0xc]
@@ -5392,7 +5392,7 @@ _08049F6E:
 	.align 2, 0
 _08049FAC: .4byte gUnk_03004658
 _08049FB0: .4byte gEntityInfo
-_08049FB4: .4byte 0x0811717C
+_08049FB4: .4byte gUnk_0811717C
 _08049FB8: .4byte 0x04000040
 _08049FBC:
 	ldr r1, _08049FDC @ =gNewKeys
@@ -5448,7 +5448,7 @@ _0804A008:
 	bl m4aSongNumStart
 _0804A026:
 	ldr r4, _0804A060 @ =gEntityInfo
-	ldr r3, _0804A064 @ =0x0811717C
+	ldr r3, _0804A064 @ =gUnk_0811717C
 	ldrb r2, [r3]
 	ldr r0, _0804A05C @ =gUnk_03004658
 	ldr r0, [r0]
@@ -5478,7 +5478,7 @@ _0804A056:
 	.align 2, 0
 _0804A05C: .4byte gUnk_03004658
 _0804A060: .4byte gEntityInfo
-_0804A064: .4byte 0x0811717C
+_0804A064: .4byte gUnk_0811717C
 _0804A068: .4byte 0x04000040
 _0804A06C: .4byte 0x00005898
 

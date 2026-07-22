@@ -228,7 +228,7 @@ SECTIONS {
         src/code_0802688C.o(.text);
         src/code_08039D8C.o(.text);
         src/decompress.o(.text);
-        asm/code_08043BA4.o(.text);
+        src/code_08043BA4.o(.text);
         asm/code_08046B6C.o(.text);
         asm/code_080472C8.o(.text);
         asm/m4a0.o(.text);

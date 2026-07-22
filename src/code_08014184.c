@@ -3,15 +3,13 @@
 #include "code_08003D58.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
+#include "code_08043BA4.h"
 #include "main.h"
 #include "math.h"
 #include "rand.h"
 #include "util.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern void sub_08044BB8();                                /* extern */
-extern void sub_08044F6C(u8);
 
 extern const s8 gUnk_080E2AB4[7][6];
 extern const u8 gUnk_080E2ADE[][2];

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_08043BA4.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
@@ -11,16 +12,6 @@
 #include "util.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern void sub_0804517C(u8);
-extern void sub_08045734();                                /* extern */
-extern void sub_08045874();                                   /* extern */
-extern void sub_08045F68();                                   /* extern */
-extern void sub_08046288();                                   /* extern */
-extern void sub_080467F4();                                   /* extern */
-extern void sub_080468B0();                                   /* extern */
-extern u8 sub_080469FC();                                 /* extern */
-extern void sub_08046A64(u8);
 
 extern void sub_08046B6C();                                 /* extern */
 extern void sub_08046DB8(s32, s32);
@@ -56,7 +47,7 @@ extern u8 gUnk_08078AA8[0x20];
 extern u8 gUnk_08078AC8[0x20];
 extern u8 gUnk_08078AE8[0x20];
 
-extern struct Unk_0300466C gUnk_0807D248;
+extern struct Unk_0300466C gUnk_0807D248[];
 
 extern u8 gUnk_080B90E8[0x80];
 extern u8 gUnk_080B9168[0x80];
@@ -94,17 +85,18 @@ struct Unk_08116464 {
     u8 unk6;
     u8 unk7;
     u8 unk8;
+    u8 pad9[0xC - 0x9];
 };
 extern struct Unk_08116464 gUnk_08116464[];
 
-extern const u8 gUnk_08117120[];
-extern const u8 gUnk_0811712A[];
-extern const u16 gUnk_0811713A[];
+extern const u8 gUnk_08117120[0xA];
+extern const u8 gUnk_0811712A[0x10];
+extern const u16 gUnk_0811713A[0x20];
+extern const u8 gUnk_0811717C[6][40][5];
+extern const u8 gUnk_0811762C[6][8];
+extern const u8 gUnk_0811765C[6][7];
 
-extern const u8 gUnk_0811717C[][40][5];
-extern const u8 gUnk_0811762C[][8];
-extern const u8 gUnk_0811765C[][7];
-
+// 43BA4
 void sub_08043BA4(void)
 {
     u32 var_r3;
@@ -125,7 +117,7 @@ void sub_08043BA4(void)
     REG_WIN1H = 0xF0;
     REG_WIN1V = 0x18F;
     gIntrTable.hBlank = sub_08001028;
-    gUnk_030051DC = &gUnk_0807D248;
+    gUnk_030051DC = gUnk_0807D248;
     gUnk_03005428 = 0xD;
 
     gObjPalRamPtr = gUnk_030034F4;
@@ -239,6 +231,7 @@ void sub_08043BA4(void)
     m4aSongNumStart(0x30);
 }
 
+// 441C8
 void sub_080441C8(s32 arg0)
 {
     u8 var_r6;
@@ -408,6 +401,7 @@ void sub_080441C8(s32 arg0)
     }
 }
 
+// 446F8
 void sub_080446F8(void)
 {
     u8 var_r3;
@@ -578,6 +572,7 @@ void sub_080446F8(void)
     }
 }
 
+// 44BB8
 void sub_08044BB8(void)
 {
     u32 var_r7;
@@ -751,6 +746,7 @@ void sub_08044BB8(void)
     m4aSongNumStart(0x61);
 }
 
+// 44F6C
 void sub_08044F6C(u8 arg0)
 {
     s32 var_r9;
@@ -795,6 +791,7 @@ void sub_08044F6C(u8 arg0)
     }
 }
 
+// 4517C
 void sub_0804517C(u8 arg0)
 {
     u32 sp4;
@@ -855,6 +852,7 @@ void sub_0804517C(u8 arg0)
     }
 }
 
+// 452E8
 void sub_080452E8(void)
 {
     if ((gUnk_030007E0.unk0 == gUnk_030007E0.unk6) && (gUnk_030007E0.unk2 == gUnk_030007E0.unk8) && ((u16) gUnk_030007E0.unk4 == (u16) gUnk_030007E0.unkA))
@@ -889,6 +887,7 @@ void sub_080452E8(void)
     }
 }
 
+// 45398
 void sub_08045398(void)
 {
     if (gUnk_030034B0.unk0_4 == 0)
@@ -904,6 +903,7 @@ void sub_08045398(void)
     }
 }
 
+// 453F0
 void sub_080453F0(void)
 {
     u16 var_r6;
@@ -1004,6 +1004,7 @@ void sub_080453F0(void)
     gIntrTable.hBlank = sub_08000FCC;
 }
 
+// 45734
 void sub_08045734(void)
 {
     if (gUnk_030034E4 == 0)
@@ -1016,6 +1017,7 @@ void sub_08045734(void)
     sub_08025BA4();
 }
 
+// 4575C
 void sub_0804575C(void)
 {
     u8 var_sb;
@@ -1031,6 +1033,7 @@ void sub_0804575C(void)
     }
 }
 
+// 45874
 void sub_08045874(void)
 {
     u8 sp0;
@@ -1327,6 +1330,7 @@ void sub_08045874(void)
     gBgInfo[1].hOfs = gBg2Alpha;
 }
 
+// 45F68
 void sub_08045F68(void)
 {
     s16 temp_r2;
@@ -1397,6 +1401,7 @@ void sub_08045F68(void)
     gEntityInfo[0].yPosScreen -= 0xA;
 }
 
+// 46288
 void sub_08046288(void)
 {
     u32 sp0;
@@ -1552,7 +1557,7 @@ void sub_08046288(void)
     }
 }
 
-
+// 467F4
 void sub_080467F4(void)
 {
     u8 var_r2;
@@ -1592,9 +1597,9 @@ void sub_080467F4(void)
     }
 }
 
+// 468B0
 void sub_080468B0(void)
 {
-
     if (gUnk_030034B0.unk7_0 == 0)
     {
         return;
@@ -1638,6 +1643,7 @@ void sub_080468B0(void)
     }
 }
 
+// 469FC
 u8 sub_080469FC(void)
 {
     u8 var_r2;
@@ -1652,6 +1658,7 @@ u8 sub_080469FC(void)
     return 0;
 }
 
+// 46A64
 void sub_08046A64(u8 arg0)
 {
     struct EntityInfo *var_sl;

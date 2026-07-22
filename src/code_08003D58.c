@@ -4,6 +4,7 @@
 #include "code_08014184.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
+#include "code_08043BA4.h"
 #include "math.h"
 #include "data/trig.h"
 #include "structs/variables.h"
@@ -3300,8 +3301,6 @@ void sub_0800AC34(void)
         sub_08014318();
     }
 }
-
-extern void sub_08044F6C(u8);
 
 // B3C0
 void sub_0800B3C0(void)
