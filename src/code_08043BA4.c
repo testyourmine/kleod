@@ -5,6 +5,7 @@
 #include "code_0800BFF4.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
+#include "code_08046B6C.h"
 #include "heap.h"
 #include "interrupts.h"
 #include "main.h"
@@ -13,8 +14,6 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern void sub_08046B6C();                                 /* extern */
-extern void sub_08046DB8(s32, s32);
 extern void sub_08047B1C();
 extern void sub_08048028();
 extern void sub_080487B4();                                /* extern */

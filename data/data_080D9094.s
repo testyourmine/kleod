@@ -181,4 +181,12 @@ gUnk_0811765C:: @ 0x0811765C
 
     .align 2, 0
 
-    .incbin "baserom.gba", 0x117688, 0x1179E4-0x117688
+gUnk_08117688:: @ 0x08117688
+    .incbin "baserom.gba", 0x117688, 0x4*0x2
+
+gUnk_08117690:: @ 0x08117690
+    .asciz "K_KLONOA"
+
+    .align 2, 0
+
+    .incbin "baserom.gba", 0x11769C, 0x1179E4-0x11769C

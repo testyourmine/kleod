@@ -1,11 +1,13 @@
 #include "global.h"
+#include "code_08046B6C.h"
 #include "eeprom.h"
 #include "util.h"
 #include "structs/variables.h"
 
-extern u16 gUnk_08117688[];
+extern u16 gUnk_08117688[4];
 extern u8 gUnk_08117690[9]; // "K_KLONOA"
 
+// 46B6C
 void sub_08046B6C(void)
 {
     u32 var_sb;
@@ -90,6 +92,7 @@ void sub_08046B6C(void)
     m4aSoundVSyncOn();
 }
 
+// 46DB8
 u16 sub_08046DB8(u32 arg0, u8 arg1)
 {
     u8 *var_r6;
@@ -170,6 +173,7 @@ u16 sub_08046DB8(u32 arg0, u8 arg1)
     return var_r2;
 }
 
+// 46F6C
 u16 sub_08046F6C(s32 arg0)
 {
     u8 *var_r5;
@@ -268,6 +272,7 @@ u16 sub_08046F6C(s32 arg0)
     return var_r2;
 }
 
+// 4713C
 u16 sub_0804713C(void)
 {
     u16 temp_r2;
@@ -307,6 +312,7 @@ u16 sub_0804713C(void)
     return temp_r2;
 }
 
+// 471F4
 void sub_080471F4(void)
 {
     gUnk_0300520C = REG_DMA0CNT_H;

@@ -38,5 +38,6 @@ void sub_08041E94(u8 arg0, u8 arg1);
 void sub_08041F34(u8 arg0);
 void sub_08042024(u8 arg0);
 void sub_08042BEC(void);
+void sub_08042E64(u8 arg0);
 
 #endif // GUARD_CODE_08039D8C_H

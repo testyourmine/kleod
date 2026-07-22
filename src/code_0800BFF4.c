@@ -3,6 +3,7 @@
 #include "code_08003D58.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
+#include "code_08046B6C.h"
 #include "main.h"
 #include "math.h"
 #include "rand.h"
@@ -36,8 +37,6 @@ struct Unk_080D89A8 {
 extern struct Unk_080D89A8 gUnk_080D89A8[6][5];
 
 extern struct Unk_0300542C *gUnk_0818B704[6][7];
-
-extern void sub_08046DB8(s32, s32);
 
 // BFF4
 void sub_0800BFF4(void)
