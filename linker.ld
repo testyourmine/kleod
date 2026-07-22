@@ -78,6 +78,7 @@ SECTIONS {
         . = 0x000034C8; gUnk_030034C8 = .;
         . = 0x000034CC; gUnk_030034CC = .;
         . = 0x000034D0; gUnk_030034D0 = .;
+        . = 0x000034D4; gUnk_030034D4 = .;
         . = 0x000034D8; gUnk_030034D8 = .;
         . = 0x000034DC; gUnk_030034DC = .;
         . = 0x000034E0; gUnk_030034E0 = .;
@@ -195,6 +196,7 @@ SECTIONS {
         . = 0x00005488; gUnk_03005488 = .;
         . = 0x0000548C; gUnk_0300548C = .;
         . = 0x00005490; gObjVramPtr = .;
+        . = 0x00005494; gUnk_03005494 = .;
         . = 0x00005498; gBlendValue = .;
 
         . = 0x000054A0; gSoundInfo = .;
@@ -227,6 +229,8 @@ SECTIONS {
         src/code_08039D8C.o(.text);
         src/decompress.o(.text);
         asm/code_08043BA4.o(.text);
+        asm/code_08046B6C.o(.text);
+        asm/code_080472C8.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         asm/libagbsyscall.o(.text);

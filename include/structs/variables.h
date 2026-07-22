@@ -653,9 +653,20 @@ extern u16 gUnk_030052B8;
 extern u8 gUnk_03004D9C;
 
 struct Unk_030034B0 {
-    u8 pad0[0x6 - 0x0];
-    u8 unk6_0:4; // TODO: verify
+    u8 unk0_0:1;
+    u8 unk0_1:3;
+    u8 unk0_4:1;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6_0:4;
     u8 unk6_4:4;
+    u8 unk7_0:4;
+    u8 unk7_4:4;
+    u8 unk8_0:4;
+    u8 unk8_4:4;
 };
 extern struct Unk_030034B0 gUnk_030034B0;
 
@@ -689,5 +700,13 @@ extern u8 gUnk_03003E96[][8]; // TODO: type
 extern u8 gUnk_03003F56[][8]; // TODO: type
 
 extern u8 gUnk_03003790[][0x40]; // TODO: type
+
+extern u8 gUnk_03005494;
+
+struct Unk_030034D4 {
+    u16 unk0;
+    u16 unk2;
+};
+extern struct Unk_030034D4 *gUnk_030034D4;
 
 #endif // GUARD_VARIABLES_H
