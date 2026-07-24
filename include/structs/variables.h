@@ -660,7 +660,9 @@ extern struct Unk_080D821C *gUnk_03004D80;
 extern u16 gUnk_030051E0;
 
 struct Unk_03004D90 {
-    u8 pad0[0x8 - 0x0];
+    u8 pad0[0x4 - 0x0];
+    u16 unk4;
+    u16 unk6;
     u8 unk8;
     u8 unk9;
 };
@@ -735,5 +737,13 @@ extern u16 gUnk_030008E4; // DMA3CNT_H
 extern u16 gUnk_0300465C; // DMA2CNT_H
 extern u16 gUnk_03005208; // DMA1CNT_H
 extern u16 gUnk_0300520C; // DMA0CNT_H
+
+extern u8 gUnk_030007F8;
+extern u8 gUnk_030008F8;
+extern u8 gUnk_0300549C;
+
+extern u8 gUnk_03000828;
+
+extern u8 gUnk_03002900;
 
 #endif // GUARD_VARIABLES_H

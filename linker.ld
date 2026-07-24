@@ -42,6 +42,7 @@ SECTIONS {
         . = 0x000007E0; gUnk_030007E0 = .;
         . = 0x000007F0; gUnk_030007F0 = .;
         . = 0x000007F4; gUnk_030007F4 = .;
+        . = 0x000007F8; gUnk_030007F8 = .;
         . = 0x000007FC; gBg2X = .;
         . = 0x00000800; gUnk_03000800 = .;
         . = 0x00000804; gUnk_03000804 = .;
@@ -51,6 +52,7 @@ SECTIONS {
         . = 0x00000818; gUnk_03000818 = .;
         . = 0x00000820; gOamBufferPtr = .;
         . = 0x00000824; gUnk_03000824 = .;
+        . = 0x00000828; gUnk_03000828 = .;
         . = 0x0000082C; gUnk_0300082C = .;
         . = 0x00000830; gEntityAnimationInfo = .;
         . = 0x000008E4; gUnk_030008E4 = .;
@@ -58,8 +60,10 @@ SECTIONS {
         . = 0x000008EC; gUnk_030008EC = .;
         . = 0x000008F0; gUnk_030008F0 = .;
         . = 0x000008F4; gUnk_030008F4 = .;
+        . = 0x000008F8; gUnk_030008F8 = .;
         . = 0x000008FC; gUnk_030008FC = .;
         . = 0x00000900; gBgTilemapBufs = .;
+        . = 0x00002900; gUnk_03002900 = .;
         . = 0x00002904; gUnk_03002904 = .;
         . = 0x00002908; gUnk_03002908 = .;
         . = 0x0000290C; gUnk_0300290C = .;
@@ -202,6 +206,7 @@ SECTIONS {
         . = 0x00005490; gObjVramPtr = .;
         . = 0x00005494; gUnk_03005494 = .;
         . = 0x00005498; gBlendValue = .;
+        . = 0x0000549C; gUnk_0300549C = .;
 
         . = 0x000054A0; gSoundInfo = .;
         . = 0x00006450; gMPlayJumpTable = .;
@@ -235,6 +240,7 @@ SECTIONS {
         src/code_08043BA4.o(.text);
         src/code_08046B6C.o(.text);
         asm/code_080472B0.o(.text);
+        asm/code_0804B254.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
         asm/libagbsyscall.o(.text);
