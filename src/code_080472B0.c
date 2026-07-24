@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_080472B0.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
@@ -13,10 +14,10 @@
 #include "rand.h"
 #include "structs/variables.h"
 
-extern const u8 gUnk_08078F88[];
-extern const u8 gUnk_08078FA8[];
+extern const u8 gUnk_08078F88[0x20];
+extern const u8 gUnk_08078FA8[0x20];
 
-extern struct Unk_0300466C gUnk_0807D7B0;
+extern struct Unk_0300466C gUnk_0807D7B0[];
 
 struct Unk_08116590 {
     u16 unk0;
@@ -28,58 +29,52 @@ struct Unk_08116590 {
     u8 unk8;
     u8 pad9[0xC - 0x9];
 };
-extern const struct Unk_08116590 gUnk_08116590[];
+extern const struct Unk_08116590 gUnk_08116590[12];
 
 extern const u8 gUnk_0811717C[6][40][5];
 
-extern const u16 gUnk_0811769C[][4];
+extern const u16 gUnk_0811769C[0x20][4];
+extern const u8 gUnk_0811779C[8];
+extern const u16 gUnk_081177A4[8][2];
 
-extern const u8 gUnk_0811779C[];
-extern const u16 gUnk_081177A4[][2];
+extern const u32 *gUnk_0818BA3C[0x20];
+extern const u32 *gUnk_0818BABC[0x20];
+extern const u32 *gUnk_0818BB3C[0x20];
 
-extern const u32 *gUnk_0818BA3C[];
-extern const u32 *gUnk_0818BABC[];
-extern const u32 *gUnk_0818BB3C[];
+extern u32 gUnk_082ECEA8[];
+extern u32 gUnk_082ECEF8[];
+extern u32 gUnk_082ED1FC[];
 
-extern void gUnk_082ECEA8;
-extern s32 gUnk_082ECEF8;
-extern s32 gUnk_082ED1FC;
-
-extern s32 gUnk_082F3B2C;
+extern u32 gUnk_082F3B2C[];
 
 extern u32 gUnk_082F43C4[];
 extern u32 gUnk_082F47A8[];
 extern u32 gUnk_082F48BC[];
 
-extern void gUnk_082F4934;
-extern s32 gUnk_082F49E4;
-extern s32 gUnk_082F4B10;
-extern s32 gUnk_082F4D3C;
-extern s32 gUnk_082F518C;
-extern s32 gUnk_082F5920;
-extern s32 gUnk_082F5D0C;
-extern s32 gUnk_082F7D64;
+extern u32 gUnk_082F4934[];
+extern u32 gUnk_082F49E4[];
+extern u32 gUnk_082F4B10[];
+extern u32 gUnk_082F4D3C[];
+extern u32 gUnk_082F518C[];
+extern u32 gUnk_082F5920[];
+extern u32 gUnk_082F5D0C[];
+extern u32 gUnk_082F7D64[];
 
-extern s32 gUnk_082F8BF8;
-extern s32 gUnk_082FA784;
-extern s32 gUnk_082FA8C0;
-extern s32 gUnk_082FB0E0;
-extern s32 gUnk_082FB280;
-extern s32 gUnk_082FBB9C;
-extern void gUnk_082FBE10;
+extern u32 gUnk_082F8BF8[];
+extern u32 gUnk_082FA784[];
+extern u32 gUnk_082FA8C0[];
+extern u32 gUnk_082FB0E0[];
+extern u32 gUnk_082FB280[];
+extern u32 gUnk_082FBB9C[];
+extern u32 gUnk_082FBE10[];
 
-extern u32 gUnk_08312A58;
-extern u32 gUnk_08312B70;
+extern u32 gUnk_08312A58[];
+extern u32 gUnk_08312B70[];
 
-extern void gUnk_08366214;
-extern void gUnk_08367468;
+extern u32 gUnk_08366214[];
+extern u32 gUnk_08367468[];
 
-extern void sub_08047B1C();
-extern void sub_08047EC8();                                /* extern */
-extern void sub_08047F80();                                /* extern */
-extern void sub_080487B4();                                /* extern */
-extern void sub_08049724();                                /* extern */
-
+// 472B0
 s8 sub_080472B0(void)
 {
     if (gHeldKeys & DPAD_UP)
@@ -92,6 +87,7 @@ s8 sub_080472B0(void)
     }
 }
 
+// 472C8
 void sub_080472C8(void)
 {
     u32 var_r2;
@@ -135,10 +131,10 @@ void sub_080472C8(void)
 
     DecompressDma(&gUnk_082ECEA8, (void*)0x05000000, 0x200);
 
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082ECEF8 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082ED1FC & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082ECEF8[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082ED1FC[0] & 0x7FFFFFFF, 0);
 
     Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_08312A58);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_08312B70);
@@ -189,6 +185,7 @@ void sub_080472C8(void)
     m4aSoundVSyncOn();
 }
 
+// 475DC
 void sub_080475DC(void)
 {
     u32 var_r7;
@@ -275,6 +272,7 @@ void sub_080475DC(void)
     }
 }
 
+// 477A8
 void sub_080477A8(void)
 {
     if (gUnk_03004C20.sceneFrameCounter == 0)
@@ -421,6 +419,7 @@ void sub_080477A8(void)
     REG_BLDALPHA = 0;
 }
 
+// 47ABC
 void sub_08047ABC(void)
 {
     if (gUnk_03004D90.unk8 != 0)
@@ -442,6 +441,7 @@ void sub_08047ABC(void)
     }
 }
 
+// 47B1C
 void sub_08047B1C(void)
 {
     u8 sp0;
@@ -502,7 +502,7 @@ void sub_08047B1C(void)
     REG_DISPSTAT &= ~8;
     m4aSoundVSyncOff();
 
-    gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082F3B2C & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082F3B2C[0] & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(*gUnk_0818BA3C[sp0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082F3B2C);
     Decompress(gBgDataPtrs.pBufBg3Tilemap, (void*)gUnk_0818BA3C[sp0]);
@@ -562,6 +562,7 @@ void sub_08047B1C(void)
     gCallbackQueue.nextCount = 4;
 }
 
+// 47EC8
 void sub_08047EC8(void)
 {
     u32 tmp;
@@ -606,6 +607,7 @@ void sub_08047EC8(void)
     }
 }
 
+// 47F80
 void sub_08047F80(void)
 {
     u32 var_r1;
@@ -638,6 +640,7 @@ void sub_08047F80(void)
     }
 }
 
+// 48028
 void sub_08048028(void)
 {
     u8 sp0;
@@ -806,6 +809,7 @@ void sub_08048028(void)
     }
 }
 
+// 4832C
 void sub_0804832C(void)
 {
     s32 var_r4;
@@ -844,6 +848,7 @@ void sub_0804832C(void)
     gUnk_03004D9C = 0;
 }
 
+// 48498
 void sub_08048498(void)
 {
     u16 var_r4;
@@ -916,6 +921,7 @@ void sub_08048498(void)
     REG_DISPCNT = 0x1141;
 }
 
+// 48768
 void sub_08048768(void)
 {
     if (gUnk_03004C20.sceneFrameCounter == 0)
@@ -938,6 +944,7 @@ void sub_08048768(void)
     m4aMPlayAllStop();
 }
 
+// 487B4
 void sub_080487B4(void)
 {
     if (gUnk_03004C20.sceneFrameCounter == 0)
@@ -974,6 +981,7 @@ void sub_080487B4(void)
     }
 }
 
+// 4886C
 void sub_0804886C(void)
 {
     u16 var_r6;
@@ -1035,7 +1043,7 @@ void sub_0804886C(void)
     DmaCopy16Wait(3, temp_r5 + 0x200, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
     thunk_HeapFree(temp_r5 - 4);
-    gUnk_030051DC = &gUnk_0807D7B0;
+    gUnk_030051DC = gUnk_0807D7B0;
 
     gUnk_03005428 = 0xD;
     for (var_r6 = 0; gUnk_08116590[var_r6].unk0 != 0xFFFF; var_r6++)
@@ -1097,8 +1105,8 @@ void sub_0804886C(void)
     }
 
     DecompressDma(&gUnk_082F4934, (void *)0x05000000, 0x200U);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082F49E4 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082F4B10 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082F49E4[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082F4B10[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_082F49E4);
     Decompress(gBgDataPtrs.pBufBg1Tilemap, &gUnk_082F4B10);
     gBgDataPtrs.pBufBg0Tilemap += 2;
@@ -1113,8 +1121,8 @@ void sub_0804886C(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tilemap - 2);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
 
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082F4D3C & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082F518C & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082F4D3C[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082F518C[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_082F4D3C);
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_082F518C);
     gBgDataPtrs.pBufBg0Tiles += 4;
@@ -1124,8 +1132,8 @@ void sub_0804886C(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tiles - 4);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
 
-    gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(gUnk_082F5920 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082F5920 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(gUnk_082F5920[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082F5920[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg2Tilemap, &gUnk_082F5920);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_082F5920);
     gBgDataPtrs.pBufBg0Tilemap += 2;
@@ -1139,8 +1147,8 @@ void sub_0804886C(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
     thunk_HeapFree(gBgDataPtrs.pBufBg2Tilemap - 4);
 
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082F5D0C & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082F7D64 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082F5D0C[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082F7D64[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_082F5D0C);
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_082F7D64);
     gBgDataPtrs.pBufBg0Tiles += 4;
@@ -1196,6 +1204,7 @@ void sub_0804886C(void)
     m4aSongNumStart(0);
 }
 
+// 491C0
 void sub_080491C0(void)
 {
     u8 var_r4;
@@ -1266,6 +1275,7 @@ void sub_080491C0(void)
     }
 }
 
+// 49348
 void sub_08049348(u8 arg0)
 {
     u8 var_r3;
@@ -1411,6 +1421,7 @@ void sub_08049348(u8 arg0)
     }
 }
 
+// 49724
 void sub_08049724(void)
 {
     u8 var_r2;
@@ -1646,6 +1657,7 @@ void sub_08049724(void)
     }
 }
 
+// 49BFC
 void sub_08049BFC(void)
 {
     u8 var_r2;
@@ -1668,12 +1680,12 @@ void sub_08049BFC(void)
     gOamAffineBuffer[0].pb = 0;
     gEntityInfo[0xD].unk10 = 1;
 
-    gBgDataPtrs.pBufBg2Tiles = thunk_HeapAlloc(gUnk_082F8BF8 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(gUnk_082FA784 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082FA8C0 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082FB0E0 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082FB280 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082FBB9C & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg2Tiles = thunk_HeapAlloc(gUnk_082F8BF8[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(gUnk_082FA784[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_082FA8C0[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082FB0E0[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_082FB280[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082FBB9C[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg2Tiles, &gUnk_082F8BF8);
     Decompress(gBgDataPtrs.pBufBg2Tilemap, &gUnk_082FA784);
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_082FA8C0);
@@ -1728,6 +1740,7 @@ void sub_08049BFC(void)
     gUnk_03002900 = 0;
 }
 
+// 49EFC
 void sub_08049EFC(u8 arg0)
 {
     if (arg0 == 0)
@@ -1776,8 +1789,9 @@ void sub_08049EFC(u8 arg0)
     }
 }
 
-// TODO: sub_0804A070, its really broken for some reason https://decomp.me/scratch/pm39Y
-void sub_0804A070(u8 arg0)
+// TODO: its really broken for some reason https://decomp.me/scratch/pm39Y
+// 4A070
+NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
 {
     u32 sp8;
     // s32 sp10;
@@ -2250,7 +2264,9 @@ void sub_0804A070(u8 arg0)
         gBgTilemapBufs[0][0x1A6 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + ((u8) gUnk_030047FC->unk14[var_sl] % 10U)];
     }
 }
+END_NONMATCH
 
+// 4AF00
 void sub_0804AF00(void)
 {
     if (gUnk_03004C20.sceneFrameCounter == 0)
@@ -2369,7 +2385,7 @@ void sub_0804AF00(void)
 
     if (gNewKeys & 2)
     {
-        s8 tmp = (s8) gUnk_03004658[0xF];
+        s8 tmp = gUnk_03004658[0xF]; // FAKE??
         if (tmp == 0)
         {
             gBlendValue = 0x10;

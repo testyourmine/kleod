@@ -5,13 +5,11 @@
 #include "code_0800BFF4.h"
 #include "code_08039D8C.h"
 #include "code_08046B6C.h"
+#include "code_080472B0.h"
 #include "interrupts.h"
 #include "main.h"
 #include "structs/variables.h"
 
-extern void sub_080487B4();                                /* extern */
-extern void sub_08049724();                                /* extern */
-extern void sub_0804AF00();                                /* extern */
 extern void sub_0804BE58();                                /* extern */
 
 extern u16 gUnk_08057C70;

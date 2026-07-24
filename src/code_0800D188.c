@@ -4,6 +4,7 @@
 #include "code_08014184.h"
 #include "code_080240F4.h"
 #include "code_08043BA4.h"
+#include "code_080472B0.h"
 #include "main.h"
 #include "rand.h"
 #include "util.h"
@@ -17,8 +18,6 @@
     https://decomp.me/scratch/Cdry3
 
 */
-
-void sub_08047B1C();                                /* extern */
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 

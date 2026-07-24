@@ -64,7 +64,10 @@ gUnk_080E2B64:: @ 0x080E2B64
 gUnk_08116464:: @ 0x08116464
     .incbin "baserom.gba", 0x116464, 1
 
-    .incbin "baserom.gba", 0x116465, 0x116620-0x116465
+    .incbin "baserom.gba", 0x116465, 0x116590-0x116465
+
+gUnk_08116590:: @ 0x08116590
+    .incbin "baserom.gba", 0x116590, 0xC*0xC
 
 gUnk_08116620:: @ 0x08116620
     .incbin "baserom.gba", 0x116620, 0x6*0x9*0x4
@@ -189,4 +192,13 @@ gUnk_08117690:: @ 0x08117690
 
     .align 2, 0
 
-    .incbin "baserom.gba", 0x11769C, 0x1179E4-0x11769C
+gUnk_0811769C:: @ 0x0811769C
+    .incbin "baserom.gba", 0x11769C, 0x20*0x4*0x2
+
+gUnk_0811779C:: @ 0x0811779C
+    .incbin "baserom.gba", 0x11779C, 0x8*0x1
+
+gUnk_081177A4:: @ 0x081177A4
+    .incbin "baserom.gba", 0x1177A4, 0x8*0x2*0x2
+
+    .incbin "baserom.gba", 0x1177C4, 0x1179E4-0x1177C4

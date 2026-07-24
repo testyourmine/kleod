@@ -7,6 +7,7 @@
 #include "code_0802688C.h"
 #include "code_08039D8C.h"
 #include "code_08043BA4.h"
+#include "code_080472B0.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -15,8 +16,6 @@
 #include "util.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern void sub_08048028();
 
 extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 extern u16 gUnk_08051C76[6][9][3];

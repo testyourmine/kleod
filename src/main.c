@@ -2,6 +2,7 @@
 #include "main.h"
 #include "code_0800BFF4.h"
 #include "code_080240F4.h"
+#include "code_080472B0.h"
 #include "eeprom.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -14,9 +15,6 @@ extern void *gUnk_0818B8A8[10];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern void IntrMain(void);
-
-extern void sub_080477A8();
-extern void sub_08048768();
 
 #define DELETE_SAVE_DATA_KEYS (L_BUTTON | R_BUTTON | DPAD_RIGHT | B_BUTTON | A_BUTTON)
 
