@@ -212,15 +212,22 @@ struct BgInfo {
 extern struct BgInfo gBgInfo[4];
 
 struct Unk_030034A0 {
-    /* 0x00 */ u8 pad0[0x8 - 0x0];
-    /* 0x08 */ s16 unk8;
-    /* 0x0A */ s16 unkA;
-    /* 0x0C */ s16 unkC;
-    /* 0x0E */ s16 unkE;
-    /* 0x10 */ s16 unk10;
-    /* 0x12 */ s16 unk12;
-    /* 0x14 */ s16 unk14;
-    /* 0x16 */ s16 unk16;
+    /* 0x00_0 */ u32 unk0_0:2;
+    /* 0x00_2 */ u8 unk0_2:4; // TODO: verify
+    /* 0x00_6 */ u32 unk0_6:2;
+    /* 0x01_0 */ u32 unk1_0:1;
+    /* 0x01_1 */ u8 unk1_1:6; // TODO: verify
+    /* 0x01_6 */ u32 unk1_7:2;
+    /* 0x02_1 */ u32 unk2_1:2;
+    /* 0x03 */ u8 unk3[1];
+    /* 0x02 */ u8 pad4[0x8 - 0x4];
+    /* 0x08 */ s16 unk8[2][2];
+    /* 0x10 */ s16 unk10[2][2];
+    /* 0x1A */ u8 pad1A[0x1C - 0x1A];
+    /* 0x1C_0 */ u8 unk1C_0:4; // TODO: verify
+    /* 0x1C_4 */ u32 unk1C_4:1;
+    /* 0x1C_5 */ u32 unk1C_5:1;
+    /* 0x1C_6 */ u32 unk1C_6:1;
 }; /* size = ? */
 extern struct Unk_030034A0 *gUnk_030034A0;
 
@@ -745,5 +752,45 @@ extern u8 gUnk_0300549C;
 extern u8 gUnk_03000828;
 
 extern u8 gUnk_03002900;
+
+extern void *gUnk_030007D0;
+extern u8 *gUnk_03004D84; // TODO: pointer type?
+
+struct Unk_030052A4 {
+    u32 unk0_0:3;
+    u32 unk0_3:8;
+    u32 unk1_3:4;
+    u32 unk1_7:7;
+    u8 unk2_6:5; // TODO: verify
+    u32 unk3_3:4;
+    u32 unk3_7:1;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    u8 unk10[0x14 - 0x10];
+    s16 unk14;
+    s16 unk16;
+    s16 unk18;
+    s16 unk1A;
+    s16 unk1C;
+    u8 unk1E;
+    u8 unk1F;
+    s32 (*unk20)(s32);
+};
+extern struct Unk_030052A4 *gUnk_030052A4;
+
+extern u32 gUnk_03000814;
+
+struct Unk_030007C8 {
+    void *unk0;
+    u16 unk4;
+    u16 unk6;
+};
+extern struct Unk_030007C8 *gUnk_030007C8;
+
+extern u8 *gUnk_0300081C; // TODO: pointer type?
 
 #endif // GUARD_VARIABLES_H
