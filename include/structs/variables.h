@@ -216,18 +216,25 @@ struct Unk_030034A0 {
     /* 0x00_2 */ u8 unk0_2:4; // TODO: verify
     /* 0x00_6 */ u32 unk0_6:2;
     /* 0x01_0 */ u32 unk1_0:1;
-    /* 0x01_1 */ u8 unk1_1:6; // TODO: verify
+    /* 0x01_1 */ u8 unk1_1:5; // TODO: verify
+    /* 0x01_6 */ u32 unk1_6:1;
     /* 0x01_6 */ u32 unk1_7:2;
     /* 0x02_1 */ u32 unk2_1:2;
-    /* 0x03 */ u8 unk3[1];
-    /* 0x02 */ u8 pad4[0x8 - 0x4];
+    /* 0x03 */ u8 unk3[1]; // TODO: length?
+    /* 0x02 */ u8 pad4[0x5 - 0x4];
+    /* 0x05 */ u8 unk5;
+    /* 0x06 */ u8 unk6;
+    /* 0x07 */ u8 pad7[0x8 - 0x7];
     /* 0x08 */ s16 unk8[2][2];
     /* 0x10 */ s16 unk10[2][2];
-    /* 0x1A */ u8 pad1A[0x1C - 0x1A];
-    /* 0x1C_0 */ u8 unk1C_0:4; // TODO: verify
-    /* 0x1C_4 */ u32 unk1C_4:1;
-    /* 0x1C_5 */ u32 unk1C_5:1;
-    /* 0x1C_6 */ u32 unk1C_6:1;
+    /* 0x18 */ s16 unk18;
+    /* 0x1A */ s16 unkA;
+    /* 0x1C_0 */ u8 unk1C_0:2;
+    /* 0x1C_2 */ u8 unk1C_2:1;
+    /* 0x1C_3 */ u8 unk1C_3:1;
+    /* 0x1C_4 */ u8 unk1C_4:1;
+    /* 0x1C_5 */ u8 unk1C_5:1;
+    /* 0x1C_6 */ u8 unk1C_6:1;
 }; /* size = ? */
 extern struct Unk_030034A0 *gUnk_030034A0;
 
@@ -791,6 +798,33 @@ struct Unk_030007C8 {
 };
 extern struct Unk_030007C8 *gUnk_030007C8;
 
-extern u8 *gUnk_0300081C; // TODO: pointer type?
+struct Unk_0300081C {
+    void *unk0;
+    s8 unk4;
+    u8 unk5;
+    u8 pad6[0x8 - 0x6];
+    s8 unk8;
+    s8 unk9;
+    s8 unkA;
+    s8 unkB;
+    u8 padC[0xD - 0xC];
+    u8 unkD;
+    u8 unkE;
+    u8 padF[0x10 - 0xF];
+    u16 unk10;
+    u16 unk12;
+    s16 unk14;
+    u8 unk16_0:4;
+    u16 unk16_4:3;
+    u8 unk16_7:1;
+    u8 unk17_0:1;
+    u8 unk17_1:1;
+    u16 unk18;
+    u16 unk1A;
+    void *unk1C;
+    void *unk20;
+    void (*unk24)(void);
+};
+extern struct Unk_0300081C *gUnk_0300081C;
 
 #endif // GUARD_VARIABLES_H
