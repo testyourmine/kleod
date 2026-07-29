@@ -177,8 +177,6 @@ static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
     https://decomp.me/scratch/jnG3R
 */
 
-#define	MAX(a,b) (((a) >= (b)) ? (a) : (b))
-
 // 14318
 void sub_08014318(void)
 {
@@ -192,8 +190,8 @@ void sub_08014318(void)
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
     }
     else if (gUnk_03005220.unk56 < 0)
     {
@@ -202,8 +200,8 @@ void sub_08014318(void)
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
     }
 
     if (gUnk_03005220.unk57 != 0)
@@ -211,8 +209,8 @@ void sub_08014318(void)
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo.unk48)]) : var_r3;
         // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo.unk48)]) : var_r3;
 
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + gUnk_03005220.unk56) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo[2].hLength)]);
-        var_r3 = MAX(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + gUnk_03005220.unk56) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo[2].hLength)]);
+        var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo[2].hLength)]);
     }
 
     if (var_r3 < gUnk_03004654[0x1A])
@@ -415,7 +413,7 @@ void sub_08014760(u8 arg0)
 
             var_r7 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 + 6) >> 3) + ((s32) (gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength];
 
-            var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + ((s32) (gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength]);
+            var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + ((s32) (gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength]);
 
             if ((gUnk_03004654[0x18] <= var_r7) && (gEntityInfo[arg0].unkF == 0))
             {
@@ -825,7 +823,7 @@ void sub_08014760(u8 arg0)
 
                 var_r7 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 + 6) >> 3) + (((s32) ((u16) gEntityInfo[arg0].yPosBg2 - 0x1E) >> 3) * gBgInfo[2].hLength)];
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((s32) ((u16) gEntityInfo[arg0].yPosBg2 - 0x1E) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((s32) ((u16) gEntityInfo[arg0].yPosBg2 - 0x1E) >> 3) * gBgInfo[2].hLength)]);
 
                 for (var_r6 = gUnk_03003634; var_r6 <= gUnk_03005430; var_r6++)
                 {
@@ -1028,9 +1026,9 @@ block_240:
                 }
                 var_r7 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 8) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 8) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x10) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 8) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x10) >> 3) * gBgInfo[2].hLength)]);
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 8) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 8) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]);
             }
             else
             {
@@ -1050,9 +1048,9 @@ block_240:
                 }
                 var_r7 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x10) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x10) >> 3) * gBgInfo[2].hLength)]);
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]);
             }
 
             if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))
@@ -1597,7 +1595,7 @@ block_379:
                 }
                 var_r7 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 + 6) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x18) >> 3) * gBgInfo[2].hLength)];
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x18) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x18) >> 3) * gBgInfo[2].hLength)]);
             }
             else
             {
@@ -1624,7 +1622,7 @@ block_379:
                 }
                 var_r7 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 + 6) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)];
 
-                var_r7 = MAX(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
+                var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
             }
 
             if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))
@@ -2702,9 +2700,9 @@ block_128:
 
                 sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)];
 
-                sp34 = MAX(sp34, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
+                sp34 = max(sp34, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
 
-                sp34 = MAX(sp34, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
+                sp34 = max(sp34, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
 
                 for (sp28 = gUnk_03000804; sp28 <= gUnk_0300082C; sp28++)
                 {
@@ -2897,7 +2895,7 @@ block_128:
                     {
                         sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)];
 
-                        sp34 = MAX(sp34, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)]);
+                        sp34 = max(sp34, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)]);
                     }
                     if (sp34 <= gUnk_03004654[0x1A])
                     {
@@ -3224,7 +3222,7 @@ block_128:
                     else
                     {
     block_472:
-                        sp34 = MAX(sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]);
+                        sp34 = max(sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]);
                     }
                 }
                 else
@@ -3253,7 +3251,7 @@ block_128:
                     else
                     {
     block_478:
-                        sp34 = MAX(sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]);
+                        sp34 = max(sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]);
                     }
                 }
                 
@@ -3965,9 +3963,9 @@ block_716:
                 {
                     sp34 = gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 + 0xA) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 + 4) >> 3) * gBgInfo[2].hLength)];
 
-                    sp34 = MAX(sp34, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 + 4) >> 3) * gBgInfo[2].hLength)]);
+                    sp34 = max(sp34, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 + 4) >> 3) * gBgInfo[2].hLength)]);
 
-                    sp34 = MAX(sp34, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 + 4) >> 3) * gBgInfo[2].hLength)]);
+                    sp34 = max(sp34, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xB) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 + 4) >> 3) * gBgInfo[2].hLength)]);
                 }
             }
             
@@ -4865,7 +4863,7 @@ void sub_0801B688(u8 arg0)
 
         var_r1 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 + 8) >> 3) * gBgInfo[2].hLength)];
 
-        var_r1 = MAX(var_r1, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[0].yPosBg2 + 8) >> 3) * gBgInfo[2].hLength)]);
+        var_r1 = max(var_r1, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[0].yPosBg2 + 8) >> 3) * gBgInfo[2].hLength)]);
 
         if (gUnk_03004654[0x1A] > var_r1)
         {
@@ -6337,9 +6335,9 @@ block_46:
         }
 
         temp_r3_6 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 + 6) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
-        temp_r3_6 = MAX(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)]);
-        temp_r3_6 = MAX(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 + 6) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]);
-        temp_r3_6 = MAX(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]);
+        temp_r3_6 = max(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)]);
+        temp_r3_6 = max(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 + 6) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]);
+        temp_r3_6 = max(temp_r3_6, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[sp0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[sp0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]);
         if ((gUnk_03004654[0x1A] <= temp_r3_6) || (gEntityInfo[gEntityInfo[sp0].unk8.split.unk9].unkF == 0x13))
         {
 block_82:
@@ -8509,7 +8507,7 @@ block_33:
 
 block_40:
             temp_r5 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x14) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)];
-            temp_r5 = MAX(temp_r5, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0x14) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)]);
+            temp_r5 = max(temp_r5, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 0x14) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x1A) >> 3) * gBgInfo[2].hLength)]);
             if (gUnk_03004654[0x1B] <= temp_r5)
             {
                 gEntityInfo[arg0].xPosBg2 = var_r8;
@@ -8529,7 +8527,7 @@ block_40:
             }
 
             temp_r5 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0xC) >> 3) * gBgInfo[2].hLength)];
-            temp_r5 = MAX(temp_r5, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x34) >> 3) * gBgInfo[2].hLength)]);
+            temp_r5 = max(temp_r5, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 0x34) >> 3) * gBgInfo[2].hLength)]);
             if (gUnk_03004654[0x1B] <= temp_r5)
             {
                 gEntityInfo[arg0].yPosBg2 = var_sl;

@@ -17,13 +17,13 @@ extern const u8 gUnk_0805769C[];
 
 extern u8 gUnk_080576B4[0x20];
 
-extern const u8 gUnk_080576D4[][2];
-extern const u16 gUnk_08057714[][2];
-extern const u16 gUnk_08057794[][2];
-extern const u16 gUnk_08057814[][2];
-extern const u8 gUnk_08057894[][2];
-extern const u8 gUnk_080578D4[][2];
-extern const u8 gUnk_08057914[][2];
+extern const u8 gUnk_080576D4[0x20][2];
+extern const u16 gUnk_08057714[0x20][2];
+extern const u16 gUnk_08057794[0x20][2];
+extern const u16 gUnk_08057814[0x20][2];
+extern const u8 gUnk_08057894[0x20][2];
+extern const u8 gUnk_080578D4[0x20][2];
+extern const u8 gUnk_08057914[0x20][2];
 
 struct Unk_08057954 {
     void *unk0;
@@ -36,12 +36,21 @@ extern const u8 gUnk_08057ACC[][2][2];
 
 extern const u16 gUnk_08057B4C[];
 
-extern const void (*gUnk_08117854[])(void);
-extern const void (*gUnk_0811787C[])(void);
-extern const void (*gUnk_081178B8[])(void);
-extern const void (*gUnk_081178D8[])(void);
-extern const void (*gUnk_0811790C[])(void);
-extern const void (*gUnk_081179B4[])(void);
+extern const u16 gUnk_081177C4[];
+
+extern u8 gUnk_081177E4[0x10];
+
+extern s8 gUnk_081177F4[4][0x8];
+
+extern s8 gUnk_08117834[0x10];
+extern u8 gUnk_08117844[0x10];
+
+extern const void (*gUnk_08117854[0xA])(void);
+extern const void (*gUnk_0811787C[0xF])(void);
+extern const void (*gUnk_081178B8[0x8])(void);
+extern const void (*gUnk_081178D8[0xD])(void);
+extern const void (*gUnk_0811790C[0xE])(void);
+extern const void (*gUnk_081179B4[0xC])(void);
 
 extern const u32 *gUnk_08189AFC[];
 extern const u32 *gUnk_08189B4C[];
@@ -52,6 +61,19 @@ extern const u32 *gUnk_08189CCC[][2];
 extern const void *gUnk_08189DCC[];
 
 extern const void *gUnk_08189E84[];
+
+struct Unk_08189F04 {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
+    u8 unk7;
+    u8 unk8;
+    u8 unk9;
+    u8 padA[0xC - 0xA];
+};
+extern const struct Unk_08189F04 gUnk_08189F04[][0x10];
 
 extern u32 gUnk_082EA584[];
 extern u32 gUnk_082EA730[];
@@ -214,116 +236,61 @@ void sub_0804B464(s32 arg0, s32 arg1)
     sub_0804B424((void*)gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].unk16 * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].unk18);
 }
 
-// TODO: this function is broken https://decomp.me/scratch/3jF9A
-void sub_0804B4B0(s32 arg0, s32 arg1)
+// (98.24%) https://decomp.me/scratch/3jF9A
+NONMATCH("asm/nonmatching/sub_0804B4B0.inc", void sub_0804B4B0(s32 arg0, s32 arg1))
 {
     s32 sp4;
     void *sp8;
     s32 spC;
     u32 sp10;
-    s32 sp14;
-    s32 sp18;
-    s32 sp1C;
-    s32 sp20;
-    s32 *sp24;
-    s32 sp28;
-    void *sp2C;
-    s32 sp30;
-    u32 sp34;
-    s32 sp38;
-    s32 temp_r0_2;
-    s32 temp_r1;
-    s32 temp_r1_3;
-    s32 temp_r5;
+    u32 sp14;
+    u32 sp18;
     u8 *temp_r8;
-    s32 var_r0;
-    s32 var_r2;
-    s32 var_r3_3;
+    s32 var_r3;
     s32 var_r7;
-    // s32 var_r7;
-    struct BgInfo *temp_r1_5;
-    struct BgInfo *temp_r2;
-    u16 temp_r0_3;
-    u16 temp_r0_5;
-    u16 temp_r0_6;
-    u16 temp_r0_7;
-    // u32 var_r3_3;
-    // u32 var_r7;
-    u16 var_sl;
-    u32 temp_r0_4;
-    u32 temp_r1_4;
-    u32 temp_r4;
-    u32 temp_r6;
-    u32 var_sl_2;
-    u32 var_r3;
-    u32 var_r3_2;
+    u32 var_sl;
     u32 var_r8;
     u32 var_sb;
-    u8 temp_r3;
-    struct BgInfo *temp_r1_2;
-    struct BgInfo *temp_r2_2;
-    void *var_r1;
 
-    // var_r8 = saved_reg_r8;
-    // var_sl = saved_reg_r10;
-    // temp_r1 = (arg1 * 2) + (arg0 * 4);
+    var_r3 = arg1; // FAKE?
     var_sb = gUnk_08057ACC[arg0][arg1][1];
-    temp_r3 = gUnk_08057ACC[arg0][arg1][0];
+    var_r3 = gUnk_08057ACC[arg0][arg1][0];
     spC = *((u8*)gUnk_030034A0 + var_sb + 1); // TODO: correct pointer arithmetic?
 
-    if (((gUnk_030034A0->unk1_0) != 0) && (var_sb == 2))
+    if ((gUnk_030034A0->unk1_0 != 0) && (var_sb == 2))
     {
-        var_sl_2 = 0x10 << spC;
-        temp_r8 = DecompressAlloc((void*)gUnk_08189CCC[temp_r3][0]);
+        var_sl = 0x10 << spC;
+        if (gBgInfo); // FAKE?
+        temp_r8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][0]);
         temp_r8 += 4;
-        var_r3_3 = 0;
-        while (var_r3_3 < (s32) gBgInfo[2].vLength)
+        
+        for (var_r3 = 0; var_r3 < gBgInfo[2].vLength; var_r3++)
         {
-            // sp34 = var_sl_2 >> 1;
-            var_r7 = 0;
-            while (var_r7 < (s32) gBgInfo[2].hLength)
+            for (var_r7 = 0; var_r7 < gBgInfo[2].hLength; var_r7++)
             {
-                gUnk_03004DB0[var_r7] = temp_r8[var_r7 + (var_r3_3 * gBgInfo[2].hLength)];
-                var_r7 += 1;
+                gUnk_03004DB0[var_r7] = temp_r8[var_r7 + (var_r3 * gBgInfo[2].hLength)];
             }
-            var_r7 = gBgInfo[2].hLength;
-            while ((u32) var_r7 < var_sl_2)
+            
+            for (var_r7 = gBgInfo[2].hLength; var_r7 < var_sl; var_r7++)
             {
                 gUnk_03004DB0[var_r7] = 0;
-                var_r7 += 1;
             }
-            // (void *)0x040000D4->unk0 = gUnk_03004DB0;
-            // (void *)0x040000D4->unk4 = (void *) (gBgInfo[2].pTilemap + (var_r3_3 * var_sl_2));
-            // (void *)0x040000D4->unk8 = (s32) (sp34 | 0x80000000);
-            // if ((void *)0x040000D4->unk8 & 0x80000000)
-            // {
-            //     do
-            //     {
 
-            //     } while ((void *)0x040000D4->unk8 & 0x80000000);
-            // }
-            DmaCopy16Wait(3, gUnk_03004DB0, gBgInfo[2].pTilemap + (var_r3_3 * var_sl_2), var_sl_2);
-            var_r3_3 += 1;
+            DmaCopy16Wait(3, gUnk_03004DB0, gBgInfo[2].pTilemap + (var_r3 * var_sl), var_sl);
         }
-        var_r3_3 = gBgInfo[2].vLength;
-        while ((u32) var_r3_3 < var_sl_2)
+
+        for (var_r3 = gBgInfo[2].vLength; var_r3 < var_sl; var_r3++)
         {
-            // var_r1 = (var_r3_3 * var_sl_2) + gBgInfo[2].pTilemap;
-            // subroutine_arg0 = 0;
-            // (void *)0x040000D4->unk0 = &subroutine_arg0;
-            // (void *)0x040000D4->unk4 = var_r1;
-            // (void *)0x040000D4->unk8 = (s32) ((var_sl_2 >> 1) | 0x81000000);
-            DmaFill16(3, 0, gBgInfo[2].pTilemap + (var_r3_3 * var_sl_2), var_sl_2);
-            // var_r1 += var_sl_2;
-            var_r3_3 += 1;
+            DmaFill16(3, 0, gBgInfo[2].pTilemap + (var_r3 * var_sl), var_sl);
         }
+
         thunk_HeapFree(temp_r8 - 4);
     }
     else
     {
-        // sp8 = DecompressAlloc(*(((var_sb - 2) * 4) + (temp_r3 * 8) + gUnk_08189CCC)) + 4;
-        sp8 = DecompressAlloc((void*)gUnk_08189CCC[temp_r3][var_sb - 2]);
+        sp8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][var_sb - 2]);
         sp8 += 4;
+
         if (spC != 0)
         {
             if (spC == 3)
@@ -339,247 +306,115 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
         {
             sp4 = 1;
         }
-        var_r7 = 0;
-        // sp2C = sp8 - 4;
-        while (var_r7 < sp4)
+
+        for (var_r7 = 0; var_r7 < sp4; var_r7++)
         {
-            // temp_r0_2 = var_sb * 0x1C;
-            // // sp1C = temp_r0_2;
-            // sp20 = temp_r0_2;
-// loop_27:
-            switch (spC)                            /* irregular */
+            switch (spC)
             {
                 case 0:
-                    // temp_r0_5 = gBgInfo[var_sb].hLength;
-                    if (gBgInfo[var_sb].hLength < 0x20)
-                    {
-                        var_sl = gBgInfo[var_sb].hLength;
-                    }
-                    else
-                    {
-                        var_sl = 0x20;
-                    }
-                    temp_r6 = 0x20 - var_sl;
-                    var_r8 = temp_r6;
-                    if (temp_r6 > 0x20U)
-                    {
-                        var_r8 = 0x20;
-                    }
-                    // temp_r2 = &gBgInfo[var_sb];
-                    if (gBgInfo[var_sb].vLength < 0x20)
-                    {
-                        sp10 = (u32) gBgInfo[var_sb].vLength;
-                    }
-                    else
-                    {
-                        sp10 = 0x20;
-                    }
+                    var_sl = min(gBgInfo[var_sb].hLength, 0x20);
+                    var_r8 = min(0x20 - var_sl, 0x20);
+                    sp10 = min(gBgInfo[var_sb].vLength, 0x20);
                     sp14 = 0;
-                    // var_r0 = 0;
                     sp18 = 0;
                     break;
+
                 case 1:
                     if (var_r7 != 0)
                     {
-                        // temp_r0_6 = gBgInfo[var_sb].hLength;
-                        // var_r2 = var_sb * 8;
-                        if (gBgInfo[var_sb].hLength < 0x20)
-                        {
-                            var_sl = gBgInfo[var_sb].hLength;
-                        }
-                        else
-                        {
-                            var_sl = 0x20;
-                        }
+                        var_sl = min(gBgInfo[var_sb].hLength, 0x20);
                     }
                     else
                     {
                         var_sl = 0x20;
-                        // var_r2 = var_sb * 8;
                     }
+
                     if (var_r7 != 0)
                     {
-                        temp_r4 = 0x20 - var_sl;
-                        var_r8 = temp_r4;
-                        if (temp_r4 > 0x20U)
-                        {
-                            var_r8 = 0x20;
-                        }
+                        var_r8 = min(0x20 - var_sl, 0x20);
                     }
                     else
                     {
                         var_r8 = 0;
                     }
-                    // temp_r2_2 = &gBgInfo[var_sb];
-                    if (gBgInfo[var_sb].vLength < 0x20)
-                    {
-                        sp10 = gBgInfo[var_sb].vLength;
-                    }
-                    else
-                    {
-                        sp10 = 0x20;
-                    }
+
+                    sp10 = min(gBgInfo[var_sb].vLength, 0x20);
                     sp14 = var_r7 << 5;
-                    // var_r0 = 0;
                     sp18 = 0;
                     break;
+
                 case 2:
-                    // temp_r0_7 = gBgInfo[var_sb].hLength;
-                    if (gBgInfo[var_sb].hLength < 0x20)
-                    {
-                        var_sl = gBgInfo[var_sb].hLength;
-                    }
-                    else
-                    {
-                        var_sl = 0x20;
-                    }
-                    temp_r1_4 = 0x20 - var_sl;
-                    var_r8 = temp_r1_4;
-                    if (temp_r1_4 > 0x20U)
-                    {
-                        var_r8 = 0x20;
-                    }
+                    var_sl = min(gBgInfo[var_sb].hLength, 0x20);
+                    var_r8 = min(0x20 - var_sl, 0x20);
+
                     if (var_r7 != 0)
                     {
-                        // temp_r1_5 = &gBgInfo[var_sb];
-                        if (gBgInfo[var_sb].vLength < 0x20)
-                        {
-                            sp10 = gBgInfo[var_sb].vLength;
-                        }
-                        else
-                        {
-                            sp10 = 0x20;
-                        }
+                        sp10 = min(gBgInfo[var_sb].vLength, 0x20);
                     }
                     else
                     {
                         sp10 = 0x20;
                     }
+
                     sp14 = 0;
-                    sp18 = gBgInfo[var_sb].vLength * var_r7;
+                    sp18 = var_r7 * gBgInfo[var_sb].vLength;
                     break;
+
                 case 3:
                     if (var_r7 != 0)
                     {
-                        // temp_r0_3 = gBgInfo[var_sb].hLength;
-                        if (gBgInfo[var_sb].hLength < 0x20)
-                        {
-                            var_sl = gBgInfo[var_sb].hLength;
-                        }
-                        else
-                        {
-                            var_sl = 0x20;
-                        }
+                        var_sl = min(gBgInfo[var_sb].hLength, 0x20);
                     }
                     else
                     {
                         var_sl = 0x20;
                     }
+
                     if (var_r7 != 0)
                     {
-                        temp_r0_4 = 0x20 - var_sl;
-                        var_r8 = temp_r0_4;
-                        if (temp_r0_4 > 0x20U)
-                        {
-                            var_r8 = 0x20;
-                        }
+                        var_r8 = min(0x20 - var_sl, 0x20);
                     }
                     else
                     {
                         var_r8 = 0x20;
                     }
+
                     if (var_r7 != 0)
                     {
-                        // temp_r1_2 = &gBgInfo[var_sb];
-                        if (gBgInfo[var_sb].vLength < 0x20)
-                        {
-                            sp10 = gBgInfo[var_sb].vLength;
-                        }
-                        else
-                        {
-                            sp10 = 0x20;
-                        }
+                        sp10 = min(gBgInfo[var_sb].vLength, 0x20);
                     }
                     else
                     {
                         sp10 = 0x20;
                     }
-                    // sp14 = ((s32) (0 - (var_r7 & 2)) >> 0x1F) & 0x20;
-                    // if (var_r7 & 2)
-                    // {
-                    //     sp14 = 0x20;
-                    // }
-                    // else
-                    // {
-                    //     sp14 = 0;
-                    // }
+
                     sp14 = (var_r7 & 2) ? 0x20 : 0;
-                    // temp_r1_3 = var_r7 & 1;
-                    // var_r0 = ((s32) ((0 - temp_r1_3) | temp_r1_3) >> 0x1F) & 0x20;
-                    // sp18 = ((s32) ((0 - (var_r7 & 1)) | (var_r7 & 1)) >> 0x1F) & 0x20;
-                    // if (var_r7 & 1)
-                    // {
-                    //     sp18 = 0x20;
-                    // }
-                    // else
-                    // {
-                    //     sp18 = 0;
-                    // }
                     sp18 = (var_r7 & 1) ? 0x20 : 0;
                     break;
             }
-            var_r3 = 0;
-            // sp30 = var_r7 + 1;
-            while (var_r3 < sp10)
-            {
-                // sp24 = sp20 + &gBgInfo[0].pTilemap;
-                // sp28 = var_r8 | 0x81000000;
-                // do
-                {
-                    // temp_r5 = var_r3 << 6;
-                    // sp38 = var_r7 << 0xB;
-                    if (var_r8 != 0)
-                    {
-                        // subroutine_arg0 = 0;
-                        // (void *)0x040000D4->unk0 = &subroutine_arg0;
-                        // (void *)0x040000D4->unk4 = (void *) (*sp24 + temp_r5 + sp38 + (var_sl * 2));
-                        // (void *)0x040000D4->unk8 = sp28;
-                        DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r3 << 6) + (var_r7 << 0xB) + (var_sl * 2), var_r8);
-                    }
-                    // (void *)0x040000D4->unk0 = (u8 *) (sp8 + ((var_r3 + sp18) * gBgInfo[var_sb].hLength * 2) + (sp14 * 2));
-                    // (void *)0x040000D4->unk4 = (void *) (*((var_sb * 0x1C) + &gBgInfo[0].pTilemap) + temp_r5 + sp38);
-                    // (void *)0x040000D4->unk8 = (s32) (var_sl | 0x80000000);
-                    // if ((void *)0x040000D4->unk8 & 0x80000000)
-                    // {
-                    //     do
-                    //     {
 
-                    //     } while ((void *)0x040000D4->unk8 & 0x80000000);
-                    // }
-                    DmaCopy16Wait(3, sp8 + ((var_r3 + sp18) * gBgInfo[var_sb].hLength) * 2 + (sp14), gBgInfo[var_sb].pTilemap + (var_r3 << 6) + (var_r7 << 0xB), var_sl);
-                    var_r3 += 1;
-                }
-            }
-            var_r3_2 = sp10;
-            while ((s32) var_r3_2 <= 0x1F)
+            for (var_r3 = 0; var_r3 < sp10; var_r3++)
             {
-                // subroutine_arg0 = 0;
-                // (void *)0x040000D4->unk0 = &subroutine_arg0;
-                // (void *)0x040000D4->unk4 = (void *) (*(sp20 + &gBgInfo[0].pTilemap) + (var_r7 << 0xB) + (var_r3_2 << 6));
-                // (void *)0x040000D4->unk8 = 0x81000020;
-                DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r7 << 0xB) + (var_r3_2 << 6), 0x40);
-                var_r3_2 += 1;
+                if (var_r8 != 0)
+                {
+                    DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800) + (var_sl * 2), var_r8 * 2);
+                }
+
+                DmaCopy16Wait(3, sp8 + ((var_r3 + sp18) * gBgInfo[var_sb].hLength) * 2 + (sp14 * 2), gBgInfo[var_sb].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800), var_sl * 2);
             }
-            var_r7 = var_r7 + 1;
-            // if (var_r7 < sp4)
-            // {
-            //     goto loop_27;
-            // }
+
+            for (var_r3 = sp10; var_r3 < 0x20; var_r3++)
+            {
+                gBgInfo[2].vLength += 0; // FAKE
+
+                DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r7 * 0x800) + (var_r3 * 0x40), 0x40);
+            }
         }
+
         thunk_HeapFree(sp8 - 4);
-        return;
     }
 }
+END_NONMATCH
 
 void sub_0804B920(s32 arg0, s32 arg1)
 {
@@ -732,7 +567,7 @@ void sub_0804BDB4(void)
     gUnk_030034A0->unk8[0][1] = 0x700;
     gUnk_030034A0->unk10[0][1] = 0xA00;
     gUnk_030034A0->unk8[1][0] = 0x700;
-    gUnk_030034A0->unk10[1][0] = 0xA00;
+    gUnk_030034A0->unk10[1][1] = 0xA00;
     sub_0804B2EC();
     REG_WININ = 0x1F23;
     REG_WINOUT = 0x3D;
@@ -927,19 +762,6 @@ void sub_0804C24C(void)
     gUnk_03004D84 += 7;
 }
 
-struct Unk_08189F04 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6;
-    u8 unk7;
-    u8 unk8;
-    u8 unk9;
-    u8 padA[0xC - 0xA];
-};
-extern const struct Unk_08189F04 gUnk_08189F04[][0x10];
-
 void sub_0804C300(void)
 {
     s32 var_r8;
@@ -1092,8 +914,6 @@ void sub_0804C86C(void)
     gBg2XMag = gBg2YMag = sub_0804B254(gUnk_03004D84 + 2);
     gUnk_03004D84 += 4;
 }
-
-extern void gUnk_081177E4;
 
 void sub_0804C898(void)
 {
@@ -1374,8 +1194,6 @@ s32 sub_0804CF80(s32 arg0)
     return 1;
 }
 
-extern s8 gUnk_081177F4[4][0x8];
-
 s32 sub_0804CFD0(s32 arg0)
 {
     s8 subroutine_arg0[4][0x10];
@@ -1413,9 +1231,6 @@ s32 sub_0804D074(s32 arg0)
         return 0;
     }
 }
-
-extern s8 gUnk_08117834[0x10];
-extern u8 gUnk_08117844[0x10];
 
 s32 sub_0804D0B0(s32 arg0)
 {
@@ -1544,8 +1359,6 @@ s32 sub_0804D0B0(s32 arg0)
     gUnk_030052A4[arg0].unkC += 1;
     return 1;
 }
-
-extern const u16 gUnk_081177C4[]; // TODO: struct?
 
 void sub_0804D32C(void)
 {
