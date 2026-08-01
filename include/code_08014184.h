@@ -10,8 +10,8 @@ struct Unk_08014184 {
     u8 unk2;
     u8 pad3[0x4 - 0x3];
 };
-struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
-struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3);
+struct Unk_08014184 sub_08014184(u16 arg1, u16 arg2, u8 arg3);
+struct Unk_08014184 sub_08014230(u16 arg1, u16 arg2, u8 arg3);
 
 void sub_08014318(void);
 void sub_080144C4(void);

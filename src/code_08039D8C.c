@@ -2034,14 +2034,6 @@ void sub_0803D15C(void)
     }
 }
 
-static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
-{
-    struct Unk_08014184 sp;
-
-    sub_08014230(&sp, arg1, arg2, arg3);
-    return sp;
-}
-
 // 3D4AC
 void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
 {
@@ -2069,7 +2061,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
         }
         else
         {
-            temp_r0 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
+            temp_r0 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
             if (temp_r0.unk0 != 0xFFFF)
             {
                 var_r3 = gUnk_03004654[0x1B];
@@ -2110,7 +2102,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
         }
         else
         {
-            temp_r0_1 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
+            temp_r0_1 = sub_08014230(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
             if (temp_r0_1.unk0 != 0xFFFF)
             {
                 var_r3 = gUnk_03004654[0x1B];

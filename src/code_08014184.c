@@ -77,7 +77,7 @@ extern u8 gUnk_080B9368[0x100];
 extern u8 gUnk_080B9668[0x200];
 
 // 14184
-struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3)
+struct Unk_08014184 sub_08014184(u16 arg1, u16 arg2, u8 arg3)
 {
     u32 var_r3;
     struct Unk_08014184 var_r4;
@@ -88,28 +88,16 @@ struct Unk_08014184 *sub_08014184(struct Unk_08014184 *arg0, u16 arg1, u16 arg2,
         {
             var_r4.unk0 = gUnk_03004D80->unk4[var_r3].unk0 - 3;
             var_r4.unk2 = gUnk_03004D80->unk4[var_r3].unk8;
-            *arg0 = var_r4;
-            goto exit; // FAKE
-            return arg0;
+            return var_r4;
         }
     }
 
     var_r4.unk0 = -1;
-    *arg0 = var_r4;
-    exit:
-    return arg0;
-}
-
-static inline struct Unk_08014184 Call_sub_08014184(u16 arg1, u16 arg2, u8 arg3)
-{
-    struct Unk_08014184 sp;
-
-    sub_08014184(&sp, arg1, arg2, arg3);
-    return sp;
+    return var_r4;
 }
 
 // 14230
-struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2, u8 arg3)
+struct Unk_08014184 sub_08014230(u16 arg1, u16 arg2, u8 arg3)
 {
     s32 temp_r1_2;
     struct Unk_08014184 var_r5;
@@ -119,57 +107,38 @@ struct Unk_08014184 *sub_08014230(struct Unk_08014184 *arg0, u16 arg1, u16 arg2,
 
     for (var_r3 = 0; var_r3 < gUnk_03004D80->unk2; var_r3++)
     {
-        if (gUnk_03004D80->unk4[var_r3].unk4 >= arg1)
+        if (gUnk_03004D80->unk4[var_r3].unk4 < arg1)
         {
-            if (arg1 >= gUnk_03004D80->unk4[var_r3].unk0)
-            {
-                if (gUnk_03004D80->unk4[var_r3].unk2 == gUnk_03004D80->unk4[var_r3].unk6)
-                {
-                    if (((arg2 - arg3) <= gUnk_03004D80->unk4[var_r3].unk2) && (gUnk_03004D80->unk4[var_r3].unk2 <= arg2))
-                    {
-                        var_r5.unk0 = gUnk_03004D80->unk4[var_r3].unk2;
-                        var_r5.unk2 = gUnk_03004D80->unk4[var_r3].unk8;
-                        // Fake?
-                        *arg0 = var_r5;
-                        goto exit;
-                        return arg0;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-                else
-                {
-                    temp_r1_2 = (((gUnk_03004D80->unk4[var_r3].unk6 - gUnk_03004D80->unk4[var_r3].unk2) * (arg1 - gUnk_03004D80->unk4[var_r3].unk0)) / (gUnk_03004D80->unk4[var_r3].unk4 - gUnk_03004D80->unk4[var_r3].unk0)) + gUnk_03004D80->unk4[var_r3].unk2;
-                    if ((temp_r1_2 >= (arg2 - arg3)) && (temp_r1_2 <= (arg2 + 3)))
-                    {
-                        var_r5.unk0 = temp_r1_2;
-                        var_r5.unk2 = gUnk_03004D80->unk4[var_r3].unk8;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-            }
+            continue;
+        }
 
-            *arg0 = var_r5;
-            exit:
-            return arg0;
+        if (arg1 < gUnk_03004D80->unk4[var_r3].unk0)
+        {
+            return var_r5;
+        }
+
+        if (gUnk_03004D80->unk4[var_r3].unk2 == gUnk_03004D80->unk4[var_r3].unk6)
+        {
+            if (((arg2 - arg3) <= gUnk_03004D80->unk4[var_r3].unk2) && (gUnk_03004D80->unk4[var_r3].unk2 <= arg2))
+            {
+                var_r5.unk0 = gUnk_03004D80->unk4[var_r3].unk2;
+                var_r5.unk2 = gUnk_03004D80->unk4[var_r3].unk8;
+                return var_r5;
+            }
+        }
+        else
+        {
+            temp_r1_2 = (((gUnk_03004D80->unk4[var_r3].unk6 - gUnk_03004D80->unk4[var_r3].unk2) * (arg1 - gUnk_03004D80->unk4[var_r3].unk0)) / (gUnk_03004D80->unk4[var_r3].unk4 - gUnk_03004D80->unk4[var_r3].unk0)) + gUnk_03004D80->unk4[var_r3].unk2;
+            if ((temp_r1_2 >= (arg2 - arg3)) && (temp_r1_2 <= (arg2 + 3)))
+            {
+                var_r5.unk0 = temp_r1_2;
+                var_r5.unk2 = gUnk_03004D80->unk4[var_r3].unk8;
+                return var_r5;
+            }
         }
     }
 
-    *arg0 = var_r5;
-    return arg0;
-}
-
-static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
-{
-    struct Unk_08014184 sp;
-
-    sub_08014230(&sp, arg1, arg2, arg3);
-    return sp;
+    return var_r5;
 }
 
 /*
@@ -2410,7 +2379,7 @@ void sub_08016EEC(u8 arg0)
                             gEntityInfo[arg0].yPosBg2 += 1;
                         }
 
-                        sp0 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2, 0x18);
+                        sp0 = sub_08014184(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2, 0x18);
                         if (sp0.unk0 != 0xFFFF)
                         {
                             sp34 = gUnk_03004654[0x1B];
@@ -2420,7 +2389,7 @@ void sub_08016EEC(u8 arg0)
                             sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 4) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
                         }
 
-                        sp4 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                        sp4 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                         if (sp4.unk0 != 0xFFFF)
                         {
                             sp30 = gEntityInfo[arg0].yPosBg2 = sp4.unk0;
@@ -2447,7 +2416,7 @@ block_128:
                         gEntityInfo[arg0].yPosBg2 += 1;
                     }
 
-                    sp0 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                    sp0 = sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                     if (sp0.unk0 != 0xFFFF)
                     {
                         sp34 = gUnk_03004654[0x1B];
@@ -2457,7 +2426,7 @@ block_128:
                         sp34 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + 4) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)];
                     }
 
-                    spC = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                    spC = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                     if (spC.unk0 != 0xFFFF)
                     {
                         sp30 = gEntityInfo[arg0].yPosBg2 = spC.unk0;
@@ -3204,14 +3173,14 @@ block_128:
                     gEntityInfo[arg0].xPosBg2 += gUnk_03003508;
                     if (gUnk_03004C20.unkA == 1)
                     {
-                        sp4 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                        sp4 = sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                         if (sp4.unk0 != 0xFFFF)
                         {
                             sp34 = gUnk_03004654[0x1B];
                         }
                         else
                         {
-                            sp14 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                            sp14 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                             if (sp14.unk0 == sp4.unk0)
                             {
                                 goto block_472;
@@ -3230,10 +3199,10 @@ block_128:
                     gEntityInfo[arg0].xPosBg2 -= gUnk_03003508;
                     if (gUnk_03004C20.unkA == 1)
                     {
-                        sp14 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                        sp14 = sub_08014184(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                         if (sp14.unk0 == 0xFFFF)
                         {
-                            sp1C = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
+                            sp1C = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18);
                             if (sp1C.unk0 != sp14.unk0)
                             {
                                 gEntityInfo[arg0].yPosBg2 = sp1C.unk0;
@@ -3942,8 +3911,9 @@ block_716:
         case 23:
             if (gEntityInfo[arg0].unkF == 0xE)
             {
+                struct Unk_08014184 sp;
                 gEntityInfo[arg0].yPosBg2 -= 3;
-                if ((gUnk_03004C20.unkA == 1) && (Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18).unk0 != 0xFFFF))
+                if ((gUnk_03004C20.unkA == 1) && (sp = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18), sp.unk0 != 0xFFFF))
                 {
                     sp34 = gUnk_03004654[0x1B];
                 }
@@ -3954,8 +3924,9 @@ block_716:
             }
             else
             {
+                struct Unk_08014184 sp;
                 gEntityInfo[arg0].yPosBg2 += 3;
-                if ((gUnk_03004C20.unkA == 1) && (Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18).unk0 != 0xFFFF))
+                if ((gUnk_03004C20.unkA == 1) && (sp = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x18), sp.unk0 != 0xFFFF))
                 {
                     sp34 = gUnk_03004654[0x1B];
                 }
@@ -8277,7 +8248,6 @@ void sub_080202D4(u8 arg0)
         gUnk_03003590[sp20].unk5_0 = gEntityInfo[arg0].unkC_2;
     }
 }
-// END_NONMATCH
 
 // 20FB8
 void sub_08020FB8(u8 arg0)
@@ -9345,7 +9315,7 @@ void sub_08022CA0(u8 arg0)
                 }
 
                 gEntityInfo[arg0].yPosBg2 += 1;
-                temp_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 - 4, 0x10);
+                temp_r2 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 - 4, 0x10);
                 if (temp_r2.unk0 != 0xFFFF)
                 {
                     gEntityInfo[arg0].yPosBg2 = temp_r2.unk0 + 4;
@@ -9400,7 +9370,7 @@ void sub_08022CA0(u8 arg0)
                 }
             }
 
-            temp_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 - 4, 0x10);
+            temp_r2 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 - 4, 0x10);
             if (temp_r2.unk0 != 0xFFFF)
             {
                 gEntityInfo[arg0].yPosBg2 = temp_r2.unk0 + 4;
@@ -9415,7 +9385,7 @@ void sub_08022CA0(u8 arg0)
             {
                 temp_r5 = 0x10;
             }
-            temp_r2 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2 + temp_r5, gEntityInfo[arg0].yPosBg2, 0x18);
+            temp_r2 = sub_08014184(gEntityInfo[arg0].xPosBg2 + temp_r5, gEntityInfo[arg0].yPosBg2, 0x18);
             if (temp_r2.unk0 != 0xFFFF)
             {
                 gEntityInfo[arg0].xPosBg2 = temp_r2.unk0 - temp_r5;
@@ -9699,7 +9669,7 @@ void sub_08023988(u8 arg0)
             {
                 gEntityInfo[arg0].unk8.split.unk8 -= 1;
 
-                var_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2 + 4, gEntityInfo[arg0].yPosBg2 - 8, 0x10);
+                var_r2 = sub_08014230(gEntityInfo[arg0].xPosBg2 + 4, gEntityInfo[arg0].yPosBg2 - 8, 0x10);
                 if (var_r2.unk0 != 0xFFFF)
                 {
                     gEntityInfo[arg0].yPosBg2 = var_r2.unk0;
@@ -9718,7 +9688,7 @@ void sub_08023988(u8 arg0)
             }
             gEntityInfo[arg0].yPosBg2 += 4;
 
-            var_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2 + 4, gEntityInfo[arg0].yPosBg2 - 0x10, 0x10);
+            var_r2 = sub_08014230(gEntityInfo[arg0].xPosBg2 + 4, gEntityInfo[arg0].yPosBg2 - 0x10, 0x10);
             if (var_r2.unk0 != 0xFFFF)
             {
                 gEntityInfo[arg0].yPosBg2 = var_r2.unk0 + 0x10;
@@ -9727,11 +9697,11 @@ void sub_08023988(u8 arg0)
 
             if (gEntityInfo[arg0].unkC_2 & 1)
             {
-                var_r2 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2 - 8, gEntityInfo[arg0].yPosBg2, 0x18);
+                var_r2 = sub_08014184(gEntityInfo[arg0].xPosBg2 - 8, gEntityInfo[arg0].yPosBg2, 0x18);
             }
             else
             {
-                var_r2 = Call_sub_08014184(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2, 0x18);
+                var_r2 = sub_08014184(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2, 0x18);
             }
 
             if (var_r2.unk0 != 0xFFFF)
@@ -9840,7 +9810,7 @@ void sub_08023BC0(u8 arg0)
             else
             {
                 gEntityInfo[arg0].yPosBg2 += 1;
-                temp_r2 = Call_sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x10U);
+                temp_r2 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 0x10U);
                 if (temp_r2.unk0 != 0xFFFF)
                 {
                     gEntityInfo[arg0].yPosBg2 = temp_r2.unk0;

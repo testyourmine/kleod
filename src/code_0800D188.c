@@ -36,22 +36,6 @@ extern u8 gUnk_08116A16[4][4];
 extern const void *gUnk_0818B7DC[];
 extern void *gUnk_0818B9B8[4][4];
 
-static inline struct Unk_08014184 Call_sub_08014184(u16 arg1, u16 arg2, u8 arg3)
-{
-    struct Unk_08014184 sp;
-
-    sub_08014184(&sp, arg1, arg2, arg3);
-    return sp;
-}
-
-static inline struct Unk_08014184 Call_sub_08014230(u16 arg1, u16 arg2, u8 arg3)
-{
-    struct Unk_08014184 sp;
-
-    sub_08014230(&sp, arg1, arg2, arg3);
-    return sp;
-}
-
 void sub_0800D188(void)
 {
     struct Unk_08014184 sp0;
@@ -536,16 +520,16 @@ void sub_0800D188(void)
         {
             if (gEntityInfo[0].unkC_2 & 1)
             {
-                sp0 = Call_sub_08014184(gEntityInfo[0].xPosBg2 - 0x10, gEntityInfo[0].yPosBg2, 0x18);
+                sp0 = sub_08014184(gEntityInfo[0].xPosBg2 - 0x10, gEntityInfo[0].yPosBg2, 0x18);
             }
             else
             {
-                sp0 = Call_sub_08014184(gEntityInfo[0].xPosBg2 + 0x10, gEntityInfo[0].yPosBg2, 0x18);
+                sp0 = sub_08014184(gEntityInfo[0].xPosBg2 + 0x10, gEntityInfo[0].yPosBg2, 0x18);
             }
         }
         else
         {
-            sp0 = Call_sub_08014184(gEntityInfo[0].xPosBg2 + 8, gEntityInfo[0].yPosBg2, 0x18);
+            sp0 = sub_08014184(gEntityInfo[0].xPosBg2 + 8, gEntityInfo[0].yPosBg2, 0x18);
         }
 
         if (sp0.unk0 != 0xFFFF)
@@ -1544,7 +1528,7 @@ block_474:
                 }
                 else
                 {
-                    spC = Call_sub_08014230(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2 + 1, 0x18);
+                    spC = sub_08014230(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2 + 1, 0x18);
                     if (spC.unk0 != 0xFFFF)
                     {
                         sp20 = gUnk_03004654[0x1B];
@@ -2168,7 +2152,7 @@ block_474:
                 var_r6 = 0xFFFC;
             }
 
-            sp10 = Call_sub_08014230(gEntityInfo[0].xPosBg2 + var_r6, gEntityInfo[0].yPosBg2, 0x18);
+            sp10 = sub_08014230(gEntityInfo[0].xPosBg2 + var_r6, gEntityInfo[0].yPosBg2, 0x18);
             if (sp10.unk0 != 0xFFFF)
             {
                 sp1C = gEntityInfo[0].yPosBg2 = sp10.unk0;
@@ -2177,7 +2161,7 @@ block_474:
             }
             else
             {
-                sp10 = Call_sub_08014230(gEntityInfo[0].xPosBg2 + var_r6, gEntityInfo[0].yPosBg2 - 0x18, 0x14);
+                sp10 = sub_08014230(gEntityInfo[0].xPosBg2 + var_r6, gEntityInfo[0].yPosBg2 - 0x18, 0x14);
                 if (sp10.unk0 != 0xFFFF)
                 {
                     sp1C = gEntityInfo[0].yPosBg2 += 3;
