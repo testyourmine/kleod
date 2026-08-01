@@ -34,7 +34,7 @@ struct Unk_080D89A8 {
     s32 unk0;
     s32 unk4;
 };
-extern struct Unk_080D89A8 gUnk_080D89A8[6][5];
+extern struct Unk_080D89A8 gUnk_080D89A8[5][5];
 
 extern struct Unk_0300542C *gUnk_0818B704[6][7];
 

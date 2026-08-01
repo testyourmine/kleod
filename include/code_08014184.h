@@ -3,6 +3,8 @@
 
 #include "global.h"
 
+void sub_0800D188(void);
+
 struct Unk_08014184 {
     u16 unk0;
     u8 unk2;

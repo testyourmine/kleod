@@ -50,7 +50,6 @@ extern u8 gUnk_080B92E8[0x80];
 extern u8 gUnk_080B9468[0x200];
 extern u8 gUnk_080B9668[0x200];
 
-extern void sub_0800D188(void);
 extern void sub_0801C82C(u32); // should be u8 param
 
 /*

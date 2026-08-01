@@ -47,7 +47,7 @@ struct Unk_03003410 {
 };
 extern struct Unk_03003410 gUnk_03003410;
 
-extern volatile u16 *gUnk_030034FC;
+extern u16 *gUnk_030034FC;
 extern u8 *gUnk_03004658; // TODO: struct?
 
 struct Unk_03004670 {
@@ -349,7 +349,7 @@ struct Unk_03005220 {
     /* 0x49 */ u8 unk49;
     /* 0x4A */ u8 unk4A;
     /* 0x4B */ u8 unk4B;
-    /* 0x4C */ s8 lives;
+    /* 0x4C */ u8 lives;
     /* 0x4D */ u8 unk4D;
     /* 0x4E */ u8 unk4E;
     /* 0x4F */ u8 unk4F;
@@ -537,7 +537,7 @@ struct Unk_03004680 {
 }; /* size = 0x8 */ 
 extern struct Unk_03004680 gOamAffineBuffer[]; // OAM affine buffer
 
-extern s32 gUnk_030007D4;
+extern u32 gUnk_030007D4;
 extern s32 gUnk_030007F0;
 extern s32 gUnk_030007F4;
 extern s32 gUnk_03000804;
@@ -562,7 +562,7 @@ extern s32 gUnk_03003634;
 extern s32 gUnk_03003638;
 extern s32 gUnk_03003640;
 extern s32 gUnk_03004650;
-extern s32 gUnk_03004664;
+extern u32 gUnk_03004664;
 extern s32 gUnk_03004674;
 extern s32 gUnk_03004788;
 extern s32 gUnk_030047B4;
