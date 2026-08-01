@@ -26,6 +26,10 @@ struct Unk_0800BEF0 {
     s8 unk8;
     s8 unk9;
 };
-void* sub_0800BEF0(s32 *arg0, struct Unk_0800BEF0 arg1);
+struct Unk_0800BEF0_2 {
+    u16 unk0;
+    u16 unk2;
+};
+struct Unk_0800BEF0_2 sub_0800BEF0(struct Unk_0800BEF0 arg0);
 
 #endif // GUARD_CODE_08003D58_H

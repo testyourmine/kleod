@@ -2352,62 +2352,62 @@ void sub_0800B3C0(void)
 }
 
 // BEF0
-void* sub_0800BEF0(s32 *arg0, struct Unk_0800BEF0 arg1)
+struct Unk_0800BEF0_2 sub_0800BEF0(struct Unk_0800BEF0 arg0)
 {
     u32 temp_r0;
-    u32 var_r4;
+    struct Unk_0800BEF0_2 var_r4;
     s8 var_r2;
     s8 var_r3;
     s8 var_r5;
     s8 var_r7;
 
-    var_r3 = (arg1.unk4 - arg1.unk0) >> 3;
-    var_r5 = (arg1.unk6 - arg1.unk2) >> 3;
-    var_r4 = (arg1.unk2 << 0x10) | arg1.unk0;
+    var_r3 = (arg0.unk4 - arg0.unk0) >> 3;
+    var_r5 = (arg0.unk6 - arg0.unk2) >> 3;
+    var_r4.unk0 = arg0.unk0;
+    var_r4.unk2 = arg0.unk2;
 
     if (var_r3 < 0)
     {
-        temp_r0 = arg1.unk8;
+        temp_r0 = arg0.unk8;
         var_r7 = -temp_r0;
         var_r3 = -var_r3;
     }
     else
     {
-        var_r7 = arg1.unk8;
+        var_r7 = arg0.unk8;
     }
 
     if (var_r5 < 0)
     {
-        temp_r0 = arg1.unk8;
+        temp_r0 = arg0.unk8;
         var_r2 = -temp_r0;
         var_r5 = -var_r5;
     }
     else
     {
-        var_r2 = arg1.unk8;
+        var_r2 = arg0.unk8;
     }
 
     if (var_r3 >= var_r5)
     {
-        var_r4 = (u16) (var_r7 + var_r4) | (var_r4 & 0xFFFF0000);
+        var_r4.unk0 += var_r7;
         gUnk_030034DC += var_r5;
         if (gUnk_030034DC >= var_r3)
         {
-            var_r4 = (((var_r4 >> 0x10) + var_r2) << 0x10) | (var_r4 & 0xFFFF);
+            var_r4.unk2 += var_r2;
             gUnk_030034DC -= var_r3;
         }
     }
     else
     {
-        var_r4 = (((var_r4 >> 0x10) + var_r2) << 0x10) | (var_r4 & 0xFFFF);
+        var_r4.unk2 += var_r2;
         gUnk_030034DC += var_r3;
         if (gUnk_030034DC >= var_r5)
         {
-            var_r4 = (u16) (var_r7 + var_r4) | (var_r4 & 0xFFFF0000);
+            var_r4.unk0 += var_r7;
             gUnk_030034DC -= var_r5;
         }
     }
 
-    *arg0 = var_r4;
-    return arg0;
+    return var_r4;
 }

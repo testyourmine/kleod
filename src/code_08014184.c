@@ -7846,20 +7846,15 @@ block_36:
     }
 }
 
-// https://decomp.me/scratch/TBZiC
 // 202D4
-NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
+void sub_080202D4(u8 arg0)
 {
     struct Unk_0800BEF0 sp0;
-    s32 sp10;
-    s32 sp14;
-    s32 sp18;
-    s32 sp1C;
+    struct Unk_0800BEF0_2 sp10;
+    struct Unk_0800BEF0_2 sp14;
+    struct Unk_0800BEF0_2 sp18;
+    struct Unk_0800BEF0_2 sp1C;
     u8 sp20;
-    u32 temp_r0;
-    u32 temp_r0_2;
-    u32 temp_r2;
-    u32 temp_r5;
     s8 var_r3;
 
     if (arg0 == 0x15)
@@ -8087,11 +8082,9 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
                     {                        
                         sp0.unk8 = sp0.unk9 = 3;
                     }
-                    sub_0800BEF0(&sp10, sp0);
-                    temp_r5 = sp10;
-                    gEntityInfo[arg0].xPosBg2 = temp_r5;
-                    gEntityInfo[arg0].yPosBg2 = temp_r5 >> 0x10;
-                    do {} while(0); // FAKE
+                    sp10 = sub_0800BEF0(sp0);
+                    gEntityInfo[arg0].xPosBg2 = sp10.unk0;
+                    gEntityInfo[arg0].yPosBg2 = sp10.unk2;
 
                     if (((gEntityInfo[arg0].xPosBg2 & 0xF8) == ((gUnk_03005400.unk4 + var_r3) & 0xF8)) && (((gEntityInfo[arg0].yPosBg2 & 0xF8) == (gUnk_03005400.unk6 & 0xF8))))
                     {
@@ -8142,10 +8135,9 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
                     sp0.unk4 = 0xF0;
                     sp0.unk6 = 0x78;
                     sp0.unk8 = sp0.unk9 = 4;
-                    sub_0800BEF0(&sp14, sp0);
-                    temp_r0_2 = sp14;
-                    gEntityInfo[arg0].xPosBg2 = temp_r0_2;
-                    gEntityInfo[arg0].yPosBg2 = temp_r0_2 >> 0x10;
+                    sp14 = sub_0800BEF0(sp0);
+                    gEntityInfo[arg0].xPosBg2 = sp14.unk0;
+                    gEntityInfo[arg0].yPosBg2 = sp14.unk2;
 
                     if ((gEntityInfo[arg0].xPosBg2 >> 3) == 0x1E)
                     {
@@ -8188,10 +8180,9 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
             sp0.unk4 = 0xF0;
             sp0.unk6 = 0x78;
             sp0.unk8 = sp0.unk9 = 2;
-            sub_0800BEF0(&sp18, sp0);
-            temp_r0 = sp18;
-            gEntityInfo[arg0].xPosBg2 = temp_r0;
-            gEntityInfo[arg0].yPosBg2 = temp_r0 >> 0x10;
+            sp18 = sub_0800BEF0(sp0);
+            gEntityInfo[arg0].xPosBg2 = sp18.unk0;
+            gEntityInfo[arg0].yPosBg2 = sp18.unk2;
 
             if (gEntityInfo[arg0].unk8.split.unk8 == 1)
             {
@@ -8243,10 +8234,9 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
             sp0.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0;
             sp0.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2;
             sp0.unk8 = sp0.unk9 = 2;
-            sub_0800BEF0(&sp1C, sp0);
-            temp_r2 = sp1C;
-            gEntityInfo[arg0].xPosBg2 = temp_r2;
-            gEntityInfo[arg0].yPosBg2 = temp_r2 >> 0x10;
+            sp1C = sub_0800BEF0(sp0);
+            gEntityInfo[arg0].xPosBg2 = sp1C.unk0;
+            gEntityInfo[arg0].yPosBg2 = sp1C.unk2;
 
             if (((gEntityInfo[arg0].xPosBg2 >> 0x3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 >> 3)) && ((gEntityInfo[arg0].yPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 >> 3)))
             {
@@ -8287,7 +8277,7 @@ NONMATCH("asm/nonmatching/sub_080202D4.inc", void sub_080202D4(u8 arg0))
         gUnk_03003590[sp20].unk5_0 = gEntityInfo[arg0].unkC_2;
     }
 }
-END_NONMATCH
+// END_NONMATCH
 
 // 20FB8
 void sub_08020FB8(u8 arg0)
@@ -8367,8 +8357,7 @@ extern s32 gUnk_03000004; // TODO: should be static variable inside sub_08021194
 void sub_08021194(u8 arg0)
 {
     struct Unk_0800BEF0 sp0;
-    s32 spC;
-    u32 temp_r0;
+    struct Unk_0800BEF0_2 spC;
     u16 var_r8;
     u16 var_sl;
     u8 temp_r5;
@@ -8595,10 +8584,9 @@ block_40:
             sp0.unk4 = gEntityInfo[0x12].xPosBg2;
             sp0.unk6 = gEntityInfo[0x12].yPosBg2 - 0x40;
             sp0.unk8 = sp0.unk9 = 8;
-            sub_0800BEF0(&spC, sp0);
-            temp_r0 = spC;
-            gEntityInfo[arg0].xPosBg2 = temp_r0;
-            gEntityInfo[arg0].yPosBg2 = temp_r0 >> 0x10;
+            spC = sub_0800BEF0(sp0);
+            gEntityInfo[arg0].xPosBg2 = spC.unk0;
+            gEntityInfo[arg0].yPosBg2 = spC.unk2;
 
             if ((gEntityInfo[0x12].xPosBg2 - 0xC) >= (gEntityInfo[arg0].xPosBg2 + 0x14))
             {

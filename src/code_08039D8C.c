@@ -1265,7 +1265,7 @@ void sub_0803B600(void)
 void sub_0803BF84(void)
 {
     struct Unk_0800BEF0 sp0;
-    u32 spC;
+    struct Unk_0800BEF0_2 spC;
     u8 var_r4;
 
     if (gUnk_030034E4 == 1)
@@ -1538,9 +1538,9 @@ void sub_0803BF84(void)
         sp0.unk4 = gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][0];
         sp0.unk6 = gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][1];
         sp0.unk8 = sp0.unk9 = 2;
-        sub_0800BEF0(&spC, sp0);
-        gEntityInfo[0].xPosBg2 = spC;
-        gEntityInfo[0].yPosBg2 = spC >> 0x10;
+        spC = sub_0800BEF0(sp0);
+        gEntityInfo[0].xPosBg2 = spC.unk0;
+        gEntityInfo[0].yPosBg2 = spC.unk2;
 
         if ((gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1) > 4)
         {
@@ -3063,8 +3063,7 @@ void sub_0803E904(u8 arg0)
 
             case 3:
                 {
-                    u32 sp10;
-                    u32 tmp;
+                    struct Unk_0800BEF0_2 sp10;
                     struct Unk_0800BEF0 sp4;
                     sp4.unk0 = gEntityInfo[arg0].xPosBg2;
                     sp4.unk2 = gEntityInfo[arg0].yPosBg2;
@@ -3072,10 +3071,9 @@ void sub_0803E904(u8 arg0)
                     sp4.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
                     sp4.unk9 = 2;
                     sp4.unk8 = 2;
-                    sub_0800BEF0(&sp10, sp4);
-                    tmp = sp10;
-                    gEntityInfo[arg0].xPosBg2 = tmp;
-                    gEntityInfo[arg0].yPosBg2 = tmp >> 0x10;
+                    sp10 = sub_0800BEF0(sp4);
+                    gEntityInfo[arg0].xPosBg2 = sp10.unk0;
+                    gEntityInfo[arg0].yPosBg2 = sp10.unk2;
                 }
 
                 if ((gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 >> 3) != (gEntityInfo[arg0].xPosBg2 >> 0x3))
@@ -4998,10 +4996,9 @@ void sub_08041F34(u8 arg0)
 void sub_08042024(u8 arg0)
 {
     struct Unk_0800BEF0 sp0;
-    s32 spC;
+    struct Unk_0800BEF0_2 spC;
     u32 temp_r1;
-    u32 temp_r2;
-    u32 temp_r5;
+    u8 temp_r5;
     u8 temp_r8;
     s32 tmp;
 
@@ -5089,10 +5086,9 @@ void sub_08042024(u8 arg0)
                 sp0.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
                 sp0.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
                 sp0.unk8 = sp0.unk9 = 2;
-                sub_0800BEF0(&spC, sp0);
-                temp_r2 = spC;
-                gEntityInfo[arg0].xPosBg2 = temp_r2;
-                gEntityInfo[arg0].yPosBg2 = temp_r2 >> 0x10;
+                spC = sub_0800BEF0(sp0);
+                gEntityInfo[arg0].xPosBg2 = spC.unk0;
+                gEntityInfo[arg0].yPosBg2 = spC.unk2;
                 if (((gEntityInfo[arg0].xPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 >> 3)) && ((gEntityInfo[arg0].yPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 >> 3)))
                 {
                     gUnk_03005400.unk0 = 0x1E;
@@ -5308,8 +5304,7 @@ b:
                 REG_BLDCNT = 0;
                 gBgInfo[1].hOfs = 0;
                 gBgInfo[0].hOfs = 0;
-                temp_r2 = temp_r5; // TODO: temp_r5 is fake
-                REG_BG0HOFS = temp_r2 >> 0x1C;
+                REG_BG0HOFS = temp_r5 >> 4; // FAKE
                 REG_BG1HOFS = 0;
 
                 REG_IE &= ~INTR_FLAG_HBLANK;
