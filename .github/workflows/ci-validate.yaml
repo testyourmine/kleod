@@ -50,7 +50,6 @@ jobs:
       run: |
         ./build.sh
         ./install.sh ../
-        echo $PWD >> "$GITHUB_PATH"
       working-directory: agbcc
 
     - name: Build
