@@ -38,7 +38,7 @@ jobs:
           SECRET_NAME: baserom.gba
 
     - name: Install Packages
-      run: sudo apt-get install -y git gcc-arm-none-eabi binutils-arm-none-eabi
+      run: sudo apt-get install -y git make build-essential libpng-dev gcc-arm-none-eabi binutils-arm-none-eabi
 
     - name: Checkout agbcc
       uses: actions/checkout@master
