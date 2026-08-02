@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ foo, bar ]
+        version: [ us ]
 
     steps:
     - name: Checkout
@@ -30,6 +30,7 @@ jobs:
     - name: Decrypt Secrets
       working-directory: kleod-secret
       run: |
+        chmod +x decrypt_secret.sh
         ./decrypt_secret.sh
         mv baserom.gba ..
       env:
