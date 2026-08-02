@@ -1,0 +1,62 @@
+name: ci-validate
+on:
+  workflow_call:
+    secrets:
+      SECRET_PASSPHRASE: { required: true }
+      SECRET_REPO: { required: true }
+      SECRET_TOKEN: { required: true }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ foo, bar ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha || github.ref }}
+
+    - name: Fetch Secrets
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ secrets.SECRET_REPO }}
+        token: ${{ secrets.SECRET_TOKEN }}
+        path: kleod-secret
+
+    - name: Decrypt Secrets
+      working-directory: kleod-secret
+      run: |
+        ./decrypt_secret.sh
+        mv baserom.gba ..
+      env:
+          SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
+          SECRET_NAME: baserom.gba
+
+    - name: Install Packages
+      run: sudo apt-get install -y git gcc-arm-none-eabi binutils-arm-none-eabi
+
+    - name: Checkout agbcc
+      uses: actions/checkout@master
+      with:
+        path: agbcc
+        repository: pret/agbcc
+    
+    - name: Install agbcc
+      run: |
+        ./build.sh
+        ./install.sh ../
+        echo $PWD >> "$GITHUB_PATH"
+      working-directory: agbcc
+
+    - name: Build
+      run: make -j
+    
+    - name: Compare
+      run: make compare
+
+    - name: Cleanup
+      run: make clean
