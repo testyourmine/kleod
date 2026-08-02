@@ -86,7 +86,7 @@ _0804A0FC:
 	mov sl, r0
 	adds r2, r4, #1
 _0804A11C:
-	ldr r1, _0804A18C @ =gUnk_030047FC
+	ldr r1, _0804A18C @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x29
 	add r0, sl
@@ -141,10 +141,10 @@ _0804A168:
 _0804A180: .4byte 0x040000D4
 _0804A184: .4byte gBgDataPtrs
 _0804A188: .4byte 0x8000001E
-_0804A18C: .4byte gUnk_030047FC
+_0804A18C: .4byte gSaveData
 _0804A190: .4byte gBgTilemapBufs+0x800
 _0804A194:
-	ldr r0, _0804A20C @ =gUnk_030047FC
+	ldr r0, _0804A20C @ =gSaveData
 	ldr r0, [r0]
 	ldr r1, _0804A210 @ =gUnk_03004658
 	ldr r1, [r1]
@@ -207,7 +207,7 @@ _0804A1E2:
 	bls _0804A1C0
 	b _0804A254
 	.align 2, 0
-_0804A20C: .4byte gUnk_030047FC
+_0804A20C: .4byte gSaveData
 _0804A210: .4byte gUnk_03004658
 _0804A214: .4byte 0x03001114
 _0804A218: .4byte 0x040000D4
@@ -415,7 +415,7 @@ _0804A3CC:
 	ldrb r0, [r0, #6]
 	cmp r0, #0
 	bne _0804A478
-	ldr r0, _0804A41C @ =gUnk_030047FC
+	ldr r0, _0804A41C @ =gSaveData
 	ldr r0, [r0]
 	ldr r1, _0804A420 @ =gUnk_03004658
 	ldr r1, [r1]
@@ -452,7 +452,7 @@ _0804A3F4:
 	b _0804A528
 	.align 2, 0
 _0804A418: .4byte gUnk_03003410
-_0804A41C: .4byte gUnk_030047FC
+_0804A41C: .4byte gSaveData
 _0804A420: .4byte gUnk_03004658
 _0804A424: .4byte 0x040000D4
 _0804A428: .4byte gBgDataPtrs
@@ -610,7 +610,7 @@ _0804A55E:
 	bls _0804A56A
 	bl _0804AEBE
 _0804A56A:
-	ldr r0, _0804A5C8 @ =gUnk_030047FC
+	ldr r0, _0804A5C8 @ =gSaveData
 	ldr r1, [r0]
 	adds r0, r1, #0
 	adds r0, #0x26
@@ -655,7 +655,7 @@ _0804A56A:
 	bl _0804AEA4
 	.align 2, 0
 _0804A5C4: .4byte gUnk_03004658
-_0804A5C8: .4byte gUnk_030047FC
+_0804A5C8: .4byte gSaveData
 _0804A5CC: .4byte gBgDataPtrs
 _0804A5D0: .4byte 0x040000D4
 _0804A5D4: .4byte 0x03000B48
@@ -690,7 +690,7 @@ _0804A60E:
 	bne _0804A614
 	b _0804A918
 _0804A614:
-	ldr r2, _0804A6A4 @ =gUnk_030047FC
+	ldr r2, _0804A6A4 @ =gSaveData
 	ldr r0, [r2]
 	adds r0, #0x17
 	mov r3, sl
@@ -741,7 +741,7 @@ _0804A64A:
 	adds r3, r4, #0
 	adds r3, #0xe
 	lsls r1, r3, #4
-	ldr r6, _0804A6A4 @ =gUnk_030047FC
+	ldr r6, _0804A6A4 @ =gSaveData
 	ldr r0, [r6]
 	adds r0, #0x1a
 	add r0, sl
@@ -764,7 +764,7 @@ _0804A64A:
 	bls _0804A64A
 	b _0804ADC2
 	.align 2, 0
-_0804A6A4: .4byte gUnk_030047FC
+_0804A6A4: .4byte gSaveData
 _0804A6A8: .4byte 0x040000D4
 _0804A6AC: .4byte gBgDataPtrs
 _0804A6B0: .4byte 0x03000902
@@ -821,7 +821,7 @@ _0804A6C0:
 	str r0, [sp, #0x10]
 	mov sb, r3
 	ldr r3, _0804A774 @ =0x040000D4
-	ldr r1, _0804A780 @ =gUnk_030047FC
+	ldr r1, _0804A780 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x17
 	mov r6, sl
@@ -865,7 +865,7 @@ _0804A770: .4byte gBgDataPtrs
 _0804A774: .4byte 0x040000D4
 _0804A778: .4byte 0x03000B04
 _0804A77C: .4byte 0x80000006
-_0804A780: .4byte gUnk_030047FC
+_0804A780: .4byte gSaveData
 _0804A784: .4byte 0x03000902
 _0804A788:
 	cmp r2, #5
@@ -936,7 +936,7 @@ _0804A80C: .4byte 0x03000902
 _0804A810:
 	movs r2, #1
 	strb r2, [r1]
-	ldr r3, _0804A8F8 @ =gUnk_030047FC
+	ldr r3, _0804A8F8 @ =gSaveData
 	ldr r0, [r3]
 	adds r0, #0x17
 	add r0, sl
@@ -1005,7 +1005,7 @@ _0804A86E:
 	lsrs r4, r0, #0x18
 	cmp r4, #1
 	bls _0804A86E
-	ldr r1, _0804A8F8 @ =gUnk_030047FC
+	ldr r1, _0804A8F8 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x1a
 	add r0, sl
@@ -1052,7 +1052,7 @@ _0804A8C4:
 	bls _0804A8C4
 	b _0804ADC2
 	.align 2, 0
-_0804A8F8: .4byte gUnk_030047FC
+_0804A8F8: .4byte gSaveData
 _0804A8FC: .4byte gBgDataPtrs
 _0804A900: .4byte 0x040000D4
 _0804A904: .4byte 0x03000B04
@@ -1061,7 +1061,7 @@ _0804A90C: .4byte 0x03000902
 _0804A910: .4byte 0x0300090A
 _0804A914: .4byte 0x80000002
 _0804A918:
-	ldr r0, _0804AA04 @ =gUnk_030047FC
+	ldr r0, _0804AA04 @ =gSaveData
 	ldr r1, [r0]
 	adds r0, r1, #0
 	adds r0, #0x1d
@@ -1096,7 +1096,7 @@ _0804A952:
 	bne _0804A958
 	b _0804AB54
 _0804A958:
-	ldr r1, _0804AA04 @ =gUnk_030047FC
+	ldr r1, _0804AA04 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x17
 	mov r2, sl
@@ -1182,7 +1182,7 @@ _0804A9D0:
 	bls _0804A9D0
 	b _0804ADC2
 	.align 2, 0
-_0804AA04: .4byte gUnk_030047FC
+_0804AA04: .4byte gSaveData
 _0804AA08: .4byte gBgDataPtrs
 _0804AA0C: .4byte 0x040000D4
 _0804AA10: .4byte 0x03000B04
@@ -1277,7 +1277,7 @@ _0804AAAC:
 	ldr r4, _0804AB44 @ =0x80000006
 	str r4, [r6, #8]
 	ldr r0, [r6, #8]
-	ldr r6, _0804AB48 @ =gUnk_030047FC
+	ldr r6, _0804AB48 @ =gSaveData
 	ldr r0, [r6]
 	adds r0, #0x1a
 	add r0, sl
@@ -1292,7 +1292,7 @@ _0804AAAC:
 	str r0, [sp, #0x10]
 	mov sb, r3
 	ldr r3, _0804AB3C @ =0x040000D4
-	ldr r1, _0804AB48 @ =gUnk_030047FC
+	ldr r1, _0804AB48 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x1a
 	mov r6, sl
@@ -1333,11 +1333,11 @@ _0804AB38: .4byte gBgDataPtrs
 _0804AB3C: .4byte 0x040000D4
 _0804AB40: .4byte 0x03000B04
 _0804AB44: .4byte 0x80000006
-_0804AB48: .4byte gUnk_030047FC
+_0804AB48: .4byte gSaveData
 _0804AB4C: .4byte 0x0300090A
 _0804AB50: .4byte 0x80000002
 _0804AB54:
-	ldr r0, _0804AC14 @ =gUnk_030047FC
+	ldr r0, _0804AC14 @ =gSaveData
 	ldr r1, [r0]
 	adds r0, r1, #0
 	adds r0, #0x1d
@@ -1394,7 +1394,7 @@ _0804AB92:
 	cmp r4, #1
 	bls _0804AB92
 _0804ABC2:
-	ldr r1, _0804AC14 @ =gUnk_030047FC
+	ldr r1, _0804AC14 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x20
 	add r0, sl
@@ -1438,7 +1438,7 @@ _0804ABE2:
 	bls _0804ABE2
 	b _0804ADC2
 	.align 2, 0
-_0804AC14: .4byte gUnk_030047FC
+_0804AC14: .4byte gSaveData
 _0804AC18: .4byte 0x040000D4
 _0804AC1C: .4byte gBgDataPtrs
 _0804AC20: .4byte 0x03000902
@@ -1462,7 +1462,7 @@ _0804AC28:
 	ldr r4, _0804ACB4 @ =0x80000006
 	str r4, [r2, #8]
 	ldr r0, [r2, #8]
-	ldr r2, _0804ACB8 @ =gUnk_030047FC
+	ldr r2, _0804ACB8 @ =gSaveData
 	ldr r0, [r2]
 	adds r0, #0x17
 	add r0, sl
@@ -1513,7 +1513,7 @@ _0804ACA8: .4byte gBgDataPtrs
 _0804ACAC: .4byte 0x040000D4
 _0804ACB0: .4byte 0x03000B04
 _0804ACB4: .4byte 0x80000006
-_0804ACB8: .4byte gUnk_030047FC
+_0804ACB8: .4byte gSaveData
 _0804ACBC: .4byte 0x80000004
 _0804ACC0: .4byte 0x03000902
 _0804ACC4:
@@ -1533,7 +1533,7 @@ _0804ACCC:
 	adds r2, r2, r6
 	mov ip, r2
 	ldr r2, _0804AED4 @ =0x040000D4
-	ldr r0, _0804AED8 @ =gUnk_030047FC
+	ldr r0, _0804AED8 @ =gSaveData
 	ldr r0, [r0]
 	adds r0, #0x17
 	mov r6, sl
@@ -1600,7 +1600,7 @@ _0804AD38:
 	cmp r4, #1
 	bls _0804AD38
 _0804AD62:
-	ldr r1, _0804AED8 @ =gUnk_030047FC
+	ldr r1, _0804AED8 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x1a
 	mov r2, sl
@@ -1613,7 +1613,7 @@ _0804AD62:
 _0804AD76:
 	movs r4, #0
 	ldr r2, _0804AED4 @ =0x040000D4
-	ldr r0, _0804AED8 @ =gUnk_030047FC
+	ldr r0, _0804AED8 @ =gSaveData
 	ldr r0, [r0]
 	adds r0, #0x1a
 	mov r6, sl
@@ -1651,7 +1651,7 @@ _0804AD90:
 	cmp r4, #1
 	bls _0804AD90
 _0804ADC2:
-	ldr r1, _0804AED8 @ =gUnk_030047FC
+	ldr r1, _0804AED8 @ =gSaveData
 	ldr r0, [r1]
 	adds r0, #0x23
 	mov r2, sl
@@ -1726,7 +1726,7 @@ _0804AE18:
 	adds r4, r7, r0
 	lsls r4, r4, #1
 	adds r4, r4, r6
-	ldr r1, _0804AED8 @ =gUnk_030047FC
+	ldr r1, _0804AED8 @ =gSaveData
 	ldr r5, [r1]
 	adds r5, #0x14
 	add r5, sl
@@ -1786,7 +1786,7 @@ _0804AEBE:
 	.align 2, 0
 _0804AED0: .4byte 0xFFFFFE02
 _0804AED4: .4byte 0x040000D4
-_0804AED8: .4byte gUnk_030047FC
+_0804AED8: .4byte gSaveData
 _0804AEDC: .4byte gBgDataPtrs
 _0804AEE0: .4byte 0x03000902
 _0804AEE4: .4byte 0x80000002

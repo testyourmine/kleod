@@ -60,7 +60,7 @@ void AgbMain(void)
     gUnk_03004658 = thunk_HeapAlloc(0x18, 0);
     gUnk_03005284 = thunk_HeapAlloc(0x24, 0);
     gUnk_03004670 = thunk_HeapAlloc(0x40, 0);
-    gUnk_030047FC = thunk_HeapAlloc(0x2C, 0);
+    gSaveData = thunk_HeapAlloc(0x2C, 0);
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
     gBlendValue = gMosaicSize = 0;

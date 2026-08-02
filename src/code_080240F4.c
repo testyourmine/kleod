@@ -4,7 +4,7 @@
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
 #include "code_08039D8C.h"
-#include "code_08046B6C.h"
+#include "save.h"
 #include "code_080472B0.h"
 #include "interrupts.h"
 #include "main.h"
@@ -410,7 +410,7 @@ void sub_08024718(void)
         {
             gUnk_03005284->unk6 = gUnk_030051C8;
         }
-        sub_08046DB8(0, 1);
+        WriteSaveFile(0, 1);
 
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -766,7 +766,7 @@ void sub_0802502C(void)
         {
             gUnk_03005284->unk6 = gUnk_03004654[1] - 1;
         }
-        sub_08046DB8(0, 1);
+        WriteSaveFile(0, 1);
 
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -799,10 +799,10 @@ void sub_0802528C(void)
 
         if (gUnk_03003410.unkC == 1)
         {
-            sub_080471F4();
-            sub_08046DB8(1, 0);
+            WriteCurrentSaveFile();
+            WriteSaveFile(1, 0);
             gUnk_03005284->unk1 = gUnk_03004C20.world;
-            sub_08046DB8(0, 2);
+            WriteSaveFile(0, 2);
         }
 
         gCallbackQueue.next[0] = sub_0804BE58;
@@ -851,13 +851,13 @@ void sub_0802534C(void)
         m4aSoundVSyncOff();
 
         gUnk_030034E4 = 0;
-        if (sub_08046F6C(1) != 0)
+        if (LoadSaveFile(1) != 0)
         {
             DmaFill32(3, 0, &gUnk_03004670->unk0, 0x40);
             DmaFill16(3, 0x7F7F, &gUnk_03004670->unk8, 0x30);
             goto block_8;
         }
-        if (sub_08046F6C(0) != 0)
+        if (LoadSaveFile(0) != 0)
         {
     block_8:
             DmaFill32(3, 0, &gUnk_03005284->unk0, 0x24);
@@ -867,7 +867,7 @@ void sub_0802534C(void)
             gUnk_03005284->unk1C = 2;
             gUnk_03005284->unk1D = 1;
         }
-        sub_080471F4();
+        WriteCurrentSaveFile();
         gUnk_03004670->unk38 += 1;
 
         REG_IE |= INTR_FLAG_VBLANK;
@@ -1147,8 +1147,8 @@ void sub_08025A28(void)
 
         m4aMPlayAllStop();
         gUnk_03005284->unk1 = 6;
-        sub_08046DB8(0, 7);
-        sub_08046DB8(1, 0);
+        WriteSaveFile(0, 7);
+        WriteSaveFile(1, 0);
         gUnk_030034E4 = 0;
         sub_08003D58();
         sub_080008DC();

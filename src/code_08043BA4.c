@@ -5,7 +5,7 @@
 #include "code_0800BFF4.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
-#include "code_08046B6C.h"
+#include "save.h"
 #include "code_080472B0.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -309,7 +309,7 @@ void sub_080441C8(s32 arg0)
             m4aSoundVSyncOff();
 
             gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
-            sub_08046DB8(0, 1);
+            WriteSaveFile(0, 1);
 
             REG_IE |= 1;
             REG_DISPSTAT |= 8;
@@ -387,12 +387,12 @@ void sub_080441C8(s32 arg0)
             m4aSoundVSyncOff();
 
             gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
-            sub_08046DB8(0, 1);
+            WriteSaveFile(0, 1);
 
             REG_IE |= 1;
             REG_DISPSTAT |= 8;
 
-            sub_08046B6C();
+            LoadAllSaveData();
             return;
     }
 }
@@ -919,8 +919,8 @@ void sub_080453F0(void)
     }
     gUnk_03005284->unk1 = gUnk_03004C20.world;
     gUnk_03005284->unk2 = gUnk_030034B0.unk6_4;
-    sub_08046DB8(0, 0);
-    sub_08046DB8(1, 0);
+    WriteSaveFile(0, 0);
+    WriteSaveFile(1, 0);
     gUnk_030034B0.unk0_0 = 1;
     
     for (var_r6 = 0; var_r6 < 8; var_r6++)

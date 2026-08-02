@@ -3,7 +3,7 @@
 #include "code_08003D58.h"
 #include "code_080240F4.h"
 #include "code_08039D8C.h"
-#include "code_08046B6C.h"
+#include "save.h"
 #include "main.h"
 #include "math.h"
 #include "rand.h"
@@ -391,8 +391,8 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005284->unk16 = 0;
         if (gUnk_03003410.unkA == 0)
         {
-            sub_08046DB8(0, 1);
-            sub_08046DB8(1, 0);
+            WriteSaveFile(0, 1);
+            WriteSaveFile(1, 0);
         }
         gUnk_03005220.stars = 0;
         gUnk_03005220.dreamStones = 0;

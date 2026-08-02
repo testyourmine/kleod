@@ -1,37 +1,42 @@
 #include "global.h"
 #include "eeprom.h"
 
-const char EEPROM_V121[] = "EEPROM_V121";
+static const char EEPROM_V121[] = "EEPROM_V121";
 
-extern const EEPROMConfig* gEEPROMConfig;
+extern const EepromConfig* gEepromConfig;
 
-extern u16 timer_Count;
-extern u8 timeoutFlag;
-extern u8 timer_No;
-extern vu16* timerReg;
-extern u16 shelt_ime;
+static u8 timer_No;
+static u16 timer_Count;
+static u8 timeoutFlag;
+static vu16* timerReg;
+static u16 shelt_ime;
 
-const EEPROMConfig gEEPROMConfig512 = {
-    .unk_00 = 0x200,
-    .size = 0x40,
+const EepromConfig gEepromConfig4k = {
+    .size = 0x200, // 1 << 6
+    .nbrAddresses = 0x40, // 0x200 / 8
     .waitcnt = WAITCNT_WS2_N_8,
-    .address_width = 6
+    .addressWidth = 6
 };
 
-const EEPROMConfig gEEPROMConfig8k = {
-    .unk_00 = 0x2000,
-    .size = 0x400,
+const EepromConfig gEepromConfig64k = {
+    .size = 0x2000, // 1 << 14
+    .nbrAddresses = 0x400, // 0x2000 / 8
     .waitcnt = WAITCNT_WS2_N_8,
-    .address_width = 14
+    .addressWidth = 14
 };
 
-const u16 gEepromMaxTimers[] = {
-    0xA,    // timer_Count
-    0xFFBD, // TM0CNT
-    0xC2    // TM1CNT
+const u16 gEepromTimerConfig[] = {
+    0xA,                                            // timer_Count
+    0xFFBD,                                         // TMCNT_L
+    TIMER_ENABLE | TIMER_INTR_ENABLE | TIMER_256CLK // TMCNT_H
 };
 
-// 5146C
+/**
+ * @brief 5146C | Sets the EEPROM configuration
+ * 
+ * @param sizeInKbit The size of the EEPROM in kilobits
+ * @return u16 bool, invalid size
+ */
 u16 IdentifyEeprom(u16 sizeInKbit)
 {
     u16 ret;
@@ -40,23 +45,26 @@ u16 IdentifyEeprom(u16 sizeInKbit)
 
     if (sizeInKbit == 4)
     {
-        gEEPROMConfig = &gEEPROMConfig512;
+        gEepromConfig = &gEepromConfig4k;
     }
-    else if (sizeInKbit == 0x40)
+    else if (sizeInKbit == 64)
     {
-        gEEPROMConfig = &gEEPROMConfig8k;
+        gEepromConfig = &gEepromConfig64k;
     }
     else
     {
-        gEEPROMConfig = &gEEPROMConfig512;
+        gEepromConfig = &gEepromConfig4k;
         ret = 1;
     }
 
     return ret;
 }
 
-// 514B0
-void EepromTimerIntr(void)
+/**
+ * @brief 514B0 | EEPROM timer interrupt
+ * 
+ */
+/*static*/ void EepromTimerIntr(void)
 {
     if (timer_Count != 0)
     {
@@ -67,7 +75,13 @@ void EepromTimerIntr(void)
     }
 }
 
-// 514D4
+/**
+ * @brief 514D4 | Sets the EEPROM timer and the interrupt function
+ * 
+ * @param timerNo Timer number
+ * @param timerPtr Pointer to timer interrupt address
+ * @return u16 bool, invalid timer number
+ */
 u16 SetEepromTimerIntr(u8 timerNo, u32 *timerPtr)
 {
     u16 ret;
@@ -87,8 +101,12 @@ u16 SetEepromTimerIntr(u8 timerNo, u32 *timerPtr)
     return ret;
 }
 
-// 5150C
-void StartEepromTimer(const u16* maxTime)
+/**
+ * @brief 5150C | Start the EEPROM timer
+ * 
+ * @param timerConfig Pointer to timer configuration values
+ */
+/*static*/ void StartEepromTimer(const u16* timerConfig)
 {
     shelt_ime = REG_IME;
 
@@ -97,14 +115,17 @@ void StartEepromTimer(const u16* maxTime)
     REG_IME = 1;
 
     timeoutFlag = 0;
-    timer_Count = *maxTime++;
-    *timerReg++ = *maxTime++;
-    *timerReg-- = *maxTime++;
+    timer_Count = *timerConfig++;
+    *timerReg++ = *timerConfig++;
+    *timerReg-- = *timerConfig++;
     
 }
 
-// 51570
-void StopEepromTimer(void)
+/**
+ * @brief 51570 | Stop the EEPROM timer
+ * 
+ */
+/*static*/ void StopEepromTimer(void)
 {
     *timerReg++ = 0;
     *timerReg-- = 0;
@@ -114,12 +135,18 @@ void StopEepromTimer(void)
     REG_IME = shelt_ime;
 }
 
-// 515B4
-void Dma3Transmit(void *src, void *dest, u16 size)
+/**
+ * @brief 515B4 | Send data using DMA3
+ * 
+ * @param src Source address
+ * @param dest Destination address
+ * @param size Size of data in halfwords
+ */
+/*static*/ void Dma3Transmit(void *src, void *dest, u16 size)
 {
     u16 ime = REG_IME;
     REG_IME = 0;
-    REG_WAITCNT = (REG_WAITCNT & ~(WAITCNT_WS2_N_MASK | WAITCNT_WS2_S_MASK)) | gEEPROMConfig->waitcnt;
+    REG_WAITCNT = (REG_WAITCNT & ~(WAITCNT_WS2_N_MASK | WAITCNT_WS2_S_MASK)) | gEepromConfig->waitcnt;
     REG_DMA3SAD = (u32)src;
     REG_DMA3DAD = (u32)dest;
     REG_DMA3CNT = (DMA_ENABLE << 0x10) | size;
@@ -127,8 +154,14 @@ void Dma3Transmit(void *src, void *dest, u16 size)
     REG_IME = ime;
 }
 
-// 51634
-u16 ReadEepromDword(u16 address, u16 *data)
+/**
+ * @brief 51634 | Read 8 bytes from EEPROM
+ * 
+ * @param address EEPROM address
+ * @param dest Destination address
+ * @return u16 0 for success, else error
+ */
+u16 ReadEepromDword(u16 address, u16 *dest)
 {
     u16 buffer[0x44];
     u16* ptr;
@@ -137,16 +170,16 @@ u16 ReadEepromDword(u16 address, u16 *data)
     u8 t2;
     u16 value;
 
-    if (address >= gEEPROMConfig->size)
+    if (address >= gEepromConfig->nbrAddresses)
         return EEPROM_OUT_OF_RANGE;
 
     ptr = buffer;
     // setup address
     p = (u8*)ptr;
-    p += (gEEPROMConfig->address_width << 1) + 1;
+    p += (gEepromConfig->addressWidth << 1) + 1;
     ptr = (u16*)p++;
     ptr = (u16*)p++;
-    for (t1 = 0; t1 < gEEPROMConfig->address_width; t1++)
+    for (t1 = 0; t1 < gEepromConfig->addressWidth; t1++)
     {
         *(ptr--) = address;
         address >>= 1;
@@ -155,12 +188,12 @@ u16 ReadEepromDword(u16 address, u16 *data)
     // read request
     *(ptr--) = 1;
     *ptr = 1;
-    Dma3Transmit(&buffer, REG_ADDR_EEPROM, (gEEPROMConfig->address_width + 3));
+    Dma3Transmit(&buffer, REG_ADDR_EEPROM, (gEepromConfig->addressWidth + 3));
     Dma3Transmit(REG_ADDR_EEPROM, &buffer, 0x44);
 
     // 4 bit junk
     ptr = buffer + 4;
-    data += 3;
+    dest += 3;
 
     // copy data into output buffer
     for (t1 = 0; t1 < 4; t1++)
@@ -171,14 +204,20 @@ u16 ReadEepromDword(u16 address, u16 *data)
             value <<= 1;
             value |= (*ptr++) & 1;
         }
-        *(data--) = value;
+        *(dest--) = value;
     }
 
     return 0;
 }
 
-// 516EC
-u16 ProgramEepromDword(u16 address, const u16 *data)
+/**
+ * @brief 516EC | Write 8 bytes to EEPROM
+ * 
+ * @param address EEPROM address
+ * @param src Source address
+ * @return u16 0 for success, else error
+ */
+u16 ProgramEepromDword(u16 address, u16 *src)
 {
     u16 buffer[0x52]; // this is one too large?
     u16 *ptr;
@@ -186,17 +225,17 @@ u16 ProgramEepromDword(u16 address, const u16 *data)
     u8 j;
     u16 retval;
 
-    if (address >= gEEPROMConfig->size)
+    if (address >= gEepromConfig->nbrAddresses)
         return EEPROM_OUT_OF_RANGE;
     
     // ugly ptr math required for OK
-    ptr = (u16 *)(0x42 + (u32)&buffer + (u32)(gEEPROMConfig->address_width << 1) + 0x42);
+    ptr = (u16 *)(0x42 + (u32)&buffer + (u32)(gEepromConfig->addressWidth << 1) + 0x42);
     *(ptr)-- = 0;
 
     // copy data into buffer
     for (i = 0; i < 4; i++)
     {
-        u16 r2 = *data++;
+        u16 r2 = *src++;
         for (j = 0; j < 16; j++)
         {
             *ptr-- = r2;
@@ -205,7 +244,7 @@ u16 ProgramEepromDword(u16 address, const u16 *data)
     }
 
     // copy address to buffer
-    for (i = 0; i < gEEPROMConfig->address_width; i++)
+    for (i = 0; i < gEepromConfig->addressWidth; i++)
     {
         *ptr--= address;
         address = address >> 1;
@@ -213,8 +252,8 @@ u16 ProgramEepromDword(u16 address, const u16 *data)
     *ptr-- = 0;
     *ptr-- = 1;
 
-    Dma3Transmit(&buffer, REG_ADDR_EEPROM, (gEEPROMConfig->address_width + 0x43));
-    StartEepromTimer(gEepromMaxTimers);
+    Dma3Transmit(&buffer, REG_ADDR_EEPROM, (gEepromConfig->addressWidth + 0x43));
+    StartEepromTimer(gEepromTimerConfig);
 
     retval = 0;
 
@@ -239,22 +278,29 @@ u16 ProgramEepromDword(u16 address, const u16 *data)
     return retval;
 }
 
-// 517D0
-u16 VerifyEepromDword(u16 address, u16 *data)
+/**
+ * @brief 517D0 | Verify that 8 bytes of data are consistent between EEPROM and source
+ * 
+ * @param address EEPROM address
+ * @param src Source address
+ * @return u16 0 for success, else error
+ */
+u16 VerifyEepromDword(u16 address, u16 *src)
 {
     u16 buffer[4];
-    u8 i;
     u16 *ptr;
-    u16 retvar = 0;
+    u8 i;
+    u16 retvar;
 
-    if (address >= gEEPROMConfig->size)
+    retvar = 0;
+    if (address >= gEepromConfig->nbrAddresses)
         return EEPROM_OUT_OF_RANGE;
 
     ReadEepromDword(address, buffer);
     ptr = buffer;
     for (i = 0; i < 4; i++)
     {
-        if(*data++ != *ptr++)
+        if(*src++ != *ptr++)
         {
             retvar = EEPROM_VERIFY_FAIL;
             break;
@@ -264,18 +310,24 @@ u16 VerifyEepromDword(u16 address, u16 *data)
     return retvar;
 }
 
-// 51828
-u16 ProgramEepromDwordEx(u16 address, u16 *data)
+/**
+ * @brief 51828 | Write 8 bytes to EEPROM and verify data is correct
+ * 
+ * @param address EEPROM address
+ * @param src Source address
+ * @return u16 0 for success, else error
+ */
+u16 ProgramEepromDwordEx(u16 address, u16 *src)
 {
-    u16 retvar;
     u8 i;
+    u16 retvar;
 
     for (i = 0; i < 3; i++)
     {
-        retvar = ProgramEepromDword(address, data);
+        retvar = ProgramEepromDword(address, src);
         if (retvar == 0)
         {
-            retvar = VerifyEepromDword(address, data);
+            retvar = VerifyEepromDword(address, src);
             if (retvar == 0)
                 break;
         }

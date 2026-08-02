@@ -51,41 +51,6 @@ extern u16 *gUnk_030034FC;
 extern u8 *gUnk_03004658; // TODO: struct?
 
 struct Unk_03004670 {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 unk3;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6;
-    u8 unk7;
-    u8 unk8[6][8];
-    s32 unk38;
-    u8 unk3C;
-    u8 unk3D;
-    u8 pad3E[0x40 - 0x3E];
-};
-extern struct Unk_03004670 *gUnk_03004670;
-
-struct Unk_030047FC {
-    u8 unk0[9];
-    u8 pad9[0x10 - 0x9];
-    u8 unk10;
-    u8 unk11;
-    u8 unk12;
-    u8 pad13[0x14 - 0x13];
-    u8 unk14[3];
-    u8 unk17[3];
-    u8 unk1A[3];
-    u8 unk1D[3];
-    u8 unk20[3];
-    u8 unk23[3];
-    u8 unk26[3];
-    u8 unk29[3];
-};
-extern struct Unk_030047FC *gUnk_030047FC;
-
-struct Unk_03005284 {
     /* 0x00 */ u8 unk0;
     /* 0x01 */ u8 unk1;
     /* 0x02 */ u8 unk2;
@@ -94,10 +59,45 @@ struct Unk_03005284 {
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 unk7;
-    /* 0x08_0 */ u8 unk8_0:2;
-    /* 0x08_2 */ u8 unk8_2:3;
-    /* 0x08_5 */ u8 unk8_5:7;
-    /* 0x09_4 */ u8 unk9_4:3;
+    /* 0x08 */ u8 unk8[6][8]; // indexed by [world-1][level-1]
+    /* 0x38 */ s32 unk38;
+    /* 0x3C */ u8 addChecksum;
+    /* 0x3D */ u8 xorChecksum;
+    /* 0x3E */ u8 pad3E[0x40 - 0x3E];
+}; /* size = 0x40 */
+extern struct Unk_03004670 *gUnk_03004670;
+
+struct SaveData {
+    u8 saveFileString[9]; // "K_KLONOA"
+    u8 pad9[0x10 - 0x9];
+    u8 currentSaveFile; // current save file
+    u8 currentSaveFileAddress; // save file EEPROM address
+    u8 lastLoadedSaveFile; // last loaded save file
+    u8 pad13[0x14 - 0x13];
+    u8 unk14[3]; // lives
+    u8 unk17[3]; // world
+    u8 unk1A[3]; // level
+    u8 unk1D[3];
+    u8 unk20[3];
+    u8 unk23[3];
+    u8 unk26[3];
+    u8 unk29[3];
+};
+extern struct SaveData *gSaveData;
+
+struct Unk_03005284 {
+    /* 0x00 */ u8 unk0; // lives
+    /* 0x01 */ u8 unk1; // world
+    /* 0x02 */ u8 unk2; // level
+    /* 0x03 */ u8 unk3;
+    /* 0x04 */ u8 unk4;
+    /* 0x05 */ u8 unk5;
+    /* 0x06 */ u8 unk6;
+    /* 0x07 */ u8 unk7;
+    /* 0x08_0 */ u8 unk8_0:2; // hearts
+    /* 0x08_2 */ u8 unk8_2:3; // stars
+    /* 0x08_5 */ u8 unk8_5:7; // dreamStones
+    /* 0x09_4 */ u8 unk9_4:3; // keys
     /* 0x09_7 */ u8 unk9_7:8;
     /* 0x0A_7 */ u8 unkA_7:6;
     /* 0x0B_5 */ u8 unkB_5:1;
@@ -111,8 +111,8 @@ struct Unk_03005284 {
     /* 0x1D */ u8 unk1D;
     /* 0x1E */ u8 unk1E;
     /* 0x1F */ u8 pad1F[0x20 - 0x1F];
-    /* 0x20 */ u8 unk20;
-    /* 0x21 */ u8 unk21;
+    /* 0x20 */ u8 addChecksum;
+    /* 0x21 */ u8 xorChecksum;
     /* 0x22 */ u8 pad22[0x24 - 0x22];
 }; /* size = 0x24 */
 extern struct Unk_03005284 *gUnk_03005284;
@@ -747,10 +747,10 @@ struct Unk_030034D4 {
 };
 extern struct Unk_030034D4 *gUnk_030034D4;
 
-extern u16 gUnk_030008E4; // DMA3CNT_H
-extern u16 gUnk_0300465C; // DMA2CNT_H
-extern u16 gUnk_03005208; // DMA1CNT_H
-extern u16 gUnk_0300520C; // DMA0CNT_H
+extern u16 gDma3CntHBackup; // DMA3CNT_H
+extern u16 gDma2CntHBackup; // DMA2CNT_H
+extern u16 gDma1CntHBackup; // DMA1CNT_H
+extern u16 gDma0CntHBackup; // DMA0CNT_H
 
 extern u8 gUnk_030007F8;
 extern u8 gUnk_030008F8;

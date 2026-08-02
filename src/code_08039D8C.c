@@ -6,7 +6,7 @@
 #include "code_08014184.h"
 #include "code_080240F4.h"
 #include "code_08043BA4.h"
-#include "code_08046B6C.h"
+#include "save.h"
 #include "decompress.h"
 #include "heap.h"
 #include "interrupts.h"
@@ -1252,8 +1252,8 @@ void sub_0803B600(void)
     gCallbackQueue.current[1] = sub_0803B0A0;
     sub_0803B074();
     gUnk_03005284->unk1 = gUnk_03004C20.world;
-    sub_08046DB8(0, 7);
-    sub_08046DB8(1, 0);
+    WriteSaveFile(0, 7);
+    WriteSaveFile(1, 0);
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;

@@ -26,7 +26,9 @@
 #define __(x) (x)
 #endif // __APPLE__
 
-#define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
+#define ARRAY_SIZE(a) ((s32)(sizeof((a)) / sizeof((a)[0])))
+
+#define OFFSET_OF(type, member) ((u32)&(((type*)0)->member))
 
 #define SWAP(a, b, temp)    \
 {                           \

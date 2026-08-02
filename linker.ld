@@ -24,11 +24,7 @@ SECTIONS {
         . = 0x000002D8; gMPlayTrack_2 = .;
         . = 0x00000328; gMPlayTrack_3 = .;
 
-        . = 0x00000378; timer_No = .;
-        . = 0x0000037A; timer_Count = .;
-        . = 0x0000037C; timeoutFlag = .;
-        . = 0x00000380; timerReg = .;
-        . = 0x00000384; shelt_ime = .;
+        . = 0x00000378; src/eeprom.o(.bss);
 
         . = 0x00000388; SoundMainRAM_Buffer = .;
 
@@ -59,7 +55,7 @@ SECTIONS {
         . = 0x00000828; gUnk_03000828 = .;
         . = 0x0000082C; gUnk_0300082C = .;
         . = 0x00000830; gEntityAnimationInfo = .;
-        . = 0x000008E4; gUnk_030008E4 = .;
+        . = 0x000008E4; gDma3CntHBackup = .;
         . = 0x000008E8; gUnk_030008E8 = .;
         . = 0x000008EC; gUnk_030008EC = .;
         . = 0x000008F0; gUnk_030008F0 = .;
@@ -121,7 +117,7 @@ SECTIONS {
         . = 0x00004650; gUnk_03004650 = .;
         . = 0x00004654; gUnk_03004654 = .;
         . = 0x00004658; gUnk_03004658 = .;
-        . = 0x0000465C; gUnk_0300465C = .;
+        . = 0x0000465C; gDma2CntHBackup = .;
         . = 0x00004660; gUnk_03004660 = .;
         . = 0x00004664; gUnk_03004664 = .;
         . = 0x00004668; gNewKeysAttract = .;
@@ -139,7 +135,7 @@ SECTIONS {
         . = 0x000047BC; gUnk_030047BC = .;
         . = 0x000047C0; gIntrTable = .;
         . = 0x000047F8; gUnk_030047F8 = .;
-        . = 0x000047FC; gUnk_030047FC = .;
+        . = 0x000047FC; gSaveData = .;
         . = 0x00004800; gOamBuffer = .;
         . = 0x00004C00; gUnk_03004C00 = .;
         . = 0x00004C04; gUnk_03004C04 = .;
@@ -171,8 +167,8 @@ SECTIONS {
         . = 0x000051E4; gHeldKeys = .;
         . = 0x000051F0; gUnk_030051F0 = .;
         . = 0x00005200; gUnk_03005200 = .;
-        . = 0x00005208; gUnk_03005208 = .;
-        . = 0x0000520C; gUnk_0300520C = .;
+        . = 0x00005208; gDma1CntHBackup = .;
+        . = 0x0000520C; gDma0CntHBackup = .;
         . = 0x00005210; gSoundVolume = .;
         . = 0x00005220; gUnk_03005220 = .;
         . = 0x00005284; gUnk_03005284 = .;
@@ -223,7 +219,7 @@ SECTIONS {
         . = 0x000066A0; gMPlayMemAccArea = .;
         . = 0x000066B0; gMPlayInfo_3 = .;
 
-        . = 0x000066F0; gEEPROMConfig = .;
+        . = 0x000066F0; gEepromConfig = .;
     } >iwram
 
     rom : ALIGN(4) {
@@ -245,7 +241,7 @@ SECTIONS {
         src/code_08039D8C.o(.text);
         src/decompress.o(.text);
         src/code_08043BA4.o(.text);
-        src/code_08046B6C.o(.text);
+        src/save.o(.text);
         src/code_080472B0.o(.text);
         src/code_0804B254.o(.text);
         asm/m4a0.o(.text);

@@ -3,7 +3,7 @@
 #include "code_08003D58.h"
 #include "code_0800BFF4.h"
 #include "code_080240F4.h"
-#include "code_08046B6C.h"
+#include "save.h"
 #include "code_080472B0.h"
 #include "decompress.h"
 #include "heap.h"
@@ -597,9 +597,9 @@ void sub_0804BE58(void)
     {
         gUnk_03004670->unk0 = gUnk_03004C20.world;
     }
-    sub_08046DB8(1, 0);
+    WriteSaveFile(1, 0);
     gUnk_03005284->unk1 = gUnk_03004C20.world;
-    sub_08046DB8(0, 2);
+    WriteSaveFile(0, 2);
     sub_0804BAD4(gUnk_03005284->unk4);
     sub_0804BB3C();
     sub_0804BB88();
