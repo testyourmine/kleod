@@ -78,7 +78,66 @@ gUnk_08116590:: @ 0x08116590
     .incbin "baserom.gba", 0x116590, 0xC*0xC
 
 gUnk_08116620:: @ 0x08116620
-    .incbin "baserom.gba", 0x116620, 0x6*0x9*0x4
+    @ World 1
+    .4byte LoadObjects_World1Select
+    .4byte LoadObjects_World1Level1
+    .4byte LoadObjects_World1Level2
+    .4byte LoadObjects_World1Level3
+    .4byte LoadObjects_World1Level4
+    .4byte LoadObjects_World1Level5
+    .4byte LoadObjects_World1Level6
+    .4byte LoadObjects_World1Level7
+    .4byte LoadObjects_World1Boss
+    @ World 2
+    .4byte LoadObjects_World2Select
+    .4byte LoadObjects_World2Level1
+    .4byte LoadObjects_World2Level2
+    .4byte LoadObjects_World2Level3
+    .4byte LoadObjects_World2Level4
+    .4byte LoadObjects_World2Level5
+    .4byte LoadObjects_World2Level6
+    .4byte LoadObjects_World2Level7
+    .4byte LoadObjects_World2Boss
+    @ World 3
+    .4byte LoadObjects_World3Select
+    .4byte LoadObjects_World3Level1
+    .4byte LoadObjects_World3Level2
+    .4byte LoadObjects_World3Level3
+    .4byte LoadObjects_World3Level4
+    .4byte LoadObjects_World3Level5
+    .4byte LoadObjects_World3Level6
+    .4byte LoadObjects_World3Level7
+    .4byte LoadObjects_World3Boss
+    @ World 4
+    .4byte LoadObjects_World4Select
+    .4byte LoadObjects_World4Level1
+    .4byte LoadObjects_World4Level2
+    .4byte LoadObjects_World4Level3
+    .4byte LoadObjects_World4Level4
+    .4byte LoadObjects_World4Level5
+    .4byte LoadObjects_World4Level6
+    .4byte LoadObjects_World4Level7
+    .4byte LoadObjects_World4Boss
+    @ World 5
+    .4byte LoadObjects_World5Select
+    .4byte LoadObjects_World5Level1
+    .4byte LoadObjects_World5Level2
+    .4byte LoadObjects_World5Level3
+    .4byte LoadObjects_World5Level4
+    .4byte LoadObjects_World5Level5
+    .4byte LoadObjects_World5Level6
+    .4byte LoadObjects_World5Level7
+    .4byte LoadObjects_World5Boss
+    @ World 6
+    .4byte sub_08028104
+    .4byte sub_080375A0
+    .4byte sub_08037DD4
+    .4byte sub_0803881C
+    .4byte sub_0803881C
+    .4byte sub_0803881C
+    .4byte sub_0803881C
+    .4byte sub_0803881C
+    .4byte sub_080392A4
 
 gUnk_081166F8:: @ 0x081166F8
     .incbin "baserom.gba", 0x1166F8, 0x4*0x4*0x1

@@ -1432,7 +1432,7 @@ void sub_08003904(void)
     sub_08003DC0(0xA, 0xA, 0, 0, 0, 0, 0, 0, 0);
     sub_08003DC0(0xB, 0xB, 0xFFE0, 0x3C, 0, 0, 0, 0, 0);
     sub_08003DC0(0xC, 0xC, 0xFFE0, 0x74, 0, 0, 0, 0, 0);
-    sub_08039920();
+    LoadObjects_Common();
 
     if (gUnk_03003410.unk8 == 1)
     {

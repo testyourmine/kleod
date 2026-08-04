@@ -21,88 +21,88 @@ extern struct Unk_08189A24 *gUnk_08189A24[6][9];
 extern void *gUnk_0818B800[6][7];
 
 // tiles
-extern u8 gUnk_0805C6E8[0x200];
-extern u8 gUnk_0805C8E8[0x80];
-extern u8 gUnk_0805C968[0x80];
-extern u8 gUnk_0805C9E8[0x800];
-extern u8 gUnk_0805D1E8[0x800];
-extern u8 gUnk_0805D9E8[0x200];
-extern u8 gUnk_0805DBE8[0x300];
-extern u8 gUnk_0805DEE8[0x200];
-extern u8 gUnk_0805E0E8[0x200];
-extern u8 gUnk_0805E2E8[0x400];
-extern u8 gUnk_0805E6E8[0x400];
-extern u8 gUnk_0805EAE8[0x200];
-extern u8 gUnk_0805ECE8[0x200];
-extern u8 gUnk_0805EEE8[0x200];
-extern u8 gUnk_0805F0E8[0x200];
-extern u8 gUnk_0805F2E8[0x80];
-extern u8 gUnk_0805F368[0x20];
-extern u8 gUnk_0805F388[0x80];
-extern u8 gUnk_0805F408[0x80];
-extern u8 gUnk_0805F488[0x80];
-extern u8 gUnk_0805F508[0x200];
-extern u8 gUnk_0805F708[0x80];
-extern u8 gUnk_0805F788[0x80];
-extern u8 gUnk_0805F808[0x200];
-extern u8 gUnk_0805FA08[0x100];
-extern u8 gUnk_0805FB08[0x100];
-extern u8 gUnk_0805FC08[0x200];
-extern u8 gUnk_0805FE08[0x800];
-extern u8 gUnk_08060608[0x100];
-extern u8 gUnk_08060708[0x100];
-extern u8 gUnk_08060808[0x200];
-extern u8 gUnk_08060A08[0x80];
-extern u8 gUnk_08060A88[0x600];
-extern u8 gUnk_08061088[0x800];
-extern u8 gUnk_08061888[0x100];
-extern u8 gUnk_08061988[0x80];
-extern u8 gUnk_08061A08[0x20];
-extern u8 gUnk_08061A28[0x200];
-extern u8 gUnk_08061C28[0x100];
-extern u8 gUnk_08061D28[0x20];
-extern u8 gUnk_08061D48[0x20];
-extern u8 gUnk_08061D68[0x20];
-extern u8 gUnk_08061D88[0x20];
-extern u8 gUnk_08061DA8[0x20];
-extern u8 gUnk_08061DC8[0x200];
-extern u8 gUnk_08061FC8[0x80];
-extern u8 gUnk_08062048[0x100];
-extern u8 gUnk_08062148[0x100];
-extern u8 gUnk_08062248[0x100];
-extern u8 gUnk_08062348[0x80];
-extern u8 gUnk_080623C8[0x400];
-extern u8 gUnk_080627C8[0x80];
-extern u8 gUnk_08062848[0x80];
-extern u8 gUnk_080628C8[0x200];
-extern u8 gUnk_08062AC8[0x20];
-extern u8 gUnk_08062AE8[0x200];
-extern u8 gUnk_08062CE8[0x200];
-extern u8 gUnk_08062EE8[0x200];
-extern u8 gUnk_080630E8[0x80];
-extern u8 gUnk_08063168[0x200];
-extern u8 gUnk_08063368[0x80];
-extern u8 gUnk_080633E8[0x200];
-extern u8 gUnk_080635E8[0x80];
-extern u8 gUnk_08063668[0x200];
-extern u8 gUnk_08063868[0x200];
-extern u8 gUnk_08063A68[0x80];
-extern u8 gUnk_08063AE8[0x100];
-extern u8 gUnk_08063BE8[0x400];
-extern u8 gUnk_08063FE8[0x80];
-extern u8 gUnk_08064068[0x400];
-extern u8 gUnk_08064468[0x400];
-extern u8 gUnk_08064868[0x200];
-extern u8 gUnk_08064A68[0x200];
-extern u8 gUnk_08064C68[0x200];
-extern u8 gUnk_08064E68[0x100];
-extern u8 gUnk_08064F68[0x200];
-extern u8 gUnk_08065168[0x200];
-extern u8 gUnk_08065368[0x200];
-extern u8 gUnk_08065568[0x200];
-extern u8 gUnk_08065768[0x20];
-extern u8 gUnk_08065788[0x20];
-extern u8 gUnk_080657A8[0x20];
+extern u8 gUnk_0805C6E8[0x200]; // enemy respawner? maybe alt version since its only used in one level
+extern u8 gUnk_0805C8E8[0x80]; // little bubble idk
+extern u8 gUnk_0805C968[0x80]; // littler bubble idk
+extern u8 gUnk_0805C9E8[0x800]; // VISION
+extern u8 gUnk_0805D1E8[0x800]; // 1 - 1
+extern u8 gUnk_0805D9E8[0x200]; // menu cursor
+extern u8 gUnk_0805DBE8[0x300]; // PRESS START
+extern u8 gUnk_0805DEE8[0x200]; // japanese text
+extern u8 gUnk_0805E0E8[0x200]; // japanese text
+extern u8 gUnk_0805E2E8[0x400]; // japanese text
+extern u8 gUnk_0805E6E8[0x400]; // japanese text
+extern u8 gUnk_0805EAE8[0x200]; // red level icon thing
+extern u8 gUnk_0805ECE8[0x200]; // Moon Door
+extern u8 gUnk_0805EEE8[0x200]; // Moo enemy
+extern u8 gUnk_0805F0E8[0x200]; // Flying Moo enemy
+extern u8 gUnk_0805F2E8[0x80]; // Star
+extern u8 gUnk_0805F368[0x20]; // Dream Stone small
+extern u8 gUnk_0805F388[0x80]; // Dream Stone large
+extern u8 gUnk_0805F408[0x80]; // Heart
+extern u8 gUnk_0805F488[0x80]; // 1 UP
+extern u8 gUnk_0805F508[0x200]; // Box
+extern u8 gUnk_0805F708[0x80]; // Key (circle)
+extern u8 gUnk_0805F788[0x80]; // Key (triangle)
+extern u8 gUnk_0805F808[0x200]; // Door (frame)
+extern u8 gUnk_0805FA08[0x100]; // hoverboard flame
+extern u8 gUnk_0805FB08[0x100]; // hoverboard ramp
+extern u8 gUnk_0805FC08[0x200]; // Goomi (red winged platform)
+extern u8 gUnk_0805FE08[0x800]; // cannon that appears at end of auto scrollers
+extern u8 gUnk_08060608[0x100]; // moving platform vertical
+extern u8 gUnk_08060708[0x100]; // moving platform horizontal
+extern u8 gUnk_08060808[0x200]; // Spring
+extern u8 gUnk_08060A08[0x80]; // boss healthbar
+extern u8 gUnk_08060A88[0x600]; // fancy thing around boss healthbar
+extern u8 gUnk_08061088[0x800]; // boss hit effect
+extern u8 gUnk_08061888[0x100]; // boss related
+extern u8 gUnk_08061988[0x80]; // big rock debris from boss 1 hitting ground
+extern u8 gUnk_08061A08[0x20]; // small rock debris from boss 1 hitting ground
+extern u8 gUnk_08061A28[0x200]; // Spiker enemy
+extern u8 gUnk_08061C28[0x100]; // Scale
+extern u8 gUnk_08061D28[0x20]; // leaf blown from fan 1
+extern u8 gUnk_08061D48[0x20]; // leaf blown from fan 2
+extern u8 gUnk_08061D68[0x20]; // leaf blown from fan 3
+extern u8 gUnk_08061D88[0x20]; // leaf blown from fan 4
+extern u8 gUnk_08061DA8[0x20]; // leaf blown from fan 5
+extern u8 gUnk_08061DC8[0x200]; // Teton
+extern u8 gUnk_08061FC8[0x80]; // switch that opens gate
+extern u8 gUnk_08062048[0x100]; // gate opened by switch
+extern u8 gUnk_08062148[0x100]; // one way gate
+extern u8 gUnk_08062248[0x100]; // platform that disappears after you land on it
+extern u8 gUnk_08062348[0x80]; // top of accordion looking platform that decompresses/compresses when standing on it/other one
+extern u8 gUnk_080623C8[0x400]; // middle of accordion looking platform that decompressed/compresses when standing on it/other one
+extern u8 gUnk_080627C8[0x80]; // switch that rotates room
+extern u8 gUnk_08062848[0x80]; // Key (heart)
+extern u8 gUnk_080628C8[0x200]; // Boomie (enemy)
+extern u8 gUnk_08062AC8[0x20]; // small dot (idk)
+extern u8 gUnk_08062AE8[0x200]; // explodable block
+extern u8 gUnk_08062CE8[0x200]; // Flying Boomie (enemy)
+extern u8 gUnk_08062EE8[0x200]; // Bomb Box (pointing up)
+extern u8 gUnk_080630E8[0x80]; // Pressure Switch
+extern u8 gUnk_08063168[0x200]; // Bomb Box (pointing right)
+extern u8 gUnk_08063368[0x80]; // switch that causes block to expand/contract
+extern u8 gUnk_080633E8[0x200]; // block when expanded
+extern u8 gUnk_080635E8[0x80]; // switch that opens gate when you hit all of them
+extern u8 gUnk_08063668[0x200]; // Bomb Box (pointing down)
+extern u8 gUnk_08063868[0x200]; // Glibz Quad Cannon (enemy)
+extern u8 gUnk_08063A68[0x80]; // Glibz Quad Cannon bullets
+extern u8 gUnk_08063AE8[0x100]; // Fountain Foothold
+extern u8 gUnk_08063BE8[0x400]; // geyser
+extern u8 gUnk_08063FE8[0x80]; // switch that lowers/raises water level
+extern u8 gUnk_08064068[0x400]; // water
+extern u8 gUnk_08064468[0x400]; // waterfall
+extern u8 gUnk_08064868[0x200]; // Arrow Panel (red i think)
+extern u8 gUnk_08064A68[0x200]; // Arrow Panel (blue i think)
+extern u8 gUnk_08064C68[0x200]; // Moo in bubble
+extern u8 gUnk_08064E68[0x100]; // Medim's (world 4 boss) spinning top on head
+extern u8 gUnk_08064F68[0x200]; // grabby hand that extends from box
+extern u8 gUnk_08065168[0x200]; // box that grabs
+extern u8 gUnk_08065368[0x200]; // box that gets grabbed
+extern u8 gUnk_08065568[0x200]; // Bomb Box (pointing left)
+extern u8 gUnk_08065768[0x20]; // small dot (idk)
+extern u8 gUnk_08065788[0x20]; // small dot (idk)
+extern u8 gUnk_080657A8[0x20]; // small dot (idk)
 
 // palettes
 extern u8 gUnk_08077E28[0x20];
@@ -230,7 +230,7 @@ extern u8 gUnk_080A5888[0x800];
 }
 
 // 2688C
-void sub_0802688C(void)
+void LoadObjects_World1Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E68, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805D9E8, gObjVramPtr, 0x200);
@@ -317,7 +317,7 @@ void sub_0802688C(void)
 }
 
 // 26F68
-void sub_08026F68(void)
+void LoadObjects_World2Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -370,7 +370,7 @@ void sub_08026F68(void)
 }
 
 // 27364
-void sub_08027364(void)
+void LoadObjects_World3Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -430,7 +430,7 @@ void sub_08027364(void)
 }
 
 // 277CC
-void sub_080277CC(void)
+void LoadObjects_World4Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -500,7 +500,7 @@ void sub_080277CC(void)
 }
 
 // 27CF8
-void sub_08027CF8(void)
+void LoadObjects_World5Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -563,7 +563,7 @@ void sub_08028104(void)
 }
 
 // 28108
-void sub_08028108(void)
+void LoadObjects_World1Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -607,7 +607,7 @@ void sub_08028108(void)
 }
 
 // 28440
-void sub_08028440(void)
+void LoadObjects_World1Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -650,7 +650,7 @@ void sub_08028440(void)
 }
 
 // 28750
-void sub_08028750(void)
+void LoadObjects_World1Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -705,7 +705,7 @@ void sub_08028750(void)
 }
 
 // 28B4C
-void sub_08028B4C(void)
+void LoadObjects_World1Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -750,7 +750,7 @@ void sub_08028B4C(void)
 }
 
 // 28E8C
-void sub_08028E8C(void)
+void LoadObjects_World1Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -828,7 +828,7 @@ void sub_08028E8C(void)
 }
 
 // 2946C
-void sub_0802946C(void)
+void LoadObjects_World1Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -892,7 +892,7 @@ void sub_0802946C(void)
 }
 
 // 29968
-void sub_08029968(void)
+void LoadObjects_World1Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -962,7 +962,7 @@ void sub_08029968(void)
 }
 
 // 29EAC
-void sub_08029EAC(void)
+void LoadObjects_World1Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -1019,7 +1019,7 @@ void sub_08029EAC(void)
 }
 
 // 2A31C
-void sub_0802A31C(void)
+void LoadObjects_World2Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1099,7 +1099,7 @@ void sub_0802A31C(void)
 }
 
 // 2A948
-void sub_0802A948(void)
+void LoadObjects_World2Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1190,7 +1190,7 @@ void sub_0802A948(void)
 }
 
 // 2B05C
-void sub_0802B05C(void)
+void LoadObjects_World2Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1281,7 +1281,7 @@ void sub_0802B05C(void)
 }
 
 // 2B768
-void sub_0802B768(void)
+void LoadObjects_World2Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -1325,7 +1325,7 @@ void sub_0802B768(void)
 }
 
 // 2BA84
-void sub_0802BA84(void)
+void LoadObjects_World2Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1421,7 +1421,7 @@ void sub_0802BA84(void)
 }
 
 // 2C1F8
-void sub_0802C1F8(void)
+void LoadObjects_World2Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -1507,7 +1507,7 @@ void sub_0802C1F8(void)
 }
 
 // 2C8B0
-void sub_0802C8B0(void)
+void LoadObjects_World2Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1602,7 +1602,7 @@ void sub_0802C8B0(void)
 }
 
 // 2D028
-void sub_0802D028(void)
+void LoadObjects_World2Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -1665,7 +1665,7 @@ void sub_0802D028(void)
 }
 
 // 2D558
-void sub_0802D558(void)
+void LoadObjects_World3Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1750,7 +1750,7 @@ void sub_0802D558(void)
 }
 
 // 2DBC4
-void sub_0802DBC4(void)
+void LoadObjects_World3Level2(void)
 {
 
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1849,7 +1849,7 @@ void sub_0802DBC4(void)
 }
 
 // 2E374
-void sub_0802E374(void)
+void LoadObjects_World3Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1951,7 +1951,7 @@ void sub_0802E374(void)
 }
 
 // 2EB78
-void sub_0802EB78(void)
+void LoadObjects_World3Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -1997,7 +1997,7 @@ void sub_0802EB78(void)
 }
 
 // 2EEC0
-void sub_0802EEC0(void)
+void LoadObjects_World3Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2079,7 +2079,7 @@ void sub_0802EEC0(void)
 }
 
 // 2F53C
-void sub_0802F53C(void)
+void LoadObjects_World3Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -2143,7 +2143,7 @@ void sub_0802F53C(void)
 }
 
 // 2FA28
-void sub_0802FA28(void)
+void LoadObjects_World3Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2239,7 +2239,7 @@ void sub_0802FA28(void)
 }
 
 // 301A8
-void sub_080301A8(void)
+void LoadObjects_World3Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -2298,7 +2298,7 @@ void sub_080301A8(void)
 }
 
 // 30680
-void sub_08030680(void)
+void LoadObjects_World4Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2387,7 +2387,7 @@ void sub_08030680(void)
 }
 
 // 30D38
-void sub_08030D38(void)
+void LoadObjects_World4Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2475,7 +2475,7 @@ void sub_08030D38(void)
 }
 
 // 313F8
-void sub_080313F8(void)
+void LoadObjects_World4Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2564,7 +2564,7 @@ void sub_080313F8(void)
 }
 
 // 31ADC
-void sub_08031ADC(void)
+void LoadObjects_World4Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -2614,7 +2614,7 @@ void sub_08031ADC(void)
 }
 
 // 31E7C
-void sub_08031E7C(void)
+void LoadObjects_World4Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2721,7 +2721,7 @@ void sub_08031E7C(void)
 }
 
 // 326E8
-void sub_080326E8(void)
+void LoadObjects_World4Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -2802,7 +2802,7 @@ void sub_080326E8(void)
 }
 
 // 32D3C
-void sub_08032D3C(void)
+void LoadObjects_World4Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2910,7 +2910,7 @@ void sub_08032D3C(void)
 }
 
 // 335D4
-void sub_080335D4(void)
+void LoadObjects_World4Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -2972,7 +2972,7 @@ void sub_080335D4(void)
 }
 
 // 33AAC
-void sub_08033AAC(void)
+void LoadObjects_World5Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3046,7 +3046,7 @@ void sub_08033AAC(void)
 }
 
 // 34078
-void sub_08034078(void)
+void LoadObjects_World5Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3149,7 +3149,7 @@ void sub_08034078(void)
 }
 
 // 348B0
-void sub_080348B0(void)
+void LoadObjects_World5Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3266,7 +3266,7 @@ void sub_080348B0(void)
 }
 
 // 35210
-void sub_08035210(void)
+void LoadObjects_World5Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -3330,7 +3330,7 @@ void sub_08035210(void)
 }
 
 // 356E4
-void sub_080356E4(void)
+void LoadObjects_World5Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3433,7 +3433,7 @@ void sub_080356E4(void)
 }
 
 // 35EF8
-void sub_08035EF8(void)
+void LoadObjects_World5Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -3515,7 +3515,7 @@ void sub_08035EF8(void)
 }
 
 // 36564
-void sub_08036564(void)
+void LoadObjects_World5Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3651,7 +3651,7 @@ void sub_08036564(void)
 }
 
 // 37038
-void sub_08037038(void)
+void LoadObjects_World5Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -4155,7 +4155,7 @@ void sub_080392A4(void)
 }
 
 // 39920
-void sub_08039920(void)
+void LoadObjects_Common(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
