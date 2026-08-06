@@ -12,7 +12,7 @@ s16 MultiplyQ8(s16 num1, s16 num2)
     {
         rounded += 0xFF;
     }
-    product = rounded >> 8;
+    product = rounded >> 7;
     return product;
 }
 
