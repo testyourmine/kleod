@@ -30,7 +30,7 @@ MAP = $(ROM:.gba=.map)
 C_SUBDIR = src
 DATA_C_SUBDIR = src/data
 ASM_SUBDIR = asm
-DATA_ASM_SUBDIR = data
+DATA_ASM_SUBDIR = asm/data
 SONG_SUBDIR = sound/songs
 MID_SUBDIR = sound/songs/midi
 

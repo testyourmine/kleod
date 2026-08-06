@@ -261,15 +261,15 @@ SECTIONS {
     } >rom
 
     rodata : ALIGN(4) {
-        data/data_08051BD4.o(.rodata);
+        asm/data/data_08051BD4.o(.rodata);
         src/data/trig.o(.rodata);
-        data/data_080D9094.o(.rodata);
+        asm/data/data_080D9094.o(.rodata);
         src/data/m4a_tables.o(.rodata);
-        data/data_08117CBC.o(.rodata);
-        data/sound_data.o(.rodata);
-        data/data_08118AE4.o(.rodata);
+        asm/data/data_08117CBC.o(.rodata);
+        asm/data/sound_data.o(.rodata);
+        asm/data/data_08118AE4.o(.rodata);
         src/eeprom.o(.rodata);
-        data/data_08188E5C.o(.rodata);
+        asm/data/data_08188E5C.o(.rodata);
     } >rom
 
     /* DWARF 2 sections */

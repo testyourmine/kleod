@@ -1,3 +1,6 @@
+	.include "asm/macros.inc"
+
+	nonmatching sub_0804A070
 
     .text
 

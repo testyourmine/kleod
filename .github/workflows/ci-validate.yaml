@@ -40,6 +40,9 @@ jobs:
     - name: Install Packages
       run: sudo apt-get install -y git make build-essential libpng-dev gcc-arm-none-eabi binutils-arm-none-eabi
 
+    - name: Install dependencies
+      run: python3 -m pip install mapfile_parser
+
     - name: Checkout agbcc
       uses: actions/checkout@master
       with:
@@ -57,6 +60,15 @@ jobs:
     
     - name: Compare
       run: make compare
+
+    - name: Generate objdiff report
+      run: python3 -m mapfile_parser objdiff_report report.json
+
+    - name: Upload progress report artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.version }}_report
+        path: report.json
 
     - name: Cleanup
       run: make clean

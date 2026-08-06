@@ -1,0 +1,5896 @@
+{
+  "measures": {
+    "fuzzy_match_percent": 98.54721,
+    "total_code": "334804",
+    "matched_code": "329940",
+    "matched_code_percent": 98.54721,
+    "matched_data_percent": 100.0,
+    "total_functions": 565,
+    "matched_functions": 563,
+    "matched_functions_percent": 99.64602,
+    "complete_data_percent": 100.0,
+    "total_units": 41
+  },
+  "units": [
+    {
+      "name": "src/eeprom",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "1020",
+        "matched_code": "1020",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 10,
+        "matched_functions": 10,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "size": "14",
+          "metadata": {
+            "virtual_address": "50332536"
+          }
+        },
+        {
+          "name": ".text",
+          "size": "1020",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550636"
+          }
+        },
+        {
+          "name": ".rodata",
+          "size": "132",
+          "metadata": {
+            "virtual_address": "135826904"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "IdentifyEeprom",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550636"
+          }
+        },
+        {
+          "name": "EepromTimerIntr",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550704"
+          }
+        },
+        {
+          "name": "SetEepromTimerIntr",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550740"
+          }
+        },
+        {
+          "name": "StartEepromTimer",
+          "size": "100",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550796"
+          }
+        },
+        {
+          "name": "StopEepromTimer",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550896"
+          }
+        },
+        {
+          "name": "Dma3Transmit",
+          "size": "128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550964"
+          }
+        },
+        {
+          "name": "ReadEepromDword",
+          "size": "184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551092"
+          }
+        },
+        {
+          "name": "ProgramEepromDword",
+          "size": "228",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551276"
+          }
+        },
+        {
+          "name": "VerifyEepromDword",
+          "size": "88",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551504"
+          }
+        },
+        {
+          "name": "ProgramEepromDwordEx",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551592"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "iwram",
+        "module_id": 0,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "asm/crt0",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "464",
+        "matched_code": "464",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 7,
+        "matched_functions": 7,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "464",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217728"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__start",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217728"
+          }
+        },
+        {
+          "name": "RomHeaderNintendoLogo",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217732"
+          }
+        },
+        {
+          "name": "RomHeaderGameCode",
+          "size": "6",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217900"
+          }
+        },
+        {
+          "name": "RomHeaderMagic",
+          "size": "10",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217906"
+          }
+        },
+        {
+          "name": "RomHeaderSoftwareVersion",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217916"
+          }
+        },
+        {
+          "name": "Init",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217920"
+          }
+        },
+        {
+          "name": "IntrMain",
+          "size": "212",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134217980"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/heap_arm",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "168",
+        "matched_code": "168",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 6,
+        "matched_functions": 6,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218192"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "HeapInit",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218192"
+          }
+        },
+        {
+          "name": "HeapAlloc",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218208"
+          }
+        },
+        {
+          "name": "HeapFree",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218252"
+          }
+        },
+        {
+          "name": "HeapGetPtr",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218284"
+          }
+        },
+        {
+          "name": "HeapGetUsed",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218296"
+          }
+        },
+        {
+          "name": "HeapGetFree",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218316"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/rand_arm",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "452",
+        "matched_code": "452",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 4,
+        "matched_functions": 4,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "452",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218360"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "UpdateRng",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218360"
+          }
+        },
+        {
+          "name": "GetRandomValue",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218400"
+          }
+        },
+        {
+          "name": "GetRandomValueEx",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218448"
+          }
+        },
+        {
+          "name": "gRngTable",
+          "size": "292",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218520"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/util",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "52",
+        "matched_code": "52",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 3,
+        "matched_functions": 3,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218812"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "Abs",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218812"
+          }
+        },
+        {
+          "name": "StringCompare",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218824"
+          }
+        },
+        {
+          "name": "StringCopy",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218848"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "src/main",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "1240",
+        "matched_code": "1240",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 5,
+        "matched_functions": 5,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "1240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218864"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "AgbMain",
+          "size": "604",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134218864"
+          }
+        },
+        {
+          "name": "InputHandler_Normal",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134219468"
+          }
+        },
+        {
+          "name": "InputHandler_AttractMode",
+          "size": "336",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134219564"
+          }
+        },
+        {
+          "name": "sub_0800087C",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134219900"
+          }
+        },
+        {
+          "name": "sub_080008DC",
+          "size": "108",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134219996"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/math",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "144",
+        "matched_code": "144",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 6,
+        "matched_functions": 6,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "144",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220104"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "MultiplyQ8",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220104"
+          }
+        },
+        {
+          "name": "DivideQ8",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220128"
+          }
+        },
+        {
+          "name": "ReciprocalQ8",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220152"
+          }
+        },
+        {
+          "name": "MultiplyQ4",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220176"
+          }
+        },
+        {
+          "name": "DivideQ4",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220200"
+          }
+        },
+        {
+          "name": "ReciprocalQ4",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220224"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/interrupts",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "1920",
+        "matched_code": "1920",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 15,
+        "matched_functions": 15,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "1920",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220248"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_080009D8",
+          "size": "216",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220248"
+          }
+        },
+        {
+          "name": "sub_08000AB0",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220464"
+          }
+        },
+        {
+          "name": "sub_08000AC8",
+          "size": "268",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220488"
+          }
+        },
+        {
+          "name": "sub_08000BD4",
+          "size": "268",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134220756"
+          }
+        },
+        {
+          "name": "sub_08000CE0",
+          "size": "224",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221024"
+          }
+        },
+        {
+          "name": "sub_08000DC0",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221248"
+          }
+        },
+        {
+          "name": "sub_08000E14",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221332"
+          }
+        },
+        {
+          "name": "sub_08000E68",
+          "size": "264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221416"
+          }
+        },
+        {
+          "name": "sub_08000F70",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221680"
+          }
+        },
+        {
+          "name": "sub_08000FA0",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221728"
+          }
+        },
+        {
+          "name": "sub_08000FCC",
+          "size": "92",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221772"
+          }
+        },
+        {
+          "name": "sub_08001028",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221864"
+          }
+        },
+        {
+          "name": "sub_0800107C",
+          "size": "160",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134221948"
+          }
+        },
+        {
+          "name": "sub_0800111C",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134222108"
+          }
+        },
+        {
+          "name": "InterruptHandler_Normal",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134222148"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_08001158",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "11264",
+        "matched_code": "11264",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 11,
+        "matched_functions": 11,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "11264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134222168"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_08001158",
+          "size": "2936",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134222168"
+          }
+        },
+        {
+          "name": "ScrollBg2LevelData",
+          "size": "648",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134225104"
+          }
+        },
+        {
+          "name": "sub_08001F58",
+          "size": "1316",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134225752"
+          }
+        },
+        {
+          "name": "sub_0800247C",
+          "size": "840",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134227068"
+          }
+        },
+        {
+          "name": "sub_080027C4",
+          "size": "768",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134227908"
+          }
+        },
+        {
+          "name": "sub_08002AC4",
+          "size": "1292",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134228676"
+          }
+        },
+        {
+          "name": "sub_08002FD0",
+          "size": "1132",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134229968"
+          }
+        },
+        {
+          "name": "sub_0800343C",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134231100"
+          }
+        },
+        {
+          "name": "sub_0800350C",
+          "size": "580",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134231308"
+          }
+        },
+        {
+          "name": "sub_08003750",
+          "size": "436",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134231888"
+          }
+        },
+        {
+          "name": "sub_08003904",
+          "size": "1108",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134232324"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_08003D58",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "13128",
+        "matched_code": "13128",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 5,
+        "matched_functions": 5,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "13128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134233432"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_08003D58",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134233432"
+          }
+        },
+        {
+          "name": "sub_08003D80",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134233472"
+          }
+        },
+        {
+          "name": "sub_08003DA0",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134233504"
+          }
+        },
+        {
+          "name": "sub_08003DC0",
+          "size": "7988",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134233536"
+          }
+        },
+        {
+          "name": "sub_08005CF4",
+          "size": "5036",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134241524"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_080070A0",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "20308",
+        "matched_code": "20308",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 10,
+        "matched_functions": 10,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "20308",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134246560"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_080070A0",
+          "size": "10280",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134246560"
+          }
+        },
+        {
+          "name": "sub_080098C8",
+          "size": "2976",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134256840"
+          }
+        },
+        {
+          "name": "sub_0800A468",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134259816"
+          }
+        },
+        {
+          "name": "sub_0800A49C",
+          "size": "284",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134259868"
+          }
+        },
+        {
+          "name": "sub_0800A5B8",
+          "size": "356",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134260152"
+          }
+        },
+        {
+          "name": "sub_0800A71C",
+          "size": "232",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134260508"
+          }
+        },
+        {
+          "name": "sub_0800A804",
+          "size": "1072",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134260740"
+          }
+        },
+        {
+          "name": "sub_0800AC34",
+          "size": "1932",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134261812"
+          }
+        },
+        {
+          "name": "sub_0800B3C0",
+          "size": "2864",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134263744"
+          }
+        },
+        {
+          "name": "sub_0800BEF0",
+          "size": "260",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134266608"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_0800BFF4",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "4500",
+        "matched_code": "4500",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 8,
+        "matched_functions": 8,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "4500",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134266868"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_0800BFF4",
+          "size": "276",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134266868"
+          }
+        },
+        {
+          "name": "sub_0800C108",
+          "size": "852",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134267144"
+          }
+        },
+        {
+          "name": "sub_0800C45C",
+          "size": "264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134267996"
+          }
+        },
+        {
+          "name": "sub_0800C564",
+          "size": "648",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134268260"
+          }
+        },
+        {
+          "name": "sub_0800C7EC",
+          "size": "276",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134268908"
+          }
+        },
+        {
+          "name": "sub_0800C900",
+          "size": "268",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134269184"
+          }
+        },
+        {
+          "name": "sub_0800CA0C",
+          "size": "1720",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134269452"
+          }
+        },
+        {
+          "name": "sub_0800D0C4",
+          "size": "196",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134271172"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_0800D188",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "28668",
+        "matched_code": "28668",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "28668",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134271368"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_0800D188",
+          "size": "28668",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134271368"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_08014184",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "65392",
+        "matched_code": "65392",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 43,
+        "matched_functions": 43,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "65392",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134300036"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_08014184",
+          "size": "172",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134300036"
+          }
+        },
+        {
+          "name": "sub_08014230",
+          "size": "232",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134300208"
+          }
+        },
+        {
+          "name": "sub_08014318",
+          "size": "428",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134300440"
+          }
+        },
+        {
+          "name": "sub_080144C4",
+          "size": "228",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134300868"
+          }
+        },
+        {
+          "name": "sub_080145A8",
+          "size": "124",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134301096"
+          }
+        },
+        {
+          "name": "sub_08014624",
+          "size": "316",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134301220"
+          }
+        },
+        {
+          "name": "sub_08014760",
+          "size": "10124",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134301536"
+          }
+        },
+        {
+          "name": "sub_08016EEC",
+          "size": "16728",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134311660"
+          }
+        },
+        {
+          "name": "sub_0801B044",
+          "size": "1604",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134328388"
+          }
+        },
+        {
+          "name": "sub_0801B688",
+          "size": "1252",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134329992"
+          }
+        },
+        {
+          "name": "sub_0801BB6C",
+          "size": "340",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134331244"
+          }
+        },
+        {
+          "name": "sub_0801BCC0",
+          "size": "136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134331584"
+          }
+        },
+        {
+          "name": "sub_0801BD48",
+          "size": "1032",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134331720"
+          }
+        },
+        {
+          "name": "sub_0801C150",
+          "size": "1436",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134332752"
+          }
+        },
+        {
+          "name": "sub_0801C6EC",
+          "size": "320",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134334188"
+          }
+        },
+        {
+          "name": "sub_0801C82C",
+          "size": "1548",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134334508"
+          }
+        },
+        {
+          "name": "sub_0801CE38",
+          "size": "672",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134336056"
+          }
+        },
+        {
+          "name": "sub_0801D0D8",
+          "size": "980",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134336728"
+          }
+        },
+        {
+          "name": "sub_0801D4AC",
+          "size": "516",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134337708"
+          }
+        },
+        {
+          "name": "sub_0801D6B0",
+          "size": "1940",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134338224"
+          }
+        },
+        {
+          "name": "sub_0801DE44",
+          "size": "384",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134340164"
+          }
+        },
+        {
+          "name": "sub_0801DFC4",
+          "size": "484",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134340548"
+          }
+        },
+        {
+          "name": "sub_0801E1A8",
+          "size": "428",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134341032"
+          }
+        },
+        {
+          "name": "sub_0801E354",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134341460"
+          }
+        },
+        {
+          "name": "sub_0801E3FC",
+          "size": "616",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134341628"
+          }
+        },
+        {
+          "name": "sub_0801E664",
+          "size": "1088",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134342244"
+          }
+        },
+        {
+          "name": "sub_0801EAA4",
+          "size": "1208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134343332"
+          }
+        },
+        {
+          "name": "sub_0801EF5C",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134344540"
+          }
+        },
+        {
+          "name": "sub_0801F02C",
+          "size": "252",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134344748"
+          }
+        },
+        {
+          "name": "sub_0801F128",
+          "size": "936",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134345000"
+          }
+        },
+        {
+          "name": "sub_0801F4D0",
+          "size": "376",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134345936"
+          }
+        },
+        {
+          "name": "sub_0801F648",
+          "size": "1172",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134346312"
+          }
+        },
+        {
+          "name": "sub_0801FADC",
+          "size": "1300",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134347484"
+          }
+        },
+        {
+          "name": "sub_0801FFF0",
+          "size": "740",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134348784"
+          }
+        },
+        {
+          "name": "sub_080202D4",
+          "size": "3300",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134349524"
+          }
+        },
+        {
+          "name": "sub_08020FB8",
+          "size": "476",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134352824"
+          }
+        },
+        {
+          "name": "sub_08021194",
+          "size": "1944",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134353300"
+          }
+        },
+        {
+          "name": "sub_0802192C",
+          "size": "424",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134355244"
+          }
+        },
+        {
+          "name": "sub_08021AD4",
+          "size": "728",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134355668"
+          }
+        },
+        {
+          "name": "sub_08021DAC",
+          "size": "3828",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134356396"
+          }
+        },
+        {
+          "name": "sub_08022CA0",
+          "size": "3304",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134360224"
+          }
+        },
+        {
+          "name": "sub_08023988",
+          "size": "568",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134363528"
+          }
+        },
+        {
+          "name": "sub_08023BC0",
+          "size": "1332",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134364096"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_080240F4",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "10136",
+        "matched_code": "10136",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 29,
+        "matched_functions": 29,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "10136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134365428"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_080240F4",
+          "size": "248",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134365428"
+          }
+        },
+        {
+          "name": "sub_080241EC",
+          "size": "212",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134365676"
+          }
+        },
+        {
+          "name": "sub_080242C0",
+          "size": "672",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134365888"
+          }
+        },
+        {
+          "name": "sub_08024560",
+          "size": "136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134366560"
+          }
+        },
+        {
+          "name": "sub_080245E8",
+          "size": "304",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134366696"
+          }
+        },
+        {
+          "name": "sub_08024718",
+          "size": "652",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134367000"
+          }
+        },
+        {
+          "name": "sub_080249A4",
+          "size": "212",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134367652"
+          }
+        },
+        {
+          "name": "sub_08024A78",
+          "size": "220",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134367864"
+          }
+        },
+        {
+          "name": "sub_08024B54",
+          "size": "224",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134368084"
+          }
+        },
+        {
+          "name": "sub_08024C34",
+          "size": "336",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134368308"
+          }
+        },
+        {
+          "name": "sub_08024D84",
+          "size": "680",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134368644"
+          }
+        },
+        {
+          "name": "sub_0802502C",
+          "size": "608",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134369324"
+          }
+        },
+        {
+          "name": "sub_0802528C",
+          "size": "192",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134369932"
+          }
+        },
+        {
+          "name": "sub_0802534C",
+          "size": "744",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134370124"
+          }
+        },
+        {
+          "name": "sub_08025634",
+          "size": "228",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134370868"
+          }
+        },
+        {
+          "name": "sub_08025718",
+          "size": "256",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134371096"
+          }
+        },
+        {
+          "name": "sub_08025818",
+          "size": "232",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134371352"
+          }
+        },
+        {
+          "name": "sub_08025900",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134371584"
+          }
+        },
+        {
+          "name": "sub_08025954",
+          "size": "212",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134371668"
+          }
+        },
+        {
+          "name": "sub_08025A28",
+          "size": "336",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134371880"
+          }
+        },
+        {
+          "name": "sub_08025B78",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134372216"
+          }
+        },
+        {
+          "name": "sub_08025BA4",
+          "size": "560",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134372260"
+          }
+        },
+        {
+          "name": "sub_08025DD4",
+          "size": "148",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134372820"
+          }
+        },
+        {
+          "name": "sub_08025E68",
+          "size": "300",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134372968"
+          }
+        },
+        {
+          "name": "sub_08025F94",
+          "size": "252",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134373268"
+          }
+        },
+        {
+          "name": "sub_08026090",
+          "size": "152",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134373520"
+          }
+        },
+        {
+          "name": "sub_08026128",
+          "size": "588",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134373672"
+          }
+        },
+        {
+          "name": "sub_08026374",
+          "size": "304",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134374260"
+          }
+        },
+        {
+          "name": "sub_080264A4",
+          "size": "1000",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134374564"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_0802688C",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "79104",
+        "matched_code": "79104",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 51,
+        "matched_functions": 51,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "79104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134375564"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "LoadObjects_World1Select",
+          "size": "1756",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134375564"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Select",
+          "size": "1020",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134377320"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Select",
+          "size": "1128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134378340"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Select",
+          "size": "1324",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134379468"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Select",
+          "size": "1036",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134380792"
+          }
+        },
+        {
+          "name": "sub_08028104",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134381828"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level1",
+          "size": "824",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134381832"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level2",
+          "size": "784",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134382656"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level3",
+          "size": "1020",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134383440"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level4",
+          "size": "832",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134384460"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level5",
+          "size": "1504",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134385292"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level6",
+          "size": "1276",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134386796"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Level7",
+          "size": "1348",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134388072"
+          }
+        },
+        {
+          "name": "LoadObjects_World1Boss",
+          "size": "1136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134389420"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level1",
+          "size": "1580",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134390556"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level2",
+          "size": "1812",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134392136"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level3",
+          "size": "1804",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134393948"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level4",
+          "size": "796",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134395752"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level5",
+          "size": "1908",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134396548"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level6",
+          "size": "1720",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134398456"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Level7",
+          "size": "1912",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134400176"
+          }
+        },
+        {
+          "name": "LoadObjects_World2Boss",
+          "size": "1328",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134402088"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level1",
+          "size": "1644",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134403416"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level2",
+          "size": "1968",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134405060"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level3",
+          "size": "2052",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134407028"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level4",
+          "size": "840",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134409080"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level5",
+          "size": "1660",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134409920"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level6",
+          "size": "1260",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134411580"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Level7",
+          "size": "1920",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134412840"
+          }
+        },
+        {
+          "name": "LoadObjects_World3Boss",
+          "size": "1240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134414760"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level1",
+          "size": "1720",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134416000"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level2",
+          "size": "1728",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134417720"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level3",
+          "size": "1764",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134419448"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level4",
+          "size": "928",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134421212"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level5",
+          "size": "2156",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134422140"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level6",
+          "size": "1620",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134424296"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Level7",
+          "size": "2200",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134425916"
+          }
+        },
+        {
+          "name": "LoadObjects_World4Boss",
+          "size": "1240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134428116"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level1",
+          "size": "1484",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134429356"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level2",
+          "size": "2104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134430840"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level3",
+          "size": "2400",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134432944"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level4",
+          "size": "1236",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134435344"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level5",
+          "size": "2068",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134436580"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level6",
+          "size": "1644",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134438648"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Level7",
+          "size": "2772",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134440292"
+          }
+        },
+        {
+          "name": "LoadObjects_World5Boss",
+          "size": "1384",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134443064"
+          }
+        },
+        {
+          "name": "sub_080375A0",
+          "size": "2100",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134444448"
+          }
+        },
+        {
+          "name": "sub_08037DD4",
+          "size": "2632",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134446548"
+          }
+        },
+        {
+          "name": "sub_0803881C",
+          "size": "2696",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134449180"
+          }
+        },
+        {
+          "name": "sub_080392A4",
+          "size": "1660",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134451876"
+          }
+        },
+        {
+          "name": "LoadObjects_Common",
+          "size": "1132",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134453536"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_08039D8C",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "40296",
+        "matched_code": "40296",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 35,
+        "matched_functions": 35,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "40296",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134454668"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_08039D8C",
+          "size": "1184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134454668"
+          }
+        },
+        {
+          "name": "sub_0803A22C",
+          "size": "484",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134455852"
+          }
+        },
+        {
+          "name": "sub_0803A410",
+          "size": "1192",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134456336"
+          }
+        },
+        {
+          "name": "sub_0803A8B8",
+          "size": "488",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134457528"
+          }
+        },
+        {
+          "name": "sub_0803AAA0",
+          "size": "376",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134458016"
+          }
+        },
+        {
+          "name": "sub_0803AC18",
+          "size": "380",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134458392"
+          }
+        },
+        {
+          "name": "sub_0803AD94",
+          "size": "244",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134458772"
+          }
+        },
+        {
+          "name": "sub_0803AE88",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134459016"
+          }
+        },
+        {
+          "name": "sub_0803AF38",
+          "size": "316",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134459192"
+          }
+        },
+        {
+          "name": "sub_0803B074",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134459508"
+          }
+        },
+        {
+          "name": "sub_0803B0A0",
+          "size": "728",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134459552"
+          }
+        },
+        {
+          "name": "sub_0803B378",
+          "size": "648",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134460280"
+          }
+        },
+        {
+          "name": "sub_0803B600",
+          "size": "2436",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134460928"
+          }
+        },
+        {
+          "name": "sub_0803BF84",
+          "size": "2180",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134463364"
+          }
+        },
+        {
+          "name": "sub_0803C808",
+          "size": "1548",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134465544"
+          }
+        },
+        {
+          "name": "sub_0803CE14",
+          "size": "244",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134467092"
+          }
+        },
+        {
+          "name": "sub_0803CF08",
+          "size": "568",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134467336"
+          }
+        },
+        {
+          "name": "sub_0803D140",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134467904"
+          }
+        },
+        {
+          "name": "sub_0803D15C",
+          "size": "848",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134467932"
+          }
+        },
+        {
+          "name": "sub_0803D4AC",
+          "size": "1120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134468780"
+          }
+        },
+        {
+          "name": "sub_0803D90C",
+          "size": "3532",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134469900"
+          }
+        },
+        {
+          "name": "sub_0803E6D8",
+          "size": "500",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134473432"
+          }
+        },
+        {
+          "name": "sub_0803E8CC",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134473932"
+          }
+        },
+        {
+          "name": "sub_0803E904",
+          "size": "3464",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134473988"
+          }
+        },
+        {
+          "name": "sub_0803F68C",
+          "size": "708",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134477452"
+          }
+        },
+        {
+          "name": "sub_0803F950",
+          "size": "156",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134478160"
+          }
+        },
+        {
+          "name": "sub_0803F9EC",
+          "size": "4452",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134478316"
+          }
+        },
+        {
+          "name": "sub_08040B50",
+          "size": "536",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134482768"
+          }
+        },
+        {
+          "name": "sub_08040D68",
+          "size": "436",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134483304"
+          }
+        },
+        {
+          "name": "sub_08040F1C",
+          "size": "3960",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134483740"
+          }
+        },
+        {
+          "name": "sub_08041E94",
+          "size": "160",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134487700"
+          }
+        },
+        {
+          "name": "sub_08041F34",
+          "size": "240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134487860"
+          }
+        },
+        {
+          "name": "sub_08042024",
+          "size": "3016",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134488100"
+          }
+        },
+        {
+          "name": "sub_08042BEC",
+          "size": "632",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134491116"
+          }
+        },
+        {
+          "name": "sub_08042E64",
+          "size": "3216",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134491748"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/decompress",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "176",
+        "matched_code": "176",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 3,
+        "matched_functions": 3,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134494964"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "Decompress",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134494964"
+          }
+        },
+        {
+          "name": "DecompressDma",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134495028"
+          }
+        },
+        {
+          "name": "DecompressAlloc",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134495104"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_08043BA4",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "12232",
+        "matched_code": "12232",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 18,
+        "matched_functions": 18,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "12232",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134495140"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_08043BA4",
+          "size": "1572",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134495140"
+          }
+        },
+        {
+          "name": "sub_080441C8",
+          "size": "1328",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134496712"
+          }
+        },
+        {
+          "name": "sub_080446F8",
+          "size": "1216",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134498040"
+          }
+        },
+        {
+          "name": "sub_08044BB8",
+          "size": "948",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134499256"
+          }
+        },
+        {
+          "name": "sub_08044F6C",
+          "size": "528",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134500204"
+          }
+        },
+        {
+          "name": "sub_0804517C",
+          "size": "364",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134500732"
+          }
+        },
+        {
+          "name": "sub_080452E8",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134501096"
+          }
+        },
+        {
+          "name": "sub_08045398",
+          "size": "88",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134501272"
+          }
+        },
+        {
+          "name": "sub_080453F0",
+          "size": "836",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134501360"
+          }
+        },
+        {
+          "name": "sub_08045734",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134502196"
+          }
+        },
+        {
+          "name": "sub_0804575C",
+          "size": "280",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134502236"
+          }
+        },
+        {
+          "name": "sub_08045874",
+          "size": "1780",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134502516"
+          }
+        },
+        {
+          "name": "sub_08045F68",
+          "size": "800",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134504296"
+          }
+        },
+        {
+          "name": "sub_08046288",
+          "size": "1388",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134505096"
+          }
+        },
+        {
+          "name": "sub_080467F4",
+          "size": "188",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134506484"
+          }
+        },
+        {
+          "name": "sub_080468B0",
+          "size": "332",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134506672"
+          }
+        },
+        {
+          "name": "sub_080469FC",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134507004"
+          }
+        },
+        {
+          "name": "sub_08046A64",
+          "size": "264",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134507108"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/save",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "1860",
+        "matched_code": "1860",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 5,
+        "matched_functions": 5,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "1860",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134507372"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "LoadAllSaveData",
+          "size": "588",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134507372"
+          }
+        },
+        {
+          "name": "WriteSaveFile",
+          "size": "436",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134507960"
+          }
+        },
+        {
+          "name": "LoadSaveFile",
+          "size": "464",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134508396"
+          }
+        },
+        {
+          "name": "DeleteAllSaveData",
+          "size": "184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134508860"
+          }
+        },
+        {
+          "name": "WriteCurrentSaveFile",
+          "size": "188",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134509044"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_080472B0",
+      "measures": {
+        "fuzzy_match_percent": 77.11761,
+        "total_code": "16292",
+        "matched_code": "12564",
+        "matched_code_percent": 77.11761,
+        "matched_data_percent": 100.0,
+        "total_functions": 21,
+        "matched_functions": 20,
+        "matched_functions_percent": 95.2381,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "16292",
+          "fuzzy_match_percent": 77.11761,
+          "metadata": {
+            "virtual_address": "134509232"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_080472B0",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134509232"
+          }
+        },
+        {
+          "name": "sub_080472C8",
+          "size": "788",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134509256"
+          }
+        },
+        {
+          "name": "sub_080475DC",
+          "size": "460",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134510044"
+          }
+        },
+        {
+          "name": "sub_080477A8",
+          "size": "788",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134510504"
+          }
+        },
+        {
+          "name": "sub_08047ABC",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134511292"
+          }
+        },
+        {
+          "name": "sub_08047B1C",
+          "size": "940",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134511388"
+          }
+        },
+        {
+          "name": "sub_08047EC8",
+          "size": "184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134512328"
+          }
+        },
+        {
+          "name": "sub_08047F80",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134512512"
+          }
+        },
+        {
+          "name": "sub_08048028",
+          "size": "772",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134512680"
+          }
+        },
+        {
+          "name": "sub_0804832C",
+          "size": "364",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134513452"
+          }
+        },
+        {
+          "name": "sub_08048498",
+          "size": "720",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134513816"
+          }
+        },
+        {
+          "name": "sub_08048768",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134514536"
+          }
+        },
+        {
+          "name": "sub_080487B4",
+          "size": "184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134514612"
+          }
+        },
+        {
+          "name": "sub_0804886C",
+          "size": "2388",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134514796"
+          }
+        },
+        {
+          "name": "sub_080491C0",
+          "size": "392",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134517184"
+          }
+        },
+        {
+          "name": "sub_08049348",
+          "size": "988",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134517576"
+          }
+        },
+        {
+          "name": "sub_08049724",
+          "size": "1240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134518564"
+          }
+        },
+        {
+          "name": "sub_08049BFC",
+          "size": "768",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134519804"
+          }
+        },
+        {
+          "name": "sub_08049EFC",
+          "size": "372",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134520572"
+          }
+        },
+        {
+          "name": "sub_0804A070",
+          "size": "3728",
+          "metadata": {
+            "virtual_address": "134520944"
+          }
+        },
+        {
+          "name": "sub_0804AF00",
+          "size": "852",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134524672"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "src/code_0804B254",
+      "measures": {
+        "fuzzy_match_percent": 93.08666,
+        "total_code": "16432",
+        "matched_code": "15296",
+        "matched_code_percent": 93.08666,
+        "matched_data_percent": 100.0,
+        "total_functions": 130,
+        "matched_functions": 129,
+        "matched_functions_percent": 99.23077,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "16432",
+          "fuzzy_match_percent": 93.08666,
+          "metadata": {
+            "virtual_address": "134525524"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "sub_0804B254",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525524"
+          }
+        },
+        {
+          "name": "sub_0804B260",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525536"
+          }
+        },
+        {
+          "name": "sub_0804B270",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525552"
+          }
+        },
+        {
+          "name": "sub_0804B288",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525576"
+          }
+        },
+        {
+          "name": "sub_0804B2A0",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525600"
+          }
+        },
+        {
+          "name": "sub_0804B2EC",
+          "size": "112",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525676"
+          }
+        },
+        {
+          "name": "sub_0804B35C",
+          "size": "200",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525788"
+          }
+        },
+        {
+          "name": "sub_0804B424",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134525988"
+          }
+        },
+        {
+          "name": "sub_0804B464",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134526052"
+          }
+        },
+        {
+          "name": "sub_0804B4B0",
+          "size": "1136",
+          "metadata": {
+            "virtual_address": "134526128"
+          }
+        },
+        {
+          "name": "sub_0804B920",
+          "size": "404",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527264"
+          }
+        },
+        {
+          "name": "sub_0804BAB4",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527668"
+          }
+        },
+        {
+          "name": "sub_0804BAD4",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527700"
+          }
+        },
+        {
+          "name": "sub_0804BAFC",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527740"
+          }
+        },
+        {
+          "name": "sub_0804BB10",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527760"
+          }
+        },
+        {
+          "name": "sub_0804BB3C",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527804"
+          }
+        },
+        {
+          "name": "sub_0804BB74",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527860"
+          }
+        },
+        {
+          "name": "sub_0804BB88",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527880"
+          }
+        },
+        {
+          "name": "sub_0804BBC0",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527936"
+          }
+        },
+        {
+          "name": "sub_0804BBD4",
+          "size": "316",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134527956"
+          }
+        },
+        {
+          "name": "sub_0804BD10",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528272"
+          }
+        },
+        {
+          "name": "sub_0804BD88",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528392"
+          }
+        },
+        {
+          "name": "sub_0804BDB4",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528436"
+          }
+        },
+        {
+          "name": "sub_0804BE08",
+          "size": "80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528520"
+          }
+        },
+        {
+          "name": "sub_0804BE58",
+          "size": "292",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528600"
+          }
+        },
+        {
+          "name": "sub_0804BF7C",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528892"
+          }
+        },
+        {
+          "name": "sub_0804BFD0",
+          "size": "128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134528976"
+          }
+        },
+        {
+          "name": "sub_0804C050",
+          "size": "108",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529104"
+          }
+        },
+        {
+          "name": "sub_0804C0BC",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529212"
+          }
+        },
+        {
+          "name": "sub_0804C0D4",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529236"
+          }
+        },
+        {
+          "name": "sub_0804C0EC",
+          "size": "180",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529260"
+          }
+        },
+        {
+          "name": "sub_0804C1A0",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529440"
+          }
+        },
+        {
+          "name": "sub_0804C1C0",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529472"
+          }
+        },
+        {
+          "name": "sub_0804C1FC",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529532"
+          }
+        },
+        {
+          "name": "sub_0804C218",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529560"
+          }
+        },
+        {
+          "name": "sub_0804C230",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529584"
+          }
+        },
+        {
+          "name": "sub_0804C24C",
+          "size": "180",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529612"
+          }
+        },
+        {
+          "name": "sub_0804C300",
+          "size": "164",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529792"
+          }
+        },
+        {
+          "name": "sub_0804C3A4",
+          "size": "224",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134529956"
+          }
+        },
+        {
+          "name": "sub_0804C484",
+          "size": "276",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530180"
+          }
+        },
+        {
+          "name": "sub_0804C598",
+          "size": "116",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530456"
+          }
+        },
+        {
+          "name": "sub_0804C60C",
+          "size": "156",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530572"
+          }
+        },
+        {
+          "name": "sub_0804C6A8",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530728"
+          }
+        },
+        {
+          "name": "sub_0804C6E0",
+          "size": "148",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530784"
+          }
+        },
+        {
+          "name": "sub_0804C774",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530932"
+          }
+        },
+        {
+          "name": "sub_0804C798",
+          "size": "100",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134530968"
+          }
+        },
+        {
+          "name": "sub_0804C7FC",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531068"
+          }
+        },
+        {
+          "name": "sub_0804C844",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531140"
+          }
+        },
+        {
+          "name": "sub_0804C86C",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531180"
+          }
+        },
+        {
+          "name": "sub_0804C898",
+          "size": "92",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531224"
+          }
+        },
+        {
+          "name": "sub_0804C8F4",
+          "size": "180",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531316"
+          }
+        },
+        {
+          "name": "sub_0804C9A8",
+          "size": "196",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531496"
+          }
+        },
+        {
+          "name": "sub_0804CA6C",
+          "size": "88",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531692"
+          }
+        },
+        {
+          "name": "sub_0804CAC4",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531780"
+          }
+        },
+        {
+          "name": "sub_0804CAC8",
+          "size": "388",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134531784"
+          }
+        },
+        {
+          "name": "sub_0804CC4C",
+          "size": "732",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134532172"
+          }
+        },
+        {
+          "name": "sub_0804CF28",
+          "size": "88",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134532904"
+          }
+        },
+        {
+          "name": "sub_0804CF80",
+          "size": "80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134532992"
+          }
+        },
+        {
+          "name": "sub_0804CFD0",
+          "size": "164",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134533072"
+          }
+        },
+        {
+          "name": "sub_0804D074",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134533236"
+          }
+        },
+        {
+          "name": "sub_0804D0B0",
+          "size": "636",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134533296"
+          }
+        },
+        {
+          "name": "sub_0804D32C",
+          "size": "220",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134533932"
+          }
+        },
+        {
+          "name": "sub_0804D408",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134534152"
+          }
+        },
+        {
+          "name": "sub_0804D4D8",
+          "size": "356",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134534360"
+          }
+        },
+        {
+          "name": "sub_0804D63C",
+          "size": "348",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134534716"
+          }
+        },
+        {
+          "name": "sub_0804D798",
+          "size": "316",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134535064"
+          }
+        },
+        {
+          "name": "sub_0804D8D4",
+          "size": "200",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134535380"
+          }
+        },
+        {
+          "name": "sub_0804D99C",
+          "size": "196",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134535580"
+          }
+        },
+        {
+          "name": "sub_0804DA60",
+          "size": "216",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134535776"
+          }
+        },
+        {
+          "name": "sub_0804DB38",
+          "size": "156",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134535992"
+          }
+        },
+        {
+          "name": "sub_0804DBD4",
+          "size": "144",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536148"
+          }
+        },
+        {
+          "name": "sub_0804DC64",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536292"
+          }
+        },
+        {
+          "name": "sub_0804DCCC",
+          "size": "124",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536396"
+          }
+        },
+        {
+          "name": "sub_0804DD48",
+          "size": "236",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536520"
+          }
+        },
+        {
+          "name": "sub_0804DE34",
+          "size": "136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536756"
+          }
+        },
+        {
+          "name": "sub_0804DEBC",
+          "size": "196",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134536892"
+          }
+        },
+        {
+          "name": "sub_0804DF80",
+          "size": "136",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134537088"
+          }
+        },
+        {
+          "name": "sub_0804E008",
+          "size": "224",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134537224"
+          }
+        },
+        {
+          "name": "sub_0804E0E8",
+          "size": "748",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134537448"
+          }
+        },
+        {
+          "name": "sub_0804E3D4",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538196"
+          }
+        },
+        {
+          "name": "sub_0804E404",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538244"
+          }
+        },
+        {
+          "name": "sub_0804E428",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538280"
+          }
+        },
+        {
+          "name": "sub_0804E448",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538312"
+          }
+        },
+        {
+          "name": "sub_0804E490",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538384"
+          }
+        },
+        {
+          "name": "sub_0804E4D4",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538452"
+          }
+        },
+        {
+          "name": "sub_0804E520",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538528"
+          }
+        },
+        {
+          "name": "sub_0804E568",
+          "size": "92",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538600"
+          }
+        },
+        {
+          "name": "sub_0804E5C4",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538692"
+          }
+        },
+        {
+          "name": "sub_0804E5F0",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538736"
+          }
+        },
+        {
+          "name": "sub_0804E634",
+          "size": "128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538804"
+          }
+        },
+        {
+          "name": "sub_0804E6B4",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134538932"
+          }
+        },
+        {
+          "name": "sub_0804E708",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539016"
+          }
+        },
+        {
+          "name": "sub_0804E738",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539064"
+          }
+        },
+        {
+          "name": "sub_0804E76C",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539116"
+          }
+        },
+        {
+          "name": "sub_0804E784",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539140"
+          }
+        },
+        {
+          "name": "sub_0804E7A0",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539168"
+          }
+        },
+        {
+          "name": "sub_0804E7D0",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539216"
+          }
+        },
+        {
+          "name": "sub_0804E7E8",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539240"
+          }
+        },
+        {
+          "name": "sub_0804E7F8",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539256"
+          }
+        },
+        {
+          "name": "sub_0804E814",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539284"
+          }
+        },
+        {
+          "name": "sub_0804E850",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539344"
+          }
+        },
+        {
+          "name": "sub_0804E884",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539396"
+          }
+        },
+        {
+          "name": "sub_0804E8FC",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539516"
+          }
+        },
+        {
+          "name": "sub_0804E93C",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539580"
+          }
+        },
+        {
+          "name": "sub_0804E974",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539636"
+          }
+        },
+        {
+          "name": "sub_0804E9DC",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539740"
+          }
+        },
+        {
+          "name": "sub_0804EA44",
+          "size": "80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539844"
+          }
+        },
+        {
+          "name": "sub_0804EA94",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134539924"
+          }
+        },
+        {
+          "name": "sub_0804EB64",
+          "size": "516",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134540132"
+          }
+        },
+        {
+          "name": "sub_0804ED68",
+          "size": "172",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134540648"
+          }
+        },
+        {
+          "name": "sub_0804EE14",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134540820"
+          }
+        },
+        {
+          "name": "sub_0804EE34",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134540852"
+          }
+        },
+        {
+          "name": "sub_0804EE60",
+          "size": "240",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134540896"
+          }
+        },
+        {
+          "name": "sub_0804EF50",
+          "size": "80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541136"
+          }
+        },
+        {
+          "name": "sub_0804EFA0",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541216"
+          }
+        },
+        {
+          "name": "sub_0804EFC4",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541252"
+          }
+        },
+        {
+          "name": "sub_0804EFDC",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541276"
+          }
+        },
+        {
+          "name": "sub_0804F004",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541316"
+          }
+        },
+        {
+          "name": "sub_0804F034",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541364"
+          }
+        },
+        {
+          "name": "sub_0804F050",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541392"
+          }
+        },
+        {
+          "name": "sub_0804F074",
+          "size": "92",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541428"
+          }
+        },
+        {
+          "name": "sub_0804F0D0",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541520"
+          }
+        },
+        {
+          "name": "sub_0804F114",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541588"
+          }
+        },
+        {
+          "name": "sub_0804F13C",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541628"
+          }
+        },
+        {
+          "name": "sub_0804F160",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541664"
+          }
+        },
+        {
+          "name": "sub_0804F180",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541696"
+          }
+        },
+        {
+          "name": "sub_0804F1B4",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541748"
+          }
+        },
+        {
+          "name": "sub_0804F1C4",
+          "size": "132",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541764"
+          }
+        },
+        {
+          "name": "sub_0804F248",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541896"
+          }
+        },
+        {
+          "name": "sub_0804F25C",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541916"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "asm/m4a0",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "3100",
+        "matched_code": "3100",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 44,
+        "matched_functions": 44,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "3100",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541956"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "umul3232H32",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541956"
+          }
+        },
+        {
+          "name": "sub_0804F288",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541960"
+          }
+        },
+        {
+          "name": "SoundMain",
+          "size": "132",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134541972"
+          }
+        },
+        {
+          "name": "SoundMainRAM",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134542104"
+          }
+        },
+        {
+          "name": "sub_0804F324",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134542116"
+          }
+        },
+        {
+          "name": "sub_0804F378",
+          "size": "46",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134542200"
+          }
+        },
+        {
+          "name": "sub_0804F3A6",
+          "size": "266",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134542246"
+          }
+        },
+        {
+          "name": "sub_0804F4B0",
+          "size": "488",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134542512"
+          }
+        },
+        {
+          "name": "sub_0804F698",
+          "size": "30",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543000"
+          }
+        },
+        {
+          "name": "sub_0804F6B6",
+          "size": "6",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543030"
+          }
+        },
+        {
+          "name": "SoundMainBTM",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543036"
+          }
+        },
+        {
+          "name": "MP2KClearChain",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543060"
+          }
+        },
+        {
+          "name": "MP2K_event_fine",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543092"
+          }
+        },
+        {
+          "name": "MPlayJumpTableCopy",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543140"
+          }
+        },
+        {
+          "name": "sub_0804F73C",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543164"
+          }
+        },
+        {
+          "name": "sub_0804F758",
+          "size": "2",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543192"
+          }
+        },
+        {
+          "name": "sub_0804F75A",
+          "size": "10",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543194"
+          }
+        },
+        {
+          "name": "MP2K_event_goto",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543204"
+          }
+        },
+        {
+          "name": "MP2K_event_patt",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543236"
+          }
+        },
+        {
+          "name": "MP2K_event_pend",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543264"
+          }
+        },
+        {
+          "name": "MP2K_event_rept",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543284"
+          }
+        },
+        {
+          "name": "MP2K_event_prio",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543332"
+          }
+        },
+        {
+          "name": "MP2K_event_tempo",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543344"
+          }
+        },
+        {
+          "name": "MP2K_event_keysh",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543364"
+          }
+        },
+        {
+          "name": "MP2K_event_voice",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543384"
+          }
+        },
+        {
+          "name": "MP2K_event_vol",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543432"
+          }
+        },
+        {
+          "name": "MP2K_event_pan",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543452"
+          }
+        },
+        {
+          "name": "MP2K_event_bend",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543472"
+          }
+        },
+        {
+          "name": "MP2K_event_bendr",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543492"
+          }
+        },
+        {
+          "name": "MP2K_event_lfodl",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543512"
+          }
+        },
+        {
+          "name": "MP2K_event_modt",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543524"
+          }
+        },
+        {
+          "name": "MP2K_event_tune",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543548"
+          }
+        },
+        {
+          "name": "MP2K_event_port",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543568"
+          }
+        },
+        {
+          "name": "m4aSoundVSync",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543592"
+          }
+        },
+        {
+          "name": "MP2KPlayerMain",
+          "size": "600",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134543668"
+          }
+        },
+        {
+          "name": "call_r3",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544268"
+          }
+        },
+        {
+          "name": "TrackStop",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544284"
+          }
+        },
+        {
+          "name": "ChnVolSetAsm",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544352"
+          }
+        },
+        {
+          "name": "MP2K_event_nxx",
+          "size": "512",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544400"
+          }
+        },
+        {
+          "name": "MP2K_event_endtie",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544912"
+          }
+        },
+        {
+          "name": "clear_modM",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134544976"
+          }
+        },
+        {
+          "name": "sub_0804FE6C",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545004"
+          }
+        },
+        {
+          "name": "MP2K_event_lfos",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545016"
+          }
+        },
+        {
+          "name": "MP2K_event_mod",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545036"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "src/m4a",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "5528",
+        "matched_code": "5528",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 56,
+        "matched_functions": 56,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "5528",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545056"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "MidiKeyToFreq",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545056"
+          }
+        },
+        {
+          "name": "MPlayContinue",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545160"
+          }
+        },
+        {
+          "name": "MPlayFadeOut",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545188"
+          }
+        },
+        {
+          "name": "m4aSoundInit",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545220"
+          }
+        },
+        {
+          "name": "m4aSoundMain",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545340"
+          }
+        },
+        {
+          "name": "m4aSongNumStart",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545352"
+          }
+        },
+        {
+          "name": "m4aSongNumStartOrChange",
+          "size": "76",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545396"
+          }
+        },
+        {
+          "name": "m4aSongNumStartOrContinue",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545472"
+          }
+        },
+        {
+          "name": "m4aSongNumStop",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545556"
+          }
+        },
+        {
+          "name": "m4aSongNumContinue",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545608"
+          }
+        },
+        {
+          "name": "m4aMPlayAllStop",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545660"
+          }
+        },
+        {
+          "name": "m4aMPlayContinue",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545704"
+          }
+        },
+        {
+          "name": "m4aMPlayAllContinue",
+          "size": "44",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545716"
+          }
+        },
+        {
+          "name": "m4aMPlayFadeOut",
+          "size": "16",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545760"
+          }
+        },
+        {
+          "name": "m4aMPlayFadeOutTemporarily",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545776"
+          }
+        },
+        {
+          "name": "m4aMPlayFadeIn",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545808"
+          }
+        },
+        {
+          "name": "m4aMPlayImmInit",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545848"
+          }
+        },
+        {
+          "name": "MPlayExtender",
+          "size": "280",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134545920"
+          }
+        },
+        {
+          "name": "MusicPlayerJumpTableCopy",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546200"
+          }
+        },
+        {
+          "name": "ClearChain",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546204"
+          }
+        },
+        {
+          "name": "Clear64byte",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546224"
+          }
+        },
+        {
+          "name": "SoundInit",
+          "size": "248",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546244"
+          }
+        },
+        {
+          "name": "SampleFreqSet",
+          "size": "164",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546492"
+          }
+        },
+        {
+          "name": "m4aSoundMode",
+          "size": "152",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546656"
+          }
+        },
+        {
+          "name": "SoundClear",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546808"
+          }
+        },
+        {
+          "name": "m4aSoundVSyncOff",
+          "size": "124",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134546892"
+          }
+        },
+        {
+          "name": "m4aSoundVSyncOn",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547016"
+          }
+        },
+        {
+          "name": "MPlayOpen",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547076"
+          }
+        },
+        {
+          "name": "MPlayStart",
+          "size": "228",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547196"
+          }
+        },
+        {
+          "name": "MPlayStop",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547424"
+          }
+        },
+        {
+          "name": "FadeOutBody",
+          "size": "200",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547488"
+          }
+        },
+        {
+          "name": "TrkVolPitSet",
+          "size": "180",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547688"
+          }
+        },
+        {
+          "name": "MidiKeyToCgbFreq",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134547868"
+          }
+        },
+        {
+          "name": "CgbOscOff",
+          "size": "80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134548036"
+          }
+        },
+        {
+          "name": "CgbModVol",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134548116"
+          }
+        },
+        {
+          "name": "CgbSound",
+          "size": "1100",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134548220"
+          }
+        },
+        {
+          "name": "m4aMPlayTempoControl",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549320"
+          }
+        },
+        {
+          "name": "m4aMPlayVolumeControl",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549360"
+          }
+        },
+        {
+          "name": "m4aMPlayPitchControl",
+          "size": "116",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549464"
+          }
+        },
+        {
+          "name": "m4aMPlayPanpotControl",
+          "size": "104",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549580"
+          }
+        },
+        {
+          "name": "ClearModM",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549684"
+          }
+        },
+        {
+          "name": "m4aMPlayModDepthSet",
+          "size": "116",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549716"
+          }
+        },
+        {
+          "name": "m4aMPlayLFOSpeedSet",
+          "size": "116",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549832"
+          }
+        },
+        {
+          "name": "MP2K_event_memacc",
+          "size": "344",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134549948"
+          }
+        },
+        {
+          "name": "MP2K_event_xcmd",
+          "size": "32",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550292"
+          }
+        },
+        {
+          "name": "MP2K_event_xxx",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550324"
+          }
+        },
+        {
+          "name": "MP2K_event_xwave",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550344"
+          }
+        },
+        {
+          "name": "MP2K_event_xtype",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550416"
+          }
+        },
+        {
+          "name": "MP2K_event_xatta",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550436"
+          }
+        },
+        {
+          "name": "MP2K_event_xdeca",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550456"
+          }
+        },
+        {
+          "name": "MP2K_event_xsust",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550476"
+          }
+        },
+        {
+          "name": "MP2K_event_xrele",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550496"
+          }
+        },
+        {
+          "name": "MP2K_event_xiecv",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550516"
+          }
+        },
+        {
+          "name": "MP2K_event_xiecl",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550528"
+          }
+        },
+        {
+          "name": "MP2K_event_xleng",
+          "size": "20",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550540"
+          }
+        },
+        {
+          "name": "MP2K_event_xswee",
+          "size": "24",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550560"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "asm/libagbsyscall",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "52",
+        "matched_code": "52",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 6,
+        "matched_functions": 6,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550584"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "CpuSet",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550584"
+          }
+        },
+        {
+          "name": "HuffUnComp",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550588"
+          }
+        },
+        {
+          "name": "LZ77UnCompWram",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550592"
+          }
+        },
+        {
+          "name": "Sqrt",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550596"
+          }
+        },
+        {
+          "name": "VBlankIntrWait",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550600"
+          }
+        },
+        {
+          "name": "SoftResetRom",
+          "size": "28",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134550608"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_call_via_rX.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "60",
+        "matched_code": "60",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 15,
+        "matched_functions": 15,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551656"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "_call_via_r0",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551656"
+          }
+        },
+        {
+          "name": "_call_via_r1",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551660"
+          }
+        },
+        {
+          "name": "_call_via_r2",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551664"
+          }
+        },
+        {
+          "name": "_call_via_r3",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551668"
+          }
+        },
+        {
+          "name": "_call_via_r4",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551672"
+          }
+        },
+        {
+          "name": "_call_via_r5",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551676"
+          }
+        },
+        {
+          "name": "_call_via_r6",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551680"
+          }
+        },
+        {
+          "name": "_call_via_r7",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551684"
+          }
+        },
+        {
+          "name": "_call_via_r8",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551688"
+          }
+        },
+        {
+          "name": "_call_via_r9",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551692"
+          }
+        },
+        {
+          "name": "_call_via_sl",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551696"
+          }
+        },
+        {
+          "name": "_call_via_fp",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551700"
+          }
+        },
+        {
+          "name": "_call_via_ip",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551704"
+          }
+        },
+        {
+          "name": "_call_via_sp",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551708"
+          }
+        },
+        {
+          "name": "_call_via_lr",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551712"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_divsi3.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "148",
+        "matched_code": "148",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "148",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551716"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__divsi3",
+          "size": "148",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551716"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_dvmd_tls.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "4",
+        "matched_code": "4",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551864"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__div0",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551864"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_modsi3.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "208",
+        "matched_code": "208",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551868"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__modsi3",
+          "size": "208",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134551868"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_udivsi3.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "120",
+        "matched_code": "120",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552076"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__udivsi3",
+          "size": "120",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552076"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libgcc.a(_umodsi3.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "192",
+        "matched_code": "192",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "192",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552196"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "__umodsi3",
+          "size": "192",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552196"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "../../tools/agbcc/lib/libc.a(memcpy.o)",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "96",
+        "matched_code": "96",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552388"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "memcpy",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552388"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          ".."
+        ]
+      }
+    },
+    {
+      "name": "asm/thunk",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "48",
+        "matched_code": "48",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 12,
+        "matched_functions": 12,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552484"
+          }
+        }
+      ],
+      "functions": [
+        {
+          "name": "thunk_HeapInit",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552484"
+          }
+        },
+        {
+          "name": "sub_08051BA8",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552488"
+          }
+        },
+        {
+          "name": "thunk_HeapAlloc",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552492"
+          }
+        },
+        {
+          "name": "sub_08051BB0",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552496"
+          }
+        },
+        {
+          "name": "thunk_UpdateRng",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552500"
+          }
+        },
+        {
+          "name": "sub_08051BB8",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552504"
+          }
+        },
+        {
+          "name": "thunk_HeapFree",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552508"
+          }
+        },
+        {
+          "name": "sub_08051BC0",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552512"
+          }
+        },
+        {
+          "name": "thunk_GetRandomValue",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552516"
+          }
+        },
+        {
+          "name": "sub_08051BC8",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552520"
+          }
+        },
+        {
+          "name": "thunk_GetRandomValueEx",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552524"
+          }
+        },
+        {
+          "name": "sub_08051BD0",
+          "size": "4",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "virtual_address": "134552528"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rom",
+        "module_id": 1,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/data_08051BD4",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "553536",
+          "metadata": {
+            "virtual_address": "134552532"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "src/data/trig",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "640",
+          "metadata": {
+            "virtual_address": "135106068"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/data_080D9094",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "256336",
+          "metadata": {
+            "virtual_address": "135106708"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "src/data/m4a_tables",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "728",
+          "metadata": {
+            "virtual_address": "135363044"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "src"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/data_08117CBC",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "3576",
+          "metadata": {
+            "virtual_address": "135363772"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/sound_data",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "48",
+          "metadata": {
+            "virtual_address": "135367348"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/data_08118AE4",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "459508",
+          "metadata": {
+            "virtual_address": "135367396"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    },
+    {
+      "name": "asm/data/data_08188E5C",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".rodata",
+          "size": "1959848",
+          "metadata": {
+            "virtual_address": "135827036"
+          }
+        }
+      ],
+      "metadata": {
+        "module_name": "rodata",
+        "module_id": 2,
+        "progress_categories": [
+          "asm"
+        ]
+      }
+    }
+  ],
+  "version": 2,
+  "categories": [
+    {
+      "id": "src",
+      "name": "src",
+      "measures": {
+        "fuzzy_match_percent": 98.52445,
+        "total_code": "329640",
+        "matched_code": "324776",
+        "matched_code_percent": 98.52445,
+        "matched_data_percent": 100.0,
+        "total_functions": 462,
+        "matched_functions": 460,
+        "matched_functions_percent": 99.5671,
+        "complete_data_percent": 100.0,
+        "total_units": 21
+      }
+    },
+    {
+      "id": "asm",
+      "name": "asm",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "4336",
+        "matched_code": "4336",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 82,
+        "matched_functions": 82,
+        "matched_functions_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 13
+      }
+    },
+    {
+      "id": "..",
+      "name": "..",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "828",
+        "matched_code": "828",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 21,
+        "matched_functions": 21,
+        "matched_functions_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 7
+      }
+    }
+  ]
+}
