@@ -160,7 +160,7 @@ void sub_08039D8C(void)
         Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082EC7C8);
     }
 
-    REG_DISPSTAT &= 0xFF;
+    REG_DISPSTAT &= 0xFF; // Clear VCount setting
 
     for (var_r4 = 0, var_r5 = 0; var_r4 <= 0x21B; var_r5++, var_r4++)
     {
@@ -247,7 +247,7 @@ void sub_08039D8C(void)
     {
         if (gUnk_030034BC == 0)
         {
-            REG_BG0CNT &= ~3; // set priority to 0
+            REG_BG0CNT &= ~BGCNT_PRIORITY_MASK; // set priority to 0
             REG_BG0CNT += 0;
             REG_BG1CNT += 1; // increment priority
             REG_BG2CNT += 1; // increment priority
@@ -256,7 +256,7 @@ void sub_08039D8C(void)
         }
         else
         {
-            REG_BG1CNT &= ~3; // set priority to 0
+            REG_BG1CNT &= ~BGCNT_PRIORITY_MASK; // set priority to 0
             REG_BG1CNT += 0;
             REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN;
         }
@@ -304,7 +304,7 @@ void sub_0803A22C(void)
 
     if ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3)))
     {
-        REG_WIN1H = WIN_RANGE(0xA0, 0xF0);
+        REG_WIN1H = WIN_RANGE(DISPLAY_HEIGHT, DISPLAY_WIDTH);
         REG_WIN1V = WIN_RANGE(0, 0x10);
         REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0 | WININ_WIN1_CLR;
         REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
@@ -516,7 +516,7 @@ void sub_0803A8B8(void)
         gBgTilemapBufs[gUnk_030034BC][var_r6] = gBgDataPtrs.pBufBg3Tilemap[var_r5 + 2] + var_r7;
     }
 
-    REG_WIN1H = WIN_RANGE(0, 0xF0);
+    REG_WIN1H = WIN_RANGE(0, DISPLAY_WIDTH);
     REG_WIN1V = WIN_RANGE(0x1E, 0x90);
 
     if (gUnk_030034BC == 0)
@@ -1123,11 +1123,11 @@ void sub_0803B600(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
 
-    REG_DISPCNT = 0x3F40;
-    REG_BG0CNT = 0x1C41;
-    REG_BG1CNT = 0x1D46;
-    REG_BG2CNT = 0x1E48;
-    REG_BG3CNT = 0x1F4F;
+    REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON;
+    REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(28);
+    REG_BG1CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(29);
+    REG_BG2CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC | BGCNT_SCREENBASE(30);
+    REG_BG3CNT = BGCNT_PRIORITY(3) | BGCNT_CHARBASE(3) | BGCNT_MOSAIC | BGCNT_SCREENBASE(31);
 
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR;
     REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
@@ -5290,9 +5290,9 @@ b:
                 gUnk_03005400.unkA = 5;
                 sub_08041F34(1);
 
-                REG_BG1CNT = (REG_BG1CNT & ~3) | BGCNT_PRIORITY(3);
-                REG_BG0CNT = (REG_BG0CNT & ~3) | BGCNT_PRIORITY(2);
-                REG_BG2CNT = (REG_BG2CNT & ~3) | BGCNT_PRIORITY(1);
+                REG_BG1CNT = (REG_BG1CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(3);
+                REG_BG0CNT = (REG_BG0CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(2);
+                REG_BG2CNT = (REG_BG2CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(1);
                 REG_BLDCNT = 0;
                 gBgInfo[1].hOfs = 0;
                 gBgInfo[0].hOfs = 0;
@@ -5317,9 +5317,9 @@ b:
                 {
                     break;
                 }
-                REG_BG1CNT = (REG_BG1CNT & ~3) | BGCNT_PRIORITY(2);
-                REG_BG0CNT = (REG_BG0CNT & ~3) | BGCNT_PRIORITY(3);
-                REG_BG2CNT = (REG_BG2CNT & ~3) | BGCNT_PRIORITY(1);
+                REG_BG1CNT = (REG_BG1CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(2);
+                REG_BG0CNT = (REG_BG0CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(3);
+                REG_BG2CNT = (REG_BG2CNT & ~BGCNT_PRIORITY_MASK) | BGCNT_PRIORITY(1);
                 REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0;
                 REG_IE |= INTR_FLAG_HBLANK;
                 REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
@@ -5819,7 +5819,7 @@ void sub_08042E64(u8 arg0)
                     }
                     else
                     {
-                        REG_BLDCNT = 0xBF;
+                        REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
                         gBlendValue = 0;
                         gUnk_03005400.unkA = 7;
                     }

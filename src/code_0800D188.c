@@ -75,9 +75,9 @@ void sub_0800D188(void)
             if (gUnk_03005220.unk46 == 0x41)
             {
                 gBlendValue = 0x10;
-                REG_BLDALPHA = 0x10;
-                REG_BLDY = 0x10;
-                REG_BLDCNT = 0x740;
+                REG_BLDALPHA = BLDALPHA_MAX;
+                REG_BLDY = BLDY_MAX;
+                REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2;
                 
                 for (var_sb = 1; var_sb < gUnk_03005428; var_sb++)
                 {
@@ -2570,10 +2570,10 @@ block_869:
                                 gEntityInfo[var_sb].affineEnable = 1;
                                 gEntityInfo[var_sb].affineHFlip_matrixNum = gOamAffineMatrixNum + 1;
 
-                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = gSineTable[0x40];
-                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = gSineTable[0x40];
-                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -gSineTable[0];
-                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = gSineTable[0];
+                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = COS(0);
+                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = COS(0);
+                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -SIN(0);
+                                gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = SIN(0);
                                 gUnk_03004660 = 1;
                             }
                         }
@@ -4465,7 +4465,7 @@ block_1696:
             {
                 sub_08025B78(0, 0x23);
             }
-            REG_BLDALPHA = gBlendValue | ((0x10 - gBlendValue) << 8);
+            REG_BLDALPHA = BLDALPHA_BLEND2(gBlendValue, 0x10 - gBlendValue);
             REG_BLDY = gBlendValue;
             gCallbackQueue.currentCount = 1;
             gCallbackQueue.current[0] = NULL;

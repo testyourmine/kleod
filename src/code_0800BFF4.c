@@ -124,8 +124,8 @@ void sub_0800C108(void)
         }
     }
 
-    sp0 = ((s16)(gUnk_03000000 * gSineTable[gUnk_03000002]) >> 0x8) * 2;
-    sp4 = ((s16)(-gUnk_03000001 * gSineTable[gUnk_03000003]) >> 0x8) * 2;
+    sp0 = ((s16)(gUnk_03000000 * SIN(gUnk_03000002)) >> 0x8) * 2;
+    sp4 = ((s16)(-gUnk_03000001 * SIN(gUnk_03000003)) >> 0x8) * 2;
     sub_0800A71C(sp0, sp4);
     sub_080070A0();
 
@@ -158,7 +158,7 @@ void sub_0800C108(void)
         {
             if (var_r6 < 0x90)
             {
-                temp_r0_2 = (temp_r4 * gSineTable[(u8)(var_r5_2 * 4 + var_r6 * 4) + 0x40]) >> 8;
+                temp_r0_2 = (temp_r4 * COS((u8)(var_r5_2 * 4 + var_r6 * 4))) >> 8;
                 gUnk_03004C40[var_r6] = temp_r0_2 * var_sb;
                 gUnk_030052C0[var_r6] = -temp_r0_2 * var_r8;
             }

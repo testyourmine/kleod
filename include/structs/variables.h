@@ -225,8 +225,8 @@ struct Unk_030034A0 {
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 pad7[0x8 - 0x7];
-    /* 0x08 */ s16 unk8[2][2];
-    /* 0x10 */ s16 unk10[2][2];
+    /* 0x08 */ s16 unk8[2][2];  // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X1/Y1
+    /* 0x10 */ s16 unk10[2][2]; // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X0/Y0
     /* 0x18 */ s16 unk18;
     /* 0x1A */ s16 unkA;
     /* 0x1C_0 */ u8 unk1C_0:2;

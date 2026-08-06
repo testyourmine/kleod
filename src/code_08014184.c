@@ -2330,8 +2330,8 @@ void sub_08016EEC(u8 arg0)
 
                     if (gEntityInfo[arg0].unk8.split.unk9 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 + (gSineTable[((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) + 0x40] >> 6);
-                        gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x80) * 2] >> 6);
+                        gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 + (COS((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 6);
+                        gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 6);
                     }
                     else
                     {
@@ -4659,17 +4659,17 @@ void sub_0801B044(u8 arg0)
         }
         else if (gEntityInfo[arg0].unkC_2 == 0)
         {
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = gSineTable[(u8) (gEntityInfo[arg0].unk8.all + 0x3D) + 0x40];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = gSineTable[(u8) (gEntityInfo[arg0].unk8.all + 0x3D) + 0x40];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -gSineTable[(u8) (gEntityInfo[arg0].unk8.all + 0x3D)];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = gSineTable[(u8) (gEntityInfo[arg0].unk8.all + 0x3D)];
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = COS((u8) (gEntityInfo[arg0].unk8.all + 0x3D));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = COS((u8) (gEntityInfo[arg0].unk8.all + 0x3D));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -SIN((u8) (gEntityInfo[arg0].unk8.all + 0x3D));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = SIN((u8) (gEntityInfo[arg0].unk8.all + 0x3D));
         }
         else
         {
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = gSineTable[(u8) (0xC3 - gEntityInfo[arg0].unk8.all) + 0x40];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = gSineTable[(u8) (0xC3 - gEntityInfo[arg0].unk8.all) + 0x40];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -gSineTable[(u8) (0xC3 - gEntityInfo[arg0].unk8.all)];
-            gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = gSineTable[(u8) (0xC3 - gEntityInfo[arg0].unk8.all)];
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = COS((u8) (0xC3 - gEntityInfo[arg0].unk8.all));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = COS((u8) (0xC3 - gEntityInfo[arg0].unk8.all));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -SIN((u8) (0xC3 - gEntityInfo[arg0].unk8.all));
+            gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = SIN((u8) (0xC3 - gEntityInfo[arg0].unk8.all));
         }
     }
     else if ((u32) (u16) (gEntityInfo[arg0].unk8.all - 0xF1) <= 0x3A)
@@ -5743,13 +5743,13 @@ void sub_0801CE38(u8 arg0)
         if ((gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
             sub_08044F6C(arg0);
-            gEntityInfo[arg0].xPosBg2 += gSineTable[(gUnk_03004C20.sceneFrameCounter & 0x7F) * 2] >> 0x6;
-            gEntityInfo[arg0].yPosBg2 += gSineTable[(gUnk_03004C20.sceneFrameCounter & 0x7F) * 2 + 0x40] >> 0x6;
+            gEntityInfo[arg0].xPosBg2 += SIN((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 0x6;
+            gEntityInfo[arg0].yPosBg2 += COS((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 0x6;
         }
         else
         {
-            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 + (gSineTable[(gUnk_03004C20.sceneFrameCounter & 0x7F) * 2] >> 6);
-            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (gSineTable[(gUnk_03004C20.sceneFrameCounter & 0x7F) * 2 + 0x40] >> 6);
+            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 + (SIN((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 6);
+            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (COS((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 6);
         }
     }
     else if (gEntityInfo[arg0].unkF == 0x12)
@@ -5791,13 +5791,13 @@ void sub_0801CE38(u8 arg0)
         if ((gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
             sub_08044F6C(arg0);
-            gEntityInfo[arg0].xPosBg2 -= gSineTable[gEntityInfo[arg0].unk8.split.unk8] >> gEntityInfo[arg0].unk8.split.unk9;
-            gEntityInfo[arg0].yPosBg2 += gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40] >> gEntityInfo[arg0].unk8.split.unk9;
+            gEntityInfo[arg0].xPosBg2 -= SIN(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9;
+            gEntityInfo[arg0].yPosBg2 += COS(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9;
         }
         else
         {
-            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 - (gSineTable[gEntityInfo[arg0].unk8.split.unk8] >> gEntityInfo[arg0].unk8.split.unk9);
-            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40] >> gEntityInfo[arg0].unk8.split.unk9);
+            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 - (SIN(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9);
+            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + (COS(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9);
         }
     }
 }
@@ -6627,7 +6627,7 @@ void sub_0801E1A8(u8 arg0)
         {
             gUnk_03005220.unk5D = 1;
             gBlendValue = 0x10;
-            REG_BLDCNT = 0xA7;
+            REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BD | BLDCNT_EFFECT_LIGHTEN;
         }
     }
 
@@ -6645,7 +6645,7 @@ void sub_0801E1A8(u8 arg0)
                 return;
             }
             gBlendValue = 9;
-            REG_BLDCNT = 0x340;
+            REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1;
         }
 
         if (gUnk_03005220.stars & 1)
@@ -7185,8 +7185,8 @@ void sub_0801F02C(u8 arg0)
             break;
 
         case 14:
-            gUnk_03003590[1].unk0 = (gEntityInfo[arg0].unk8.split.unk9 * gSineTable[((gUnk_03004C20.sceneFrameCounter * 0x10) % 255) + 0x40]) >> 8;
-            gUnk_03003590[1].unk2 = -(gEntityInfo[arg0].unk8.split.unk9 * gSineTable[((gUnk_03004C20.sceneFrameCounter * 0x10) % 255) + 0x40]) >> 8;
+            gUnk_03003590[1].unk0 = (gEntityInfo[arg0].unk8.split.unk9 * COS((gUnk_03004C20.sceneFrameCounter * 0x10) % 255)) >> 8;
+            gUnk_03003590[1].unk2 = -(gEntityInfo[arg0].unk8.split.unk9 * COS((gUnk_03004C20.sceneFrameCounter * 0x10) % 255)) >> 8;
 
             if (gEntityInfo[arg0].unk8.split.unk9 != 0)
             {
@@ -7347,7 +7347,7 @@ void sub_0801F4D0(u8 arg0)
             break;
 
         case 0:
-            gEntityInfo[arg0].yPosBg2 = 0x10C - (((s8) gEntityInfo[arg0].unk8.split.unk9 * gSineTable[gEntityInfo[arg0].unk14]) >> 8);
+            gEntityInfo[arg0].yPosBg2 = 0x10C - (((s8) gEntityInfo[arg0].unk8.split.unk9 * SIN(gEntityInfo[arg0].unk14)) >> 8);
             gEntityInfo[arg0].xPosBg2 += (s8) gEntityInfo[arg0].unk8.split.unk8;
             gEntityInfo[arg0].unk14 += gEntityInfo[arg0].unk16;
             if (gEntityInfo[arg0].unk14 == 0x88)
@@ -7405,11 +7405,11 @@ void sub_0801F648(u8 arg0)
             {
                 if (gEntityInfo[arg0].unkC_2 == 0)
                 {
-                    gEntityInfo[arg0].xPosBg2 = 0xA0 + (gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] >> 0x2);
+                    gEntityInfo[arg0].xPosBg2 = 0xA0 + (COS(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x2);
                 }
                 else
                 {
-                    gEntityInfo[arg0].xPosBg2 = 0x140 - (gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] >> 0x2);
+                    gEntityInfo[arg0].xPosBg2 = 0x140 - (COS(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x2);
                 }
             }
 
@@ -7458,8 +7458,8 @@ void sub_0801F648(u8 arg0)
                 gEntityInfo[arg0].unk8.split.unk9 = 0x80;
             }
 
-            gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 + ((gEntityInfo[arg0].unk8.split.unk9 * gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40]) >> 8);
-            gEntityInfo[arg0].yPosBg2 = (gEntityInfo[0x12].yPosBg2 - gUnk_080E2AF2[gUnk_03005400.unkC - 1]) + ((gEntityInfo[arg0].unk8.split.unk9 * gSineTable[gEntityInfo[arg0].unk8.split.unk8]) >> 8);
+            gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 + ((gEntityInfo[arg0].unk8.split.unk9 * COS(gEntityInfo[arg0].unk8.split.unk8)) >> 8);
+            gEntityInfo[arg0].yPosBg2 = (gEntityInfo[0x12].yPosBg2 - gUnk_080E2AF2[gUnk_03005400.unkC - 1]) + ((gEntityInfo[arg0].unk8.split.unk9 * SIN(gEntityInfo[arg0].unk8.split.unk8)) >> 8);
 
             DmaCopy16Wait(3, &gUnk_08078328, (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
             sub_08025B78(arg0, 2);
@@ -7468,8 +7468,8 @@ void sub_0801F648(u8 arg0)
             break;
 
         case 4:
-            gEntityInfo[arg0].xPosBg2 = (gEntityInfo[0x12].xPosBg2 + ((gEntityInfo[arg0].unk8.split.unk9 * gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40]) >> 8)) + (thunk_GetRandomValue() % 4);
-            gEntityInfo[arg0].yPosBg2 = ((gEntityInfo[0x12].yPosBg2 - gUnk_080E2AF2[gUnk_03005400.unkC - 1]) + ((gEntityInfo[arg0].unk8.split.unk9 * gSineTable[gEntityInfo[arg0].unk8.split.unk8]) >> 8)) + (thunk_GetRandomValue() % 4);
+            gEntityInfo[arg0].xPosBg2 = (gEntityInfo[0x12].xPosBg2 + ((gEntityInfo[arg0].unk8.split.unk9 * COS(gEntityInfo[arg0].unk8.split.unk8)) >> 8)) + (thunk_GetRandomValue() % 4);
+            gEntityInfo[arg0].yPosBg2 = ((gEntityInfo[0x12].yPosBg2 - gUnk_080E2AF2[gUnk_03005400.unkC - 1]) + ((gEntityInfo[arg0].unk8.split.unk9 * SIN(gEntityInfo[arg0].unk8.split.unk8)) >> 8)) + (thunk_GetRandomValue() % 4);
 
             if ((gEntityInfo[arg0].unk8.split.unk8 == 0x80) || (gEntityInfo[arg0].unk8.split.unk8 == 0))
             {
@@ -7842,8 +7842,8 @@ void sub_080202D4(u8 arg0)
     {
         case 3:
             gEntityInfo[arg0].unk10 = 1;
-            gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x15].xPosBg2 + ((gSineTable[(gEntityInfo[0].xPosBg2 >> 2) + 0xC0] << 0x10) >> 0x15);
-            gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x15].yPosBg2 - ((gSineTable[(gEntityInfo[0].xPosBg2 >> 2) + 0x80] << 0x10) >> 0x15);
+            gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x15].xPosBg2 + ((COS((gEntityInfo[0].xPosBg2 >> 2) + PI) << 0x10) >> 0x15);
+            gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x15].yPosBg2 - ((SIN((gEntityInfo[0].xPosBg2 >> 2) + PI) << 0x10) >> 0x15);
             break;
 
         case 4:
@@ -7857,7 +7857,7 @@ void sub_080202D4(u8 arg0)
             {
                 sub_08025B78(arg0, 0);
             }
-            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + ((gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] << 0x10) >> 0x16);
+            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 + ((COS(gUnk_03004C20.sceneFrameCounter % 0x100) << 0x10) >> 0x16);
             break;
 
         case 14:
@@ -7981,7 +7981,7 @@ void sub_080202D4(u8 arg0)
                     {
                         sub_08025B78(arg0, 3);
                     }
-                    gEntityInfo[arg0].yPosBg2 = (gSineTable[gUnk_03004C20.sceneFrameCounter % 0x100] >> 0x6) + 0x78;
+                    gEntityInfo[arg0].yPosBg2 = (SIN(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x6) + 0x78;
 
                     if ((gEntityInfo[arg0].unk8.split.unk8 == 0) && (gEntityInfo[0x16].unkF == 0x1C) && (gEntityInfo[0x17].unkF == 0x1C))
                     {
@@ -7999,7 +7999,7 @@ void sub_080202D4(u8 arg0)
                         sub_08025B78(arg0, 3);
                     }
 
-                    gEntityInfo[arg0].yPosBg2 = (gSineTable[gUnk_03004C20.sceneFrameCounter % 0x100] >> 0x6) + 0xB0;
+                    gEntityInfo[arg0].yPosBg2 = (SIN(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x6) + 0xB0;
                     if (((gEntityInfo[arg0].unk8.split.unk8 == 0) && (gUnk_03005400.unk13 == 0)) || (gEntityInfo[0x17].unkF == 0x1C))
                     {
                         gUnk_03005400.unk4 = gEntityInfo[0].xPosBg2;
@@ -8016,7 +8016,7 @@ void sub_080202D4(u8 arg0)
                         sub_08025B78(0x17, 3);
                     }
 
-                    gEntityInfo[arg0].yPosBg2 = (gSineTable[gUnk_03004C20.sceneFrameCounter % 0x100] >> 0x6) + 0xB0;
+                    gEntityInfo[arg0].yPosBg2 = (SIN(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x6) + 0xB0;
                     if (((gEntityInfo[arg0].unk8.split.unk8 == 0) && (gUnk_03005400.unk13 == 1)) || (gEntityInfo[0x16].unkF == 0x1C))
                     {
                         gUnk_03005400.unk4 = gEntityInfo[0].xPosBg2;
@@ -8075,14 +8075,14 @@ void sub_080202D4(u8 arg0)
                     break;
 
                 case 2:
-                    gEntityInfo[arg0].xPosBg2 = (((s8) gUnk_03005400.unk15 * gSineTable[gEntityInfo[arg0].unk8.split.unk8 + 0x40]) >> 8) + gUnk_03005400.unk4;
+                    gEntityInfo[arg0].xPosBg2 = (((s8) gUnk_03005400.unk15 * COS(gEntityInfo[arg0].unk8.split.unk8)) >> 8) + gUnk_03005400.unk4;
                     if (gEntityInfo[arg0].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].yPosBg2 = ((-(gSineTable[gEntityInfo[arg0].unk8.split.unk8] << 5)) >> 8) + gUnk_03005400.unk6;
+                        gEntityInfo[arg0].yPosBg2 = ((-(SIN(gEntityInfo[arg0].unk8.split.unk8) << 5)) >> 8) + gUnk_03005400.unk6;
                     }
                     else
                     {
-                        gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8] << 0x10) >> 0x13) + gUnk_03005400.unk6;
+                        gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x13) + gUnk_03005400.unk6;
                     }
 
                     if (arg0 == 0x15)
@@ -8194,8 +8194,8 @@ void sub_080202D4(u8 arg0)
             }
             else
             {
-                gUnk_03003590[sp20].unk0 = (gSineTable[((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) + 0x40] << 0x10) >> 0x12;
-                gUnk_03003590[sp20].unk2 = (gSineTable[(gUnk_03004C20.sceneFrameCounter * 8) % 0x100] << 0x10) >> 0x13;
+                gUnk_03003590[sp20].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x12;
+                gUnk_03003590[sp20].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x13;
             }
             break;
 
@@ -8229,7 +8229,7 @@ void sub_080202D4(u8 arg0)
             {
                 gEntityInfo[0x15].unk8.split.unk8 += 1;
                 gEntityInfo[0x15].xPosBg2 += 4;
-                gEntityInfo[0x15].yPosBg2 -= (gSineTable[gEntityInfo[0x15].unk8.split.unk8] >> 0x6);
+                gEntityInfo[0x15].yPosBg2 -= (SIN(gEntityInfo[0x15].unk8.split.unk8) >> 0x6);
                 if (gEntityInfo[0x15].xPosBg2 > 0x200)
                 {
                     gUnk_03005400.unkA = 0xB;
@@ -8731,8 +8731,8 @@ void sub_08021AD4(u8 arg0)
             break;
 
         case 0:
-            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][0x6].unk0[0].unk0 + ((gEntityInfo[arg0].unk8.split.unk8 * gSineTable[gEntityInfo[arg0].unk8.split.unk9 + 0x40]) >> 8);
-            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][0x6].unk0[0].unk2 - 0x20 + ((gEntityInfo[arg0].unk8.split.unk8 * gSineTable[gEntityInfo[arg0].unk8.split.unk9]) >> 8);
+            gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][0x6].unk0[0].unk0 + ((gEntityInfo[arg0].unk8.split.unk8 * COS(gEntityInfo[arg0].unk8.split.unk9)) >> 8);
+            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][0x6].unk0[0].unk2 - 0x20 + ((gEntityInfo[arg0].unk8.split.unk8 * SIN(gEntityInfo[arg0].unk8.split.unk9)) >> 8);
 
             gEntityInfo[arg0].unk8.split.unk8 -= gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
             if (gEntityInfo[arg0].unk8.split.unk8 == 0)
@@ -8949,8 +8949,8 @@ void sub_08021DAC(u8 arg0)
                 gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x12].yPosBg2 + 0x10;
             }
 
-            gUnk_03003590[4].unk0 = gSineTable[((gUnk_03004C20.sceneFrameCounter * 4) % 0x100)] >> 0x2;
-            gUnk_03003590[4].unk2 = gSineTable[((gUnk_03004C20.sceneFrameCounter * 4) % 0x100) + 0x40] >> 0x2;
+            gUnk_03003590[4].unk0 = SIN((gUnk_03004C20.sceneFrameCounter * 4) % 0x100) >> 0x2;
+            gUnk_03003590[4].unk2 = COS((gUnk_03004C20.sceneFrameCounter * 4) % 0x100) >> 0x2;
 
             if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 3)
             {
@@ -9053,7 +9053,7 @@ void sub_08021DAC(u8 arg0)
             break;
 
         case 14:
-            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] << 0x10) >> 0x14);
+            gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8++) << 0x10) >> 0x14);
             if (gBlendValue == 0x10)
             {
                 gEntityInfo[arg0].unkF = 0xF;
@@ -9077,8 +9077,8 @@ void sub_08021DAC(u8 arg0)
             }
             else
             {
-                gUnk_03003590[4].unk0 = (gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100)] >> 0x3) + 0x100;
-                gUnk_03003590[4].unk2 = (gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] >> 0x3) + 0x100;
+                gUnk_03003590[4].unk0 = (SIN(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x3) + 0x100;
+                gUnk_03003590[4].unk2 = (COS(gUnk_03004C20.sceneFrameCounter % 0x100) >> 0x3) + 0x100;
             }
             break;
 
@@ -9090,24 +9090,24 @@ void sub_08021DAC(u8 arg0)
                 case 1:
                     DmaCopy16Wait(3, gUnk_0818B7DC[0], (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     sub_08025B78(arg0, 0);
-                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100)] * sp4) >> 0x8);
-                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] * sp4) >> 0x8);
+                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((SIN(gUnk_03004C20.sceneFrameCounter % 0x100) * sp4) >> 0x8);
+                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03004C20.sceneFrameCounter % 0x100) * sp4) >> 0x8);
                     break;
 
                 case 2:
                 case 3:
                     DmaCopy16Wait(3, gUnk_0818B7DC[1], (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     sub_08025B78(arg0, 1);
-                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((gSineTable[((gUnk_03004C20.sceneFrameCounter + 0x56) % 0x100)] * sp4) >> 0x8);
-                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[((gUnk_03004C20.sceneFrameCounter + 0x56) % 0x100) + 0x40] * sp4) >> 0x8);
+                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((SIN((gUnk_03004C20.sceneFrameCounter + 0x56) % 0x100) * sp4) >> 0x8);
+                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS((gUnk_03004C20.sceneFrameCounter + 0x56) % 0x100) * sp4) >> 0x8);
                     break;
 
                 case 4:
                 case 5:
                     DmaCopy16Wait(3, gUnk_0818B7DC[2], (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
                     sub_08025B78(arg0, 2);
-                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((gSineTable[((gUnk_03004C20.sceneFrameCounter + 0xAA) % 0x100)] * sp4) >> 0x8);
-                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((gSineTable[((gUnk_03004C20.sceneFrameCounter + 0xAA) % 0x100) + 0x40] * sp4) >> 0x8);
+                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 + ((SIN((gUnk_03004C20.sceneFrameCounter + 0xAA) % 0x100) * sp4) >> 0x8);
+                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS((gUnk_03004C20.sceneFrameCounter + 0xAA) % 0x100) * sp4) >> 0x8);
                     break;
             }
             break;
@@ -9155,7 +9155,7 @@ void sub_08022CA0(u8 arg0)
             break;
 
         case 3:
-            if (REG_BLDCNT == 0xBF)
+            if (REG_BLDCNT == (BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN))
             {
                 if (arg0 == 0x1F)
                 {
@@ -9168,8 +9168,8 @@ void sub_08022CA0(u8 arg0)
                     }
                     else
                     {
-                        REG_IE |= 2;
-                        REG_DISPSTAT |= 0x10;
+                        REG_IE |= INTR_FLAG_HBLANK;
+                        REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
                         REG_BLDCNT = 0;
                         gBlendValue = 0x10;
                     }
@@ -9177,7 +9177,7 @@ void sub_08022CA0(u8 arg0)
             }
             else if (arg0 == 0x1F)
             {
-                REG_BLDCNT = 0x142;
+                REG_BLDCNT = BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0;
                 if (gBlendValue > 8)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 4) == 0)
@@ -9200,11 +9200,11 @@ void sub_08022CA0(u8 arg0)
 
             if (gUnk_03005400.unk8_5 == 0)
             {
-                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 + gUnk_080E2B4C[temp_r6][0] - ((gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] << 0x10) >> 0x15) + gUnk_080E2B4C[temp_r6][0];
+                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 + gUnk_080E2B4C[temp_r6][0] - ((COS(gUnk_03004C20.sceneFrameCounter % 0x100) << 0x10) >> 0x15) + gUnk_080E2B4C[temp_r6][0];
             }
             else
             {
-                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 - gUnk_080E2B4C[temp_r6][0] + ((gSineTable[(gUnk_03004C20.sceneFrameCounter % 0x100) + 0x40] << 0x10) >> 0x15) - gUnk_080E2B4C[temp_r6][0];
+                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x12].xPosBg2 - gUnk_080E2B4C[temp_r6][0] + ((COS(gUnk_03004C20.sceneFrameCounter % 0x100) << 0x10) >> 0x15) - gUnk_080E2B4C[temp_r6][0];
             }
             gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x12].yPosBg2 + 8 + ((gUnk_080E2B4C[temp_r6][1] * (s16) gUnk_03003590[2].unk2) >> 8) + (u8)gUnk_080E2B4C[temp_r6][1];
             break;
@@ -9261,7 +9261,7 @@ void sub_08022CA0(u8 arg0)
                         break;
                     }
 
-                    REG_BLDCNT = 0xBF;
+                    REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
                     gEntityInfo[arg0].unk8.split.unk8 = 0x10;
                     sub_08025B78(arg0, 0xE);
                 }
@@ -9432,7 +9432,7 @@ void sub_08022CA0(u8 arg0)
                 gEntityInfo[arg0].xPosBg2 = ((gEntityInfo[0x12].xPosBg2 - gUnk_080E2B4C[temp_r6][0]) - var_sb) - gUnk_080E2B4C[temp_r6][0];
             }
             // TODO: clean up
-            gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x12].yPosBg2 - ((gSineTable[gUnk_03004C20.sceneFrameCounter % 0x100] << 0x10) >> 0x15) + 8 + ((u8)gUnk_080E2B4C[temp_r6][1]);
+            gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x12].yPosBg2 - ((SIN(gUnk_03004C20.sceneFrameCounter % 0x100) << 0x10) >> 0x15) + 8 + ((u8)gUnk_080E2B4C[temp_r6][1]);
             gEntityInfo[arg0].yPosBg2 = (u8)gUnk_080E2B4C[temp_r6][1] + gEntityInfo[arg0].yPosBg2;
 
             if ((gEntityAnimationInfo[arg0 - gUnk_0300363C].frame == 5) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0x30) && (arg0 == 0x1F))
@@ -9532,7 +9532,7 @@ void sub_08022CA0(u8 arg0)
                     {
                         gEntityInfo[arg0].xPosBg2 += 6;
                     }
-                    gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] * 0xC8) >> 8) + 0x10;
+                    gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8++) * 0xC8) >> 8) + 0x10;
                     break;
 
                 case 1:
@@ -9540,11 +9540,11 @@ void sub_08022CA0(u8 arg0)
                     {
                         gEntityInfo[arg0].xPosBg2 += 3;
                     }
-                    gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] * 2) >> 1) + 0x10;
+                    gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8++) * 2) >> 1) + 0x10;
                     break;
 
                 case 2:
-                    gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] * 0x23) >> 5) + 0x10;
+                    gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8++) * 0x23) >> 5) + 0x10;
                     break;
 
                 case 3:
@@ -9552,7 +9552,7 @@ void sub_08022CA0(u8 arg0)
                     {
                         gEntityInfo[arg0].xPosBg2 -= 3;
                     }
-                    gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] * 2) >> 1) + 0x10;
+                    gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8++) * 2) >> 1) + 0x10;
                     break;
 
                 case 4:
@@ -9560,7 +9560,7 @@ void sub_08022CA0(u8 arg0)
                     {
                         gEntityInfo[arg0].xPosBg2 -= 6;
                     }
-                    gEntityInfo[arg0].yPosBg2 = ((gSineTable[gEntityInfo[arg0].unk8.split.unk8++] * 0xC8) >> 8) + 0x10;
+                    gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8++) * 0xC8) >> 8) + 0x10;
                     break;
             }
             if (gEntityInfo[arg0].unk8.split.unk8 >= 0x20)
@@ -9778,8 +9778,8 @@ void sub_08023BC0(u8 arg0)
                 {
                     gEntityInfo[arg0].unk8.split.unk8 -= 1;
 
-                    gUnk_03003590[var_r0].unk0 = gSineTable[(gUnk_03004C20.sceneFrameCounter * 8) % 0x100] >> 0x3;
-                    gUnk_03003590[var_r0].unk2 = gSineTable[((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) + 0x40] >> 0x3;
+                    gUnk_03003590[var_r0].unk0 = SIN((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) >> 0x3;
+                    gUnk_03003590[var_r0].unk2 = COS((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) >> 0x3;
                     break;
                 }
 
@@ -9827,8 +9827,8 @@ void sub_08023BC0(u8 arg0)
                 {
                     gEntityInfo[arg0].unk8.split.unk8 -= 1;
 
-                    gUnk_03003590[var_r0].unk0 = gSineTable[(gUnk_03004C20.sceneFrameCounter * 8) % 0x100] >> 0x3;
-                    gUnk_03003590[var_r0].unk2 = gSineTable[((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) + 0x40] >> 0x3;
+                    gUnk_03003590[var_r0].unk0 = SIN((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) >> 0x3; PI;
+                    gUnk_03003590[var_r0].unk2 = COS((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) >> 0x3;
                     break;
                 }
 

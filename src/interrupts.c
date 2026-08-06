@@ -167,13 +167,14 @@ void sub_08000E68(void)
 // F70
 void sub_08000F70(void)
 {
+    // HBlank, Only called when deleting all data
     // UpdateFadeEffect
     u32 bldAlpha;
 
     bldAlpha = REG_VCOUNT_L / gEntityInfo[0].unk8.split.unk8;
     if (bldAlpha <= BLDALPHA_MAX)
     {
-        REG_BLDALPHA = BLDALPHA_BLEND(bldAlpha, bldAlpha);
+        REG_BLDALPHA = BLDALPHA_BLEND2(bldAlpha, bldAlpha);
     }
 }
 
@@ -191,25 +192,27 @@ void sub_08000FA0(void)
 // FCC
 void sub_08000FCC(void)
 {
+    // HBlank, only active when in level select, responsible for turning BG2
     // UpdateAffineBGParams
     s32 vCount;
-    s32 temp_r2;
-    s32 temp_r1;
+    s32 bg2X;
+    s32 bg2Y;
 
     vCount = REG_VCOUNT_L;
-    temp_r2 = gBg2X + (gUnk_03004678 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
-    temp_r1 = gBg2Y + (gUnk_030051B0 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
+    bg2X = gBg2X + (gUnk_03004678 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
+    bg2Y = gBg2Y + (gUnk_030051B0 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
 
-    REG_BG2X_L = temp_r2;
-    REG_BG2X_H = temp_r2 >> 0x10;
+    REG_BG2X_L = bg2X;
+    REG_BG2X_H = bg2X >> 0x10;
 
-    REG_BG2Y_L = temp_r1;
-    REG_BG2Y_H = temp_r1 >> 0x10;
+    REG_BG2Y_L = bg2Y;
+    REG_BG2Y_H = bg2Y >> 0x10;
 }
 
 // 1028
 void sub_08001028(void)
 {
+    // HBlank
     // UpdateWindowCircleEffect
     s32 temp_r1;
     u32 temp_r2;
@@ -219,7 +222,7 @@ void sub_08001028(void)
 
     if (temp_r2 <= (s32)(DISPLAY_WIDTH * 0.5f))
     {
-        REG_WIN1H = (((s32)(DISPLAY_WIDTH * 0.5f) - temp_r2) << 8) | (temp_r2 + (s32)(DISPLAY_WIDTH * 0.5f));
+        REG_WIN1H = WIN_RANGE((s32)(DISPLAY_WIDTH * 0.5f) - temp_r2, (s32)(DISPLAY_WIDTH * 0.5f) + temp_r2);
     }
     else
     {
@@ -230,10 +233,11 @@ void sub_08001028(void)
 // 107C
 void sub_0800107C(void)
 {
+    // HBlank
     // UpdateBGScrollWithWave
     if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
     {
-        gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.sceneFrameCounter) * 4) & 0xFF;
+        gUnk_030034F8 = ((REG_VCOUNT_L + gUnk_03004C20.sceneFrameCounter) * 4) % 0x100;
         REG_BG2HOFS = (gBgInfo[2].hOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
         REG_BG3HOFS = (gBgInfo[3].hOfs >> 4) + (SIN(gUnk_030034F8) >> 4) + 4;
     }
@@ -247,6 +251,7 @@ void sub_0800107C(void)
 // 111C
 void sub_0800111C(void)
 {
+    // VCount
     while (!(REG_DISPSTAT & DISPSTAT_HBLANK));
     REG_BLDY = 0;
 }

@@ -424,8 +424,8 @@ void sub_0804B920(s32 arg0, s32 arg1)
     temp_r7 = gUnk_08057ACC[arg0][arg1][1];
     temp_r5 = gUnk_08057ACC[arg0][arg1][0];
 
-    gBgInfo[temp_r7].pTiles = (void*)0x06000000 + gUnk_080578D4[temp_r5][temp_r7 - 2] * 0x4000;
-    gBgInfo[temp_r7].pTilemap = (void*)0x06000000 + gUnk_08057914[temp_r5][temp_r7 - 2] * 0x800;
+    gBgInfo[temp_r7].pTiles = BG_VRAM + gUnk_080578D4[temp_r5][temp_r7 - 2] * 0x4000;
+    gBgInfo[temp_r7].pTilemap = BG_VRAM + gUnk_08057914[temp_r5][temp_r7 - 2] * 0x800;
 
     gBgInfo[temp_r7].hOfs = 0;
     gBgInfo[temp_r7].vOfs = 0;
@@ -438,17 +438,17 @@ void sub_0804B920(s32 arg0, s32 arg1)
     gBgInfo[temp_r7].unk14 = 0;
 
     gUnk_030034A0->unk1_0 = (gUnk_080576D4[temp_r5][temp_r7 - 2] == 0x80) ? 1 : 0;
-    REG_DISPCNT = (REG_DISPCNT & 0xFFF8) | gUnk_030034A0->unk1_0;
+    REG_DISPCNT = (REG_DISPCNT & ~7) | gUnk_030034A0->unk1_0;
     gUnk_030034A0->unk3[temp_r7 - 2] = sub_0804B2A0(gUnk_030034A0->unk1_0, gBgInfo[temp_r7].hLength, gBgInfo[temp_r7].vLength);
 
     switch (temp_r7)
     {
         case 2:
-            REG_BG2CNT = 2 | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | 0x2040 | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
+            REG_BG2CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
             break;
 
         case 3:
-            REG_BG3CNT = 2 | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | 0x2040 | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
+            REG_BG3CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
             break;
     }
 }
@@ -527,7 +527,7 @@ void sub_0804BBD4(void)
     DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
 
-    REG_BG0CNT = 0x601;
+    REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_SCREENBASE(6);
     gBgInfo[0].vOfs = 0;
     gBgInfo[0].hOfs = 0;
     REG_BG0HOFS = 0;
@@ -550,7 +550,7 @@ void sub_0804BD10(void)
 
     DmaCopy16(3, &gUnk_080576B4, (void*)0x050001E0, 0x40); // TODO: wrong DMA size?
 
-    REG_BG1CNT = 0x700;
+    REG_BG1CNT = BGCNT_SCREENBASE(7);
     REG_BG1HOFS = 0;
     REG_BG1VOFS = 0;
 }
@@ -563,15 +563,15 @@ void sub_0804BD88(void)
 void sub_0804BDB4(void)
 {
     gUnk_030034A0->unk8[0][0] = 0;
-    gUnk_030034A0->unk10[0][0] = 0xE80;
-    gUnk_030034A0->unk8[0][1] = 0x700;
-    gUnk_030034A0->unk10[0][1] = 0xA00;
-    gUnk_030034A0->unk8[1][0] = 0x700;
-    gUnk_030034A0->unk10[1][1] = 0xA00;
+    gUnk_030034A0->unk10[0][0] = 0xE8 << 4;
+    gUnk_030034A0->unk8[0][1] = 0x70 << 4;
+    gUnk_030034A0->unk10[0][1] = 0xA0 << 4;
+    gUnk_030034A0->unk8[1][0] = 0x70 << 4;
+    gUnk_030034A0->unk10[1][1] = 0xA0 << 4;
     sub_0804B2EC();
-    REG_WININ = 0x1F23;
-    REG_WINOUT = 0x3D;
-    REG_DISPCNT &= ~0x4000;
+    REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ;
+    REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
+    REG_DISPCNT &= ~DISPCNT_WIN1_ON;
 }
 
 void sub_0804BE08(void)
@@ -588,8 +588,8 @@ void sub_0804BE08(void)
 
 void sub_0804BE58(void)
 {
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
@@ -617,23 +617,23 @@ void sub_0804BE58(void)
     gUnk_030034A0->unk1C_4 = 1;    
     gMosaicSize = gBg2Alpha = 0;
 
-    REG_IE &= ~2;
-    REG_DISPSTAT &= ~0x10;
+    REG_IE &= ~INTR_FLAG_HBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
     gUnk_03004C20.unkA = 0;
     gUnk_03004C20.unkB = 0;
     gUnk_030034B0.unk6_4 = 1;
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 }
 
 void sub_0804BF7C(void)
 {
     gUnk_03000814 = gUnk_03004C20.globalFrameCounter;
-    REG_IE &= ~2;
-    REG_DISPSTAT &= ~0x10;
+    REG_IE &= ~INTR_FLAG_HBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
     sub_0804C0D4();
     sub_0804EE14();
     sub_0804BBC0();
@@ -647,7 +647,7 @@ void sub_0804BFD0(void)
     gUnk_030007C8 = thunk_HeapAlloc(0x100, 0);
     DmaFill16(3, 0, gUnk_030007C8, 0x100);
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, (void *)0x07000000, 0x400);
+    DmaCopy32(3, gOamBuffer, OAM, 0x400);
     gUnk_03005428 = 0xD;
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
@@ -807,19 +807,19 @@ void sub_0804C598(void)
     switch (gUnk_03004D84[2] & 3)
     {
         case 0:
-            REG_BG0CNT = (REG_BG0CNT & ~3) | (gUnk_03004D84[2] >> 4);
+            REG_BG0CNT = (REG_BG0CNT & ~BGCNT_PRIORITY_MASK) | (gUnk_03004D84[2] >> 4);
             break;
 
         case 1:
-            REG_BG1CNT = (REG_BG1CNT & ~3) | (gUnk_03004D84[2] >> 4);
+            REG_BG1CNT = (REG_BG1CNT & ~BGCNT_PRIORITY_MASK) | (gUnk_03004D84[2] >> 4);
             break;
 
         case 2:
-            REG_BG2CNT = (REG_BG2CNT & ~3) | (gUnk_03004D84[2] >> 4);
+            REG_BG2CNT = (REG_BG2CNT & ~BGCNT_PRIORITY_MASK) | (gUnk_03004D84[2] >> 4);
             break;
 
         case 3:
-            REG_BG3CNT = (REG_BG3CNT & ~3) | (gUnk_03004D84[2] >> 4);
+            REG_BG3CNT = (REG_BG3CNT & ~BGCNT_PRIORITY_MASK) | (gUnk_03004D84[2] >> 4);
             break;
     }
 
@@ -851,8 +851,8 @@ void sub_0804C60C(void)
 
 void sub_0804C6A8(void)
 {
-    REG_BG2CNT |= 0x40;
-    REG_BG3CNT |= 0x40;
+    REG_BG2CNT |= BGCNT_MOSAIC;
+    REG_BG3CNT |= BGCNT_MOSAIC;
     gMosaicSize = gUnk_03004D84[2] & 0xF;
     gUnk_03004D84 += 3;
 }
@@ -1037,8 +1037,8 @@ struct Unk_0804CA6C {
 };
 s32 sub_0804CA6C(struct Unk_030052A4 *arg0, struct Unk_0804CA6C *arg1)
 {
-    arg1->unk0 = (arg0->unk8 * gSineTable[(u32)(arg0->unk14 * arg0->unk10[0xE]) % 0x100]) >> 8;
-    arg1->unk2 = (arg0->unkA * gSineTable[(u32)(arg0->unk14 * arg0->unk10[0xE]) % 0x100]) >> 8;
+    arg1->unk0 = (arg0->unk8 * SIN((arg0->unk14 * arg0->unk10[0xE]) % 0x100u)) >> 8;
+    arg1->unk2 = (arg0->unkA * SIN((arg0->unk14 * arg0->unk10[0xE]) % 0x100u)) >> 8;
 
     if (arg0->unk14 <= 0)
     {
@@ -1141,10 +1141,10 @@ s32 sub_0804CC4C(s32 arg0)
             gUnk_030052A4[arg0].unk16 += subroutine_arg0.unk0;
             gUnk_030052A4[arg0].unk18 += subroutine_arg0.unk2;
 
-            gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pa = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gUnk_030052A4[arg0].unk16));
+            gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pa = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_030052A4[arg0].unk16));
             gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pb = 0;
             gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pc = 0;
-            gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pd = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(gUnk_030052A4[arg0].unk18));
+            gOamAffineBuffer[gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].affineHFlip_matrixNum].pd = MultiplyQ8(COS(0), ReciprocalQ8(gUnk_030052A4[arg0].unk18));
             break;
 
         case 4:
@@ -1363,7 +1363,7 @@ s32 sub_0804D0B0(s32 arg0)
 void sub_0804D32C(void)
 {
     gBlendValue = 0x10;
-    REG_BLDCNT = 0xEC;
+    REG_BLDCNT = BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_BD | BLDCNT_EFFECT_DARKEN;
     REG_DISPCNT = (gUnk_081177C4[3]) | (gUnk_030034A0->unk1_0) | (gUnk_030034A0->unk1_7 << 0xD);
 
     gUnk_030052A4[gUnk_03004D84[2]].unkA = sub_0804B260(gUnk_03004D84 + 3);
@@ -1533,8 +1533,8 @@ void sub_0804DBD4(void)
 
 s32 sub_0804DC64(s32 arg0)
 {
-    REG_IE |= 2;
-    REG_DISPSTAT |= 0x10;
+    REG_IE |= INTR_FLAG_HBLANK;
+    REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
 
     if (gUnk_030052A4[arg0].unk3_7 != 0)
     {
@@ -1544,8 +1544,8 @@ s32 sub_0804DC64(s32 arg0)
     gUnk_030052A4[arg0].unk14 -= 1;
     if (gUnk_030052A4[arg0].unk14 < 0)
     {
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
         return 0;
     }
 
@@ -1601,15 +1601,15 @@ void sub_0804DEBC(void)
             gUnk_030052A4[var_r3].unk0_0 = 0;
         }
 
-        REG_IE &= ~2;
-        REG_DISPSTAT &= ~0x10;
+        REG_IE &= ~INTR_FLAG_HBLANK;
+        REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
     }
     else
     {
         if (gUnk_030052A4[gUnk_03004D84[2]].unk20 == sub_0804DC64)
         {
-            REG_IE &= ~2;
-            REG_DISPSTAT &= ~0x10;
+            REG_IE &= ~INTR_FLAG_HBLANK;
+            REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
         }
 
         gUnk_030052A4[gUnk_03004D84[2]].unk0_0 = 0;
@@ -1709,13 +1709,13 @@ void sub_0804E0E8(void)
         gBlendValue -= 1;
         if ((gBlendValue & 0x80) != 0)
         {
-            REG_DISPCNT &= ~0x400;
+            REG_DISPCNT &= ~DISPCNT_BG2_ON;
             gUnk_030034A0->unk1C_5 = 0;
         }
         return;
     }
 
-    REG_BLDCNT = 0xFF;
+    REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
 
     gBlendValue += 1;
     if (gBlendValue >= 0x10)
@@ -1918,7 +1918,7 @@ void sub_0804E634(void)
 void sub_0804E6B4(void)
 {
     gUnk_030034A0->unk1_7 = gUnk_03004D84[2] & 3;
-    REG_DISPCNT = (REG_DISPCNT & 0x1FF8) | gUnk_030034A0->unk1_0 | (gUnk_030034A0->unk1_7 << 0xD);
+    REG_DISPCNT = (REG_DISPCNT & ~(7 | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON)) | gUnk_030034A0->unk1_0 | (gUnk_030034A0->unk1_7 << 0xD);
     gUnk_03004D84 += 3;
 }
 
@@ -1982,8 +1982,8 @@ void sub_0804E7F8(void)
 
 void sub_0804E814(void)
 {
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
     gUnk_03004D84 += 2;
@@ -1991,8 +1991,8 @@ void sub_0804E814(void)
 
 void sub_0804E850(void)
 {
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 
     gUnk_03004D84 += 2;
@@ -2002,15 +2002,15 @@ void sub_0804E884(void)
 {
     if (gUnk_03004D84[2] < 0x23)
     {
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
         m4aSongNumStart(gUnk_03004D84[2]);
     }
     else
     {
-        REG_IE |= 1;
-        REG_DISPSTAT |= 8;
+        REG_IE |= INTR_FLAG_VBLANK;
+        REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
         m4aSongNumStart(gUnk_03004D84[2]);
     }
@@ -2020,8 +2020,8 @@ void sub_0804E884(void)
 
 void sub_0804E8FC(void)
 {
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
@@ -2030,8 +2030,8 @@ void sub_0804E8FC(void)
 
 void sub_0804E93C(void)
 {
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
     m4aMPlayAllContinue();
 
@@ -2139,9 +2139,9 @@ void sub_0804EB64(void)
 
         if (gUnk_030034A0->unk1C_6)
         {
-            REG_WININ = 0x3F;
-            REG_WINOUT = 0x3F;
-            gBlendValue = 0xF;
+            REG_WININ = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR;
+            REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
+            gBlendValue = BLEND_MAX - 1;
         }
 
         sub_0804E0E8();
@@ -2154,7 +2154,7 @@ void sub_0804EB64(void)
     {
         gUnk_030034A0->unk0_0 = 0;
         gUnk_030034A0->unk2_1 = 1;
-        REG_DISPCNT &= ~0x4000;
+        REG_DISPCNT &= ~DISPCNT_WIN1_ON;
         return;
     }
 
@@ -2232,8 +2232,8 @@ void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3)
     gUnk_0300081C->unk0 += 4;
     gUnk_0300081C->unkB = arg2;
     gUnk_0300081C->unkA = arg3;
-    gUnk_0300081C->unk1C = (void*)0x06000000 + (arg0 * 0x20);
-    gUnk_0300081C->unk20 = (void*)0x06000000 + (arg0 * 0x20);
+    gUnk_0300081C->unk1C = BG_VRAM + (arg0 * 0x20);
+    gUnk_0300081C->unk20 = BG_VRAM + (arg0 * 0x20);
     gUnk_0300081C->unk18 = arg0;
     gUnk_0300081C->unk1A = arg0;
     gUnk_0300081C->unk24 = arg1;
@@ -2263,7 +2263,7 @@ void sub_0804EE60(void)
     u32 var_r2;
 
     var_ip = gUnk_0300081C->unk0 + (gUnk_0300081C->unkE * gUnk_0300081C->unkD);
-    var_r7 = (void*)0x06000000 + (gUnk_0300081C->unk1A * 0x20);
+    var_r7 = BG_VRAM + (gUnk_0300081C->unk1A * 0x20);
     
     
     for (var_r6 = 0; var_r6 < 0x10; var_r6++, var_r7 += 4)

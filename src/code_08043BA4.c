@@ -100,18 +100,18 @@ void sub_08043BA4(void)
     gBlendValue = gMosaicSize = 0;
 
     VBlankIntrWait();
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
     sub_08003D58();
     sub_0800A468();
-    REG_DISPCNT = 0x2F41;
+    REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_WIN0_ON;
     gUnk_03005488 = 0;
-    REG_WININ = 0x2701;
-    REG_WIN1H = 0xF0;
-    REG_WIN1V = 0x18F;
+    REG_WININ = WININ_WIN0_BG0 | WININ_WIN1_BG0 | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_CLR;
+    REG_WIN1H = WIN_RANGE(0, DISPLAY_WIDTH);
+    REG_WIN1V = WIN_RANGE(0x1, 0x8F);
     gIntrTable.hBlank = sub_08001028;
     gUnk_030051DC = gUnk_0807D248;
     gUnk_03005428 = 0xD;
@@ -218,10 +218,10 @@ void sub_08043BA4(void)
 
     sub_08025B78(0, 0x15);
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
-    REG_IE |= 2;
-    REG_DISPSTAT |= 0x10;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
+    REG_IE |= INTR_FLAG_HBLANK;
+    REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
     m4aSoundVSyncOn();
 
     m4aSongNumStart(0x30);
@@ -286,11 +286,11 @@ void sub_080441C8(s32 arg0)
         case 2:
             REG_WIN0V = 0;
             REG_WIN1V = 0;
-            REG_BLDCNT = 0xBF;
-            REG_DISPCNT &= ~0x1000;
+            REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
+            REG_DISPCNT &= ~DISPCNT_OBJ_ON;
             gMosaicSize = 0xF;
             gBlendValue = 0x10;
-            REG_BLDY = 0x10;
+            REG_BLDY = BLDY_MAX;
 
             sub_08003D58();
             gUnk_03003410.unk9 = 0;
@@ -304,15 +304,15 @@ void sub_080441C8(s32 arg0)
             gUnk_03004C20.sceneFrameCounter = -1;
             gUnk_03004C20.room = 0;
 
-            REG_IE &= ~1;
-            REG_DISPSTAT &= ~8;
+            REG_IE &= ~INTR_FLAG_VBLANK;
+            REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
             gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
             WriteSaveFile(0, 1);
 
-            REG_IE |= 1;
-            REG_DISPSTAT |= 8;
+            REG_IE |= INTR_FLAG_VBLANK;
+            REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
             break;
 
         case 3:
@@ -320,7 +320,7 @@ void sub_080441C8(s32 arg0)
             gUnk_03005488 = 0;
             REG_WIN0V = 0;
             REG_WIN1V = 0;
-            REG_DISPCNT = 0x1041;
+            REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON;
             gBlendValue = 0;
 
             for (var_r6 = 0; var_r6 <= 0x19; var_r6++)
@@ -361,14 +361,14 @@ void sub_080441C8(s32 arg0)
             gEntityInfo[0x23].xPosScreen = gEntityInfo[0x23].xPosBg2 - gBgInfo[2].hOfs;
             gEntityInfo[0x24].xPosBg2 = gBgInfo[2].hOfs - 6;
             gEntityInfo[0x24].xPosScreen = gEntityInfo[0x24].xPosBg2 - gBgInfo[2].hOfs;
-            REG_BLDCNT = 0x3040;
+            REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_OBJ | BLDCNT_TGT2_BD;
             gEntityInfo[0x24].objMode = 1;
             gBlendValue = 9;
             m4aSongNumStart(1);
             break;
 
         case 4:
-            REG_BLDCNT = 0xFF;
+            REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
             gBlendValue = 0x10;
             gUnk_03004D9C = 0;
 
@@ -382,15 +382,15 @@ void sub_080441C8(s32 arg0)
             sub_08003D58();
             gUnk_03004C20.sceneFrameCounter = -1;
 
-            REG_IE &= ~1;
-            REG_DISPSTAT &= ~8;
+            REG_IE &= ~INTR_FLAG_VBLANK;
+            REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
             gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
             WriteSaveFile(0, 1);
 
-            REG_IE |= 1;
-            REG_DISPSTAT |= 8;
+            REG_IE |= INTR_FLAG_VBLANK;
+            REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
 
             LoadAllSaveData();
             return;
@@ -411,15 +411,15 @@ void sub_080446F8(void)
 
     if (gUnk_03004C20.sceneFrameCounter == 1)
     {
-        REG_DISPCNT = 0x7F41;
-        REG_WINOUT = 0x10;
+        REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON;
+        REG_WINOUT = WINOUT_WIN01_OBJ;
     }
 
     sub_08025BA4();
 
     for (var_r3 = 0; var_r3 < 10; var_r3++)
     {
-        gEntityInfo[var_r3 + 0x10].yPosBg2 = gBgInfo[2].vOfs + 0x3A + (gSineTable[(((gUnk_03004C20.sceneFrameCounter >> 3) + var_r3) * 0x18) % 0x100] >> 0x5);
+        gEntityInfo[var_r3 + 0x10].yPosBg2 = gBgInfo[2].vOfs + 0x3A + (SIN((((gUnk_03004C20.sceneFrameCounter / 8) + var_r3) * 0x18) % 0x100) >> 0x5);
         gEntityInfo[var_r3 + 0x10].yPosScreen = gEntityInfo[var_r3 + 0x10].yPosBg2 - gBgInfo[2].vOfs;
     }
 
@@ -430,8 +430,8 @@ void sub_080446F8(void)
             if (gUnk_03005488 == 0xF0)
             {
                 REG_WIN1V = 0;
-                REG_IE &= ~2;
-                REG_DISPSTAT &= ~0x10;
+                REG_IE &= ~INTR_FLAG_HBLANK;
+                REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 gUnk_03005488 = 0xF8;
             }
             else if (gUnk_03005488 == 0x1E0)
@@ -498,10 +498,10 @@ void sub_080446F8(void)
                 gUnk_03004658[0xC] = 1;
             }
 
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pa = gSineTable[gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10] + 0x40];
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pb = -((gSineTable[gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]] << 1) >> 1);
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pc = gSineTable[gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]];
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pd = gSineTable[gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10] + 0x40];
+            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pa = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pb = -((SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]) << 1) >> 1);
+            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pc = SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pd = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
 
             gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pa = gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pd = 0x100;
             gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pb = gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pc = 0;
@@ -530,7 +530,7 @@ void sub_080446F8(void)
 
             for (var_r3 = 0x23; var_r3 <= 0x24; var_r3++)
             {
-                gEntityInfo[var_r3].yPosBg2 = gBgInfo[2].vOfs + 0x58 + (gSineTable[(((gUnk_03005488 - ((var_r3 + 9) * 4)) >> 2) * 0x14) % 0x100] >> 0x4);
+                gEntityInfo[var_r3].yPosBg2 = gBgInfo[2].vOfs + 0x58 + (SIN((((gUnk_03005488 - ((var_r3 + 9) * 4)) >> 2) * 0x14) % 0x100) >> 0x4);
                 gEntityInfo[var_r3].yPosScreen = gEntityInfo[var_r3].yPosBg2 - gBgInfo[2].vOfs;
 
                 gEntityInfo[var_r3].xPosBg2 += 1;
@@ -670,8 +670,8 @@ void sub_08044BB8(void)
     {
         if (gEntityInfo[var_r7].unkF <= 0x1A)
         {
-            gEntityInfo[var_r7].xPosBg2 = gUnk_030051CC.unk0 + ((((gUnk_030034D4[var_r7].unk0 - gUnk_030051CC.unk0) * gSineTable[0x80 - gUnk_030052A0]) - ((gUnk_030034D4[var_r7].unk2 - gUnk_030051CC.unk2) * gSineTable[0x40 - gUnk_030052A0])) >> 8);
-            gEntityInfo[var_r7].yPosBg2 = gUnk_030051CC.unk2 + ((((gUnk_030034D4[var_r7].unk0 - gUnk_030051CC.unk0) * gSineTable[0x40 - gUnk_030052A0]) + ((gUnk_030034D4[var_r7].unk2 - gUnk_030051CC.unk2) * gSineTable[0x80 - gUnk_030052A0])) >> 8);
+            gEntityInfo[var_r7].xPosBg2 = gUnk_030051CC.unk0 + ((((gUnk_030034D4[var_r7].unk0 - gUnk_030051CC.unk0) * SIN(PI - gUnk_030052A0)) - ((gUnk_030034D4[var_r7].unk2 - gUnk_030051CC.unk2) * SIN(PI_2 - gUnk_030052A0))) >> 8);
+            gEntityInfo[var_r7].yPosBg2 = gUnk_030051CC.unk2 + ((((gUnk_030034D4[var_r7].unk0 - gUnk_030051CC.unk0) * SIN(PI_2 - gUnk_030052A0)) + ((gUnk_030034D4[var_r7].unk2 - gUnk_030051CC.unk2) * SIN(PI - gUnk_030052A0))) >> 8);
 
             if ((var_r7 == 0) || (gEntityInfo[var_r7].unk11 == 0x34) || (gEntityInfo[var_r7].unk11 == 0x6F) || (gEntityInfo[var_r7].unk11 > 0x75))
             {
@@ -700,8 +700,8 @@ void sub_08044BB8(void)
         return;
     }
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
     sub_0804517C(1);
@@ -735,8 +735,8 @@ void sub_08044BB8(void)
     gCallbackQueue.current[1] = sub_0800A804;
     while (REG_VCOUNT_L != 0);
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 
     m4aSongNumStart(0x61);
@@ -782,8 +782,8 @@ void sub_08044F6C(u8 arg0)
             var_ip = 0xFFF8;
         }
 
-        gEntityInfo[arg0].xPosBg2 = gUnk_030051CC.unk0 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * gSineTable[var_r9 + 0x40]) - ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * gSineTable[var_r9])) >> 8) - var_sl;
-        gEntityInfo[arg0].yPosBg2 = gUnk_030051CC.unk2 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * gSineTable[var_r9]) + ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * gSineTable[var_r9 + 0x40])) >> 8) - var_ip;
+        gEntityInfo[arg0].xPosBg2 = gUnk_030051CC.unk0 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * COS(var_r9)) - ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * SIN(var_r9))) >> 8) - var_sl;
+        gEntityInfo[arg0].yPosBg2 = gUnk_030051CC.unk2 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * SIN(var_r9)) + ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * COS(var_r9))) >> 8) - var_ip;
     }
 }
 
@@ -904,8 +904,8 @@ void sub_080453F0(void)
 {
     u16 var_r6;
 
-    REG_IE &= ~1;
-    REG_DISPSTAT &= ~8;
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
     m4aMPlayAllStop();
@@ -991,12 +991,12 @@ void sub_080453F0(void)
     sub_080467F4();
     sub_08025BA4();
 
-    REG_IE |= 1;
-    REG_DISPSTAT |= 8;
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 
-    REG_IE |= 2;
-    REG_DISPSTAT |= 0x10;
+    REG_IE |= INTR_FLAG_HBLANK;
+    REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
     gIntrTable.hBlank = sub_08000FCC;
 }
 
@@ -1339,10 +1339,10 @@ void sub_08045F68(void)
     gEntityInfo[0].affineEnable = 1;
     gEntityInfo[0].affineHFlip_matrixNum = 0;
 
-    temp_r7 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(0xA0));
-    temp_sb = MultiplyQ8(gSineTable[0], ReciprocalQ8(0));
-    temp_r4 = MultiplyQ8(-gSineTable[0], ReciprocalQ8(0));
-    temp_r2 = MultiplyQ8(gSineTable[0x40], ReciprocalQ8(0xA0));
+    temp_r7 = MultiplyQ8(COS(0), ReciprocalQ8(0xA0));
+    temp_sb = MultiplyQ8(SIN(0), ReciprocalQ8(0));
+    temp_r4 = MultiplyQ8(-SIN(0), ReciprocalQ8(0));
+    temp_r2 = MultiplyQ8(COS(0), ReciprocalQ8(0xA0));
 
     if (gEntityInfo[0].unkC_2 == 0)
     {
@@ -1356,23 +1356,23 @@ void sub_08045F68(void)
     gOamAffineBuffer->pc = temp_r4;
     gOamAffineBuffer->pd = temp_r2;
 
-    gBg2PA = MultiplyQ8(gSineTable[gBg2Alpha + 0x40], ReciprocalQ8(gBg2XMag));
-    gBg2PB = MultiplyQ8(gSineTable[gBg2Alpha], ReciprocalQ8(gBg2XMag));
-    gBg2PC = MultiplyQ8(-gSineTable[gBg2Alpha], ReciprocalQ8(gBg2YMag));
-    gBg2PD = MultiplyQ8(gSineTable[gBg2Alpha + 0x40], ReciprocalQ8(gBg2YMag));
+    gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
+    gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
+    gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
+    gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
     gBg2X = (0x7800 - (gBg2PA * 0x78)) - (gBg2PB * 0x78);
     gBg2Y = (0x7800 - (gBg2PC * 0x78)) - (gBg2PD * 0x78);
 
-    gEntityInfo[0].xPosScreen = ((gSineTable[gUnk_030034B0.unk1 + 0x40] * (s8) gUnk_030034B0.unk2) >> 8) + 0x78;
-    gEntityInfo[0].yPosScreen = (((gSineTable[gUnk_030034B0.unk1] * (s8) gUnk_030034B0.unk2) >> 8) / 3) + 0x6E;
+    gEntityInfo[0].xPosScreen = ((COS(gUnk_030034B0.unk1) * (s8) gUnk_030034B0.unk2) >> 8) + 0x78;
+    gEntityInfo[0].yPosScreen = (((SIN(gUnk_030034B0.unk1) * (s8) gUnk_030034B0.unk2) >> 8) / 3) + 0x6E;
     gEntityInfo[0].priority = 1;
 
     for (var_r5 = gUnk_030034B0.unk0_1 + 0xD; var_r5 < gUnk_03005428; var_r5++)
     {
         temp_r1 = gBg2Alpha + 0x40 + gEntityInfo[var_r5].yPosBg2;
-        gEntityInfo[var_r5].xPosScreen = ((gSineTable[temp_r1 + 0x40] * gEntityInfo[var_r5].xPosBg2) >> 8) + 0x78;
-        gEntityInfo[var_r5].yPosScreen = (((gSineTable[temp_r1] * gEntityInfo[var_r5].xPosBg2) >> 8) / 3) + 0x66;
+        gEntityInfo[var_r5].xPosScreen = ((COS(temp_r1) * gEntityInfo[var_r5].xPosBg2) >> 8) + 0x78;
+        gEntityInfo[var_r5].yPosScreen = (((SIN(temp_r1) * gEntityInfo[var_r5].xPosBg2) >> 8) / 3) + 0x66;
     }
 
     sub_08046A64(gUnk_03005428 - (gUnk_030034B0.unk0_1 + 0xD));
