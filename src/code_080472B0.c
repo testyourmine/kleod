@@ -1789,95 +1789,47 @@ void sub_08049EFC(u8 arg0)
     }
 }
 
-// TODO: its really broken for some reason https://decomp.me/scratch/pm39Y
 // 4A070
-NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
+void sub_0804A070(u8 arg0)
 {
     u32 sp8;
-    // s32 sp10;
-    // s32 sp14;
-    // s32 sp18;
-    // s32 temp_r0;
-    // s32 temp_r1_6;
-    // s32 temp_r2_5;
-    // s32 temp_r7;
-    // s32 var_sb;
-    // u16 (*temp_r2)[0x400];
-    // u16 *temp_r0_3;
-    // u16 *temp_r6;
     u32 var_r0;
-    u8 *temp_r0_9;
-    // u8 *temp_r1_3;
-    // u8 *temp_r5;
-    // u8 temp_r0_10;
-    // u8 temp_r0_13;
-    // u8 temp_r0_2;
-    // u8 temp_r0_4;
-    u8 temp_r2_3;
     u8 var_r4;
     u8 var_r8;
     u8 var_sl;
 
-    // subroutine_arg0 = 0;
-    // (void *)0x040000D4->unk0 = &subroutine_arg0;
-    // (void *)0x040000D4->unk4 = gBgTilemapBufs;
-    // (void *)0x040000D4->unk8 = 0x81000400;
     DmaFill16(3, 0, &gBgTilemapBufs[0][0], 0x800);
-    // subroutine_arg0 = 0;
-    // (void *)0x040000D4->unk0 = &subroutine_arg0;
-    // temp_r2 = gBgTilemapBufs + 0x800;
-    // (void *)0x040000D4->unk4 = temp_r2;
-    // (void *)0x040000D4->unk8 = 0x81000400;
     DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x800);
 
-    for (var_r4 = 1; (u32) var_r4 <= 4U; var_r4++)
+    for (var_r4 = 1; var_r4 < 5; var_r4++)
     {
-        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x3C));
-        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r4 << 6) + temp_r2);
-        // (void *)0x040000D4->unk8 = 0x8000001E;
         DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
-        // var_r4 += 1;
     }
-    // temp_r0 = 0xF0 & arg0;
-    switch (arg0 & 0xF0)                                /* switch 1; irregular */
+
+    switch (arg0 & 0xF0)
     {
-        case 0:                                     /* switch 1 */
-            for (var_r4 = 6; (u32) var_r4 <= 0xEU; var_r4++)
+        case 0:
+            for (var_r4 = 6; var_r4 < 15; var_r4++)
             {
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x3C));
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r4 << 6) + temp_r2);
-                // (void *)0x040000D4->unk8 = 0x8000001E;
                 DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
 
                 for (var_sl = 0; var_sl < 3; var_sl++)
                 {
-                    // sp10 = var_sl + 1;
                     if (gSaveData->unk29[var_sl] & 0x80)
                     {
-                        for (var_r8 = 0; (u32) var_r8 <= 9U; var_r8++)
+                        for (var_r8 = 0; var_r8 < 10; var_r8++)
                         {
-                            // temp_r0_3 = &gBgTilemapBufs[1][(var_r4 << 5) + (var_sl * 0xA) + var_r8];
-                            // *temp_r0_3 |= 0x6000;
                             gBgTilemapBufs[1][(var_r4 * 0x20) + (var_sl * 0xA) + var_r8] |= 0x6000;
-                            // temp_r0_2 = var_r8 + 1;
-                            // var_r8 += 1;
                         }
                     }
-                    // temp_r0_4 = (u8) sp10;
-                    // var_sl = temp_r0_4 + 1;
-                    // if ((u32) temp_r0_4 <= 2U)
-                    // {
-                    //     goto loop_7;
-                    // }
                 }
-                // var_r4 += 1;
             }
             break;
 
         case 16:
             if (gSaveData->unk29[gUnk_03004658[0xD]] & 0x80)
             {
-                for (var_r4 = 6; var_r4 < 0xF; var_r4++)
+                for (var_r4 = 6; var_r4 < 15; var_r4++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xA + (var_r4 * 0x1E), &gBgTilemapBufs[1][0xA + (var_r4 * 0x20)], 0x14);
                     
@@ -1889,15 +1841,15 @@ NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
             }
             else
             {
-                for (var_r4 = 6; var_r4 < 0xF; var_r4++)
+                for (var_r4 = 6; var_r4 < 15; var_r4++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xB + (var_r4 * 0x1E), &gBgTilemapBufs[1][0xB + (var_r4 * 0x20)], 0x12);
                 }
             }
 
-            for (var_r4 = 0xF; var_r4 < 0x13; var_r4++)
+            for (var_r4 = 15; var_r4 < 19; var_r4++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][(var_r4 * 0x20)], 0x3C);
+                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
             }
 
             for (var_r4 = 0; var_r4 < 2; var_r4++)
@@ -1917,7 +1869,7 @@ NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
         case 0:
             for (var_r4 = 0; var_r4 < 2; var_r4++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[0][0x5 + ((var_r4 + 0x2) * 0x20)], 0x28);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[0][5 + ((var_r4 + 0x2) * 0x20)], 0x28);
             }
             break;
 
@@ -1956,7 +1908,6 @@ NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
             break;
 
         case 4:
-            
             for (var_r4 = 0; var_r4 < 2; var_r4++)
             {
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 2) * 0x1E), &gBgTilemapBufs[0][7 + ((var_r4 + 0x2) * 0x20)], 0x24);
@@ -1991,95 +1942,51 @@ NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
             DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x168, &gBgTilemapBufs[0][0x124 + (var_r8 * 0xA)], 0x4);
             DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x16A, &gBgTilemapBufs[0][0x143 + (var_r8 * 0xA)], 0x8);
             continue;
-            // sp10 = var_sl + 1;
         }
 
         if ((gSaveData->unk1D[var_sl] == 0) || (gSaveData->unk1D[var_sl] == 7) || ((gSaveData->unk1D[var_sl] == 2) && ((gSaveData->unk20[var_sl] % 3) != 0) && (gSaveData->unk20[var_sl] != 1)))
         {
             if (gSaveData->unk17[var_sl] == 6)
             {
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                // sp18 = (var_r8 * 0xA) + 1;
-                while ((u32) var_r4 <= 1U)
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x3C) + 0x18));
-                    // temp_r2_5 = ((var_r4 + 9) << 5) + sp18;
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[temp_r2_5];
-                    // (void *)0x040000D4->unk8 = 0x80000004;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0x8);
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0xF) + gSaveData->unk1A[var_sl]) * 4));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][5])[temp_r2_5];
-                    // (void *)0x040000D4->unk8 = 0x80000002;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x8);
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
-                    var_r4 += 1;
                 }
             }
             else if ((gSaveData->unk17[var_sl] == 1) || (gSaveData->unk17[var_sl] == 2) || (gSaveData->unk17[var_sl] == 3) || (gSaveData->unk17[var_sl] == 4))
             {
-                // temp_r0_12 = gSaveData->unk17[var_sl_2];
-                // (void *)0x040000D4->unk0 = &gBgDataPtrs.pBufBg0Tilemap[((7 - (temp_r0_12 & 1)) * 0x1E) + ((u8) (temp_r0_12 / 3U) * 6)].unk18;
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8_3 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((u8) (gSaveData->unk17[var_sl] / 3U) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((gSaveData->unk17[var_sl] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->unk17[var_sl] - 1) * 2) + (var_r4 + 0xA)) * 0x3C) + 0x24));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000006;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->unk17[var_sl] - 1) * 2) + 0xA + var_r4) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0xC);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->unk17[var_sl] - 1) * 2) + 0xA + var_r4) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
                 }
             }
             else if (gSaveData->unk17[var_sl] == 5)
             {
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + 0x198);
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x3C) + 0x30));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000006;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA))], 0xC);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 1], 0xC);
                 }
             }
             else
             {
                 gSaveData->unk17[var_sl] = 1;
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((u8) ((u8) gSaveData->unk17[var_sl] / 3U) * 0xC) + 0x180));
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((u8) ((u8) gSaveData->unk17[var_sl] / 3U) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((gSaveData->unk17[var_sl] / 3) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x3C) + 0x24));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000006;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) << 5) + ((var_r8 * 0xA))], 0xC);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 1], 0xC);
                 }
+
                 gSaveData->unk1A[var_sl] = 1;
-                var_r4 = 0;
-                while ((u32) var_r4 <= 1U)
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0xF) + gSaveData->unk1A[var_sl]) * 4));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][5])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000002;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) << 5) + ((var_r8 * 0xA))], 0x4);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 5], 0x4);
                 }
             }
         }
@@ -2087,184 +1994,103 @@ NONMATCH("asm/nonmatching/sub_0804A070.inc", void sub_0804A070(u8 arg0))
         {
             if ((gSaveData->unk17[var_sl] == 1) || (gSaveData->unk17[var_sl] == 2) || (gSaveData->unk17[var_sl] == 3) || (gSaveData->unk17[var_sl] == 4))
             {
-                // temp_r0_10 = gSaveData->unk17[var_sl];
-                // (void *)0x040000D4->unk0 = &gBgDataPtrs.pBufBg0Tilemap[((7 - (temp_r0_10 & 1)) * 0x1E) + ((u8) (temp_r0_10 / 3U) * 6)].unk18;
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((u8) (gSaveData->unk17[var_sl] / 3U) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((gSaveData->unk17[var_sl] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x3C) + 0x30));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000006;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0xC);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
                 }
             }
             else if ((gSaveData->unk17[var_sl] == 5) || (gSaveData->unk17[var_sl] == 6))
             {
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + 0x198);
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x3C) + 0x30));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000006;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0xC);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
                 }
             }
             else
             {
                 gSaveData->unk17[var_sl] = 1;
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + 0x180);
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC0, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
                 gSaveData->unk1A[var_sl] = 1;
-                var_r4 = 0;
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                while ((u32) var_r4 <= 1U)
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0xF) + gSaveData->unk1A[var_sl]) * 4));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][5])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000002;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) << 5) + (var_r8 * 0xA)], 0x4);
-                    var_r4 += 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
+                }
+            }
+        }
+        else if (gSaveData->unk1D[var_sl] == 2)
+        {
+            if (gSaveData->unk20[var_sl] == 0)
+            {
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                {
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                }
+            }
+            if (gSaveData->unk20[var_sl] == 1)
+            {
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                {
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
                 }
             }
         }
         else
         {
-            if (gSaveData->unk1D[var_sl] == 2)
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x14A, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+
+            if (gSaveData->unk17[var_sl] == 6)
             {
-                // sp10 = var_sl + 1;
-                // var_sb = var_r8 * 4;
-                if (gSaveData->unk20[var_sl] == 0)
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    var_r4 = 0;
-                    while ((u32) var_r4 <= 1U)
-                    {
-                        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x3C) + 0x30));
-                        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                        // (void *)0x040000D4->unk8 = 0x80000006;
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0xC);
-                        var_r4 += 1;
-                    }
-                }
-                if (gSaveData->unk20[var_sl] == 1)
-                {
-                    var_r4 = 0;
-                    while ((u32) var_r4 <= 1U)
-                    {
-                        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x3C) + 0x30));
-                        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                        // (void *)0x040000D4->unk8 = 0x80000006;
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0xC);
-                        var_r4 += 1;
-                    }
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x8);
                 }
             }
             else
             {
-                // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + 0x294);
-                // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((var_r8 * 0x14) + &gBgTilemapBufs[0][0x102]);
-                // (void *)0x040000D4->unk8 = 0x80000006;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x14A, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                temp_r0_9 = &gSaveData->unk17[var_sl];
-                temp_r2_3 = *temp_r0_9;
-                // var_sb = var_r8 * 4;
-                if (temp_r2_3 == 6)
+                if (gSaveData->unk17[var_sl] > 5)
                 {
-                    var_r4 = 0;
-                    // sp10 = var_sl + 1;
-                    while ((u32) var_r4 <= 1U)
-                    {
-                        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x3C) + 0x18));
-                        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                        // (void *)0x040000D4->unk8 = 0x80000004;
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0x8);
-                        var_r4 += 1;
-                    }
+                    gSaveData->unk17[var_sl] = 1;
                 }
-                else
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    if ((u32) temp_r2_3 > 5U)
-                    {
-                        *temp_r0_9 = 1;
-                    }
-                    var_r4 = 0;
-                    // sp10 = var_sl + 1;
-                    while ((u32) var_r4 <= 1U)
-                    {
-                        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0xF) + gSaveData->unk17[var_sl]) * 4));
-                        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][1])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                        // (void *)0x040000D4->unk8 = 0x80000002;
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk17[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA)], 0x4);
-                        var_r4 += 1;
-                    }
-                    var_r4 = 0;
-                    while ((u32) var_r4 <= 1U)
-                    {
-                        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 0xE) * 0x3C));
-                        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][0x102] + 0xFFFFFE02)[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                        // (void *)0x040000D4->unk8 = 0x80000002;
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 0xE) * 0x1E), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) - 0x1FE], 0x4);
-                        var_r4 += 1;
-                    }
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk17[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x4);
                 }
-                // temp_r1_3 = &gSaveData->unk1A[var_sl];
-                if ((u32) gSaveData->unk1A[var_sl] > 7U)
+
+                for (var_r4 = 0; var_r4 < 2; var_r4++)
                 {
-                    gSaveData->unk1A[var_sl] = 1;
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 0xE) * 0x1E), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 3], 0x4);
                 }
-                var_r4 = 0;
-                while ((u32) var_r4 <= 1U)
-                {
-                    // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0xF) + gSaveData->unk1A[var_sl]) * 4));
-                    // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) &(&gBgTilemapBufs[0][5])[((var_r4 + 9) << 5) + ((var_r8 * 0xA) + 1)];
-                    // (void *)0x040000D4->unk8 = 0x80000002;
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) << 5) + (var_r8 * 0xA)], 0x4);
-                    var_r4 += 1;
-                }
+            }
+
+            if (gSaveData->unk1A[var_sl] > 7)
+            {
+                gSaveData->unk1A[var_sl] = 1;
+            }
+
+            for (var_r4 = 0; var_r4 < 2; var_r4++)
+            {
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
             }
         }
 
-        // temp_r0_13 = gSaveData->unk23[var_sl];
-        if ((u32) gSaveData->unk23[var_sl] <= 6U)
+        if (gSaveData->unk23[var_sl] < 7)
         {
-            // (void *)0x040000D4->unk0 = &gBgDataPtrs.pBufBg0Tilemap[(((u8) (temp_r0_13 % 3U) + 0xA) * 0x1E) + (((s32) (temp_r0_13 - 1) / 3) * 6)].unkC;
-            // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) (((var_sb + var_r8) * 4) + &gBgTilemapBufs[0][0x162]);
-            // (void *)0x040000D4->unk8 = 0x80000006;
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((u8) (gSaveData->unk23[var_sl] % 3U) + 0xA) * 0x1E) + (((s32) (gSaveData->unk23[var_sl] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * var_r8))], 0xC);
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->unk23[var_sl] % 3) + 0xA) * 0x1E) + (((s32) (gSaveData->unk23[var_sl] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * var_r8))], 0xC);
         }
-        // (void *)0x040000D4->unk0 = (u16 *) (gBgDataPtrs.pBufBg0Tilemap + 0x258);
-        // temp_r1_6 = var_sb + var_r8;
-        // (void *)0x040000D4->unk4 = (u16 (*)[0x400]) ((temp_r1_6 * 4) + &gBgTilemapBufs[0][0x182]);
-        // (void *)0x040000D4->unk8 = 0x80000006;
-        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x12C, &gBgTilemapBufs[0][0x182 + ((0xA * var_r8))], 0xC);
-        // temp_r6 = &gBgTilemapBufs[0][0x182] + 0xFFFFFCFC;
-        // temp_r7 = temp_r1_6 * 2;
-        // temp_r6[temp_r7 + 0x1A4] = gBgDataPtrs.pBufBg0Tilemap->unk320;
+
+        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x12C, &gBgTilemapBufs[0][0x182 + ((var_r8 * 0xA))], 0xC);
+
         gBgTilemapBufs[0][0x1A4 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x190];
-        // temp_r5 = &gSaveData->unk14[var_sl];
-        // temp_r6[temp_r7 + 0x1A5] = (((u32) (((u8) *temp_r5 / 10U) << 0x18) >> 0x17) + gBgDataPtrs.pBufBg0Tilemap)->unk30C;
-        gBgTilemapBufs[0][0x1A5 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + ((u8) gSaveData->unk14[var_sl] / 10U)];
-        // sp14 = 0x30C;
-        // temp_r6[temp_r7 + 0x1A6] = (((u32) (((u8) *temp_r5 % 10U) << 0x18) >> 0x17) + gBgDataPtrs.pBufBg0Tilemap)->unk30C;
-        gBgTilemapBufs[0][0x1A6 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + ((u8) gSaveData->unk14[var_sl] % 10U)];
+        gBgTilemapBufs[0][0x1A5 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->unk14[var_sl] / 10)];
+        gBgTilemapBufs[0][0x1A6 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->unk14[var_sl] % 10)];
     }
 }
-END_NONMATCH
 
 // 4AF00
 void sub_0804AF00(void)
