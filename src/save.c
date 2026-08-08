@@ -43,35 +43,35 @@ void LoadAllSaveData(void)
             {
                 ProgramEepromDwordEx(j, (u16 *) sEmptyEepromData);
             }
-            gSaveData->unk26[saveFile] = 0;
+            gSaveData->startedFile[saveFile] = 0;
             continue;
         }
 
-        gSaveData->unk26[saveFile] = 4;
+        gSaveData->startedFile[saveFile] = 4;
 
         // Load saved data from EEPROM
         ReadEepromDword(i + 1, (u16 *) buf);
-        gSaveData->unk14[saveFile] = buf[0];
-        gSaveData->unk17[saveFile] = buf[1];
-        gSaveData->unk1A[saveFile] = buf[2];
+        gSaveData->lives[saveFile] = buf[0];
+        gSaveData->world[saveFile] = buf[1];
+        gSaveData->level[saveFile] = buf[2];
         gSaveData->unk1D[saveFile] = buf[3];
         gSaveData->unk20[saveFile] = buf[4];
 
-        if (gSaveData->unk14[saveFile] >= 100)
+        if (gSaveData->lives[saveFile] >= 100)
         {
-            gSaveData->unk14[saveFile] = 3;
+            gSaveData->lives[saveFile] = 3;
         }
 
         ReadEepromDword(i + 6, (u16 *) buf);
         gSaveData->unk23[saveFile] = buf[0];
 
         ReadEepromDword(i + 0xC, (u16 *) buf);
-        gSaveData->unk29[saveFile] = buf[7];
+        gSaveData->completedFile[saveFile] = buf[7];
     }
 
     // Update last loaded save file
     ReadEepromDword(0x30, (u16 *) buf);
-    if (((gSaveData->unk26[0] | gSaveData->unk26[1] | gSaveData->unk26[2]) != 0) && (buf[0] < 3))
+    if (((gSaveData->startedFile[0] | gSaveData->startedFile[1] | gSaveData->startedFile[2]) != 0) && (buf[0] < 3))
     {
         gSaveData->lastLoadedSaveFile = buf[0];
     }

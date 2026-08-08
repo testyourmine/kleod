@@ -1173,7 +1173,7 @@ void sub_0804886C(void)
     m4aSoundVSyncOn();
 
     gBlendValue = 0;
-    gUnk_03000828 = gSaveData->unk26[0] | gSaveData->unk26[1] | gSaveData->unk26[2];
+    gUnk_03000828 = gSaveData->startedFile[0] | gSaveData->startedFile[1] | gSaveData->startedFile[2];
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1][0], gBgInfo[1].pTilemap, 0x800);
@@ -1792,303 +1792,331 @@ void sub_08049EFC(u8 arg0)
 // 4A070
 void sub_0804A070(u8 arg0)
 {
-    u32 sp8;
-    u32 var_r0;
-    u8 var_r4;
-    u8 var_r8;
-    u8 var_sl;
+    u32 end;
+    u32 start;
+    u8 row;
+    u8 col;
+    u8 file;
 
     DmaFill16(3, 0, &gBgTilemapBufs[0][0], 0x800);
     DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x800);
 
-    for (var_r4 = 1; var_r4 < 5; var_r4++)
+    for (row = 1; row <= 4; row++)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
+        // Copy top banner tiles
+        DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (row * 0x1E), &gBgTilemapBufs[1][row * 0x20], 0x3C);
     }
 
     switch (arg0 & 0xF0)
     {
+        // Display all 3 save files
         case 0:
-            for (var_r4 = 6; var_r4 < 15; var_r4++)
+            for (row = 6; row <= 14; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
+                // Copy file tiles
+                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (row * 0x1E), &gBgTilemapBufs[1][row * 0x20], 0x3C);
 
-                for (var_sl = 0; var_sl < 3; var_sl++)
+                for (file = 0; file < 3; file++)
                 {
-                    if (gSaveData->unk29[var_sl] & 0x80)
+                    if (gSaveData->completedFile[file] & 0x80)
                     {
-                        for (var_r8 = 0; var_r8 < 10; var_r8++)
+                        // Make file red if file completed
+                        for (col = 0; col <= 9; col++)
                         {
-                            gBgTilemapBufs[1][(var_r4 * 0x20) + (var_sl * 0xA) + var_r8] |= 0x6000;
+                            gBgTilemapBufs[1][(row * 0x20) + (file * 0xA) + col] |= (6 << 12);
                         }
                     }
                 }
             }
             break;
 
-        case 16:
-            if (gSaveData->unk29[gUnk_03004658[0xD]] & 0x80)
+        // Display selected save file
+        case 0x10:
+            if (gSaveData->completedFile[gUnk_03004658[0xD]] & 0x80)
             {
-                for (var_r4 = 6; var_r4 < 15; var_r4++)
+                // Copy selected file tiles and make file red for completion
+                for (row = 6; row <= 14; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xA + (var_r4 * 0x1E), &gBgTilemapBufs[1][0xA + (var_r4 * 0x20)], 0x14);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xA + (row * 0x1E), &gBgTilemapBufs[1][0xA + (row * 0x20)], 0x14);
                     
-                    for (var_r8 = 0; var_r8 < 10; var_r8++)
+                    for (col = 0; col <= 9; col++)
                     {
-                        gBgTilemapBufs[1][(var_r4 * 0x20) + 0xA + var_r8] |= 0x6000;
+                        gBgTilemapBufs[1][(row * 0x20) + 0xA + col] |= (6 << 12);
                     }
                 }
             }
             else
             {
-                for (var_r4 = 6; var_r4 < 15; var_r4++)
+                // Copy selected file tiles
+                for (row = 6; row <= 14; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xB + (var_r4 * 0x1E), &gBgTilemapBufs[1][0xB + (var_r4 * 0x20)], 0x12);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + 0xB + (row * 0x1E), &gBgTilemapBufs[1][0xB + (row * 0x20)], 0x12);
                 }
             }
 
-            for (var_r4 = 15; var_r4 < 19; var_r4++)
+            // Copy YES/NO background prompt tiles
+            for (row = 15; row <= 18; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[1][var_r4 * 0x20], 0x3C);
+                DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap + (row * 0x1E), &gBgTilemapBufs[1][row * 0x20], 0x3C);
             }
 
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+            // Copy YES tiles
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 8) * 0x1E), &gBgTilemapBufs[0][8 + ((var_r4 + 0x10) * 0x20)], 0x6);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((row + 8) * 0x1E), &gBgTilemapBufs[0][8 + ((row + 0x10) * 0x20)], 0x6);
             }
 
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+            // Copy NO tiles
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 3 + ((var_r4 + 8) * 0x1E), &gBgTilemapBufs[0][0x15 + ((var_r4 + 0x10) * 0x20)], 0xA);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 3 + ((row + 8) * 0x1E), &gBgTilemapBufs[0][0x15 + ((row + 0x10) * 0x20)], 0xA);
             }
             break;
     }
 
     switch (arg0 & 0xF)
     {
-        case 0:
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+        case 0x0:
+            // Copy "Select a Save file"
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[0][5 + ((var_r4 + 0x2) * 0x20)], 0x28);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (row * 0x1E), &gBgTilemapBufs[0][5 + ((row + 0x2) * 0x20)], 0x28);
             }
             break;
 
-        case 1:
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+        case 0x1:
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (var_r4 * 0x1E), &gBgTilemapBufs[0][6 + ((var_r4 + 0x2) * 0x20)], 0x26);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (row * 0x1E), &gBgTilemapBufs[0][6 + ((row + 0x2) * 0x20)], 0x26);
             }
             break;
 
-        case 2:
+        case 0x2:
             if (gUnk_03003410.unk6 == 0)
             {
-                if (gSaveData->unk26[gUnk_03004658[0xD]] == 0)
+                // New Game mode
+                if (gSaveData->startedFile[gUnk_03004658[0xD]] == 0)
                 {
-                    for (var_r4 = 0; var_r4 < 2; var_r4++)
+                    // Copy "Is this OK?"
+                    for (row = 0; row <= 1; row++)
                     {
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((var_r4 + 0x2) * 0x20)], 0x18);
+                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((row + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((row + 0x2) * 0x20)], 0x18);
                     }
                 }
                 else
                 {
-                    for (var_r4 = 0; var_r4 < 2; var_r4++)
+                    // Copy "Old data will be lost"
+                    for (row = 0; row <= 1; row++)
                     {
-                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x8 + ((var_r4 + 8) * 0x1E), &gBgTilemapBufs[0][4 + ((var_r4 + 0x2) * 0x20)], 0x2A);
+                        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x8 + ((row + 8) * 0x1E), &gBgTilemapBufs[0][4 + ((row + 0x2) * 0x20)], 0x2A);
                     }
                 }
             }
             else
             {
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                // Continue mode
+                // Copy "Is this OK?"
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((var_r4 + 0x2) * 0x20)], 0x18);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((row + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((row + 0x2) * 0x20)], 0x18);
                 }
             }
             break;
 
-        case 4:
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+        case 0x4:
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 2) * 0x1E), &gBgTilemapBufs[0][7 + ((var_r4 + 0x2) * 0x20)], 0x24);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((row + 2) * 0x1E), &gBgTilemapBufs[0][7 + ((row + 0x2) * 0x20)], 0x24);
             }
             break;
 
-        case 8:
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+        case 0x8:
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC + ((var_r4 + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((var_r4 + 0x2) * 0x20)], 0x1C);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC + ((row + 6) * 0x1E), &gBgTilemapBufs[0][9 + ((row + 0x2) * 0x20)], 0x1C);
             }
             break;
     }
 
     if ((arg0 & 0xF0) == 0)
     {
-        var_sl = 0;
-        var_r0 = 0;
-        sp8 = 2;
+        file = 0;
+        start = 0;
+        end = 2;
     }
     else
     {
-        var_sl = gUnk_03004658[0xD];
-        var_r0 = 1;
-        sp8 = 1;
+        file = gUnk_03004658[0xD];
+        start = 1;
+        end = 1;
     }
     
-    for (var_r8 = var_r0; var_r8 <= sp8; var_r8++, var_sl++)
+    for (col = start; col <= end; col++, file++)
     {
-        if (gSaveData->unk26[var_sl] == 0)
+        if (!gSaveData->startedFile[file])
         {
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x168, &gBgTilemapBufs[0][0x124 + (var_r8 * 0xA)], 0x4);
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x16A, &gBgTilemapBufs[0][0x143 + (var_r8 * 0xA)], 0x8);
+            // Copy "NO"
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x168, &gBgTilemapBufs[0][0x124 + (col * 0xA)], 0x4);
+            // Copy "DATA"
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x16A, &gBgTilemapBufs[0][0x143 + (col * 0xA)], 0x8);
             continue;
         }
 
-        if ((gSaveData->unk1D[var_sl] == 0) || (gSaveData->unk1D[var_sl] == 7) || ((gSaveData->unk1D[var_sl] == 2) && ((gSaveData->unk20[var_sl] % 3) != 0) && (gSaveData->unk20[var_sl] != 1)))
+        if ((gSaveData->unk1D[file] == 0) || (gSaveData->unk1D[file] == 7) || ((gSaveData->unk1D[file] == 2) && ((gSaveData->unk20[file] % 3) != 0) && (gSaveData->unk20[file] != 1)))
         {
-            if (gSaveData->unk17[var_sl] == 6)
+            if (gSaveData->world[file] == 6)
             {
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x8);
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
+                    // Copy "EX"
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x8);
+                    // Copy level number
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + gSaveData->level[file] * 2), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
                 }
             }
-            else if ((gSaveData->unk17[var_sl] == 1) || (gSaveData->unk17[var_sl] == 2) || (gSaveData->unk17[var_sl] == 3) || (gSaveData->unk17[var_sl] == 4))
+            else if ((gSaveData->world[file] == 1) || (gSaveData->world[file] == 2) || (gSaveData->world[file] == 3) || (gSaveData->world[file] == 4))
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((gSaveData->unk17[var_sl] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+                // Copy "World X" (x is current world)
+                // TODO: investigate what each DmaCopy actually does
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->world[file] % 2)) * 0x1E) + ((gSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->unk17[var_sl] - 1) * 2) + 0xA + var_r4) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->world[file] - 1) * 2) + 0xA + row) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            else if (gSaveData->unk17[var_sl] == 5)
+            else if (gSaveData->world[file] == 5)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+                // Copy "World 5"
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                // Copy "Leljimba"
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xA) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 1], 0xC);
                 }
             }
             else
             {
-                gSaveData->unk17[var_sl] = 1;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((gSaveData->unk17[var_sl] / 3) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+                gSaveData->world[file] = 1;
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((gSaveData->world[file] / 3) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xA) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xA) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 1], 0xC);
                 }
 
-                gSaveData->unk1A[var_sl] = 1;
+                gSaveData->level[file] = 1;
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + ((var_r8 * 0xA)) + 5], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 5], 0x4);
                 }
             }
         }
-        else if (((gSaveData->unk1D[var_sl] == 1) && (gSaveData->unk1A[var_sl] == 8)) || ((gSaveData->unk1D[var_sl] == 2) && ((gSaveData->unk20[var_sl] % 3) == 0) && (gSaveData->unk20[var_sl] != 0)))
+        else if (((gSaveData->unk1D[file] == 1) && (gSaveData->level[file] == 8)) || ((gSaveData->unk1D[file] == 2) && ((gSaveData->unk20[file] % 3) == 0) && (gSaveData->unk20[file] != 0)))
         {
-            if ((gSaveData->unk17[var_sl] == 1) || (gSaveData->unk17[var_sl] == 2) || (gSaveData->unk17[var_sl] == 3) || (gSaveData->unk17[var_sl] == 4))
+            if ((gSaveData->world[file] == 1) || (gSaveData->world[file] == 2) || (gSaveData->world[file] == 3) || (gSaveData->world[file] == 4))
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->unk17[var_sl] % 2)) * 0x1E) + ((gSaveData->unk17[var_sl] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->world[file] % 2)) * 0x1E) + ((gSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            else if ((gSaveData->unk17[var_sl] == 5) || (gSaveData->unk17[var_sl] == 6))
+            else if ((gSaveData->world[file] == 5) || (gSaveData->world[file] == 6))
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
             else
             {
-                gSaveData->unk17[var_sl] = 1;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC0, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
-                gSaveData->unk1A[var_sl] = 1;
+                gSaveData->world[file] = 1;
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC0, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
+                gSaveData->level[file] = 1;
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
                 }
             }
         }
-        else if (gSaveData->unk1D[var_sl] == 2)
+        else if (gSaveData->unk1D[file] == 2)
         {
-            if (gSaveData->unk20[var_sl] == 0)
+            if (gSaveData->unk20[file] == 0)
             {
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            if (gSaveData->unk20[var_sl] == 1)
+            if (gSaveData->unk20[file] == 1)
             {
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0x10) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
         }
         else
         {
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x14A, &gBgTilemapBufs[0][0x102 + (var_r8 * 0xA)], 0xC);
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x14A, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-            if (gSaveData->unk17[var_sl] == 6)
+            if (gSaveData->world[file] == 6)
             {
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((var_r4 + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x8);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x8);
                 }
             }
             else
             {
-                if (gSaveData->unk17[var_sl] > 5)
+                if (gSaveData->world[file] > 5)
                 {
-                    gSaveData->unk17[var_sl] = 1;
+                    gSaveData->world[file] = 1;
                 }
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk17[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 1], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->world[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x4);
                 }
 
-                for (var_r4 = 0; var_r4 < 2; var_r4++)
+                for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((var_r4 + 0xE) * 0x1E), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 3], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((row + 0xE) * 0x1E), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 3], 0x4);
                 }
             }
 
-            if (gSaveData->unk1A[var_sl] > 7)
+            if (gSaveData->level[file] > 7)
             {
-                gSaveData->unk1A[var_sl] = 1;
+                gSaveData->level[file] = 1;
             }
 
-            for (var_r4 = 0; var_r4 < 2; var_r4++)
+            for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((var_r4 + 0xE) * 0x1E) + gSaveData->unk1A[var_sl] * 2)), &gBgTilemapBufs[0][1 + ((var_r4 + 9) * 0x20) + (var_r8 * 0xA) + 5], 0x4);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
             }
         }
 
-        if (gSaveData->unk23[var_sl] < 7)
+        if (gSaveData->unk23[file] < 7)
         {
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->unk23[var_sl] % 3) + 0xA) * 0x1E) + (((s32) (gSaveData->unk23[var_sl] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * var_r8))], 0xC);
+            // Draw world dots
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->unk23[file] % 3) + 0xA) * 0x1E) + (((gSaveData->unk23[file] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * col))], 0xC);
         }
 
-        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x12C, &gBgTilemapBufs[0][0x182 + ((var_r8 * 0xA))], 0xC);
-
-        gBgTilemapBufs[0][0x1A4 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x190];
-        gBgTilemapBufs[0][0x1A5 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->unk14[var_sl] / 10)];
-        gBgTilemapBufs[0][0x1A6 + (0xA * var_r8)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->unk14[var_sl] % 10)];
+        // Copy "KLONOA"
+        DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x12C, &gBgTilemapBufs[0][0x182 + ((col * 0xA))], 0xC);
+        // Copy "x"
+        gBgTilemapBufs[0][0x1A4 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x190];
+        // Copy tens digit of lives
+        gBgTilemapBufs[0][0x1A5 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->lives[file] / 10)];
+        // Copy ones digit of lives
+        gBgTilemapBufs[0][0x1A6 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->lives[file] % 10)];
     }
 }
 
@@ -2140,12 +2168,12 @@ void sub_0804AF00(void)
         {
             m4aSongNumStart(0x52);
 
-            if ((gUnk_03003410.unk6 != 1) || (gSaveData->unk26[gUnk_03004658[0xC]] != 0))
+            if ((gUnk_03003410.unk6 != 1) || (gSaveData->startedFile[gUnk_03004658[0xC]] != 0))
             {
                 gUnk_03004658[0xF] += 1;
                 gUnk_03004658[0xD] = gUnk_03004658[0xC];
 
-                if ((gUnk_03003410.unk6 == 0) && (gSaveData->unk26[gUnk_03004658[0xC]] != 0))
+                if ((gUnk_03003410.unk6 == 0) && (gSaveData->startedFile[gUnk_03004658[0xC]] != 0))
                 {
                     gUnk_03004658[0xC] = 1;
                 }
@@ -2180,8 +2208,8 @@ void sub_0804AF00(void)
         if (gUnk_03002900 == 0x14)
         {
             gUnk_03004C20.sceneFrameCounter = -1;
-            gUnk_03004C20.world = gSaveData->unk17[gUnk_03004658[0xD]] + 1;
-            gUnk_03004C20.level = gSaveData->unk17[gUnk_03004658[0xD]] + 1;
+            gUnk_03004C20.world = gSaveData->world[gUnk_03004658[0xD]] + 1;
+            gUnk_03004C20.level = gSaveData->world[gUnk_03004658[0xD]] + 1;
 
             gSaveData->currentSaveFile = gUnk_03004658[0xD];
             gSaveData->currentSaveFileAddress = gSaveData->currentSaveFile * 0x10;

@@ -17,6 +17,6 @@ void sub_08000FCC(void);
 void sub_08001028(void);
 void sub_0800107C(void);
 void sub_0800111C(void);
-void InterruptHandler_Normal(void);
+void GenericIntr(void);
 
 #endif // GUARD_INTERRUPTS_H

@@ -144,11 +144,11 @@ void sub_08000E68(void)
     // VBlankHandler_WithWindowScroll
     m4aSoundVSync();
 
-    REG_WIN0H = ((gUnk_030034A0->unk8[0][0] << 0x4) & ~0xFF) | ((gUnk_030034A0->unk10[0][0] >> 0x4) & 0xFF);
-    REG_WIN0V = ((gUnk_030034A0->unk8[0][1] << 0x4) & ~0xFF) | ((gUnk_030034A0->unk10[0][1] >> 0x4) & 0xFF);
+    REG_WIN0H = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_H] >> 4) & 0xFF);
+    REG_WIN0V = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_V] >> 4) & 0xFF);
     
-    REG_WIN1H = ((gUnk_030034A0->unk8[1][0] << 0x4) & ~0xFF) | ((gUnk_030034A0->unk10[1][0] >> 0x4) & 0xFF);
-    REG_WIN1V = ((gUnk_030034A0->unk8[1][1] << 0x4) & ~0xFF) | ((gUnk_030034A0->unk10[1][1] >> 0x4) & 0xFF);
+    REG_WIN1H = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_H] >> 4) & 0xFF);
+    REG_WIN1V = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_V] >> 4) & 0xFF);
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
@@ -257,7 +257,7 @@ void sub_0800111C(void)
 }
 
 // 1144
-void InterruptHandler_Normal(void)
+void GenericIntr(void)
 {
     REG_IF = REG_IE;
 }

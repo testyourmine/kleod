@@ -163,10 +163,10 @@ s32 sub_0804B2A0(u8 arg0, u16 arg1, u16 arg2)
 
 void sub_0804B2EC(void)
 {
-    REG_WIN0H = ((gUnk_030034A0->unk8[0][0] << 4) & ~0xFF) | ((gUnk_030034A0->unk10[0][0] >> 4) & 0xFF);
-    REG_WIN0V = ((gUnk_030034A0->unk8[0][1] << 4) & ~0xFF) | ((gUnk_030034A0->unk10[0][1] >> 4) & 0xFF);
-    REG_WIN1H = ((gUnk_030034A0->unk8[1][0] << 4) & ~0xFF) | ((gUnk_030034A0->unk10[1][0] >> 4) & 0xFF);
-    REG_WIN1V = ((gUnk_030034A0->unk8[1][1] << 4) & ~0xFF) | ((gUnk_030034A0->unk10[1][1] >> 4) & 0xFF);
+    REG_WIN0H = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_H] >> 4) & 0xFF);
+    REG_WIN0V = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_V] >> 4) & 0xFF);
+    REG_WIN1H = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_H] >> 4) & 0xFF);
+    REG_WIN1V = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_V] >> 4) & 0xFF);
 }
 
 void sub_0804B35C(void)
@@ -562,12 +562,14 @@ void sub_0804BD88(void)
 
 void sub_0804BDB4(void)
 {
-    gUnk_030034A0->unk8[0][0] = 0;
-    gUnk_030034A0->unk10[0][0] = 0xE8 << 4;
-    gUnk_030034A0->unk8[0][1] = 0x70 << 4;
-    gUnk_030034A0->unk10[0][1] = 0xA0 << 4;
-    gUnk_030034A0->unk8[1][0] = 0x70 << 4;
-    gUnk_030034A0->unk10[1][1] = 0xA0 << 4;
+    gUnk_030034A0->winX1Y1[WIN_0][WIN_H] = 0;
+    gUnk_030034A0->winX2Y2[WIN_0][WIN_H] = 0xE8 << 4;
+    gUnk_030034A0->winX1Y1[WIN_0][WIN_V] = 0x70 << 4;
+    gUnk_030034A0->winX2Y2[WIN_0][WIN_V] = 0xA0 << 4;
+
+    gUnk_030034A0->winX1Y1[WIN_1][WIN_H] = 0x70 << 4;
+    gUnk_030034A0->winX2Y2[WIN_1][WIN_V] = 0xA0 << 4;
+
     sub_0804B2EC();
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ;
     REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
@@ -1085,13 +1087,13 @@ s32 sub_0804CAC8(s32 arg0)
         case 4:
             if (gUnk_030052A4[arg0].unk1_3 & 2)
             {
-                gUnk_030034A0->unk8[gUnk_030052A4[arg0].unk1_3 & 1][0] += subroutine_arg0.unk0;
-                gUnk_030034A0->unk8[gUnk_030052A4[arg0].unk1_3 & 1][1] += subroutine_arg0.unk2;
+                gUnk_030034A0->winX1Y1[gUnk_030052A4[arg0].unk1_3 & 1][WIN_H] += subroutine_arg0.unk0;
+                gUnk_030034A0->winX1Y1[gUnk_030052A4[arg0].unk1_3 & 1][WIN_V] += subroutine_arg0.unk2;
             }
             else
             {
-                gUnk_030034A0->unk10[gUnk_030052A4[arg0].unk1_3 & 1][0] += subroutine_arg0.unk0;
-                gUnk_030034A0->unk10[gUnk_030052A4[arg0].unk1_3 & 1][1] += subroutine_arg0.unk0;
+                gUnk_030034A0->winX2Y2[gUnk_030052A4[arg0].unk1_3 & 1][WIN_H] += subroutine_arg0.unk0;
+                gUnk_030034A0->winX2Y2[gUnk_030052A4[arg0].unk1_3 & 1][WIN_V] += subroutine_arg0.unk0;
             }
 
             sub_0804B2EC();
@@ -1150,13 +1152,13 @@ s32 sub_0804CC4C(s32 arg0)
         case 4:
             if (gUnk_030052A4[arg0].unk1_3 & 2)
             {
-                gUnk_030034A0->unk8[gUnk_030052A4[arg0].unk1_3 & 1][0] += subroutine_arg0.unk0;
-                gUnk_030034A0->unk8[gUnk_030052A4[arg0].unk1_3 & 1][1] += subroutine_arg0.unk2;
+                gUnk_030034A0->winX1Y1[gUnk_030052A4[arg0].unk1_3 & 1][WIN_H] += subroutine_arg0.unk0;
+                gUnk_030034A0->winX1Y1[gUnk_030052A4[arg0].unk1_3 & 1][WIN_V] += subroutine_arg0.unk2;
             }
             else
             {
-                gUnk_030034A0->unk10[gUnk_030052A4[arg0].unk1_3 & 1][0] += subroutine_arg0.unk0;
-                gUnk_030034A0->unk10[gUnk_030052A4[arg0].unk1_3 & 1][1] += subroutine_arg0.unk2;
+                gUnk_030034A0->winX2Y2[gUnk_030052A4[arg0].unk1_3 & 1][WIN_H] += subroutine_arg0.unk0;
+                gUnk_030034A0->winX2Y2[gUnk_030052A4[arg0].unk1_3 & 1][WIN_V] += subroutine_arg0.unk2;
             }
             break;
     }
@@ -1902,13 +1904,13 @@ void sub_0804E634(void)
 {
     if (gUnk_03004D84[2] & 2)
     {
-        gUnk_030034A0->unk8[gUnk_03004D84[2] & 1][0] = gUnk_03004D84[3] << 4;
-        gUnk_030034A0->unk8[gUnk_03004D84[2] & 1][1] = gUnk_03004D84[4] << 4;
+        gUnk_030034A0->winX1Y1[gUnk_03004D84[2] & 1][WIN_H] = gUnk_03004D84[3] << 4;
+        gUnk_030034A0->winX1Y1[gUnk_03004D84[2] & 1][WIN_V] = gUnk_03004D84[4] << 4;
     }
     else
     {
-        gUnk_030034A0->unk10[gUnk_03004D84[2] & 1][0] = gUnk_03004D84[3] << 4;
-        gUnk_030034A0->unk10[gUnk_03004D84[2] & 1][1] = gUnk_03004D84[4] << 4;
+        gUnk_030034A0->winX2Y2[gUnk_03004D84[2] & 1][WIN_H] = gUnk_03004D84[3] << 4;
+        gUnk_030034A0->winX2Y2[gUnk_03004D84[2] & 1][WIN_V] = gUnk_03004D84[4] << 4;
     }
     
     sub_0804B2EC();

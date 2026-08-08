@@ -37,7 +37,7 @@ struct Unk_03003410 {
     u32 unk0;
     u8 unk4;
     u8 unk5;
-    u8 unk6;
+    u8 unk6; // file mode, 0 is New Game, 1 is Continue
     u8 unk7;
     u8 unk8;
     u8 unk9;
@@ -51,7 +51,7 @@ extern u16 *gUnk_030034FC;
 extern u8 *gUnk_03004658; // TODO: struct?
 
 struct Unk_03004670 {
-    /* 0x00 */ u8 unk0;
+    /* 0x00 */ u8 unk0; // number of completed worlds
     /* 0x01 */ u8 unk1;
     /* 0x02 */ u8 unk2;
     /* 0x03 */ u8 unk3;
@@ -59,7 +59,7 @@ struct Unk_03004670 {
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 unk7;
-    /* 0x08 */ u8 unk8[6][8]; // indexed by [world-1][level-1]
+    /* 0x08 */ u8 unk8[6][8]; // indexed by [world-1][level-1], probably level cleared flags
     /* 0x38 */ s32 unk38;
     /* 0x3C */ u8 addChecksum;
     /* 0x3D */ u8 xorChecksum;
@@ -74,14 +74,14 @@ struct SaveData {
     u8 currentSaveFileAddress; // save file EEPROM address
     u8 lastLoadedSaveFile; // last loaded save file
     u8 pad13[0x14 - 0x13];
-    u8 unk14[3]; // lives
-    u8 unk17[3]; // world
-    u8 unk1A[3]; // level
+    u8 lives[3]; // lives
+    u8 world[3]; // world
+    u8 level[3]; // level
     u8 unk1D[3];
     u8 unk20[3];
-    u8 unk23[3];
-    u8 unk26[3];
-    u8 unk29[3];
+    u8 unk23[3]; // number of completed worlds?
+    u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
+    u8 completedFile[3]; // 0x80 is file completed flag
 };
 extern struct SaveData *gSaveData;
 
@@ -211,6 +211,20 @@ struct BgInfo {
 }; /* size = 0x1C */
 extern struct BgInfo gBgInfo[4];
 
+enum WIN01 {
+    WIN_0,
+    WIN_1,
+
+    WIN01_COUNT
+};
+
+enum WINHV {
+    WIN_H,
+    WIN_V,
+
+    WINHV_COUNT
+};
+
 struct Unk_030034A0 {
     /* 0x00_0 */ u32 unk0_0:2;
     /* 0x00_2 */ u8 unk0_2:4; // TODO: verify
@@ -225,8 +239,8 @@ struct Unk_030034A0 {
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 pad7[0x8 - 0x7];
-    /* 0x08 */ s16 unk8[2][2];  // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X1/Y1
-    /* 0x10 */ s16 unk10[2][2]; // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X0/Y0
+    /* 0x08 */ s16 winX1Y1[WIN01_COUNT][WINHV_COUNT];  // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X1/Y1
+    /* 0x10 */ s16 winX2Y2[WIN01_COUNT][WINHV_COUNT]; // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X2/Y2
     /* 0x18 */ s16 unk18;
     /* 0x1A */ s16 unkA;
     /* 0x1C_0 */ u8 unk1C_0:2;

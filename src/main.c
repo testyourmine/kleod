@@ -29,18 +29,18 @@ void AgbMain(void)
 
     gIntrTable.vBlank = sub_080009D8;
     gIntrTable.hBlank = sub_08000FCC;
-    gIntrTable.vCount = InterruptHandler_Normal;
-    gIntrTable.timer0 = InterruptHandler_Normal;
-    gIntrTable.timer1 = InterruptHandler_Normal;
-    gIntrTable.timer2 = InterruptHandler_Normal;
-    gIntrTable.timer3 = InterruptHandler_Normal;
-    gIntrTable.serial = InterruptHandler_Normal;
-    gIntrTable.dma0 = InterruptHandler_Normal;
-    gIntrTable.dma1 = InterruptHandler_Normal;
-    gIntrTable.dma2 = InterruptHandler_Normal;
-    gIntrTable.dma3 = InterruptHandler_Normal;
-    gIntrTable.keypad = InterruptHandler_Normal;
-    gIntrTable.gamePak = InterruptHandler_Normal;
+    gIntrTable.vCount = GenericIntr;
+    gIntrTable.timer0 = GenericIntr;
+    gIntrTable.timer1 = GenericIntr;
+    gIntrTable.timer2 = GenericIntr;
+    gIntrTable.timer3 = GenericIntr;
+    gIntrTable.serial = GenericIntr;
+    gIntrTable.dma0 = GenericIntr;
+    gIntrTable.dma1 = GenericIntr;
+    gIntrTable.dma2 = GenericIntr;
+    gIntrTable.dma3 = GenericIntr;
+    gIntrTable.keypad = GenericIntr;
+    gIntrTable.gamePak = GenericIntr;
 
     thunk_HeapInit();
     pIntrMainBuf = thunk_HeapAlloc(0x200, 2);
