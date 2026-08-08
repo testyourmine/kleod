@@ -890,7 +890,7 @@ void sub_08005CF4(void)
         }
         else
         {
-            gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[0xB].unkA - 0xD];
+            gUnk_0300466C = &gUnk_030051DC[gEntityInfo[0xB].unkA - 0xD];
         }
 
         temp_r1 = gUnk_0300466C->unk0;
@@ -953,7 +953,7 @@ void sub_08005CF4(void)
         }
         else
         {
-            gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[0xC].unkA - 0xD];
+            gUnk_0300466C = &gUnk_030051DC[gEntityInfo[0xC].unkA - 0xD];
         }
 
         temp_r1_4 = gUnk_0300466C->unk0;
@@ -1019,7 +1019,7 @@ void sub_08005CF4(void)
                 }
                 else
                 {
-                    gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
+                    gUnk_0300466C = &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
                 }
     
                 temp_r1_9 = gUnk_0300466C->unk0;
@@ -1080,7 +1080,7 @@ void sub_08005CF4(void)
                 }
                 else
                 {
-                    gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
+                    gUnk_0300466C = &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
                 }
     
                 temp_r1_13 = gUnk_0300466C->unk0;
@@ -1151,7 +1151,7 @@ void sub_08005CF4(void)
             }
             else
             {
-                gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
+                gUnk_0300466C = &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
             }
 
             temp_r1_18 = gUnk_0300466C->unk0;
@@ -1215,7 +1215,7 @@ void sub_08005CF4(void)
             }
             else
             {
-                gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
+                gUnk_0300466C = &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
             }
 
             temp_r1_22 = gUnk_0300466C->unk0;
@@ -1281,7 +1281,7 @@ void sub_08005CF4(void)
                 }
                 else
                 {
-                    gUnk_0300466C = (void*) &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
+                    gUnk_0300466C = &gUnk_030051DC[gEntityInfo[sp0].unkA - 0xD];
                 }
     
                 temp_r1_26 = gUnk_0300466C->unk0;

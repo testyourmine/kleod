@@ -279,40 +279,40 @@ void LoadObjects_World1Select(void)
 
     DmaCopy16Wait(3, &gUnk_08077F08, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02000904, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
-    DmaCopy16Wait(3, (void*)0x02001104, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
-    DmaCopy16Wait(3, (void*)0x02001904, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1904, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02001B04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1B04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02001D04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1D04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077F28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002704, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2704, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02002904, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2904, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02002B04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2B04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02002D04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2D04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077F48, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002104, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2104, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02002304, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2304, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void*)0x02002504, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2504, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077F68, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001F04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1F04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 }
 
@@ -340,32 +340,32 @@ void LoadObjects_World2Select(void)
 
     DmaCopy16Wait(3, &gUnk_08077F88, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02000904, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     DmaCopy16Wait(3, &gUnk_08077FA8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001104, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     DmaCopy16Wait(3, &gUnk_08077FC8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001904, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1904, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077FE8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001B04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1B04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078008, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001D04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1D04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078028, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001F04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1F04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 }
 
@@ -393,39 +393,39 @@ void LoadObjects_World3Select(void)
 
     DmaCopy16Wait(3, &gUnk_08078048, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02000904, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     DmaCopy16Wait(3, &gUnk_08078068, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001104, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     sub_08025B78(0x16, 0);
 
     DmaCopy16Wait(3, &gUnk_08078088, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001D04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1D04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080780A8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001F04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1F04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080780C8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001904, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1904, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080780E8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001704, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1704, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078108, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02001B04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x1B04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 }
 
@@ -453,49 +453,49 @@ void LoadObjects_World4Select(void)
 
     DmaCopy16Wait(3, &gUnk_08078128, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02000904, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     sub_08025B78(0x15, 0);
 
     DmaCopy16Wait(3, &gUnk_08078148, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002304, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2304, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078168, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002104, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2104, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078188, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002504, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2504, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080781A8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002704, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2704, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080781C8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002904, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2904, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080781E8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002B04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2B04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078208, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002D04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2D04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08078228, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void*)0x02002F04, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x2F04, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 }
 
@@ -523,36 +523,36 @@ void LoadObjects_World5Select(void)
 
     DmaCopy16Wait(3, &gUnk_08078248, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02004704, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x4704, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     sub_08025B78(0x15, 0);
 
     DmaCopy16Wait(3, &gUnk_08078268, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02001104, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     sub_08025B78(0x16, 0);
 
     DmaCopy16Wait(3, &gUnk_08078288, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02000904, gObjVramPtr, 0x800);
+    DmaCopy16Wait(3, EWRAM_START + 0x0904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
     DmaCopy16Wait(3, &gUnk_080782A8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02004104, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x4104, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080782C8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02004304, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x4304, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_080782E8, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x02004504, gObjVramPtr, 0x200);
+    DmaCopy16Wait(3, EWRAM_START + 0x4504, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 }
 
@@ -2274,9 +2274,9 @@ void LoadObjects_World3Boss(void)
     gObjPalRamPtr += 0x20;
     DmaCopy16Wait(3, **gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk6C, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
-    DmaCopy16Wait(3, (void *)0x0200A984, gObjVramPtr, 0x20);
+    DmaCopy16Wait(3, EWRAM_START + 0xA984, gObjVramPtr, 0x20);
     gObjVramPtr += 0x20;
-    DmaCopy16Wait(3, (void *)0x0200A904, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, EWRAM_START + 0xA904, gObjVramPtr, 0x80);
     gObjVramPtr += 0x80;
 
     DmaCopy16Wait(3, &gUnk_08078728, gObjPalRamPtr, 0x20);

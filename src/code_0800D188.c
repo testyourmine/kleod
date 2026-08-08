@@ -207,13 +207,13 @@ void sub_0800D188(void)
             // Useless conditional required. Volatile load also works
             if (gUnk_03004C20.level)
             {
-                gNewKeys &= 8;
-                gHeldKeys &= 8;
+                gNewKeys &= START_BUTTON;
+                gHeldKeys &= START_BUTTON;
             }
             else
             {
-                gNewKeys &= 8;
-                gHeldKeys &= 8;
+                gNewKeys &= START_BUTTON;
+                gHeldKeys &= START_BUTTON;
             }
             return;
         }
@@ -222,7 +222,7 @@ void sub_0800D188(void)
         {
     
         }
-        else if (gHeldKeys & 0x10)
+        else if (gHeldKeys & DPAD_RIGHT)
         {
             gEntityInfo[0].unkC_2 = 0;
             if ((gUnk_03005220.unk34 | gUnk_03005220.unk39) != 0)
@@ -266,7 +266,7 @@ void sub_0800D188(void)
         }
         else
         {
-            if (gHeldKeys & 0x20)
+            if (gHeldKeys & DPAD_LEFT)
             {
                 gEntityInfo[0].unkC_2 = 1;
                 if ((gUnk_03005220.unk34 | gUnk_03005220.unk39) != 0)
@@ -390,7 +390,7 @@ void sub_0800D188(void)
     {
         if (gUnk_03004C20.level == 8)
         {
-            if (gHeldKeys & 0x10)
+            if (gHeldKeys & DPAD_RIGHT)
             {
                 gEntityInfo[0].unkC_2 = 0;
                 if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
@@ -402,7 +402,7 @@ void sub_0800D188(void)
                     gEntityInfo[0].xPosBg2 += 1;
                 }
             }
-            else if (gHeldKeys & 0x20)
+            else if (gHeldKeys & DPAD_LEFT)
             {
                 gEntityInfo[0].unkC_2 = 1;
                 if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
@@ -421,8 +421,8 @@ void sub_0800D188(void)
             {
                 if (gUnk_03003410.unkB != 0)
                 {
-                    gNewKeys &= 8;
-                    gHeldKeys &= 8;
+                    gNewKeys &= START_BUTTON;
+                    gHeldKeys &= START_BUTTON;
 
                     if (gUnk_03005220.unk16 > 0x100)
                     {
@@ -620,7 +620,7 @@ void sub_0800D188(void)
             }
             else if (gUnk_03004C20.unk11 != 0)
             {
-                if (gNewKeys & 0x40)
+                if (gNewKeys & DPAD_UP)
                 {
                     m4aSongNumStart(0x60);
                     sub_08025B78(0, 0x25);
@@ -973,7 +973,7 @@ block_236:
 
                                 gUnk_03005220.unk3_7 = 1;
                                 gEntityInfo[var_sb].unkC_4 = 1;
-                                DmaCopy16(3, &gUnk_080B9368, (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
+                                DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
                                 m4aSongNumStart(0x7D);
                             }
                         }
@@ -982,7 +982,7 @@ block_236:
                             if (gEntityInfo[var_sb].unkC_4 == 1)
                             {
                                 gUnk_03005220.unk3_7 = 0;
-                                DmaCopy16(3, &gUnk_08062148, (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
+                                DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
                                 gEntityInfo[var_sb].unkC_4 = 0;
                             }
                         }
@@ -1854,11 +1854,11 @@ block_474:
     }
     else if (gUnk_03005220.unk35 != 0)
     {
-        if (gHeldKeys & 0x40)
+        if (gHeldKeys & DPAD_UP)
         {
             gEntityInfo[0].yPosBg2 -= 1;
         }
-        else if (gHeldKeys & 0x80)
+        else if (gHeldKeys & DPAD_DOWN)
         {
             gEntityInfo[0].yPosBg2 += 1;
             if (gUnk_03005220.unk36 != 0)
@@ -3455,7 +3455,7 @@ block_1317:
 
             if (gUnk_03004C20.unk11 != 0)
             {
-                if (gNewKeys & 0x40)
+                if (gNewKeys & DPAD_UP)
                 {
                     m4aSongNumStart(0x60);
                     sub_08025B78(0, 0x25);
@@ -3509,7 +3509,7 @@ block_1365:
                     goto block_1390;
                 }
 
-                if (gNewKeys & 0x10)
+                if (gNewKeys & DPAD_RIGHT)
                 {
                     sp20 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xC) >> 3) + (((gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
@@ -3533,7 +3533,7 @@ block_1365:
                     }
                     goto block_1390;
                 }
-                else if (gNewKeys & 0x20)
+                else if (gNewKeys & DPAD_LEFT)
                 {
                     sp20 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0x13) >> 3) + (((gEntityInfo[0].yPosBg2 - 3) >> 3) * gBgInfo[2].hLength)];
 
@@ -3575,7 +3575,7 @@ block_1390:
                     }
 
                     m4aSongNumStart(0x8E);
-                    if (gHeldKeys & (0x80 | 0x40))
+                    if (gHeldKeys & (DPAD_DOWN | DPAD_UP))
                     {
                         if (gEntityAnimationInfo[0].state != 0x11)
                         {
@@ -3617,7 +3617,7 @@ block_1397:
                         gEntityInfo[0xA].unk10 = 0;
                     }
 
-                    if (gHeldKeys & 0x40)
+                    if (gHeldKeys & DPAD_UP)
                     {
                         if (gUnk_03005220.unk36 != 0)
                         {
@@ -3632,7 +3632,7 @@ block_1397:
                     }
                     else
                     {
-                        if (gHeldKeys & 0x80)
+                        if (gHeldKeys & DPAD_DOWN)
                         {
                             if (gUnk_03005220.unk36 == 0)
                             {
@@ -3656,7 +3656,7 @@ block_1397:
                         }
                     }
 
-                    if (gNewKeys & (0x20 | 0x10))
+                    if (gNewKeys & (DPAD_LEFT | DPAD_RIGHT))
                     {
                         sp20 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[0].xPosBg2 >> 3) + (((gEntityInfo[0].yPosBg2 - 0x24) >> 3) * gBgInfo[2].hLength)];
 
@@ -3666,7 +3666,7 @@ block_1397:
 
                         if (gUnk_03004654[0x17] < var_r1_24)
                         {
-                            if (gNewKeys & 0x10)
+                            if (gNewKeys & DPAD_RIGHT)
                             {
                                 gEntityInfo[0].xPosBg2 += 3;
                             }
@@ -3705,7 +3705,7 @@ block_1433:
         }
     }
 
-    if (gNewKeys & (gUnk_03005284->unk1C | 0x100))
+    if (gNewKeys & (gUnk_03005284->unk1C | R_BUTTON))
     {
         if ((gUnk_03005220.unk33 | gUnk_03005220.unk40 | gUnk_03005220.unk41 | gUnk_03005220.unk34 | gUnk_03005220.unk35) != 0)
         {
@@ -3775,7 +3775,7 @@ block_1433:
                         gEntityInfo[gUnk_03005220.unk42].unkF = 0x16;
                     }
                 }
-                else if (gHeldKeys & 0x20)
+                else if (gHeldKeys & DPAD_LEFT)
                 {
                     gEntityInfo[gUnk_03005220.unk42].unkF = 0x16;
                 }
@@ -3814,19 +3814,19 @@ block_1433:
             s32 sp38 = 1;
             if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
             {
-                DmaCopy16(3, &gUnk_0805C8E8, (void*)0x06010000 + (gUnk_08057C50 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0805C8E8, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), 0x80);
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 1)
             {
-                DmaCopy16(3, &gUnk_0805C968, (void*)0x06010000 + (gUnk_08057C58 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0805C968, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), 0x80);
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 2)
             {
-                DmaCopy16(3, &gUnk_0809AC08, (void*)0x06010000 + (gUnk_08057C50 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0809AC08, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), 0x80);
             }
             else
             {
-                DmaCopy16(3, &gUnk_0809AC88, (void*)0x06010000 + (gUnk_08057C58 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0809AC88, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), 0x80);
             }
             
             if (gUnk_03005220.unk33 == 0x12)
@@ -4177,13 +4177,13 @@ exit_loop2:
                                             gEntityInfo[var_sb].priority = 1;
                                             gUnk_03005400.unk16 = 0;
                                             gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 = gUnk_080D8E10[gUnk_03005400.unk14];
-                                            DmaCopy16Wait(3, gUnk_0818B7DC[gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 + 3], (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r7_14 + 0x8].bpp_paletteNum * 0x20), 0x20);
+                                            DmaCopy16Wait(3, gUnk_0818B7DC[gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 + 3], OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r7_14 + 0x8].bpp_paletteNum * 0x20), 0x20);
                                             gUnk_03005400.unk14 = (u8) ((gUnk_03005400.unk14 + 1) % 3);
                                         }
                                         else
                                         {
                                             gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 = gEntityInfo[0x16].unk8.split.unk9;
-                                            DmaCopy16Wait(3, gUnk_0818B7DC[gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 + 3], (void*)0x05000200 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r7_14 + 0x8].bpp_paletteNum * 0x20), 0x20);
+                                            DmaCopy16Wait(3, gUnk_0818B7DC[gEntityInfo[var_r7_14 + 0x14].unk8.split.unk9 + 3], OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r7_14 + 0x8].bpp_paletteNum * 0x20), 0x20);
                                         }
 
                                         gEntityInfo[var_sb].unkF = 0x1A;
@@ -4383,7 +4383,7 @@ block_1643:
         {
             goto block_1722;
         }
-        if (!(gNewKeys & 0x40))
+        if (!(gNewKeys & DPAD_UP))
         {
             goto block_1722;
         }
@@ -4500,7 +4500,7 @@ block_1722:
                     sub_08025B78(0, 0x1A);
                 }
             }
-            else if (gHeldKeys & (0x20 | 0x10))
+            else if (gHeldKeys & (DPAD_LEFT | DPAD_RIGHT))
             {
                 if ((gEntityAnimationInfo[0].state == 0) || (gEntityAnimationInfo[0].state == 0x16) || ((u32) gEntityAnimationInfo[0].state > 0x1B))
                 {
@@ -4567,7 +4567,7 @@ block_1756:
 block_1770:
                         if ((gUnk_03005220.unk48 | gUnk_03005220.unk4A) == 0)
                         {
-                            if (gHeldKeys & (0x20 | 0x10))
+                            if (gHeldKeys & (DPAD_LEFT | DPAD_RIGHT))
                             {
                                 if (gUnk_03005220.unk42 == 0)
                                 {
@@ -4613,14 +4613,14 @@ block_1770:
                     {
                         if ((gUnk_03005220.unk2F >= -0x14) && (gUnk_03005220.unk2F <= 0x14))
                         {
-                            if (gHeldKeys & 0x10)
+                            if (gHeldKeys & DPAD_RIGHT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x1C)
                                 {
                                     sub_08025B78(0, 0x1C);
                                 }
                             }
-                            else if (gHeldKeys & 0x20)
+                            else if (gHeldKeys & DPAD_LEFT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x1D)
                                 {
@@ -4634,14 +4634,14 @@ block_1770:
                         }
                         else if (gUnk_03005220.unk2F < 0x14)
                         {
-                            if (gHeldKeys & 0x10)
+                            if (gHeldKeys & DPAD_RIGHT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x1F)
                                 {
                                     sub_08025B78(0, 0x1F);
                                 }
                             }
-                            else if (gHeldKeys & 0x20)
+                            else if (gHeldKeys & DPAD_LEFT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x20)
                                 {
@@ -4655,14 +4655,14 @@ block_1770:
                         }
                         else if (gUnk_03005220.unk2F > 0x14)
                         {
-                            if (gHeldKeys & 0x10)
+                            if (gHeldKeys & DPAD_RIGHT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x22)
                                 {
                                     sub_08025B78(0, 0x22);
                                 }
                             }
-                            else if (gHeldKeys & 0x20)
+                            else if (gHeldKeys & DPAD_LEFT)
                             {
                                 if (gEntityAnimationInfo[0].state != 0x23)
                                 {
@@ -4687,8 +4687,8 @@ block_1770:
                 }
                 else
                 {
-                    DmaCopy16(3, &gUnk_080D8AF0[(gUnk_03004C20.globalFrameCounter / 4) % 2], (void*)0x050000E0, 0x20);
-                    DmaCopy16(3, &gUnk_080D8A70[(gUnk_03004C20.globalFrameCounter / 0x10) % 4], (void*)0x05000080, 0x20);
+                    DmaCopy16(3, &gUnk_080D8AF0[(gUnk_03004C20.globalFrameCounter / 4) % 2], PLTT + 0xE0, 0x20);
+                    DmaCopy16(3, &gUnk_080D8A70[(gUnk_03004C20.globalFrameCounter / 0x10) % 4], PLTT + 0x80, 0x20);
                 }
             }
             else
@@ -4752,7 +4752,7 @@ block_1770:
                     }
                     if ((gUnk_03005220.unk42 == 0) && ((gEntityAnimationInfo[0].state == 0) || (gEntityAnimationInfo[0].state == 0x16) || ((u32) gEntityAnimationInfo[0].state > 0x1B)))
                     {
-                        if (gHeldKeys & 0x40)
+                        if (gHeldKeys & DPAD_UP)
                         {
                             if (gEntityAnimationInfo[0].state != 0x25)
                             {
@@ -4763,7 +4763,7 @@ block_1770:
                         {
                             sub_08025B78(0, 0x23);
                         }
-                        if (gHeldKeys & 0x80)
+                        if (gHeldKeys & DPAD_DOWN)
                         {
                             if (gEntityAnimationInfo[0].state != 0x24)
                             {
@@ -4836,26 +4836,26 @@ block_1770:
                 temp_r5_26 = (gUnk_03004C20.globalFrameCounter >> 3) & 3;
                 if (gUnk_0300547C != 0)
                 {
-                    DmaCopy16(3, gUnk_0818B9B8[0][temp_r5_26], (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_0300547C - 0xD].tileNum * 0x20), 0x20);
+                    DmaCopy16(3, gUnk_0818B9B8[0][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_0300547C - 0xD].tileNum * 0x20), 0x20);
                 }
                 if (gUnk_03000818 != 0)
                 {
-                    DmaCopy16(3, gUnk_0818B9B8[1][temp_r5_26], (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_03000818 - 0xD].tileNum * 0x20), 0x80);
+                    DmaCopy16(3, gUnk_0818B9B8[1][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_03000818 - 0xD].tileNum * 0x20), 0x80);
                 }
                 if (gUnk_030051B4 != 0)
                 {
-                    DmaCopy16(3, gUnk_0818B9B8[2][temp_r5_26], (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030051B4 - 0xD].tileNum * 0x20), 0x80);
+                    DmaCopy16(3, gUnk_0818B9B8[2][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030051B4 - 0xD].tileNum * 0x20), 0x80);
                 }
                 if (gUnk_030008EC != 0)
                 {
-                    DmaCopy16(3, gUnk_0818B9B8[3][temp_r5_26], (void*)0x06010000 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030008EC - 0xD].tileNum * 0x20), 0x80);
+                    DmaCopy16(3, gUnk_0818B9B8[3][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030008EC - 0xD].tileNum * 0x20), 0x80);
                 }
             }
             else
             {
                 if ((gUnk_03004C20.globalFrameCounter & 0x21) == 0)
                 {
-                    DmaCopy16(3, &gUnk_080D8B30[(gUnk_03004C20.globalFrameCounter / 4) % 8], (void*)0x05000180, 0x20);
+                    DmaCopy16(3, &gUnk_080D8B30[(gUnk_03004C20.globalFrameCounter / 4) % 8], PLTT + 0x180, 0x20);
                 }
             }
         }

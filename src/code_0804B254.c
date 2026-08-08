@@ -171,9 +171,9 @@ void sub_0804B2EC(void)
 
 void sub_0804B35C(void)
 {
-    if (gHeldKeys & 4)
+    if (gHeldKeys & SELECT_BUTTON)
     {
-        if (gHeldKeys & 0x40)
+        if (gHeldKeys & DPAD_UP)
         {
             gBg2YMag += 0x10;
             if (gBg2YMag > 0x4000)
@@ -182,7 +182,7 @@ void sub_0804B35C(void)
             }
         }
 
-        if (gHeldKeys & 0x80)
+        if (gHeldKeys & DPAD_DOWN)
         {
             gBg2YMag -= 8;
             if (gBg2YMag > 0xF000)
@@ -191,7 +191,7 @@ void sub_0804B35C(void)
             }
         }
 
-        if (gHeldKeys & 0x20)
+        if (gHeldKeys & DPAD_LEFT)
         {
             gBg2XMag -= 8;
             if (gBg2XMag > 0xF000)
@@ -200,7 +200,7 @@ void sub_0804B35C(void)
             }
         }
 
-        if (gHeldKeys & 0x10)
+        if (gHeldKeys & DPAD_RIGHT)
         {
             gBg2XMag += 0x10;
             if (gBg2XMag > 0x4000)
@@ -209,12 +209,12 @@ void sub_0804B35C(void)
             }
         }
 
-        if (gHeldKeys & 0x100)
+        if (gHeldKeys & R_BUTTON)
         {
             gBg2Alpha += 1;
         }
 
-        if (gHeldKeys & 0x200)
+        if (gHeldKeys & L_BUTTON)
         {
             gBg2Alpha += 0xFF;
         }
@@ -455,7 +455,7 @@ void sub_0804B920(s32 arg0, s32 arg1)
 
 void sub_0804BAB4(u8 arg0)
 {
-    DecompressDma((void*)gUnk_08189B4C[arg0], (void *)0x05000000, 0x1C0);
+    DecompressDma((void*)gUnk_08189B4C[arg0], PLTT, 0x1C0);
 }
 
 void sub_0804BAD4(s32 arg0)
@@ -500,8 +500,8 @@ void sub_0804BBD4(void)
 {
     s32 var_r2;
 
-    gBgInfo[0].pTiles = (void *)0x06000000;
-    gBgInfo[0].pTilemap = (void *)0x06003000;
+    gBgInfo[0].pTiles = VRAM;
+    gBgInfo[0].pTilemap = VRAM + 0x3000;
 
     gBgInfo[0].hOfs = 8;
     gBgInfo[0].vOfs = 0;
@@ -532,15 +532,15 @@ void sub_0804BBD4(void)
     gBgInfo[0].hOfs = 0;
     REG_BG0HOFS = 0;
     REG_BG0VOFS = 0;
-    DecompressDma(&gUnk_082EA7F0, (void *)0x050001C0, 0x20);
+    DecompressDma(&gUnk_082EA7F0, PLTT + 0x1C0, 0x20);
 }
 
 void sub_0804BD10(void)
 {
     sub_0804ED68(gBgInfo[0].unk16 + 0x20, sub_0804BB10, 0x1D, 0x10);
 
-    gBgInfo[1].pTiles = (void *)0x06000000;
-    gBgInfo[1].pTilemap = (void *)0x06003800;
+    gBgInfo[1].pTiles = VRAM;
+    gBgInfo[1].pTilemap = VRAM + 0x3800;
 
     gBgInfo[1].hOfs = 0;
     gBgInfo[1].vOfs = 0;
@@ -548,7 +548,7 @@ void sub_0804BD10(void)
     gBgInfo[1].unk18 = 0x20;
     gBgInfo[1].unk14 = gBgInfo[0].unk16;
 
-    DmaCopy16(3, &gUnk_080576B4, (void*)0x050001E0, 0x40); // TODO: wrong DMA size?
+    DmaCopy16(3, &gUnk_080576B4, PLTT + 0x1E0, 0x40); // TODO: wrong DMA size?
 
     REG_BG1CNT = BGCNT_SCREENBASE(7);
     REG_BG1HOFS = 0;
@@ -725,7 +725,7 @@ void sub_0804C1A0(void)
 
 void sub_0804C1C0(s32 arg0, s32 arg1)
 {
-    DmaCopy16(3, gUnk_030007C8[arg0].unk0 + (gUnk_030007C8[arg0].unk6 * (arg1 << 5)), (void*)0x06010000 + (gUnk_030007C8[arg0].unk4 * 0x20), gUnk_030007C8[arg0].unk6 * 0x20);
+    DmaCopy16(3, gUnk_030007C8[arg0].unk0 + (gUnk_030007C8[arg0].unk6 * (arg1 << 5)), OBJ_VRAM0 + (gUnk_030007C8[arg0].unk4 * 0x20), gUnk_030007C8[arg0].unk6 * 0x20);
 }
 
 void sub_0804C1FC(void)
@@ -1218,7 +1218,7 @@ s32 sub_0804CFD0(s32 arg0)
 
 s32 sub_0804D074(s32 arg0)
 {
-    if (gNewKeys & 1)
+    if (gNewKeys & A_BUTTON)
     {
         return 0;
     }
@@ -2152,7 +2152,7 @@ void sub_0804EB64(void)
 
     sub_0804C898();
 
-    if ((gUnk_030034A0->unk2_1 & 2) && (gNewKeys & 8))
+    if ((gUnk_030034A0->unk2_1 & 2) && (gNewKeys & START_BUTTON))
     {
         gUnk_030034A0->unk0_0 = 0;
         gUnk_030034A0->unk2_1 = 1;
@@ -2184,7 +2184,7 @@ void sub_0804EB64(void)
 
     if (gUnk_0300081C->unk16_4 & 1)
     {
-        if (((s32) (gUnk_03000814 - gUnk_03004C20.globalFrameCounter) < 0xE0C) && (gNewKeys & 1))
+        if (((s32) (gUnk_03000814 - gUnk_03004C20.globalFrameCounter) < 0xE0C) && (gNewKeys & A_BUTTON))
         {
             if (gUnk_0300081C->unk17_1)
             {
@@ -2193,7 +2193,7 @@ void sub_0804EB64(void)
             }
         }
     }
-    else if ((gUnk_0300081C->unk16_4 == 4) && (gNewKeys & 1))
+    else if ((gUnk_0300081C->unk16_4 == 4) && (gNewKeys & A_BUTTON))
     {
         gUnk_0300081C->unk16_4 |= 2;
     }

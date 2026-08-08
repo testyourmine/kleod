@@ -455,7 +455,7 @@ void sub_080446F8(void)
             break;
 
         case 1:
-            if ((gNewKeys & 1) || (gNewKeys & 8))
+            if ((gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
             {
                 if (gUnk_03004658[0xC] != 0)
                 {
@@ -481,7 +481,7 @@ void sub_080446F8(void)
                 }
             }
 
-            if (gNewKeys & 0x20)
+            if (gNewKeys & DPAD_LEFT)
             {
                 if (gUnk_03004658[0xC] != 0)
                 {
@@ -489,7 +489,7 @@ void sub_080446F8(void)
                 }
                 gUnk_03004658[0xC] = 0;
             }
-            else if (gNewKeys & 0x10)
+            else if (gNewKeys & DPAD_RIGHT)
             {
                 if (gUnk_03004658[0xC] == 0)
                 {
@@ -559,7 +559,7 @@ void sub_080446F8(void)
                 }
             }
 
-            if ((gUnk_03005488 > 0x2FC) || (gNewKeys & 1) || (gNewKeys & 8))
+            if ((gUnk_03005488 > 0x2FC) || (gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
             {
                 gUnk_03005494 = 4;
                 sub_080441C8(4);
@@ -1046,7 +1046,7 @@ void sub_08045874(void)
 
     if (gUnk_030034B0.unk6_0 == 0)
     {
-        if (!(gHeldKeys & 0x300))
+        if (!(gHeldKeys & (L_BUTTON | R_BUTTON)))
         {
             if (gUnk_030034B0.unk1 != 0x40)
             {
@@ -1081,13 +1081,13 @@ void sub_08045874(void)
         }
         else
         {
-            if (gHeldKeys & 0x100)
+            if (gHeldKeys & R_BUTTON)
             {
                 gBg2Alpha += 1;
                 gUnk_030034B0.unk1 += 1;
             }
 
-            if (gHeldKeys & 0x200)
+            if (gHeldKeys & L_BUTTON)
             {
                 gBg2Alpha -= 1;
                 gUnk_030034B0.unk1 -= 1;
@@ -1097,7 +1097,7 @@ void sub_08045874(void)
             return;
         }
 
-        if (gNewKeys & 8)
+        if (gNewKeys & START_BUTTON)
         {
             for (var_r2_4 = 0; var_r2_4 < 10; var_r2_4++)
             {
@@ -1114,7 +1114,7 @@ void sub_08045874(void)
             gCallbackQueue.nextCount = 3;
             return;
         }
-        else if (gNewKeys & 1)
+        else if (gNewKeys & A_BUTTON)
         {
             gBlendValue = 0;
             gUnk_03004C20.room = 0;
@@ -1169,7 +1169,7 @@ void sub_08045874(void)
                 }
             }
         }
-        else if ((gHeldKeys & 0x10) && (gUnk_030034B0.unk4 == 0))
+        else if ((gHeldKeys & DPAD_RIGHT) && (gUnk_030034B0.unk4 == 0))
         {
             switch (gUnk_030034B0.unk6_4 - 1)
             {
@@ -1223,7 +1223,7 @@ void sub_08045874(void)
 
             gEntityInfo->unkC_2 = 0;
         }
-        else if ((gHeldKeys & 0x20))
+        else if ((gHeldKeys & DPAD_LEFT))
         {
             if (gUnk_030034B0.unk4 == 0)
             {
@@ -1608,7 +1608,7 @@ void sub_080468B0(void)
 
     if (gBg2Alpha == (u8)-gUnk_0811717C[gUnk_03004C20.world - 1][gUnk_0811762C[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1]][1])
     {
-        gHeldKeys = 0x300;
+        gHeldKeys = L_BUTTON | R_BUTTON;
         if (gUnk_030034B0.unk5 == 0)
         {
             gUnk_030034B0.unk5 = 0x80;
@@ -1630,11 +1630,11 @@ void sub_080468B0(void)
     {
         if ((s8)(-gUnk_0811717C[gUnk_03004C20.world - 1][gUnk_0811762C[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1]][1] - gBg2Alpha) < 0)
         {
-            gHeldKeys = 0x200;
+            gHeldKeys = L_BUTTON;
         }
         else if ((s8)(-gUnk_0811717C[gUnk_03004C20.world - 1][gUnk_0811762C[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1]][1] - gBg2Alpha) > 0)
         {
-            gHeldKeys = 0x100;
+            gHeldKeys = R_BUTTON;
         }
     }
 }

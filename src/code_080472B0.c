@@ -103,7 +103,7 @@ void sub_080472C8(void)
     gUnk_0300549C = tmp;
     gUnk_03005428 = 1;
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, (void*)0x07000000, 0x400);
+    DmaCopy32(3, gOamBuffer, OAM, 0x400);
 
     gUnk_03003410.unk8 = 1;
     gUnk_03004C20.level = 1;
@@ -129,7 +129,7 @@ void sub_080472C8(void)
     gBg2XMag = 0x200;
     gBg2YMag = 0x200;
 
-    DecompressDma(&gUnk_082ECEA8, (void*)0x05000000, 0x200);
+    DecompressDma(&gUnk_082ECEA8, PLTT, 0x200);
 
     gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58[0] & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70[0] & 0x7FFFFFFF, 0);
@@ -190,7 +190,7 @@ void sub_080475DC(void)
 {
     u32 var_r7;
 
-    if ((gNewKeys & 4) && (gUnk_0300549C == 1))
+    if ((gNewKeys & SELECT_BUTTON) && (gUnk_0300549C == 1))
     {
         gEntityInfo[0].unk10 = 1;
         gEntityInfo[0].xPosBg2 = 0x78;
@@ -200,7 +200,7 @@ void sub_080475DC(void)
 
     if ((gEntityInfo[0].unk10 == 1) && (gEntityAnimationInfo->state != 0xC))
     {
-        if (gHeldKeys & 0x100)
+        if (gHeldKeys & R_BUTTON)
         {
             gEntityInfo[0].unkC_2 = 0;
             if (gEntityAnimationInfo->state != 1)
@@ -213,7 +213,7 @@ void sub_080475DC(void)
                 gEntityInfo[0].xPosBg2 += 2;
             }
         }
-        else if (gHeldKeys & 0x200)
+        else if (gHeldKeys & L_BUTTON)
         {
             gEntityInfo[0].unkC_2 = 1;
             if (gEntityAnimationInfo->state != 1)
@@ -286,7 +286,7 @@ void sub_080477A8(void)
     switch (gUnk_030007F8)
     {
         case 0:
-            if (gNewKeys & 0x20)
+            if (gNewKeys & DPAD_LEFT)
             {
                 DmaCopy16(3, &gBgTilemapBufs[1][0x380], &gBgTilemapBufs[1][0xE0], 0x80);
                 if (gUnk_030008F8 != 0)
@@ -295,7 +295,7 @@ void sub_080477A8(void)
                 }
                 gUnk_030008F8 = 0;
             }
-            else if (gNewKeys & 0x10)
+            else if (gNewKeys & DPAD_RIGHT)
             {
                 DmaCopy16(3, &gBgTilemapBufs[1][0x340], &gBgTilemapBufs[1][0xE0], 0x80);
                 if (gUnk_030008F8 != 1)
@@ -304,7 +304,7 @@ void sub_080477A8(void)
                 }
                 gUnk_030008F8 = 1;
             }
-            else if (gNewKeys & 1)
+            else if (gNewKeys & A_BUTTON)
             {
                 if (gUnk_030008F8 == 1)
                 {
@@ -321,7 +321,7 @@ void sub_080477A8(void)
                     gUnk_030008F8 = 1;
                 }
             }
-            else if (gNewKeys & 2)
+            else if (gNewKeys & B_BUTTON)
             {
                 gUnk_03004C20.sceneFrameCounter = 0;
                 m4aSongNumStart(0x54);
@@ -336,7 +336,7 @@ void sub_080477A8(void)
                 return;
             }
 
-            if (gNewKeys & 0x20)
+            if (gNewKeys & DPAD_LEFT)
             {
                 DmaCopy16(3, &gBgTilemapBufs[1][0x380], &gBgTilemapBufs[1][0x1A0], 0x80);
                 if (gUnk_030008F8 != 0)
@@ -345,7 +345,7 @@ void sub_080477A8(void)
                 }
                 gUnk_030008F8 = 0;
             }
-            else if (gNewKeys & 0x10)
+            else if (gNewKeys & DPAD_RIGHT)
             {
                 DmaCopy16(3, &gBgTilemapBufs[1][0x340], &gBgTilemapBufs[1][0x1A0], 0x80);
                 if (gUnk_030008F8 != 1)
@@ -354,7 +354,7 @@ void sub_080477A8(void)
                 }
                 gUnk_030008F8 = 1;
             }
-            else if (gNewKeys & 1)
+            else if (gNewKeys & A_BUTTON)
             {
                 DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x500);
                 if (gUnk_030008F8 == 1)
@@ -370,7 +370,7 @@ void sub_080477A8(void)
                     gUnk_030007F8 = 2;
                 }
             }
-            else if (gNewKeys & 2)
+            else if (gNewKeys & B_BUTTON)
             {
                 gUnk_03004C20.sceneFrameCounter = 0;
                 m4aSongNumStart(0x54);
@@ -398,7 +398,7 @@ void sub_080477A8(void)
 
         case 3:
             DmaCopy16(3, &gBgTilemapBufs[1][0x300], &gBgTilemapBufs[1][0x120], 0x80);
-            if (gNewKeys & 1)
+            if (gNewKeys & A_BUTTON)
             {
                 gUnk_030007F8 = 5;
             }
@@ -536,7 +536,7 @@ void sub_08047B1C(void)
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg3Tiles + 4, BG_VRAM + (gUnk_03000800 * 0x20), 0x2640);
     if (sp0 != 0x1D)
     {
-        DmaCopy16Wait(3, sp4 + 4, (void*)0x06002640 + (gUnk_03000800 * 0x20), (*gUnk_0818BB3C[sp0] & 0x7FFFFFFF) - 4);
+        DmaCopy16Wait(3, sp4 + 4, VRAM + 0x2640 + (gUnk_03000800 * 0x20), (*gUnk_0818BB3C[sp0] & 0x7FFFFFFF) - 4);
     }
 
     REG_IE |= INTR_FLAG_VBLANK;
@@ -601,7 +601,7 @@ void sub_08047EC8(void)
         REG_WIN1V = gUnk_03004D90.unk6;
     }
 
-    if ((gNewKeys & 0xF) && (gUnk_03004D90.unk8 == 0))
+    if ((gNewKeys & BUTTON_MASK) && (gUnk_03004D90.unk8 == 0))
     {
         gUnk_03004D90.unk8 = 2;
     }
@@ -818,11 +818,11 @@ void sub_0804832C(void)
     gUnk_03005428 = 1;
     sub_08003D58();
 
-    DmaCopy32(3, gOamBuffer, (void*)0x07000000, 0x400);
-    gBgInfo[0].pTiles = (void *)0x06000000;
-    gBgInfo[0].pTilemap = (void *)0x06007800;
+    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    gBgInfo[0].pTiles = VRAM;
+    gBgInfo[0].pTilemap = VRAM + 0x7800;
 
-    DmaFill16(3, 0x7FFF, (void*)0x05000020, 0x4);
+    DmaFill16(3, 0x7FFF, PLTT + 0x20, 0x4);
     DmaFill16(3, 0x1111, gBgInfo[0].pTiles + 0x20, 0x20);
 
     for (var_r4 = 0, var_r5 = 0; var_r4 < 0x258; var_r5++, var_r4++)
@@ -878,9 +878,9 @@ void sub_08048498(void)
     gBgDataPtrs.pBufBg0Tiles += 4;
     gBgDataPtrs.pBufBg0Tilemap += 2;
 
-    DecompressDma((void*)gUnk_082F48BC, (void *)0x05000000, 0x200);
+    DecompressDma((void*)gUnk_082F48BC, PLTT, 0x200);
 
-    DmaFill16(3, 0, (void *)0x05000020, 0x4);
+    DmaFill16(3, 0, PLTT + 0x20, 0x4);
     DmaFill16(3, 0x1111, gBgInfo[1].pTiles + 0x20, 0x20);
     DmaFill16(3, 0, gBgInfo[2].pTiles + 0x20, 0x20);
 
@@ -1104,7 +1104,7 @@ void sub_0804886C(void)
         gEntityInfo[var_r6 + 0xD].unkF = 0;
     }
 
-    DecompressDma(&gUnk_082F4934, (void *)0x05000000, 0x200U);
+    DecompressDma(&gUnk_082F4934, PLTT, 0x200);
     gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_082F49E4[0] & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_082F4B10[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_082F49E4);
@@ -1127,8 +1127,8 @@ void sub_0804886C(void)
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_082F518C);
     gBgDataPtrs.pBufBg0Tiles += 4;
     gBgDataPtrs.pBufBg1Tiles += 4;
-    DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, (void *)0x06000000, 0x8A0);
-    DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, (void *)0x06004000, 0x1600);
+    DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, VRAM, 0x8A0);
+    DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, VRAM + 0x4000, 0x1600);
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tiles - 4);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
 
@@ -1153,8 +1153,8 @@ void sub_0804886C(void)
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_082F7D64);
     gBgDataPtrs.pBufBg0Tiles += 4;
     gBgDataPtrs.pBufBg1Tiles += 4;
-    DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, (void *)0x06008000, 0x3940);
-    DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, (void *)0x0600C000, 0x1660);
+    DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, VRAM + 0x8000, 0x3940);
+    DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, VRAM + 0xC000, 0x1660);
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tiles - 4);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
 
@@ -1163,9 +1163,9 @@ void sub_0804886C(void)
     REG_BG1CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(29);
     REG_BG2CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC | BGCNT_SCREENBASE(30);
 
-    gBgInfo[0].pTilemap = (void *)0x0600E000;
-    gBgInfo[1].pTilemap = (void *)0x0600E800;
-    gBgInfo[2].pTilemap = (void *)0x0600F000;
+    gBgInfo[0].pTilemap = VRAM + 0xE000;
+    gBgInfo[1].pTilemap = VRAM + 0xE800;
+    gBgInfo[2].pTilemap = VRAM + 0xF000;
     gIntrTable.vBlank = sub_08000BD4;
 
     REG_IE |= INTR_FLAG_VBLANK;
@@ -1444,7 +1444,7 @@ void sub_08049724(void)
             sub_080491C0();
             if (gBlendValue == 0)
             {
-                if ((gNewKeys & 8) || (gNewKeys & 1))
+                if ((gNewKeys & START_BUTTON) || (gNewKeys & A_BUTTON))
                 {
                     gBlendValue = 1;
                     m4aSongNumStart(0x52);
@@ -1489,7 +1489,7 @@ void sub_08049724(void)
                     gBgInfo[0].vOfs = 0;
                 }
 
-                if (gNewKeys & (8 | 1))
+                if (gNewKeys & (START_BUTTON | A_BUTTON))
                 {
                     gUnk_03004D9C = 5;
                     sub_08049348(5);
@@ -1524,7 +1524,7 @@ void sub_08049724(void)
         case 5:
             if (gUnk_03000828 != 0)
             {
-                if (gNewKeys & 0x40)
+                if (gNewKeys & DPAD_UP)
                 {
                     for (var_r2 = 0x14; var_r2 < 0x16; var_r2++)
                     {
@@ -1539,7 +1539,7 @@ void sub_08049724(void)
                     gUnk_03003410.unk6 = 0;
                 }
 
-                if (gNewKeys & 0x80)
+                if (gNewKeys & DPAD_DOWN)
                 {
                     for (var_r2 = 0x16; var_r2 < 0x18; var_r2++)
                     {
@@ -1559,7 +1559,7 @@ void sub_08049724(void)
                 gUnk_03003410.unk6 = gUnk_03000828;
             }
 
-            if (gNewKeys & 2)
+            if (gNewKeys & B_BUTTON)
             {
                 for (var_r2 = 0xF; var_r2 < 0x13; var_r2++)
                 {
@@ -1577,7 +1577,7 @@ void sub_08049724(void)
                 gBlendValue = 0;
             }
 
-            if ((gNewKeys & 8) || (gNewKeys & 1))
+            if ((gNewKeys & START_BUTTON) || (gNewKeys & A_BUTTON))
             {
                 gUnk_03004D9C = 7;
                 sub_08049348(7);
@@ -1699,13 +1699,13 @@ void sub_08049BFC(void)
     gBgDataPtrs.pBufBg0Tiles += 4;
     gBgDataPtrs.pBufBg0Tilemap += 2;
 
-    gBgInfo[2].pTiles = (void *)0x06008000;
-    gBgInfo[2].pTilemap = (void *)0x0600F000;
-    gBgInfo[1].pTiles = (void *)0x06004000;
-    gBgInfo[1].pTilemap = (void *)0x0600E800;
-    gBgInfo[0].pTiles = (void *)0x06000000;
-    gBgInfo[0].pTilemap = (void *)0x0600E000;
-    DecompressDma(&gUnk_082FBE10, (void *)0x05000000, 0x200);
+    gBgInfo[2].pTiles = VRAM + 0x8000;
+    gBgInfo[2].pTilemap = VRAM + 0xF000;
+    gBgInfo[1].pTiles = VRAM + 0x4000;
+    gBgInfo[1].pTilemap = VRAM + 0xE800;
+    gBgInfo[0].pTiles = VRAM;
+    gBgInfo[0].pTilemap = VRAM + 0xE000;
+    DecompressDma(&gUnk_082FBE10, PLTT, 0x200);
     DmaCopy16(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo[2].pTiles, 0x2900);
     DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, 0x1040);
     DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, 0x2080);
@@ -1745,17 +1745,17 @@ void sub_08049EFC(u8 arg0)
 {
     if (arg0 == 0)
     {
-        if (gNewKeys & 4)
+        if (gNewKeys & SELECT_BUTTON)
         {
             gUnk_03004658[0xC] = (gUnk_03004658[0xC] + 1) % 3;
             m4aSongNumStart(0x51);
         }
-        else if ((gNewKeys & 0x20) && (gUnk_03004658[0xC] != 0))
+        else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658[0xC] != 0))
         {
             gUnk_03004658[0xC] -= 1;
             m4aSongNumStart(0x51);
         }
-        else if ((gNewKeys & 0x10) && (gUnk_03004658[0xC] != 2))
+        else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658[0xC] != 2))
         {
             gUnk_03004658[0xC] += 1;
             m4aSongNumStart(0x51);
@@ -1767,17 +1767,17 @@ void sub_08049EFC(u8 arg0)
     }
     else
     {
-        if (gNewKeys & 4)
+        if (gNewKeys & SELECT_BUTTON)
         {
             gUnk_03004658[0xC] = (gUnk_03004658[0xC] + 1) % 2;
             m4aSongNumStart(0x51);
         }
-        else if ((gNewKeys & 0x20) && (gUnk_03004658[0xC] == 1))
+        else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658[0xC] == 1))
         {
             gUnk_03004658[0xC] -= 1;
             m4aSongNumStart(0x51);
         }
-        else if ((gNewKeys & 0x10) && (gUnk_03004658[0xC] == 0))
+        else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658[0xC] == 0))
         {
             gUnk_03004658[0xC] += 1;
             m4aSongNumStart(0x51);
@@ -2161,7 +2161,7 @@ void sub_0804AF00(void)
     gBlendValue = 6;
     REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG1;
 
-    if ((gNewKeys & 1) || (gNewKeys & 8))
+    if ((gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
     {
         s8 tmp = gUnk_03004658[0xF]; // FAKE?
         if (tmp == 0)
@@ -2237,7 +2237,7 @@ void sub_0804AF00(void)
         }
     }
 
-    if (gNewKeys & 2)
+    if (gNewKeys & B_BUTTON)
     {
         s8 tmp = gUnk_03004658[0xF]; // FAKE??
         if (tmp == 0)
