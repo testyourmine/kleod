@@ -665,7 +665,7 @@ block_9:
             m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
             m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
             m4aSongNumStart(0x78);
-            sub_08025F94();
+            DrawLevelHud_Lives();
         }
         else if (gBlendValue == 9)
         {
@@ -854,7 +854,7 @@ void sub_0802534C(void)
         if (LoadSaveFile(1) != 0)
         {
             DmaFill32(3, 0, &gUnk_03004670->unk0, 0x40);
-            DmaFill16(3, 0x7F7F, &gUnk_03004670->unk8, 0x30);
+            DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo, 0x30);
             goto block_8;
         }
         if (LoadSaveFile(0) != 0)
@@ -1182,14 +1182,14 @@ void sub_08025A28(void)
 // file split?
 
 // 25B78
-void sub_08025B78(s32 arg0, u8 arg1)
+void sub_08025B78(s32 arg0, u8 state)
 {
-    if (arg0 > 8)
+    if (arg0 >= 9)
     {
-        arg0 = arg0 + (9 - gUnk_030007C4);
+        arg0 += (9 - gUnk_030007C4);
     }
 
-    gEntityAnimationInfo[arg0].state = arg1;
+    gEntityAnimationInfo[arg0].state = state;
     gEntityAnimationInfo[arg0].timer = 1;
     gEntityAnimationInfo[arg0].frame = 0xFF;
 }
@@ -1268,53 +1268,64 @@ void sub_08025BA4(void)
 }
 
 // 25DD4
-void sub_08025DD4(void)
+void DrawLevelHud_Hearts(void)
 {
-    u32 var_r5;
-    u32 var_r6;
+    u32 emptyHeart;
+    u32 i;
 
-    for (var_r6 = 0; var_r6 < 3; var_r6++)
+    for (i = 0; i < 3; i++)
     {
-        if (var_r6 < gUnk_03005220.hearts)
+        // Draw empty hearts when past number of hearts
+        if (i < gUnk_03005220.hearts)
         {
-            var_r5 = 0;
+            emptyHeart = 0;
         }
         else
         {
-            var_r5 = 2;
+            emptyHeart = 2;
         }
-        gBgTilemapBufs[0][(var_r6 * 2) + 0x241] = gBgTilemapBufs[0][(var_r6 * 2) + ((var_r5 + 0x14) << 5)];
-        gBgTilemapBufs[0][(var_r6 * 2) + 0x242] = gBgTilemapBufs[0][(var_r6 * 2 + 1) + ((var_r5 + 0x14) << 5)];
-        gBgTilemapBufs[0][(var_r6 * 2) + 0x261] = gBgTilemapBufs[0][(var_r6 * 2) + ((var_r5 + 0x15) << 5)];
-        gBgTilemapBufs[0][(var_r6 * 2) + 0x262] = gBgTilemapBufs[0][(var_r6 * 2 + 1) + ((var_r5 + 0x15) << 5)];
+
+        // Draw heart
+        gBgTilemapBufs[0][(i * 2) + 0x241] = gBgTilemapBufs[0][(i * 2 + 0) + ((emptyHeart + 0x14) * 0x20)];
+        gBgTilemapBufs[0][(i * 2) + 0x242] = gBgTilemapBufs[0][(i * 2 + 1) + ((emptyHeart + 0x14) * 0x20)];
+        gBgTilemapBufs[0][(i * 2) + 0x261] = gBgTilemapBufs[0][(i * 2 + 0) + ((emptyHeart + 0x15) * 0x20)];
+        gBgTilemapBufs[0][(i * 2) + 0x262] = gBgTilemapBufs[0][(i * 2 + 1) + ((emptyHeart + 0x15) * 0x20)];
     }
 }
 
 // 25E68
-s32 sub_08025E68(void)
+s32 DrawLevelHud_DreamStones(void)
 {
-    s32 var_r5;
-    s32 var_sb;
+    s32 maxDreamStones;
+    s32 reachedMax;
 
-    var_sb = 0;
+    reachedMax = 0;
+
     if ((gUnk_03004C20.unkA == 1) || (gUnk_03004C20.level == 6))
     {
-        var_r5 = 0x64;
+        // Hoverboard levels
+        maxDreamStones = 100;
     }
     else
     {
-        var_r5 = 0x1E;
+        // Normal levels
+        maxDreamStones = 30;
     }
-    if (var_r5 == gUnk_03005220.dreamStones)
+
+    if (maxDreamStones == gUnk_03005220.dreamStones)
     {
-        var_sb = 1;
+        reachedMax = 1;
     }
 
     if ((gUnk_03004C20.unkA == 1) || (gUnk_03004C20.level == 6))
     {
-        var_r5 = 1;
-        if (gUnk_03005220.dreamStones > 0x63)
+        // maxDreamStones must be reused to match, here it is a boolean for max dream stones being over 99
+        // This causes tens/ones to shift left by one
+        maxDreamStones = 1;
+
+        if (gUnk_03005220.dreamStones >= 100)
         {
+            // Hundreds digit
             gBgTilemapBufs[0][0x252] += 0;
             gBgTilemapBufs[0][0x252] = gBgTilemapBufs[0][0x293];
             gBgTilemapBufs[0][0x272] += 0;
@@ -1323,54 +1334,65 @@ s32 sub_08025E68(void)
     }
     else
     {
-        var_r5 = 0;
+        maxDreamStones = 0;
     }
 
-    if (gUnk_03005220.dreamStones > 9)
+    if (gUnk_03005220.dreamStones >= 10)
     {
-        gBgTilemapBufs[0][0x254 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x292];
-        gBgTilemapBufs[0][0x274 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x2B2];
+        // Tens digit
+        gBgTilemapBufs[0][0x254 - maxDreamStones] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x292];
+        gBgTilemapBufs[0][0x274 - maxDreamStones] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones / 10) + 0x2B2];
     }
 
-    gBgTilemapBufs[0][0x255 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x292];
-    gBgTilemapBufs[0][0x275 - var_r5] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x2B2];
-    return var_sb;
+    // Ones digit
+    gBgTilemapBufs[0][0x255 - maxDreamStones] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x292];
+    gBgTilemapBufs[0][0x275 - maxDreamStones] = gBgTilemapBufs[0][(gUnk_03005220.dreamStones % 10) + 0x2B2];
+
+    return reachedMax;
 }
 
 // 25F94
-void sub_08025F94(void)
+void DrawLevelHud_Lives(void)
 {
-    if ((u8) gUnk_03005220.lives > 9)
+    if (gUnk_03005220.lives >= 10)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x292];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x2B2];
+        // Tens digit
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x292];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x2B2];
     }
-    else if ((u8) gUnk_03005220.lives == 9)
+    else if (gUnk_03005220.lives == 9)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x25E];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x27E];
+        // Overwrite tens digit with empty space
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x25E];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x27E];
     }
-    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x292];
-    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x2B2];
+
+    // Ones digit
+    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][(gUnk_03005220.lives % 10) + 0x292];
+    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][(gUnk_03005220.lives % 10) + 0x2B2];
 }
 
 // 26090
-void sub_08026090(void)
+void DrawLevelSelectHud_Lives(void)
 {
-    if ((u8) gUnk_03005220.lives > 9)
+    if (gUnk_03005220.lives >= 10)
     {
-        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x293];
-        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives / 10) + 0x2B3];
+        // Tens digit
+        gBgTilemapBufs[0][0x25B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x293];
+        gBgTilemapBufs[0][0x27B] = gBgTilemapBufs[0][(gUnk_03005220.lives / 10) + 0x2B3];
     }
-    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x293];
-    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][((u8) gUnk_03005220.lives % 10) + 0x2B3];
+
+    // Ones digit
+    gBgTilemapBufs[0][0x25C] = gBgTilemapBufs[0][(gUnk_03005220.lives % 10) + 0x293];
+    gBgTilemapBufs[0][0x27C] = gBgTilemapBufs[0][(gUnk_03005220.lives % 10) + 0x2B3];
 }
 
 // 26128
-void sub_08026128(void)
+void DrawLevelTimer(void)
 {
     u32 i;
 
+    // Copy timer template
     for (i = 0; i < 2; i++)
     {
         DmaCopy16(3, &gBgTilemapBufs[0][(0x16 + i) * 0x20 + 0x12], &gBgTilemapBufs[0][i * 0x20 + 0x14], 0x14);
@@ -1378,41 +1400,51 @@ void sub_08026128(void)
 
     if (gUnk_03004C20.level == 1)
     {
-        if ((gUnk_03004670->unk1 | gUnk_03004670->unk2 | gUnk_03004670->unk3) == 0)
+        // EX-1
+
+        // If no best time, draw 99:59:99
+        if ((gUnk_03004670->bestEx1TimeMinutes | gUnk_03004670->bestEx1TimeSeconds | gUnk_03004670->bestEx1TimeCentiseconds) == 0)
         {
-            gUnk_03004670->unk1 = gUnk_03004670->unk3 = 0x63;
-            gUnk_03004670->unk2 = 0x3B;
+            gUnk_03004670->bestEx1TimeMinutes = gUnk_03004670->bestEx1TimeCentiseconds = 99;
+            gUnk_03004670->bestEx1TimeSeconds = 59;
         }
 
-        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->unk1 / 10) + 0x312];
-        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->unk1 % 10) + 0x312];
-        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->unk2 / 10) + 0x312];
-        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->unk2 % 10) + 0x312];
-        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->unk3 / 10) + 0x312];
-        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->unk3 % 10) + 0x312];
+        // Draw best time
+        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeMinutes / 10) + 0x312];
+        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeMinutes % 10) + 0x312];
+        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeSeconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeSeconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeCentiseconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeCentiseconds % 10) + 0x312];
     }
     else
     {
-        if ((gUnk_03004670->unk4 | gUnk_03004670->unk5 | gUnk_03004670->unk6) == 0)
+        // EX-3
+
+        // If no best time, draw 99:59:99
+        if ((gUnk_03004670->bestEx3TimeMinutes | gUnk_03004670->bestEx3TimeSeconds | gUnk_03004670->bestEx3TimeCentiseconds) == 0)
         {
-            gUnk_03004670->unk1 = gUnk_03004670->unk3 = 0x63;
-            gUnk_03004670->unk2 = 0x3B;
+            // TODO: possible bug from copy/paste error
+            gUnk_03004670->bestEx1TimeMinutes = gUnk_03004670->bestEx1TimeCentiseconds = 99;
+            gUnk_03004670->bestEx1TimeSeconds = 59;
         }
 
-        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->unk4 / 10) + 0x312];
-        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->unk4 % 10) + 0x312];
-        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->unk5 / 10) + 0x312];
-        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->unk5 % 10) + 0x312];
-        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->unk6 / 10) + 0x312];
-        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->unk6 % 10) + 0x312];
+        // Draw best time
+        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeMinutes / 10) + 0x312];
+        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeMinutes % 10) + 0x312];
+        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeSeconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeSeconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeCentiseconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeCentiseconds % 10) + 0x312];
     }
-    
-    gBgTilemapBufs[0][0x35] = gBgTilemapBufs[0][(gUnk_03005220.unk4D / 10) + 0x332];
-    gBgTilemapBufs[0][0x36] = gBgTilemapBufs[0][(gUnk_03005220.unk4D % 10) + 0x332];
-    gBgTilemapBufs[0][0x38] = gBgTilemapBufs[0][(gUnk_03005220.unk4E / 10) + 0x332];
-    gBgTilemapBufs[0][0x39] = gBgTilemapBufs[0][(gUnk_03005220.unk4E % 10) + 0x332];
-    gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][(gUnk_03005220.unk4F / 10) + 0x332];
-    gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][(gUnk_03005220.unk4F % 10) + 0x332];
+
+    // Draw current time
+    gBgTilemapBufs[0][0x35] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeMinutes / 10) + 0x332];
+    gBgTilemapBufs[0][0x36] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeMinutes % 10) + 0x332];
+    gBgTilemapBufs[0][0x38] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeSeconds / 10) + 0x332];
+    gBgTilemapBufs[0][0x39] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeSeconds % 10) + 0x332];
+    gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeCentiseconds / 10) + 0x332];
+    gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][(gUnk_03005220.levelTimeCentiseconds % 10) + 0x332];
 }
 
 // 26374
@@ -1596,77 +1628,76 @@ void sub_080264A4(void)
     }
     gUnk_03005284->unk0 = gUnk_03005220.lives;
 
-    if ((gUnk_03005220.dreamStones > (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & 0x7F)) || (gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
+    if ((gUnk_03005220.dreamStones > (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_DREAM_STONES_MASK)) || (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
     {
         // Required to match
         do {
-        gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.dreamStones;
+        gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.dreamStones;
         } while(0);
     }
-    gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= 0x80;
+    gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= LEVEL_INFO_BEATEN_FLAG;
+
     if (gUnk_03004C20.unk10 == 1)
     {
+        // i must be reused to match, here it is a boolean for new best time
         i = 0;
+
         if (gUnk_03004C20.level == 1)
         {
-            if (gUnk_03005220.unk4D < gUnk_03004670->unk1)
+            // Update best time in EX-1
+            if (gUnk_03005220.levelTimeMinutes < gUnk_03004670->bestEx1TimeMinutes)
             {
                 i = 1;
             }
-            else
+            else if (gUnk_03005220.levelTimeMinutes == gUnk_03004670->bestEx1TimeMinutes)
             {
-                if (gUnk_03005220.unk4D == gUnk_03004670->unk1)
+                if (gUnk_03005220.levelTimeSeconds < gUnk_03004670->bestEx1TimeSeconds)
                 {
-                    if (gUnk_03005220.unk4E < gUnk_03004670->unk2)
+                    i = 1;
+                }
+                else if (gUnk_03005220.levelTimeSeconds == gUnk_03004670->bestEx1TimeSeconds)
+                {
+                    if (gUnk_03005220.levelTimeCentiseconds < gUnk_03004670->bestEx1TimeCentiseconds)
                     {
                         i = 1;
-                    }
-                    else
-                    {
-                        if ((gUnk_03005220.unk4E == gUnk_03004670->unk2) && (gUnk_03005220.unk4F < gUnk_03004670->unk3))
-                        {
-                            i = 1;
-                        }
                     }
                 }
             }
 
             if (i != 0)
             {
-                gUnk_03004670->unk1 = gUnk_03005220.unk4D;
-                gUnk_03004670->unk2 = gUnk_03005220.unk4E;
-                gUnk_03004670->unk3 = gUnk_03005220.unk4F;
+                gUnk_03004670->bestEx1TimeMinutes = gUnk_03005220.levelTimeMinutes;
+                gUnk_03004670->bestEx1TimeSeconds = gUnk_03005220.levelTimeSeconds;
+                gUnk_03004670->bestEx1TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
             }
         }
         else
         {
-            if (gUnk_03005220.unk4D < gUnk_03004670->unk4)
+            // Update best time in EX-3
+            if (gUnk_03005220.levelTimeMinutes < gUnk_03004670->bestEx3TimeMinutes)
             {
                 i = 1;
             }
-            else
+            else if (gUnk_03005220.levelTimeMinutes == gUnk_03004670->bestEx3TimeMinutes)
             {
-                if (gUnk_03005220.unk4D == gUnk_03004670->unk4)
+                if (gUnk_03005220.levelTimeSeconds < gUnk_03004670->bestEx3TimeSeconds)
                 {
-                    if (gUnk_03005220.unk4E < gUnk_03004670->unk5)
+                    i = 1;
+                }
+                else if (gUnk_03005220.levelTimeSeconds == gUnk_03004670->bestEx3TimeSeconds)
+                {
+                    if (gUnk_03005220.levelTimeCentiseconds < gUnk_03004670->bestEx3TimeCentiseconds)
                     {
                         i = 1;
-                    }
-                    else
-                    {
-                        if ((gUnk_03005220.unk4E == gUnk_03004670->unk5) && (gUnk_03005220.unk4F < gUnk_03004670->unk6))
-                        {
-                            i = 1;
-                        }
                     }
                 }
             }
 
             if (i != 0)
             {
-                gUnk_03004670->unk4 = gUnk_03005220.unk4D;
-                gUnk_03004670->unk5 = gUnk_03005220.unk4E;
-                gUnk_03004670->unk6 = gUnk_03005220.unk4F;
+                gUnk_03004670->bestEx3TimeMinutes = gUnk_03005220.levelTimeMinutes;
+                gUnk_03004670->bestEx3TimeSeconds = gUnk_03005220.levelTimeSeconds;
+                gUnk_03004670->bestEx3TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
             }
         }
     }

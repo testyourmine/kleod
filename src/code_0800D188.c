@@ -829,7 +829,7 @@ block_236:
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 6, 3, var_sb);
                                 }
 
-                                if (sub_08025E68() != 0)
+                                if (DrawLevelHud_DreamStones() != 0)
                                 {
                                     m4aSongNumStart(0x91);
                                 }
@@ -856,7 +856,7 @@ block_236:
                                     if (gUnk_03005220.hearts <= 2)
                                     {
                                         gUnk_03005220.hearts += 1;
-                                        sub_08025DD4();
+                                        DrawLevelHud_Hearts();
                                     }
 
                                     m4aSongNumStart(0x62);
@@ -2437,7 +2437,7 @@ block_869:
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 6, 3, var_sb);
                                 }
 
-                                if (sub_08025E68() != 0)
+                                if (DrawLevelHud_DreamStones() != 0)
                                 {
                                     m4aSongNumStart(0x91);
                                 }
@@ -2464,7 +2464,7 @@ block_869:
                                     if (gUnk_03005220.hearts <= 2)
                                     {
                                         gUnk_03005220.hearts += 1;
-                                        sub_08025DD4();
+                                        DrawLevelHud_Hearts();
                                     }
 
                                     m4aSongNumStart(0x62);
@@ -4799,36 +4799,39 @@ block_1770:
             {
 
             }
-            else if ((gUnk_03005220.unk4D == 0x63) && (gUnk_03005220.unk4E == 0x3B) && (gUnk_03005220.unk4F == 0x63))
+            else if ((gUnk_03005220.levelTimeMinutes == 99) && (gUnk_03005220.levelTimeSeconds == 59) && (gUnk_03005220.levelTimeCentiseconds == 99))
             {
 
             }
             else
             {
-                gUnk_03005220.unk60 += 0xA7;
-                if (gUnk_03005220.unk60 > 0x2679)
+                gUnk_03005220.unk60 += (SYSTEM_CLOCK / 100000); // 167
+                if (gUnk_03005220.unk60 > 9849)
                 {
-                    gUnk_03005220.unk4F = 0;
+                    gUnk_03005220.levelTimeCentiseconds = 0;
                     gUnk_03005220.unk60 = 0;
-                    if (gUnk_03005220.unk4E++ > 0x3A)
+                    if (gUnk_03005220.levelTimeSeconds++ >= 59)
                     {
-                        gUnk_03005220.unk4E = 0;
-                        if (gUnk_03005220.unk4D++ > 0x62)
+                        gUnk_03005220.levelTimeSeconds = 0;
+                        if (gUnk_03005220.levelTimeMinutes++ >= 99)
                         {
-                            gUnk_03005220.unk4D = 0x63;
+                            gUnk_03005220.levelTimeMinutes = 99;
                         }
 
-                        gBgTilemapBufs[0][0x35] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4D / 10)];
-                        gBgTilemapBufs[0][0x36] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4D % 10)];
+                        // Draw current time minutes
+                        gBgTilemapBufs[0][0x35] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeMinutes / 10)];
+                        gBgTilemapBufs[0][0x36] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeMinutes % 10)];
                     }
 
-                    gBgTilemapBufs[0][0x38] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4E / 10)];
-                    gBgTilemapBufs[0][0x39] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4E % 10)];
+                    // Draw current time seconds
+                    gBgTilemapBufs[0][0x38] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeSeconds / 10)];
+                    gBgTilemapBufs[0][0x39] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeSeconds % 10)];
                 }
 
-                gUnk_03005220.unk4F = gUnk_03005220.unk60 / 100;
-                gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4F / 10)];
-                gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.unk4F % 10)];
+                // Draw current time centiseconds
+                gUnk_03005220.levelTimeCentiseconds = gUnk_03005220.unk60 / 100;
+                gBgTilemapBufs[0][0x3B] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeCentiseconds / 10)];
+                gBgTilemapBufs[0][0x3C] = gBgTilemapBufs[0][0x332 + (gUnk_03005220.levelTimeCentiseconds % 10)];
             }
 
             if ((gUnk_03004C20.globalFrameCounter % 8) == 0)

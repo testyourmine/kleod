@@ -295,7 +295,7 @@ void sub_08014624(s32 arg0)
     if (arg0 == 1)
     {
         gUnk_03005220.hearts -= 1;
-        sub_08025DD4();
+        DrawLevelHud_Hearts();
         gUnk_03005220.unk5B = 1;
     }
 
@@ -6697,7 +6697,7 @@ void sub_0801E354(u8 arg0)
             if ((u8)gUnk_03005220.lives < 99)
             {
                 gUnk_03005220.lives += 1;
-                sub_08025F94();
+                DrawLevelHud_Lives();
             }
 
             gEntityInfo[arg0].unk10 = 0;

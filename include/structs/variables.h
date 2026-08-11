@@ -50,17 +50,20 @@ extern struct Unk_03003410 gUnk_03003410;
 extern u16 *gUnk_030034FC;
 extern u8 *gUnk_03004658; // TODO: struct?
 
+#define LEVEL_INFO_DREAM_STONES_MASK 0x7F
+#define LEVEL_INFO_BEATEN_FLAG 0x80
+
 struct Unk_03004670 {
-    /* 0x00 */ u8 unk0; // number of completed worlds
-    /* 0x01 */ u8 unk1;
-    /* 0x02 */ u8 unk2;
-    /* 0x03 */ u8 unk3;
-    /* 0x04 */ u8 unk4;
-    /* 0x05 */ u8 unk5;
-    /* 0x06 */ u8 unk6;
-    /* 0x07 */ u8 unk7;
-    /* 0x08 */ u8 unk8[6][8]; // indexed by [world-1][level-1], probably level cleared flags
-    /* 0x38 */ s32 unk38;
+    /* 0x00 */ u8 unk0; // number of completed worlds. seemingly unused
+    /* 0x01 */ u8 bestEx1TimeMinutes; // minutes of best time in EX-1
+    /* 0x02 */ u8 bestEx1TimeSeconds; // seconds of best time in EX-1
+    /* 0x03 */ u8 bestEx1TimeCentiseconds; // centiseconds of best time in EX-1
+    /* 0x04 */ u8 bestEx3TimeMinutes; // minutes of best time in EX-3
+    /* 0x05 */ u8 bestEx3TimeSeconds; // seconds of best time in EX-3
+    /* 0x06 */ u8 bestEx3TimeCentiseconds; // centiseconds of best time in EX-3
+    /* 0x07 */ u8 pad7[0x8 - 0x7];
+    /* 0x08 */ u8 levelInfo[6][8]; // indexed by [world-1][level-1], bottom 7 bits is collected dream stones, 0x80 is level cleared
+    /* 0x38 */ s32 unk38; // number of times file accessed? seemingly unused
     /* 0x3C */ u8 addChecksum;
     /* 0x3D */ u8 xorChecksum;
     /* 0x3E */ u8 pad3E[0x40 - 0x3E];
@@ -364,9 +367,9 @@ struct Unk_03005220 {
     /* 0x4A */ u8 unk4A;
     /* 0x4B */ u8 unk4B;
     /* 0x4C */ u8 lives;
-    /* 0x4D */ u8 unk4D;
-    /* 0x4E */ u8 unk4E;
-    /* 0x4F */ u8 unk4F;
+    /* 0x4D */ u8 levelTimeMinutes; // current level timer minutes
+    /* 0x4E */ u8 levelTimeSeconds; // current level timer seconds
+    /* 0x4F */ u8 levelTimeCentiseconds; // current level timer centiseconds
     /* 0x50 */ u8 unk50;
     /* 0x51 */ u8 unk51;
     /* 0x52 */ u8 unk52;

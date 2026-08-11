@@ -309,14 +309,14 @@ void sub_0803A22C(void)
         REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG0 | WININ_WIN1_CLR;
         REG_WINOUT = WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
         REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON;
-        sub_08026128();
+        DrawLevelTimer();
     }
 
     DmaCopy16(3, &gBgTilemapBufs[gUnk_030034BC], gBgInfo[gUnk_030034BC].pTilemap, 0x800);
 
     if (gUnk_03004C20.unk10 == 1)
     {
-        sub_08026128();
+        DrawLevelTimer();
     }
 
     REG_IE |= INTR_FLAG_VBLANK;
@@ -635,8 +635,8 @@ void sub_0803AAA0(void)
 // 3AC18
 u8 sub_0803AC18(u8 arg0)
 {
-    u32 var_r0;
-    u32 var_r2;
+    u32 world;
+    u32 level;
     u8 var_sl;
     u8 var_ip;
     u8 var_r6;
@@ -644,54 +644,54 @@ u8 sub_0803AC18(u8 arg0)
 
     if (arg0 < 4)
     {
-        if (((gUnk_03004670->unk8[arg0][7] & 0x80) != 0) && ((gUnk_03004670->unk8[arg0 + 1][0] & 0x7F) != 0x7F))
+        if ((gUnk_03004670->levelInfo[arg0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[arg0 + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
         {
             return 1;
         }
     }
-    else if ((gUnk_03004670->unk8[5][7] & 0x80) != 0)
+    else if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         var_r8 = 0;
         var_ip = 0;
         var_r6 = 0;
         var_sl = 0;
-        for (var_r0 = 0; var_r0 < 5; var_r0++)
+        for (world = 0; world < 5; world++)
         {
-            for (var_r2 = 0; var_r2 < 7; var_r2++)
+            for (level = 0; level < 7; level++)
             {
-                if ((var_r2 == 3 || var_r2 == 5) && (gUnk_03004670->unk8[var_r0][var_r2] & 0x7F) == 0x64)
+                if ((level == 3 || level == 5) && (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100)
                 {
                     var_r8 += 1;
                 }
-                else if ((var_r2 != 7) && ((gUnk_03004670->unk8[var_r0][var_r2] & 0x7F) == 0x1E))
+                else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     var_ip += 1;
                 }
-                if (gUnk_03004670->unk8[var_r0][var_r2] & 0x80)
+                if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     var_r6 += 1;
                 }
             }
         }
 
-        if ((gUnk_03004670->unk8[5][0] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             var_sl += 1;
         }
-        if ((gUnk_03004670->unk8[5][1] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             var_sl += 1;
         }
     
-        if ((arg0 == 4) && ((gUnk_03004670->unk8[5][0] & 0x7F) != 0x7F) && (var_r6 == 0x23))
+        if ((arg0 == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (var_r6 == 0x23))
         {
             return 1;
         }
-        if ((arg0 == 5) && ((gUnk_03004670->unk8[5][1] & 0x7F) != 0x7F) && ((var_ip + var_r8) > 0x18))
+        if ((arg0 == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((var_ip + var_r8) > 0x18))
         {
             return 1;
         }
-        if ((arg0 == 6) && ((gUnk_03004670->unk8[5][2] & 0x7F) != 0x7F) && ((var_ip + var_r8 + var_sl) == 0x25))
+        if ((arg0 == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((var_ip + var_r8 + var_sl) == 0x25))
         {
             return 1;
         }
@@ -797,66 +797,66 @@ void sub_0803B0A0(void)
 {
     u8 sp0;
     u8 var_ip;
-    u8 var_r0;
-    u8 var_r3;
+    u8 world;
+    u8 level;
     u8 var_r6;
     u8 var_r8;
 
-    if ((gUnk_03004670->unk8[5][7] & 0x80) != 0)
+    if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         var_ip = 0;
         var_r8 = 0;
         var_r6 = 0;
         sp0 = 0;
-        for (var_r0 = 0; var_r0 < 5; var_r0++)
+        for (world = 0; world < 5; world++)
         {
-            for (var_r3 = 0; var_r3 < 7; var_r3++)
+            for (level = 0; level < 7; level++)
             {
-                if ((var_r3 == 3 || var_r3 == 5) && (gUnk_03004670->unk8[var_r0][var_r3] & 0x7F) == 0x64)
+                if ((level == 3 || level == 5) && (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100)
                 {
                     var_ip += 1;
                 }
-                else if ((var_r3 != 7) && ((gUnk_03004670->unk8[var_r0][var_r3] & 0x7F) == 0x1E))
+                else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     var_r8 += 1;
                 }
-                if (gUnk_03004670->unk8[var_r0][var_r3] & 0x80)
+                if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     var_r6 += 1;
                 }
             }
         }
 
-        if ((gUnk_03004670->unk8[5][0] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             sp0 += 1;
         }
-        if ((gUnk_03004670->unk8[5][1] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             sp0 += 1;
         }
 
-        if (((gUnk_03004670->unk8[5][0] & 0x7F) == 0x7F) && (var_r6 == 0x23))
+        if (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (var_r6 == 0x23))
         {
             gUnk_03004C08.unk0_0 = 4;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[5][0] = 0x80;
+            gUnk_03004670->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->unk8[5][1] & 0x7F) == 0x7F) && ((var_r8 + var_ip) > 0x18))
+        else if (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((var_r8 + var_ip) > 0x18))
         {
             gUnk_03004C08.unk0_0 = 5;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[5][1] = 0x80;
+            gUnk_03004670->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->unk8[5][2] & 0x7F) == 0x7F) && ((sp0 + var_ip + var_r8) == 0x25))
+        else if (((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((sp0 + var_ip + var_r8) == 0x25))
         {
             gUnk_03004C08.unk0_0 = 6;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[5][2] = 0x80;
+            gUnk_03004670->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
@@ -867,35 +867,35 @@ void sub_0803B0A0(void)
     }
     else
     {
-        if (((gUnk_03004670->unk8[0][7] & 0x80) != 0) && ((gUnk_03004670->unk8[1][0] & 0x7F) == 0x7F))
+        if ((gUnk_03004670->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gUnk_03004C08.unk0_0 = 0;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[1][0] &= 0x80;
+            gUnk_03004670->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->unk8[1][7] & 0x80) != 0) && ((gUnk_03004670->unk8[2][0] & 0x7F) == 0x7F))
+        else if ((gUnk_03004670->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gUnk_03004C08.unk0_0 = 1;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[2][0] &= 0x80;
+            gUnk_03004670->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->unk8[2][7] & 0x80) != 0) && ((gUnk_03004670->unk8[3][0] & 0x7F) == 0x7F))
+        else if ((gUnk_03004670->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gUnk_03004C08.unk0_0 = 2;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[3][0] &= 0x80;
+            gUnk_03004670->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->unk8[3][7] & 0x80) != 0) && ((gUnk_03004670->unk8[4][0] & 0x7F) == 0x7F))
+        else if ((gUnk_03004670->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gUnk_03004C08.unk0_0 = 3;
             gUnk_03004C08.unk2 = 0;
-            gUnk_03004670->unk8[4][0] &= 0x80;
+            gUnk_03004670->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
@@ -1002,10 +1002,10 @@ void sub_0803B378(void)
 // 3B600
 void sub_0803B600(void)
 {
-    s32 var_r4;
-    s32 var_r5;
-    s32 temp_r6;
-    s32 temp_r8;
+    s32 i;
+    s32 j;
+    s32 world;
+    s32 level;
 
     if (gUnk_03004C20.world == 6)
     {
@@ -1017,8 +1017,9 @@ void sub_0803B600(void)
     }
     gUnk_03004C08.unk1 = 0;
 
-    temp_r6 = gUnk_03004C20.world;
-    temp_r8 = gUnk_03004C20.level;
+    world = gUnk_03004C20.world;
+    level = gUnk_03004C20.level;
+
     sub_08003D58();
     DmaCopy32(3, gOamBuffer, OAM, OAM_SIZE);
     gUnk_03003410.unk8 = 0;
@@ -1026,8 +1027,9 @@ void sub_0803B600(void)
     gUnk_03004C20.level = 1;
     gUnk_03004C20.unkA = 0;
     sub_08003904();
-    gUnk_03004C20.world = temp_r6;
-    gUnk_03004C20.level = temp_r8;
+
+    gUnk_03004C20.world = world;
+    gUnk_03004C20.level = level;
 
     gOamAffineBuffer[0].pa = 0x100;
     gOamAffineBuffer[0].pb = 0;
@@ -1035,9 +1037,9 @@ void sub_0803B600(void)
     gOamAffineBuffer[0].pd = 0x100;
 
     gEntityInfo[0].unk10 = 1;
-    for (var_r4 = 1; var_r4 < 0x13; var_r4++)
+    for (i = 1; i < 0x13; i++)
     {
-        gEntityInfo[var_r4].unk10 = 0;
+        gEntityInfo[i].unk10 = 0;
     }
 
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -1074,18 +1076,18 @@ void sub_0803B600(void)
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, 0x1BC0);
     DmaFill16(3, 0, &gBgTilemapBufs[0], 0x800);
 
-    for (var_r4 = 0, var_r5 = 0; var_r4 < 0x258; var_r5++, var_r4++)
+    for (i = 0, j = 0; i < (20 * 30); j++, i++)
     {
-        if (((var_r4 % 30) == 0) && (var_r4 != 0))
+        if (((i % 30) == 0) && (i != 0))
         {
-            var_r5 += 2;
+            j += 2;
         }
-        gBgTilemapBufs[0][var_r5] = gBgDataPtrs.pBufBg0Tilemap[var_r4];
+        gBgTilemapBufs[0][j] = gBgDataPtrs.pBufBg0Tilemap[i];
     }
 
-    for (var_r4 = 0; var_r4 < 0x400; var_r4++)
+    for (i = 0; i < 0x400; i++)
     {
-        gBgTilemapBufs[1][var_r4] = gBgDataPtrs.pBufBg1Tilemap[var_r4];
+        gBgTilemapBufs[1][i] = gBgDataPtrs.pBufBg1Tilemap[i];
     }
 
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tilemap - 2);
@@ -1108,14 +1110,14 @@ void sub_0803B600(void)
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[2].pTiles, 0x820);
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[3].pTiles, 0x1A80);
 
-    for (var_r4 = 0, var_r5 = 0; var_r4 <= 0x257; var_r5++, var_r4++)
+    for (i = 0, j = 0; i < (20 * 30); j++, i++)
     {
-        if (((var_r4 % 30) == 0) && (var_r4 != 0))
+        if (((i % 30) == 0) && (i != 0))
         {
-            var_r5 += 2;
+            j += 2;
         }
-        gBgTilemapBufs[2][var_r5] = gBgDataPtrs.pBufBg0Tilemap[var_r4];
-        gBgTilemapBufs[3][var_r5] = gBgDataPtrs.pBufBg1Tilemap[var_r4];
+        gBgTilemapBufs[2][j] = gBgDataPtrs.pBufBg0Tilemap[i];
+        gBgTilemapBufs[3][j] = gBgDataPtrs.pBufBg1Tilemap[i];
     }
 
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tilemap - 2);
@@ -1147,93 +1149,114 @@ void sub_0803B600(void)
     gBgInfo[2].vOfs = 4;
     gBgInfo[0].vOfs = 0x400;
 
-    if ((gUnk_03004670->unk1 == 0) && (gUnk_03004670->unk2 == 0) && (gUnk_03004670->unk3 == 0))
+    // Set best EX-1 time to 99:59:99 if no best time
+    if ((gUnk_03004670->bestEx1TimeMinutes == 0) && (gUnk_03004670->bestEx1TimeSeconds == 0) && (gUnk_03004670->bestEx1TimeCentiseconds == 0))
     {
-        gUnk_03004670->unk1 = 0x63;
-        gUnk_03004670->unk2 = 0x3B;
-        gUnk_03004670->unk3 = 0x63;
+        gUnk_03004670->bestEx1TimeMinutes = 99;
+        gUnk_03004670->bestEx1TimeSeconds = 59;
+        gUnk_03004670->bestEx1TimeCentiseconds = 99;
     }
-    if ((gUnk_03004670->unk4 == 0) && (gUnk_03004670->unk5 == 0) && (gUnk_03004670->unk6 == 0))
+
+    // Set best EX-3 time to 99:59:99 if no best time
+    if ((gUnk_03004670->bestEx3TimeMinutes == 0) && (gUnk_03004670->bestEx3TimeSeconds == 0) && (gUnk_03004670->bestEx3TimeCentiseconds == 0))
     {
-        gUnk_03004670->unk4 = 0x63;
-        gUnk_03004670->unk5 = 0x3B;
-        gUnk_03004670->unk6 = 0x63;
+        gUnk_03004670->bestEx3TimeMinutes = 99;
+        gUnk_03004670->bestEx3TimeSeconds = 59;
+        gUnk_03004670->bestEx3TimeCentiseconds = 99;
     }
 
     if (gUnk_03004C08.unk0_4 == 5)
     {
-        gBgTilemapBufs[0][0x4C] = 0xA00C;
-        gBgTilemapBufs[0][0x4D] = 0xA00D;
-        gBgTilemapBufs[0][0x4E] = 0xA00E;
-        gBgTilemapBufs[0][0x4F] = 0xA00F;
-        gBgTilemapBufs[0][0x50] = 0xA010;
+        // Draw "BEST/"
+        gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
+        gBgTilemapBufs[0][0x4D] = (10 << 12) | 0xD;
+        gBgTilemapBufs[0][0x4E] = (10 << 12) | 0xE;
+        gBgTilemapBufs[0][0x4F] = (10 << 12) | 0xF;
+        gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
-        gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk1 / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk1 % 10) + 1);
-        gBgTilemapBufs[0][0x6F] = 0xA00B;
-        gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk2 / 10) + 1);
-        gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk2 % 10) + 1);
-        gBgTilemapBufs[0][0x72] = 0xA00B;
-        gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk3 / 10) + 1);
-        gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk3 % 10) + 1);
+        // Draw best time
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds % 10) + 1);
 
-        gBgTilemapBufs[0][0x2C] = 0xA011;
-        gBgTilemapBufs[0][0x30] = 0xA010;
-        gBgTilemapBufs[0][0x31] = 0xA004;
-        gBgTilemapBufs[0][0x32] = 0xA001;
+        // Draw dream stone icon
+        gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
 
-        gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1);
+        // Draw "/30"
+        gBgTilemapBufs[0][0x30] = (10 << 12) | 0x10;
+        gBgTilemapBufs[0][0x31] = (10 << 12) | 0x4;
+        gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
+
+        // Draw collected dream stone amount
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gUnk_03004C08.unk0_4 == 6)
     {
-        gBgTilemapBufs[0][0x4C] = 0xA000;
-        gBgTilemapBufs[0][0x4D] = 0xA000;
-        gBgTilemapBufs[0][0x4E] = 0xA000;
-        gBgTilemapBufs[0][0x4F] = 0xA000;
-        gBgTilemapBufs[0][0x50] = 0xA000;
+        // Erase "BEST/" tiles
+        gBgTilemapBufs[0][0x4C] = (10 << 12);
+        gBgTilemapBufs[0][0x4D] = (10 << 12);
+        gBgTilemapBufs[0][0x4E] = (10 << 12);
+        gBgTilemapBufs[0][0x4F] = (10 << 12);
+        gBgTilemapBufs[0][0x50] = (10 << 12);
 
-        gBgTilemapBufs[0][0x6D] = 0xA000;
-        gBgTilemapBufs[0][0x6E] = 0xA000;
-        gBgTilemapBufs[0][0x6F] = 0xA000;
-        gBgTilemapBufs[0][0x70] = 0xA000;
-        gBgTilemapBufs[0][0x71] = 0xA000;
-        gBgTilemapBufs[0][0x72] = 0xA000;
-        gBgTilemapBufs[0][0x73] = 0xA000;
-        gBgTilemapBufs[0][0x74] = 0xA000;
+        // Erase best time tiles
+        gBgTilemapBufs[0][0x6D] = (10 << 12);
+        gBgTilemapBufs[0][0x6E] = (10 << 12);
+        gBgTilemapBufs[0][0x6F] = (10 << 12);
+        gBgTilemapBufs[0][0x70] = (10 << 12);
+        gBgTilemapBufs[0][0x71] = (10 << 12);
+        gBgTilemapBufs[0][0x72] = (10 << 12);
+        gBgTilemapBufs[0][0x73] = (10 << 12);
+        gBgTilemapBufs[0][0x74] = (10 << 12);
 
-        gBgTilemapBufs[0][0x2C] = 0xA011;
-        gBgTilemapBufs[0][0x30] = 0xA010;
-        gBgTilemapBufs[0][0x31] = 0xA004;
-        gBgTilemapBufs[0][0x32] = 0xA001;
+        // Draw dream stone icon
+        gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
 
-        gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1);
+        // Draw "/30"
+        gBgTilemapBufs[0][0x30] = (10 << 12) | 0x10;
+        gBgTilemapBufs[0][0x31] = (10 << 12) | 0x4;
+        gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
+
+        // Draw collected dream stone amount
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gUnk_03004C08.unk0_4 == 7)
     {
-        gBgTilemapBufs[0][0x4C] = 0xA00C;
-        gBgTilemapBufs[0][0x4D] = 0xA00D;
-        gBgTilemapBufs[0][0x4E] = 0xA00E;
-        gBgTilemapBufs[0][0x4F] = 0xA00F;
-        gBgTilemapBufs[0][0x50] = 0xA010;
+        // Draw "BEST/"
+        gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
+        gBgTilemapBufs[0][0x4D] = (10 << 12) | 0xD;
+        gBgTilemapBufs[0][0x4E] = (10 << 12) | 0xE;
+        gBgTilemapBufs[0][0x4F] = (10 << 12) | 0xF;
+        gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
-        gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk4 / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk4 % 10) + 1);
-        gBgTilemapBufs[0][0x6F] = 0xA00B;
-        gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk5 / 10) + 1);
-        gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk5 % 10) + 1);
-        gBgTilemapBufs[0][0x72] = 0xA00B;
-        gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk6 / 10) + 1);
-        gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk6 % 10) + 1);
+        // Draw best time
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds % 10) + 1);
 
-        gBgTilemapBufs[0][0x2C] = 0xA000;
-        gBgTilemapBufs[0][0x30] = 0xA000;
-        gBgTilemapBufs[0][0x31] = 0xA000;
-        gBgTilemapBufs[0][0x32] = 0xA000;
+        // Erase dream stone icon tile
+        gBgTilemapBufs[0][0x2C] = (10 << 12);
 
-        gBgTilemapBufs[0][0x2E] = 0xA000;
-        gBgTilemapBufs[0][0x2F] = 0xA000;
+        // Erase "/30" tiles
+        gBgTilemapBufs[0][0x30] = (10 << 12);
+        gBgTilemapBufs[0][0x31] = (10 << 12);
+        gBgTilemapBufs[0][0x32] = (10 << 12);
+
+        // Erase collected dream stone amount tile
+        gBgTilemapBufs[0][0x2E] = (10 << 12);
+        gBgTilemapBufs[0][0x2F] = (10 << 12);
     }
 
     REG_BG0HOFS = 0;
@@ -1348,28 +1371,34 @@ void sub_0803BF84(void)
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 0x25);
 
-                    gBgTilemapBufs[0][0x4C] = 0xA00C;
-                    gBgTilemapBufs[0][0x4D] = 0xA00D;
-                    gBgTilemapBufs[0][0x4E] = 0xA00E;
-                    gBgTilemapBufs[0][0x4F] = 0xA00F;
-                    gBgTilemapBufs[0][0x50] = 0xA010;
+                    // Draw "BEST/"
+                    gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
+                    gBgTilemapBufs[0][0x4D] = (10 << 12) | 0xD;
+                    gBgTilemapBufs[0][0x4E] = (10 << 12) | 0xE;
+                    gBgTilemapBufs[0][0x4F] = (10 << 12) | 0xF;
+                    gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
-                    gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk4 / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk4 % 10) + 1);
-                    gBgTilemapBufs[0][0x6F] = 0xA00B;
-                    gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk5 / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk5 % 10) + 1);
-                    gBgTilemapBufs[0][0x72] = 0xA00B;
-                    gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk6 / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk6 % 10) + 1);
+                    // Draw best time
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds % 10) + 1);
 
-                    gBgTilemapBufs[0][0x2C] = 0xA000;
-                    gBgTilemapBufs[0][0x30] = 0xA000;
-                    gBgTilemapBufs[0][0x31] = 0xA000;
-                    gBgTilemapBufs[0][0x32] = 0xA000;
+                    // Erase dream stone icon tile
+                    gBgTilemapBufs[0][0x2C] = (10 << 12);
 
-                    gBgTilemapBufs[0][0x2E] = 0xA000;
-                    gBgTilemapBufs[0][0x2F] = 0xA000;
+                    // Erase "/30" tiles
+                    gBgTilemapBufs[0][0x30] = (10 << 12);
+                    gBgTilemapBufs[0][0x31] = (10 << 12);
+                    gBgTilemapBufs[0][0x32] = (10 << 12);
+
+                    // Erase collected dream stone amount tile
+                    gBgTilemapBufs[0][0x2E] = (10 << 12);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12);
                 }
                 break;
 
@@ -1428,28 +1457,34 @@ void sub_0803BF84(void)
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 0x25);
 
-                    gBgTilemapBufs[0][0x4C] = 0xA000;
-                    gBgTilemapBufs[0][0x4D] = 0xA000;
-                    gBgTilemapBufs[0][0x4E] = 0xA000;
-                    gBgTilemapBufs[0][0x4F] = 0xA000;
-                    gBgTilemapBufs[0][0x50] = 0xA000;
+                    // Erase "BEST/" tiles
+                    gBgTilemapBufs[0][0x4C] = (10 << 12);
+                    gBgTilemapBufs[0][0x4D] = (10 << 12);
+                    gBgTilemapBufs[0][0x4E] = (10 << 12);
+                    gBgTilemapBufs[0][0x4F] = (10 << 12);
+                    gBgTilemapBufs[0][0x50] = (10 << 12);
 
-                    gBgTilemapBufs[0][0x6D] = 0xA000;
-                    gBgTilemapBufs[0][0x6E] = 0xA000;
-                    gBgTilemapBufs[0][0x6F] = 0xA000;
-                    gBgTilemapBufs[0][0x70] = 0xA000;
-                    gBgTilemapBufs[0][0x71] = 0xA000;
-                    gBgTilemapBufs[0][0x72] = 0xA000;
-                    gBgTilemapBufs[0][0x73] = 0xA000;
-                    gBgTilemapBufs[0][0x74] = 0xA000;
+                    // Erase best time tiles
+                    gBgTilemapBufs[0][0x6D] = (10 << 12);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12);
+                    gBgTilemapBufs[0][0x6F] = (10 << 12);
+                    gBgTilemapBufs[0][0x70] = (10 << 12);
+                    gBgTilemapBufs[0][0x71] = (10 << 12);
+                    gBgTilemapBufs[0][0x72] = (10 << 12);
+                    gBgTilemapBufs[0][0x73] = (10 << 12);
+                    gBgTilemapBufs[0][0x74] = (10 << 12);
 
-                    gBgTilemapBufs[0][0x2C] = 0xA011;
-                    gBgTilemapBufs[0][0x30] = 0xA010;
-                    gBgTilemapBufs[0][0x31] = 0xA004;
-                    gBgTilemapBufs[0][0x32] = 0xA001;
+                    // Draw dream stone icon
+                    gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
 
-                    gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][1] & 0x7F) % 10) + 1);
+                    // Draw "/30"
+                    gBgTilemapBufs[0][0x30] = (10 << 12) | 0x10;
+                    gBgTilemapBufs[0][0x31] = (10 << 12) | 0x4;
+                    gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
+
+                    // Draw collected dream stone amount
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if ((gHeldKeys & DPAD_DOWN) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
@@ -1458,28 +1493,34 @@ void sub_0803BF84(void)
                     m4aSongNumStart(0x51);
                     sub_08025B78(0, 0x24);
 
-                    gBgTilemapBufs[0][0x4C] = 0xA00C;
-                    gBgTilemapBufs[0][0x4D] = 0xA00D;
-                    gBgTilemapBufs[0][0x4E] = 0xA00E;
-                    gBgTilemapBufs[0][0x4F] = 0xA00F;
-                    gBgTilemapBufs[0][0x50] = 0xA010;
+                    // Draw "BEST/"
+                    gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
+                    gBgTilemapBufs[0][0x4D] = (10 << 12) | 0xD;
+                    gBgTilemapBufs[0][0x4E] = (10 << 12) | 0xE;
+                    gBgTilemapBufs[0][0x4F] = (10 << 12) | 0xF;
+                    gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
-                    gBgTilemapBufs[0][0x6D] = 0xA000 | ((gUnk_03004670->unk1 / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = 0xA000 | ((gUnk_03004670->unk1 % 10) + 1);
-                    gBgTilemapBufs[0][0x6F] = 0xA00B;
-                    gBgTilemapBufs[0][0x70] = 0xA000 | ((gUnk_03004670->unk2 / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = 0xA000 | ((gUnk_03004670->unk2 % 10) + 1);
-                    gBgTilemapBufs[0][0x72] = 0xA00B;
-                    gBgTilemapBufs[0][0x73] = 0xA000 | ((gUnk_03004670->unk3 / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = 0xA000 | ((gUnk_03004670->unk3 % 10) + 1);
+                    // Draw best time
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds % 10) + 1);
 
-                    gBgTilemapBufs[0][0x2C] = 0xA011;
-                    gBgTilemapBufs[0][0x30] = 0xA010;
-                    gBgTilemapBufs[0][0x31] = 0xA004;
-                    gBgTilemapBufs[0][0x32] = 0xA001;
+                    // Draw dream stone icon
+                    gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
 
-                    gBgTilemapBufs[0][0x2E] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = 0xA000 | (((gUnk_03004670->unk8[5][0] & 0x7F) % 10) + 1);
+                    // Draw "/30"
+                    gBgTilemapBufs[0][0x30] = (10 << 12) | 0x10;
+                    gBgTilemapBufs[0][0x31] = (10 << 12) | 0x4;
+                    gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
+
+                    // Draw collected dream stone amount
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)

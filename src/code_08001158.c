@@ -81,7 +81,7 @@ void sub_08001158(void)
         sp0 = 1;
         for (var_r4 = 0; var_r4 < 8; var_r4++)
         {
-            if (!(gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r4] & 0x80))
+            if (!(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG))
             {
                 sp0 = 0;
             }
@@ -276,7 +276,7 @@ void sub_08001158(void)
         REG_WINOUT = WINOUT_WIN01_CLR | WINOUT_WIN01_OBJ | WINOUT_WIN01_BG_ALL;
         REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON;
         gUnk_03004C20.unk10 = 1;
-        sub_08026128();
+        DrawLevelTimer();
     }
     else
     {
@@ -1438,16 +1438,16 @@ void sub_08003904(void)
     {
         if (gUnk_03004C20.level != 0)
         {
-            sub_08025F94();
-            sub_08025DD4();
+            DrawLevelHud_Lives();
+            DrawLevelHud_Hearts();
             if ((gUnk_03004C20.level != 8) && (gUnk_03004C20.world != 0x6 || gUnk_03004C20.level != 0x3))
             {
-                sub_08025E68();
+                DrawLevelHud_DreamStones();
             }
         }
         else
         {
-            sub_08026090();
+            DrawLevelSelectHud_Lives();
         }
 
         tileColOffset = -1;

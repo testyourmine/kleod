@@ -437,7 +437,7 @@ void sub_080446F8(void)
             else if (gUnk_03005488 == 0x1E0)
             {
                 gUnk_03005220.lives = 0;
-                sub_08025F94();
+                DrawLevelHud_Lives();
                 m4aSongNumStart(0x78);
             }
             else if (gUnk_03005488 == 0x300)
@@ -925,13 +925,13 @@ void sub_080453F0(void)
     
     for (var_r6 = 0; var_r6 < 8; var_r6++)
     {
-        if (!(gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r6] & 0x80))
+        if (!(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r6] & LEVEL_INFO_BEATEN_FLAG))
         {
             gUnk_030034B0.unk0_0 = 0;
         }
     }
 
-    if ((gUnk_03004C20.world == 5) && !(gUnk_03004670->unk8[5][7] & 0x80))
+    if ((gUnk_03004C20.world == 5) && !(gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
     {
         gUnk_030034B0.unk0_0 = 0;
     }
@@ -963,7 +963,7 @@ void sub_080453F0(void)
 
     for (var_r6 = 0; var_r6 < 7; var_r6++)
     {
-        if (!(gUnk_03004670->unk8[0][var_r6 + ((gUnk_03004C20.world - 1) * 8)] & 0x80))
+        if (!(gUnk_03004670->levelInfo[0][var_r6 + ((gUnk_03004C20.world - 1) * 8)] & LEVEL_INFO_BEATEN_FLAG))
         {
             continue;
         }
@@ -979,9 +979,9 @@ void sub_080453F0(void)
     gBgInfo[1].hOfs = gBg2Alpha;
     gBgInfo[1].vOfs = 0x10;
     gCallbackQueue.current[1] = sub_08045734;
-    if ((gUnk_03004670->unk8[gUnk_03004C20.world - 1][0] & 0x7F) == 0x7F)
+    if ((gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK)
     {
-        gUnk_03004670->unk8[gUnk_03004C20.world - 1][0] = 0;
+        gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][0] = 0;
     }
 
     gUnk_030034B0.unk4 = 0x10;
@@ -1126,17 +1126,17 @@ void sub_08045874(void)
             if (gUnk_03004C20.world == 1)
             {
                 var_r2_3 = 0;
-                if ((gUnk_03004C20.level == 1) && !(gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & 0x80))
+                if ((gUnk_03004C20.level == 1) && !(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gUnk_03004D90.unk9 = 1;
                     var_r2_3 = 1;
                 }
-                else if ((gUnk_03004C20.level == 4) && !(gUnk_03004670->unk8[0][3] & 0x80))
+                else if ((gUnk_03004C20.level == 4) && !(gUnk_03004670->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gUnk_03004D90.unk9 = 2;
                     var_r2_3 = 1;
                 }
-                else if ((gUnk_03004C20.level == 6) && !(gUnk_03004670->unk8[0][5] & 0x80))
+                else if ((gUnk_03004C20.level == 6) && !(gUnk_03004670->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gUnk_03004D90.unk9 = 5;
                     var_r2_3 = 1;
@@ -1210,7 +1210,7 @@ void sub_08045874(void)
                     break;
             }
 
-            if (gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r4 - 1] != 0x7F)
+            if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
             {
                 m4aSongNumStart(0x51);
                 gUnk_03004C20.sceneFrameCounter = 0;
@@ -1262,7 +1262,7 @@ void sub_08045874(void)
                         break;
                 }
 
-                if (gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r4 - 1] != 0x7F)
+                if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
                 {
                     m4aSongNumStart(0x51);
                     gUnk_03004C20.sceneFrameCounter = 0;
@@ -1491,8 +1491,8 @@ void sub_08046288(void)
                     }
                     else
                     {
-                        var_sb = gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_030034B0.unk6_4 - 1] & 0x7F;
-                        if (var_sb == 0x7F)
+                        var_sb = gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk6_4 - 1] & LEVEL_INFO_DREAM_STONES_MASK;
+                        if (var_sb == LEVEL_INFO_DREAM_STONES_MASK)
                         {
                             var_sb = 0;
                         }
@@ -1561,7 +1561,7 @@ void sub_080467F4(void)
 
     for (var_r4 = 0; var_r4 < 8; var_r4++)
     {
-        if (gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r4] == 0x7F)
+        if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4] == LEVEL_INFO_DREAM_STONES_MASK)
         {
             var_r2 = 0;
         }
@@ -1579,10 +1579,10 @@ void sub_080467F4(void)
             {
                 var_r2 = 1;
             }
-            if ((gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r4] & 0x80) != 0)
+            if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG)
             {
                 var_r2 += 1;
-                if ((var_r4 == 7) && (gUnk_03004C20.world == 5) && ((gUnk_03004670->unk8[5][7] & 0x80) == 0))
+                if ((var_r4 == 7) && (gUnk_03004C20.world == 5) && ((gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG) == 0))
                 {
                     var_r2 -= 1;
                 }
@@ -1617,7 +1617,7 @@ void sub_080468B0(void)
         if (gUnk_030034B0.unk5 == 0x40)
         {
             m4aSongNumStart(0x8B);
-            gUnk_03004670->unk8[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1] &= 0x80;
+            gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1] &= LEVEL_INFO_BEATEN_FLAG;
             sub_080467F4();
         }
 
@@ -1646,7 +1646,7 @@ u8 sub_080469FC(void)
 
     for (var_r2 = 0; var_r2 < 8; var_r2++)
     {
-        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> var_r2) & 1) != 0) && (gUnk_03004670->unk8[gUnk_03004C20.world - 1][var_r2] == 0x7F))
+        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> var_r2) & 1) != 0) && (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r2] == LEVEL_INFO_DREAM_STONES_MASK))
         {
             return var_r2 + 1;
         }

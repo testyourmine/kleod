@@ -660,7 +660,7 @@ void sub_08048028(void)
 
     gNewKeys = 0;
 
-    if ((gUnk_03004670->unk8[5][7] & 0x80) != 0)
+    if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         var_sb = 0;
         var_sl = 0;
@@ -671,35 +671,35 @@ void sub_08048028(void)
         {
             for (var_r4 = 0; var_r4 < 7; var_r4++)
             {
-                if (((var_r4 == 3) || (var_r4 == 5)) && ((gUnk_03004670->unk8[var_r0][var_r4] & 0x7F) == 0x64))
+                if (((var_r4 == 3) || (var_r4 == 5)) && ((gUnk_03004670->levelInfo[var_r0][var_r4] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     var_sb += 1;
                 }
-                else if ((var_r4 != 7) && ((gUnk_03004670->unk8[var_r0][var_r4] & 0x7F) == 0x1E))
+                else if ((var_r4 != 7) && ((gUnk_03004670->levelInfo[var_r0][var_r4] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     var_sl += 1;
                 }
 
-                if (gUnk_03004670->unk8[var_r0][var_r4] & 0x80)
+                if (gUnk_03004670->levelInfo[var_r0][var_r4] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     var_r7 += 1;
                 }
             }
         }
     
-        if ((gUnk_03004670->unk8[5][0] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             sp0 += 1;
         }
     
-        if ((gUnk_03004670->unk8[5][1] & 0x7F) == 0x1E)
+        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             sp0 += 1;
         }
     
-        if (((gUnk_03004670->unk8[5][0] & 0x80) == 0) && (var_r7 == 0x23))
+        if (!(gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_BEATEN_FLAG) && (var_r7 == 0x23))
         {
-            gUnk_03004670->unk8[5][0] |= 0x80;
+            gUnk_03004670->levelInfo[5][0] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (var_r2 = 0; var_r2 < 10; var_r2++)
             {
@@ -727,9 +727,9 @@ void sub_08048028(void)
             return;
         }
     
-        if (((gUnk_03004670->unk8[5][1] & 0x80) == 0) && ((var_sl + var_sb) > 0x18))
+        if (!(gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_BEATEN_FLAG) && ((var_sl + var_sb) > 0x18))
         {
-            gUnk_03004670->unk8[5][1] |= 0x80;
+            gUnk_03004670->levelInfo[5][1] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (var_r2 = 0; var_r2 < 10; var_r2++)
             {
@@ -757,9 +757,9 @@ void sub_08048028(void)
             return;
         }
     
-        if (((gUnk_03004670->unk8[5][2] & 0x80) == 0) && ((sp0 + var_sb + var_sl) == 0x25))
+        if (!(gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_BEATEN_FLAG) && ((sp0 + var_sb + var_sl) == 0x25))
         {
-            gUnk_03004670->unk8[5][2] |= 0x80;
+            gUnk_03004670->levelInfo[5][2] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (var_r2 = 0; var_r2 < 10; var_r2++)
             {
@@ -2225,7 +2225,7 @@ void sub_0804AF00(void)
                 gUnk_03005284->unk0 = gUnk_03005220.lives = 3;
                 gUnk_03005284->unk1C = 2;
                 gUnk_03005284->unk1D = 1;
-                DmaFill16(3, 0x7F7F, &gUnk_03004670->unk8[0][0], 0x30);
+                DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo[0][0], 0x30);
                 gUnk_03005284->unk4 = 0;
                 gUnk_03003410.unkC = 1;
                 gCallbackQueue.current[1] = sub_0802528C;

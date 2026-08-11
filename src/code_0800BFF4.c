@@ -415,9 +415,9 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.unk58 = 0;
         gUnk_03005220.unk1_7 = 0;
         gUnk_03005220.unk60 = 0;
-        gUnk_03005220.unk4F = 0;
-        gUnk_03005220.unk4E = 0;
-        gUnk_03005220.unk4D = 0;
+        gUnk_03005220.levelTimeCentiseconds = 0;
+        gUnk_03005220.levelTimeSeconds = 0;
+        gUnk_03005220.levelTimeMinutes = 0;
         gUnk_03004C20.unk8 = 0;
         gUnk_03005220.unk1C = 0;
         gUnk_03005220.unk5E = 0;
@@ -445,9 +445,9 @@ void sub_0800CA0C(u32 arg0)
             gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
             gUnk_03004C20.unk8 = gUnk_03005284->unk16;
             gUnk_03005220.unk60 = 0;
-            gUnk_03005220.unk4F = 0;
-            gUnk_03005220.unk4E = 0;
-            gUnk_03005220.unk4D = 0;
+            gUnk_03005220.levelTimeCentiseconds = 0;
+            gUnk_03005220.levelTimeSeconds = 0;
+            gUnk_03005220.levelTimeMinutes = 0;
         }
         while(0);
     }
