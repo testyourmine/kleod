@@ -1,0 +1,7 @@
+#ifndef GUARD_CONSTANTS_SONGS_H
+#define GUARD_CONSTANTS_SONGS_H
+
+enum Songs {
+};
+
+#endif // GUARD_CONSTANTS_SONGS_H

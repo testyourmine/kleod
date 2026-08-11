@@ -265,9 +265,7 @@ SECTIONS {
         src/data/trig.o(.rodata);
         asm/data/data_080D9094.o(.rodata);
         src/data/m4a_tables.o(.rodata);
-        asm/data/data_08117CBC.o(.rodata);
         asm/data/sound_data.o(.rodata);
-        asm/data/data_08118AE4.o(.rodata);
         src/eeprom.o(.rodata);
         asm/data/data_08188E5C.o(.rodata);
     } >rom
