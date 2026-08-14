@@ -130,7 +130,7 @@ void sub_0800D188(void)
             else
             {
                 gUnk_03004C20.unkF = 0;
-                gCallbackQueue.next[1] = sub_08024D84;
+                gCallbackQueue.next[1] = TransitionFromLevelToDeath_FadeOut;
             }
         }
         else
@@ -640,7 +640,7 @@ void sub_0800D188(void)
                 {
                     if (var_r3_2 == 4)
                     {
-                        gCallbackQueue.next[4] = sub_08024718;
+                        gCallbackQueue.next[4] = TransitionFromRoomToRoom_FadeOut;
                     }
                     else if (var_r3_2 > 4)
                     {
@@ -3473,7 +3473,7 @@ block_1352:
                 {
                     if (var_r3_3 == 4)
                     {
-                        gCallbackQueue.next[4] = sub_08024718;
+                        gCallbackQueue.next[4] = TransitionFromRoomToRoom_FadeOut;
                     }
                     else if (var_r3_3 > 4)
                     {

@@ -330,9 +330,9 @@ void sub_080477A8(void)
             break;
 
         case 1:
-            if (gEntityInfo->unk8.split.unk8 < 10)
+            if (gEntityInfo[0].unk8.split.unk8 < 10)
             {
-                gEntityInfo->unk8.split.unk8 += 1;
+                gEntityInfo[0].unk8.split.unk8 += 1;
                 return;
             }
 
@@ -379,9 +379,9 @@ void sub_080477A8(void)
             break;
 
         case 2:
-            if (gEntityInfo->unk8.split.unk8 < 0xA0)
+            if (gEntityInfo[0].unk8.split.unk8 < 0xA0)
             {
-                gEntityInfo->unk8.split.unk8 += 5;
+                gEntityInfo[0].unk8.split.unk8 += 5;
                 return;
             }
 
@@ -486,7 +486,7 @@ void sub_08047B1C(void)
     {
         for (var_r4 = 0; var_r4 < 0x20; var_r4++)
         {
-            if ((gUnk_03004C20.world == gUnk_0811769C[var_r4][0]) && (gUnk_03004C20.level == gUnk_0811769C[var_r4][1]) && (((gEntityInfo->yPosBg2 - 0x10) >> 3) == gUnk_0811769C[var_r4][3]) && (((gEntityInfo->xPosBg2 + 8) >> 3) >= gUnk_0811769C[var_r4][2]) && (((gEntityInfo->xPosBg2 - 8) >> 3) <= (gUnk_0811769C[var_r4][2] + 3)))
+            if ((gUnk_03004C20.world == gUnk_0811769C[var_r4][0]) && (gUnk_03004C20.level == gUnk_0811769C[var_r4][1]) && (((gEntityInfo[0].yPosBg2 - 0x10) >> 3) == gUnk_0811769C[var_r4][3]) && (((gEntityInfo[0].xPosBg2 + 8) >> 3) >= gUnk_0811769C[var_r4][2]) && (((gEntityInfo[0].xPosBg2 - 8) >> 3) <= (gUnk_0811769C[var_r4][2] + 3)))
             {
                 sp0 = var_r4;
                 break;
@@ -1649,7 +1649,7 @@ void sub_08049724(void)
                 gUnk_03004C20.sceneFrameCounter = -1;
                 gUnk_03004D9C = 0;
                 gBlendValue = 0xF;
-                gCallbackQueue.current[1] = sub_08024560;
+                gCallbackQueue.current[1] = TransitionFromTitleScreenToFileSelect_FadeOut;
                 gCallbackQueue.current[2] = sub_0800BFF4;
                 gUnk_03003410.unkA = 0;
             }
@@ -2228,11 +2228,11 @@ void sub_0804AF00(void)
                 DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo[0][0], 0x30);
                 gUnk_03005284->unk4 = 0;
                 gUnk_03003410.unkC = 1;
-                gCallbackQueue.current[1] = sub_0802528C;
+                gCallbackQueue.current[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
             }
             else
             {
-                gCallbackQueue.current[1] = sub_0802534C;
+                gCallbackQueue.current[1] = TransitionFromFileSelectToLevel_FadeOut;
             }
         }
     }

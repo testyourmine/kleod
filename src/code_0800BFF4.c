@@ -372,15 +372,15 @@ void sub_0800CA0C(u32 arg0)
     gUnk_03000810 = 0;
     if (gUnk_03004C20.level == 8)
     {
-        gEntityInfo->xPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk0;
-        gEntityInfo->yPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk2;
-        gEntityInfo->unkC_2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk4_0;
+        gEntityInfo[0].xPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk0;
+        gEntityInfo[0].yPosBg2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk2;
+        gEntityInfo[0].unkC_2 = gUnk_080D6458[gUnk_03004C20.world - 1].unk4_0;
     }
     else
     {
-        gEntityInfo->xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk0;
-        gEntityInfo->yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk2;
-        gEntityInfo->unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_0;
+        gEntityInfo[0].xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk0;
+        gEntityInfo[0].yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk2;
+        gEntityInfo[0].unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_0;
     }
 
     if (arg0 == 0)
@@ -505,7 +505,7 @@ void sub_0800CA0C(u32 arg0)
         gCallbackQueue.next[1] = sub_0803C808;
         gCallbackQueue.next[2] = sub_08002AC4;
         gCallbackQueue.next[3] = sub_0800AC34;
-        gCallbackQueue.next[4] = sub_080242C0;
+        gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = sub_08026374;
         gCallbackQueue.next[6] = sub_0800C108;
         gCallbackQueue.next[7] = NULL + 1;
@@ -527,7 +527,7 @@ void sub_0800CA0C(u32 arg0)
         {
             gCallbackQueue.next[2] = sub_08001F58;
         }
-        gCallbackQueue.next[3] = sub_080242C0;
+        gCallbackQueue.next[3] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
 
         if (arg0 < 2)
         {

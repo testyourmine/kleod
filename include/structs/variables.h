@@ -182,7 +182,7 @@ struct EntityInfo {
     /* 0x0C_4 */ u32 unkC_4:4; // related to direction/rotation?
     /* 0x0D_0 */ u32 objMode:2; // objMode
     /* 0x0D_2 */ u32 affineHFlip_matrixNum:4; // bottom 3 bits is matrix number (0-7), 4th bit is hFlip
-    /* 0x0D_6 */ u32 unkD_6:2; // TODO: verify
+    /* 0x0D_6 */ u32 unkD_6:2;
     /* 0x0E_0 */ u32 affineEnable:1; // affine flag
     /* 0x0E_1 */ u32 affineDouble:1; // affine doubled or non-affine obj disable
     /* 0x0F */ u8 unkF;
@@ -407,10 +407,10 @@ extern s32 gUnk_03005480;
 struct Unk_030007E0 {
     /* 0x0 */ s16 unk0;
     /* 0x2 */ s16 unk2;
-    /* 0x4 */ s16 unk4;
+    /* 0x4 */ u16 unk4;
     /* 0x6 */ s16 unk6;
     /* 0x8 */ s16 unk8;
-    /* 0xA */ s16 unkA;
+    /* 0xA */ u16 unkA;
     /* 0xC_0 */ u8 unkC_0:4;
     /* 0xC_4 */ u8 unkC_4:4;
     /* 0xD */ u8 padD[0x10 - 0xD];

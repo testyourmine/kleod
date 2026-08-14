@@ -167,7 +167,7 @@ void InputHandler_AttractMode(void)
         {
             if (i == 4)
             {
-                gCallbackQueue.next[4] = sub_080245E8;
+                gCallbackQueue.next[4] = TransitionFromDemoToTitleScreen_FadeOut;
             }
             else if (i > 4)
             {

@@ -1088,8 +1088,8 @@ void sub_080098C8(void)
     sub_0800A468();
     gOamBufferPtr = gOamBuffer;
 
-    sp0 = gEntityInfo->yPosScreen;
-    sp4 = gEntityInfo->xPosScreen;
+    sp0 = gEntityInfo[0].yPosScreen;
+    sp4 = gEntityInfo[0].xPosScreen;
 
     for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
     {
@@ -1570,7 +1570,7 @@ void sub_0800A804(void)
 
     if (gUnk_030052A0 == 0xFE)
     {
-        if ((gCallbackQueue.current[4] != sub_08024C34) && (gCallbackQueue.current[4] != sub_08024718))
+        if ((gCallbackQueue.current[4] != TransitionFromLevelSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
         {
             sub_0800D188();
         }
@@ -1736,7 +1736,7 @@ void sub_0800AC34(void)
 
     if (gUnk_03005220.hearts == 0)
     {
-        gEntityInfo->priority = 0;
+        gEntityInfo[0].priority = 0;
     }
 
     if ((gNewKeys & START_BUTTON) && (gUnk_030034E4 == 0) && (gUnk_03005220.unk46 == 0) && (gUnk_03005400.unkC != 0))
@@ -2004,7 +2004,7 @@ void sub_0800AC34(void)
         }
     }
 
-    if (gUnk_03005400.unkE_7 && (gCallbackQueue.current[4] != sub_08024C34) && (gCallbackQueue.current[4] != sub_08024718))
+    if (gUnk_03005400.unkE_7 && (gCallbackQueue.current[4] != TransitionFromLevelSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
     {
         sub_0800D188();
     }
@@ -2137,8 +2137,8 @@ void sub_0800B3C0(void)
 
     if (gUnk_03004C20.unkA == 1)
     {
-        gUnk_03005220.unk1A = gEntityInfo->xPosBg2;
-        gUnk_03005220.unk10 = gEntityInfo->xPosBg2 << 0x10;
+        gUnk_03005220.unk1A = gEntityInfo[0].xPosBg2;
+        gUnk_03005220.unk10 = gEntityInfo[0].xPosBg2 << 0x10;
         gUnk_03005220.unk2F = 0;
     }
     gUnk_03004C10 = NULL;

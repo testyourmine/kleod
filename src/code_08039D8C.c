@@ -431,7 +431,7 @@ void sub_0803A410(void)
 
         case 1:
             sub_0803A22C();
-            gCallbackQueue.current[1] = sub_0802502C;
+            gCallbackQueue.current[1] = TransitionFromDeathToLevel_FadeOut;
             gUnk_03005220.unk4 = gUnk_03005284->unk18;
             gUnk_03005220.lives = gUnk_03005284->unk0;
             gUnk_03005220.hearts = gUnk_03005284->unk8_0;
@@ -449,7 +449,7 @@ void sub_0803A410(void)
             }
             gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
             gUnk_03004C20.level = 0;
-            gCallbackQueue.current[1] = sub_08024C34;
+            gCallbackQueue.current[1] = TransitionFromLevelSelectToLevel_FadeOut;
             break;
 
         case 3:
@@ -467,7 +467,7 @@ void sub_0803A410(void)
             REG_BLDCNT = 0;
             gBlendValue = 0;
             sub_080008DC();
-            gCallbackQueue.current[1] = sub_08025818;
+            gCallbackQueue.current[1] = TransitionFromLevelSelectToWorldMap_FadeOut;
             break;
 
         case 5:
@@ -475,7 +475,7 @@ void sub_0803A410(void)
             gUnk_03004C20.level = 9;
             gUnk_03004D9C = 0;
             sub_0800A468();
-            gCallbackQueue.current[1] = sub_08025900;
+            gCallbackQueue.current[1] = TransitionFromLevelSelectToBootScreen_FadeOut;
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tilemap);
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tiles);
             break;
@@ -1344,13 +1344,13 @@ void sub_0803BF84(void)
                     gUnk_03004C20.world = 6;
                     gUnk_03004C20.level = 3;
                 }
-                gCallbackQueue.current[1] = sub_08025634;
+                gCallbackQueue.current[1] = TransitionFromWorldMapToLevel_FadeOut;
             }
             else
             {
                 gUnk_03005284->unk4 = (gUnk_03004C20.world * 3) - 1;
                 gUnk_03003410.unkC = 0;
-                gCallbackQueue.current[1] = sub_0802528C;
+                gCallbackQueue.current[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
             }
             return;
         }
@@ -5505,24 +5505,24 @@ void sub_08042BEC(void)
 
     if ((temp_r6 >= 300 && temp_r6 <= 1700) && ((gUnk_03004C20.sceneFrameCounter % (gEntityInfo[0x12].unk8.split.unk9 - 4)) == 0) && (gUnk_03005220.unk31 != 0))
     {
-        gEntityInfo->xPosBg2 += 0; // FAKE?
+        gEntityInfo[0].xPosBg2 += 0; // FAKE?
         if (gUnk_03005400.unk8_7 == 0)
         {
-            gEntityInfo->xPosBg2 += 1;
+            gEntityInfo[0].xPosBg2 += 1;
         }
         else
         {
-            gEntityInfo->xPosBg2 -= 1;
+            gEntityInfo[0].xPosBg2 -= 1;
         }
     }
 
-    if (gEntityInfo->xPosBg2 < 0x14)
+    if (gEntityInfo[0].xPosBg2 < 0x14)
     {
-        gEntityInfo->xPosBg2 = 0x14;
+        gEntityInfo[0].xPosBg2 = 0x14;
     }
-    if (gEntityInfo->xPosBg2 > 0x1C4)
+    if (gEntityInfo[0].xPosBg2 > 0x1C4)
     {
-        gEntityInfo->xPosBg2 = 0x1C4;
+        gEntityInfo[0].xPosBg2 = 0x1C4;
     }
 
     if (gEntityInfo[0x14].unkF == 0)
@@ -5725,7 +5725,7 @@ void sub_08042E64(u8 arg0)
                 {
 
                 }
-                else if ((u16) gUnk_030007E0.unk4 != (u16) gUnk_030007E0.unkA)
+                else if (gUnk_030007E0.unk4 != gUnk_030007E0.unkA)
                 {
 
                 }
