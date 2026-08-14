@@ -112,7 +112,7 @@ void sub_08043BA4(void)
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN1_BG0 | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_CLR;
     REG_WIN1H = WIN_RANGE(0, DISPLAY_WIDTH);
     REG_WIN1V = WIN_RANGE(0x1, 0x8F);
-    gIntrTable.hBlank = sub_08001028;
+    gIntrTable.hBlank = HBlankIntr_GameOverCircleShrinkEffect;
     gUnk_030051DC = gUnk_0807D248;
     gUnk_03005428 = 0xD;
 
@@ -997,7 +997,7 @@ void sub_080453F0(void)
 
     REG_IE |= INTR_FLAG_HBLANK;
     REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
-    gIntrTable.hBlank = sub_08000FCC;
+    gIntrTable.hBlank = HBlankIntr_LevelSelect;
 }
 
 // 45734

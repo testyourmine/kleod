@@ -4,9 +4,8 @@
 #include "structs/variables.h"
 
 // 9D8
-void sub_080009D8(void)
+void VBlankIntr_Common(void)
 {
-    // VBlankHandler_Normal
     m4aSoundVSync();
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
@@ -25,10 +24,9 @@ void sub_080009D8(void)
 }
 
 // AB0
-void sub_08000AB0(void)
+void VBlankIntr_CutsceneTransition(void)
 {
     // Called during intro movie, in between transitions
-    // VBlankHandler_Minimal
     m4aSoundVSync();
     m4aSoundMain();
     INTR_CHECK = INTR_FLAG_VBLANK;
@@ -38,7 +36,6 @@ void sub_08000AB0(void)
 void sub_08000AC8(void)
 {
     // Never called?
-    // VBlankHandler_ModeA
     m4aSoundVSync();
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
@@ -58,10 +55,9 @@ void sub_08000AC8(void)
 }
 
 // BD4
-void sub_08000BD4(void)
+void VBlankIntr_TitleScreenAndWorldMap(void)
 {
-    // Called during title screen
-    // VBlankHandler_ModeB
+    // Called during title screen and world map
     m4aSoundVSync();
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
@@ -81,10 +77,9 @@ void sub_08000BD4(void)
 }
 
 // CE0
-void sub_08000CE0(void)
+void VBlankIntr_Boss(void)
 {
     // Called during boss battle
-    // VBlankDmaTransfer
     m4aSoundVSync();
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
@@ -105,7 +100,8 @@ void sub_08000CE0(void)
 // DC0
 void sub_08000DC0(void)
 {
-    // VBlankHandler_OamOnly
+    // Set by sub_0800350C, which is called by sub_08025A28, which is unused
+    // So this function is likely unused
     m4aSoundVSync();
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
@@ -123,7 +119,6 @@ void sub_08000DC0(void)
 void sub_08000E14(void)
 {
     // Never called?
-    // VBlankHandler_OamOnlyAlt
     m4aSoundVSync();
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
@@ -138,10 +133,9 @@ void sub_08000E14(void)
 }
 
 // E68
-void sub_08000E68(void)
+void VBlankIntr_Cutscene(void)
 {
-    // Called during intro movie
-    // VBlankHandler_WithWindowScroll
+    // Called during intro movie and cutscenes, and credits
     m4aSoundVSync();
 
     REG_WIN0H = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_H] >> 4) & 0xFF);
@@ -165,10 +159,9 @@ void sub_08000E68(void)
 }
 
 // F70
-void sub_08000F70(void)
+void HBlankIntr_DeleteAllSaveDataScreen(void)
 {
-    // HBlank, Only called when deleting all data
-    // UpdateFadeEffect
+    // HBlank, only called when deleting all data
     u32 bldAlpha;
 
     bldAlpha = REG_VCOUNT_L / gEntityInfo[0].unk8.split.unk8;
@@ -179,9 +172,9 @@ void sub_08000F70(void)
 }
 
 // FA0
-void sub_08000FA0(void)
+void HBlankIntr_WavyBackground(void)
 {
-    // HBlankScrollUpdate
+    // HBlank, called when making background wavy, such as during trippy transition between phases of King Jillius, and the whole battle of King of Despair
     u8 vCount;
 
     vCount = REG_VCOUNT_L;
@@ -190,10 +183,9 @@ void sub_08000FA0(void)
 }
 
 // FCC
-void sub_08000FCC(void)
+void HBlankIntr_LevelSelect(void)
 {
     // HBlank, only active when in level select, responsible for turning BG2
-    // UpdateAffineBGParams
     s32 vCount;
     s32 bg2X;
     s32 bg2Y;
@@ -210,10 +202,9 @@ void sub_08000FCC(void)
 }
 
 // 1028
-void sub_08001028(void)
+void HBlankIntr_GameOverCircleShrinkEffect(void)
 {
-    // HBlank
-    // UpdateWindowCircleEffect
+    // HBlank, called during game over sequence to create shrinking circle effect to Klonoa
     s32 temp_r1;
     u32 temp_r2;
 
@@ -249,9 +240,9 @@ void sub_0800107C(void)
 }
 
 // 111C
-void sub_0800111C(void)
+void VCountIntr_DeathScreen(void)
 {
-    // VCount
+    // VCount, called when losing a life
     while (!(REG_DISPSTAT & DISPSTAT_HBLANK));
     REG_BLDY = 0;
 }

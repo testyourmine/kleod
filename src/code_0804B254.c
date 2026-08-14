@@ -578,7 +578,7 @@ void sub_0804BDB4(void)
 
 void sub_0804BE08(void)
 {
-    gIntrTable.vBlank = sub_08000E68;
+    gIntrTable.vBlank = VBlankIntr_Cutscene;
     gIntrTable.hBlank = sub_0800107C;
     gCallbackQueue.next[0] = InputHandler_Normal;
     gCallbackQueue.next[1] = sub_0804EB64;
@@ -1755,7 +1755,7 @@ void sub_0804E0E8(void)
                         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                         gCallbackQueue.nextCount = 3;
 
-                        gIntrTable.vBlank = sub_080009D8;
+                        gIntrTable.vBlank = VBlankIntr_Common;
                     }
                     return;
         
@@ -1775,7 +1775,7 @@ void sub_0804E0E8(void)
                         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                         gCallbackQueue.nextCount = 3;
 
-                        gIntrTable.vBlank = sub_080009D8;
+                        gIntrTable.vBlank = VBlankIntr_Common;
                     }
                     break;
         
@@ -2071,12 +2071,12 @@ void sub_0804EA44(void)
 {
     if (gUnk_030034A0->unk1C_4)
     {
-        gIntrTable.vBlank = sub_08000AB0;
+        gIntrTable.vBlank = VBlankIntr_CutsceneTransition;
         gUnk_030034A0->unk1C_4 = 0;
     }
     else
     {
-        gIntrTable.vBlank = sub_08000E68;
+        gIntrTable.vBlank = VBlankIntr_Cutscene;
         gUnk_030034A0->unk1C_4 = 1;
     }
 

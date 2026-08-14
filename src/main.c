@@ -27,8 +27,8 @@ void AgbMain(void)
     DmaFill32(3, 0, EWRAM_START, EWRAM_END - EWRAM_START);
     DmaFill32(3, 0, IWRAM_START, IWRAM_END - IWRAM_START - 0x200);
 
-    gIntrTable.vBlank = sub_080009D8;
-    gIntrTable.hBlank = sub_08000FCC;
+    gIntrTable.vBlank = VBlankIntr_Common;
+    gIntrTable.hBlank = HBlankIntr_LevelSelect;
     gIntrTable.vCount = GenericIntr;
     gIntrTable.timer0 = GenericIntr;
     gIntrTable.timer1 = GenericIntr;

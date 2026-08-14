@@ -642,7 +642,7 @@ block_9:
         if (gBlendValue == 1)
         {
             REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | ({0xFFFF8F00;});
-            gIntrTable.vCount = sub_0800111C;
+            gIntrTable.vCount = VCountIntr_DeathScreen;
             REG_IE |= INTR_FLAG_VCOUNT;
             REG_DISPSTAT |= DISPSTAT_VCOUNT_INTR;
             REG_BLDCNT = BLDCNT_EFFECT_DARKEN | BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BD;

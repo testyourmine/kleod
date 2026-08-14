@@ -75,7 +75,7 @@ extern u32 gUnk_08366214[];
 extern u32 gUnk_08367468[];
 
 // 472B0
-s8 sub_080472B0(void)
+u8 sub_080472B0(void)
 {
     if (gHeldKeys & DPAD_UP)
     {
@@ -91,7 +91,6 @@ s8 sub_080472B0(void)
 void sub_080472C8(void)
 {
     u32 var_r2;
-    u32 tmp;
 
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -99,8 +98,7 @@ void sub_080472C8(void)
     REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
     m4aSoundVSyncOff();
 
-    tmp = sub_080472B0();
-    gUnk_0300549C = tmp;
+    gUnk_0300549C = sub_080472B0();
     gUnk_03005428 = 1;
     sub_08003D58();
     DmaCopy32(3, gOamBuffer, OAM, 0x400);
@@ -171,8 +169,8 @@ void sub_080472C8(void)
     REG_BLDCNT = BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BD;
     gEntityInfo[0].unk8.split.unk8 = 5;
 
-    gIntrTable.hBlank = sub_08000F70;
-    gIntrTable.vBlank = sub_080009D8;
+    gIntrTable.hBlank = HBlankIntr_DeleteAllSaveDataScreen;
+    gIntrTable.vBlank = VBlankIntr_Common;
 
     REG_IE |= INTR_FLAG_HBLANK;
     REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
@@ -914,7 +912,7 @@ void sub_08048498(void)
     gBgInfo[1].vOfs = 0;
     gBgInfo[2].hOfs = 0;
     gBgInfo[2].vOfs = 0;
-    gIntrTable.vBlank = sub_080009D8;
+    gIntrTable.vBlank = VBlankIntr_Common;
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -1166,7 +1164,7 @@ void sub_0804886C(void)
     gBgInfo[0].pTilemap = VRAM + 0xE000;
     gBgInfo[1].pTilemap = VRAM + 0xE800;
     gBgInfo[2].pTilemap = VRAM + 0xF000;
-    gIntrTable.vBlank = sub_08000BD4;
+    gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -1732,7 +1730,7 @@ void sub_08049BFC(void)
     REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(29);
     REG_BG2CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC | BGCNT_256COLOR | BGCNT_SCREENBASE(30) | BGCNT_WRAP | BGCNT_TXT512x256;
 
-    gIntrTable.vBlank = sub_080009D8;
+    gIntrTable.vBlank = VBlankIntr_Common;
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
@@ -2246,7 +2244,7 @@ void sub_0804AF00(void)
             gUnk_03004D9C = 0;
             gUnk_03004C20.sceneFrameCounter = -1;
 
-            gIntrTable.vBlank = sub_080009D8;
+            gIntrTable.vBlank = VBlankIntr_Common;
             gCallbackQueue.current[1] = sub_08049724;
             gCallbackQueue.current[2] = sub_0800D0C4;
             sub_080008DC();

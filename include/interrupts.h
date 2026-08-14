@@ -3,20 +3,20 @@
 
 #include "global.h"
 
-void sub_080009D8(void);
-void sub_08000AB0(void);
+void VBlankIntr_Common(void);
+void VBlankIntr_CutsceneTransition(void);
 void sub_08000AC8(void);
-void sub_08000BD4(void);
-void sub_08000CE0(void);
+void VBlankIntr_TitleScreenAndWorldMap(void);
+void VBlankIntr_Boss(void);
 void sub_08000DC0(void);
 void sub_08000E14(void);
-void sub_08000E68(void);
-void sub_08000F70(void);
-void sub_08000FA0(void);
-void sub_08000FCC(void);
-void sub_08001028(void);
+void VBlankIntr_Cutscene(void);
+void HBlankIntr_DeleteAllSaveDataScreen(void);
+void HBlankIntr_WavyBackground(void);
+void HBlankIntr_LevelSelect(void);
+void HBlankIntr_GameOverCircleShrinkEffect(void);
 void sub_0800107C(void);
-void sub_0800111C(void);
+void VCountIntr_DeathScreen(void);
 void GenericIntr(void);
 
 #endif // GUARD_INTERRUPTS_H

@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-s8 sub_080472B0(void);
+u8 sub_080472B0(void);
 void sub_080472C8(void);
 void sub_080475DC(void);
 void sub_080477A8(void);

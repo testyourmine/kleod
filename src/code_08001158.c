@@ -288,13 +288,13 @@ void sub_08001158(void)
     {
         // TODO: use affine for BGCNT size?
         REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT512x256 | BGCNT_WRAP | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
-        gIntrTable.vBlank = sub_080009D8;
+        gIntrTable.vBlank = VBlankIntr_Common;
     }
     else
     {
         var_r4 = (u32)REG_ADDR_BG2CNT; // FAKE!
         REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT256x512 | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
-        gIntrTable.vBlank = sub_08000CE0;
+        gIntrTable.vBlank = VBlankIntr_Boss;
         gUnk_03004C20.room = 1;
     }
 

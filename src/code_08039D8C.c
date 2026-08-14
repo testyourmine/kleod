@@ -1271,7 +1271,7 @@ void sub_0803B600(void)
     gBg2X = gBg2Y = 0;
     sub_08025B78(0, 0);
     sub_08025BA4();
-    gIntrTable.vBlank = sub_08000BD4;
+    gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
     gCallbackQueue.current[1] = sub_0803B0A0;
     sub_0803B074();
     gUnk_03005284->unk1 = gUnk_03004C20.world;
@@ -5047,7 +5047,7 @@ void sub_08042024(u8 arg0)
             case 0x0:
                 gUnk_03003590[0].unk2 = -0x80;
                 gUnk_03003590[0].unk0 = -0x80;
-                gIntrTable.hBlank = sub_08000FA0;
+                gIntrTable.hBlank = HBlankIntr_WavyBackground;
                 gUnk_03005400.unkA = 1;
                 sub_08025B78(arg0, 8);
                 sub_08025B78(0x15, 0);
@@ -5611,7 +5611,7 @@ void sub_08042E64(u8 arg0)
                 gUnk_03003590[4].unk2 = -gBg2XMag + 0x10;
                 gUnk_03003590[4].unk0 = -gBg2XMag + 0x10;
 
-                gIntrTable.hBlank = sub_08000FA0;
+                gIntrTable.hBlank = HBlankIntr_WavyBackground;
                 REG_IE &= ~INTR_FLAG_HBLANK;
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 gUnk_03005400.unk0 = 0x40;
