@@ -84,7 +84,7 @@ void AgbMain(void)
 
     if ((gHeldKeys & DELETE_SAVE_DATA_KEYS) == DELETE_SAVE_DATA_KEYS)
     {
-        gCallbackQueue.current[1] = sub_080477A8;
+        gCallbackQueue.current[1] = DeleteAllSaveDataScreenHandler;
     }
 
     while (1)

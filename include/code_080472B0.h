@@ -3,10 +3,10 @@
 
 #include "global.h"
 
-u8 sub_080472B0(void);
-void sub_080472C8(void);
-void sub_080475DC(void);
-void sub_080477A8(void);
+u8 HeldUp(void);
+void DeleteAllSaveDataScreenInit(void);
+void DeleteAllSaveDataMinigameHandler(void);
+void DeleteAllSaveDataScreenHandler(void);
 void sub_08047ABC(void);
 void sub_08047B1C(void);
 void sub_08047EC8(void);

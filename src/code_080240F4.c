@@ -1094,7 +1094,7 @@ void TransitionFromLevelSelectToBootScreen_FadeOut(void)
     gBlendValue += 1;
     if (gBlendValue == BLEND_MAX)
     {
-        SoftResetRom(0xFF);
+        SoftResetRom(RESET_ALL);
     }
     else
     {

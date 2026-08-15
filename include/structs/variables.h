@@ -769,9 +769,21 @@ extern u16 gDma2CntHBackup; // DMA2CNT_H
 extern u16 gDma1CntHBackup; // DMA1CNT_H
 extern u16 gDma0CntHBackup; // DMA0CNT_H
 
-extern u8 gUnk_030007F8;
-extern u8 gUnk_030008F8;
-extern u8 gUnk_0300549C;
+enum DeleteAllSaveDataScreenStage {
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_FIRST_YES_NO,
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_SECOND_YES_NO,
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DELETE_DATA,
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_DELETED,
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_NOT_DELETED,
+    DELETE_ALL_SAVE_DATA_SCREEN_STAGE_EXIT
+};
+extern u8 gDeleteAllSaveDataScreenStage;
+enum DeleteAllSaveDataScreenCursor {
+    DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_YES,
+    DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO
+};
+extern u8 gDeleteAllSaveDataScreenCursor;
+extern u8 gDeleteAllSaveDataMinigameUnlocked; // If up was being held when entering "Delete all save data" screen, then the minigame is unlocked
 
 extern u8 gUnk_03000828;
 
