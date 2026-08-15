@@ -1,18 +1,15 @@
-	.global RomHeaderNintendoLogo
 RomHeaderNintendoLogo:
 	.space 156
 
 RomHeaderGameTitle:
 	.space 12
 
-	.global RomHeaderGameCode
 RomHeaderGameCode:
 	.space 4
 
 RomHeaderMakerCode:
 	.space 2
 
-	.global RomHeaderMagic
 RomHeaderMagic:
 	.byte 0
 
@@ -25,7 +22,6 @@ RomHeaderDeviceType:
 RomHeaderReserved1:
 	.space 7
 
-	.global RomHeaderSoftwareVersion
 RomHeaderSoftwareVersion:
 	.byte 0
 
