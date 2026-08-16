@@ -517,15 +517,15 @@ void sub_0800CA0C(u32 arg0)
         gCallbackQueue.next[1] = sub_0800A804;
         if (gUnk_03004C20.unkB == 1)
         {
-            gCallbackQueue.next[2] = sub_080027C4;
+            gCallbackQueue.next[2] = HoverBoardScrollUpdate;
         }
         else if (gUnk_03004C20.level == 6)
         {
-            gCallbackQueue.next[2] = sub_0800247C;
+            gCallbackQueue.next[2] = AthleticChallengeScrollUpdate;
         }
         else
         {
-            gCallbackQueue.next[2] = sub_08001F58;
+            gCallbackQueue.next[2] = PuzzleStageScrollUpdate;
         }
         gCallbackQueue.next[3] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
 
@@ -560,30 +560,30 @@ void sub_0800CA0C(u32 arg0)
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.level == 6)
     {
-        gUnk_030034E8.unk0 = gUnk_080D89A8[gUnk_03004C20.world - 1][gUnk_03004C20.room - 1].unk0;
-        gUnk_030034E8.unk4 = gUnk_080D89A8[gUnk_03004C20.world - 1][gUnk_03004C20.room - 1].unk4;
-        gUnk_030051B8 = SCROLL_NONE;
+        gAthleticChallengeAutoScrollBaseVelocity.x = gUnk_080D89A8[gUnk_03004C20.world - 1][gUnk_03004C20.room - 1].unk0;
+        gAthleticChallengeAutoScrollBaseVelocity.y = gUnk_080D89A8[gUnk_03004C20.world - 1][gUnk_03004C20.room - 1].unk4;
+        gAthleticChallengeScrollFlags = SCROLL_NONE;
 
-        if (gUnk_030034E8.unk0 > 0)
+        if (gAthleticChallengeAutoScrollBaseVelocity.x > 0)
         {
-            gUnk_030051B8 = SCROLL_RIGHT;
+            gAthleticChallengeScrollFlags = SCROLL_RIGHT;
         }
-        else if (gUnk_030034E8.unk0 < 0)
+        else if (gAthleticChallengeAutoScrollBaseVelocity.x < 0)
         {
-            gUnk_030051B8 = SCROLL_LEFT;
-        }
-
-        if (gUnk_030034E8.unk4 > 0)
-        {
-            gUnk_030051B8 |= SCROLL_DOWN;
-        }
-        else if (gUnk_030034E8.unk4 < 0)
-        {
-            gUnk_030051B8 |= SCROLL_UP;
+            gAthleticChallengeScrollFlags = SCROLL_LEFT;
         }
 
-        gUnk_03005480 = 0;
-        gUnk_030007C0 = 0;
+        if (gAthleticChallengeAutoScrollBaseVelocity.y > 0)
+        {
+            gAthleticChallengeScrollFlags |= SCROLL_DOWN;
+        }
+        else if (gAthleticChallengeAutoScrollBaseVelocity.y < 0)
+        {
+            gAthleticChallengeScrollFlags |= SCROLL_UP;
+        }
+
+        gAthleticChallengeAutoScrollXVelocity = 0;
+        gAthleticChallengeAutoScrollYVelocity = 0;
     }
 
     if ((gUnk_03004C20.world == 5) && (gUnk_03004C20.level == 2 || gUnk_03004C20.level == 3))

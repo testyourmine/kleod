@@ -413,8 +413,9 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
 }
 
 // 1F58
-void sub_08001F58(void)
+void PuzzleStageScrollUpdate(void)
 {
+    // Normal scrolling
     u16 sp0;
     struct Unk_0300542C *var_r2;
     u16 var_ip;
@@ -472,6 +473,7 @@ void sub_08001F58(void)
                     scrollOffset.x = 1;
                 }
             }
+
             if (gHeldKeys & DPAD_LEFT)
             {
                 scrollFlags = SCROLL_NONE;
@@ -491,7 +493,7 @@ void sub_08001F58(void)
             }
             else
             {
-                if ((((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) - gEntityInfo[0].xPosBg2) > 5) && ((var_r8 | gUnk_0300358C) == 0))
+                if (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER - gEntityInfo[0].xPosBg2) > 5) && ((var_r8 | gUnk_0300358C) == 0))
                 {
                     scrollOffset.x = -2;
                 }
@@ -500,6 +502,7 @@ void sub_08001F58(void)
                     scrollOffset.x = -1;
                 }
             }
+
             if (gHeldKeys & DPAD_RIGHT)
             {
                 scrollFlags = SCROLL_NONE;
@@ -515,6 +518,7 @@ void sub_08001F58(void)
         {
             sp0 = 0x44;
         }
+
         if ((u16)(sp0 + gEntityInfo[0].yPosScreen + var_ip) > 0x63)
         {
             s32 flag;
@@ -537,6 +541,7 @@ void sub_08001F58(void)
                     flag = 1;
                 }
             }
+
             if (flag != 0)
             {
                 if ((((s16)(sp0 + gEntityInfo[0].yPosScreen) < 0x64) || ((s16)(sp0 + gEntityInfo[0].yPosScreen) > 0x82)) && (var_ip == 0))
@@ -596,29 +601,36 @@ void sub_08001F58(void)
                 scrollOffset.x = 3;
             }
         }
-        else if ((gEntityInfo[0].xPosScreen <= 0xF) && ((gUnk_03005220.unk35 | gUnk_030034E4) == 0))
+        else if (gEntityInfo[0].xPosScreen < 0x10)
         {
-            scrollFlags = SCROLL_LEFT;
-            scrollOffset.x = -3;
+            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            {
+                scrollFlags = SCROLL_LEFT;
+                scrollOffset.x = -3;
+            }
         }
-        if (gEntityInfo[0].yPosScreen <= 0x1F)
+
+        if (gEntityInfo[0].yPosScreen < 0x20)
         {
             if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
             {
                 scrollFlags &= SCROLL_VERTICAL;
                 scrollFlags |= SCROLL_UP;
                 scrollOffset.y = -2;
-                if (gEntityInfo[0].yPosScreen <= 0x17)
+                if (gEntityInfo[0].yPosScreen < 0x18)
                 {
                     scrollOffset.y = -4;
                 }
             }
         }
-        else if ((gEntityInfo[0].yPosScreen > 0x90) && ((gUnk_03005220.unk35 | gUnk_030034E4) == 0))
+        else if (gEntityInfo[0].yPosScreen > 0x90)
         {
-            scrollFlags &= SCROLL_VERTICAL;
-            scrollFlags |= SCROLL_DOWN;
-            scrollOffset.y = 3;
+            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            {
+                scrollFlags &= SCROLL_VERTICAL;
+                scrollFlags |= SCROLL_DOWN;
+                scrollOffset.y = 3;
+            }
         }
 
         if (scrollFlags != SCROLL_NONE)
@@ -628,13 +640,13 @@ void sub_08001F58(void)
     }
 
     gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
-    if (gBgInfo[2].vOfs >= gUnk_03005474)
+    if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)
     {
-        gBgInfo[1].vOfs += (gBgInfo[2].vOfs - gUnk_03005474) & 1;
+        gBgInfo[1].vOfs += (gBgInfo[2].vOfs - gPreviousBg2VOfs) & 1;
     }
     else
     {
-        gBgInfo[1].vOfs -= (gUnk_03005474 - gBgInfo[2].vOfs) & 1;
+        gBgInfo[1].vOfs -= (gPreviousBg2VOfs - gBgInfo[2].vOfs) & 1;
     }
 
     if (gBgInfo[1].vOfs & 0x8000)
@@ -646,20 +658,21 @@ void sub_08001F58(void)
         gBgInfo[1].vOfs = DISPLAY_HEIGHT_CENTER;
     }
 
-    gUnk_03005474 = gBgInfo[2].vOfs;
+    gPreviousBg2VOfs = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 247C
-void sub_0800247C(void)
+void AthleticChallengeScrollUpdate(void)
 {
-    s32 temp_r2;
-    s32 temp_r3_2;
+    // Athletic Challenge (autoscroller level 6) scrolling
+    s32 autoScrollYVel;
+    s32 autoScrollXVel;
     u16 var_r8;
     struct ScrollOffset scrollOffset;
     u8 scrollFlags;
@@ -668,7 +681,8 @@ void sub_0800247C(void)
     scrollFlags = SCROLL_NONE;
     scrollOffset.y = scrollOffset.x = 0;
 
-    if (!(gUnk_030051B8 & SCROLL_HORIZONTAL))
+    // Handle horizontal scrolling when autoscroll is not horizontal
+    if (!(gAthleticChallengeScrollFlags & SCROLL_HORIZONTAL))
     {
         if ((s16) gEntityInfo[0].xPosBg2 > (s16) (gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER))
         {
@@ -708,14 +722,16 @@ void sub_0800247C(void)
             }
         }
     }
-    if (!(gUnk_030051B8 & SCROLL_VERTICAL))
+
+    // Handle vertical scrolling when autoscroll is not vertical
+    if (!(gAthleticChallengeScrollFlags & SCROLL_VERTICAL))
     {
-        if (gEntityInfo[0].yPosScreen > 0xA0)
+        if (gEntityInfo[0].yPosScreen > DISPLAY_HEIGHT)
         {
             var_r8 = 0x44;
         }
 
-        if ((u16) (var_r8 + gEntityInfo[0].yPosScreen) > 0x63)
+        if ((u16) (var_r8 + gEntityInfo[0].yPosScreen) >= 0x64)
         {
             scrollFlags |= SCROLL_DOWN;
             if ((u16) ((var_r8 + gEntityInfo[0].yPosScreen) - 0x64) > 0x1E)
@@ -728,11 +744,10 @@ void sub_0800247C(void)
             }
             
         }
-
         else if ((u16) (var_r8 + gEntityInfo[0].yPosScreen) <= 0x46)
         {
             scrollFlags |= SCROLL_UP;
-            if ((u16) (var_r8 - (gEntityInfo[0].yPosScreen - 0x46)) > 0x19U)
+            if ((u16) (var_r8 - (gEntityInfo[0].yPosScreen - 0x46)) > 0x19)
             {
                 scrollOffset.y = -3;
             }
@@ -743,13 +758,16 @@ void sub_0800247C(void)
         }
     }
 
-    scrollFlags |= gUnk_030051B8;
-    temp_r3_2 = gUnk_03005480 + gUnk_030034E8.unk0;
-    temp_r2 = gUnk_030007C0 + gUnk_030034E8.unk4;
-    scrollOffset.x += (temp_r3_2 >> 0x10);
-    scrollOffset.y += (temp_r2 >> 0x10);
-    gUnk_03005480 = temp_r3_2 & 0xFFFF;
-    gUnk_030007C0 = temp_r2 & 0xFFFF;
+    scrollFlags |= gAthleticChallengeScrollFlags;
+
+    autoScrollXVel = gAthleticChallengeAutoScrollXVelocity + gAthleticChallengeAutoScrollBaseVelocity.x;
+    autoScrollYVel = gAthleticChallengeAutoScrollYVelocity + gAthleticChallengeAutoScrollBaseVelocity.y;
+
+    scrollOffset.x += (autoScrollXVel >> 0x10);
+    scrollOffset.y += (autoScrollYVel >> 0x10);
+
+    gAthleticChallengeAutoScrollXVelocity = autoScrollXVel & 0xFFFF;
+    gAthleticChallengeAutoScrollYVelocity = autoScrollYVel & 0xFFFF;
 
     if (gUnk_03005220.unk46 != 0)
     {
@@ -763,40 +781,41 @@ void sub_0800247C(void)
         ScrollBg2LevelData(scrollFlags, scrollOffset);
     }
 
-    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
+    gBgInfo[1].hOfs = gBgInfo[2].hOfs / 2;
     if ((gUnk_03004C20.globalFrameCounter % 4) == 0 && (gUnk_03004660 == 0))
     {
-        if (gBgInfo[2].vOfs >= gUnk_03005474)
+        if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)
         {
-            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gUnk_03005474) & 1);
+            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gPreviousBg2VOfs) & 1);
         }
         else
         {
-            gBgInfo[1].vOfs -= ((gUnk_03005474 - gBgInfo[2].vOfs) & 1);
+            gBgInfo[1].vOfs -= ((gPreviousBg2VOfs - gBgInfo[2].vOfs) & 1);
         }
 
         if (gBgInfo[1].vOfs & 0x8000)
         {
             gBgInfo[1].vOfs = 0;
         }
-        else if (gBgInfo[1].vOfs > 0x50)
+        else if (gBgInfo[1].vOfs > DISPLAY_HEIGHT_CENTER)
         {
-            gBgInfo[1].vOfs = 0x50;
+            gBgInfo[1].vOfs = DISPLAY_HEIGHT_CENTER;
         }
     }
 
-    gUnk_03005474 = gBgInfo[2].vOfs;
+    gPreviousBg2VOfs = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 27C4
-void sub_080027C4(void)
+void HoverBoardScrollUpdate(void)
 {
+    // Hover Board (level 4) scrolling
     struct ScrollOffset scrollOffset;
     u8 scrollFlags;
 
@@ -829,7 +848,6 @@ void sub_080027C4(void)
                 scrollOffset.y = 1;
             }
         }
-
         else if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x6E))
         {
             scrollFlags |= SCROLL_UP;
@@ -843,7 +861,6 @@ void sub_080027C4(void)
             }
         }
     }
-
     else if (gUnk_03005220.unk2F > 0)
     {
         if ((gEntityInfo[0].yPosBg2 - 0x28) > gBgInfo[2].vOfs)
@@ -859,7 +876,6 @@ void sub_080027C4(void)
             }
         }
     }
-
     else if (gEntityInfo[0].yPosBg2 < (gBgInfo[2].vOfs + 0x82))
     {
         scrollFlags |= SCROLL_UP;
@@ -881,32 +897,32 @@ void sub_080027C4(void)
     gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
     if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
     {
-        if (gBgInfo[2].vOfs >= gUnk_03005474)
+        if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)
         {
-            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gUnk_03005474) & 1);
+            gBgInfo[1].vOfs += ((gBgInfo[2].vOfs - gPreviousBg2VOfs) & 1);
         }
         else
         {
-            gBgInfo[1].vOfs -= ((gUnk_03005474 - gBgInfo[2].vOfs) & 1);
+            gBgInfo[1].vOfs -= ((gPreviousBg2VOfs - gBgInfo[2].vOfs) & 1);
         }
 
         if (gBgInfo[1].vOfs & 0x8000)
         {
             gBgInfo[1].vOfs = 0;
         }
-        else if (gBgInfo[1].vOfs > 0x50)
+        else if (gBgInfo[1].vOfs > DISPLAY_HEIGHT_CENTER)
         {
-            gBgInfo[1].vOfs = 0x50;
+            gBgInfo[1].vOfs = DISPLAY_HEIGHT_CENTER;
         }
     }
 
-    gUnk_03005474 = gBgInfo[2].vOfs;
+    gPreviousBg2VOfs = gBgInfo[2].vOfs;
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
-    gBg2X = (((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
-    gBg2Y = (((gBgInfo[2].vOfs + 0x50) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
+    gBg2X = ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) << 8) - (gBg2PA * DISPLAY_WIDTH_CENTER) - (gBg2PB * DISPLAY_HEIGHT_CENTER);
+    gBg2Y = ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 }
 
 // 2AC4
@@ -1260,7 +1276,7 @@ void sub_08002FD0(void)
         gBgInfo[2].vOfs = gEntityInfo[0].yPosBg2 - (DISPLAY_HEIGHT * 3 / 4);
     }
 
-    if ((gUnk_03004C20.level == 6) && (gUnk_030034E8.unk0 == 0) && (gUnk_030034E8.unk4 != 0))
+    if ((gUnk_03004C20.level == 6) && (gAthleticChallengeAutoScrollBaseVelocity.x == 0) && (gAthleticChallengeAutoScrollBaseVelocity.y != 0))
     {
         gBgInfo[2].vOfs += 0x30;
     }

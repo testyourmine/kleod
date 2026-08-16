@@ -29,7 +29,7 @@ SECTIONS {
         . = 0x00000388; SoundMainRAM_Buffer = .;
 
         . = 0x00000790; gUnk_03000790 = .;
-        . = 0x000007C0; gUnk_030007C0 = .;
+        . = 0x000007C0; gAthleticChallengeAutoScrollYVelocity = .;
         . = 0x000007C4; gUnk_030007C4 = .;
         . = 0x000007C8; gUnk_030007C8 = .;
         . = 0x000007CC; gUnk_030007CC = .;
@@ -88,7 +88,7 @@ SECTIONS {
         . = 0x000034DC; gUnk_030034DC = .;
         . = 0x000034E0; gUnk_030034E0 = .;
         . = 0x000034E4; gUnk_030034E4 = .;
-        . = 0x000034E8; gUnk_030034E8 = .;
+        . = 0x000034E8; gAthleticChallengeAutoScrollBaseVelocity = .;
         . = 0x000034F0; gUnk_030034F0 = .;
         . = 0x000034F4; gUnk_030034F4 = .;
         . = 0x000034F8; gUnk_030034F8 = .;
@@ -154,7 +154,7 @@ SECTIONS {
         . = 0x00004DB0; gUnk_03004DB0 = .;
         . = 0x000051B0; gUnk_030051B0 = .;
         . = 0x000051B4; gUnk_030051B4 = .;
-        . = 0x000051B8; gUnk_030051B8 = .;
+        . = 0x000051B8; gAthleticChallengeScrollFlags = .;
         . = 0x000051BC; gBg2PC = .;
         . = 0x000051C4; gUnk_030051C4 = .;
         . = 0x000051C8; gUnk_030051C8 = .;
@@ -198,10 +198,10 @@ SECTIONS {
         . = 0x00005464; gBg2PB = .;
         . = 0x00005468; gCurrentRoomBg2Bounds = .;
         . = 0x00005470; gUnk_03005470 = .;
-        . = 0x00005474; gUnk_03005474 = .;
+        . = 0x00005474; gPreviousBg2VOfs = .;
         . = 0x00005478; gHeapPtr = .;
         . = 0x0000547C; gUnk_0300547C = .;
-        . = 0x00005480; gUnk_03005480 = .;
+        . = 0x00005480; gAthleticChallengeAutoScrollXVelocity = .;
         . = 0x00005484; gUnk_03005484 = .;
         . = 0x00005488; gUnk_03005488 = .;
         . = 0x0000548C; gUnk_0300548C = .;

@@ -393,16 +393,16 @@ extern struct Unk_03005220 gUnk_03005220;
 
 extern u16 gUnk_030008E8;
 extern u16 gUnk_0300358C;
-extern u16 gUnk_03005474;
+extern u16 gPreviousBg2VOfs;
 
-extern s32 gUnk_030007C0;
-struct Unk_030034E8 {
-    /* 0x0 */ s32 unk0;
-    /* 0x4 */ s32 unk4;
+extern s32 gAthleticChallengeAutoScrollYVelocity;
+struct AthleticChallengeAutoScrollBaseVelocity {
+    /* 0x0 */ s32 x;
+    /* 0x4 */ s32 y;
 }; /* size = 0x8 */
-extern struct Unk_030034E8 gUnk_030034E8;
-extern u8 gUnk_030051B8; // related to scrollFlags, only for level 6?
-extern s32 gUnk_03005480;
+extern struct AthleticChallengeAutoScrollBaseVelocity gAthleticChallengeAutoScrollBaseVelocity; // Base velocity of the autoscroll
+extern u8 gAthleticChallengeScrollFlags;
+extern s32 gAthleticChallengeAutoScrollXVelocity;
 
 struct Unk_030007E0 {
     /* 0x0 */ s16 unk0;

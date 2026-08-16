@@ -22,9 +22,9 @@ struct ScrollOffset {
 };
 void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset);
 
-void sub_08001F58(void);
-void sub_0800247C(void);
-void sub_080027C4(void);
+void PuzzleStageScrollUpdate(void);
+void AthleticChallengeScrollUpdate(void);
+void HoverBoardScrollUpdate(void);
 void sub_08002AC4(void);
 void sub_08002FD0(void);
 void sub_0800343C(u8 arg0);
