@@ -191,8 +191,8 @@ void HBlankIntr_LevelSelect(void)
     s32 bg2Y;
 
     vCount = REG_VCOUNT_L;
-    bg2X = gBg2X + (gUnk_03004678 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
-    bg2Y = gBg2Y + (gUnk_030051B0 * ((vCount * 3) - (s32)(DISPLAY_WIDTH * 0.75f)));
+    bg2X = gBg2X + (gBg2AlphaSin * ((vCount * 3) - 180));
+    bg2Y = gBg2Y + (gBg2AlphaCos * ((vCount * 3) - 180));
 
     REG_BG2X_L = bg2X;
     REG_BG2X_H = bg2X >> 0x10;

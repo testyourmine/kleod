@@ -258,7 +258,7 @@ void sub_080441C8(s32 arg0)
                 gEntityInfo[var_r6].yPosScreen = gEntityInfo[var_r6].yPosBg2 - gBgInfo[2].vOfs;
             }
 
-            gUnk_03004658[0xC] = 0;
+            gUnk_03004658->cursorIndex = 0;
 
             for (var_r6 = 0xD; var_r6 <= 0xE; var_r6++)
             {
@@ -346,7 +346,7 @@ void sub_080441C8(s32 arg0)
                 gEntityInfo[var_r6].unkF = 0x1C;
             }
 
-            gUnk_03004658[0xC] = 0xD;
+            gUnk_03004658->cursorIndex = 0xD;
 
             for (var_r6 = 0x23; var_r6 <= 0x24; var_r6++)
             {
@@ -370,11 +370,11 @@ void sub_080441C8(s32 arg0)
         case 4:
             REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
             gBlendValue = 0x10;
-            gUnk_03004D9C = 0;
+            gTitleScreenStage = 0;
 
             gCallbackQueue.next[0] = InputHandler_Normal;
-            gCallbackQueue.next[1] = sub_080487B4;
-            gCallbackQueue.next[2] = sub_0800BFF4;
+            gCallbackQueue.next[1] = NamcoScreenHandler;
+            gCallbackQueue.next[2] = CommonWaitForNextFrame;
             gCallbackQueue.next[3] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 4;
@@ -457,7 +457,7 @@ void sub_080446F8(void)
         case 1:
             if ((gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
             {
-                if (gUnk_03004658[0xC] != 0)
+                if (gUnk_03004658->cursorIndex != 0)
                 {
                     gBlendValue = 0x10;
                     gUnk_03005494 = 3;
@@ -483,28 +483,28 @@ void sub_080446F8(void)
 
             if (gNewKeys & DPAD_LEFT)
             {
-                if (gUnk_03004658[0xC] != 0)
+                if (gUnk_03004658->cursorIndex != 0)
                 {
                     m4aSongNumStart(0x51);
                 }
-                gUnk_03004658[0xC] = 0;
+                gUnk_03004658->cursorIndex = 0;
             }
             else if (gNewKeys & DPAD_RIGHT)
             {
-                if (gUnk_03004658[0xC] == 0)
+                if (gUnk_03004658->cursorIndex == 0)
                 {
                     m4aSongNumStart(0x51);
                 }
-                gUnk_03004658[0xC] = 1;
+                gUnk_03004658->cursorIndex = 1;
             }
 
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pa = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pb = -((SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]) << 1) >> 1);
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pc = SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
-            gOamAffineBuffer[gUnk_03004658[0xC] + 1].pd = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pa = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pb = -((SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]) << 1) >> 1);
+            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pc = SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pd = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
 
-            gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pa = gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pd = 0x100;
-            gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pb = gOamAffineBuffer[!gUnk_03004658[0xC] + 1].pc = 0;
+            gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pa = gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pd = 0x100;
+            gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pb = gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pc = 0;
             break;
 
         case 3:
@@ -1040,7 +1040,7 @@ void sub_08045874(void)
     u32 var_r2_4;
     u8 temp_r0;
 
-    if (gCallbackQueue.current[3] == &sub_08048028)
+    if (gCallbackQueue.current[3] == &CheckForUnlockExStages)
     {
         return;
     }
@@ -1109,7 +1109,7 @@ void sub_08045874(void)
             gUnk_030034BC = 0;
             gUnk_03003410.unk4 = 1;
             gCallbackQueue.next[0] = sub_08039D8C;
-            gCallbackQueue.next[1] = sub_0800C45C;
+            gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -1162,7 +1162,7 @@ void sub_08045874(void)
                     gUnk_030034BC = 0;
                     gUnk_03004D90.unk8 = 1;
                     gCallbackQueue.next[0] = sub_08047B1C;
-                    gCallbackQueue.next[1] = sub_0800C45C;
+                    gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
                     gCallbackQueue.next[2] = NULL + 1;
                     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                     gCallbackQueue.nextCount = 3;

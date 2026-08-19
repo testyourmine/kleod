@@ -98,11 +98,11 @@ void sub_0800D188(void)
             gCallbackQueue.next[0] = InputHandler_Normal;
             if (gUnk_03004C20.level == 8)
             {
-                gCallbackQueue.next[2] = sub_0800C108;
+                gCallbackQueue.next[2] = BossWaitForNextFrame;
             }
             else
             {
-                gCallbackQueue.next[2] = sub_0800BFF4;
+                gCallbackQueue.next[2] = CommonWaitForNextFrame;
             }
             gCallbackQueue.next[3] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -122,7 +122,7 @@ void sub_0800D188(void)
                 sub_080008DC();
                 m4aMPlayAllStop();
                 gCallbackQueue.next[1] = sub_080446F8;
-                gCallbackQueue.next[2] = sub_0800C7EC;
+                gCallbackQueue.next[2] = GameOverWaitForNextFrame;
                 gUnk_03004C20.sceneFrameCounter = 0;
                 gCallbackQueue.currentCount = 1;
                 gCallbackQueue.current[0] = NULL;
@@ -4457,7 +4457,7 @@ block_1696:
             gBlendValue = 0;
 
             gCallbackQueue.next[0] = sub_08047B1C;
-            gCallbackQueue.next[1] = sub_0800BFF4;
+            gCallbackQueue.next[1] = CommonWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;

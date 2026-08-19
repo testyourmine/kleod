@@ -54,7 +54,7 @@ void LoadAllSaveData(void)
         gSaveData->lives[saveFile] = buf[0];
         gSaveData->world[saveFile] = buf[1];
         gSaveData->level[saveFile] = buf[2];
-        gSaveData->unk1D[saveFile] = buf[3];
+        gSaveData->sceneType[saveFile] = buf[3];
         gSaveData->unk20[saveFile] = buf[4];
 
         if (gSaveData->lives[saveFile] >= 100)

@@ -52,7 +52,7 @@ SECTIONS {
         . = 0x0000081C; gUnk_0300081C = .;
         . = 0x00000820; gOamBufferPtr = .;
         . = 0x00000824; gUnk_03000824 = .;
-        . = 0x00000828; gUnk_03000828 = .;
+        . = 0x00000828; gSaveFilesStarted = .;
         . = 0x0000082C; gUnk_0300082C = .;
         . = 0x00000830; gEntityAnimationInfo = .;
         . = 0x000008E4; gDma3CntHBackup = .;
@@ -63,7 +63,7 @@ SECTIONS {
         . = 0x000008F8; gDeleteAllSaveDataScreenCursor = .;
         . = 0x000008FC; gUnk_030008FC = .;
         . = 0x00000900; gBgTilemapBufs = .;
-        . = 0x00002900; gUnk_03002900 = .;
+        . = 0x00002900; gFileSelectScreenTransitionDelay = .;
         . = 0x00002904; gUnk_03002904 = .;
         . = 0x00002908; gUnk_03002908 = .;
         . = 0x0000290C; gUnk_0300290C = .;
@@ -124,7 +124,7 @@ SECTIONS {
         . = 0x0000466C; gUnk_0300466C = .;
         . = 0x00004670; gUnk_03004670 = .;
         . = 0x00004674; gUnk_03004674 = .;
-        . = 0x00004678; gUnk_03004678 = .;
+        . = 0x00004678; gBg2AlphaSin = .;
         . = 0x00004680; gOamAffineBuffer = .;
         . = 0x00004784; gUnk_03004784 = .;
         . = 0x00004788; gUnk_03004788 = .;
@@ -149,10 +149,10 @@ SECTIONS {
         . = 0x00004D84; gUnk_03004D84 = .;
         . = 0x00004D88; gUnk_03004D88 = .;
         . = 0x00004D90; gUnk_03004D90 = .;
-        . = 0x00004D9C; gUnk_03004D9C = .;
+        . = 0x00004D9C; gTitleScreenStage = .;
         . = 0x00004DA0; gNewKeys = .;
         . = 0x00004DB0; gUnk_03004DB0 = .;
-        . = 0x000051B0; gUnk_030051B0 = .;
+        . = 0x000051B0; gBg2AlphaCos = .;
         . = 0x000051B4; gUnk_030051B4 = .;
         . = 0x000051B8; gAthleticChallengeScrollFlags = .;
         . = 0x000051BC; gBg2PC = .;

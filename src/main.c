@@ -72,9 +72,9 @@ void AgbMain(void)
     SetEepromTimerIntr(3, (u32 *) &gIntrTable.timer3);
 
     gCallbackQueue.current[0] = InputHandler_Normal;
-    gCallbackQueue.current[1] = sub_08048768;
+    gCallbackQueue.current[1] = BootScreenHandler;
     InputHandler_Normal();
-    gCallbackQueue.current[2] = sub_0800BFF4;
+    gCallbackQueue.current[2] = CommonWaitForNextFrame;
     gCallbackQueue.current[3] = NULL + 1;
     gCallbackQueue.currentCount = 4;
     gUnk_0300548C = 0;

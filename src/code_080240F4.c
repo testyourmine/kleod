@@ -255,9 +255,9 @@ void TransitionFromTitleScreenToFileSelect_FadeOut(void)
         sub_0800A468();
         gUnk_03004C20.sceneFrameCounter = -1;
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_0804AF00;
+        gCallbackQueue.next[1] = FileSelectScreenHandler;
         gCallbackQueue.next[2] = TransitionFromTitleScreenToFileSelect_FadeIn;
-        gCallbackQueue.next[3] = sub_0800BFF4;
+        gCallbackQueue.next[3] = CommonWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
@@ -290,7 +290,7 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
             {
                 gCallbackQueue.next[1] = sub_0803B600;
                 gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
-                gCallbackQueue.next[3] = sub_0800BFF4;
+                gCallbackQueue.next[3] = CommonWaitForNextFrame;
                 gCallbackQueue.next[4] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 5;
@@ -313,13 +313,13 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
         {
             gEntityInfo[0xB].unk10 = 0;
             gMosaicSize = 0;
-            gCallbackQueue.next[1] = sub_08049724;
-            gCallbackQueue.next[2] = sub_0800D0C4;
+            gCallbackQueue.next[1] = TitleScreenHandler;
+            gCallbackQueue.next[2] = TitleScreenWaitForNextFrame;
             gCallbackQueue.next[3] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 4;
             gUnk_03004C20.sceneFrameCounter = -1;
-            gUnk_03004D9C = 0;
+            gTitleScreenStage = 0;
         }
     }
     else
@@ -500,10 +500,10 @@ void sub_08024A78(void)
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_080487B4;
-        gCallbackQueue.next[2] = sub_0800BFF4;
+        gCallbackQueue.next[1] = NamcoScreenHandler;
+        gCallbackQueue.next[2] = CommonWaitForNextFrame;
         gCallbackQueue.next[3] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 4;
@@ -539,7 +539,7 @@ void sub_08024B54(void)
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
         gCallbackQueue.next[0] += 0; // FAKE
         gUnk_03003410.unkA = gUnk_03003410.unk9 = 0;
         gCallbackQueue.next[0] = sub_08001158;
@@ -579,7 +579,7 @@ void TransitionFromLevelSelectToLevel_FadeOut(void)
 
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
 
         if (gUnk_03005220.unk37 == 0)
         {
@@ -918,7 +918,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
             gCallbackQueue.next[0] = InputHandler_Normal;
             gCallbackQueue.next[1] = sub_0803B600;
             gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
-            gCallbackQueue.next[3] = sub_0800BFF4;
+            gCallbackQueue.next[3] = CommonWaitForNextFrame;
             gCallbackQueue.next[4] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 5;
@@ -966,7 +966,7 @@ void TransitionFromWorldMapToLevel_FadeOut(void)
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
         gUnk_03004C20.sceneFrameCounter = -1;
         sub_08003D58();
         gUnk_03003410.unk9 = 0;
@@ -1061,13 +1061,13 @@ void TransitionFromLevelSelectToWorldMap_FadeOut(void)
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
         gUnk_03004C20.sceneFrameCounter = -1;
         sub_0800A468();
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_0803B600;
         gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
-        gCallbackQueue.next[3] = sub_0800BFF4;
+        gCallbackQueue.next[3] = CommonWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
@@ -1182,7 +1182,7 @@ void sub_08025A28(void)
         REG_IE &= ~INTR_FLAG_HBLANK;
         REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
 
-        gUnk_03004658[0xC] = 0;
+        gUnk_03004658->cursorIndex = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_0800350C;
         gCallbackQueue.next[2] = sub_08025954;
@@ -1600,7 +1600,7 @@ void sub_080264A4(void)
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
         gCallbackQueue.next[2] = sub_08002AC4;
-        gCallbackQueue.next[3] = sub_0800C108;
+        gCallbackQueue.next[3] = BossWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
@@ -1610,7 +1610,7 @@ void sub_080264A4(void)
         gBlendValue = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_08025A28;
-        gCallbackQueue.next[2] = sub_0800BFF4;
+        gCallbackQueue.next[2] = CommonWaitForNextFrame;
         gCallbackQueue.next[3] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 4;

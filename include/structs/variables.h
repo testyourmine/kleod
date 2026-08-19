@@ -48,7 +48,19 @@ struct Unk_03003410 {
 extern struct Unk_03003410 gUnk_03003410;
 
 extern u16 *gUnk_030034FC;
-extern u8 *gUnk_03004658; // TODO: struct?
+
+enum FileSelectStage {
+    FILE_SELECT_STAGE_SELECT,
+    FILE_SELECT_STAGE_CONFIRM
+};
+struct Unk_03004658 {
+    u8 pad0[0xC - 0x0];
+    u8 cursorIndex; // cursor index? used in a lot of places so need to confirm
+    u8 selectedSaveFile; // selected save file
+    u8 padE[0xF - 0xE];
+    s8 fileSelectStage; // stage, 0 is select, 1 is confirm
+};
+extern struct Unk_03004658 *gUnk_03004658; // TODO: struct?
 
 #define LEVEL_INFO_DREAM_STONES_MASK 0x7F
 #define LEVEL_INFO_BEATEN_FLAG 0x80
@@ -70,6 +82,14 @@ struct Unk_03004670 {
 }; /* size = 0x40 */
 extern struct Unk_03004670 *gUnk_03004670;
 
+// I feel like there's a better name I could use
+enum SceneType {
+    SCENE_TYPE_LEVEL_SELECT,
+    SCENE_TYPE_LEVEL,
+    SCENE_TYPE_CUTSCENE,
+    SCENE_TYPE_WORLD_MAP = 7
+};
+
 struct SaveData {
     u8 saveFileString[9]; // "K_KLONOA"
     u8 pad9[0x10 - 0x9];
@@ -80,7 +100,7 @@ struct SaveData {
     u8 lives[3]; // lives
     u8 world[3]; // world
     u8 level[3]; // level
-    u8 unk1D[3];
+    u8 sceneType[3]; // 0 is level select, 1 is level gameplay, 2 is cutscene, 7 is world map
     u8 unk20[3];
     u8 unk23[3]; // number of completed worlds?
     u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
@@ -92,7 +112,7 @@ struct Unk_03005284 {
     /* 0x00 */ u8 unk0; // lives
     /* 0x01 */ u8 unk1; // world
     /* 0x02 */ u8 unk2; // level
-    /* 0x03 */ u8 unk3;
+    /* 0x03 */ u8 unk3; // sceneType
     /* 0x04 */ u8 unk4;
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
@@ -274,8 +294,8 @@ struct Unk_03004C20 {
 extern struct Unk_03004C20 gUnk_03004C20;
 
 extern s32 gBg2X; // BG2X
-extern s16 gUnk_03004678;
-extern s16 gUnk_030051B0;
+extern s16 gBg2AlphaSin;
+extern s16 gBg2AlphaCos;
 extern s32 gBg2Y; // BG2Y
 
 extern s16 gUnk_030034F8;
@@ -692,9 +712,9 @@ extern u16 gUnk_030051E0;
 
 struct Unk_03004D90 {
     u8 pad0[0x4 - 0x0];
-    u16 unk4;
-    u16 unk6;
-    u8 unk8;
+    u16 unk4; // WIN1H
+    u16 unk6; // WIN1V
+    u8 unk8; // 2 is no textbox (or shrinking textbox), 1 is textbox requested (or growing textbox), 0 is textbox is being displayed (unchanging)
     u8 unk9;
 };
 extern struct Unk_03004D90 gUnk_03004D90;
@@ -705,7 +725,15 @@ extern void *gUnk_030034F4;
 extern void *gUnk_030052AC;
 
 extern u16 gUnk_030052B8;
-extern u8 gUnk_03004D9C;
+
+enum TitleScreenStage {
+    TITLE_SCREEN_STAGE_INTRO_LOGO_ANIMATION, // Also works as none
+    TITLE_SCREEN_STAGE_PRESS_START,
+    TITLE_SCREEN_STAGE_NEW_GAME_OR_CONTINUE = 5,
+    TITLE_SCREEN_STAGE_GO_TO_DEMO,
+    TITLE_SCREEN_STAGE_GO_TO_FILE_SELECT
+};
+extern u8 gTitleScreenStage;
 
 struct Unk_030034B0 {
     u8 unk0_0:1;
@@ -785,9 +813,9 @@ enum DeleteAllSaveDataScreenCursor {
 extern u8 gDeleteAllSaveDataScreenCursor;
 extern u8 gDeleteAllSaveDataMinigameUnlocked; // If up was being held when entering "Delete all save data" screen, then the minigame is unlocked
 
-extern u8 gUnk_03000828;
+extern u8 gSaveFilesStarted;
 
-extern u8 gUnk_03002900;
+extern u8 gFileSelectScreenTransitionDelay; // delay timer between confirming file and transition
 
 extern void *gUnk_030007D0;
 extern u8 *gUnk_03004D84; // TODO: pointer type?

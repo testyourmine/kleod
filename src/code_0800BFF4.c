@@ -1,4 +1,5 @@
 #include "global.h"
+#include "code_0800BFF4.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
 #include "code_080240F4.h"
@@ -39,8 +40,9 @@ extern struct Unk_080D89A8 gUnk_080D89A8[5][5];
 extern struct Unk_0300542C *gUnk_0818B704[6][7];
 
 // BFF4
-void sub_0800BFF4(void)
+void CommonWaitForNextFrame(void)
 {
+    // Normal, called during Namco boot, file select, world map, level gameplay, delete all save data
     sub_0800A49C();
     sub_08005CF4();
 
@@ -71,15 +73,16 @@ void sub_0800BFF4(void)
     gUnk_03003420 = 1;
 }
 
-// TODO: should be static variables inside sub_0800C108
+// TODO: should be static variables inside BossWaitForNextFrame
 extern u8 gUnk_03000000;
 extern u8 gUnk_03000001;
 extern u8 gUnk_03000002;
 extern u8 gUnk_03000003;
 
 // C108
-void sub_0800C108(void)
+void BossWaitForNextFrame(void)
 {
+    // Boss battle
     s8 sp0;
     s8 sp4;
     s32 temp_r0_2;
@@ -207,11 +210,12 @@ void sub_0800C108(void)
 }
 
 // C45C
-void sub_0800C45C(void)
+void LevelSelectWaitForNextFrame(void)
 {
+    // Level select
     sub_080098C8();
-    gUnk_03004678 = SIN(gBg2Alpha);
-    gUnk_030051B0 = COS(gBg2Alpha);
+    gBg2AlphaSin = SIN(gBg2Alpha);
+    gBg2AlphaCos = COS(gBg2Alpha);
 
     VBlankIntrWait();
 
@@ -237,8 +241,9 @@ void sub_0800C45C(void)
 }
 
 // C564
-void sub_0800C564(void)
+void CutsceneWaitForNextFrame(void)
 {
+    // Cutscenes
     sub_08005CF4();
 
     VBlankIntrWait();
@@ -266,7 +271,7 @@ void sub_0800C564(void)
     REG_BLDY = gBlendValue;
     REG_MOSAIC = MOSAIC_SET(gMosaicSize, gMosaicSize, gMosaicSize, gMosaicSize);
 
-    gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.sceneFrameCounter * 0x10) & 0xFF), MultiplyQ8(0x200, SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0x7F)));
+    gUnk_030034F8 = MultiplyQ8(SIN((gUnk_03004C20.sceneFrameCounter * 0x10) % 0x100), MultiplyQ8(0x200, SIN((gUnk_03004C20.sceneFrameCounter * 4) % 0x80)));
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
@@ -283,8 +288,9 @@ void sub_0800C564(void)
 }
 
 // C7EC
-void sub_0800C7EC(void)
+void GameOverWaitForNextFrame(void)
 {
+    // Game over, good night
     sub_0800A49C();
     sub_08005CF4();
 
@@ -318,6 +324,7 @@ void sub_0800C7EC(void)
 // C900
 void sub_0800C900(void)
 {
+    // Set by sub_08025A28, which is unused, so this is likely unused
     VBlankIntrWait();
 
     REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;
@@ -348,6 +355,7 @@ void sub_0800C900(void)
 // CA0C
 void sub_0800CA0C(u32 arg0)
 {
+    // Called once per level/room load
     u32 var_r4;
 
     gUnk_03003508 = 3;
@@ -507,7 +515,7 @@ void sub_0800CA0C(u32 arg0)
         gCallbackQueue.next[3] = sub_0800AC34;
         gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = sub_08026374;
-        gCallbackQueue.next[6] = sub_0800C108;
+        gCallbackQueue.next[6] = BossWaitForNextFrame;
         gCallbackQueue.next[7] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 8;
@@ -534,14 +542,14 @@ void sub_0800CA0C(u32 arg0)
             if (gUnk_03003410.unkA == 0)
             {
                 gCallbackQueue.next[4] = sub_08026374;
-                gCallbackQueue.next[5] = sub_0800BFF4;
+                gCallbackQueue.next[5] = CommonWaitForNextFrame;
                 gCallbackQueue.next[6] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 7;
             }
             else
             {
-                gCallbackQueue.next[4] = sub_0800BFF4;
+                gCallbackQueue.next[4] = CommonWaitForNextFrame;
                 gCallbackQueue.next[5] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 6;
@@ -550,13 +558,14 @@ void sub_0800CA0C(u32 arg0)
         else
         {
             gUnk_03003410.unk5 = 1;
-            gCallbackQueue.next[4] = sub_0800BFF4;
+            gCallbackQueue.next[4] = CommonWaitForNextFrame;
             gCallbackQueue.next[5] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 6;
         }
         
     }
+
     gUnk_030034E4 = 1;
     if (gUnk_03004C20.level == 6)
     {
@@ -598,8 +607,9 @@ void sub_0800CA0C(u32 arg0)
 }
 
 // D0C4
-void sub_0800D0C4(void)
+void TitleScreenWaitForNextFrame(void)
 {
+    // Title screen
     sub_08005CF4();
 
     VBlankIntrWait();

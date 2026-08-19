@@ -582,7 +582,7 @@ void sub_0804BE08(void)
     gIntrTable.hBlank = sub_0800107C;
     gCallbackQueue.next[0] = InputHandler_Normal;
     gCallbackQueue.next[1] = sub_0804EB64;
-    gCallbackQueue.next[2] = sub_0800C564;
+    gCallbackQueue.next[2] = CutsceneWaitForNextFrame;
     gCallbackQueue.next[3] = NULL + 1;
     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     gCallbackQueue.nextCount = 4;
@@ -1783,7 +1783,7 @@ void sub_0804E0E8(void)
                     gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->unk4] & 0xF;
                     gCallbackQueue.next[0] = InputHandler_Normal;
                     gCallbackQueue.next[1] = TransitionFromLevelSelectToWorldMap_FadeOut;
-                    gCallbackQueue.next[2] = sub_0800BFF4;
+                    gCallbackQueue.next[2] = CommonWaitForNextFrame;
                     gCallbackQueue.next[3] = NULL + 1;
                     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                     gCallbackQueue.nextCount = 4;
@@ -1795,14 +1795,14 @@ void sub_0804E0E8(void)
 
                 case 5:
                     gCallbackQueue.next[0] = InputHandler_Normal;
-                    gCallbackQueue.next[1] = sub_080487B4;
-                    gCallbackQueue.next[2] = sub_0800BFF4;
+                    gCallbackQueue.next[1] = NamcoScreenHandler;
+                    gCallbackQueue.next[2] = CommonWaitForNextFrame;
                     gCallbackQueue.next[3] = NULL + 1;
                     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                     gCallbackQueue.nextCount = 4;
 
                     sub_08003D58();
-                    gUnk_03004D9C = 0;
+                    gTitleScreenStage = 0;
                     gUnk_03004C20.sceneFrameCounter = -1;
                     return;
             }

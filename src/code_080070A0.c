@@ -1559,7 +1559,7 @@ void sub_0800A804(void)
         gUnk_030034BC = 0;
         gUnk_03003410.unk4 = 1;
         gCallbackQueue.next[0] = sub_08039D8C;
-        gCallbackQueue.next[1] = sub_0800BFF4;
+        gCallbackQueue.next[1] = CommonWaitForNextFrame;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
@@ -1758,7 +1758,7 @@ void sub_0800AC34(void)
 
         gUnk_03003410.unk4 = 1;
         gCallbackQueue.next[0] = sub_08039D8C;
-        gCallbackQueue.next[1] = sub_0800C108;
+        gCallbackQueue.next[1] = BossWaitForNextFrame;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;

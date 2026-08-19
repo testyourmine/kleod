@@ -193,21 +193,21 @@ void sub_08039D8C(void)
     }
 
     gBlendValue = 9;
-    gUnk_03004658[0xC] = 0;
+    gUnk_03004658->cursorIndex = 0;
     gCallbackQueue.next[0] = InputHandler_Normal;
     gCallbackQueue.next[1] = sub_0803A410;
     gCallbackQueue.next[3] = NULL + 1;
     if (gUnk_03004C20.level == 8)
     {
-        gCallbackQueue.next[2] = sub_0800C108;
+        gCallbackQueue.next[2] = BossWaitForNextFrame;
     }
     else if (gUnk_03004C20.level == 0)
     {
-        gCallbackQueue.next[2] = sub_0800C45C;
+        gCallbackQueue.next[2] = LevelSelectWaitForNextFrame;
     }
     else
     {
-        gCallbackQueue.next[2] = sub_0800BFF4;
+        gCallbackQueue.next[2] = CommonWaitForNextFrame;
     }
     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     gCallbackQueue.nextCount = 4;
@@ -232,15 +232,15 @@ void sub_08039D8C(void)
 
     if (gUnk_03004C20.level == 8)
     {
-        sub_0800C108();
+        BossWaitForNextFrame();
     }
     else if (gUnk_03004C20.level == 0)
     {
-        sub_0800C45C();
+        LevelSelectWaitForNextFrame();
     }
     else
     {
-        sub_0800BFF4();
+        CommonWaitForNextFrame();
     }
 
     if (gUnk_03003410.unk4 != 0)
@@ -334,15 +334,15 @@ void sub_0803A410(void)
     sp4 = (gNewKeys & (START_BUTTON | B_BUTTON)) != 0;
     if (gNewKeys & A_BUTTON)
     {
-        sp4 = gUnk_03004658[0xC] + 1;
+        sp4 = gUnk_03004658->cursorIndex + 1;
     }
 
     if (gNewKeys & (DPAD_DOWN | DPAD_UP))
     {
         for (var_r5 = 0; var_r5 < 2; var_r5++)
         {
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xA5], 0x4);
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xB7], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xA5], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xB7], 0x4);
         }
 
         if ((gUnk_030034C0 == 0) || (gUnk_030034C0 == 2))
@@ -350,20 +350,20 @@ void sub_0803A410(void)
             if (gNewKeys & DPAD_DOWN)
             {
                 m4aSongNumStart(0x51);
-                gUnk_03004658[0xC] += 1;
-                if (gUnk_03004658[0xC] > 3)
+                gUnk_03004658->cursorIndex += 1;
+                if (gUnk_03004658->cursorIndex > 3)
                 {
-                    gUnk_03004658[0xC] = 0;
+                    gUnk_03004658->cursorIndex = 0;
                 }
             }
 
             if (gNewKeys & DPAD_UP)
             {
                 m4aSongNumStart(0x51);
-                gUnk_03004658[0xC] -= 1;
-                if (gUnk_03004658[0xC] & 0x80)
+                gUnk_03004658->cursorIndex -= 1;
+                if (gUnk_03004658->cursorIndex & 0x80)
                 {
-                    gUnk_03004658[0xC] = 3;
+                    gUnk_03004658->cursorIndex = 3;
                 }
             }
         }
@@ -372,20 +372,20 @@ void sub_0803A410(void)
             if (gNewKeys & DPAD_DOWN)
             {
                 m4aSongNumStart(0x51);
-                gUnk_03004658[0xC] += 1;
-                if (gUnk_03004658[0xC] > 2)
+                gUnk_03004658->cursorIndex += 1;
+                if (gUnk_03004658->cursorIndex > 2)
                 {
-                    gUnk_03004658[0xC] = 0;
+                    gUnk_03004658->cursorIndex = 0;
                 }
             }
 
             if (gNewKeys & DPAD_UP)
             {
                 m4aSongNumStart(0x51);
-                gUnk_03004658[0xC] -= 1;
-                if (gUnk_03004658[0xC] & 0x80)
+                gUnk_03004658->cursorIndex -= 1;
+                if (gUnk_03004658->cursorIndex & 0x80)
                 {
-                    gUnk_03004658[0xC] = 2;
+                    gUnk_03004658->cursorIndex = 2;
                 }
             }
         }
@@ -396,13 +396,13 @@ void sub_0803A410(void)
             {
                 if (gUnk_030034BC == 0)
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xA5 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0x9D + var_r4] + gUnk_03000800;
-                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xB7 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0xAF + var_r4] + gUnk_03000800;
+                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xA5 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0x9D + var_r4] + gUnk_03000800;
+                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xB7 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0xAF + var_r4] + gUnk_03000800;
                 }
                 else
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xA5 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0x9D + var_r4];
-                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658[0xC] * 3)) << 5) + 0xB7 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0xAF + var_r4];
+                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xA5 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0x9D + var_r4];
+                    gBgTilemapBufs[gUnk_030034BC][((var_r5 + (gUnk_03004658->cursorIndex * 3)) << 5) + 0xB7 + var_r4] = gBgDataPtrs.pBufBg3Tilemap[(var_r5 * 0x1E) + 0xAF + var_r4];
                 }
             }
         }
@@ -473,7 +473,7 @@ void sub_0803A410(void)
         case 5:
             gBlendValue = 0;
             gUnk_03004C20.level = 9;
-            gUnk_03004D9C = 0;
+            gTitleScreenStage = 0;
             sub_0800A468();
             gCallbackQueue.current[1] = TransitionFromLevelSelectToBootScreen_FadeOut;
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tilemap);
@@ -530,11 +530,11 @@ void sub_0803A8B8(void)
 
     if (gUnk_03004C20.level == 8)
     {
-        gCallbackQueue.next[2] = sub_0800C108;
+        gCallbackQueue.next[2] = BossWaitForNextFrame;
     }
     else
     {
-        gCallbackQueue.next[2] = sub_0800BFF4;
+        gCallbackQueue.next[2] = CommonWaitForNextFrame;
     }
     gCallbackQueue.next[0] = InputHandler_Normal;
     gCallbackQueue.next[1] = sub_0803AAA0;
@@ -602,11 +602,11 @@ void sub_0803AAA0(void)
     
             if (gUnk_03004C20.level == 8)
             {
-                gCallbackQueue.next[2] = sub_0800C108;
+                gCallbackQueue.next[2] = BossWaitForNextFrame;
             }
             else
             {
-                gCallbackQueue.next[2] = sub_0800BFF4;
+                gCallbackQueue.next[2] = CommonWaitForNextFrame;
             }
             gCallbackQueue.next[0] = InputHandler_Normal;
             gCallbackQueue.next[1] = sub_08039D8C;
