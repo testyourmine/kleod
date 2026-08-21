@@ -1022,7 +1022,7 @@ block_240:
                 var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - 0x10) >> 3) + (((s32) (gEntityInfo[arg0].yPosBg2 - 0x1C) >> 3) * gBgInfo[2].hLength)]);
             }
 
-            if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))
+            if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.levelHasWarpDoors == 0)))
             {
                 gEntityInfo[arg0].xPosBg2 = sp0;
                 if ((gEntityInfo[arg0].unkF == 0x15) || (gEntityInfo[arg0].unkF == 0x10))
@@ -1594,7 +1594,7 @@ block_379:
                 var_r7 = max(var_r7, gBgDataPtrs.pBufBg2Tilemap[((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >> 3) + (((gEntityInfo[arg0].yPosBg2 - 2) >> 3) * gBgInfo[2].hLength)]);
             }
 
-            if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.unk11 == 0)))
+            if (((u32) gUnk_03004654[0x18] <= (u32) var_r7) || (((u32) gUnk_03004654[0x1] <= (u32) var_r7) && ((u32) gUnk_03004654[0x14] >= (u32) var_r7) && (gUnk_03004C20.levelHasWarpDoors == 0)))
             {
                 if ((gUnk_03000824 != 0) && (gUnk_03005424 != 0))
                 {
@@ -2579,7 +2579,7 @@ block_128:
                 }                        
             }
 
-            if ((gUnk_03004654[0x1A] <= sp34) || ((gUnk_03004654[0x1] <= sp34) && (gUnk_03004654[0x14] >= sp34) && (gUnk_03004C20.unk11 == 0)))
+            if ((gUnk_03004654[0x1A] <= sp34) || ((gUnk_03004654[0x1] <= sp34) && (gUnk_03004654[0x14] >= sp34) && (gUnk_03004C20.levelHasWarpDoors == 0)))
             {
                 if (gEntityInfo[arg0].unkF != 0x14)
                 {
@@ -2830,7 +2830,7 @@ block_128:
             break;
 
         case 19:
-            if (gUnk_03004C20.unkB == 0)
+            if (gUnk_03004C20.isHoverBoardLevel == 0)
             {
                 if (gEntityInfo[arg0].unk11 == 0x7A)
                 {
@@ -3847,7 +3847,7 @@ block_128:
                     {
                         goto block_716;
                     }
-                    if (gUnk_03004C20.unk11 != 0)
+                    if (gUnk_03004C20.levelHasWarpDoors != 0)
                     {
                         goto block_716;
 
@@ -5740,7 +5740,7 @@ void sub_0801CE38(u8 arg0)
 
     if (gEntityInfo[arg0].unkF == 0)
     {
-        if ((gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3)
+        if ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
             sub_08044F6C(arg0);
             gEntityInfo[arg0].xPosBg2 += SIN((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 0x6;
@@ -5788,7 +5788,7 @@ void sub_0801CE38(u8 arg0)
             }
         }
 
-        if ((gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3)
+        if ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
             sub_08044F6C(arg0);
             gEntityInfo[arg0].xPosBg2 -= SIN(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9;

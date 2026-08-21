@@ -410,7 +410,7 @@ void TransitionFromRoomToRoom_FadeOut(void)
 
         sub_08002FD0();
         sub_0800B3C0();
-        if (gUnk_03004C20.unkB == 1)
+        if (gUnk_03004C20.isHoverBoardLevel == 1)
         {
             gUnk_030051C8 = gUnk_03004654[1] - 1;
             gUnk_03005284->unk8_0 = 3;
@@ -1660,7 +1660,7 @@ void sub_080264A4(void)
     }
     gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= LEVEL_INFO_BEATEN_FLAG;
 
-    if (gUnk_03004C20.unk10 == 1)
+    if (gUnk_03004C20.levelHasTimer == 1)
     {
         // i must be reused to match, here it is a boolean for new best time
         i = 0;

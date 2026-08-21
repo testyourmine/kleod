@@ -356,10 +356,11 @@ void ClearedAllVisionsScreenWaitForNextFrame(void)
 void sub_0800CA0C(u32 arg0)
 {
     // Called once per level/room load
+    // arg0 is 0 when starting level, 1 when loading from file select (if saved progress), 2 when reloading (room/retry/death)
     u32 var_r4;
 
     gUnk_03003508 = 3;
-    gUnk_03004C20.unkB = 0;
+    gUnk_03004C20.isHoverBoardLevel = 0;
     gUnk_03004C20.unkA = 0;
 
     for (var_r4 = 0; var_r4 < 0xD; var_r4++)
@@ -370,7 +371,7 @@ void sub_0800CA0C(u32 arg0)
             gUnk_03004C20.unkA = 1;
             if (gUnk_03004C20.level != 8)
             {
-                gUnk_03004C20.unkB = 1;
+                gUnk_03004C20.isHoverBoardLevel = 1;
                 gUnk_03003508 = 6;
             }
             break;
@@ -408,7 +409,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.keys = 0;
         gUnk_03005220.unk14 = 0;
         gUnk_03005220.unk3_6 = gUnk_03005220.unk3_5 = 0;
-        if ((gUnk_03004C20.unkB != 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
+        if ((gUnk_03004C20.isHoverBoardLevel != 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
         {
             gUnk_03005220.unk4 = gUnk_03005284->unk18;
         }
@@ -426,7 +427,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.levelTimeCentiseconds = 0;
         gUnk_03005220.levelTimeSeconds = 0;
         gUnk_03005220.levelTimeMinutes = 0;
-        gUnk_03004C20.unk8 = 0;
+        gUnk_03004C20.roomsRotationBits = 0;
         gUnk_03005220.unk1C = 0;
         gUnk_03005220.unk5E = 0;
     }
@@ -451,7 +452,7 @@ void sub_0800CA0C(u32 arg0)
         do
         {
             gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
-            gUnk_03004C20.unk8 = gUnk_03005284->unk16;
+            gUnk_03004C20.roomsRotationBits = gUnk_03005284->unk16;
             gUnk_03005220.unk60 = 0;
             gUnk_03005220.levelTimeCentiseconds = 0;
             gUnk_03005220.levelTimeSeconds = 0;
@@ -465,7 +466,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005284->unk1 = gUnk_03004C20.world;
         gUnk_03005284->unk2 = gUnk_03004C20.level;
         gUnk_03005284->unk8_0 = gUnk_03005220.hearts;
-        gUnk_03005284->unk16 = gUnk_03004C20.unk8;
+        gUnk_03005284->unk16 = gUnk_03004C20.roomsRotationBits;
         gUnk_03005284->unk8_2 = gUnk_03005220.stars;
         gUnk_03005284->unk9_4 = gUnk_03005220.keys;
         gUnk_03005284->unk14 = gUnk_03005220.unk14;
@@ -475,7 +476,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005284->unk7 = gUnk_03005220.unk58;
         gUnk_03005284->unk9_7 = gUnk_03005220.unk1_7;
         gUnk_03005284->unk18 = gUnk_03005220.unk4;
-        if (gUnk_03004C20.unkB == 0)
+        if (gUnk_03004C20.isHoverBoardLevel == 0)
         {
             gUnk_03005284->unk8_5 = gUnk_03005220.dreamStones;
             gUnk_03005284->unkC = gUnk_03005220.unk8;
@@ -523,7 +524,7 @@ void sub_0800CA0C(u32 arg0)
     else
     {
         gCallbackQueue.next[1] = sub_0800A804;
-        if (gUnk_03004C20.unkB == 1)
+        if (gUnk_03004C20.isHoverBoardLevel == 1)
         {
             gCallbackQueue.next[2] = HoverBoardScrollUpdate;
         }
@@ -537,7 +538,7 @@ void sub_0800CA0C(u32 arg0)
         }
         gCallbackQueue.next[3] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
 
-        if (arg0 < 2)
+        if ((arg0 == 0) || (arg0 == 1))
         {
             if (gUnk_03003410.unkA == 0)
             {
@@ -597,11 +598,11 @@ void sub_0800CA0C(u32 arg0)
 
     if ((gUnk_03004C20.world == 5) && (gUnk_03004C20.level == 2 || gUnk_03004C20.level == 3))
     {
-        gUnk_03004C20.unk11 = 1;
+        gUnk_03004C20.levelHasWarpDoors = 1;
     }
     else
     {
-        gUnk_03004C20.unk11 = 0;
+        gUnk_03004C20.levelHasWarpDoors = 0;
     }
     gUnk_0300542C = gUnk_0818B704[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
 }

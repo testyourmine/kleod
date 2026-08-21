@@ -618,7 +618,7 @@ void sub_0800D188(void)
                 gEntityInfo[0].xPosBg2 = sp18;
                 goto block_236;
             }
-            else if (gUnk_03004C20.unk11 != 0)
+            else if (gUnk_03004C20.levelHasWarpDoors != 0)
             {
                 if (gNewKeys & DPAD_UP)
                 {
@@ -1816,7 +1816,7 @@ block_474:
 
                     if (gEntityAnimationInfo[0].state != 0xB)
                     {
-                        if (gUnk_03004C20.unkB == 0)
+                        if (gUnk_03004C20.isHoverBoardLevel == 0)
                         {
                             m4aSongNumStart(0x2D);
                         }
@@ -3453,7 +3453,7 @@ block_1317:
                 goto block_1365;
             }
 
-            if (gUnk_03004C20.unk11 != 0)
+            if (gUnk_03004C20.levelHasWarpDoors != 0)
             {
                 if (gNewKeys & DPAD_UP)
                 {
@@ -3845,7 +3845,7 @@ block_1433:
                 gEntityInfo[0xA].xPosBg2 = gEntityInfo[0].xPosBg2 - (gUnk_080D90B8[0x12 - gUnk_03005220.unk33] + 7);
             }
 
-            if (gUnk_03004C20.unkB == 0)
+            if (gUnk_03004C20.isHoverBoardLevel == 0)
             {
                 if (gUnk_03005220.unk33 > 0xA)
                 {
@@ -4399,7 +4399,7 @@ block_1696:
             gEntityInfo[0xA].unk10 = 0;
             gUnk_03005220.unk33 = 0;
 
-            if (gUnk_03004C20.unkB == 1)
+            if (gUnk_03004C20.isHoverBoardLevel == 1)
             {
                 gUnk_03005418 = gUnk_08055614;
                 sub_08025B78(0, 0xF);
@@ -4504,7 +4504,7 @@ block_1722:
             {
                 if ((gEntityAnimationInfo[0].state == 0) || (gEntityAnimationInfo[0].state == 0x16) || ((u32) gEntityAnimationInfo[0].state > 0x1B))
                 {
-                    if ((gUnk_03004C20.unkB != 0) && (gEntityAnimationInfo[0].state != 0x1E) && (gEntityAnimationInfo[0].state != 0x21))
+                    if ((gUnk_03004C20.isHoverBoardLevel != 0) && (gEntityAnimationInfo[0].state != 0x1E) && (gEntityAnimationInfo[0].state != 0x21))
                     {
 
                     }
@@ -4547,7 +4547,7 @@ block_1756:
                 {
                     if (gUnk_03005220.unk5C == 0)
                     {
-                        if (gUnk_03004C20.unkB == 0)
+                        if (gUnk_03004C20.isHoverBoardLevel == 0)
                         {
                             m4aSongNumStart(0x2E);
                         }
@@ -4558,7 +4558,7 @@ block_1756:
                         goto block_1770;
                     }
                     gUnk_03005220.unk5C = 0;
-                    if ((gUnk_03004C20.unk11 != 0) && (sp20 = (u32) gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[0].xPosBg2 >> 3) + (((gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], ((u32) gUnk_03004654[0x1] <= sp20)) && (sp20 <= (u32) gUnk_03004654[0x14]))
+                    if ((gUnk_03004C20.levelHasWarpDoors != 0) && (sp20 = (u32) gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[0].xPosBg2 >> 3) + (((gEntityInfo[0].yPosBg2 - 4) >> 3) * gBgInfo[2].hLength)], ((u32) gUnk_03004654[0x1] <= sp20)) && (sp20 <= (u32) gUnk_03004654[0x14]))
                     {
                         sub_08025B78(0, 0x22);
                     }
@@ -4591,7 +4591,7 @@ block_1770:
                 }
             }
 
-            if (gUnk_03004C20.unkB == 1)
+            if (gUnk_03004C20.isHoverBoardLevel == 1)
             {
                 if ((gUnk_03005220.unk31 == 1) && (gUnk_03003410.unkB <= 1) && (gUnk_03005220.unk46 == 0))
                 {
@@ -4791,7 +4791,7 @@ block_1770:
                 gEntityInfo[0].xPosBg2 = sp18;
             }
 
-            if (gUnk_03004C20.unk10 != 1)
+            if (gUnk_03004C20.levelHasTimer != 1)
             {
 
             }

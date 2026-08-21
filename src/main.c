@@ -66,7 +66,7 @@ void AgbMain(void)
     gBlendValue = gMosaicSize = 0;
     gUnk_03005428 = 1;
     gUnk_03005284->unk16 = 0;
-    gUnk_03004C20.unk8 = 0;
+    gUnk_03004C20.roomsRotationBits = 0;
     gUnk_03003420 = 0;
     thunk_UpdateRng();
     SetEepromTimerIntr(3, (u32 *) &gIntrTable.timer3);

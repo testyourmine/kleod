@@ -314,7 +314,7 @@ void sub_0803A22C(void)
 
     DmaCopy16(3, &gBgTilemapBufs[gUnk_030034BC], gBgInfo[gUnk_030034BC].pTilemap, 0x800);
 
-    if (gUnk_03004C20.unk10 == 1)
+    if (gUnk_03004C20.levelHasTimer == 1)
     {
         DrawLevelTimer();
     }

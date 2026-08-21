@@ -713,9 +713,9 @@ void sub_08044BB8(void)
     thunk_HeapFree(gUnk_030034D4);
 
     scrollFlags = (gUnk_03004C20.room - 1) * 2;
-    i = (gUnk_03004C20.unk8 >> scrollFlags) + 1;
+    i = (gUnk_03004C20.roomsRotationBits >> scrollFlags) + 1;
     i = i % 4;
-    gUnk_03004C20.unk8 = (gUnk_03004C20.unk8 & ~(3 << scrollFlags)) | (i << scrollFlags);
+    gUnk_03004C20.roomsRotationBits = (gUnk_03004C20.roomsRotationBits & ~(3 << scrollFlags)) | (i << scrollFlags);
 
     if (i == 0)
     {
@@ -764,7 +764,7 @@ void sub_08044F6C(u8 arg0)
         gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2;
     }
 
-    var_r9 = ((gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3) * 0x40;
+    var_r9 = ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3) * 0x40;
     if (var_r9 != 0)
     {
         var_r8 = gEntityInfo[arg0].xPosBg2;

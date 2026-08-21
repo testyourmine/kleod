@@ -278,15 +278,15 @@ extern struct Unk_030034A0 *gUnk_030034A0;
 struct Unk_03004C20 {
     /* 0x00 */ u32 sceneFrameCounter; // frame counter, per scene, pausing and then later unpausing restores value from before pause
     /* 0x04 */ u32 globalFrameCounter; // frame counter, global, restarts upon returning to title screen
-    /* 0x08 */ u16 unk8;
+    /* 0x08 */ u16 roomsRotationBits; // bit field of room rotation, 2 bits per room, values 0-3 (90 degree rotation per)
     /* 0x0A */ u8 unkA;
-    /* 0x0B */ u8 unkB;
-    /* 0x0C */ u8 level;
-    /* 0x0D */ u8 world;
-    /* 0x0E */ u8 room;
-    /* 0x0F */ u8 unkF;
-    /* 0x10 */ u8 unk10;
-    /* 0x11 */ u8 unk11;
+    /* 0x0B */ u8 isHoverBoardLevel; // level is Hover Board level
+    /* 0x0C */ u8 level; // one-indexed
+    /* 0x0D */ u8 world; // one-indexed
+    /* 0x0E */ u8 room; // one-indexed
+    /* 0x0F */ u8 unkF; // written to once, otherwise unused
+    /* 0x10 */ u8 levelHasTimer; // level has timer (EX-1 and EX-3)
+    /* 0x11 */ u8 levelHasWarpDoors; // level has warp doors (5-2 and 5-3)
     /* 0x12 */ u8 demoNumber;
     /* 0x13 */ u8 demoInputIndex;
     /* 0x14 */ u8 demoNextInputTimer;

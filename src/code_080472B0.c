@@ -1028,7 +1028,7 @@ void TitleScreenInit(void)
     gUnk_03005284->unk1C = 2;
     gUnk_03005284->unk1D = 1;
     gUnk_03004C20.unkA = 0;
-    gUnk_03004C20.unkB = 0;
+    gUnk_03004C20.isHoverBoardLevel = 0;
 
     REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP;
     gBlendValue = 0x10;
@@ -1612,7 +1612,7 @@ void TitleScreenHandler(void)
             }
             else
             {
-                gUnk_03003410.unk6 = gSaveFilesStarted;
+                gUnk_03003410.unk6 = 0;
             }
 
             if (gNewKeys & B_BUTTON)

@@ -192,14 +192,14 @@ void sub_08001158(void)
                 gCurrentRoomBg2Bounds.right = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].right;
                 gCurrentRoomBg2Bounds.bottom = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].bottom;
 
-                temp_r4 = (gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+                temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 temp_r3 = (gUnk_03005284->unk16 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (temp_r4 != temp_r3)
                 {
                     sub_0804517C(((u8)(temp_r3 + 4) - temp_r4) & 3);
                     temp_r2 = (gUnk_03004C20.room - 1) * 2;
-                    temp_r1 = ((gUnk_03004C20.unk8 >> temp_r2) + 1) & 3;
-                    gUnk_03004C20.unk8 = (gUnk_03004C20.unk8 & ~(3 << temp_r2)) | (temp_r1 << temp_r2);
+                    temp_r1 = ((gUnk_03004C20.roomsRotationBits >> temp_r2) + 1) & 3;
+                    gUnk_03004C20.roomsRotationBits = (gUnk_03004C20.roomsRotationBits & ~(3 << temp_r2)) | (temp_r1 << temp_r2);
                 }
             }
 
@@ -207,19 +207,19 @@ void sub_08001158(void)
         }
         else if (gUnk_03003410.unk9 == 1)
         {
-            temp_r4 = (gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+            temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
             temp_r3 = (gUnk_03005284->unk16 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
             if (temp_r4 != temp_r3)
             {
                 sub_0804517C(((u8)(temp_r3 + 4) - temp_r4) & 3);
-                gUnk_03004C20.unk8 = gUnk_03005284->unk16;
+                gUnk_03004C20.roomsRotationBits = gUnk_03005284->unk16;
             }
         }
     }
     else
     {
         gUnk_03005284->unk16 = 0;
-        gUnk_03004C20.unk8 = 0;
+        gUnk_03004C20.roomsRotationBits = 0;
     }
     sub_08002FD0();
 
@@ -275,13 +275,13 @@ void sub_08001158(void)
         REG_WININ = WININ_WIN1_CLR | WININ_WIN1_BG0 | WININ_WIN0_CLR | WININ_WIN0_BG0;
         REG_WINOUT = WINOUT_WIN01_CLR | WINOUT_WIN01_OBJ | WINOUT_WIN01_BG_ALL;
         REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON;
-        gUnk_03004C20.unk10 = 1;
+        gUnk_03004C20.levelHasTimer = 1;
         DrawLevelTimer();
     }
     else
     {
         REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON;
-        gUnk_03004C20.unk10 = 0;
+        gUnk_03004C20.levelHasTimer = 0;
     }
 
     if (gUnk_03004C20.level != 8)
@@ -1193,7 +1193,7 @@ void sub_08002FD0(void)
         {
             gUnk_030051C8 = gUnk_03004654[1] - 1;
             gSoundVolume = 0xFFFF;
-            gUnk_03004C20.unk8 = 0;
+            gUnk_03004C20.roomsRotationBits = 0;
             gUnk_03005284->unk6 = 0;
             gUnk_03005284->unk18 = gUnk_03005220.unk4 = 0;
         }
@@ -1203,7 +1203,7 @@ void sub_08002FD0(void)
             if ((gUnk_03005284->unk6 == 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
             {
                 gUnk_030051C8 = gUnk_03004654[1] - 1;
-                gUnk_03004C20.unk8 = 0;
+                gUnk_03004C20.roomsRotationBits = 0;
             }
             else
             {
@@ -1228,7 +1228,7 @@ void sub_08002FD0(void)
     }
 
     gUnk_03004C20.unkA = 0;
-    gUnk_03004C20.unkB = 0;
+    gUnk_03004C20.isHoverBoardLevel = 0;
     gUnk_03004C20.sceneFrameCounter = 0;
     sub_080144C4();
 

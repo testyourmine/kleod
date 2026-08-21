@@ -2264,7 +2264,7 @@ void sub_0800B3C0(void)
                 break;
 
             case 0x6D:
-                temp_r3_3 = ((s32) gUnk_03004C20.unk8 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+                temp_r3_3 = ((s32) gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (gUnk_03004C10 == NULL)
                 {
                     gUnk_03004C10 = OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5);
