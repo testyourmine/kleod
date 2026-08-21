@@ -670,7 +670,7 @@ void sub_08047F80(void)
 }
 
 // 48028
-void CheckForUnlockExStages(void)
+void sub_08048028(void)
 {
     // Called on transition to level select
     u8 nbrExStagesAllStones;
@@ -821,11 +821,11 @@ void CheckForUnlockExStages(void)
         }
     }
 
-    // remove CheckForUnlockExStages from callback queue
+    // remove sub_08048028 from callback queue
     removed = 0;
     for (j = 0; j < (gCallbackQueue.currentCount - 1); j++)
     {
-        if ((gCallbackQueue.current[j] == CheckForUnlockExStages) || (removed == 1))
+        if ((gCallbackQueue.current[j] == sub_08048028) || (removed == 1))
         {
             gCallbackQueue.next[j] = gCallbackQueue.current[j + 1];
             removed = 1;

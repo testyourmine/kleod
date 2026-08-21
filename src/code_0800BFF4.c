@@ -288,7 +288,7 @@ void CutsceneWaitForNextFrame(void)
 }
 
 // C7EC
-void GameOverWaitForNextFrame(void)
+void GameOverScreenWaitForNextFrame(void)
 {
     // Game over, good night
     sub_0800A49C();
@@ -322,9 +322,9 @@ void GameOverWaitForNextFrame(void)
 }
 
 // C900
-void sub_0800C900(void)
+void ClearedAllVisionsScreenWaitForNextFrame(void)
 {
-    // Set by sub_08025A28, which is unused, so this is likely unused
+    // cleared all visions screen
     VBlankIntrWait();
 
     REG_BG0HOFS = (gBgInfo[0].hOfs >> 2) & 0x1FF;

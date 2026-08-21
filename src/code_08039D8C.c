@@ -635,12 +635,13 @@ void sub_0803AAA0(void)
 // 3AC18
 u8 sub_0803AC18(u8 arg0)
 {
+    // Called on transition to world map
     u32 world;
     u32 level;
-    u8 var_sl;
-    u8 var_ip;
-    u8 var_r6;
-    u8 var_r8;
+    u8 nbrExStagesAllStones;
+    u8 nbrPuzzleStagesAllStones;
+    u8 nbrStagesBeaten;
+    u8 nbrActionStagesAllStones;
 
     if (arg0 < 4)
     {
@@ -651,47 +652,49 @@ u8 sub_0803AC18(u8 arg0)
     }
     else if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
-        var_r8 = 0;
-        var_ip = 0;
-        var_r6 = 0;
-        var_sl = 0;
+        nbrActionStagesAllStones = 0;
+        nbrPuzzleStagesAllStones = 0;
+        nbrStagesBeaten = 0;
+        nbrExStagesAllStones = 0;
+
         for (world = 0; world < 5; world++)
         {
             for (level = 0; level < 7; level++)
             {
-                if ((level == 3 || level == 5) && (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100)
+                if (((level == 3) || (level == 5)) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
-                    var_r8 += 1;
+                    nbrActionStagesAllStones += 1;
                 }
                 else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
-                    var_ip += 1;
+                    nbrPuzzleStagesAllStones += 1;
                 }
+
                 if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
-                    var_r6 += 1;
+                    nbrStagesBeaten += 1;
                 }
             }
         }
 
         if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
-            var_sl += 1;
+            nbrExStagesAllStones += 1;
         }
         if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
-            var_sl += 1;
+            nbrExStagesAllStones += 1;
         }
     
-        if ((arg0 == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (var_r6 == 0x23))
+        if ((arg0 == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             return 1;
         }
-        if ((arg0 == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((var_ip + var_r8) > 0x18))
+        if ((arg0 == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             return 1;
         }
-        if ((arg0 == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((var_ip + var_r8 + var_sl) == 0x25))
+        if ((arg0 == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
         {
             return 1;
         }
@@ -795,48 +798,51 @@ void sub_0803B074(void)
 // 3B0A0
 void sub_0803B0A0(void)
 {
-    u8 sp0;
-    u8 var_ip;
+    // Called on transition to world map (once)
+    u8 nbrExStagesAllStones;
+    u8 nbrActionStagesAllStones;
     u8 world;
     u8 level;
-    u8 var_r6;
-    u8 var_r8;
+    u8 nbrStagesBeaten;
+    u8 nbrPuzzleStagesAllStones;
 
     if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
-        var_ip = 0;
-        var_r8 = 0;
-        var_r6 = 0;
-        sp0 = 0;
+        nbrActionStagesAllStones = 0;
+        nbrPuzzleStagesAllStones = 0;
+        nbrStagesBeaten = 0;
+        nbrExStagesAllStones = 0;
+
         for (world = 0; world < 5; world++)
         {
             for (level = 0; level < 7; level++)
             {
-                if ((level == 3 || level == 5) && (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100)
+                if (((level == 3) || (level == 5)) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
-                    var_ip += 1;
+                    nbrActionStagesAllStones += 1;
                 }
                 else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
-                    var_r8 += 1;
+                    nbrPuzzleStagesAllStones += 1;
                 }
+
                 if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
-                    var_r6 += 1;
+                    nbrStagesBeaten += 1;
                 }
             }
         }
 
         if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
-            sp0 += 1;
+            nbrExStagesAllStones += 1;
         }
         if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
-            sp0 += 1;
+            nbrExStagesAllStones += 1;
         }
 
-        if (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (var_r6 == 0x23))
+        if (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             gUnk_03004C08.unk0_0 = 4;
             gUnk_03004C08.unk2 = 0;
@@ -844,7 +850,7 @@ void sub_0803B0A0(void)
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((var_r8 + var_ip) > 0x18))
+        else if (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             gUnk_03004C08.unk0_0 = 5;
             gUnk_03004C08.unk2 = 0;
@@ -852,7 +858,7 @@ void sub_0803B0A0(void)
             gCallbackQueue.current[1] = sub_0803B378;
             return;
         }
-        else if (((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((sp0 + var_ip + var_r8) == 0x25))
+        else if (((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
             gUnk_03004C08.unk0_0 = 6;
             gUnk_03004C08.unk2 = 0;

@@ -12,7 +12,7 @@ void sub_08047ABC(void);
 void sub_08047B1C(void);
 void sub_08047EC8(void);
 void sub_08047F80(void);
-void CheckForUnlockExStages(void);
+void sub_08048028(void);
 
 void BootScreenInit(void);
 void NamcoScreenInit(void);

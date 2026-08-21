@@ -60,7 +60,7 @@ struct Unk_03004658 {
     u8 padE[0xF - 0xE];
     s8 fileSelectStage; // stage, 0 is select, 1 is confirm
 };
-extern struct Unk_03004658 *gUnk_03004658; // TODO: struct?
+extern struct Unk_03004658 *gUnk_03004658;
 
 #define LEVEL_INFO_DREAM_STONES_MASK 0x7F
 #define LEVEL_INFO_BEATEN_FLAG 0x80
@@ -74,7 +74,7 @@ struct Unk_03004670 {
     /* 0x05 */ u8 bestEx3TimeSeconds; // seconds of best time in EX-3
     /* 0x06 */ u8 bestEx3TimeCentiseconds; // centiseconds of best time in EX-3
     /* 0x07 */ u8 pad7[0x8 - 0x7];
-    /* 0x08 */ u8 levelInfo[6][8]; // indexed by [world-1][level-1], bottom 7 bits is collected dream stones, 0x80 is level cleared
+    /* 0x08 */ u8 levelInfo[6][8]; // indexed by [world][level], bottom 7 bits is collected dream stones, 0x80 is level cleared
     /* 0x38 */ s32 unk38; // number of times file accessed? seemingly unused
     /* 0x3C */ u8 addChecksum;
     /* 0x3D */ u8 xorChecksum;
@@ -164,7 +164,7 @@ struct BgDataPtrs {
     /* 0x18 */ void *pBufBg3Tiles; // BG3 tiles
     /* 0x1C */ u16 *pBufBg3Tilemap; // BG3 tilemap
 }; /* size = 0x20 */
-extern struct BgDataPtrs gBgDataPtrs; // TODO: array or struct?
+extern struct BgDataPtrs gBgDataPtrs;
 extern void *gUnk_03005290;
 
 extern u8 gUnk_03003420;
@@ -177,7 +177,7 @@ extern u8 gUnk_03003650[][0x40];
 extern u16 gUnk_03004C40[];
 extern u16 gUnk_030052C0[];
 
-extern u32 gUnk_03005488;
+extern u32 gUnk_03005488; // game over screen related
 
 // TODO: figure out if unk8 can be loaded as u16 without union, or what the real solution is
 union __attribute__((packed)) EntityInfo_8 {
@@ -447,7 +447,7 @@ struct Unk_03005400 {
     /* 0x08_2 */u8 unk8_2:1;
     /* 0x08_3 */u8 unk8_3:1;
     /* 0x08_4 */u8 unk8_4:1;
-    /* 0x08_5 */u8 unk8_5:1; // TODO: verify
+    /* 0x08_5 */u8 unk8_5:1;
     /* 0x08_6 */u8 unk8_6:1;
     /* 0x08_7 */u8 unk8_7:1;
     /* 0x09 */ u8 unk9;
@@ -757,7 +757,7 @@ extern u8 gUnk_030034C0;
 
 struct Unk_03004C08 {
     u8 unk0_0:4;
-    u8 unk0_4:4;
+    u8 unk0_4:4; // world map index, 0-4 worlds, 5-7 ex1-3
     s8 unk1;
     u8 unk2;
     u8 pad3[0x4 - 0x3];
@@ -784,7 +784,14 @@ extern u8 gUnk_03003F56[][8]; // TODO: type
 
 extern u8 gUnk_03003790[][0x40]; // TODO: type
 
-extern u8 gUnk_03005494;
+enum GameOverScreenStage {
+    GAME_OVER_SCREEN_STAGE_TRANSITION_ANIMATION,
+    GAME_OVER_SCREEN_STAGE_SELECT_OPTION,
+    GAME_OVER_SCREEN_STAGE_CONTINUE_PLAYING,
+    GAME_OVER_SCREEN_STAGE_GOOD_NIGHT,
+    GAME_OVER_SCREEN_STAGE_EXIT_TO_TITLE_SCREEN
+};
+extern u8 gGameOverScreenStage;
 
 struct Unk_030034D4 {
     u16 unk0;

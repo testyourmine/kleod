@@ -7,8 +7,8 @@ void CommonWaitForNextFrame(void);
 void BossWaitForNextFrame(void);
 void LevelSelectWaitForNextFrame(void);
 void CutsceneWaitForNextFrame(void);
-void GameOverWaitForNextFrame(void);
-void sub_0800C900(void);
+void GameOverScreenWaitForNextFrame(void);
+void ClearedAllVisionsScreenWaitForNextFrame(void);
 void sub_0800CA0C(u32 arg0);
 void TitleScreenWaitForNextFrame(void);
 

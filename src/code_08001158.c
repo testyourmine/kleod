@@ -1243,7 +1243,7 @@ void sub_08002FD0(void)
         gCallbackQueue.next[1] = sub_080453F0;
         gCallbackQueue.next[2] = LevelSelectWaitForNextFrame;
         gUnk_03003410.unk5 = 0;
-        gCallbackQueue.next[3] = CheckForUnlockExStages;
+        gCallbackQueue.next[3] = sub_08048028;
         gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = 0;
@@ -1339,7 +1339,7 @@ void sub_0800343C(u8 arg0)
 }
 
 // 350C
-void sub_0800350C(void)
+void ClearedAllVisionsScreenInit(void)
 {
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -1370,16 +1370,17 @@ void sub_0800350C(void)
     DmaCopy16(3, &gUnk_080D947C, BG_VRAM, 0x9600);
 
     gUnk_03004C20.sceneFrameCounter = 0;
-    gCallbackQueue.current[1] = sub_08003750;
-    gIntrTable.vBlank = sub_08000DC0;
+    gCallbackQueue.current[1] = ClearedAllVisionsScreenHandler;
+    gIntrTable.vBlank = VBlankIntr_ClearedAllVisionsScreen;
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aMPlayAllStop();
 }
 
 // 3750
-void sub_08003750(void)
+void ClearedAllVisionsScreenHandler(void)
 {
+    // "Congratulations! You cleared all Visions!" screen when beating EX-3
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));

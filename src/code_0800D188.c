@@ -121,8 +121,8 @@ void sub_0800D188(void)
                 gUnk_03005220.unk37 = 1;
                 sub_080008DC();
                 m4aMPlayAllStop();
-                gCallbackQueue.next[1] = sub_080446F8;
-                gCallbackQueue.next[2] = GameOverWaitForNextFrame;
+                gCallbackQueue.next[1] = GameOverScreenHandler;
+                gCallbackQueue.next[2] = GameOverScreenWaitForNextFrame;
                 gUnk_03004C20.sceneFrameCounter = 0;
                 gCallbackQueue.currentCount = 1;
                 gCallbackQueue.current[0] = NULL;

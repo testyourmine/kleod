@@ -28,8 +28,8 @@ void HoverBoardScrollUpdate(void);
 void sub_08002AC4(void);
 void sub_08002FD0(void);
 void sub_0800343C(u8 arg0);
-void sub_0800350C(void);
-void sub_08003750(void);
+void ClearedAllVisionsScreenInit(void);
+void ClearedAllVisionsScreenHandler(void);
 void sub_08003904(void);
 
 #endif // GUARD_CODE_08001158_H

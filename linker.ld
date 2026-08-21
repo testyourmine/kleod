@@ -206,7 +206,7 @@ SECTIONS {
         . = 0x00005488; gUnk_03005488 = .;
         . = 0x0000548C; gUnk_0300548C = .;
         . = 0x00005490; gObjVramPtr = .;
-        . = 0x00005494; gUnk_03005494 = .;
+        . = 0x00005494; gGameOverScreenStage = .;
         . = 0x00005498; gBlendValue = .;
         . = 0x0000549C; gDeleteAllSaveDataMinigameUnlocked = .;
 

@@ -98,10 +98,9 @@ void VBlankIntr_Boss(void)
 }
 
 // DC0
-void sub_08000DC0(void)
+void VBlankIntr_ClearedAllVisionsScreen(void)
 {
-    // Set by sub_0800350C, which is called by sub_08025A28, which is unused
-    // So this function is likely unused
+    // Called during cleared all visions screen
     m4aSoundVSync();
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));

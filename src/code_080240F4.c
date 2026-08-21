@@ -268,6 +268,7 @@ void TransitionFromTitleScreenToFileSelect_FadeOut(void)
 void TransitionFromDemoToTitleScreen_FadeOut(void)
 {
     // fade out, when transitioning from demo to title screen
+    // also called when transitioning from cleared all visions screen to world map
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1103,9 +1104,9 @@ void TransitionFromLevelSelectToBootScreen_FadeOut(void)
 }
 
 // 25954
-void sub_08025954(void)
+void TransitionFromLevelToClearedAllVisionsScreen_FadeIn(void)
 {
-    // Only set by sub_08025A28, which is unused, so this is also unused
+    // fade in, when transitioning from EX-3 to cleared all visions screen
     u32 removed;
     u32 i;
 
@@ -1124,7 +1125,7 @@ void sub_08025954(void)
         removed = FALSE;
         for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[i] == sub_08025954) || (removed == TRUE))
+            if ((gCallbackQueue.current[i] == TransitionFromLevelToClearedAllVisionsScreen_FadeIn) || (removed == TRUE))
             {
                 gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
                 removed = TRUE;
@@ -1149,9 +1150,9 @@ void sub_08025954(void)
 }
 
 // 25A28
-void sub_08025A28(void)
+void TransitionFromLevelToClearedAllVisionsScreen_FadeOut(void)
 {
-    // Unused
+    // fade out, when transitioning from EX-3 to cleared all visions screen
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1184,9 +1185,9 @@ void sub_08025A28(void)
 
         gUnk_03004658->cursorIndex = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_0800350C;
-        gCallbackQueue.next[2] = sub_08025954;
-        gCallbackQueue.next[3] = sub_0800C900;
+        gCallbackQueue.next[1] = ClearedAllVisionsScreenInit;
+        gCallbackQueue.next[2] = TransitionFromLevelToClearedAllVisionsScreen_FadeIn;
+        gCallbackQueue.next[3] = ClearedAllVisionsScreenWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
@@ -1609,7 +1610,7 @@ void sub_080264A4(void)
     {
         gBlendValue = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_08025A28;
+        gCallbackQueue.next[1] = TransitionFromLevelToClearedAllVisionsScreen_FadeOut;
         gCallbackQueue.next[2] = CommonWaitForNextFrame;
         gCallbackQueue.next[3] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

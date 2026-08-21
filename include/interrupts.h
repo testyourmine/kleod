@@ -8,7 +8,7 @@ void VBlankIntr_CutsceneTransition(void);
 void sub_08000AC8(void);
 void VBlankIntr_TitleScreenAndWorldMap(void);
 void VBlankIntr_Boss(void);
-void sub_08000DC0(void);
+void VBlankIntr_ClearedAllVisionsScreen(void);
 void sub_08000E14(void);
 void VBlankIntr_Cutscene(void);
 void HBlankIntr_DeleteAllSaveDataScreen(void);
