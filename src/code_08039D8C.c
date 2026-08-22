@@ -2723,7 +2723,7 @@ void sub_0803D90C(u8 arg0)
                     gUnk_03005400.unkD = 5;
                     gUnk_03005400.unk8_6 = 0;
 
-                    if ((gUnk_03005220.unk31 != 0) && (gUnk_03005220.unk3E == 0))
+                    if ((gUnk_03005220.unk31 != 0) && (gUnk_03005220.klonoaInvincibilityTimer == 0))
                     {
                         gEntityInfo[0].yPosBg2 -= 0x30;
                     }
@@ -4994,7 +4994,7 @@ void sub_08041F34(u8 arg0)
         gEntityInfo[0x14].unkF = 0x19;
         gEntityInfo[0x13].unkF = 0x19;
 
-        gUnk_03005220.unk3E = 0;
+        gUnk_03005220.klonoaInvincibilityTimer = 0;
         if (gUnk_03005220.unk31 == 1)
         {
             sub_08025B78(0, 0);

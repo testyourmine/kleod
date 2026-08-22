@@ -428,8 +428,8 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.levelTimeSeconds = 0;
         gUnk_03005220.levelTimeMinutes = 0;
         gUnk_03004C20.roomsRotationBits = 0;
-        gUnk_03005220.unk1C = 0;
-        gUnk_03005220.unk5E = 0;
+        gUnk_03005220.klonoaIdleTimer = 0;
+        gUnk_03005220.klonoaPrevIdleAnimation = 0;
     }
 
     if (arg0 == 1)

@@ -255,13 +255,13 @@ NONMATCH("asm/nonmatching/sub_0804B4B0.inc", void sub_0804B4B0(s32 arg0, s32 arg
     var_r3 = arg1; // FAKE?
     var_sb = gUnk_08057ACC[arg0][arg1][1];
     var_r3 = gUnk_08057ACC[arg0][arg1][0];
-    spC = *((u8*)gUnk_030034A0 + var_sb + 1); // TODO: correct pointer arithmetic?
+    spC = gUnk_030034A0->unk3[var_sb - 2];
 
     if ((gUnk_030034A0->unk1_0 != 0) && (var_sb == 2))
     {
         var_sl = 0x10 << spC;
         if (gBgInfo); // FAKE?
-        temp_r8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][0]);
+        temp_r8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][var_sb - 2]);
         temp_r8 += 4;
         
         for (var_r3 = 0; var_r3 < gBgInfo[2].vLength; var_r3++)

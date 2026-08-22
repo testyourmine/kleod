@@ -347,7 +347,7 @@ struct Unk_03005220 {
     /* 0x16 */ u16 unk16;
     /* 0x18 */ u16 unk18;
     /* 0x1A */ u16 unk1A;
-    /* 0x1D */ u16 unk1C;
+    /* 0x1D */ u16 klonoaIdleTimer; // Idle timer, picks a random idle animation after 20 seconds
     /* 0x1E */ u16 unk1E;
     /* 0x20 */ u16 unk20;
     /* 0x22 */ u16 unk22;
@@ -357,27 +357,27 @@ struct Unk_03005220 {
     /* 0x2A */ s16 unk2A;
     /* 0x2C */ s16 unk2C;
     /* 0x2E */ u8 unk2E;
-    /* 0x2F */ s8 unk2F;
-    /* 0x30 */ u8 unk30;
-    /* 0x31 */ u8 unk31;
-    /* 0x32 */ u8 unk32;
-    /* 0x33 */ u8 unk33;
-    /* 0x34 */ u8 unk34;
-    /* 0x35 */ u8 unk35;
-    /* 0x36 */ u8 unk36;
-    /* 0x37 */ u8 unk37;
+    /* 0x2F */ s8 unk2F; // Entity id of object being stood on (also activated briefly when hand comes out of grabby box)
+    /* 0x30 */ u8 unk30; // Klonoa is in falling state
+    /* 0x31 */ u8 unk31; // Klonoa is on ground
+    /* 0x32 */ u8 windBulletDirection; // Direction wind bullet fired, 0 is right, 1 is left
+    /* 0x33 */ u8 windBulletDisableTimer; // Timer for disabling Wind Bullet
+    /* 0x34 */ u8 unk34; // Klonoa is holding on to a Goomi (winged red ball)
+    /* 0x35 */ u8 unk35; // Klonoa is holding on to rope (and maybe ladder)
+    /* 0x36 */ u8 unk36; // Klonoa climbing rope direction, 0 is up, 1 is down
+    /* 0x37 */ u8 unk37; // Klonoa all lives lost (game over)
     /* 0x38 */ u8 unk38;
     /* 0x39 */ u8 unk39;
-    /* 0x3A */ u8 unk3A;
-    /* 0x3B */ u8 unk3B;
-    /* 0x3C */ u8 unk3C;
-    /* 0x3D */ u8 unk3D;
-    /* 0x3E */ u8 unk3E;
-    /* 0x3F */ u8 unk3F;
+    /* 0x3A */ u8 unk3A; // Klonoa is riding wind gust
+    /* 0x3B */ u8 unk3B; // Wind gust timer
+    /* 0x3C */ u8 unk3C; // Klonoa jumping type, 1 is normal, 2 is double jump (only during brief moment of throwing), 3 is from Goomi
+    /* 0x3D */ u8 unk3D; // Flutter usability, 0 is usable (if in mid-air), 2 is mid-flutter (in-use), 1 is falling after flutter (disabled until hit ground)
+    /* 0x3E */ u8 klonoaInvincibilityTimer; // Invincibility timer (usually from being hit)
+    /* 0x3F */ u8 unk3F; // Entity id of Goomi being held on to
     /* 0x40 */ u8 unk40;
-    /* 0x41 */ u8 unk41;
-    /* 0x42 */ u8 unk42;
-    /* 0x43 */ u8 unk43;
+    /* 0x41 */ u8 unk41; // In the process of throwing entity
+    /* 0x42 */ u8 unk42; // Entity id of entity being carried
+    /* 0x43 */ u8 unk43; // State of entity being carried, 0 is not carried, 1 is carried, 2 is being squished (for enemy)
     /* 0x44 */ u8 unk44;
     /* 0x45 */ u8 unk45;
     /* 0x46 */ u8 unk46;
@@ -394,17 +394,17 @@ struct Unk_03005220 {
     /* 0x51 */ u8 unk51;
     /* 0x52 */ u8 unk52;
     /* 0x53 */ u8 unk53;
-    /* 0x54 */ s8 unk54;
-    /* 0x55 */ s8 unk55;
+    /* 0x54 */ s8 unk54; // Box X position as its being picked up and put into position?
+    /* 0x55 */ s8 unk55; // Box Y position as its being picked up and put into position?
     /* 0x56 */ s8 unk56;
     /* 0x57 */ s8 unk57;
     /* 0x58 */ u8 unk58;
     /* 0x59 */ u8 unk59;
     /* 0x5A */ u8 unk5A;
-    /* 0x5B */ u8 unk5B;
-    /* 0x5C */ u8 unk5C;
-    /* 0x5D */ u8 unk5D;
-    /* 0x5E */ u8 unk5E;
+    /* 0x5B */ u8 unk5B; // Klonoa is invincible (usually from being hit)
+    /* 0x5C */ u8 unk5C; // Related to being able to control Klonoa
+    /* 0x5D */ u8 allStarsCollected; // All 3 stars collected
+    /* 0x5E */ u8 klonoaPrevIdleAnimation; // The previous idle animation state ID (28-32)
     /* 0x5F */ u8 unk5F;
     /* 0x60 */ u16 unk60;
     /* 0x62 */ u8 pad62[0x64 - 0x62];

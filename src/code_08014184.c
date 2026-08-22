@@ -156,29 +156,23 @@ void sub_08014318(void)
     {
         var_r3 = gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo[2].hLength)];
 
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) : var_r3;
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) : var_r3;
-
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
+
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2 + 0xC) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
     }
     else if (gUnk_03005220.unk56 < 0)
     {
         var_r3 = gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo[2].hLength)];
 
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo.unk48)]) : var_r3;
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo.unk48)]) : var_r3;
-
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0xC) >> 3) * gBgInfo[2].hLength)]);
+
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[(((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) - 0xD) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x14) >> 3) * gBgInfo[2].hLength)]);
     }
 
     if (gUnk_03005220.unk57 != 0)
     {
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo.unk48)]) : var_r3;
-        // var_r3 = (var_r3 < gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo.unk48)]) ? (gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo.unk48)]) : var_r3;
-
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + gUnk_03005220.unk56) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 0x1A) >> 3) * gBgInfo[2].hLength)]);
+
         var_r3 = max(var_r3, gBgDataPtrs.pBufBg2Tilemap[((gUnk_03005220.unk56 + gEntityInfo[0].xPosBg2) >> 3) + ((((gUnk_03005220.unk57 + gEntityInfo[0].yPosBg2) - 4) >> 3) * gBgInfo[2].hLength)]);
     }
 
@@ -211,8 +205,8 @@ void sub_080144C4(void)
     // Can also use pointer to gUnk_03005220 to match
     // gEntityInfo[0xA].unk10 = 0;
     // gEntityInfo[0x9].unk10 = 0;
-    // gUnk_03005220.unk5D = 0;
-    gUnk_03005220.unk5D = gEntityInfo[0x9].unk10 = gEntityInfo[0xA].unk10 = 0;
+    // gUnk_03005220.allStarsCollected = 0;
+    gUnk_03005220.allStarsCollected = gEntityInfo[0x9].unk10 = gEntityInfo[0xA].unk10 = 0;
     gUnk_03005220.unk47 = 0;
     gUnk_03005220.unk46 = 0;
     gUnk_03005220.unk38 = 0;
@@ -235,11 +229,11 @@ void sub_080144C4(void)
     gUnk_03005220.unk34 = 0;
     gUnk_03005220.unk31 = 0;
     gUnk_03005220.unk30 = 0;
-    gUnk_03005220.unk33 = 0;
+    gUnk_03005220.windBulletDisableTimer = 0;
     gUnk_03005220.unk41 = 0;
     gUnk_03005220.unk40 = 0;
     gUnk_03005220.unk3F = 0;
-    gUnk_03005220.unk3E = 0;
+    gUnk_03005220.klonoaInvincibilityTimer = 0;
     gUnk_03005220.unk3C = 0;
     gUnk_03005220.unk55 = 0;
     gUnk_03005220.unk54 = 0;
@@ -333,8 +327,8 @@ void sub_08014624(s32 arg0)
         sub_08025B78(0, 0xC);
     }
 
-    gUnk_03005220.unk1C = 0;
-    gUnk_03005220.unk3E = 0x87;
+    gUnk_03005220.klonoaIdleTimer = 0;
+    gUnk_03005220.klonoaInvincibilityTimer = 120 + 15; // 135 frames, 2.25 seconds
     if (gUnk_03005220.unk3D > 1)
     {
         gUnk_03005220.unk3D = 1;
@@ -6575,7 +6569,7 @@ void sub_0801DFC4(u8 arg0)
                         if (var_r6 == 0)
                         {
                             var_r6 = gUnk_03003638 - 1;
-                            if (gUnk_03005220.unk3E != 0)
+                            if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                             {
                                 continue;
                             }
@@ -6614,31 +6608,31 @@ void sub_0801DFC4(u8 arg0)
 // 1E1A8
 void sub_0801E1A8(u8 arg0)
 {
-    s32 var_r2;
+    s32 tileColOffset;
 
     if ((gUnk_030034E4 == 0) && (gUnk_03005220.stars == 7))
     {
-        if (((gUnk_03004C20.globalFrameCounter % 4) == 0) && (gUnk_03005220.unk5D == 1) && (gBlendValue != 0))
+        if (((gUnk_03004C20.globalFrameCounter % 4) == 0) && (gUnk_03005220.allStarsCollected == 1) && (gBlendValue != 0))
         {
             gBlendValue -= 1;
         }
 
-        if (gUnk_03005220.unk5D == 0)
+        if (gUnk_03005220.allStarsCollected == 0)
         {
-            gUnk_03005220.unk5D = 1;
+            gUnk_03005220.allStarsCollected = 1;
             gBlendValue = 0x10;
             REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BD | BLDCNT_EFFECT_LIGHTEN;
         }
     }
 
-    if (gEntityInfo[arg0].yPosScreen > 0x8B)
+    if (gEntityInfo[arg0].yPosScreen >= 0x8C)
     {
-        var_r2 = -1;
+        tileColOffset = -1;
 
         gEntityInfo[arg0].yPosBg2 = -8;
         gEntityInfo[arg0].xPosBg2 = -8;
 
-        if ((gUnk_030034E4 == 0) && (gUnk_03005220.unk5D == 1))
+        if ((gUnk_030034E4 == 0) && (gUnk_03005220.allStarsCollected == 1))
         {
             if (gBlendValue != 0)
             {
@@ -6650,21 +6644,22 @@ void sub_0801E1A8(u8 arg0)
 
         if (gUnk_03005220.stars & 1)
         {
-            var_r2 += 1;
+            tileColOffset += 1;
         }
         if (gUnk_03005220.stars & 2)
         {
-            var_r2 += 1;
+            tileColOffset += 1;
         }
         if (gUnk_03005220.stars & 4)
         {
-            var_r2 += 1;
+            tileColOffset += 1;
         }
 
-        gBgTilemapBufs[0][(var_r2 * 2) + 0x24D] = gBgTilemapBufs[0][(var_r2 * 2) + 0x28C];
-        gBgTilemapBufs[0][(var_r2 * 2) + 0x24E] = gBgTilemapBufs[0][(var_r2 * 2) + 0x28D];
-        gBgTilemapBufs[0][(var_r2 * 2) + 0x26D] = gBgTilemapBufs[0][(var_r2 * 2) + 0x2AC];
-        gBgTilemapBufs[0][(var_r2 * 2) + 0x26E] = gBgTilemapBufs[0][(var_r2 * 2) + 0x2AD];
+        // Fill in collected star tiles
+        gBgTilemapBufs[0][(tileColOffset * 2) + 0x24D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28C];
+        gBgTilemapBufs[0][(tileColOffset * 2) + 0x24E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28D];
+        gBgTilemapBufs[0][(tileColOffset * 2) + 0x26D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AC];
+        gBgTilemapBufs[0][(tileColOffset * 2) + 0x26E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AD];
 
         gEntityInfo[arg0].unk10 = 0;
         gEntityInfo[arg0].unkF = 0x1C;
@@ -6694,7 +6689,7 @@ void sub_0801E354(u8 arg0)
         {
             gUnk_03005220.unk4 |= 1 << gEntityInfo[arg0].unk8.split.unk8;
 
-            if ((u8)gUnk_03005220.lives < 99)
+            if (gUnk_03005220.lives < 99)
             {
                 gUnk_03005220.lives += 1;
                 DrawLevelHud_Lives();
@@ -6709,7 +6704,7 @@ void sub_0801E354(u8 arg0)
     gEntityInfo[arg0].unk8.split.unk9 += 1;
     if (gEntityInfo[arg0].yPosScreen & 0x8000)
     {
-        gEntityInfo[arg0].yPosBg2 = gEntityInfo[arg0].yPosBg2 + 3;
+        gEntityInfo[arg0].yPosBg2 += 3;
     }
     else
     {
@@ -6786,7 +6781,7 @@ void sub_0801E3FC(void)
                     switch (gEntityInfo[var_r8].unk11 - 0x6E)
                     {
                         case 0:
-                            if ((gUnk_03005220.unk3E == 0) || (gUnk_03005220.unk5B == 0))
+                            if ((gUnk_03005220.klonoaInvincibilityTimer == 0) || (gUnk_03005220.unk5B == 0))
                             {
                                 sub_08014624(1);
                                 break;
@@ -7234,7 +7229,7 @@ void sub_0801F128(u8 arg0)
 
             if (((gEntityInfo[arg0].xPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][2]) < (gEntityInfo[0].xPosBg2 + 0xC)) && ((gEntityInfo[arg0].xPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][3]) > (gEntityInfo[0].xPosBg2 - 0xC)))
             {
-                if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.unk3E == 0) && (gUnk_03005400.unkC != 0))
+                if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.klonoaInvincibilityTimer == 0) && (gUnk_03005400.unkC != 0))
                 {
                     sub_08014624(1);
                 }
@@ -7277,7 +7272,7 @@ void sub_0801F128(u8 arg0)
 
             if (((gEntityInfo[arg0].xPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][2]) < (gEntityInfo[0].xPosBg2 + 0xC)) && ((gEntityInfo[arg0].xPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][3]) > (gEntityInfo[0].xPosBg2 - 0xC)))
             {
-                if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.unk3E == 0) && (gUnk_03005400.unkC != 0))
+                if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.klonoaInvincibilityTimer == 0) && (gUnk_03005400.unkC != 0))
                 {
                     sub_08014624(1);
                 }
@@ -9616,7 +9611,7 @@ void sub_08022CA0(u8 arg0)
             {
                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[arg0].xPosBg2 + 0x30)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[arg0].xPosBg2 - 0x30)))
                 {
-                    if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[arg0].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[arg0].yPosBg2 - 0x60)) && (gUnk_03005220.unk3E == 0))
+                    if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[arg0].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[arg0].yPosBg2 - 0x60)) && (gUnk_03005220.klonoaInvincibilityTimer == 0))
                     {
                         sub_08014624(1);
                     }
