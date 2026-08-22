@@ -21,8 +21,8 @@ extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color
 extern u16 gUnk_08051C76[6][9][3];
 extern u16 gUnk_08051DBA[6][9][3];
 extern u16 gUnk_08051EFE[6][9][3]; // BG tile length y?
-extern u8 gUnk_08051FE8[][8][0x1C]; // TODO: seems to be in the middle of gUnk_08051EFE data?
 extern u8 gUnk_08052042[6][9][3]; // BG tile length x?
+extern u8 gUnk_080520E4[6][8][0x1C];
 extern u8 gUnk_08052624[6][9];
 extern u16 gUnk_0805265A[6];
 extern u16 gUnk_08052666[6];
@@ -1165,8 +1165,7 @@ void sub_08002FD0(void)
 
     var_r6 = 0;
 
-    // gUnk_03004654 = gUnk_08051FE8[gUnk_03004C20.world - 1][gUnk_03004C20.level + 8]; // TODO: offsets required to match, fake?
-    gUnk_03004654 = ((u8 (*)[8][0x1C])((u8 *)gUnk_08051EFE + 0xEA))[gUnk_03004C20.world - 1][gUnk_03004C20.level + 8]; // TODO: cleanup
+    gUnk_03004654 = gUnk_080520E4[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
     gUnk_03000800 = gUnk_08052624[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
     if (gUnk_03004C20.level == 0)
