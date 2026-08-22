@@ -493,7 +493,22 @@ struct Unk_03005440 {
 extern struct Unk_03005440 gUnk_03005440;
 
 extern u8 gUnk_03000800;
-extern u8 *gUnk_03004654;
+
+struct Unk_03004654 {
+    u8 unk0;
+    u8 unk1;
+    u8 pad2[0x14 - 0x2];
+    u8 unk14;
+    u8 unk15;
+    u8 unk16;
+    u8 unk17;
+    u8 unk18;
+    u8 unk19;
+    u8 unk1A;
+    u8 unk1B;
+};
+extern struct Unk_03004654 *gUnk_03004654;
+
 extern u8 gUnk_030051C8;
 
 struct Unk_030051CC {

@@ -1985,7 +1985,7 @@ void sub_0800AC34(void)
                         while (1)
                         {
                             u32 tmp2 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[var_r6].xPosBg2 >> 3) + ((gEntityInfo[var_r6].yPosBg2 >> 3) * gBgInfo[2].hLength)];
-                            if (gUnk_03004654[0x1B] <= tmp2)
+                            if (gUnk_03004654->unk1B <= tmp2)
                             {
                                 gEntityInfo[var_r6].yPosBg2 += 0xA;
                                 break;

@@ -2111,7 +2111,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             temp_r0 = sub_08014230(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
             if (temp_r0.unk0 != 0xFFFF)
             {
-                var_r3 = gUnk_03004654[0x1B];
+                var_r3 = gUnk_03004654->unk1B;
             }
             else
             {
@@ -2119,7 +2119,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             }
         }
 
-        if (gUnk_03004654[0x1B] <= var_r3)
+        if (gUnk_03004654->unk1B <= var_r3)
         {
             gEntityInfo[arg0].yPosBg2 = temp_sl;
             gUnk_03005400.unk8_2 = 1;
@@ -2152,7 +2152,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             temp_r0_1 = sub_08014230(gEntityInfo[arg0].xPosBg2 + 8, gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1], 0x18);
             if (temp_r0_1.unk0 != 0xFFFF)
             {
-                var_r3 = gUnk_03004654[0x1B];
+                var_r3 = gUnk_03004654->unk1B;
             }
             else
             {
@@ -2160,7 +2160,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             }
         }
 
-        if (gUnk_03004654[0x1B] <= var_r3)
+        if (gUnk_03004654->unk1B <= var_r3)
         {
             gEntityInfo[arg0].yPosBg2 = temp_sl & 0xFFF8;
             gUnk_03005400.unk8_2 = 1;
@@ -2186,7 +2186,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             var_r3 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][0]) >> 3) + (((gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1]) >> 3) * gBgInfo[2].hLength)];
             if ((gEntityInfo[arg0].xPosBg2 > 0x158) && (gUnk_03004C20.world == 1))
             {
-                var_r3 = gUnk_03004654[0x1B];
+                var_r3 = gUnk_03004654->unk1B;
             }
         }
         else
@@ -2201,12 +2201,12 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
             var_r3 = gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[arg0].xPosBg2 - gUnk_08116888[gUnk_03004C20.world - 1][0]) >> 3) + (((gEntityInfo[arg0].yPosBg2 + gUnk_08116888[gUnk_03004C20.world - 1][1]) >> 3) * gBgInfo[2].hLength)];
             if ((gEntityInfo[arg0].xPosBg2 <= 0x4FU) && (gUnk_03004C20.world == 1))
             {
-                var_r3 = gUnk_03004654[0x1B];
+                var_r3 = gUnk_03004654->unk1B;
             }
         }
     }
 
-    if (gUnk_03004654[0x1B] <= var_r3)
+    if (gUnk_03004654->unk1B <= var_r3)
     {
         gEntityInfo[arg0].xPosBg2 = sp10;
         gUnk_03005400.unk8_3 = 1;
@@ -4102,7 +4102,7 @@ void sub_0803F9EC(u8 arg0)
                 {
                     gEntityInfo[arg0].yPosBg2 += 4;
                     if (gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]); // FAKE
-                    if ((gUnk_03004654[0x1B] <= gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]) && (gEntityInfo[arg0].yPosBg2 > 0x64))
+                    if ((gUnk_03004654->unk1B <= gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]) && (gEntityInfo[arg0].yPosBg2 > 0x64))
                     {
                         if (gEntityInfo[arg0].xPosBg2 < gEntityInfo[0].xPosBg2)
                         {

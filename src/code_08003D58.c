@@ -431,7 +431,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gCurrentRoomBg2Bounds.top; var_r3_3 -= 8)
                 {
-                    if (gUnk_03004654[0x18] <= gBgDataPtrs.pBufBg2Tilemap[(arg2 >> 3) + (gBgInfo[2].hLength * (var_r3_3 >> 3))])
+                    if (gUnk_03004654->unk18 <= gBgDataPtrs.pBufBg2Tilemap[(arg2 >> 3) + (gBgInfo[2].hLength * (var_r3_3 >> 3))])
                     {
                         gUnk_03000790[arg4].unk4 = var_r3_3 + 8;
                         gUnk_03000790[arg4].unk8 = var_r3_3 + 8;

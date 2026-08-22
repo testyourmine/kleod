@@ -22,7 +22,7 @@ extern u16 gUnk_08051C76[6][9][3];
 extern u16 gUnk_08051DBA[6][9][3];
 extern u16 gUnk_08051EFE[6][9][3]; // BG tile length y?
 extern u8 gUnk_08052042[6][9][3]; // BG tile length x?
-extern u8 gUnk_080520E4[6][8][0x1C];
+extern struct Unk_03004654 gUnk_080520E4[6][8];
 extern u8 gUnk_08052624[6][9];
 extern u16 gUnk_0805265A[6];
 extern u16 gUnk_08052666[6];
@@ -1165,7 +1165,7 @@ void sub_08002FD0(void)
 
     var_r6 = 0;
 
-    gUnk_03004654 = gUnk_080520E4[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
+    gUnk_03004654 = &gUnk_080520E4[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
     gUnk_03000800 = gUnk_08052624[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
     if (gUnk_03004C20.level == 0)
@@ -1190,7 +1190,7 @@ void sub_08002FD0(void)
     {
         if (gUnk_03004C20.room == 0)
         {
-            gUnk_030051C8 = gUnk_03004654[1] - 1;
+            gUnk_030051C8 = gUnk_03004654->unk1 - 1;
             gSoundVolume = 0xFFFF;
             gUnk_03004C20.roomsRotationBits = 0;
             gUnk_03005284->unk6 = 0;
@@ -1201,7 +1201,7 @@ void sub_08002FD0(void)
             gSoundVolume = 0xFFFF;
             if ((gUnk_03005284->unk6 == 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
             {
-                gUnk_030051C8 = gUnk_03004654[1] - 1;
+                gUnk_030051C8 = gUnk_03004654->unk1 - 1;
                 gUnk_03004C20.roomsRotationBits = 0;
             }
             else
@@ -1215,7 +1215,7 @@ void sub_08002FD0(void)
             var_r6 = 2;
         }
 
-        gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654[1] - 1)].unk4_2;
+        gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_2;
 
         gCurrentRoomBg2Bounds.left = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].left;
         gCurrentRoomBg2Bounds.top = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].top;

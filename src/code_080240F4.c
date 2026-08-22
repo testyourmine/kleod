@@ -412,7 +412,7 @@ void TransitionFromRoomToRoom_FadeOut(void)
         sub_0800B3C0();
         if (gUnk_03004C20.isHoverBoardLevel == 1)
         {
-            gUnk_030051C8 = gUnk_03004654[1] - 1;
+            gUnk_030051C8 = gUnk_03004654->unk1 - 1;
             gUnk_03005284->unk8_0 = 3;
         }
         else
@@ -779,7 +779,7 @@ void TransitionFromDeathToLevel_FadeOut(void)
 
         if (gUnk_03005284->unk6 == 0)
         {
-            gUnk_03005284->unk6 = gUnk_03004654[1] - 1;
+            gUnk_03005284->unk6 = gUnk_03004654->unk1 - 1;
         }
         WriteSaveFile(0, 1);
 
