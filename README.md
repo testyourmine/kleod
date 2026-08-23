@@ -1,6 +1,10 @@
 # Klonoa: Empire of Dreams
 
-This is a disassembly of Klonoa: Empire of Dreams (USA).
+[![Progress]](https://decomp.dev/testyourmine/kleod/us)
+
+[Progress]: https://decomp.dev/testyourmine/kleod/us.svg?mode=shield
+
+This is a decompilation of Klonoa: Empire of Dreams (USA).
 
 It builds the following ROM:
 
