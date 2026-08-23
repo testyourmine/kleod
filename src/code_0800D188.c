@@ -1491,7 +1491,7 @@ block_474:
         }
     }
 
-    if (gNewKeys & gUnk_03005284->unk1D)
+    if (gNewKeys & gUnk_03005284->jumpButtonConfig)
     {
         if ((gUnk_03005220.unk3C != 0) && (gUnk_03005220.unk42 == 0))
         {
@@ -1845,7 +1845,7 @@ block_474:
         }
     }
 
-    if ((gHeldKeys & gUnk_03005284->unk1D) && ((gUnk_03005220.unk3D | gUnk_03005220.unk3C | gUnk_03005220.unk42 | gUnk_03005220.unk31 | gUnk_03005220.unk3A | gUnk_03005220.unk34) == 0))
+    if ((gHeldKeys & gUnk_03005284->jumpButtonConfig) && ((gUnk_03005220.unk3D | gUnk_03005220.unk3C | gUnk_03005220.unk42 | gUnk_03005220.unk31 | gUnk_03005220.unk3A | gUnk_03005220.unk34) == 0))
     {
         gUnk_03005220.unk3D = 2;
         gUnk_03005220.unk30 = 0;
@@ -1951,7 +1951,7 @@ block_474:
             }
             else if (gUnk_03005220.unk3D > 1)
             {
-                if (!(gHeldKeys & gUnk_03005284->unk1D))
+                if (!(gHeldKeys & gUnk_03005284->jumpButtonConfig))
                 {
                     gUnk_03005220.unk3D = 1;
                     m4aSongNumStart(0x8E);
@@ -2036,7 +2036,7 @@ block_474:
                     }
 
                     gUnk_03005220.unk30 = 1;
-                    if ((gUnk_03005220.unk3C != 0) && (gHeldKeys & gUnk_03005284->unk1D))
+                    if ((gUnk_03005220.unk3C != 0) && (gHeldKeys & gUnk_03005284->jumpButtonConfig))
                     {
                         if ((gUnk_03005220.unk3D | gUnk_03005220.unk42 | gUnk_03005220.unk34) == 0)
                         {
@@ -3708,7 +3708,7 @@ block_1433:
         }
     }
 
-    if (gNewKeys & (gUnk_03005284->unk1C | R_BUTTON))
+    if (gNewKeys & (gUnk_03005284->shootButtonConfig | R_BUTTON))
     {
         if ((gUnk_03005220.windBulletDisableTimer | gUnk_03005220.unk40 | gUnk_03005220.unk41 | gUnk_03005220.unk34 | gUnk_03005220.unk35) != 0)
         {
@@ -4447,13 +4447,13 @@ block_1696:
             }
             gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-            gUnk_030051F0.unkE = gBlendValue;
-            gUnk_030051F0.unk4 = REG_BLDCNT;
-            gUnk_030051F0.unk6 = REG_BG0CNT;
-            gUnk_030051F0.unk8 = REG_BG1CNT;
-            gUnk_030051F0.unkA = REG_BG2CNT;
-            gUnk_030051F0.unkC = REG_BG3CNT;
-            gUnk_030051F0.unk0 = gUnk_03004C20.sceneFrameCounter;
+            gDisplayBackup.blendValue = gBlendValue;
+            gDisplayBackup.bldCnt = REG_BLDCNT;
+            gDisplayBackup.bg0Cnt = REG_BG0CNT;
+            gDisplayBackup.bg1Cnt = REG_BG1CNT;
+            gDisplayBackup.bg2Cnt = REG_BG2CNT;
+            gDisplayBackup.bg3Cnt = REG_BG3CNT;
+            gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
             gUnk_03004D90.unk8 = 1;
             gUnk_03004D90.unk9 = 0;

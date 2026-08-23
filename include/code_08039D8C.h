@@ -4,11 +4,13 @@
 #include "global.h"
 #include "structs/variables.h"
 
-void sub_08039D8C(void);
-void sub_0803A22C(void);
-void sub_0803A410(void);
-void sub_0803A8B8(void);
-void sub_0803AAA0(void);
+void PauseMenuScreenInit(void);
+void PauseMenuScreenRestoreGfx(void);
+void PauseMenuScreenHandler(void);
+
+void ButtonConfigurationScreenInit(void);
+void ButtonConfigurationScreenHandler(void);
+
 u8 sub_0803AC18(u8 arg0);
 void sub_0803AD94(u8 arg0);
 void sub_0803AE88(u8 arg0, u8 arg1);

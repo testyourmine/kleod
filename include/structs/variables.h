@@ -130,8 +130,8 @@ struct Unk_03005284 {
     /* 0x14 */ u16 unk14;
     /* 0x16 */ u16 unk16;
     /* 0x18 */ u32 unk18;
-    /* 0x1C */ u8 unk1C;
-    /* 0x1D */ u8 unk1D;
+    /* 0x1C */ u8 shootButtonConfig; // Type 1 sets shoot to B, Type 2 sets shoot to A
+    /* 0x1D */ u8 jumpButtonConfig; // Type 1 sets jump to A, Type 2 sets jump to B
     /* 0x1E */ u8 unk1E;
     /* 0x1F */ u8 pad1F[0x20 - 0x1F];
     /* 0x20 */ u8 addChecksum;
@@ -691,16 +691,16 @@ extern void *gUnk_03004C10;
 
 extern u16 gUnk_030034DC;
 
-struct Unk_030051F0 {
-    s32 unk0;
-    u16 unk4;
-    u16 unk6;
-    u16 unk8;
-    u16 unkA;
-    u16 unkC;
-    u8 unkE;
+struct DisplayBackup {
+    s32 sceneFrameCounter;
+    u16 bldCnt;
+    u16 bg0Cnt;
+    u16 bg1Cnt;
+    u16 bg2Cnt;
+    u16 bg3Cnt;
+    u8 blendValue;
 };
-extern struct Unk_030051F0 gUnk_030051F0;
+extern struct DisplayBackup gDisplayBackup;
 
 extern u8 gUnk_03000810;
 extern u8 gUnk_030034C4;
@@ -768,7 +768,13 @@ struct Unk_030034B0 {
 };
 extern struct Unk_030034B0 gUnk_030034B0;
 
-extern u8 gUnk_030034C0;
+enum PauseMenuType {
+    PAUSE_MENU_TYPE_NORMAL_LEVEL,
+    PAUSE_MENU_TYPE_LEVEL_SELECT,
+    PAUSE_MENU_TYPE_EX_LEVEL,
+    PAUSE_MENU_TYPE_BOSS
+};
+extern u8 gPauseMenuType; // Pause menu type, 0 is level, 1 is level select, 2 is EX level, 3 is boss battle
 
 struct Unk_03004C08 {
     u8 unk0_0:4;

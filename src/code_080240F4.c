@@ -718,6 +718,7 @@ block_9:
 void TransitionFromDeathToLevel_FadeOut(void)
 {
     // fade out, when transitioning from death to level gameplay
+    // also called when transitioning during retry
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -881,8 +882,8 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
             gUnk_03004C20.world = 1;
             gUnk_03005284->unk1 = 1;
             gUnk_03005284->unk0 = gUnk_03005220.lives = 3;
-            gUnk_03005284->unk1C = 2;
-            gUnk_03005284->unk1D = 1;
+            gUnk_03005284->shootButtonConfig = 2;
+            gUnk_03005284->jumpButtonConfig = 1;
         }
         WriteCurrentSaveFile();
         gUnk_03004670->unk38 += 1;

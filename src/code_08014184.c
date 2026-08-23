@@ -4940,7 +4940,7 @@ void sub_0801BB6C(u8 arg0)
         return;
     }
 
-    if ((gHeldKeys & gUnk_03005284->unk1D) && (gUnk_030034F0 <= 0x1D))
+    if ((gHeldKeys & gUnk_03005284->jumpButtonConfig) && (gUnk_030034F0 < 30))
     {
         if (gUnk_03005220.unk3C == 2)
         {

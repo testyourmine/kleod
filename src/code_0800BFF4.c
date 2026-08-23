@@ -134,7 +134,7 @@ void BossWaitForNextFrame(void)
 
     if (gUnk_03004C20.world == 0x5 || gUnk_03004C20.world == 0x6)
     {
-        if ((gCallbackQueue.current[1] == sub_0803A410) || (gCallbackQueue.current[0] == sub_08039D8C) || (gCallbackQueue.current[1] == sub_08039D8C) || (gCallbackQueue.current[1] == sub_0803AAA0) || (gCallbackQueue.current[1] == sub_0803A8B8))
+        if ((gCallbackQueue.current[1] == PauseMenuScreenHandler) || (gCallbackQueue.current[0] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == ButtonConfigurationScreenHandler) || (gCallbackQueue.current[1] == ButtonConfigurationScreenInit))
         {
             if (gUnk_030034BC == 0)
             {
@@ -146,8 +146,8 @@ void BossWaitForNextFrame(void)
                 var_sb = 1;
                 var_r8 = 0;
             }
-            temp_r4 = (8 - Abs(8 - gUnk_030051F0.unkE)) * 8;
-            var_r5_2 = gUnk_030051F0.unk0;
+            temp_r4 = (8 - Abs(8 - gDisplayBackup.blendValue)) * 8;
+            var_r5_2 = gDisplayBackup.sceneFrameCounter;
         }
         else
         {

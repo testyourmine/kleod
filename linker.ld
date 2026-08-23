@@ -78,7 +78,7 @@ SECTIONS {
         . = 0x000034AC; gBg2XMag = .;
         . = 0x000034B0; gUnk_030034B0 = .;
         . = 0x000034BC; gUnk_030034BC = .;
-        . = 0x000034C0; gUnk_030034C0 = .;
+        . = 0x000034C0; gPauseMenuType = .;
         . = 0x000034C4; gUnk_030034C4 = .;
         . = 0x000034C8; gUnk_030034C8 = .;
         . = 0x000034CC; gUnk_030034CC = .;
@@ -165,7 +165,7 @@ SECTIONS {
         . = 0x000051DC; gUnk_030051DC = .;
         . = 0x000051E0; gUnk_030051E0 = .;
         . = 0x000051E4; gHeldKeys = .;
-        . = 0x000051F0; gUnk_030051F0 = .;
+        . = 0x000051F0; gDisplayBackup = .;
         . = 0x00005200; gUnk_03005200 = .;
         . = 0x00005208; gDma1CntHBackup = .;
         . = 0x0000520C; gDma0CntHBackup = .;

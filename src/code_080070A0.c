@@ -1558,7 +1558,7 @@ void sub_0800A804(void)
         gCallbackQueue.previousCount = gCallbackQueue.currentCount;
         gUnk_030034BC = 0;
         gUnk_03003410.unk4 = 1;
-        gCallbackQueue.next[0] = sub_08039D8C;
+        gCallbackQueue.next[0] = PauseMenuScreenInit;
         gCallbackQueue.next[1] = CommonWaitForNextFrame;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1757,7 +1757,7 @@ void sub_0800AC34(void)
         }
 
         gUnk_03003410.unk4 = 1;
-        gCallbackQueue.next[0] = sub_08039D8C;
+        gCallbackQueue.next[0] = PauseMenuScreenInit;
         gCallbackQueue.next[1] = BossWaitForNextFrame;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

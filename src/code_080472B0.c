@@ -615,7 +615,7 @@ void sub_08047EC8(void)
     {
         if (gUnk_03004D90.unk4 == WIN_RANGE(DISPLAY_WIDTH_CENTER, DISPLAY_WIDTH_CENTER))
         {
-            sub_0803A22C();
+            PauseMenuScreenRestoreGfx();
             m4aSoundVSyncOn();
             m4aMPlayAllContinue();
             gCallbackQueue.current[1] = sub_08047F80;
@@ -644,13 +644,13 @@ void sub_08047F80(void)
     if (gBlendValue == 0)
     {
         REG_WININ |= WININ_WIN0_CLR;
-        gBlendValue = gUnk_030051F0.unkE;
-        REG_BLDCNT = gUnk_030051F0.unk4;
-        REG_BG0CNT = gUnk_030051F0.unk6;
-        REG_BG1CNT = gUnk_030051F0.unk8;
-        REG_BG2CNT = gUnk_030051F0.unkA;
-        REG_BG3CNT = gUnk_030051F0.unkC;
-        gUnk_03004C20.sceneFrameCounter = gUnk_030051F0.unk0;
+        gBlendValue = gDisplayBackup.blendValue;
+        REG_BLDCNT = gDisplayBackup.bldCnt;
+        REG_BG0CNT = gDisplayBackup.bg0Cnt;
+        REG_BG1CNT = gDisplayBackup.bg1Cnt;
+        REG_BG2CNT = gDisplayBackup.bg2Cnt;
+        REG_BG3CNT = gDisplayBackup.bg3Cnt;
+        gUnk_03004C20.sceneFrameCounter = gDisplayBackup.sceneFrameCounter;
         
         for (i = 0; i < 10; i++)
         {
@@ -738,13 +738,13 @@ void sub_08048028(void)
             }
             gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-            gUnk_030051F0.unkE = gBlendValue;
-            gUnk_030051F0.unk4 = REG_BLDCNT;
-            gUnk_030051F0.unk6 = REG_BG0CNT;
-            gUnk_030051F0.unk8 = REG_BG1CNT;
-            gUnk_030051F0.unkA = REG_BG2CNT;
-            gUnk_030051F0.unkC = REG_BG3CNT;
-            gUnk_030051F0.unk0 = gUnk_03004C20.sceneFrameCounter;
+            gDisplayBackup.blendValue = gBlendValue;
+            gDisplayBackup.bldCnt = REG_BLDCNT;
+            gDisplayBackup.bg0Cnt = REG_BG0CNT;
+            gDisplayBackup.bg1Cnt = REG_BG1CNT;
+            gDisplayBackup.bg2Cnt = REG_BG2CNT;
+            gDisplayBackup.bg3Cnt = REG_BG3CNT;
+            gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
             gUnk_03004D90.unk8 = 1;
             gUnk_03004D90.unk9 = 3;
@@ -769,13 +769,13 @@ void sub_08048028(void)
             }
             gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-            gUnk_030051F0.unkE = gBlendValue;
-            gUnk_030051F0.unk4 = REG_BLDCNT;
-            gUnk_030051F0.unk6 = REG_BG0CNT;
-            gUnk_030051F0.unk8 = REG_BG1CNT;
-            gUnk_030051F0.unkA = REG_BG2CNT;
-            gUnk_030051F0.unkC = REG_BG3CNT;
-            gUnk_030051F0.unk0 = gUnk_03004C20.sceneFrameCounter;
+            gDisplayBackup.blendValue = gBlendValue;
+            gDisplayBackup.bldCnt = REG_BLDCNT;
+            gDisplayBackup.bg0Cnt = REG_BG0CNT;
+            gDisplayBackup.bg1Cnt = REG_BG1CNT;
+            gDisplayBackup.bg2Cnt = REG_BG2CNT;
+            gDisplayBackup.bg3Cnt = REG_BG3CNT;
+            gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
             gUnk_03004D90.unk8 = 1;
             gUnk_03004D90.unk9 = 3;
@@ -800,13 +800,13 @@ void sub_08048028(void)
             }
             gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-            gUnk_030051F0.unkE = gBlendValue;
-            gUnk_030051F0.unk4 = REG_BLDCNT;
-            gUnk_030051F0.unk6 = REG_BG0CNT;
-            gUnk_030051F0.unk8 = REG_BG1CNT;
-            gUnk_030051F0.unkA = REG_BG2CNT;
-            gUnk_030051F0.unkC = REG_BG3CNT;
-            gUnk_030051F0.unk0 = gUnk_03004C20.sceneFrameCounter;
+            gDisplayBackup.blendValue = gBlendValue;
+            gDisplayBackup.bldCnt = REG_BLDCNT;
+            gDisplayBackup.bg0Cnt = REG_BG0CNT;
+            gDisplayBackup.bg1Cnt = REG_BG1CNT;
+            gDisplayBackup.bg2Cnt = REG_BG2CNT;
+            gDisplayBackup.bg3Cnt = REG_BG3CNT;
+            gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
             gUnk_03004D90.unk8 = 1;
             gUnk_03004D90.unk9 = 3;
@@ -1025,8 +1025,8 @@ void TitleScreenInit(void)
     u16 i;
     void *heapPtr;
 
-    gUnk_03005284->unk1C = 2;
-    gUnk_03005284->unk1D = 1;
+    gUnk_03005284->shootButtonConfig = 2;
+    gUnk_03005284->jumpButtonConfig = 1;
     gUnk_03004C20.unkA = 0;
     gUnk_03004C20.isHoverBoardLevel = 0;
 
@@ -2287,8 +2287,8 @@ void FileSelectScreenHandler(void)
                 gUnk_03004C20.world = 1;
                 gUnk_03005284->unk1 = 1;
                 gUnk_03005284->unk0 = gUnk_03005220.lives = 3;
-                gUnk_03005284->unk1C = 2;
-                gUnk_03005284->unk1D = 1;
+                gUnk_03005284->shootButtonConfig = 2;
+                gUnk_03005284->jumpButtonConfig = 1;
                 DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo[0][0], 0x30);
                 gUnk_03005284->unk4 = 0;
                 gUnk_03003410.unkC = 1;

@@ -1109,7 +1109,7 @@ void sub_08045874(void)
 
             gUnk_030034BC = 0;
             gUnk_03003410.unk4 = 1;
-            gCallbackQueue.next[0] = sub_08039D8C;
+            gCallbackQueue.next[0] = PauseMenuScreenInit;
             gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1152,13 +1152,13 @@ void sub_08045874(void)
                     }
                     gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-                    gUnk_030051F0.unkE = gBlendValue;
-                    gUnk_030051F0.unk4 = REG_BLDCNT;
-                    gUnk_030051F0.unk6 = REG_BG0CNT;
-                    gUnk_030051F0.unk8 = REG_BG1CNT;
-                    gUnk_030051F0.unkA = REG_BG2CNT;
-                    gUnk_030051F0.unkC = REG_BG3CNT;
-                    gUnk_030051F0.unk0 = gUnk_03004C20.sceneFrameCounter;
+                    gDisplayBackup.blendValue = gBlendValue;
+                    gDisplayBackup.bldCnt = REG_BLDCNT;
+                    gDisplayBackup.bg0Cnt = REG_BG0CNT;
+                    gDisplayBackup.bg1Cnt = REG_BG1CNT;
+                    gDisplayBackup.bg2Cnt = REG_BG2CNT;
+                    gDisplayBackup.bg3Cnt = REG_BG3CNT;
+                    gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
                     gUnk_030034BC = 0;
                     gUnk_03004D90.unk8 = 1;
