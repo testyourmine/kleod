@@ -1066,10 +1066,10 @@ void sub_0803B600(void)
     gOamAffineBuffer[0].pc = 0;
     gOamAffineBuffer[0].pd = 0x100;
 
-    gEntityInfo[0].unk10 = 1;
+    gEntityInfo[0].visible = 1;
     for (i = 1; i < 0x13; i++)
     {
-        gEntityInfo[i].unk10 = 0;
+        gEntityInfo[i].visible = 0;
     }
 
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -1715,9 +1715,9 @@ void sub_0803C808(void)
         gEntityInfo[var_r4].affineEnable = 1;
         gEntityInfo[var_r4].affineHFlip_matrixNum = 0;
 
-        switch (gEntityInfo[var_r4].unk11)
+        switch (gEntityInfo[var_r4].id)
         {
-            case 0x0:
+            case ENTITY_ID_NONE:
                 gEntityInfo[var_r4].affineEnable = 0;
                 gEntityInfo[var_r4].priority = 0;
                 break;
@@ -1727,20 +1727,20 @@ void sub_0803C808(void)
                 gEntityInfo[var_r4].priority = 0;
                 break;
 
-            case 0xB:
+            case ENTITY_ID_MOO_BOARDER:
             case 0x16:
-            case 0x76:
-            case 0x77:
-            case 0x78:
-            case 0x79:
-            case 0x7A:
-            case 0x7B:
-            case 0x7C:
-            case 0x7D:
+            case ENTITY_ID_MOO:
+            case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+            case ENTITY_ID_FLYING_MOO_VERTICAL:
+            case ENTITY_ID_GLIBZ_QUAD_CANNON:
+            case ENTITY_ID_TETON:
+            case ENTITY_ID_BOOMIE:
+            case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+            case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
                 gEntityInfo[var_r4].priority = 0;
                 break;
 
-            case 0x36:
+            case ENTITY_ID_RED_ARROW:
                 gEntityInfo[var_r4].priority = 2;
                 break;
 
@@ -1750,9 +1750,9 @@ void sub_0803C808(void)
 
         }
 
-        if ((gEntityInfo[var_r4].unk11 == 0) && (gEntityInfo[var_r4].unkF != 0x1C))
+        if ((gEntityInfo[var_r4].id == 0) && (gEntityInfo[var_r4].unkF != 0x1C))
         {
-            gEntityInfo[var_r4].unk10 = 1;
+            gEntityInfo[var_r4].visible = 1;
         }
     }
 
@@ -1898,7 +1898,7 @@ void sub_0803CE14(u8 arg0)
         case 17:
             if (gEntityInfo[arg0].xPosBg2 <= (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 - 0x10))
             {
-                gEntityInfo[arg0].unk10 = 0;
+                gEntityInfo[arg0].visible = 0;
                 gEntityInfo[arg0].unkF = 0x1C;
             }
             else if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
@@ -1930,14 +1930,14 @@ void sub_0803CF08(u8 arg0)
             {
                 sub_0801E664(gEntityInfo[temp_r1 + var_r6].xPosBg2, gEntityInfo[temp_r1 + var_r6].yPosBg2, 2, temp_r1 + var_r6);
                 gEntityInfo[temp_r1 + var_r6].unkF = 0x1C;
-                gEntityInfo[temp_r1 + var_r6].unk10 = 0;
+                gEntityInfo[temp_r1 + var_r6].visible = 0;
             }
         }
 
         if (gUnk_03005220.unk42 != 0)
         {
             gEntityInfo[gUnk_03005220.unk42].unkF = 0x1C;
-            gEntityInfo[gUnk_03005220.unk42].unk10 = 0;
+            gEntityInfo[gUnk_03005220.unk42].visible = 0;
             gUnk_03005220.unk38 = 0;
             gUnk_03005220.unk43 = 0;
             gUnk_03005220.unk42 = 0;
@@ -2000,8 +2000,8 @@ void sub_0803CF08(u8 arg0)
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         }
 
-        gEntityInfo[0x9].unk10 = 0;
-        gEntityInfo[0xA].unk10 = 0;
+        gEntityInfo[0x9].visible = 0;
+        gEntityInfo[0xA].visible = 0;
         if (gUnk_03005220.unk31 != 0)
         {
             sub_08025B78(0, 0);
@@ -2865,8 +2865,8 @@ void sub_0803E6D8(u8 arg0)
             gEntityInfo[0x1B + var_r3].yPosBg2 = gUnk_03000790[0].unk4;
             gEntityInfo[0x24 + var_r3].yPosBg2 = gUnk_03000790[1].unk4;
     
-            gEntityInfo[0x24 + var_r3].unk10 = 1;
-            gEntityInfo[0x1B + var_r3].unk10 = 1;
+            gEntityInfo[0x24 + var_r3].visible = 1;
+            gEntityInfo[0x1B + var_r3].visible = 1;
         }
 
         gUnk_03000790[0].unk0 = gEntityInfo[0x1B].xPosBg2 - 0x10;
@@ -2882,7 +2882,7 @@ void sub_0803E6D8(u8 arg0)
 
         for (var_r3 = 0; var_r3 < 9; var_r3++)
         {
-            gEntityInfo[0x1B + var_r3].unk10 = gEntityInfo[0x24 + var_r3].unk10 = 0;
+            gEntityInfo[0x1B + var_r3].visible = gEntityInfo[0x24 + var_r3].visible = 0;
         }
     }
 }
@@ -3298,7 +3298,7 @@ void sub_0803E904(u8 arg0)
                     {
                         if (gUnk_03005220.unk31 != 0)
                         {
-                            gEntityInfo[arg0].unk10 = 0;
+                            gEntityInfo[arg0].visible = 0;
                             gEntityInfo[arg0].yPosBg2 = 0;
                             gEntityInfo[arg0].xPosBg2 = 0;
                             gUnk_03005400.unkE_4 = 1;
@@ -3969,7 +3969,7 @@ void sub_0803F9EC(u8 arg0)
                 if (gUnk_03005400.unk4 != 0)
                 {
                     gEntityInfo[arg0].unkF = 0;
-                    gEntityInfo[arg0].unk10 = 1;
+                    gEntityInfo[arg0].visible = 1;
                     if (gUnk_03005400.unk4 != 0)
                     {
                         if (gEntityInfo[arg0].yPosBg2 > 0x2A)
@@ -4028,7 +4028,7 @@ void sub_0803F9EC(u8 arg0)
                 gEntityInfo[0x26].unk8.split.unk8 = (((thunk_GetRandomValue() % 3) + 1) * 10) + 0x5A;
 
                 gEntityInfo[0x12].unkF = 0x1C;
-                gEntityInfo[0x12].unk10 = 0;
+                gEntityInfo[0x12].visible = 0;
                 gUnk_03005400.unkA = 0xA;
                 m4aSongNumStart(0x80);
                 break;
@@ -4239,12 +4239,12 @@ void sub_08040B50(u8 arg0)
         gEntityInfo[0x19].unkF = 0x1C;
         gEntityInfo[0x18].unkF = 0x1C;
 
-        gEntityInfo[0x1D].unk10 = 0;
-        gEntityInfo[0x1C].unk10 = 0;
-        gEntityInfo[0x1B].unk10 = 0;
-        gEntityInfo[0x1A].unk10 = 0;
-        gEntityInfo[0x19].unk10 = 0;
-        gEntityInfo[0x18].unk10 = 0;
+        gEntityInfo[0x1D].visible = 0;
+        gEntityInfo[0x1C].visible = 0;
+        gEntityInfo[0x1B].visible = 0;
+        gEntityInfo[0x1A].visible = 0;
+        gEntityInfo[0x19].visible = 0;
+        gEntityInfo[0x18].visible = 0;
     }
 }
 
@@ -5014,7 +5014,7 @@ void sub_08041F34(u8 arg0)
         gUnk_03005400.unkE_7 = 1;
 
         gEntityInfo[0].unkF = 0;
-        gEntityInfo[0].unk10 = arg0;
+        gEntityInfo[0].visible = arg0;
         gEntityInfo[0x14].unkF = 0x19;
         gEntityInfo[0x13].unkF = 0x19;
 
@@ -5031,7 +5031,7 @@ void sub_08041F34(u8 arg0)
         if (gEntityInfo[0x1E].unk16 == 1)
         {
             gEntityInfo[0x1E].unkF = 0xE;
-            gEntityInfo[0x1E].unk10 = 1;
+            gEntityInfo[0x1E].visible = 1;
             gEntityInfo[0x1E].unk16 = 0;
         }
     }
@@ -5039,17 +5039,17 @@ void sub_08041F34(u8 arg0)
     {
         gUnk_03005400.unkE_7 = 0;
 
-        if (gEntityInfo[0x1E].unk10 == 1)
+        if (gEntityInfo[0x1E].visible == 1)
         {
             gEntityInfo[0x1E].unkF = 0x1C;
-            gEntityInfo[0x1E].unk10 = 0;
+            gEntityInfo[0x1E].visible = 0;
             gEntityInfo[0x1E].unk16 = 1;
         }
         
         for (var_r2 = 0; var_r2 < 0xD; var_r2++)
         {
             gEntityInfo[var_r2].unkF = 0x1C;
-            gEntityInfo[var_r2].unk10 = 0;
+            gEntityInfo[var_r2].visible = 0;
         }
     }
 }
@@ -5136,7 +5136,7 @@ void sub_08042024(u8 arg0)
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gEntityInfo[arg0].unk10 = 1;
+                gEntityInfo[arg0].visible = 1;
                 gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
                 gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
                 gEntityInfo[arg0].unkF = 0;
@@ -5170,7 +5170,7 @@ void sub_08042024(u8 arg0)
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03003590[0].unk0 = 0;
 
-                    gEntityInfo[arg0].unk10 = 0;
+                    gEntityInfo[arg0].visible = 0;
                     gEntityInfo[arg0].unkF = 0x1A;
 
                     gEntityInfo[0x1D].unkC_2 = 0;
@@ -5220,9 +5220,9 @@ b:
                     gEntityInfo[0x19].xPosBg2 = gUnk_08116A6E[temp_r1][1] * 8;
                     gEntityInfo[0x1A].xPosBg2 = gUnk_08116A6E[temp_r1][2] * 8;
 
-                    gEntityInfo[0x1A].unk11 = 0x1A;
-                    gEntityInfo[0x19].unk11 = 0x1A;
-                    gEntityInfo[0x18].unk11 = 0x1A;
+                    gEntityInfo[0x1A].id = 0x1A;
+                    gEntityInfo[0x19].id = 0x1A;
+                    gEntityInfo[0x18].id = 0x1A;
 
                     gEntityInfo[0x1A].unkF = 0x19;
                     gEntityInfo[0x19].unkF = 0x19;
@@ -5277,15 +5277,15 @@ b:
                 gEntityInfo[arg0].unk8.split.unk8 += 1;
                 gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
 
-                if (gEntityInfo[0x18].unk11 == 0x1A)
+                if (gEntityInfo[0x18].id == 0x1A)
                 {
                     break;
                 }
-                if (gEntityInfo[0x19].unk11 == 0x1A)
+                if (gEntityInfo[0x19].id == 0x1A)
                 {
                     break;
                 }
-                if (gEntityInfo[0x1A].unk11 == 0x1A)
+                if (gEntityInfo[0x1A].id == 0x1A)
                 {
                     break;
                 }
@@ -5305,9 +5305,9 @@ b:
                 gEntityInfo[0x19].xPosBg2 = gUnk_08116A6E[temp_r1][1] * 8;
                 gEntityInfo[0x1A].xPosBg2 = gUnk_08116A6E[temp_r1][2] * 8;
 
-                gEntityInfo[0x1A].unk11 = 0x1A;
-                gEntityInfo[0x19].unk11 = 0x1A;
-                gEntityInfo[0x18].unk11 = 0x1A;
+                gEntityInfo[0x1A].id = 0x1A;
+                gEntityInfo[0x19].id = 0x1A;
+                gEntityInfo[0x18].id = 0x1A;
 
                 gEntityInfo[0x1A].unkF = 0x19;
                 gEntityInfo[0x19].unkF = 0x19;
@@ -5455,7 +5455,7 @@ b:
                     sub_08025B78(0x15, 5);
                     gUnk_03005400.unkA = 6;
                     gEntityInfo[arg0].unkF = 0x1A;
-                    gEntityInfo[arg0].unk10 = 0;
+                    gEntityInfo[arg0].visible = 0;
                 }
                 else
                 {

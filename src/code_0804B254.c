@@ -752,7 +752,7 @@ void sub_0804C230(void)
 
 void sub_0804C24C(void)
 {
-    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].unk10 = gUnk_03004D84[2] >> 7;
+    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].visible = gUnk_03004D84[2] >> 7;
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].unkF = ((gUnk_03004D84[2] >> 7) == 0) ? (0x1C) : (0);
 
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].xPosScreen = sub_0804B254(gUnk_03004D84 + 3);
@@ -861,7 +861,7 @@ void sub_0804C6A8(void)
 
 void sub_0804C6E0(void)
 {
-    gEntityInfo[gUnk_03004D84[2] + 0xD].unk10 = gUnk_03004D84[3] >> 7;
+    gEntityInfo[gUnk_03004D84[2] + 0xD].visible = gUnk_03004D84[3] >> 7;
     gEntityInfo[gUnk_03004D84[2] + 0xD].unkF = (!(gUnk_03004D84[3] & 0x80)) ? 0x1C : 0;
     gEntityInfo[gUnk_03004D84[2] + 0xD].unkC_2 = (gUnk_03004D84[3] >> 4) & 3;
     gEntityInfo[gUnk_03004D84[2] + 0xD].priority = (gUnk_03004D84[3] & 3);
@@ -925,11 +925,11 @@ void sub_0804C898(void)
 
     if (gUnk_0300081C->unk17_1 != 0)
     {
-        gEntityInfo[0xD].unk10 = (gUnk_03004C20.globalFrameCounter / 0x20) % 2;
+        gEntityInfo[0xD].visible = (gUnk_03004C20.globalFrameCounter / 0x20) % 2;
     }
     else
     {
-        gEntityInfo[0xD].unk10 = 0;
+        gEntityInfo[0xD].visible = 0;
     }
 }
 
@@ -1268,13 +1268,13 @@ s32 sub_0804D0B0(s32 arg0)
                 }
                 temp_r5 = var_r4 - ((var_r0_4 >> 3) * 8);
 
-                if (gEntityInfo[var_r4].unk11 != 0x50)
+                if (gEntityInfo[var_r4].id != 0x50)
                 {
-                    gEntityInfo[var_r4].unk10 = 0;
+                    gEntityInfo[var_r4].visible = 0;
                     continue;
                 }
 
-                gEntityInfo[var_r4].unk10 = 1;
+                gEntityInfo[var_r4].visible = 1;
 
                 gEntityInfo[var_r4].affineEnable = 1;
                 gEntityInfo[var_r4].affineHFlip_matrixNum = temp_r5;                        
@@ -1298,7 +1298,7 @@ s32 sub_0804D0B0(s32 arg0)
         case 1:
             for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
             {
-                if (gEntityInfo[var_r4].unk11 != 0x50)
+                if (gEntityInfo[var_r4].id != 0x50)
                 {
                     continue;
                 }
@@ -1352,7 +1352,7 @@ s32 sub_0804D0B0(s32 arg0)
         case 2:
             for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
             {
-                gEntityInfo[var_r4].unk10 = 0;
+                gEntityInfo[var_r4].visible = 0;
             }
             return 0;
     }

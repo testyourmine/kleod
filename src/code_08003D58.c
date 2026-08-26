@@ -128,11 +128,11 @@ void sub_08003DA0(void)
 }
 
 // 3DC0
-void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 arg6, u8 arg7, u8 arg8)
+void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 arg6, u8 arg7, u8 id)
 {
     u32 var_r3_3;
 
-    if (arg8 == 0 || arg8 >= 0x4A)
+    if (id == ENTITY_ID_NONE || id >= 0x4A)
     {
         gEntityInfo[arg0].xPosScreen = arg2;
         gEntityInfo[arg0].yPosScreen = arg3;
@@ -145,35 +145,35 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         gEntityInfo[arg0].yPosScreen = arg3 - gBgInfo[2].vOfs;
     }
     gEntityInfo[arg0].unkA = arg1;
-    gEntityInfo[arg0].unk10 = 0;
+    gEntityInfo[arg0].visible = 0;
     gEntityInfo[arg0].unk8.split.unk8 = arg4;
     gEntityInfo[arg0].unkF = arg7;
     gEntityInfo[arg0].unkC_2 = 0;
 
-    switch (arg8 - 0x2F)
+    switch (id)
     {
-        case 9:
-        case 10:
-        case 11:
+        case ENTITY_ID_WATER:
+        case ENTITY_ID_WATERFALL:
+        case ENTITY_ID_GEYSER:
             gEntityInfo[arg0].priority = 2;
             gEntityInfo[arg0].objMode = 1;
             break;
 
-        case 8:
+        case ENTITY_ID_PRESSURE_SWITCH:
             gEntityInfo[arg0].unk8.split.unk9 = 0xFF;
             /* fallthrough */
-        case 13:
+        case ENTITY_ID_GATE:
             gEntityInfo[arg0].priority = 2;
             break;
 
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 14:
-        case 15:
-        case 18:
+        case ENTITY_ID_GOOMI:
+        case ENTITY_ID_GOOMI_HORIZONTAL:
+        case ENTITY_ID_GOOMI_VERTICAL:
+        case ENTITY_ID_GOOMI_DIAGONAL_1:
+        case ENTITY_ID_GOOMI_DIAGONAL_2:
+        case ENTITY_ID_SCALE_1:
+        case ENTITY_ID_SCALE_2:
+        case ENTITY_ID_MOON_DOOR:
             gEntityInfo[arg0].priority = 1;
             gEntityInfo[arg0].objMode = 0;
             break;
@@ -184,9 +184,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 1)
+    switch (id)
     {
-        case 0x71:
+        case ENTITY_ID_GATE_SWITCH:
             gEntityInfo[arg0].unkC_4 = 0;
             gEntityInfo[arg0].unk8.split.unk8 = 0;
             gEntityInfo[arg0].unk8.split.unk9 = arg4;
@@ -198,7 +198,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x70:
+        case ENTITY_ID_WATER_SWITCH:
             if ((arg7 == 0) && ((gUnk_03005220.unk58 >> arg4) & 1))
             {
                 arg6 = 1;
@@ -212,7 +212,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_4 = arg6;
             break;
 
-        case 0x37:
+        case ENTITY_ID_WATER:
             if (gUnk_03004C00 != 0)
             {
                 gEntityInfo[arg0].yPosBg2 += 0x1A;
@@ -221,11 +221,11 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_4 = arg6;
             break;
 
-        case 0x39:
+        case ENTITY_ID_GEYSER:
             gEntityInfo[arg0].unkC_4 = arg6;
             break;
 
-        case 0x3B:
+        case ENTITY_ID_GATE:
             if (((gUnk_03005220.unk1_7 >> arg6) & 1) && (arg4 == 0xFF))
             {
                 gEntityInfo[arg0].unkF = 0x1C;
@@ -235,20 +235,20 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_4 = 0;
             break;
 
-        case 0x26:
-        case 0x27:
-        case 0x28:
-        case 0x29:
+        case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+        case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+        case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+        case 0x2A:
             gEntityInfo[arg0].unk8.split.unk8 = 0;
             gEntityInfo[arg0].unk8.split.unk9 = arg4;
             gEntityInfo[arg0].unkC_4 = arg6;
             break;
 
-        case 0x2E:
-        case 0x2F:
-        case 0x30:
-        case 0x31:
-        case 0x32:
+        case ENTITY_ID_GOOMI:
+        case ENTITY_ID_GOOMI_HORIZONTAL:
+        case ENTITY_ID_GOOMI_VERTICAL:
+        case ENTITY_ID_GOOMI_DIAGONAL_1:
+        case ENTITY_ID_GOOMI_DIAGONAL_2:
             gEntityInfo[arg0].unkC_4 = arg6;
             if (arg6 == 0)
             {
@@ -256,7 +256,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x41:
+        case ENTITY_ID_CANNON_GOAL:
             gEntityInfo[arg0].affineEnable = 1;
             gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum + 1;
             gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = COS(0);
@@ -265,8 +265,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_2 = arg6;
             break;
 
-        case 0x35:
-        case 0x74:
+        case ENTITY_ID_RED_ARROW:
+        case ENTITY_ID_BLUE_ARROW:
             gEntityInfo[arg0].unkC_4 = arg6;
             if (arg6 != 3)
             {
@@ -274,11 +274,11 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x73:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
             gEntityInfo[arg0].unk8.split.unk9 = 0;
             break;
 
-        case 0x34:
+        case ENTITY_ID_GROWN_BLOCK:
             if (arg7 != 0x1C)
             {
                 arg6 = arg6 ^ gUnk_03005220.unk3_6;
@@ -318,7 +318,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x6F:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
             if ((arg7 == 0) && ((gUnk_03005220.unk2E >> arg4) & 1))
             {
                 gEntityInfo[arg0].unkF = 0x1C;
@@ -333,7 +333,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x3C:
+        case ENTITY_ID_SCALE_1:
             gEntityInfo[arg0].affineEnable = 1;
             gEntityInfo[arg0].unkC_4 = arg6;
             gEntityInfo[arg0].unk8.split.unk8 = 0x80;
@@ -363,34 +363,34 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x7A:
-        case 0x7B:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
             gUnk_0300528C += 1;
             /* fallthrough */
-        case 0x75:
-        case 0x76:
-        case 0x78:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_GLIBZ_QUAD_CANNON:
             gEntityInfo[arg0].unk8.split.unk8 = 0;
             gEntityInfo[arg0].unk8.split.unk9 = arg4;
             gEntityInfo[arg0].unkC_2 = arg6 & 1;
-            if (arg8 == 0x79)
+            if (id == ENTITY_ID_GLIBZ_QUAD_CANNON)
             {
                 gEntityInfo[arg0].unkC_4 = arg6;
             }
             break;
 
-        case 0x7C:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             gUnk_0300528C += 1;
             /* fallthrough */
-        case 0x77:
-        case 0x79:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
+        case ENTITY_ID_TETON:
             gEntityInfo[arg0].unk8.split.unk8 = 0;
             gEntityInfo[arg0].unk8.split.unk9 = arg4;
             gEntityInfo[arg0].unkC_4 = arg6;
             break;
 
-        case 0x5:
-        case 0x7:
+        case ENTITY_ID_SPIKER_HORIZONTAL:
+        case ENTITY_ID_SPIKER_VERTICAL:
             gEntityInfo[arg0].unk8.split.unk8 = 0;
             gEntityInfo[arg0].unk8.split.unk9 = arg4;
             gEntityInfo[arg0].unkC_4 = arg6 & 1;
@@ -413,7 +413,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             break;
 
-        case 0x25:
+        case ENTITY_ID_MAGNET_BLOCK_HAND:
             gEntityInfo[arg0].affineEnable = 1;
             gEntityInfo[arg0].affineDouble = 1;
             gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
@@ -423,7 +423,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gUnk_03004C38 += 1;
             break;
 
-        case 0x8:
+        case ENTITY_ID_LEAF_1:
             gUnk_03000790[arg4].unk0 = arg2 - 0xE;
             gUnk_03000790[arg4].unk2 = arg2 + 0xE;
             gUnk_03000790[arg4].unk6 = arg3;
@@ -440,21 +440,21 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
                 }
             }
             /* fallthrough */
-        case 0x9:
+        case ENTITY_ID_LEAF_2:
             gEntityInfo[arg0].yPosBg2 = gUnk_03000790[arg4].unk8;
             gEntityInfo[arg0].unkC_4 = arg4;
             break;
 
-        case 0x0:
-        case 0x1:
-        case 0x3:
-            if (gUnk_03005220.keys & arg8)
+        case ENTITY_ID_CIRCLE_KEY:
+        case ENTITY_ID_TRIANGLE_KEY:
+        case ENTITY_ID_HEART_KEY:
+            if (gUnk_03005220.keys & id)
             {
                 gEntityInfo[arg0].unkF = 0x1C;
             }
             break;
 
-        case 0x4:
+        case ENTITY_ID_KEY_DOOR:
             if ((arg7 == 0) && ((gUnk_03005220.unk14 >> arg4) & 1))
             {
                 gEntityInfo[arg0].unkF = 0x1C;
@@ -462,25 +462,25 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unk8.split.unk9 = arg6;
             break;
 
-        case 0x2D:
+        case ENTITY_ID_1_UP:
             if ((arg7 == 0) && (gUnk_03005220.unk4 & (1 << arg4)))
             {
                 gEntityInfo[arg0].unkF = 0x1C;
             }
             break;
 
-        case 0x2B:
+        case ENTITY_ID_SMALL_DREAM_STONE:
             if (gUnk_0300547C == 0)
             {
                 gUnk_0300547C = arg0;
             }
             /* fallthrough */
-        case 0x2C:
-            if ((arg8 == 0x2D) && (gUnk_03000818 == 0))
+        case ENTITY_ID_LARGE_DREAM_STONE:
+            if ((id == ENTITY_ID_LARGE_DREAM_STONE) && (gUnk_03000818 == 0))
             {
                 gUnk_03000818 = arg0;
             }
-            if (arg4 <= 0x1FU)
+            if (arg4 < 0x20)
             {
                 if ((arg7 == 0) && (gUnk_03005220.unk8 & (1 << arg4)))
                 {
@@ -494,7 +494,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_2 = arg6;
             break;
 
-        case 0x6:
+        case ENTITY_ID_HEART:
             if (gUnk_030051B4 == 0)
             {
                 gUnk_030051B4 = arg0;
@@ -510,7 +510,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             gEntityInfo[arg0].unkC_2 = arg6;
             break;
 
-        case 0x2:
+        case ENTITY_ID_STAR:
             if (gUnk_030008EC == 0)
             {
                 gUnk_030008EC = arg0;
@@ -527,35 +527,35 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    gEntityInfo[arg0].unk11 = arg8;
+    gEntityInfo[arg0].id = id;
 
-    switch (arg8 - 0x25)
+    switch (id)
     {
-        case 0x0:
+        case ENTITY_ID_MAGNET_BLOCK:
             if (gUnk_030007F4 == 0)
             {
                 gUnk_030007F4 = arg0;
             }
             gUnk_0300290C = arg0;
             /* fallthrough */
-        case 0x4:
-        case 0x6:
-        case 0x10:
-        case 0x4A:
-        case 0x4B:
+        case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+        case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03005484 == 0)
             {
                 gUnk_03005484 = arg0;
             }
             gUnk_03004650 = arg0;
             /* fallthrough */
-        case 0x2:
-        case 0x3:
-        case 0x5:
-        case 0x13:
-        case 0x19:
-        case 0x1A:
-        case 0x1C:
+        case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+        case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+        case 0x2A:
+        case ENTITY_ID_WATER:
+        case ENTITY_ID_SCALE_2:
+        case ENTITY_ID_SPRING:
+        case ENTITY_ID_MOON_DOOR:
             if (gUnk_030051D4 == 0)
             {
                 gUnk_030051D4 = arg0;
@@ -564,52 +564,52 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 0xB)
+    switch (id)
     {
-        case 0x1A:
-        case 0x64:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_BOX:
             if (gUnk_03003500 == 0)
             {
                 gUnk_03003500 = arg0;
             }
             gUnk_03004664 = arg0;
             /* fallthrough */
-        case 0x70:
-        case 0x71:
-        case 0x72:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030047BC == 0)
             {
                 gUnk_030047BC = arg0;
             }
             gUnk_030007D4 = arg0;
             /* fallthrough */
-        case 0x6B:
-        case 0x6C:
-        case 0x6D:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
             if (gUnk_030047F8 == 0)
             {
                 gUnk_030047F8 = arg0;
             }
             gUnk_03003504 = arg0;
             /* fallthrough */
-        case 0x0: 
-        case 0x8: 
-        case 0xB: 
-        case 0x14:
-        case 0x24:
-        case 0x25:
-        case 0x26:
-        case 0x27:
-        case 0x28:
-        case 0x30:
-        case 0x31:
-        case 0x66:
-        case 0x67:
-        case 0x68:
-        case 0x69:
-        case 0x6A:
-        case 0x6E:
-        case 0x6F:
+        case ENTITY_ID_MOO_BOARDER: 
+        case 0x13: 
+        case 0x16: 
+        case 0x1F:
+        case ENTITY_ID_GOOMI:
+        case ENTITY_ID_GOOMI_HORIZONTAL:
+        case ENTITY_ID_GOOMI_VERTICAL:
+        case ENTITY_ID_GOOMI_DIAGONAL_1:
+        case ENTITY_ID_GOOMI_DIAGONAL_2:
+        case ENTITY_ID_ONE_WAY_GATE:
+        case ENTITY_ID_GATE:
+        case ENTITY_ID_WATER_SWITCH:
+        case ENTITY_ID_GATE_SWITCH:
+        case ENTITY_ID_ROTATION_SWITCH:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
+        case ENTITY_ID_BLUE_ARROW:
+        case ENTITY_ID_GLIBZ_QUAD_CANNON:
+        case ENTITY_ID_TETON:
             if (gUnk_030051D8 == 0)
             {
                 gUnk_030051D8 = arg0;
@@ -618,45 +618,45 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 5)
+    switch (id)
     {
-        case 0x1:
-        case 0x3:
-        case 0x20:
-        case 0x22:
-        case 0x24:
-        case 0x25:
-        case 0x26:
-        case 0x30:
-        case 0x39:
-        case 0x3A:
-        case 0x6A:
-        case 0x6B:
+        case ENTITY_ID_SPIKER_HORIZONTAL:
+        case ENTITY_ID_SPIKER_VERTICAL:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+        case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+        case 0x2A:
+        case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_SCALE_2:
+        case ENTITY_ID_SPRING:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03003634 == 0)
             {
                 gUnk_03003634 = arg0;
             }
             gUnk_03005430 = arg0;
             /* fallthrough */
-        case 0x23:
-        case 0x31:
-        case 0x33:
-        case 0x3C:
-        case 0x6C:
-        case 0x6D:
-        case 0x6E:
-        case 0x6F:
-        case 0x70:
+        case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+        case ENTITY_ID_RED_ARROW:
+        case ENTITY_ID_WATER:
+        case ENTITY_ID_MOON_DOOR:
+        case ENTITY_ID_WATER_SWITCH:
+        case ENTITY_ID_GATE_SWITCH:
+        case ENTITY_ID_ROTATION_SWITCH:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
+        case ENTITY_ID_BLUE_ARROW:
             if (gUnk_03003630 == 0)
             {
                 gUnk_03003630 = arg0;
             }
             gUnk_03004674 = arg0;
             /* fallthrough */
-        case 0x0:
-        case 0x36:
-        case 0x37:
-            if (arg8 != 0x38)
+        case ENTITY_ID_KEY_DOOR:
+        case ENTITY_ID_ONE_WAY_GATE:
+        case ENTITY_ID_GATE:
+            if (id != ENTITY_ID_WATER)
             {
                 if (gUnk_030034D8 == 0)
                 {
@@ -667,19 +667,19 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 5)
+    switch (id)
     {
-        case 0x0:
-        case 0x19:
-        case 0x20:
-        case 0x30:
-        case 0x33:
-        case 0x36:
-        case 0x37:
-        case 0x3A:
-        case 0x3C:
-        case 0x6A:
-        case 0x6B:
+        case ENTITY_ID_KEY_DOOR:
+        case 0x1E:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_WATER:
+        case ENTITY_ID_ONE_WAY_GATE:
+        case ENTITY_ID_GATE:
+        case ENTITY_ID_SPRING:
+        case ENTITY_ID_MOON_DOOR:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_030034CC == 0)
             {
                 gUnk_030034CC = arg0;
@@ -688,47 +688,47 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 6)
+    switch (id)
     {
-        case 0x1F:
-        case 0x21:
-        case 0x22:
-        case 0x2F:
-        case 0x32:
-        case 0x38:
-        case 0x39:
-        case 0x3B:
-        case 0x69:
-        case 0x6A:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+        case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_WATER:
+        case ENTITY_ID_SCALE_2:
+        case ENTITY_ID_SPRING:
+        case ENTITY_ID_MOON_DOOR:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03000804 == 0)
             {
                 gUnk_03000804 = arg0;
             }
             gUnk_0300082C = arg0;
             /* fallthrough */
-        case 0x0: 
-        case 0x2: 
-        case 0x5: 
-        case 0x11:
-        case 0x15:
-        case 0x1C:
-        case 0x23:
-        case 0x24:
-        case 0x25:
-        case 0x30:
-        case 0x6B:
-        case 0x6C:
-        case 0x6D:
-        case 0x6E:
-        case 0x6F:
-        case 0x70:
-        case 0x71:
-        case 0x72:
-        case 0x73:
-        case 0x74:
-        case 0x75:
-        case 0x76:
-        case 0x77:
+        case ENTITY_ID_SPIKER_HORIZONTAL: 
+        case ENTITY_ID_SPIKER_VERTICAL: 
+        case ENTITY_ID_MOO_BOARDER: 
+        case 0x17:
+        case 0x1B:
+        case 0x22:
+        case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+        case 0x2A:
+        case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
+        case ENTITY_ID_RED_ARROW:
+        case ENTITY_ID_WATER_SWITCH:
+        case ENTITY_ID_GATE_SWITCH:
+        case ENTITY_ID_ROTATION_SWITCH:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
+        case ENTITY_ID_BLUE_ARROW:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
+        case ENTITY_ID_GLIBZ_QUAD_CANNON:
+        case ENTITY_ID_TETON:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030007F0 == 0)
             {
                 gUnk_030007F0 = arg0;
@@ -737,51 +737,51 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8 - 5)
+    switch (id)
     {
-        case 0x1:
-        case 0x3:
-        case 0x6:
-        case 0x13:
-        case 0x20:
-        case 0x22:
-        case 0x24:
-        case 0x25:
-        case 0x26:
-        case 0x30:
-        case 0x3A:
-        case 0x6A:
-        case 0x6B:
-        case 0x71:
-        case 0x72:
-        case 0x73:
-        case 0x74:
-        case 0x75:
-        case 0x76:
-        case 0x77:
-        case 0x78:
+        case ENTITY_ID_SPIKER_HORIZONTAL:
+        case ENTITY_ID_SPIKER_VERTICAL:
+        case ENTITY_ID_MOO_BOARDER:
+        case 0x18:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+        case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+        case 0x2A:
+        case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_SPRING:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
+        case ENTITY_ID_GLIBZ_QUAD_CANNON:
+        case ENTITY_ID_TETON:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030047B4 == 0)
             {
                 gUnk_030047B4 = arg0;
             }
             gUnk_03003640 = arg0;
             /* fallthrough */
-        case 0x0:
-        case 0x12:
-        case 0x16:
-        case 0x1D:
-        case 0x23:
-        case 0x31:
-        case 0x35:
-        case 0x36:
-        case 0x37:
-        case 0x39:
-        case 0x3C:
-        case 0x6C:
-        case 0x6D:
-        case 0x6E:
-        case 0x6F:
-        case 0x70:
+        case ENTITY_ID_KEY_DOOR:
+        case 0x17:
+        case 0x1B:
+        case 0x22:
+        case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+        case ENTITY_ID_RED_ARROW:
+        case ENTITY_ID_GEYSER:
+        case ENTITY_ID_ONE_WAY_GATE:
+        case ENTITY_ID_GATE:
+        case ENTITY_ID_SCALE_2:
+        case ENTITY_ID_MOON_DOOR:
+        case ENTITY_ID_WATER_SWITCH:
+        case ENTITY_ID_GATE_SWITCH:
+        case ENTITY_ID_ROTATION_SWITCH:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
+        case ENTITY_ID_BLUE_ARROW:
             if (gUnk_030008F4 == 0)
             {
                 gUnk_030008F4 = arg0;
@@ -790,7 +790,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    if (arg8 == 0x38)
+    if (id == ENTITY_ID_WATER)
     {
         if (gUnk_03000824 == 0)
         {
@@ -799,32 +799,32 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         gUnk_03005424 = arg0;
     }
 
-    switch (arg8 - 0x25)
+    switch (id)
     {
-        case 0x0:
-        case 0x4A:
-        case 0x51:
-        case 0x56:
-        case 0x57:
-        case 0x58:
+        case ENTITY_ID_MAGNET_BLOCK:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_03002904 == 0)
             {
                 gUnk_03002904 = arg0;
             }
             gUnk_030008FC = arg0;
             /* fallthrough */
-        case 0x52:
-        case 0x53:
-        case 0x54:
-        case 0x55:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
+        case ENTITY_ID_GLIBZ_QUAD_CANNON:
+        case ENTITY_ID_TETON:
             if (gUnk_030034A4 == 0)
             {
                 gUnk_030034A4 = arg0;
             }
             gUnk_030052B0 = arg0;
             /* fallthrough */
-        case 0x10:
-        case 0x49:
+        case ENTITY_ID_GROWN_BLOCK:
+        case ENTITY_ID_KLONOA:
             if (gUnk_03003638 == 0)
             {
                 gUnk_03003638 = arg0;
@@ -833,10 +833,23 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
     }
 
-    switch (arg8)
+    switch (id)
     {
-        case 0x6E ... 0x78:
-        case 0x7A ... 0x7D:
+        case ENTITY_ID_KLONOA:
+        case ENTITY_ID_BOX:
+        case ENTITY_ID_EXPLODABLE_BLOCK:
+        case ENTITY_ID_WATER_SWITCH:
+        case ENTITY_ID_GATE_SWITCH:
+        case ENTITY_ID_ROTATION_SWITCH:
+        case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
+        case ENTITY_ID_BLUE_ARROW:
+        case ENTITY_ID_MOO:
+        case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+        case ENTITY_ID_FLYING_MOO_VERTICAL:
+        case ENTITY_ID_TETON:
+        case ENTITY_ID_BOOMIE:
+        case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+        case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030052B4 == 0)
             {
                 gUnk_030052B4 = arg0;
@@ -881,7 +894,7 @@ void sub_08005CF4(void)
     sub_0800A468();
     gOamBufferPtr = gOamBuffer;
 
-    if (gEntityInfo[0xB].unk10 == 1)
+    if (gEntityInfo[0xB].visible == 1)
     {
         temp_r1_29 = gEntityInfo[0xB].unkA;
         if (gEntityInfo[0xB].unkA < 0xD)
@@ -899,7 +912,7 @@ void sub_08005CF4(void)
         {
             if (gEntityInfo[0xB].affineDouble)
             {
-                if (gEntityInfo[0xB].unk11 == 0x1C)
+                if (gEntityInfo[0xB].id == 0x1C)
                 {
                     gOamBufferPtr->split.x = (var_r5->unk3 * 2) + gEntityInfo[0xB].xPosScreen + ((s32) (gEntityInfo[0xB].unkB_0) << 4);
                     gOamBufferPtr->split.y = var_r5->unk4 + ((s8)var_r5->unk4 >> 1) + gEntityInfo[0xB].yPosScreen + (((s8)gEntityInfo[0xB].unkB_4) << 4);
@@ -943,7 +956,7 @@ void sub_08005CF4(void)
         }
     }
 
-    if (gEntityInfo[0xC].unk10 == 1)
+    if (gEntityInfo[0xC].visible == 1)
     {
         s32 sp4;
         temp_r1_30 = gEntityInfo[0xC].unkA;
@@ -962,7 +975,7 @@ void sub_08005CF4(void)
         {
             if (gEntityInfo[0xC].affineDouble)
             {
-                if (gEntityInfo[0xC].unk11 == 0x1C)
+                if (gEntityInfo[0xC].id == 0x1C)
                 {
                     gOamBufferPtr->split.x = (var_r5_2->unk3 * 2) + gEntityInfo[0xC].xPosScreen + ((s32) (gEntityInfo[0xC].unkB_0) << 4);
                     gOamBufferPtr->split.y = var_r5_2->unk4 + ((s8)var_r5_2->unk4 >> 1) + gEntityInfo[0xC].yPosScreen + (((s8)gEntityInfo[0xC].unkB_4) << 4);
@@ -1008,7 +1021,7 @@ void sub_08005CF4(void)
 
     for (sp0 = 1; sp0 <= 8; sp0++)
     {
-        if (gEntityInfo[sp0].unk10 == 1)
+        if (gEntityInfo[sp0].visible == 1)
         {
             if (gEntityAnimationInfo[sp0].state != 1)
             {
@@ -1028,7 +1041,7 @@ void sub_08005CF4(void)
                 {
                     if (gEntityInfo[sp0].affineDouble)
                     {
-                        if (gEntityInfo[sp0].unk11 == 0x1C)
+                        if (gEntityInfo[sp0].id == 0x1C)
                         {
                             gOamBufferPtr->split.x = (var_r6->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
                             gOamBufferPtr->split.y = var_r6->unk4 + ((s8)var_r6->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
@@ -1089,7 +1102,7 @@ void sub_08005CF4(void)
                 {
                     if (gEntityInfo[sp0].affineDouble)
                     {
-                        if (gEntityInfo[sp0].unk11 == 0x1C)
+                        if (gEntityInfo[sp0].id == 0x1C)
                         {
                             gOamBufferPtr->split.x = (var_r6_2->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
                             gOamBufferPtr->split.y = var_r6_2->unk4 + ((s8)var_r6_2->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
@@ -1136,13 +1149,13 @@ void sub_08005CF4(void)
 
     for (sp0 = 0; sp0 <= 0xC; sp0++)
     {
-        if (gEntityInfo[sp0].unk11 == 0x34)
+        if (gEntityInfo[sp0].id == 0x34)
             continue;
 
         if (sp0 == 0xB || sp0 == 0xC)
             continue;
 
-        if (gEntityInfo[sp0].unk10 == 1)
+        if (gEntityInfo[sp0].visible == 1)
         {
             temp_r1_17 = gEntityInfo[sp0].unkA;
             if (gEntityInfo[sp0].unkA < 0xD)
@@ -1160,7 +1173,7 @@ void sub_08005CF4(void)
             {
                 if (gEntityInfo[sp0].affineDouble)
                 {
-                    if (gEntityInfo[sp0].unk11 == 0x1C)
+                    if (gEntityInfo[sp0].id == 0x1C)
                     {
                         gOamBufferPtr->split.x = (var_r6_3->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
                         gOamBufferPtr->split.y = var_r6_3->unk4 + ((s8)var_r6_3->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
@@ -1206,7 +1219,7 @@ void sub_08005CF4(void)
 
     for (sp0 = 0xD; sp0 < gUnk_03005428; sp0++)
     {
-        if (gEntityInfo[sp0].unk10 == 1)
+        if (gEntityInfo[sp0].visible == 1)
         {
             temp_r0_4 = gEntityInfo[sp0].unkA;
             if (gEntityInfo[sp0].unkA < 0xD)
@@ -1224,7 +1237,7 @@ void sub_08005CF4(void)
             {
                 if (gEntityInfo[sp0].affineDouble)
                 {
-                    if (gEntityInfo[sp0].unk11 == 0x1C)
+                    if (gEntityInfo[sp0].id == 0x1C)
                     {
                         gOamBufferPtr->split.x = (var_r6_4->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
                         gOamBufferPtr->split.y = var_r6_4->unk4 + ((s8)var_r6_4->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
@@ -1270,7 +1283,7 @@ void sub_08005CF4(void)
 
     for (sp0 = 1; sp0 <= 8; sp0++)
     {
-        if (gEntityInfo[sp0].unk10 == 1)
+        if (gEntityInfo[sp0].visible == 1)
         {
             if (gEntityAnimationInfo[sp0].state == 1)
             {
@@ -1290,7 +1303,7 @@ void sub_08005CF4(void)
                 {
                     if (gEntityInfo[sp0].affineDouble)
                     {
-                        if (gEntityInfo[sp0].unk11 == 0x1C)
+                        if (gEntityInfo[sp0].id == 0x1C)
                         {
                             gOamBufferPtr->split.x = (var_r6_5->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
                             gOamBufferPtr->split.y = var_r6_5->unk4 + ((s8)var_r6_5->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);

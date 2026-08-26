@@ -111,7 +111,7 @@ void sub_0800D188(void)
             if (gUnk_03004C20.level == 8)
             {
                 gEntityInfo[0x12].unkF = 0x1C;
-                gEntityInfo[0x12].unk10 = 0;
+                gEntityInfo[0x12].visible = 0;
                 sub_08003D80();
             }
 
@@ -157,14 +157,14 @@ void sub_0800D188(void)
         {
             if ((gUnk_03005220.unk5B != 0) && (gUnk_03005220.klonoaInvincibilityTimer & 1))
             {
-                gEntityInfo[0].unk10 ^= 1;
+                gEntityInfo[0].visible ^= 1;
             }
         }
         else
         {
             if ((gUnk_03005220.unk5B != 0) && !(gUnk_03005220.klonoaInvincibilityTimer & 7))
             {
-                gEntityInfo[0].unk10 ^= 1;
+                gEntityInfo[0].visible ^= 1;
             }
         }
 
@@ -232,7 +232,7 @@ void sub_0800D188(void)
             {
     
             }
-            else if ((gUnk_03005220.unk3A != 0) && (gUnk_03005220.unk3B == 0) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x6F) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x25))
+            else if ((gUnk_03005220.unk3A != 0) && (gUnk_03005220.unk3B == 0) && (gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_BOX) && (gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_MAGNET_BLOCK))
             {
     
             }
@@ -276,7 +276,7 @@ void sub_0800D188(void)
                 {
     
                 }
-                else if ((gUnk_03005220.unk3A == 0) || (gUnk_03005220.unk3B != 0) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+                else if ((gUnk_03005220.unk3A == 0) || (gUnk_03005220.unk3B != 0) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
                 {
                     gUnk_03005220.unk26 -= 0x150;
                     if (gUnk_03005220.unk26 < -0x1800)
@@ -362,7 +362,7 @@ void sub_0800D188(void)
 
             sp20 = max(sp20, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3)) * gBgInfo[2].hLength]);
 
-            if ((gUnk_03005220.unk43 == 1) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+            if ((gUnk_03005220.unk43 == 1) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
             {
                 sp20 = max(sp20, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 + 0xA) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]);
 
@@ -379,7 +379,7 @@ void sub_0800D188(void)
 
             sp20 = max(sp20, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x14) >> 3) * gBgInfo[2].hLength)]);
 
-            if ((gUnk_03005220.unk43 == 1) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+            if ((gUnk_03005220.unk43 == 1) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
             {
                 sp20 = max(sp20, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x1B) >> 3) * gBgInfo[2].hLength)]);
 
@@ -671,12 +671,12 @@ block_236:
     {
         for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
         {
-            if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].unk10 != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
+            if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].visible != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
             {
-                switch (gEntityInfo[var_sb].unk11 - 3)
+                switch (gEntityInfo[var_sb].id)
                 {
-                    case 0x22:
-                    case 0x6C:
+                    case ENTITY_ID_MAGNET_BLOCK:
+                    case ENTITY_ID_BOX:
                         if (gEntityInfo[var_sb].unk16 != 0)
                         {
                             if (gEntityInfo[var_sb].unkF > 1)
@@ -747,17 +747,17 @@ block_236:
                         }
                         break;
 
-                    case 0x3:
-                    case 0x5:
-                    case 0x8:
-                    case 0x73:
-                    case 0x74:
-                    case 0x75:
-                    case 0x76:
-                    case 0x77:
-                    case 0x78:
-                    case 0x79:
-                    case 0x7A:
+                    case ENTITY_ID_SPIKER_HORIZONTAL:
+                    case ENTITY_ID_SPIKER_VERTICAL:
+                    case ENTITY_ID_MOO_BOARDER:
+                    case ENTITY_ID_MOO:
+                    case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+                    case ENTITY_ID_FLYING_MOO_VERTICAL:
+                    case ENTITY_ID_GLIBZ_QUAD_CANNON:
+                    case ENTITY_ID_TETON:
+                    case ENTITY_ID_BOOMIE:
+                    case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+                    case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
                         if (gEntityInfo[var_sb].unkF <= 0xD)
                         {
                             if ((gEntityInfo[var_sb].affineEnable == 0) || (gUnk_03004C20.level == 8))
@@ -780,7 +780,7 @@ block_236:
                                 }
                             }
 
-                            if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[var_sb].unk11 == 6) || (gEntityInfo[var_sb].unk11 == 8)) && ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25)))
+                            if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[var_sb].id == ENTITY_ID_SPIKER_HORIZONTAL) || (gEntityInfo[var_sb].id == ENTITY_ID_SPIKER_VERTICAL)) && ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK)))
                             {
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC + var_r7))
                                 {
@@ -799,8 +799,8 @@ block_236:
                         }
                         break;
 
-                    case 0x29:
-                    case 0x2A:
+                    case ENTITY_ID_SMALL_DREAM_STONE:
+                    case ENTITY_ID_LARGE_DREAM_STONE:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 8)))
@@ -814,7 +814,7 @@ block_236:
                                     gUnk_03005220.unkC |= (1 << (gEntityInfo[var_sb].unk8.split.unk8 - 0x20));
                                 }
 
-                                if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     gUnk_03005220.dreamStones += 1;
                                 }
@@ -823,7 +823,7 @@ block_236:
                                     gUnk_03005220.dreamStones += 5;
                                 }
 
-                                if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 0xC, 3, var_sb);
                                 }
@@ -836,7 +836,7 @@ block_236:
                                 {
                                     m4aSongNumStart(0x91);
                                 }
-                                else if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                else if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     m4aSongNumStart(0x31);
                                 }
@@ -848,7 +848,7 @@ block_236:
                         }
                         break;
 
-                    case 0x4:
+                    case ENTITY_ID_HEART:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)))
@@ -869,7 +869,7 @@ block_236:
                         }
                         break;
 
-                    case 0x0:
+                    case ENTITY_ID_STAR:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)))
@@ -894,7 +894,7 @@ block_236:
                         }
                         break;
 
-                    case 0x2B:
+                    case ENTITY_ID_1_UP:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)) && (gEntityInfo[var_sb].unkF != 2))
@@ -907,7 +907,7 @@ block_236:
                         }
                         break;
 
-                    case 0x3E:
+                    case ENTITY_ID_MOON_DOOR:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x1E)) && (gEntityAnimationInfo[var_sb - gUnk_0300363C].state == 0))
@@ -923,7 +923,7 @@ block_236:
                         }
                         break;
 
-                    case 0x2:
+                    case ENTITY_ID_KEY_DOOR:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x20)))
@@ -942,7 +942,7 @@ block_236:
                         }
                         break;
 
-                    case 0x38:
+                    case ENTITY_ID_ONE_WAY_GATE:
                         sp24 = gEntityInfo[var_sb].unkC_2;
                         if (gEntityInfo[var_sb].unkC_2 == 1)
                         {
@@ -991,7 +991,7 @@ block_236:
                         }
                         break;
 
-                    case 0x39:
+                    case ENTITY_ID_GATE:
                         if ((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 7))
                         {
                             if ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 7))
@@ -1007,7 +1007,7 @@ block_236:
                         }
                         break;
 
-                    case 0x3C:
+                    case ENTITY_ID_SPRING:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xC)) && ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x1A)))
                         {
                             if ((gUnk_03005220.unk3F != var_sb) && ((gEntityAnimationInfo[var_sb - gUnk_0300363C].state != 2) || (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x10))))
@@ -1028,11 +1028,11 @@ block_236:
                         }
                         break;
 
-                    case 0x24:
-                    case 0x25:
-                    case 0x26:
-                    case 0x27:
-                    case 0x28:
+                    case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+                    case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+                    case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+                    case 0x2A:
+                    case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                         var_r7 = 0;
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)) && ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x10)))
                         {
@@ -1057,7 +1057,7 @@ block_236:
                                 {
                                     gEntityInfo[0].xPosBg2 = sp18;
                                 }
-                                if ((gEntityInfo[var_sb].unk11 <= 0x28) || (gEntityInfo[var_sb].unk11 >= 0x2B))
+                                if ((gEntityInfo[var_sb].id <= 0x28) || (gEntityInfo[var_sb].id >= 0x2B))
                                 {
 
                                 }
@@ -1085,7 +1085,7 @@ block_236:
                         }
                         break;
 
-                    case 0x3B:
+                    case ENTITY_ID_SCALE_2:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xC)) && ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb + 1].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 8)))
                         {
                             gUnk_03005220.unk26 = 0;
@@ -1130,7 +1130,7 @@ block_236:
                         }
                         break;
 
-                    case 0x36:
+                    case ENTITY_ID_WATERFALL:
                         if (gUnk_03005220.unk43 != 0)
                         {
                             break;
@@ -1178,7 +1178,7 @@ block_460:
                         }
                         break;
 
-                    case 0x37:
+                    case ENTITY_ID_GEYSER:
                         if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10))
                         {
 
@@ -1221,8 +1221,8 @@ block_474:
                         }
                         break;
 
-                    case 0x32:
-                    case 0x6D:
+                    case ENTITY_ID_GROWN_BLOCK:
+                    case ENTITY_ID_EXPLODABLE_BLOCK:
                         if (((sp18 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((sp18 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)) && ((sp1C - 0x18) < gEntityInfo[var_sb].yPosBg2) && (sp1C > (gEntityInfo[var_sb].yPosBg2 - 0x20)))
                         {
 
@@ -1270,7 +1270,7 @@ block_474:
                         }
                         break;
 
-                    case 0x1F:
+                    case 0x22:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -1326,7 +1326,7 @@ block_474:
                         }
                         break;
 
-                    case 0x13:
+                    case 0x16:
                         if (gUnk_03005400.unkC == 0)
                         {
                             break;
@@ -1369,7 +1369,7 @@ block_474:
                         }
                         break;
 
-                    case 0x14:
+                    case 0x17:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -1409,8 +1409,8 @@ block_474:
                         }
                         break;
 
-                    case 0x15:
-                    case 0x16:
+                    case 0x18:
+                    case 0x19:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -1442,7 +1442,7 @@ block_474:
                         }
                         break;
 
-                    case 0x17:
+                    case 0x1A:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (gEntityInfo[var_sb].unkF == 0)
@@ -1455,7 +1455,7 @@ block_474:
                         }
                         break;
 
-                    case 0x1B:
+                    case 0x1E:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x1E)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x1E)))
@@ -1471,7 +1471,7 @@ block_474:
                         }
                         break;
 
-                    case 0x1C:
+                    case 0x1F:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (gEntityInfo[var_sb].unkF == 0xF)
@@ -1575,7 +1575,7 @@ block_474:
                 {
                     if (gEntityInfo[var_sb].unkF != 0x1A)
                     {
-                        if (gEntityInfo[var_sb].unk10 == 0)
+                        if (gEntityInfo[var_sb].visible == 0)
                         {
     
                         }
@@ -1591,10 +1591,10 @@ block_474:
                     else
                     {
     block_612:
-                        switch (gEntityInfo[var_sb].unk11 - 0x25)
+                        switch (gEntityInfo[var_sb].id)
                         {
-                            case 0x0:
-                            case 0x4A:
+                            case ENTITY_ID_MAGNET_BLOCK:
+                            case ENTITY_ID_BOX:
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 7))
                                 {
     
@@ -1631,7 +1631,7 @@ block_474:
                                 }
                                 break;
     
-                            case 0x1C:
+                            case ENTITY_ID_MOON_DOOR:
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10))
                                 {
     
@@ -1661,7 +1661,7 @@ block_474:
                                 }
                                 break;
     
-                            case 0x1A:
+                            case ENTITY_ID_SPRING:
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0xC))
                                 {
     
@@ -1691,11 +1691,11 @@ block_474:
                                 }
                                 break;
     
-                            case 0x2:
-                            case 0x3:
-                            case 0x4:
-                            case 0x5:
-                            case 0x6:
+                            case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+                            case ENTITY_ID_FOUNTAIN_FOOTHOLD:
+                            case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+                            case 0x2A:
+                            case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10))
                                 {
     
@@ -1725,7 +1725,7 @@ block_474:
                                 }
                                 break;
     
-                            case 0x19:
+                            case ENTITY_ID_SCALE_2:
                                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xC)))
                                 {
                                     if ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2)
@@ -1738,7 +1738,7 @@ block_474:
                                 }
                                 break;
     
-                            case 0x13:
+                            case ENTITY_ID_WATER:
                                 if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                                 {
                                     if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x20)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x20)))
@@ -1752,8 +1752,8 @@ block_474:
                                 }
                                 break;
     
-                            case 0x10:
-                            case 0x4B:
+                            case ENTITY_ID_GROWN_BLOCK:
+                            case ENTITY_ID_EXPLODABLE_BLOCK:
                                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)))
                                 {
                                     if ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2)
@@ -2107,7 +2107,7 @@ block_474:
 
             var_r5_3 = max(var_r5_3, gBgDataPtrs.pBufBg2Tilemap[((gEntityInfo[0].xPosBg2 - 0xB) >> 3) + (((gEntityInfo[0].yPosBg2 - 0x16) >> 3) * gBgInfo[2].hLength)]);
 
-            if ((gUnk_03005220.unk43 == 1) && (gEntityInfo[gUnk_03005220.unk42].unk11 < 0x70))
+            if ((gUnk_03005220.unk43 == 1) && (gEntityInfo[gUnk_03005220.unk42].id < ENTITY_ID_EXPLODABLE_BLOCK))
             {
                 var_r5_3 = max(var_r5_3, gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[0].xPosBg2 >> 3) + (((gEntityInfo[0].yPosBg2 - 0x2E) >> 3) * gBgInfo[2].hLength)]);
 
@@ -2184,12 +2184,12 @@ block_474:
 
         for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
         {
-            if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].unk10 != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
+            if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].visible != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
             {
-                switch (gEntityInfo[var_sb].unk11 - 1)
+                switch (gEntityInfo[var_sb].id)
                 {
-                    case 0x24:
-                    case 0x6E:
+                    case ENTITY_ID_MAGNET_BLOCK:
+                    case ENTITY_ID_BOX:
                         if (gEntityInfo[var_sb].unk16 != 0)
                         {
                             if (gEntityInfo[var_sb].unkF > 1)
@@ -2199,7 +2199,7 @@ block_474:
                             gEntityInfo[gUnk_03005220.unk42].unk16 = 0;
                         }
 
-                        if (gEntityInfo[gUnk_03005220.unk3F].unk11 == 0x3E)
+                        if (gEntityInfo[gUnk_03005220.unk3F].id == ENTITY_ID_SCALE_2)
                         {
                             break;
                         }
@@ -2230,7 +2230,7 @@ block_474:
                                     sp1C -= 1;
                                 }
 
-                                if ((gEntityInfo[var_sb].unkF == 1) && (gEntityInfo[gEntityInfo[var_sb].unk18].unk11 != 0x38) && (gUnk_03005220.unk31 == 0))
+                                if ((gEntityInfo[var_sb].unkF == 1) && (gEntityInfo[gEntityInfo[var_sb].unk18].id != ENTITY_ID_WATER) && (gUnk_03005220.unk31 == 0))
                                 {
                                     if (sp18 <= (gEntityInfo[var_sb].xPosBg2 - 0xF))
                                     {
@@ -2324,7 +2324,7 @@ block_869:
                                 {
                                     gUnk_03005220.unk40 = 0;
                                 }
-                                if ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+                                if ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
                                 {
                                     if (((gEntityInfo[0].xPosBg2 + gUnk_03005220.unk56) - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 7))
                                     {
@@ -2346,17 +2346,17 @@ block_869:
                         }
                         break;
 
-                    case 0x5:
-                    case 0x7:
-                    case 0xA:
-                    case 0x75:
-                    case 0x76:
-                    case 0x77:
-                    case 0x78:
-                    case 0x79:
-                    case 0x7A:
-                    case 0x7B:
-                    case 0x7C:
+                    case ENTITY_ID_SPIKER_HORIZONTAL:
+                    case ENTITY_ID_SPIKER_VERTICAL:
+                    case ENTITY_ID_MOO_BOARDER:
+                    case ENTITY_ID_MOO:
+                    case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+                    case ENTITY_ID_FLYING_MOO_VERTICAL:
+                    case ENTITY_ID_GLIBZ_QUAD_CANNON:
+                    case ENTITY_ID_TETON:
+                    case ENTITY_ID_BOOMIE:
+                    case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+                    case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
                         if (gEntityInfo[var_sb].unkF > 0xD)
                         {
                             break;
@@ -2382,7 +2382,7 @@ block_869:
                             }
                         }
 
-                        if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[var_sb].unk11 == 6) || (gEntityInfo[var_sb].unk11 == 8)) && ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25)))
+                        if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[var_sb].id == ENTITY_ID_SPIKER_HORIZONTAL) || (gEntityInfo[var_sb].id == ENTITY_ID_SPIKER_VERTICAL)) && ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK)))
                         {
                             if ((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC + var_r7))
                             {
@@ -2407,8 +2407,8 @@ block_869:
                         }
                         break;
 
-                    case 0x2B:
-                    case 0x2C:
+                    case ENTITY_ID_SMALL_DREAM_STONE:
+                    case ENTITY_ID_LARGE_DREAM_STONE:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 8)))
@@ -2422,7 +2422,7 @@ block_869:
                                     gUnk_03005220.unkC |= (1 << (gEntityInfo[var_sb].unk8.split.unk8 - 0x20));
                                 }
 
-                                if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     gUnk_03005220.dreamStones += 1;
                                 }
@@ -2431,7 +2431,7 @@ block_869:
                                     gUnk_03005220.dreamStones += 5;
                                 }
 
-                                if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 0xC, 3, var_sb);
                                 }
@@ -2444,7 +2444,7 @@ block_869:
                                 {
                                     m4aSongNumStart(0x91);
                                 }
-                                else if (gEntityInfo[var_sb].unk11 == 0x2C)
+                                else if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
                                     m4aSongNumStart(0x31);
                                 }
@@ -2456,7 +2456,7 @@ block_869:
                         }
                         break;
 
-                    case 0x6:
+                    case ENTITY_ID_HEART:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)))
@@ -2477,7 +2477,7 @@ block_869:
                         }
                         break;
 
-                    case 0x2:
+                    case ENTITY_ID_STAR:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)))
@@ -2502,7 +2502,7 @@ block_869:
                         }
                         break;
 
-                    case 0x2D:
+                    case ENTITY_ID_1_UP:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < gEntityInfo[var_sb].xPosBg2) && ((gEntityInfo[0].xPosBg2 + 0xC) > gEntityInfo[var_sb].xPosBg2))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)) && (gEntityInfo[var_sb].unkF != 2))
@@ -2515,7 +2515,7 @@ block_869:
                         }
                         break;
 
-                    case 0x40:
+                    case ENTITY_ID_MOON_DOOR:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x20)) && (gEntityAnimationInfo[var_sb - gUnk_0300363C].state == 0))
@@ -2536,15 +2536,15 @@ block_869:
                         }
                         break;
 
-                    case 0x41:
+                    case ENTITY_ID_CANNON_GOAL:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 + 0x10)) && (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 + 0x10) - 0x40)) && (gUnk_03003410.unkB == 0))
                             {
                                 gUnk_03003410.unkB = 2;
                                 gEntityInfo[var_sb].unk8.all = 1;
-                                gEntityInfo[0x9].unk10 = 0;
-                                gEntityInfo[0xA].unk10 = 0;
+                                gEntityInfo[0x9].visible = 0;
+                                gEntityInfo[0xA].visible = 0;
 
                                 if (gUnk_03005220.unk42 != 0)
                                 {
@@ -2582,16 +2582,16 @@ block_869:
                         }
                         break;
 
-                    case 0x0:
-                    case 0x1:
-                    case 0x3:
+                    case ENTITY_ID_CIRCLE_KEY:
+                    case ENTITY_ID_TRIANGLE_KEY:
+                    case ENTITY_ID_HEART_KEY:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 4)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 4)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 - 4)) && (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 4) - 8)))
                             {
-                                if (!(gEntityInfo[var_sb].unk11 & gUnk_03005220.keys))
+                                if (!(gEntityInfo[var_sb].id & gUnk_03005220.keys))
                                 {
-                                    gUnk_03005220.keys |= gEntityInfo[var_sb].unk11;
+                                    gUnk_03005220.keys |= gEntityInfo[var_sb].id;
                                     m4aSongNumStart(0x32);
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 8, 3, 0);
                                     if (gEntityInfo[var_sb].unk8.split.unk8 == 0)
@@ -2604,7 +2604,7 @@ block_869:
                         }
                         break;
 
-                    case 0x3E:
+                    case ENTITY_ID_SPRING:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xC)))
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x18)) && ((gUnk_03005220.unk3C | gUnk_03005220.unk46) == 0))
@@ -2627,10 +2627,10 @@ block_869:
                                 {
                                     if (gEntityInfo[var_r7].unkF <= 0x18)
                                     {
-                                        switch (gEntityInfo[var_r7].unk11)
+                                        switch (gEntityInfo[var_r7].id)
                                         {
-                                            case 0x25:
-                                            case 0x6F:
+                                            case ENTITY_ID_MAGNET_BLOCK:
+                                            case ENTITY_ID_BOX:
                                                 if (((gEntityInfo[var_sb].xPosBg2 - 0xC) < (gEntityInfo[var_r7].xPosBg2 + 7)) && ((gEntityInfo[var_sb].xPosBg2 + 0xC) > (gEntityInfo[var_r7].xPosBg2 - 0xF)) && ((gEntityInfo[var_sb].yPosBg2 - 0x18) < (gEntityInfo[var_r7].yPosBg2 + 2)))
                                                 {
                                                     if (gEntityInfo[var_sb].yPosBg2 > ((gEntityInfo[var_r7].yPosBg2 + 2) - 0x18))
@@ -2640,9 +2640,9 @@ block_869:
                                                 }
                                                 break;
 
-                                            case 0x7B:
-                                            case 0x7C:
-                                            case 0x7D:
+                                            case ENTITY_ID_BOOMIE:
+                                            case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+                                            case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
                                                 if (((gEntityInfo[var_sb].xPosBg2 - 8) < (gEntityInfo[var_r7].xPosBg2 + 0xC)) && ((gEntityInfo[var_sb].xPosBg2 + 8) > (gEntityInfo[var_r7].xPosBg2 - 0xC)) && ((gEntityInfo[var_sb].yPosBg2 - 0x14) < gEntityInfo[var_r7].yPosBg2))
                                                 {
                                                     if (gEntityInfo[var_sb].yPosBg2 > (gEntityInfo[var_r7].yPosBg2 - 0x18))
@@ -2667,8 +2667,8 @@ exit_loop:
                         }
                         break;
 
-                    case 0x2A:
-                        if ((((sp18 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0xF)) || ((sp18 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0xF)) || ((sp1C - 0x18) >= gEntityInfo[var_sb].yPosBg2) || (sp1C <= (gEntityInfo[var_sb].yPosBg2 - 0x10))) && (((gEntityInfo[gUnk_03005220.unk42].unk11 != 0x6F) && (gEntityInfo[gUnk_03005220.unk42].unk11 != 0x25)) || ((sp18 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0xF)) || ((sp18 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0xF)) || ((sp1C - 0x2D) >= gEntityInfo[var_sb].yPosBg2) || ((sp1C - 0x15) <= (gEntityInfo[var_sb].yPosBg2 - 0x10))))
+                    case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
+                        if ((((sp18 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0xF)) || ((sp18 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0xF)) || ((sp1C - 0x18) >= gEntityInfo[var_sb].yPosBg2) || (sp1C <= (gEntityInfo[var_sb].yPosBg2 - 0x10))) && (((gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_BOX) && (gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_MAGNET_BLOCK)) || ((sp18 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0xF)) || ((sp18 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0xF)) || ((sp1C - 0x2D) >= gEntityInfo[var_sb].yPosBg2) || ((sp1C - 0x15) <= (gEntityInfo[var_sb].yPosBg2 - 0x10))))
                         {
                             if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)) && ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x10)))
                             {
@@ -2699,7 +2699,7 @@ exit_loop:
                                     break;
                                 }
 
-                                if (((gUnk_03005220.unk43 == 1) && (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F)) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+                                if (((gUnk_03005220.unk43 == 1) && (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX)) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
                                 {
                                     if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)))
                                     {
@@ -2718,8 +2718,8 @@ exit_loop:
                         }
                         break;
 
-                    case 0x26:
-                    case 0x27:
+                    case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
+                    case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)) && ((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 + 2)) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x10)))
                         {
                             if (gUnk_03005220.unk34 == 0)
@@ -2761,7 +2761,7 @@ exit_loop:
                         }
                         else
                         {
-                            if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25)))
+                            if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK)))
                             {
                                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xF)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xF)))
                                 {
@@ -2785,7 +2785,7 @@ exit_loop:
                         }
                         break;
 
-                    case 0x29:
+                    case 0x2A:
                         if (gUnk_03005220.unk5A == 1)
                         {
                             if ((gEntityInfo[var_sb].unk8.split.unk9 != 0) && (((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10)) || ((gEntityInfo[0].xPosBg2 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0x10)) || ((gEntityInfo[0].yPosBg2 - 0x38) >= gEntityInfo[var_sb].yPosBg2) || (gEntityInfo[0].yPosBg2 <= (gEntityInfo[var_sb].yPosBg2 - 0x10))))
@@ -2796,8 +2796,8 @@ exit_loop:
                             }
                         }
                         /* fallthrough */
-                    case 0x28:
-                        if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25)))
+                    case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
+                        if ((gUnk_03005220.unk43 == 1) && ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK)))
                         {
                             var_r7 = 0x16;
                         }
@@ -2830,7 +2830,7 @@ exit_loop:
                                 break;
                             }
 
-                            if (gEntityInfo[var_sb].unk11 == 0x2A)
+                            if (gEntityInfo[var_sb].id == 0x2A)
                             {
                                 if (gUnk_03005220.unk3B == 0)
                                 {
@@ -2897,8 +2897,8 @@ block_1129:
                         }
                         break;
 
-                    case 0x3D:
-                        if ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+                    case ENTITY_ID_SCALE_2:
+                        if ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
                         {
                             var_r7 = 0x18;
                         }
@@ -2938,7 +2938,7 @@ block_1129:
                         }
                         break;
 
-                    case 0x37:
+                    case ENTITY_ID_WATER:
                         if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x20))
                         {
 
@@ -2979,7 +2979,7 @@ block_1129:
                         }
                         break;
 
-                    case 0x38:
+                    case ENTITY_ID_WATERFALL:
                         if (gUnk_03005220.unk43 != 0)
                         {
 
@@ -3030,9 +3030,9 @@ block_1185:
                         }
                         break;
 
-                    case 0x34:
-                    case 0x6F:
-                        if ((gEntityInfo[gUnk_03005220.unk42].unk11 == 0x6F) || (gEntityInfo[gUnk_03005220.unk42].unk11 == 0x25))
+                    case ENTITY_ID_GROWN_BLOCK:
+                    case ENTITY_ID_EXPLODABLE_BLOCK:
+                        if ((gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK))
                         {
                             var_r7 = 0x18;
                         }
@@ -3082,7 +3082,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x21:
+                    case 0x22:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -3139,7 +3139,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x13:
+                    case 0x14:
                         if (gEntityInfo[var_sb].unkF != 0xF)
                         {
 
@@ -3176,7 +3176,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x15:
+                    case 0x16:
                         if (gUnk_03005400.unkC == 0)
                         {
 
@@ -3221,7 +3221,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x16:
+                    case 0x17:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -3261,8 +3261,8 @@ block_1185:
                         }
                         break;
 
-                    case 0x17:
                     case 0x18:
+                    case 0x19:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -3294,7 +3294,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x19:
+                    case 0x1A:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (gEntityInfo[var_sb].unkF == 0)
@@ -3307,7 +3307,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x1D:
+                    case 0x1E:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x1E)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x1E)))
@@ -3323,7 +3323,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x1E:
+                    case 0x1F:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (gEntityInfo[var_sb].unkF == 0xF)
@@ -3573,8 +3573,8 @@ block_1390:
                     {
                         gUnk_03005220.windBulletDisableTimer = 0;
                         gUnk_03005220.unk41 = 0;
-                        gEntityInfo[0x9].unk10 = 0;
-                        gEntityInfo[0xA].unk10 = 0;
+                        gEntityInfo[0x9].visible = 0;
+                        gEntityInfo[0xA].visible = 0;
                     }
 
                     m4aSongNumStart(0x8E);
@@ -3616,8 +3616,8 @@ block_1397:
                     {
                         gUnk_03005220.windBulletDisableTimer = 0;
                         gUnk_03005220.unk41 = 0;
-                        gEntityInfo[0x9].unk10 = 0;
-                        gEntityInfo[0xA].unk10 = 0;
+                        gEntityInfo[0x9].visible = 0;
+                        gEntityInfo[0xA].visible = 0;
                     }
 
                     if (gHeldKeys & DPAD_UP)
@@ -3726,7 +3726,7 @@ block_1433:
                 gUnk_03005220.unk28 = 0;
             }
 
-            gEntityInfo[0x9].unk10 = 1;
+            gEntityInfo[0x9].visible = 1;
             gUnk_03005220.windBulletDisableTimer = 0x16;
             gUnk_03005220.unk22 = gEntityInfo[0].yPosBg2 - 4;
 
@@ -3834,7 +3834,7 @@ block_1433:
             
             if (gUnk_03005220.windBulletDisableTimer == 0x12)
             {
-                gEntityInfo[0xA].unk10 = 1;
+                gEntityInfo[0xA].visible = 1;
             }
 
             if (gUnk_03005220.windBulletDirection == 0)
@@ -3920,12 +3920,12 @@ block_1513:
                 sp20 = 0;
                 for (var_sb = gUnk_030051D8; var_sb <= gUnk_03004788; var_sb++)
                 {
-                    if ((gEntityInfo[var_sb].unkF <= 0x1A) && ((gEntityInfo[var_sb].unk10 != 0) || (gEntityInfo[var_sb].unkF == 0x19)) && ((gEntityInfo[var_sb].unkF <= 0x14) || (gEntityInfo[var_sb].unkF >= 0x18)))
+                    if ((gEntityInfo[var_sb].unkF <= 0x1A) && ((gEntityInfo[var_sb].visible != 0) || (gEntityInfo[var_sb].unkF == 0x19)) && ((gEntityInfo[var_sb].unkF <= 0x14) || (gEntityInfo[var_sb].unkF >= 0x18)))
                     {
-                        switch ((gEntityInfo[var_sb].unk11 - 0xB))
+                        switch (gEntityInfo[var_sb].id)
                         {
-                            case 0x1A:
-                            case 0x64:
+                            case ENTITY_ID_MAGNET_BLOCK:
+                            case ENTITY_ID_BOX:
                                 if (gUnk_03005220.windBulletDisableTimer > 0x14)
                                 {
                                     continue;
@@ -3952,7 +3952,7 @@ block_1513:
                                 }
 
                                 gUnk_03005220.windBulletDisableTimer = 1;
-                                if (gEntityInfo[var_sb].unk11 == 0x25)
+                                if (gEntityInfo[var_sb].id == ENTITY_ID_MAGNET_BLOCK)
                                 {
                                     if (gEntityInfo[var_sb].unk8.split.unk8 == 1)
                                     {
@@ -3969,10 +3969,10 @@ block_1513:
 
                                 for (var_r7 = gUnk_03003500; var_r7 <= gUnk_03004664; var_r7++)
                                 {
-                                    if ((var_sb != var_r7) && (gEntityInfo[var_r7].unkF <= 0x1A) && ((gEntityInfo[var_r7].unk11 == 0x25) || (gEntityInfo[var_r7].unk11 == 0x6F)) && ((gEntityInfo[var_sb].xPosBg2 - 0xF) < (gEntityInfo[var_r7].xPosBg2 + 7)) && ((gEntityInfo[var_sb].xPosBg2 + 7) > (gEntityInfo[var_r7].xPosBg2 - 0xF)) && ((gEntityInfo[var_sb].yPosBg2 - 0x2F) < gEntityInfo[var_r7].yPosBg2) && ((gEntityInfo[var_sb].yPosBg2 - 0x17) > (gEntityInfo[var_r7].yPosBg2 - 0x18)))
+                                    if ((var_sb != var_r7) && (gEntityInfo[var_r7].unkF <= 0x1A) && ((gEntityInfo[var_r7].id == ENTITY_ID_MAGNET_BLOCK) || (gEntityInfo[var_r7].id == ENTITY_ID_BOX)) && ((gEntityInfo[var_sb].xPosBg2 - 0xF) < (gEntityInfo[var_r7].xPosBg2 + 7)) && ((gEntityInfo[var_sb].xPosBg2 + 7) > (gEntityInfo[var_r7].xPosBg2 - 0xF)) && ((gEntityInfo[var_sb].yPosBg2 - 0x2F) < gEntityInfo[var_r7].yPosBg2) && ((gEntityInfo[var_sb].yPosBg2 - 0x17) > (gEntityInfo[var_r7].yPosBg2 - 0x18)))
                                     {
                                         sp20 = 1;
-                                        if (gEntityInfo[var_r7].unk11 == 0x25)
+                                        if (gEntityInfo[var_r7].id == ENTITY_ID_MAGNET_BLOCK)
                                         {
                                             gEntityInfo[var_sb].unkF = 0;
                                         }
@@ -3991,15 +3991,15 @@ block_1513:
 exit_loop2:
                                 break;
 
-                            case 0x0:
-                            case 0x6B:
-                            case 0x6C:
-                            case 0x6D:
-                            case 0x6E:
-                            case 0x6F:
-                            case 0x70:
-                            case 0x71:
-                            case 0x72:
+                            case ENTITY_ID_MOO_BOARDER:
+                            case ENTITY_ID_MOO:
+                            case ENTITY_ID_FLYING_MOO_HORIZONTAL:
+                            case ENTITY_ID_FLYING_MOO_VERTICAL:
+                            case ENTITY_ID_GLIBZ_QUAD_CANNON:
+                            case ENTITY_ID_TETON:
+                            case ENTITY_ID_BOOMIE:
+                            case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
+                            case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
                                 if (gUnk_03005220.windBulletDisableTimer > 0x13)
                                 {
                                     continue;
@@ -4025,7 +4025,7 @@ exit_loop2:
                                 {
                                     if (gEntityInfo[var_r7].unk8.split.unk8 == var_sb)
                                     {
-                                        gEntityInfo[var_r7].unk10 = 0;
+                                        gEntityInfo[var_r7].visible = 0;
                                         gEntityInfo[var_r7].unkF = 0x1C;
                                         gEntityInfo[var_r7].unk8.split.unk8 = 0;
                                         break;
@@ -4034,7 +4034,7 @@ exit_loop2:
 
                                 gEntityInfo[var_sb].unk8.split.unk8 = 0;
                                 gEntityInfo[var_sb].unkF = 0x13;
-                                if (gEntityInfo[var_sb].unk11 > 0x7A)
+                                if (gEntityInfo[var_sb].id >= ENTITY_ID_BOOMIE)
                                 {
                                     gEntityInfo[gUnk_0300528C + var_sb].unkF = 0;
                                     gEntityInfo[gUnk_0300528C + var_sb].unk8.split.unk9 = 0;
@@ -4043,7 +4043,7 @@ exit_loop2:
                                 gUnk_03005220.unk42 = var_sb;
                                 gUnk_03005220.windBulletDisableTimer = 1;
 
-                                if ((gEntityInfo[var_sb].unk11 == 0x76) || (gEntityInfo[var_sb].unk11 == 0xB) || (gEntityInfo[var_sb].unk11 == 0x7B))
+                                if ((gEntityInfo[var_sb].id == ENTITY_ID_MOO) || (gEntityInfo[var_sb].id == ENTITY_ID_MOO_BOARDER) || (gEntityInfo[var_sb].id == ENTITY_ID_BOOMIE))
                                 {
                                     sub_08025B78(var_sb, 2);
                                 }
@@ -4062,8 +4062,8 @@ exit_loop2:
                                 }
                                 break;
 
-                            case 0x8:
-                            case 0xB:
+                            case 0x13:
+                            case 0x16:
                                 if ((gEntityInfo[var_sb].unkF <= 0xD) || (gEntityInfo[var_sb].unkF >= 0x10))
                                 {
                                     continue;
@@ -4093,7 +4093,7 @@ exit_loop2:
                                 {
                                     if (gEntityInfo[var_r7].unk8.split.unk8 == var_sb)
                                     {
-                                        gEntityInfo[var_r7].unk10 = 0;
+                                        gEntityInfo[var_r7].visible = 0;
                                         gEntityInfo[var_r7].unkF = 0x1C;
                                         gEntityInfo[var_r7].unk8.split.unk8 = 0;
                                         break;
@@ -4123,7 +4123,7 @@ exit_loop2:
                                 no_continue2:
                                 break;
 
-                            case 0x14:
+                            case 0x1F:
                                 if (gEntityInfo[var_sb].unk8.split.unk8 == 0)
                                 {
                                     continue;
@@ -4153,7 +4153,7 @@ exit_loop2:
                                 {
                                     if (gEntityInfo[var_r7].unk8.split.unk8 == var_sb)
                                     {
-                                        gEntityInfo[var_r7].unk10 = 0;
+                                        gEntityInfo[var_r7].visible = 0;
                                         gEntityInfo[var_r7].unkF = 0x1C;
                                         gEntityInfo[var_r7].unk8.split.unk8 = 0;
                                         break;
@@ -4198,11 +4198,11 @@ exit_loop2:
                                 no_continue:
                                 break;
 
-                            case 0x24:
-                            case 0x25:
-                            case 0x26:
-                            case 0x27:
-                            case 0x28:
+                            case ENTITY_ID_GOOMI:
+                            case ENTITY_ID_GOOMI_HORIZONTAL:
+                            case ENTITY_ID_GOOMI_VERTICAL:
+                            case ENTITY_ID_GOOMI_DIAGONAL_1:
+                            case ENTITY_ID_GOOMI_DIAGONAL_2:
                                 if (gUnk_03005220.unk1E >= (gEntityInfo[var_sb].xPosBg2 + 0x10))
                                 {
                                     continue;
@@ -4239,20 +4239,20 @@ exit_loop2:
                                 m4aSongNumStart(0x2C);
                                 break;
 
-                            case 0x67:
+                            case ENTITY_ID_GATE_SWITCH:
                                 if (gEntityInfo[var_sb].unkC_4 == 1)
                                 {
                                     continue;
                                 }
                                 goto block_1643;
-                            case 0x66:
+                            case ENTITY_ID_WATER_SWITCH:
                                 if (gEntityInfo[var_sb + 1].unk8.split.unk8 != 0)
                                 {
                                     continue;
                                 }
                                 goto block_1643;
-                            case 0x68:
-                            case 0x69:
+                            case ENTITY_ID_ROTATION_SWITCH:
+                            case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
 block_1643:
                                 if (gUnk_03005220.windBulletDisableTimer > 0x14)
                                 {
@@ -4279,7 +4279,7 @@ block_1643:
                                 sub_0801EAA4(var_sb);
                                 break;
 
-                            case 0x6A:
+                            case ENTITY_ID_BLUE_ARROW:
                                 if ((gUnk_03005220.windBulletDisableTimer <= 0x14) && (gUnk_03005220.unk1E < (gEntityInfo[var_sb].xPosBg2 + 4)) && (gUnk_03005220.unk20 > (gEntityInfo[var_sb].xPosBg2 - 4)) && ((gEntityInfo[0x9].yPosBg2 - 0x10) < (gEntityInfo[var_sb].yPosBg2 - 0xC)) && (gEntityInfo[0x9].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x14)))
                                 {
                                     gUnk_03005220.windBulletDisableTimer = 1;
@@ -4292,7 +4292,7 @@ block_1643:
                                 }
                                 break;
 
-                            case 0x31:
+                            case ENTITY_ID_GATE:
                                 if ((gUnk_03005220.unk1E < (gEntityInfo[var_sb].xPosBg2 + 8)) && (gUnk_03005220.unk20 > (gEntityInfo[var_sb].xPosBg2 - 8)) && ((gEntityInfo[0x9].yPosBg2 - 0x10) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0x9].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x20)))
                                 {
                                     gUnk_03005220.windBulletDisableTimer = 1;
@@ -4304,7 +4304,7 @@ block_1643:
                                 }
                                 break;
 
-                            case 0x30:
+                            case ENTITY_ID_ONE_WAY_GATE:
                                 if (gEntityInfo[var_sb].unkC_2 == 1)
                                 {
                                     var_r7 = 8;
@@ -4336,8 +4336,8 @@ block_1643:
                 gUnk_03005220.windBulletDisableTimer -= 1;
                 if (gUnk_03005220.windBulletDisableTimer == 0)
                 {
-                    gEntityInfo[0x9].unk10 = 0;
-                    gEntityInfo[0xA].unk10 = 0;
+                    gEntityInfo[0x9].visible = 0;
+                    gEntityInfo[0xA].visible = 0;
 
                     if ((gUnk_03005220.unk34 == 0) && (sp38 == 1))
                     {
@@ -4398,8 +4398,8 @@ block_1696:
     {
         if (gUnk_03003410.unkB == 0)
         {
-            gEntityInfo[0x9].unk10 = 0;
-            gEntityInfo[0xA].unk10 = 0;
+            gEntityInfo[0x9].visible = 0;
+            gEntityInfo[0xA].visible = 0;
             gUnk_03005220.windBulletDisableTimer = 0;
 
             if (gUnk_03004C20.isHoverBoardLevel == 1)
@@ -4601,12 +4601,12 @@ block_1770:
                     gEntityInfo[0xD].xPosBg2 = gEntityInfo[0].xPosBg2 - 0x1C;
                     gEntityInfo[0xD].yPosBg2 = gEntityInfo[0].yPosBg2 + 2;
                     gEntityInfo[0xD].unkF = 0;
-                    gEntityInfo[0xD].unk10 = 1;
+                    gEntityInfo[0xD].visible = 1;
                 }
                 else
                 {
                     gEntityInfo[0xD].unkF = 0x1C;
-                    gEntityInfo[0xD].unk10 = 0;
+                    gEntityInfo[0xD].visible = 0;
                 }
 
                 if (gUnk_03005220.unk31 == 1)

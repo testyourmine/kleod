@@ -179,6 +179,77 @@ extern u16 gUnk_030052C0[];
 
 extern u32 gUnk_03005488; // game over screen related
 
+enum EntityId {
+    /* 0x00 */ ENTITY_ID_NONE,
+    /* 0x01 */ ENTITY_ID_CIRCLE_KEY,
+    /* 0x02 */ ENTITY_ID_TRIANGLE_KEY,
+    /* 0x03 */ ENTITY_ID_STAR,
+    /* 0x04 */ ENTITY_ID_HEART_KEY,
+    /* 0x05 */ ENTITY_ID_KEY_DOOR, // shared by circle, triangle, star key
+    /* 0x06 */ ENTITY_ID_SPIKER_HORIZONTAL,
+    /* 0x07 */ ENTITY_ID_HEART,
+    /* 0x08 */ ENTITY_ID_SPIKER_VERTICAL,
+    /* 0x09 */ ENTITY_ID_LEAF_1, // leaf blown by gust
+    /* 0x0A */ ENTITY_ID_LEAF_2, // leaf blown by gust
+    /* 0x0B */ ENTITY_ID_MOO_BOARDER,
+
+    /* 0x17 */ ENTITY_ID_17, // giant eye that appears during Jillius' battle (includes mini eyes)
+
+    /* 0x22 */ ENTITY_ID_BOSS, // seems to be all bosses
+
+    /* 0x25 */ ENTITY_ID_MAGNET_BLOCK = 0x25, // green/white block that has hand that sticks to block
+    /* 0x26 */ ENTITY_ID_MAGNET_BLOCK_HAND, // hand that comes out of sticky block
+    /* 0x27 */ ENTITY_ID_MOVING_PLATFORM_VERTICAL,
+    /* 0x28 */ ENTITY_ID_FOUNTAIN_FOOTHOLD, // platform on top of geyser that rises/falls with geyser
+    /* 0x29 */ ENTITY_ID_MOVING_PLATFORM_HORIZONTAL,
+
+    /* 0x2B */ ENTITY_ID_BLUE_DISAPPEARING_PLATFORM = 0x2B,
+    /* 0x2C */ ENTITY_ID_SMALL_DREAM_STONE,
+    /* 0x2D */ ENTITY_ID_LARGE_DREAM_STONE,
+    /* 0x2E */ ENTITY_ID_1_UP,
+    /* 0x2F */ ENTITY_ID_GOOMI,
+    /* 0x30 */ ENTITY_ID_GOOMI_HORIZONTAL,
+    /* 0x31 */ ENTITY_ID_GOOMI_VERTICAL,
+    /* 0x32 */ ENTITY_ID_GOOMI_DIAGONAL_1, // todo: do these appear in game? this path goes up/left and down/right
+    /* 0x33 */ ENTITY_ID_GOOMI_DIAGONAL_2, // todo: do these appear in game? this path goes up/right and down/left
+    /* 0x34 */ ENTITY_ID_34, // TODO: figure out, seems to control wind bullet related particles, and also the enemy respawner
+    /* 0x35 */ ENTITY_ID_GROWN_BLOCK, // growing/shrinking block that is grown
+    /* 0x36 */ ENTITY_ID_RED_ARROW,
+    /* 0x37 */ ENTITY_ID_PRESSURE_SWITCH, // switch you stand on to activate
+    /* 0x38 */ ENTITY_ID_WATER,
+    /* 0x39 */  ENTITY_ID_WATERFALL,
+    /* 0x3A */ ENTITY_ID_GEYSER, // water geyser that rises/falls
+    /* 0x3B */ ENTITY_ID_ONE_WAY_GATE, // one way flipper looking gate
+    /* 0x3C */ ENTITY_ID_GATE, // gate that opens as result of button/switch
+    /* 0x3D */ ENTITY_ID_SCALE_1,
+    /* 0x3E */ ENTITY_ID_SCALE_2,
+    /* 0x3F */ ENTITY_ID_SPRING,
+    /* 0x40 */ ENTITY_ID_HOVER_BOARD_SPRING,
+    /* 0x41 */ ENTITY_ID_MOON_DOOR,
+    /* 0x42 */ ENTITY_ID_CANNON_GOAL, // cannon that appears at end of Athletic Challenge levels (autoscroller)
+    /* 0x43 */ ENTITY_ID_GLIBZ_QUAD_CANNON_BULLET, // bullets shot by Glibz Quad Cannon
+
+    /* 0x51 */ ENTITY_ID_51 = 0x51, // seems to be decorations on the level select screen
+    /* 0x52 */ ENTITY_ID_52 = 0x52, // seems to be the level icons on the level select screen
+
+    /* 0x6E */ ENTITY_ID_KLONOA = 0x6E,
+    /* 0x6F */ ENTITY_ID_BOX, // throwable boxes, includes moo box and explosion direction box
+    /* 0x70 */ ENTITY_ID_EXPLODABLE_BLOCK,
+    /* 0x71 */ ENTITY_ID_WATER_SWITCH, // switch that changes water level
+    /* 0x72 */ ENTITY_ID_GATE_SWITCH, // switch that opens brown rectangular gate (includes multi-switch)
+    /* 0x73 */ ENTITY_ID_ROTATION_SWITCH, // switch that rotates screen 90 degress
+    /* 0x74 */ ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH, // switch that makes blocks grow/shrink
+    /* 0x75 */ ENTITY_ID_BLUE_ARROW,
+    /* 0x76 */ ENTITY_ID_MOO,
+    /* 0x77 */ ENTITY_ID_FLYING_MOO_HORIZONTAL,
+    /* 0x78 */ ENTITY_ID_FLYING_MOO_VERTICAL,
+    /* 0x79 */ ENTITY_ID_GLIBZ_QUAD_CANNON,
+    /* 0x7A */ ENTITY_ID_TETON,
+    /* 0x7B */ ENTITY_ID_BOOMIE,
+    /* 0x7C */ ENTITY_ID_FLYING_BOOMIE_HORIZONTAL,
+    /* 0x7D */ ENTITY_ID_FLYING_BOOMIE_VERTICAL,
+};
+
 // TODO: figure out if unk8 can be loaded as u16 without union, or what the real solution is
 union __attribute__((packed)) EntityInfo_8 {
     struct __attribute__((packed)) {
@@ -206,8 +277,8 @@ struct EntityInfo {
     /* 0x0E_0 */ u32 affineEnable:1; // affine flag
     /* 0x0E_1 */ u32 affineDouble:1; // affine doubled or non-affine obj disable
     /* 0x0F */ u8 unkF;
-    /* 0x10 */ u8 unk10; // sprite blinking/visible, or possibly enabled/active
-    /* 0x11 */ u8 unk11;
+    /* 0x10 */ u8 visible; // sprite is rendered, could be on-screen flag, but iFrame blinking toggles it, so unless its just abusing it, im going with rendered for now
+    /* 0x11 */ u8 id; // entity id/type
     /* 0x12 */ u8 unk12;
     /* 0x13 */ u8 pad13[0x14 - 0x13];
     /* 0x14 */ u16 unk14;
@@ -363,8 +434,8 @@ struct Unk_03005220 {
     /* 0x32 */ u8 windBulletDirection; // Direction wind bullet fired, 0 is right, 1 is left
     /* 0x33 */ u8 windBulletDisableTimer; // Timer for disabling Wind Bullet
     /* 0x34 */ u8 unk34; // Klonoa is holding on to a Goomi (winged red ball)
-    /* 0x35 */ u8 unk35; // Klonoa is holding on to rope (and maybe ladder)
-    /* 0x36 */ u8 unk36; // Klonoa climbing rope direction, 0 is up, 1 is down
+    /* 0x35 */ u8 unk35; // Klonoa is holding on to rope/ladder
+    /* 0x36 */ u8 unk36; // Klonoa climbing rope direction, 0 is up, 1 is down, could also be climb speed, where 0 is normal, and 1 is fast
     /* 0x37 */ u8 unk37; // Klonoa all lives lost (game over)
     /* 0x38 */ u8 unk38;
     /* 0x39 */ u8 unk39;

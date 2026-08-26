@@ -115,7 +115,7 @@ void DeleteAllSaveDataScreenInit(void)
     for (i = 0; i < gUnk_03005428; i++)
     {
         gEntityInfo[i].priority = 3;
-        gEntityInfo[i].unk10 = 0;
+        gEntityInfo[i].visible = 0;
         gEntityInfo[i].unkF = 0x1C;
     }
 
@@ -192,14 +192,14 @@ void DeleteAllSaveDataMinigameHandler(void)
     // Will also respawn Klonoa in center once minigame is started
     if ((gNewKeys & SELECT_BUTTON) && (gDeleteAllSaveDataMinigameUnlocked == TRUE))
     {
-        gEntityInfo[0].unk10 = 1;
+        gEntityInfo[0].visible = 1;
         gEntityInfo[0].xPosBg2 = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0].yPosBg2 = DISPLAY_HEIGHT - 4;
         sub_08025B78(0, 0x22);
     }
 
     // If Klonoa is spawned and not stunned
-    if ((gEntityInfo[0].unk10 == 1) && (gEntityAnimationInfo[0].state != 0xC))
+    if ((gEntityInfo[0].visible == 1) && (gEntityAnimationInfo[0].state != 0xC))
     {
         if (gHeldKeys & R_BUTTON)
         {
@@ -1092,8 +1092,8 @@ void TitleScreenInit(void)
 
     for (i = 0; i < 0xE; i++)
     {
-        gEntityInfo[i].unk11 = 0x1C;
-        gEntityInfo[i].unk10 = 0;
+        gEntityInfo[i].id = 0x1C;
+        gEntityInfo[i].visible = 0;
     }
 
     for (i = 0; i < 8; i++)
@@ -1108,7 +1108,7 @@ void TitleScreenInit(void)
 
     for (i = 0; i < 8; i++)
     {
-        gEntityInfo[i + 0xD].unk10 = 1;
+        gEntityInfo[i + 0xD].visible = 1;
         gEntityInfo[i + 0xD].unkF = 0;
     }
 
@@ -1137,8 +1137,8 @@ void TitleScreenInit(void)
 
     for (i = 8; i < 0xB; i++)
     {
-        gEntityInfo[i + 0xD].unk10 = 0;
-        gEntityInfo[i + 0xD].unk11 = 0x1C;
+        gEntityInfo[i + 0xD].visible = 0;
+        gEntityInfo[i + 0xD].id = 0x1C;
         gEntityInfo[i + 0xD].unkF = 0;
     }
 
@@ -1225,7 +1225,7 @@ void TitleScreenInit(void)
     REG_BG2VOFS = (gBgInfo[2].vOfs >> 7) & 0x1FF;
 
     gUnk_03005220.hearts = 3;
-    gEntityInfo[0].unk11 = 0x1C;
+    gEntityInfo[0].id = 0x1C;
     gEntityInfo[0].xPosBg2 = 0xFF;
     gEntityInfo[0].xPosScreen = 0xFF;
     gEntityInfo[0].yPosBg2 = 0xFF;
@@ -1337,8 +1337,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
 
             for (i = 0; i < 8; i++)
             {
-                gEntityInfo[i + 0xD].unk10 = 1;
-                gEntityInfo[i + 0xD].unk11 = 0x54;
+                gEntityInfo[i + 0xD].visible = 1;
+                gEntityInfo[i + 0xD].id = 0x54;
                 gEntityInfo[i + 0xD].xPosScreen = gUnk_0811779C[i];
                 gEntityInfo[0xE].priority = 1;
 
@@ -1362,8 +1362,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
 
             for (i = 8; i < 0xB; i++)
             {
-                gEntityInfo[i + 0xD].unk10 = 1;
-                gEntityInfo[i + 0xD].unk11 = 0x54;
+                gEntityInfo[i + 0xD].visible = 1;
+                gEntityInfo[i + 0xD].id = 0x54;
                 gEntityInfo[i + 0xD].unkF = 0;
                 // TODO: some sort of addition required to match
                 gEntityInfo[i + 0xD].yPosScreen = 0x83;
@@ -1422,8 +1422,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
 
             for (i = 8; i < 0xB; i++)
             {
-                gEntityInfo[i + 0xD].unk10 = 0;
-                gEntityInfo[i + 0xD].unk11 = 0x1C;
+                gEntityInfo[i + 0xD].visible = 0;
+                gEntityInfo[i + 0xD].id = 0x1C;
                 gEntityInfo[i + 0xD].unkF = 0;
                 gEntityInfo[i + 0xD].xPosScreen = 0;
                 gEntityInfo[i + 0xD].yPosScreen = 0;
@@ -1432,8 +1432,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             
             for (i = 0; i < 8; i++)
             {
-                gEntityInfo[i + 0xD].unk10 = 1;
-                gEntityInfo[i + 0xD].unk11 = 0x54;
+                gEntityInfo[i + 0xD].visible = 1;
+                gEntityInfo[i + 0xD].id = 0x54;
                 gEntityInfo[i + 0xD].xPosScreen = gUnk_0811779C[i];
                 gEntityInfo[0xE].priority = 1;
 
@@ -1562,16 +1562,16 @@ void TitleScreenHandler(void)
             {
                 for (i = 8; i < 0xB; i++)
                 {
-                    gEntityInfo[i + 0xD].unk10 = 1;
-                    gEntityInfo[i + 0xD].unk11 = 0x54;
+                    gEntityInfo[i + 0xD].visible = 1;
+                    gEntityInfo[i + 0xD].id = 0x54;
                 }
             }
             else
             {
                 for (i = 8; i < 0xB; i++)
                 {
-                    gEntityInfo[i + 0xD].unk10 = 0;
-                    gEntityInfo[i + 0xD].unk11 = 0x1C;
+                    gEntityInfo[i + 0xD].visible = 0;
+                    gEntityInfo[i + 0xD].id = 0x1C;
                 }
             }
             break;
@@ -1737,7 +1737,7 @@ void FileSelectScreenInit(void)
     gOamAffineBuffer[0].pa = 0x100;
     gOamAffineBuffer[0].pc = 0;
     gOamAffineBuffer[0].pb = 0;
-    gEntityInfo[0xD].unk10 = 1;
+    gEntityInfo[0xD].visible = 1;
 
     gBgDataPtrs.pBufBg2Tiles = thunk_HeapAlloc(gUnk_082F8BF8[0] & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(gUnk_082FA784[0] & 0x7FFFFFFF, 0);

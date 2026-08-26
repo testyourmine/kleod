@@ -132,7 +132,7 @@ void BossWaitForNextFrame(void)
     sub_0800A71C(sp0, sp4);
     sub_080070A0();
 
-    if (gUnk_03004C20.world == 0x5 || gUnk_03004C20.world == 0x6)
+    if ((gUnk_03004C20.world == 5) || (gUnk_03004C20.world == 6))
     {
         if ((gCallbackQueue.current[1] == PauseMenuScreenHandler) || (gCallbackQueue.current[0] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == ButtonConfigurationScreenHandler) || (gCallbackQueue.current[1] == ButtonConfigurationScreenInit))
         {
@@ -157,11 +157,11 @@ void BossWaitForNextFrame(void)
             var_r5_2 = gUnk_03004C20.sceneFrameCounter;
         }
 
-        for (var_r6 = 0; var_r6 < 0xA0; var_r6++)
+        for (var_r6 = 0; var_r6 < DISPLAY_HEIGHT; var_r6++)
         {
-            if (var_r6 < 0x90)
+            if (var_r6 < (DISPLAY_HEIGHT - 0x10))
             {
-                temp_r0_2 = (temp_r4 * COS((u8)(var_r5_2 * 4 + var_r6 * 4))) >> 8;
+                temp_r0_2 = (temp_r4 * COS((u8)((var_r5_2 + var_r6) * 4))) >> 8;
                 gUnk_03004C40[var_r6] = temp_r0_2 * var_sb;
                 gUnk_030052C0[var_r6] = -temp_r0_2 * var_r8;
             }
@@ -175,7 +175,7 @@ void BossWaitForNextFrame(void)
 
     var_r3_2 = gBgInfo[2].hOfs;
     var_r2_2 = gBgInfo[2].vOfs;
-    if (gUnk_03004C20.world == 0x4 && gUnk_03004C20.level == 0x8)
+    if ((gUnk_03004C20.world == 4) && (gUnk_03004C20.level == 8))
     {
         var_r2_2 += 0x20;
     }

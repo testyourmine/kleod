@@ -312,7 +312,7 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
         }
         else
         {
-            gEntityInfo[0xB].unk10 = 0;
+            gEntityInfo[0xB].visible = 0;
             gMosaicSize = 0;
             gCallbackQueue.next[1] = TitleScreenHandler;
             gCallbackQueue.next[2] = TitleScreenWaitForNextFrame;
@@ -374,8 +374,8 @@ void TransitionFromRoomToRoom_FadeOut(void)
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
         
-        gEntityInfo[0xC].unk10 = 0;
-        gEntityInfo[0xB].unk10 = 0;
+        gEntityInfo[0xC].visible = 0;
+        gEntityInfo[0xB].visible = 0;
 
         // Remove sub_08026374 from callback queue
         removed = FALSE;
@@ -625,11 +625,11 @@ void TransitionFromLevelToDeath_FadeOut(void)
     {
         for (i = 1; i < gUnk_03005428; i++)
         {
-            gEntityInfo[i].unk10 = 0;
+            gEntityInfo[i].visible = 0;
             gEntityInfo[i].unkF = 0x1C;
         }
 
-        gEntityInfo[0].unk10 = 1;
+        gEntityInfo[0].visible = 1;
         goto block_9;
     }
 
@@ -1264,7 +1264,7 @@ void sub_08025BA4(void)
         else if (var_r4[gEntityAnimationInfo[sp0].frame].src == -2)
         {
             gEntityAnimationInfo[sp0].timer |= 0xFF;
-            gEntityInfo[var_r5->unkA].unk10 = 0;
+            gEntityInfo[var_r5->unkA].visible = 0;
             gEntityInfo[var_r5->unkA].unkF = 0x1C;
             gEntityInfo[var_r5->unkA].unk8.split.unk8 = 0;
             continue;
@@ -1488,7 +1488,7 @@ void sub_08026374(void)
     }
     else if (gUnk_03004C20.sceneFrameCounter > 216)
     {
-        gEntityInfo[0xB].unk10 = 0;
+        gEntityInfo[0xB].visible = 0;
     }
     else if (gUnk_03004C20.sceneFrameCounter > 176)
     {
@@ -1501,7 +1501,7 @@ void sub_08026374(void)
     }
     else if (gUnk_03004C20.sceneFrameCounter > 236)
     {
-        gEntityInfo[0xC].unk10 = 0;
+        gEntityInfo[0xC].visible = 0;
         if (gUnk_030034E4 == 0)
         {
             // remove sub_08026374 from callback queue
@@ -1546,8 +1546,8 @@ void sub_080264A4(void)
     {
         gUnk_03003410.unkB = 3;
         gUnk_03004C20.sceneFrameCounter = 0;
-        gEntityInfo[0xC].unk10 = 1;
-        gEntityInfo[0xB].unk10 = 1;
+        gEntityInfo[0xC].visible = 1;
+        gEntityInfo[0xB].visible = 1;
         gEntityInfo[0xC].xPosScreen = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0xC].yPosScreen = 0;

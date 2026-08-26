@@ -188,7 +188,7 @@ void InputHandler_AttractMode(void)
 
     if ((gUnk_03004C20.sceneFrameCounter % 0x20) == 0)
     {
-        gEntityInfo[0xB].unk10 ^= 1;
+        gEntityInfo[0xB].visible ^= 1;
     }
 }
 

@@ -4160,7 +4160,7 @@ void LoadObjects_Common(void)
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
     sub_08025B78(0, 0);
-    gEntityInfo[0].unk10 = 1;
+    gEntityInfo[0].visible = 1;
     gObjVramPtr += 0x200;
 
     DmaCopy16Wait(3, &gUnk_08077E48, gObjPalRamPtr, 0x20);
@@ -4197,11 +4197,11 @@ void LoadObjects_Common(void)
             {
                 if (gCallbackQueue.next[4] == sub_08026374)
                 {
-                    gEntityInfo[0xB].unk10 = 1;
+                    gEntityInfo[0xB].visible = 1;
                 }
                 else
                 {
-                    gEntityInfo[0xB].unk10 = 0;
+                    gEntityInfo[0xB].visible = 0;
                 }
             }
         }
@@ -4212,7 +4212,7 @@ void LoadObjects_Common(void)
 
             gEntityInfo[0xB].xPosScreen = 0x48;
             gEntityInfo[0xB].yPosScreen = 0x20;
-            gEntityInfo[0xB].unk10 = 1;
+            gEntityInfo[0xB].visible = 1;
         }
     }
     else
@@ -4222,7 +4222,7 @@ void LoadObjects_Common(void)
         DmaCopy16Wait(3, &gUnk_080A4888, gObjVramPtr, 0x800);
         gObjVramPtr += 0x800;
 
-        gEntityInfo[0xB].unk10 = 1;
+        gEntityInfo[0xB].visible = 1;
     }
 
     if ((gUnk_03004C20.level - 1) >= 0 && (gUnk_03004C20.level - 1) <= 6)
@@ -4232,11 +4232,11 @@ void LoadObjects_Common(void)
 
         if (gCallbackQueue.next[4] == sub_08026374)
         {
-            gEntityInfo[0xC].unk10 = 1;
+            gEntityInfo[0xC].visible = 1;
         }
         else
         {
-            gEntityInfo[0xC].unk10 = 0;
+            gEntityInfo[0xC].visible = 0;
         }
     }
     else
