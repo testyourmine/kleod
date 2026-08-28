@@ -13,6 +13,7 @@
 #include "math.h"
 #include "util.h"
 #include "data/trig.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
@@ -225,7 +226,7 @@ void GameOverScreenInit(void)
     REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
     m4aSoundVSyncOn();
 
-    m4aSongNumStart(0x30);
+    m4aSongNumStart(SE_VISION_OVER);
 }
 
 // 441C8
@@ -365,7 +366,7 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
             REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_OBJ | BLDCNT_TGT2_BD;
             gEntityInfo[0x24].objMode = 1;
             gBlendValue = 9;
-            m4aSongNumStart(1);
+            m4aSongNumStart(MUS_GOOD_NIGHT);
             break;
 
         case GAME_OVER_SCREEN_STAGE_EXIT_TO_TITLE_SCREEN:
@@ -439,7 +440,7 @@ void GameOverScreenHandler(void)
             {
                 gUnk_03005220.lives = 0;
                 DrawLevelHud_Lives();
-                m4aSongNumStart(0x78);
+                m4aSongNumStart(SE_LIFE_LOST);
             }
             else if (gUnk_03005488 == 0x300)
             {
@@ -467,7 +468,7 @@ void GameOverScreenHandler(void)
                 }
                 else if (gUnk_03005488 == 0)
                 {
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                     gUnk_03005488 = 1;
                 }
             }
@@ -486,7 +487,7 @@ void GameOverScreenHandler(void)
             {
                 if (gUnk_03004658->cursorIndex != 0)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gUnk_03004658->cursorIndex = 0;
             }
@@ -494,7 +495,7 @@ void GameOverScreenHandler(void)
             {
                 if (gUnk_03004658->cursorIndex == 0)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gUnk_03004658->cursorIndex = 1;
             }
@@ -741,7 +742,7 @@ void sub_08044BB8(void)
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
 
-    m4aSongNumStart(0x61);
+    m4aSongNumStart(SE_ROTATE_ROOM);
 }
 
 // 44F6C
@@ -890,7 +891,7 @@ void sub_08045398(void)
 {
     if (gUnk_030034B0.unk0_4 == 0)
     {
-        m4aSongNumStart(0x26);
+        m4aSongNumStart(SE_KLONOA_WAHOO);
         gUnk_030034B0.unk0_4 = 1;
         gUnk_03004C20.sceneFrameCounter = 0;
     }
@@ -1214,7 +1215,7 @@ void sub_08045874(void)
 
             if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
             {
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
                 gUnk_030034B0.unk6_0 = 1;
                 gUnk_030034B0.unk8_0 = gUnk_030034B0.unk6_4;
@@ -1266,7 +1267,7 @@ void sub_08045874(void)
 
                 if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     gUnk_03004C20.sceneFrameCounter = 0;
                     gUnk_030034B0.unk6_0 = 2;
                     gUnk_030034B0.unk8_0 = gUnk_030034B0.unk6_4;
@@ -1618,7 +1619,7 @@ void sub_080468B0(void)
 
         if (gUnk_030034B0.unk5 == 0x40)
         {
-            m4aSongNumStart(0x8B);
+            m4aSongNumStart(SE_LEVEL_UNLOCKED);
             gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1] &= LEVEL_INFO_BEATEN_FLAG;
             sub_080467F4();
         }

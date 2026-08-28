@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "util.h"
 #include "data/trig.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
@@ -625,7 +626,7 @@ void sub_0800D188(void)
             {
                 if (gNewKeys & DPAD_UP)
                 {
-                    m4aSongNumStart(0x60);
+                    m4aSongNumStart(SE_WARP_DOOR);
                     sub_08025B78(0, 0x25);
                 }
                 else
@@ -834,15 +835,15 @@ block_236:
 
                                 if (DrawLevelHud_DreamStones() != 0)
                                 {
-                                    m4aSongNumStart(0x91);
+                                    m4aSongNumStart(SE_ALL_DREAM_STONES_COLLECTED);
                                 }
                                 else if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
-                                    m4aSongNumStart(0x31);
+                                    m4aSongNumStart(SE_SMALL_DREAM_STONE_COLLECTED);
                                 }
                                 else
                                 {
-                                    m4aSongNumStart(0x7B);
+                                    m4aSongNumStart(SE_LARGE_DREAM_STONE_COLLECTED);
                                 }
                             }
                         }
@@ -862,7 +863,7 @@ block_236:
                                         DrawLevelHud_Hearts();
                                     }
 
-                                    m4aSongNumStart(0x62);
+                                    m4aSongNumStart(SE_HEART_COLLECTED);
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 6, 5, var_sb);
                                 }
                             }
@@ -879,11 +880,11 @@ block_236:
                                     gUnk_03005220.stars |= (1 << gEntityInfo[var_sb].unk8.split.unk8);
                                     if (gUnk_03005220.stars == 7)
                                     {
-                                        m4aSongNumStart(0x92);
+                                        m4aSongNumStart(SE_ALL_STARS_COLLECTED);
                                     }
                                     else
                                     {
-                                        m4aSongNumStart(0x33);
+                                        m4aSongNumStart(SE_STAR_COLLECT_TEXT_BOX_OPEN);
                                     }
 
                                     gEntityInfo[var_sb].unkF = 2;
@@ -899,7 +900,7 @@ block_236:
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)) && (gEntityInfo[var_sb].unkF != 2))
                             {
-                                m4aSongNumStart(0x87);
+                                m4aSongNumStart(SE_1UP_COLLECTED);
                                 gEntityInfo[var_sb].unkF = 2;
                                 gEntityInfo[var_sb].unk8.split.unk9 = 0;
                                 sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 4, 4, var_sb);
@@ -915,7 +916,7 @@ block_236:
                                 gEntityInfo[0].xPosBg2 = sp18;
                                 if (gUnk_03005220.stars == 7)
                                 {
-                                    m4aSongNumStart(0x35);
+                                    m4aSongNumStart(SE_MOON_DOOR_OPEN);
                                     sub_08025B78(var_sb, 1);
                                     gUnk_03005220.unk3_5 = 1;
                                 }
@@ -930,7 +931,7 @@ block_236:
                             {
                                 if (gEntityInfo[var_sb].unk8.split.unk9 & gUnk_03005220.keys)
                                 {
-                                    m4aSongNumStart(0x34);
+                                    m4aSongNumStart(SE_KEY_DOOR_OPEN);
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2, 3, var_sb);
                                     gUnk_03005220.unk14 |= (1 << gEntityInfo[var_sb].unk8.split.unk8);
                                 }
@@ -977,7 +978,7 @@ block_236:
                                 gUnk_03005220.unk3_7 = 1;
                                 gEntityInfo[var_sb].unkC_4 = 1;
                                 DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
-                                m4aSongNumStart(0x7D);
+                                m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                             }
                         }
                         else
@@ -1783,7 +1784,7 @@ block_474:
                         gUnk_03005220.unk3C = 3;
                         gUnk_03005220.unk28 = -0x250;
                         sub_08025B78(0, 0xB);
-                        m4aSongNumStart(0x26);
+                        m4aSongNumStart(SE_KLONOA_WAHOO);
                     }
                     else if (gEntityAnimationInfo[0].state == 0xB)
                     {
@@ -1821,11 +1822,11 @@ block_474:
                     {
                         if (gUnk_03004C20.isHoverBoardLevel == 0)
                         {
-                            m4aSongNumStart(0x2D);
+                            m4aSongNumStart(SE_KLONOA_JUMPING);
                         }
                         else
                         {
-                            m4aSongNumStart(0x9F);
+                            m4aSongNumStart(SE_HOVERBOARD_JUMPING);
                         }
                         if (gUnk_03005220.unk42 == 0)
                         {
@@ -1838,7 +1839,7 @@ block_474:
                     }
                     else
                     {
-                        m4aSongNumStart(0x26);
+                        m4aSongNumStart(SE_KLONOA_WAHOO);
                     }
                 }
             }
@@ -1852,7 +1853,7 @@ block_474:
         gUnk_03005220.unk28 = 0x180;
         if (gUnk_03005220.unk45 == 0)
         {
-            m4aSongNumStart(0x2F);
+            m4aSongNumStart(SE_KLONOA_HOVERING);
         }
     }
     else if (gUnk_03005220.unk35 != 0)
@@ -1954,7 +1955,7 @@ block_474:
                 if (!(gHeldKeys & gUnk_03005284->jumpButtonConfig))
                 {
                     gUnk_03005220.unk3D = 1;
-                    m4aSongNumStart(0x8E);
+                    m4aSongNumStart(SE_SILENCE_1);
                     if (gUnk_03005220.unk42 == 0)
                     {
                         sub_08025B78(0, 3);
@@ -2045,7 +2046,7 @@ block_474:
                             gUnk_03005220.unk28 = 0x180;
                             if (gUnk_03005220.unk45 == 0)
                             {
-                                m4aSongNumStart(0x2F);
+                                m4aSongNumStart(SE_KLONOA_HOVERING);
                             }
                         }
                     }
@@ -2172,7 +2173,7 @@ block_474:
                     if (gUnk_03005220.unk3D > 1)
                     {
                         gUnk_03005220.unk3D = 1;
-                        m4aSongNumStart(0x8E);
+                        m4aSongNumStart(SE_SILENCE_1);
                     }
                 }
                 else
@@ -2442,15 +2443,15 @@ block_869:
 
                                 if (DrawLevelHud_DreamStones() != 0)
                                 {
-                                    m4aSongNumStart(0x91);
+                                    m4aSongNumStart(SE_ALL_DREAM_STONES_COLLECTED);
                                 }
                                 else if (gEntityInfo[var_sb].id == ENTITY_ID_SMALL_DREAM_STONE)
                                 {
-                                    m4aSongNumStart(0x31);
+                                    m4aSongNumStart(SE_SMALL_DREAM_STONE_COLLECTED);
                                 }
                                 else
                                 {
-                                    m4aSongNumStart(0x7B);
+                                    m4aSongNumStart(SE_LARGE_DREAM_STONE_COLLECTED);
                                 }
                             }
                         }
@@ -2470,7 +2471,7 @@ block_869:
                                         DrawLevelHud_Hearts();
                                     }
 
-                                    m4aSongNumStart(0x62);
+                                    m4aSongNumStart(SE_HEART_COLLECTED);
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 6, 5, var_sb);
                                 }
                             }
@@ -2487,11 +2488,11 @@ block_869:
                                     gUnk_03005220.stars |= (1 << gEntityInfo[var_sb].unk8.split.unk8);
                                     if (gUnk_03005220.stars == 7)
                                     {
-                                        m4aSongNumStart(0x92);
+                                        m4aSongNumStart(SE_ALL_STARS_COLLECTED);
                                     }
                                     else
                                     {
-                                        m4aSongNumStart(0x33);
+                                        m4aSongNumStart(SE_STAR_COLLECT_TEXT_BOX_OPEN);
                                     }
 
                                     gEntityInfo[var_sb].unkF = 2;
@@ -2507,7 +2508,7 @@ block_869:
                         {
                             if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC)) && (gEntityInfo[var_sb].unkF != 2))
                             {
-                                m4aSongNumStart(0x87);
+                                m4aSongNumStart(SE_1UP_COLLECTED);
                                 gEntityInfo[var_sb].unk8.split.unk9 = 0;
                                 gEntityInfo[var_sb].unkF = 2;
                                 sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 4, 4, var_sb);
@@ -2528,7 +2529,7 @@ block_869:
                                 sp20 = gUnk_03004654->unk1B;
                                 if (gUnk_03005220.stars == 7)
                                 {
-                                    m4aSongNumStart(0x35);
+                                    m4aSongNumStart(SE_MOON_DOOR_OPEN);
                                     sub_08025B78(var_sb, 1);
                                     gUnk_03005220.unk3_5 = 1;
                                 }
@@ -2592,7 +2593,7 @@ block_869:
                                 if (!(gEntityInfo[var_sb].id & gUnk_03005220.keys))
                                 {
                                     gUnk_03005220.keys |= gEntityInfo[var_sb].id;
-                                    m4aSongNumStart(0x32);
+                                    m4aSongNumStart(SE_KEY_COLLECT);
                                     sub_0801E664(gEntityInfo[var_sb].xPosBg2, gEntityInfo[var_sb].yPosBg2 + 8, 3, 0);
                                     if (gEntityInfo[var_sb].unk8.split.unk8 == 0)
                                     {
@@ -3373,7 +3374,7 @@ block_1185:
                 if (gUnk_03005220.unk3D > 1)
                 {
                     gUnk_03005220.unk3D = 1;
-                    m4aSongNumStart(0x8E);
+                    m4aSongNumStart(SE_SILENCE_1);
                 }
 
                 if (gUnk_03005220.unk38 == 1)
@@ -3460,7 +3461,7 @@ block_1317:
             {
                 if (gNewKeys & DPAD_UP)
                 {
-                    m4aSongNumStart(0x60);
+                    m4aSongNumStart(SE_WARP_DOOR);
                     sub_08025B78(0, 0x25);
                     goto block_1352;
                 }
@@ -3577,7 +3578,7 @@ block_1390:
                         gEntityInfo[0xA].visible = 0;
                     }
 
-                    m4aSongNumStart(0x8E);
+                    m4aSongNumStart(SE_SILENCE_1);
                     if (gHeldKeys & (DPAD_DOWN | DPAD_UP))
                     {
                         if (gEntityAnimationInfo[0].state != 0x11)
@@ -3609,7 +3610,7 @@ block_1397:
                     {
                         gUnk_03005220.unk28 = 0x80;
                         gUnk_03005220.unk35 = 1;
-                        m4aSongNumStart(0x8E);
+                        m4aSongNumStart(SE_SILENCE_1);
                     }
 
                     if (gUnk_03005220.windBulletDisableTimer != 0)
@@ -3625,7 +3626,7 @@ block_1397:
                         if (gUnk_03005220.unk36 != 0)
                         {
                             gUnk_03005220.unk36 = 0;
-                            m4aSongNumStart(0x90);
+                            m4aSongNumStart(SE_SILENCE_3);
                         }
 
                         if (gEntityAnimationInfo[0].state != 0x13)
@@ -3639,7 +3640,7 @@ block_1397:
                         {
                             if (gUnk_03005220.unk36 == 0)
                             {
-                                m4aSongNumStart(0x94);
+                                m4aSongNumStart(SE_FALLING_DOWN_ROPE);
                                 gUnk_03005220.unk36 = 1;
                             }
 
@@ -3653,7 +3654,7 @@ block_1397:
                             if (gUnk_03005220.unk36 != 0)
                             {
                                 gUnk_03005220.unk36 = 0;
-                                m4aSongNumStart(0x90);
+                                m4aSongNumStart(SE_SILENCE_3);
                             }
                             sub_08025B78(0, 0x12);
                         }
@@ -3700,7 +3701,7 @@ block_1433:
                         if (gUnk_03005220.unk36 != 0)
                         {
                             gUnk_03005220.unk36 = 0;
-                            m4aSongNumStart(0x90);
+                            m4aSongNumStart(SE_SILENCE_3);
                         }
                     }
                 }
@@ -3731,7 +3732,7 @@ block_1433:
             gUnk_03005220.unk22 = gEntityInfo[0].yPosBg2 - 4;
 
             sub_08025B78(0, 8);
-            m4aSongNumStart(0x28);
+            m4aSongNumStart(SE_KLONOA_WIND_BULLET);
             gUnk_03005200 = 0;
             sub_0801E664(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2, 7, 0);
 
@@ -3801,7 +3802,7 @@ block_1433:
             {
                 sub_08025B78(0, 0xA);
             }
-            m4aSongNumStart(0x2A);
+            m4aSongNumStart(SE_KLONOA_THROWS_OBJECT);
             gUnk_03005220.unk41 = 1;
             gUnk_03005220.unk55 = 0;
             gUnk_03005220.unk54 = 0;
@@ -4233,10 +4234,10 @@ exit_loop2:
 
                                 if (gUnk_03005220.unk3D == 2)
                                 {
-                                    m4aSongNumStart(0x8E);
+                                    m4aSongNumStart(SE_SILENCE_1);
                                 }
                                 gUnk_03005220.unk3D = 1;
-                                m4aSongNumStart(0x2C);
+                                m4aSongNumStart(SE_GOOMI_GRAB);
                                 break;
 
                             case ENTITY_ID_GATE_SWITCH:
@@ -4284,7 +4285,7 @@ block_1643:
                                 {
                                     gUnk_03005220.windBulletDisableTimer = 1;
                                     sub_0801EF5C(var_sb);
-                                    m4aSongNumStart(0x5E);
+                                    m4aSongNumStart(SE_BLUE_ARROW_HIT);
                                 }
                                 else
                                 {
@@ -4552,11 +4553,11 @@ block_1756:
                     {
                         if (gUnk_03004C20.isHoverBoardLevel == 0)
                         {
-                            m4aSongNumStart(0x2E);
+                            m4aSongNumStart(SE_KLONOA_LANDING);
                         }
                         else
                         {
-                            m4aSongNumStart(0xA0);
+                            m4aSongNumStart(SE_HOVERBOARD_LANDING);
                         }
                         goto block_1770;
                     }
@@ -4739,7 +4740,7 @@ block_1770:
                                 gEntityAnimationInfo[0].frame &= 1;
                                 if (gEntityAnimationInfo[0].frame != 0)
                                 {
-                                    m4aSongNumStart(0x8C);
+                                    m4aSongNumStart(SE_KLONOA_SNORING);
                                     gUnk_03005200 = 1;
                                 }
                             }
@@ -4750,7 +4751,7 @@ block_1770:
                         gUnk_03005220.klonoaIdleTimer = 0;
                         if (gUnk_03005200 != 0)
                         {
-                            m4aSongNumStart(0x90);
+                            m4aSongNumStart(SE_SILENCE_3);
                             gUnk_03005200 = 0;
                         }
                     }

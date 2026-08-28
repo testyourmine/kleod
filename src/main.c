@@ -7,6 +7,7 @@
 #include "heap.h"
 #include "interrupts.h"
 #include "rand.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern u8 gUnk_080D9150[][100]; // value pairs: input, input timer
@@ -220,8 +221,8 @@ void sub_080008DC(void)
         gUnk_03005290 = 0;
     }
 
-    m4aSongNumStart(0x8D);
-    m4aSongNumStart(0x8E);
-    m4aSongNumStart(0x8F);
-    m4aSongNumStart(0x90);
+    m4aSongNumStart(SE_SILENCE_0);
+    m4aSongNumStart(SE_SILENCE_1);
+    m4aSongNumStart(SE_SILENCE_2);
+    m4aSongNumStart(SE_SILENCE_3);
 }

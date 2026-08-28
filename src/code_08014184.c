@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "util.h"
 #include "data/trig.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const s8 gUnk_080E2AB4[7][6];
@@ -295,7 +296,7 @@ void sub_08014624(s32 arg0)
 
     if (gUnk_03005220.hearts == 0)
     {
-        m4aSongNumStart(0x27);
+        m4aSongNumStart(SE_KLONOA_DEATH);
 
         gUnk_03005220.unk46 = 0x46;
         gEntityInfo[0x9].visible = 0;
@@ -322,7 +323,7 @@ void sub_08014624(s32 arg0)
     }
     else
     {
-        m4aSongNumStart(0x25);
+        m4aSongNumStart(SE_KLONOA_HURT);
         gUnk_03005220.unk3C = 0;
         sub_08025B78(0, 0xC);
     }
@@ -332,7 +333,7 @@ void sub_08014624(s32 arg0)
     if (gUnk_03005220.unk3D > 1)
     {
         gUnk_03005220.unk3D = 1;
-        m4aSongNumStart(0x8E);
+        m4aSongNumStart(SE_SILENCE_1);
     }
 
     gUnk_03005220.unk44 = gEntityInfo[0].unkC_2;
@@ -671,7 +672,7 @@ void sub_08014760(u8 arg0)
                                         {
                                             gEntityInfo[arg0].unkF = 0xE;
                                         }
-                                        m4aSongNumStart(0xA1);
+                                        m4aSongNumStart(SE_ARROW_BOUNCE);
                                     }
                                 }
                                 break;
@@ -958,7 +959,7 @@ void sub_08014760(u8 arg0)
                     if (gEntityInfo[arg0].unk16 == 0)
                     {
                         gEntityInfo[arg0].unkF = 0;
-                        m4aSongNumStart(0x9D);
+                        m4aSongNumStart(SE_OBJECT_LANDS);
                         break;
                     }
                     goto block_240;
@@ -1028,7 +1029,7 @@ block_240:
                     gEntityInfo[arg0].xPosBg2 = sp0 & ~7;
                 }
                 gEntityInfo[arg0].unkF = 0;
-                m4aSongNumStart(0x9D);
+                m4aSongNumStart(SE_OBJECT_LANDS);
                 break;
             }
 
@@ -1055,7 +1056,7 @@ block_240:
                                         sp8 = gEntityInfo[var_r6].xPosBg2 + 0x18;
                                     }
                                     gEntityInfo[arg0].unkF = 0;
-                                    m4aSongNumStart(0x9D);
+                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                 }
                             }
                             break;
@@ -1082,14 +1083,14 @@ block_240:
                                                     {
                                                         sp8 = gEntityInfo[var_r6].xPosBg2 + -0x14;
                                                         gEntityInfo[arg0].unkF = 0;
-                                                        m4aSongNumStart(0x9D);
+                                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                                     }
                                                 }
                                                 else if ((s32) (gEntityInfo[arg0].xPosBg2 - 0xC) >= (gEntityInfo[var_r6].xPosBg2 + 0xC))
                                                 {
                                                     sp8 = gEntityInfo[var_r6].xPosBg2 + 0x1C;
                                                     gEntityInfo[arg0].unkF = 0;
-                                                    m4aSongNumStart(0x9D);
+                                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                                 }
                                             }
                                         }
@@ -1132,7 +1133,7 @@ block_240:
                                         sp8 = gEntityInfo[var_r6].xPosBg2 + 0x20;
                                     }
                                     gEntityInfo[arg0].unkF = 0;
-                                    m4aSongNumStart(0x9D);
+                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                     break;
                                 }
                             }
@@ -1220,7 +1221,7 @@ block_240:
                                                 sp8 = gEntityInfo[var_r6].xPosBg2 + 0x18;
                                             }
                                             gEntityInfo[arg0].unkF = 0;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                             break;
                                         }
                                     }
@@ -1258,7 +1259,7 @@ block_240:
                                         sp8 = gEntityInfo[var_r6].xPosBg2 + 0x20;
                                     }
                                     gEntityInfo[arg0].unkF = 0;
-                                    m4aSongNumStart(0x9D);
+                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                 }
                             }
                             break;
@@ -1292,7 +1293,7 @@ block_240:
                                     {
                                         DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r6 - 0xD].tileNum << 5), 0x100);
                                         gEntityInfo[var_r6].unkC_4 = 1;
-                                        m4aSongNumStart(0x7D);
+                                        m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                                     }
                                     else
                                     {
@@ -1305,7 +1306,7 @@ block_240:
                                             sp8 = gEntityInfo[var_r6].xPosBg2 + 0x10;
                                         }
                                         gEntityInfo[arg0].unkF = 0;
-                                        m4aSongNumStart(0x9D);
+                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                     }
                                 }
                             }
@@ -1362,7 +1363,7 @@ block_379:
                                         sp8 = gEntityInfo[var_r6].xPosBg2 + 0x1C;
                                     }
                                     gEntityInfo[arg0].unkF = 0;
-                                    m4aSongNumStart(0x9D);
+                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                 }
                             }
                             break;
@@ -1401,7 +1402,7 @@ block_379:
                                         if ((s32) (gEntityInfo[arg0].yPosBg2 - 0x16) > (s32) gEntityInfo[var_r6].yPosBg2)
                                         {
                                             gEntityInfo[arg0].unkF = 0;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                         }
                                         else
                                         {
@@ -1414,7 +1415,7 @@ block_379:
                                                 sp8 = gEntityInfo[var_r6].xPosBg2 + 0x20;
                                             }
                                             gEntityInfo[arg0].unkF = 0;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                         }
                                     }
                                 }
@@ -1459,7 +1460,7 @@ block_379:
                                     {
                                         gEntityInfo[arg0].unkF = 0xE;
                                     }
-                                    m4aSongNumStart(0xA1);
+                                    m4aSongNumStart(SE_ARROW_BOUNCE);
                                 }
                             }
                             break;
@@ -1494,7 +1495,7 @@ block_379:
                                         sp8 = gEntityInfo[var_r6].xPosBg2 + 0x1C;
                                     }
                                     gEntityInfo[arg0].unkF = 0;
-                                    m4aSongNumStart(0x9D);
+                                    m4aSongNumStart(SE_OBJECT_LANDS);
                                 }
                             }
                             break;
@@ -1518,7 +1519,7 @@ block_379:
                                                 sp8 = gEntityInfo[var_r6].xPosBg2 + 0x20;
                                             }
                                             gEntityInfo[arg0].unkF = 0;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                         }
                                     }
                                 }
@@ -1540,7 +1541,7 @@ block_379:
                     {
                         gEntityInfo[arg0].yPosBg2 = ((gEntityInfo[0].yPosBg2 - 0x10) - 0xB) - -3;
                         gEntityInfo[arg0].unkF = 0;
-                        m4aSongNumStart(0x9D);
+                        m4aSongNumStart(SE_OBJECT_LANDS);
                         break;
                     }
                 }
@@ -1606,7 +1607,7 @@ block_379:
                 gEntityInfo[arg0].yPosBg2 = sp4 + 3;
                 gEntityInfo[arg0].yPosBg2 = gEntityInfo[arg0].yPosBg2 & 0xFFF8;
                 gEntityInfo[arg0].unkF = 0;
-                m4aSongNumStart(0x9D);
+                m4aSongNumStart(SE_OBJECT_LANDS);
                 if (gUnk_03005220.unk3F == arg0)
                 {
                     gEntityInfo[gUnk_03005220.unk3F].yPosBg2 += 3;
@@ -1665,7 +1666,7 @@ block_379:
                                             sp8 = gEntityInfo[var_r6].yPosBg2 - 0x18;
                                         }
                                         gEntityInfo[arg0].unkF = 0;
-                                        m4aSongNumStart(0x9D);
+                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                     }
                                 }
                                 break;
@@ -1701,7 +1702,7 @@ block_379:
                                             sp8 = gEntityInfo[var_r6].yPosBg2 + -0x17;
                                         }
                                         gEntityInfo[arg0].unkF = 0;
-                                        m4aSongNumStart(0x9D);
+                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                     }
                                 }
                                 break;
@@ -1742,7 +1743,7 @@ block_379:
                                                 sp8 = gEntityInfo[var_r6].yPosBg2 - 0x20;
                                             }
                                             gEntityInfo[arg0].unkF = 0;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                         }
                                     }
                                 }
@@ -1817,7 +1818,7 @@ block_379:
                                     {
                                         sp8 = gEntityInfo[var_r6].yPosBg2 + -0x10;
                                         gEntityInfo[arg0].unkF = 0;
-                                        m4aSongNumStart(0x9D);
+                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                         sub_08025B78(var_r6, 2);
                                         gUnk_03003610[1].unk2 = arg0;
                                     }
@@ -1858,7 +1859,7 @@ block_379:
                                             else
                                             {
                                                 sp8 = ((gEntityInfo[var_r6].yPosBg2 - 0x10) + 4) - 5;
-                                                m4aSongNumStart(0x9D);
+                                                m4aSongNumStart(SE_OBJECT_LANDS);
                                                 gEntityInfo[arg0].unkF = 1;
                                                 gEntityInfo[arg0].unk18 = var_r6;
                                             }
@@ -1905,7 +1906,7 @@ block_379:
                                         {
                                             gEntityInfo[arg0].unkF = 0xE;
                                         }
-                                        m4aSongNumStart(0xA1);
+                                        m4aSongNumStart(SE_ARROW_BOUNCE);
                                     }
                                 }
                                 break;
@@ -1922,7 +1923,7 @@ block_379:
                                         if ((s32) gEntityInfo[arg0].yPosBg2 > (gEntityInfo[var_r6].yPosBg2 - 8))
                                         {
                                             sp8 = (gEntityInfo[var_r6].yPosBg2 - 8) - 1;
-                                            m4aSongNumStart(0x9D);
+                                            m4aSongNumStart(SE_OBJECT_LANDS);
                                             // if (gEntityInfo[var_r6].unk11 == 0x29 || gEntityInfo[var_r6].unk11 == 0x2A)
                                             if (gEntityInfo[var_r6].id >= 0x29 && gEntityInfo[var_r6].id <= 0x2A)
                                             {
@@ -1961,7 +1962,7 @@ block_379:
                                     {
                                         sp8 = gEntityInfo[var_r6].yPosBg2 + -0x20;
                                         gEntityInfo[arg0].unkF = 0;
-                                        m4aSongNumStart(0x9D);
+                                        m4aSongNumStart(SE_OBJECT_LANDS);
                                     }
                                 }
                                 break;
@@ -2285,7 +2286,7 @@ void sub_08016EEC(u8 arg0)
                                     gEntityInfo[arg0 + sp28].unkF = 0;
                                     gEntityInfo[arg0 + sp28].visible = 1;
                                     gEntityInfo[arg0 + sp28].unkC_2 = gEntityInfo[arg0].unkC_2;
-                                    m4aSongNumStart(0x58);
+                                    m4aSongNumStart(SE_GLIBZ_QUAD_CANNON_SHOT);
                                 }
                                 if (gEntityInfo[arg0 + sp28].visible == 1)
                                 {
@@ -2456,7 +2457,7 @@ block_128:
                             {
                                 if (((sp2C - 0xC) < (gEntityInfo[sp28].xPosBg2 + 7)) && ((sp2C + 0xC) > (gEntityInfo[sp28].xPosBg2 - 0xF)) && ((sp30 - 0x18) < gEntityInfo[sp28].yPosBg2) && (sp30 > (gEntityInfo[sp28].yPosBg2 - 0x17)))
                                 {
-                                    m4aSongNumStart(0x2B);
+                                    m4aSongNumStart(SE_ENEMY_DEATH);
                                     sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
                                     return;
                                 }
@@ -2830,7 +2831,7 @@ block_128:
                 {
                     if (!(gUnk_03004C20.globalFrameCounter & 0xF))
                     {
-                        m4aSongNumStart(0x9E);
+                        m4aSongNumStart(SE_TETON_RISING);
                     }
                     if (gUnk_03005220.unk38 != 0)
                     {
@@ -2838,7 +2839,7 @@ block_128:
                         if (gEntityInfo[arg0].unk8.split.unk9 == 0)
                         {
                             sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
-                            m4aSongNumStart(0x2B);
+                            m4aSongNumStart(SE_ENEMY_DEATH);
                             return;
                         }
                     }
@@ -2993,7 +2994,7 @@ block_128:
                         {
                             break;
                         }
-                        m4aSongNumStart(0x2B);
+                        m4aSongNumStart(SE_ENEMY_DEATH);
                         if (gEntityInfo[sp28].id != ENTITY_ID_SPIKER_HORIZONTAL)
                         {
                             if (gEntityInfo[sp28].id != ENTITY_ID_SPIKER_VERTICAL)
@@ -3356,12 +3357,12 @@ block_128:
                                     {
                                         DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[sp28 - 0xD].tileNum * 0x20), 0x100);
                                         gEntityInfo[sp28].unkC_4 = 1;
-                                        m4aSongNumStart(0x7D);
+                                        m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                                     }
                                     else
                                     {
                                         sp34 = gUnk_03004654->unk1B;
-                                        m4aSongNumStart(0x2B);
+                                        m4aSongNumStart(SE_ENEMY_DEATH);
                                     }
                                 }
                             }
@@ -3457,7 +3458,7 @@ block_128:
                                     {
                                         gEntityInfo[arg0].unkF = 0xE;
                                     }
-                                    m4aSongNumStart(0xA1);
+                                    m4aSongNumStart(SE_ARROW_BOUNCE);
                                 }
                             }
                             break;
@@ -3634,7 +3635,7 @@ block_128:
                                         }
                                         else
                                         {
-                                            m4aSongNumStart(0x2B);
+                                            m4aSongNumStart(SE_ENEMY_DEATH);
                                             sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
                                             if (gUnk_03005400.unk8_6 != 0)
                                             {
@@ -3854,7 +3855,7 @@ block_128:
                 else
                 {
 block_709:
-                    m4aSongNumStart(0x2B);
+                    m4aSongNumStart(SE_ENEMY_DEATH);
                     if (((u32) gEntityInfo[arg0].id >= ENTITY_ID_BOOMIE) && (sp34 != 0xFF))
                     {
                         gEntityInfo[arg0].xPosBg2 = (u16) sp2C;
@@ -3885,7 +3886,7 @@ block_716:
             else
             {
                 sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
-                m4aSongNumStart(0x2B);
+                m4aSongNumStart(SE_ENEMY_DEATH);
                 return;
             }
             break;
@@ -3897,7 +3898,7 @@ block_716:
                 if (((s32) (gEntityInfo[arg0].yPosBg2 - 0x14) < (s32) gEntityInfo[0].yPosBg2) && ((s32) gEntityInfo[arg0].yPosBg2 > (s32) (gEntityInfo[0].yPosBg2 - 0x18)))
                 {
                     sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
-                    m4aSongNumStart(0x2B);
+                    m4aSongNumStart(SE_ENEMY_DEATH);
                     return;
                 }
             }
@@ -4062,7 +4063,7 @@ block_716:
                                     if ((u32) gEntityInfo[arg0].id >= ENTITY_ID_BOOMIE)
                                     {
                                         sp30 = gEntityInfo[arg0].yPosBg2 = gEntityInfo[sp28].yPosBg2 + -0x10;
-                                        m4aSongNumStart(0x2B);
+                                        m4aSongNumStart(SE_ENEMY_DEATH);
                                         sub_08025B78(sp28, 2);
                                         gUnk_03003610[0].unk2 = arg0;
                                         gUnk_03003610[0].unk3 = sp28;
@@ -4142,7 +4143,7 @@ block_716:
                                     {
                                         gEntityInfo[arg0].unkF = 0xE;
                                     }
-                                    m4aSongNumStart(0xA1);
+                                    m4aSongNumStart(SE_ARROW_BOUNCE);
                                 }
                             }
                             break;
@@ -4318,7 +4319,7 @@ block_716:
                                         }
                                         else
                                         {
-                                            m4aSongNumStart(0x2B);
+                                            m4aSongNumStart(SE_ENEMY_DEATH);
                                             sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, arg0);
                                             if (gUnk_03005400.unk8_6)
                                             {
@@ -4439,7 +4440,7 @@ block_716:
             }
             if (gUnk_03004654->unk1A <= sp34)
             {
-                m4aSongNumStart(0x2B);
+                m4aSongNumStart(SE_ENEMY_DEATH);
                 if ((gEntityInfo[arg0].id >= ENTITY_ID_BOOMIE) && (sp34 != 0xFF))
                 {
                     gEntityInfo[arg0].yPosBg2 = sp30 + 3;
@@ -4480,7 +4481,7 @@ block_716:
                 }
                 sub_0801E664(gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8 + 4) & 7][0] + gEntityInfo[arg0].xPosBg2, gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8 + 4) & 7][1] + gEntityInfo[arg0].yPosBg2, 6, 0);
                 sub_0801E664(gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8 & 7)][0] + gEntityInfo[arg0].xPosBg2, gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8++ & 7)][1] + gEntityInfo[arg0].yPosBg2, 6, 0);
-                m4aSongNumStart(0x57);
+                m4aSongNumStart(SE_BOOMIE_EXPLOSION);
             }
             break;
     }
@@ -4493,7 +4494,7 @@ void sub_0801B044(u8 arg0)
 
     if (gEntityInfo[arg0].unk8.all == 1)
     {
-        m4aSongNumStart(0x98);
+        m4aSongNumStart(SE_KLONOA_ENTERS_CANNON_GOAL);
     }
 
     if (gEntityInfo[arg0].unk8.all++ < 0xF0)
@@ -4621,7 +4622,7 @@ void sub_0801B044(u8 arg0)
 
         if (gEntityInfo[arg0].unk8.all == 0xB4)
         {
-            m4aSongNumStart(0x99);
+            m4aSongNumStart(SE_CANNON_GOAL_ROTATING);
             sub_08025B78(arg0, 0);
             gUnk_03005220.unk2C = 2;
             gUnk_03005220.unk2A = 2;
@@ -4666,7 +4667,7 @@ void sub_0801B044(u8 arg0)
     {
         if (gEntityInfo[arg0].unk8.all == 0xF1)
         {
-            m4aSongNumStart(0x9A);
+            m4aSongNumStart(SE_CANNON_GOAL_REVVING_UP);
             sub_08025B78(arg0, 1);
         }
 
@@ -4706,8 +4707,8 @@ void sub_0801B044(u8 arg0)
             gUnk_03005220.unk2C = 0xFFFA;
             gUnk_03005220.unk2A = 0xFFFA;
             sub_08025B78(arg0, 2);
-            m4aSongNumStart(0x9B);
-            m4aSongNumStart(0x26);
+            m4aSongNumStart(SE_CANNON_GOAL_SHOOTING);
+            m4aSongNumStart(SE_KLONOA_WAHOO);
         }
 
         if ((u32) (u16) (gEntityInfo[arg0].unk8.all - 0x12D) <= 0x12)
@@ -4978,7 +4979,7 @@ void sub_0801BB6C(u8 arg0)
             {
                 sub_08025B78(0, 0x18);
             }
-            m4aSongNumStart(0x59);
+            m4aSongNumStart(SE_SPRING);
         }
     }
     else
@@ -5001,8 +5002,8 @@ void sub_0801BCC0(u8 arg0)
             gUnk_03005220.unk18 = 0;
             gUnk_03005220.unk3D = 0;
             gUnk_03005220.unk31 = 0;
-            m4aSongNumStart(0x26);
-            m4aSongNumStart(0xA1);
+            m4aSongNumStart(SE_KLONOA_WAHOO);
+            m4aSongNumStart(SE_ARROW_BOUNCE);
             sub_08025B78(0, 2);
             gUnk_03005220.unk28 = -0x600;
             gUnk_03005220.unk3C = 1;
@@ -5286,7 +5287,7 @@ void sub_0801C150(u8 arg0)
                         gUnk_030034E0 -= 1;
                         gEntityInfo[arg0].unk14 = 0;
                         gEntityInfo[arg0].unk8.split.unk8 = 0;
-                        m4aSongNumStart(0xA3);
+                        m4aSongNumStart(SE_MULTI_SWITCH_RESET);
                         break;
                     }
                 }
@@ -5342,7 +5343,7 @@ void sub_0801C150(u8 arg0)
             if (gEntityInfo[arg0 + 1].unk8.split.unk8 == 32)
             {
                 gEntityInfo[arg0 + 1].unkC_4 = 1;
-                m4aSongNumStart(0x5A);
+                m4aSongNumStart(SE_GATE_OPEN_CLOSE);
             }
             else if (gEntityInfo[arg0 + 1].unk8.split.unk8 == 0)
             {
@@ -5435,7 +5436,7 @@ void sub_0801C150(u8 arg0)
                 {
                     if (gEntityInfo[arg0 + 1].unk8.split.unk8 == 0)
                     {
-                        m4aSongNumStart(0x5A);
+                        m4aSongNumStart(SE_GATE_OPEN_CLOSE);
                     }
                     gEntityInfo[arg0 + 1].unk8.split.unk8 += 1;
                     gEntityInfo[arg0 + 1].yPosBg2 -= 1;
@@ -5447,7 +5448,7 @@ void sub_0801C150(u8 arg0)
                 {
                     if (gEntityInfo[arg0 + 1].unk8.split.unk8 == 0x20)
                     {
-                        m4aSongNumStart(0x5A);
+                        m4aSongNumStart(SE_GATE_OPEN_CLOSE);
                     }
                     gEntityInfo[arg0 + 1].unk8.split.unk8 -= 1;
                     gEntityInfo[arg0 + 1].yPosBg2 += 1;
@@ -5470,7 +5471,7 @@ void sub_0801C6EC(u8 arg0)
             gEntityInfo[arg0].unk8.split.unk8 = 1;
             if ((gEntityInfo[var_r7].unkF == 0x13) && (gUnk_03000810 == 0))
             {
-                m4aSongNumStart(0x5D);
+                m4aSongNumStart(SE_WATERFALL_HITTING_OBJECT);
                 gUnk_03000810 = 1;
             }
             break;
@@ -5840,17 +5841,17 @@ void sub_0801D0D8(u8 arg0)
                 {
                     if ((gUnk_03004C20.globalFrameCounter & 3) == 0)
                     {
-                        m4aSongNumStart(0x97);
+                        m4aSongNumStart(SE_WIND_GUST_3);
                         gUnk_030034C4 = 0;
                     }
                     else if ((gUnk_03004C20.globalFrameCounter & 3) == 1)
                     {
-                        m4aSongNumStart(0x96);
+                        m4aSongNumStart(SE_WIND_GUST_2);
                         gUnk_030034C4 = 0;
                     }
                     else
                     {
-                        m4aSongNumStart(0x95);
+                        m4aSongNumStart(SE_WIND_GUST_1);
                         gUnk_030034C4 = 0;
                     }
                 }
@@ -5871,7 +5872,7 @@ void sub_0801D0D8(u8 arg0)
 
                     if (gUnk_03005220.unk3D != 0)
                     {
-                        m4aSongNumStart(0x8E);
+                        m4aSongNumStart(SE_SILENCE_1);
                         gUnk_03005220.unk3D = 0;
                     }
 
@@ -6151,7 +6152,7 @@ block_25:
                 gEntityInfo[sp0].unk8.split.unk9 = var_ip;
                 gEntityInfo[sp0].unkF = 0xA;
                 sub_08025B78(arg0, 0);
-                m4aSongNumStart(0x5F);
+                m4aSongNumStart(SE_MAGNET_BLOCK_HAND_GRAB);
                 if (gUnk_03005220.unk42 == sp0)
                 {
                     gUnk_03005220.unk3C = 0;
@@ -6471,7 +6472,7 @@ void sub_0801DE44(u8 arg0)
         }
         else
         {
-            m4aSongNumStart(0x56);
+            m4aSongNumStart(SE_BOOMIE_COUNTDOWN);
             if (gEntityInfo[arg0].unk8.split.unk8 > 9)
             {
                 gEntityInfo[arg0 + gUnk_0300528C].unkF = 0;
@@ -6518,7 +6519,7 @@ void sub_0801DFC4(u8 arg0)
         sub_0801E664(gEntityInfo[arg0].xPosBg2, gEntityInfo[arg0].yPosBg2, 2, 0);
         gEntityInfo[arg0].unkF = 0x1C;
         gEntityInfo[arg0].visible = 0;
-        m4aSongNumStart(0x93);
+        m4aSongNumStart(SE_GLIBZ_QUAD_CANNON_BULLET_HIT);
         return;
     }
 
@@ -7056,13 +7057,13 @@ void sub_0801EAA4(u8 arg0)
         {
             DmaCopy16(3, &gUnk_080B9268, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xD].tileNum * 0x20), 0x80);
         }
-        m4aSongNumStart(0x5C);
+        m4aSongNumStart(SE_WATER_SWITCH_HIT);
     }
     else if (gEntityInfo[arg0].id == ENTITY_ID_GATE_SWITCH)
     {
         if ((gEntityInfo[arg0].yPosBg2 & 1) != 0)
         {
-            m4aSongNumStart(0xA2);
+            m4aSongNumStart(SE_MULTI_SWITCH_HIT);
         }
 
         if (gEntityInfo[arg0].unkC_4 == 0)
@@ -7075,7 +7076,7 @@ void sub_0801EAA4(u8 arg0)
             if (gUnk_030034E0 == gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk5)
             {
                 gEntityInfo[arg0 + gEntityInfo[arg0].unk8.split.unk9].unk8.split.unk8 = gEntityInfo[arg0 + gEntityInfo[arg0].unk8.split.unk9].unk8.split.unk9;
-                m4aSongNumStart(0x5A);
+                m4aSongNumStart(SE_GATE_OPEN_CLOSE);
             }
         }
 
@@ -7093,7 +7094,7 @@ void sub_0801EAA4(u8 arg0)
     {
         gEntityInfo[arg0].unk8.split.unk9 = 0x64;                    
         gEntityInfo[arg0].unkC_4 = gUnk_03005220.unk3_6 ^= 1;
-        m4aSongNumStart(0x5B);
+        m4aSongNumStart(SE_GROWING_SHRINKING_BLOCK_SWITCH_HIT);
 
         if ((u8) (gUnk_030047B8 - 1) <= (u8) (gUnk_03005470 - 1))
         {
@@ -7128,7 +7129,7 @@ void sub_0801EAA4(u8 arg0)
         {
             gUnk_030052A0 = 0x41;
             gCallbackQueue.current[1] = sub_08044BB8;
-            m4aSongNumStart(0x61);
+            m4aSongNumStart(SE_ROTATE_ROOM);
         }
     }
 }

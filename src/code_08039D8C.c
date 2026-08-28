@@ -15,6 +15,7 @@
 #include "rand.h"
 #include "util.h"
 #include "data/trig.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
@@ -231,7 +232,7 @@ void PauseMenuScreenInit(void)
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
-    m4aSongNumStart(0x55);
+    m4aSongNumStart(SE_PAUSE_MENU);
 
     if (gUnk_03004C20.level == 8)
     {
@@ -365,7 +366,7 @@ void PauseMenuScreenHandler(void)
         {
             if (gNewKeys & DPAD_DOWN)
             {
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004658->cursorIndex += 1;
                 if (gUnk_03004658->cursorIndex > 3)
                 {
@@ -375,7 +376,7 @@ void PauseMenuScreenHandler(void)
 
             if (gNewKeys & DPAD_UP)
             {
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004658->cursorIndex -= 1;
                 if (gUnk_03004658->cursorIndex & 0x80)
                 {
@@ -388,7 +389,7 @@ void PauseMenuScreenHandler(void)
             // PAUSE_MENU_TYPE_LEVEL_SELECT or PAUSE_MENU_TYPE_BOSS
             if (gNewKeys & DPAD_DOWN)
             {
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004658->cursorIndex += 1;
                 if (gUnk_03004658->cursorIndex > 2)
                 {
@@ -398,7 +399,7 @@ void PauseMenuScreenHandler(void)
 
             if (gNewKeys & DPAD_UP)
             {
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004658->cursorIndex -= 1;
                 if (gUnk_03004658->cursorIndex & 0x80)
                 {
@@ -585,13 +586,13 @@ void ButtonConfigurationScreenHandler(void)
             if (gNewKeys & DPAD_RIGHT)
             {
                 gUnk_03005284->shootButtonConfig = 1;
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
             }
             else if (gNewKeys & DPAD_LEFT)
             {
                 gUnk_03005284->shootButtonConfig = 2;
-                m4aSongNumStart(0x51);
+                m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
             }
 
@@ -599,11 +600,11 @@ void ButtonConfigurationScreenHandler(void)
             {
                 if (gNewKeys & A_BUTTON)
                 {
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                 }
                 else
                 {
-                    m4aSongNumStart(0x54);
+                    m4aSongNumStart(SE_EXIT_MENU);
                 }
 
                 // No longer enter this conditional, so essentially exits menu
@@ -1311,7 +1312,7 @@ void sub_0803B600(void)
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
-    m4aSongNumStart(3);
+    m4aSongNumStart(MUS_WORLD_MAP);
 }
 
 // 3BF84
@@ -1353,7 +1354,7 @@ void sub_0803BF84(void)
             gUnk_03004C20.world = gUnk_03004C08.unk0_4 + 1;
             gUnk_03004C20.level = 0;
             gUnk_030034B0.unk6_4 = 1;
-            m4aSongNumStart(0x52);
+            m4aSongNumStart(SE_CURSOR_CONFIRM);
             gUnk_03005284->unk1E = gUnk_03005284->unk0 = gUnk_03005220.lives;
 
             if (gUnk_03004C08.unk0_4 > 4)
@@ -1391,14 +1392,14 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
 
                 if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(6) != 0))
                 {
                     gUnk_03004C08.unk1 = 7;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x25);
 
                     // Draw "BEST/"
@@ -1436,14 +1437,14 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x25);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
                 break;
@@ -1452,14 +1453,14 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & DPAD_RIGHT) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x24);
                 }
                 break;
@@ -1468,14 +1469,14 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
                 break;
@@ -1484,7 +1485,7 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4 + 1) != 0))
                 {
                     gUnk_03004C08.unk1 = 2;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x25);
 
                     // Erase "BEST/" tiles
@@ -1520,7 +1521,7 @@ void sub_0803BF84(void)
                 if ((gHeldKeys & DPAD_DOWN) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
                 {
                     gUnk_03004C08.unk1 = 1;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x24);
 
                     // Draw "BEST/"
@@ -1556,7 +1557,7 @@ void sub_0803BF84(void)
                 if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 1);
                 }
                 break;
@@ -1565,7 +1566,7 @@ void sub_0803BF84(void)
                 if (gHeldKeys & (DPAD_UP | DPAD_RIGHT))
                 {
                     gUnk_03004C08.unk1 = 0xFF;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x25);
                 }
                 break;
@@ -1574,7 +1575,7 @@ void sub_0803BF84(void)
                 if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xFE;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x24);
                 }
                 break;
@@ -1583,7 +1584,7 @@ void sub_0803BF84(void)
                 if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xF9;
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                     sub_08025B78(0, 0x24);
                 }
                 break;
@@ -2315,7 +2316,7 @@ void sub_0803D90C(u8 arg0)
                 gEntityInfo[0].yPosBg2 += 1;
                 if (gEntityInfo[0].yPosBg2 > 0x0111)
                 {
-                    m4aSongNumStart(0x2E);
+                    m4aSongNumStart(SE_KLONOA_LANDING);
                     m4aSongNumStart(0x64);
                     sub_08025B78(arg0, 0xC);
                     gUnk_03005400.unkE_7 = 1;

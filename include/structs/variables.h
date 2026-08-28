@@ -217,7 +217,7 @@ enum EntityId {
     /* 0x36 */ ENTITY_ID_RED_ARROW,
     /* 0x37 */ ENTITY_ID_PRESSURE_SWITCH, // switch you stand on to activate
     /* 0x38 */ ENTITY_ID_WATER,
-    /* 0x39 */  ENTITY_ID_WATERFALL,
+    /* 0x39 */ ENTITY_ID_WATERFALL,
     /* 0x3A */ ENTITY_ID_GEYSER, // water geyser that rises/falls
     /* 0x3B */ ENTITY_ID_ONE_WAY_GATE, // one way flipper looking gate
     /* 0x3C */ ENTITY_ID_GATE, // gate that opens as result of button/switch

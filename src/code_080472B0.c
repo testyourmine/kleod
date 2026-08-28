@@ -12,6 +12,7 @@
 #include "interrupts.h"
 #include "main.h"
 #include "rand.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const u8 gUnk_08078F88[0x20];
@@ -304,7 +305,7 @@ void DeleteAllSaveDataScreenHandler(void)
                 DmaCopy16(3, &gBgTilemapBufs[1][0x380], &gBgTilemapBufs[1][0xE0], 0x80);
                 if (gDeleteAllSaveDataScreenCursor != DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_YES)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gDeleteAllSaveDataScreenCursor = DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_YES;
             }
@@ -314,7 +315,7 @@ void DeleteAllSaveDataScreenHandler(void)
                 DmaCopy16(3, &gBgTilemapBufs[1][0x340], &gBgTilemapBufs[1][0xE0], 0x80);
                 if (gDeleteAllSaveDataScreenCursor != DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gDeleteAllSaveDataScreenCursor = DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO;
             }
@@ -324,13 +325,13 @@ void DeleteAllSaveDataScreenHandler(void)
                 {
                     // Exit screen
                     gUnk_03004C20.sceneFrameCounter = 0;
-                    m4aSongNumStart(0x54);
+                    m4aSongNumStart(SE_EXIT_MENU);
                     gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_NOT_DELETED;
                 }
                 else
                 {
                     // Set up second stage
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                     gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_SECOND_YES_NO;
                     DmaCopy16(3, &gBgTilemapBufs[1][0x2C0], &gBgTilemapBufs[1][0x140], 0x80);
                     DmaCopy16(3, &gBgTilemapBufs[1][0x340], &gBgTilemapBufs[1][0x1A0], 0x80);
@@ -341,7 +342,7 @@ void DeleteAllSaveDataScreenHandler(void)
             {
                 // Exit screen
                 gUnk_03004C20.sceneFrameCounter = 0;
-                m4aSongNumStart(0x54);
+                m4aSongNumStart(SE_EXIT_MENU);
                 gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_NOT_DELETED;
             }
             break;
@@ -360,7 +361,7 @@ void DeleteAllSaveDataScreenHandler(void)
                 DmaCopy16(3, &gBgTilemapBufs[1][0x380], &gBgTilemapBufs[1][0x1A0], 0x80);
                 if (gDeleteAllSaveDataScreenCursor != DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_YES)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gDeleteAllSaveDataScreenCursor = DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_YES;
             }
@@ -370,7 +371,7 @@ void DeleteAllSaveDataScreenHandler(void)
                 DmaCopy16(3, &gBgTilemapBufs[1][0x340], &gBgTilemapBufs[1][0x1A0], 0x80);
                 if (gDeleteAllSaveDataScreenCursor != DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO)
                 {
-                    m4aSongNumStart(0x51);
+                    m4aSongNumStart(SE_CURSOR_MOVE);
                 }
                 gDeleteAllSaveDataScreenCursor = DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO;
             }
@@ -381,13 +382,13 @@ void DeleteAllSaveDataScreenHandler(void)
                 {
                     // Exit screen
                     gUnk_03004C20.sceneFrameCounter = 0;
-                    m4aSongNumStart(0x54);
+                    m4aSongNumStart(SE_EXIT_MENU);
                     gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_NOT_DELETED;
                     gUnk_03004C20.sceneFrameCounter = 0;
                 }
                 else
                 {
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                     gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DELETE_DATA;
                 }
             }
@@ -395,7 +396,7 @@ void DeleteAllSaveDataScreenHandler(void)
             {
                 // Exit screen
                 gUnk_03004C20.sceneFrameCounter = 0;
-                m4aSongNumStart(0x54);
+                m4aSongNumStart(SE_EXIT_MENU);
                 gDeleteAllSaveDataScreenStage = DELETE_ALL_SAVE_DATA_SCREEN_STAGE_DATA_NOT_DELETED;
             }
             break;
@@ -568,7 +569,7 @@ void sub_08047B1C(void)
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOn();
-    m4aSongNumStart(0x33);
+    m4aSongNumStart(SE_STAR_COLLECT_TEXT_BOX_OPEN);
 
     thunk_HeapFree(sp8);
     thunk_HeapFree(sp4);
@@ -994,7 +995,7 @@ void NamcoScreenHandler(void)
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
-        m4aSongNumStart(0x21);
+        m4aSongNumStart(MUS_NAMCO);
     }
 
     if ((gUnk_03004C20.sceneFrameCounter > 0x10) && (gUnk_03004C20.sceneFrameCounter < 0x30))
@@ -1239,7 +1240,7 @@ void TitleScreenInit(void)
     gBgInfo[2].hOfs = 0;
     gBgInfo[2].vOfs = 0;
     gBg2X = gBg2Y = 0;
-    m4aSongNumStart(0);
+    m4aSongNumStart(MUS_TITLE);
 }
 
 // 491C0
@@ -1501,7 +1502,7 @@ void TitleScreenHandler(void)
                 if ((gNewKeys & START_BUTTON) || (gNewKeys & A_BUTTON))
                 {
                     gBlendValue = 1;
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                     break;
                 }
                 if (gUnk_03004C20.sceneFrameCounter > 0xAA)
@@ -1548,7 +1549,7 @@ void TitleScreenHandler(void)
                 {
                     gTitleScreenStage = TITLE_SCREEN_STAGE_NEW_GAME_OR_CONTINUE;
                     TitleScreenStageSetup(gTitleScreenStage);
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                 }
 
                 if ((gUnk_03004C20.sceneFrameCounter >= 0x400) && (gBlendValue == 0))
@@ -1590,7 +1591,7 @@ void TitleScreenHandler(void)
 
                     if (gUnk_03003410.unk6 != 0)
                     {
-                        m4aSongNumStart(0x51);
+                        m4aSongNumStart(SE_CURSOR_MOVE);
                     }
                     gUnk_03003410.unk6 = 0;
                 }
@@ -1605,7 +1606,7 @@ void TitleScreenHandler(void)
 
                     if (gUnk_03003410.unk6 != 1)
                     {
-                        m4aSongNumStart(0x51);
+                        m4aSongNumStart(SE_CURSOR_MOVE);
                     }
                     gUnk_03003410.unk6 = 1;
                 }
@@ -1629,7 +1630,7 @@ void TitleScreenHandler(void)
 
                 gTitleScreenStage = TITLE_SCREEN_STAGE_PRESS_START;
                 TitleScreenStageSetup(gTitleScreenStage);
-                m4aSongNumStart(0x54);
+                m4aSongNumStart(SE_EXIT_MENU);
                 gBlendValue = 0;
             }
 
@@ -1637,7 +1638,7 @@ void TitleScreenHandler(void)
             {
                 gTitleScreenStage = TITLE_SCREEN_STAGE_GO_TO_FILE_SELECT;
                 TitleScreenStageSetup(gTitleScreenStage);
-                m4aSongNumStart(0x52);
+                m4aSongNumStart(SE_CURSOR_CONFIRM);
             }
 
             DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
@@ -1807,17 +1808,17 @@ void FileSelectScreenUpdateCursor(u8 fileSelectStage)
         if (gNewKeys & SELECT_BUTTON)
         {
             gUnk_03004658->cursorIndex = (gUnk_03004658->cursorIndex + 1) % 3;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
         else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658->cursorIndex != 0))
         {
             gUnk_03004658->cursorIndex -= 1;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
         else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658->cursorIndex != 2))
         {
             gUnk_03004658->cursorIndex += 1;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
 
         gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + (gUnk_03004658->cursorIndex * 0x50);
@@ -1830,17 +1831,17 @@ void FileSelectScreenUpdateCursor(u8 fileSelectStage)
         if (gNewKeys & SELECT_BUTTON)
         {
             gUnk_03004658->cursorIndex = (gUnk_03004658->cursorIndex + 1) % 2;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
         else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658->cursorIndex == 1))
         {
             gUnk_03004658->cursorIndex -= 1;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
         else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658->cursorIndex == 0))
         {
             gUnk_03004658->cursorIndex += 1;
-            m4aSongNumStart(0x51);
+            m4aSongNumStart(SE_CURSOR_MOVE);
         }
     
         gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + ((gUnk_03004658->cursorIndex * 0x68) + 3);
@@ -2202,7 +2203,7 @@ void FileSelectScreenHandler(void)
         gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
         sub_08025B78(7, 0);
         gEntityInfo[0xD].unkF = 0;
-        m4aSongNumStart(2);
+        m4aSongNumStart(MUS_FILE_SELECT);
     }
 
     sub_08025BA4();
@@ -2226,7 +2227,7 @@ void FileSelectScreenHandler(void)
     {
         if (gUnk_03004658->fileSelectStage == FILE_SELECT_STAGE_SELECT)
         {
-            m4aSongNumStart(0x52);
+            m4aSongNumStart(SE_CURSOR_CONFIRM);
 
             if ((gUnk_03003410.unk6 != 1) || (gSaveData->startedFile[gUnk_03004658->cursorIndex] != 0))
             {
@@ -2252,12 +2253,12 @@ void FileSelectScreenHandler(void)
             {
                 if (gUnk_03004658->cursorIndex == 0)
                 {
-                    m4aSongNumStart(0x52);
+                    m4aSongNumStart(SE_CURSOR_CONFIRM);
                     gFileSelectScreenTransitionDelay = 1;
                 }
                 else
                 {
-                    m4aSongNumStart(0x54);
+                    m4aSongNumStart(SE_EXIT_MENU);
                     gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
                     gUnk_03004658->cursorIndex = gUnk_03004658->selectedSaveFile;
                     FileSelectScreenDrawInfo(0);
@@ -2320,7 +2321,7 @@ void FileSelectScreenHandler(void)
             gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
             gUnk_03004658->cursorIndex = gUnk_03004658->selectedSaveFile;
             FileSelectScreenDrawInfo(0);
-            m4aSongNumStart(0x54);
+            m4aSongNumStart(SE_EXIT_MENU);
         }
     }
 }

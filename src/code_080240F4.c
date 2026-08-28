@@ -8,6 +8,7 @@
 #include "code_080472B0.h"
 #include "interrupts.h"
 #include "main.h"
+#include "constants/songs.h"
 #include "structs/variables.h"
 
 extern void sub_0804BE58();                                /* extern */
@@ -678,7 +679,7 @@ block_9:
             m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
             m4aMPlayVolumeControl(&gMPlayInfo_2, 0xFF, gSoundVolume);
             m4aMPlayVolumeControl(&gMPlayInfo_3, 0xFF, gSoundVolume);
-            m4aSongNumStart(0x78);
+            m4aSongNumStart(SE_LIFE_LOST);
             DrawLevelHud_Lives();
         }
         else if (gBlendValue == 9)
@@ -1553,7 +1554,7 @@ void sub_080264A4(void)
         gEntityInfo[0xC].yPosScreen = 0;
         gEntityInfo[0xB].yPosScreen = 0;
         DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 << 5), 0x800);
-        m4aSongNumStart(0x1F);
+        m4aSongNumStart(MUS_VISION_CLEAR);
     }
 
     if (gUnk_03004C20.sceneFrameCounter <= 25)
