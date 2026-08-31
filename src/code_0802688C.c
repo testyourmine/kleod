@@ -1,6 +1,7 @@
 #include "global.h"
 #include "code_0802688C.h"
-#include "code_080240F4.h"
+#include "transitions.h"
+#include "code_08025B78.h"
 #include "structs/variables.h"
 
 // TODO: proper pointers

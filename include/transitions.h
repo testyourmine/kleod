@@ -1,5 +1,5 @@
-#ifndef GUARD_CODE_080240F4_H
-#define GUARD_CODE_080240F4_H
+#ifndef GUARD_TRANSITION_H
+#define GUARD_TRANSITION_H
 
 #include "global.h"
 
@@ -23,14 +23,5 @@ void TransitionFromLevelSelectToWorldMap_FadeOut(void);
 void TransitionFromLevelSelectToBootScreen_FadeOut(void);
 void TransitionFromLevelToClearedAllVisionsScreen_FadeIn(void);
 void TransitionFromLevelToClearedAllVisionsScreen_FadeOut(void);
-void SetEntityAnimationInfoState(s32 slot, u8 state);
-void UpdateEntityAnimationInfoEntries(void);
-void DrawLevelHud_Hearts(void);
-s32 DrawLevelHud_DreamStones(void);
-void DrawLevelHud_Lives(void);
-void DrawLevelSelectHud_Lives(void);
-void DrawLevelTimer(void);
-void DrawVisionStart(void);
-void DrawVisionEnd(void);
 
-#endif // GUARD_CODE_080240F4_H
+#endif // GUARD_TRANSITION_H
