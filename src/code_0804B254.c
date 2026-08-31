@@ -1,7 +1,7 @@
 #include "global.h"
 #include "code_08001158.h"
 #include "code_08003D58.h"
-#include "code_0800BFF4.h"
+#include "wait_for_next_frame.h"
 #include "code_080240F4.h"
 #include "save.h"
 #include "code_080472B0.h"

@@ -233,7 +233,7 @@ SECTIONS {
         src/code_08001158.o(.text);
         src/code_08003D58.o(.text);
         src/code_080070A0.o(.text);
-        src/code_0800BFF4.o(.text);
+        src/wait_for_next_frame.o(.text);
         src/code_0800D188.o(.text);
         src/code_08014184.o(.text);
         src/code_080240F4.o(.text);

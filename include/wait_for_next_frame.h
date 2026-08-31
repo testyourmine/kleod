@@ -1,5 +1,5 @@
-#ifndef GUARD_CODE_0800BFF4_H
-#define GUARD_CODE_0800BFF4_H
+#ifndef GUARD_WAIT_FOR_NEXT_FRAME_H
+#define GUARD_WAIT_FOR_NEXT_FRAME_H
 
 #include "global.h"
 
@@ -12,4 +12,4 @@ void ClearedAllVisionsScreenWaitForNextFrame(void);
 void sub_0800CA0C(u32 arg0);
 void TitleScreenWaitForNextFrame(void);
 
-#endif // GUARD_CODE_0800BFF4_H
+#endif // GUARD_WAIT_FOR_NEXT_FRAME_H
