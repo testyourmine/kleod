@@ -237,7 +237,7 @@ void LoadObjects_World1Select(void)
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x200;
 
-    sub_08025B78(0xD, 0);
+    SetEntityAnimationInfoState(0xD, 0);
 
     DmaCopy16Wait(3, &gUnk_08077E88, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805DBE8, gObjVramPtr, 0x300);
@@ -401,7 +401,7 @@ void LoadObjects_World3Select(void)
     DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
-    sub_08025B78(0x16, 0);
+    SetEntityAnimationInfoState(0x16, 0);
 
     DmaCopy16Wait(3, &gUnk_08078088, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
@@ -456,7 +456,7 @@ void LoadObjects_World4Select(void)
     DmaCopy16Wait(3, EWRAM_START + 0x904, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
-    sub_08025B78(0x15, 0);
+    SetEntityAnimationInfoState(0x15, 0);
 
     DmaCopy16Wait(3, &gUnk_08078148, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
@@ -526,14 +526,14 @@ void LoadObjects_World5Select(void)
     DmaCopy16Wait(3, EWRAM_START + 0x4704, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
-    sub_08025B78(0x15, 0);
+    SetEntityAnimationInfoState(0x15, 0);
 
     DmaCopy16Wait(3, &gUnk_08078268, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
     DmaCopy16Wait(3, EWRAM_START + 0x1104, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
-    sub_08025B78(0x16, 0);
+    SetEntityAnimationInfoState(0x16, 0);
 
     DmaCopy16Wait(3, &gUnk_08078288, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
@@ -984,7 +984,7 @@ void LoadObjects_World1Boss(void)
     DmaCopy16Wait(3, **gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk3C, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
-    sub_08025B78(0x16, 0);
+    SetEntityAnimationInfoState(0x16, 0);
 
     DmaCopy16Wait(3, &gUnk_08078328, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EEE8, gObjVramPtr, 0x200);
@@ -993,8 +993,8 @@ void LoadObjects_World1Boss(void)
     DmaCopy16Wait(3, &gUnk_0805EEE8, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
-    sub_08025B78(0x17, 0);
-    sub_08025B78(0x18, 0);
+    SetEntityAnimationInfoState(0x17, 0);
+    SetEntityAnimationInfoState(0x18, 0);
 
     DmaCopy16Wait(3, &gUnk_08078528, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
@@ -2932,7 +2932,7 @@ void LoadObjects_World4Boss(void)
     DmaCopy16Wait(3, **gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk3C, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
 
-    sub_08025B78(0x12, 0);
+    SetEntityAnimationInfoState(0x12, 0);
 
     DmaCopy16Wait(3, &gUnk_08078328, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EEE8, gObjVramPtr, 0x200);
@@ -3680,8 +3680,8 @@ void LoadObjects_World5Boss(void)
     DmaCopy16Wait(3, &gUnk_0805EEE8, gObjVramPtr, 0x200);
     gObjVramPtr += 0x200;
 
-    sub_08025B78(0x17, 0);
-    sub_08025B78(0x18, 0);
+    SetEntityAnimationInfoState(0x17, 0);
+    SetEntityAnimationInfoState(0x18, 0);
 
     DmaCopy16Wait(3, &gUnk_08078968, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
@@ -4159,7 +4159,7 @@ void LoadObjects_Common(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;
-    sub_08025B78(0, 0);
+    SetEntityAnimationInfoState(0, 0);
     gEntityInfo[0].visible = 1;
     gObjVramPtr += 0x200;
 
@@ -4195,7 +4195,7 @@ void LoadObjects_Common(void)
 
             if (gUnk_03004C20.level != 0)
             {
-                if (gCallbackQueue.next[4] == sub_08026374)
+                if (gCallbackQueue.next[4] == DrawVisionStart)
                 {
                     gEntityInfo[0xB].visible = 1;
                 }
@@ -4230,7 +4230,7 @@ void LoadObjects_Common(void)
         DmaCopy16Wait(3, gUnk_0818B800[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1], gObjVramPtr, 0x800);
         gObjVramPtr += 0x800;
 
-        if (gCallbackQueue.next[4] == sub_08026374)
+        if (gCallbackQueue.next[4] == DrawVisionStart)
         {
             gEntityInfo[0xC].visible = 1;
         }

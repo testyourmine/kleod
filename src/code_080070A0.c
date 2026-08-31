@@ -1710,7 +1710,7 @@ void sub_0800A804(void)
             }
         }
 
-        sub_08025BA4();
+        UpdateEntityAnimationInfoEntries();
     }
 
     if (gUnk_0300528C != 0)
@@ -1768,7 +1768,7 @@ void sub_0800AC34(void)
         return;
     }
 
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 
     for (var_r6 = 0; var_r6 < gUnk_03005428; var_r6++)
     {
@@ -1827,7 +1827,7 @@ void sub_0800AC34(void)
                                 break;
 
                             case 25:
-                                sub_08025B78(var_r6, 0);
+                                SetEntityAnimationInfoState(var_r6, 0);
                                 gEntityInfo[var_r6].visible = 1;
                                 gEntityInfo[var_r6].unkF = 0;
                                 break;
@@ -2012,7 +2012,7 @@ void sub_0800AC34(void)
 
     if (gUnk_03005220.unk37 != 0)
     {
-        sub_08025BA4();
+        UpdateEntityAnimationInfoEntries();
     }
 
     if (gUnk_03005220.unk3F != 0)
@@ -2148,24 +2148,24 @@ void sub_0800B3C0(void)
             case ENTITY_ID_MOO_BOARDER:
                 if (gUnk_03004C20.level != 8)
                 {
-                    sub_08025B78(var_sb, 3);
+                    SetEntityAnimationInfoState(var_sb, 3);
                 }
                 else
                 {
-                    sub_08025B78(var_sb, 1);
+                    SetEntityAnimationInfoState(var_sb, 1);
                 }
                 break;
 
             case ENTITY_ID_MOO:
             case ENTITY_ID_BOOMIE:
-                sub_08025B78(var_sb, 1);
+                SetEntityAnimationInfoState(var_sb, 1);
                 break;
 
             case ENTITY_ID_SPIKER_HORIZONTAL:
             case ENTITY_ID_SPIKER_VERTICAL:
                 if (sp14 == 0)
                 {
-                    sub_08025B78(var_sb, 0);
+                    SetEntityAnimationInfoState(var_sb, 0);
                     sp14 = 1;
                 }
                 break;
@@ -2173,7 +2173,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_GLIBZ_QUAD_CANNON_BULLET:
                 if (sp18 == 0)
                 {
-                    sub_08025B78(var_sb, 0);
+                    SetEntityAnimationInfoState(var_sb, 0);
                     sp18 = 1;
                 }
                 break;
@@ -2181,11 +2181,11 @@ void sub_0800B3C0(void)
             case ENTITY_ID_MOON_DOOR:
                 if (gUnk_03005220.unk3_5 != 0)
                 {
-                    sub_08025B78(var_sb, 2);
+                    SetEntityAnimationInfoState(var_sb, 2);
                 }
                 else
                 {
-                    sub_08025B78(var_sb, 0);
+                    SetEntityAnimationInfoState(var_sb, 0);
                 }
                 break;
 
@@ -2202,7 +2202,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_TETON:
             case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
             case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
-                sub_08025B78(var_sb, 0);
+                SetEntityAnimationInfoState(var_sb, 0);
                 break;
 
             case ENTITY_ID_WATER_SWITCH:
@@ -2311,7 +2311,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_WATER:
                 if (sp1C == 0)
                 {
-                    sub_08025B78(var_sb, 0);
+                    SetEntityAnimationInfoState(var_sb, 0);
                     sp1C = 1;
                 }
                 break;
@@ -2319,7 +2319,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_GEYSER:
                 if (sp20 == 0)
                 {
-                    sub_08025B78(var_sb, 2);
+                    SetEntityAnimationInfoState(var_sb, 2);
                     sp20 = 1;
                 }
                 break;
@@ -2327,7 +2327,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_WATERFALL:
                 if (sp24 == 0)
                 {
-                    sub_08025B78(var_sb, 1);
+                    SetEntityAnimationInfoState(var_sb, 1);
                     sp24 = 1;
                 }
                 break;
@@ -2335,13 +2335,13 @@ void sub_0800B3C0(void)
             case ENTITY_ID_1_UP:
                 if (sp28 == 0)
                 {
-                    sub_08025B78(var_sb, 0);
+                    SetEntityAnimationInfoState(var_sb, 0);
                     sp28 = 1;
                 }
                 break;
 
             case ENTITY_ID_MAGNET_BLOCK_HAND:
-                sub_08025B78(var_sb, 0);
+                SetEntityAnimationInfoState(var_sb, 0);
                 break;
         }
     }

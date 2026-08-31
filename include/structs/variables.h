@@ -42,7 +42,7 @@ struct Unk_03003410 {
     u8 unk8;
     u8 unk9;
     u8 unkA;
-    u8 unkB;
+    u8 unkB; // related to end of level, 1 is hoverboard slowing down, 2 is autoscroller cannon shooting Klonoa off, 3 is showing Vision Clear
     u8 unkC;
 };
 extern struct Unk_03003410 gUnk_03003410;
@@ -616,21 +616,21 @@ struct Unk_0300466C {
 extern struct Unk_0300466C *gUnk_0300466C;
 extern struct Unk_0300466C *gUnk_030051DC;
 
-struct Unk_03005294_03005418_0 {
+struct EntityAnimationFrameData {
     u32 src;
-    u8 unk4;
-    s32 unk5_0:4;
-    s32 unk5_4:4;
+    u8 timer;
+    s32 unk5_0:4; // related to X position
+    s32 unk5_4:4; // related to Y position
 };
-struct Unk_03005294_03005418 {
-    struct Unk_03005294_03005418_0 **unk0;
+struct EntityAnimationData {
+    struct EntityAnimationFrameData **pFrames;
     void *dest;
     u16 size;
-    u8 unkA;
+    u8 entityInfoEntry;
     u8 padB[0xC - 0xB];
 };
-extern struct Unk_03005294_03005418 *gUnk_03005294;
-extern struct Unk_03005294_03005418 *gUnk_03005418;
+extern struct EntityAnimationData *gUnk_03005294;
+extern struct EntityAnimationData *gUnk_03005418;
 
 extern void * volatile gObjVramPtr; // OBJ vram ptr
 

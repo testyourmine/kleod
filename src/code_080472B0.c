@@ -196,7 +196,7 @@ void DeleteAllSaveDataMinigameHandler(void)
         gEntityInfo[0].visible = 1;
         gEntityInfo[0].xPosBg2 = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0].yPosBg2 = DISPLAY_HEIGHT - 4;
-        sub_08025B78(0, 0x22);
+        SetEntityAnimationInfoState(0, 0x22);
     }
 
     // If Klonoa is spawned and not stunned
@@ -209,7 +209,7 @@ void DeleteAllSaveDataMinigameHandler(void)
             if (gEntityAnimationInfo[0].state != 1)
             {
                 // Set Klonoa to moving
-                sub_08025B78(0, 1);
+                SetEntityAnimationInfoState(0, 1);
             }
 
             if (gEntityInfo[0].xPosBg2 < (DISPLAY_WIDTH - 0x10))
@@ -224,7 +224,7 @@ void DeleteAllSaveDataMinigameHandler(void)
             if (gEntityAnimationInfo[0].state != 1)
             {
                 // Set Klonoa to moving
-                sub_08025B78(0, 1);
+                SetEntityAnimationInfoState(0, 1);
             }
 
             if (gEntityInfo[0].xPosBg2 > 0x10)
@@ -235,7 +235,7 @@ void DeleteAllSaveDataMinigameHandler(void)
         else if (gEntityAnimationInfo[0].state != 0x22)
         {
             // Set Klonoa to standing still 
-            sub_08025B78(0, 0x22);
+            SetEntityAnimationInfoState(0, 0x22);
         }
     }
 
@@ -258,7 +258,7 @@ void DeleteAllSaveDataMinigameHandler(void)
                 {
                     if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[i].yPosBg2 - 8)) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[i].yPosBg2 - 0x14)))
                     {
-                        sub_08025B78(0, 0xC);
+                        SetEntityAnimationInfoState(0, 0xC);
                     }
                 }
                 break;
@@ -274,11 +274,11 @@ void DeleteAllSaveDataMinigameHandler(void)
                 // First four Moos are red, next two are green
                 if (i <= 17)
                 {
-                    sub_08025B78(i, 2);
+                    SetEntityAnimationInfoState(i, 2);
                 }
                 else
                 {
-                    sub_08025B78(i, 1);
+                    SetEntityAnimationInfoState(i, 1);
                 }
                 break;
         }
@@ -294,7 +294,7 @@ void DeleteAllSaveDataScreenHandler(void)
     }
 
     DeleteAllSaveDataMinigameHandler();
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 
     switch (gDeleteAllSaveDataScreenStage)
     {
@@ -2201,12 +2201,12 @@ void FileSelectScreenHandler(void)
         }
 
         gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
-        sub_08025B78(7, 0);
+        SetEntityAnimationInfoState(7, 0);
         gEntityInfo[0xD].unkF = 0;
         m4aSongNumStart(MUS_FILE_SELECT);
     }
 
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
     FileSelectScreenUpdateCursor(gUnk_03004658->fileSelectStage);
 
     if (gUnk_030034E4 == 1)

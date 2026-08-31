@@ -515,7 +515,7 @@ void sub_0800CA0C(u32 arg0)
         gCallbackQueue.next[2] = sub_08002AC4;
         gCallbackQueue.next[3] = sub_0800AC34;
         gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
-        gCallbackQueue.next[5] = sub_08026374;
+        gCallbackQueue.next[5] = DrawVisionStart;
         gCallbackQueue.next[6] = BossWaitForNextFrame;
         gCallbackQueue.next[7] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -542,7 +542,7 @@ void sub_0800CA0C(u32 arg0)
         {
             if (gUnk_03003410.unkA == 0)
             {
-                gCallbackQueue.next[4] = sub_08026374;
+                gCallbackQueue.next[4] = DrawVisionStart;
                 gCallbackQueue.next[5] = CommonWaitForNextFrame;
                 gCallbackQueue.next[6] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

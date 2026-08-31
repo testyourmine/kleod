@@ -23,14 +23,14 @@ void TransitionFromLevelSelectToWorldMap_FadeOut(void);
 void TransitionFromLevelSelectToBootScreen_FadeOut(void);
 void TransitionFromLevelToClearedAllVisionsScreen_FadeIn(void);
 void TransitionFromLevelToClearedAllVisionsScreen_FadeOut(void);
-void sub_08025B78(s32 arg0, u8 state);
-void sub_08025BA4(void);
+void SetEntityAnimationInfoState(s32 slot, u8 state);
+void UpdateEntityAnimationInfoEntries(void);
 void DrawLevelHud_Hearts(void);
 s32 DrawLevelHud_DreamStones(void);
 void DrawLevelHud_Lives(void);
 void DrawLevelSelectHud_Lives(void);
 void DrawLevelTimer(void);
-void sub_08026374(void);
-void sub_080264A4(void);
+void DrawVisionStart(void);
+void DrawVisionEnd(void);
 
 #endif // GUARD_CODE_080240F4_H

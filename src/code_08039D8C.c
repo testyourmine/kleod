@@ -1300,8 +1300,8 @@ void sub_0803B600(void)
     REG_BG3VOFS = 0;
     
     gBg2X = gBg2Y = 0;
-    sub_08025B78(0, 0);
-    sub_08025BA4();
+    SetEntityAnimationInfoState(0, 0);
+    UpdateEntityAnimationInfoEntries();
     gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
     gCallbackQueue.current[1] = sub_0803B0A0;
     sub_0803B074();
@@ -1332,7 +1332,7 @@ void sub_0803BF84(void)
         gBlendValue += 1;
     }
 
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 
     if (gUnk_03004C08.unk1 == 0)
     {
@@ -1393,14 +1393,14 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
 
                 if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(6) != 0))
                 {
                     gUnk_03004C08.unk1 = 7;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x25);
+                    SetEntityAnimationInfoState(0, 0x25);
 
                     // Draw "BEST/"
                     gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
@@ -1438,14 +1438,14 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x25);
+                    SetEntityAnimationInfoState(0, 0x25);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
@@ -1454,14 +1454,14 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_DOWN)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x24);
+                    SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
 
@@ -1470,14 +1470,14 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
@@ -1486,7 +1486,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 2;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x25);
+                    SetEntityAnimationInfoState(0, 0x25);
 
                     // Erase "BEST/" tiles
                     gBgTilemapBufs[0][0x4C] = (10 << 12);
@@ -1522,7 +1522,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x24);
+                    SetEntityAnimationInfoState(0, 0x24);
 
                     // Draw "BEST/"
                     gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
@@ -1558,7 +1558,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
@@ -1567,7 +1567,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 0xFF;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x25);
+                    SetEntityAnimationInfoState(0, 0x25);
                 }
                 break;
 
@@ -1576,7 +1576,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 0xFE;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x24);
+                    SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
 
@@ -1585,7 +1585,7 @@ void sub_0803BF84(void)
                 {
                     gUnk_03004C08.unk1 = 0xF9;
                     m4aSongNumStart(SE_CURSOR_MOVE);
-                    sub_08025B78(0, 0x24);
+                    SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
         }
@@ -1632,15 +1632,15 @@ void sub_0803BF84(void)
             gUnk_03004C08.unk1 = 0;
             if (gEntityAnimationInfo[0].state == 1)
             {
-                sub_08025B78(0, 0);
+                SetEntityAnimationInfoState(0, 0);
             }
             if (gEntityAnimationInfo[0].state == 0x25)
             {
-                sub_08025B78(0, 0x23);
+                SetEntityAnimationInfoState(0, 0x23);
             }
             if (gEntityAnimationInfo[0].state == 0x24)
             {
-                sub_08025B78(0, 0x22);
+                SetEntityAnimationInfoState(0, 0x22);
             }
         }
 
@@ -1944,7 +1944,7 @@ void sub_0803CF08(u8 arg0)
             gUnk_03005220.unk42 = 0;
             if (gEntityAnimationInfo[0].state >= 0x16)
             {
-                sub_08025B78(0, gEntityAnimationInfo[0].state - 0x16);
+                SetEntityAnimationInfoState(0, gEntityAnimationInfo[0].state - 0x16);
             }
         }
 
@@ -1984,7 +1984,7 @@ void sub_0803CF08(u8 arg0)
         {
             if (var_r4 == 4)
             {
-                gCallbackQueue.next[4] = sub_080264A4;
+                gCallbackQueue.next[4] = DrawVisionEnd;
             }
             else if (var_r4 > 4)
             {
@@ -2005,11 +2005,11 @@ void sub_0803CF08(u8 arg0)
         gEntityInfo[0xA].visible = 0;
         if (gUnk_03005220.unk31 != 0)
         {
-            sub_08025B78(0, 0);
+            SetEntityAnimationInfoState(0, 0);
         }
         else if (gUnk_03005220.unk35 != 0)
         {
-            sub_08025B78(0, 0x10);
+            SetEntityAnimationInfoState(0, 0x10);
         }
     }
 }
@@ -2277,8 +2277,8 @@ void sub_0803D90C(u8 arg0)
 
                 gEntityInfo[0].xPosBg2 = 0;
                 gEntityInfo[0].yPosBg2 = 0x12A;
-                sub_08025B78(0, 1);
-                sub_08025B78(arg0, 0);
+                SetEntityAnimationInfoState(0, 1);
+                SetEntityAnimationInfoState(arg0, 0);
                 gUnk_03005400.unk8_0 = 0;
                 gUnk_03005400.unkA = 1;
                 break;
@@ -2288,7 +2288,7 @@ void sub_0803D90C(u8 arg0)
                 if (gEntityInfo[0].xPosBg2 > 0x77)
                 {
                     gEntityInfo[0x1A].unkF = 0x1C;
-                    sub_08025B78(0, 2);
+                    SetEntityAnimationInfoState(0, 2);
                     gUnk_03005400.unkA = 2;
                 }
                 break;
@@ -2305,7 +2305,7 @@ void sub_0803D90C(u8 arg0)
                 }
                 if (gEntityInfo[0].yPosBg2 <= 0xF0)
                 {
-                    sub_08025B78(0, 3);
+                    SetEntityAnimationInfoState(0, 3);
                     gUnk_03005400.unkA = 3;
                     gEntityInfo[0x1A].unkF = 0;
                 }
@@ -2318,7 +2318,7 @@ void sub_0803D90C(u8 arg0)
                 {
                     m4aSongNumStart(SE_KLONOA_LANDING);
                     m4aSongNumStart(0x64);
-                    sub_08025B78(arg0, 0xC);
+                    SetEntityAnimationInfoState(arg0, 0xC);
                     gUnk_03005400.unkE_7 = 1;
                     gUnk_03005400.unkA = 4;
                     gUnk_03005400.unk0 = 0xA0;
@@ -2433,7 +2433,7 @@ void sub_0803D90C(u8 arg0)
             case 10:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 1)
                 {
-                    sub_08025B78(arg0, 1);
+                    SetEntityAnimationInfoState(arg0, 1);
                     gUnk_03005400.unk9 = 0;
                     sub_0803D140(0);
                     gUnk_03005400.unk0 = gUnk_081169F9[gUnk_03005400.unkC - 1][1];
@@ -2456,7 +2456,7 @@ void sub_0803D90C(u8 arg0)
             case 9:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 4)
                 {
-                    sub_08025B78(arg0, 4);
+                    SetEntityAnimationInfoState(arg0, 4);
                 }
                 else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
@@ -2476,7 +2476,7 @@ void sub_0803D90C(u8 arg0)
                 {
                     if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0xF)
                     {
-                        sub_08025B78(arg0, 0xE);
+                        SetEntityAnimationInfoState(arg0, 0xE);
                     }
                     else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                     {
@@ -2486,14 +2486,14 @@ void sub_0803D90C(u8 arg0)
                 else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
                     gEntityInfo[arg0].unkC_2 ^= 1;
-                    sub_08025B78(arg0, 0xF);
+                    SetEntityAnimationInfoState(arg0, 0xF);
                 }
                 break;
 
             case 0:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
                 {
-                    sub_08025B78(arg0, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
                     gUnk_03005400.unk0 = 0x20;
                 }
                 if (gUnk_03005400.unk0 == 0)
@@ -2505,7 +2505,7 @@ void sub_0803D90C(u8 arg0)
             case 13:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0xA)
                 {
-                    sub_08025B78(arg0, 0xA);
+                    SetEntityAnimationInfoState(arg0, 0xA);
                     gUnk_03005400.unk0 = gUnk_081169F9[gUnk_03005400.unkC - 1][0];
                 }
 
@@ -2550,7 +2550,7 @@ void sub_0803D90C(u8 arg0)
                 {
                     if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 5)
                     {
-                        sub_08025B78(arg0, 6);
+                        SetEntityAnimationInfoState(arg0, 6);
                         break;
                     }
 
@@ -2590,7 +2590,7 @@ void sub_0803D90C(u8 arg0)
 
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
-                    sub_08025B78(arg0, 5);
+                    SetEntityAnimationInfoState(arg0, 5);
                 }
                 break;
 
@@ -2598,7 +2598,7 @@ void sub_0803D90C(u8 arg0)
                 switch (gEntityAnimationInfo[arg0 - gUnk_0300363C].state)
                 {
                     default:
-                        sub_08025B78(arg0, 7);
+                        SetEntityAnimationInfoState(arg0, 7);
                         gUnk_03005400.unk8_4 = 1;
                         break;
 
@@ -2633,7 +2633,7 @@ void sub_0803D90C(u8 arg0)
                             return;
                         }
 
-                        sub_08025B78(arg0, 9);
+                        SetEntityAnimationInfoState(arg0, 9);
                         m4aSongNumStart(0x43);
                         gUnk_03005400.unkE_1 = 1;
                         gUnk_03005400.unkD = 2;
@@ -2655,7 +2655,7 @@ void sub_0803D90C(u8 arg0)
                         }
                         if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                         {
-                            sub_08025B78(arg0, 8);
+                            SetEntityAnimationInfoState(arg0, 8);
                         }
                         break;
                 }
@@ -2664,7 +2664,7 @@ void sub_0803D90C(u8 arg0)
             case 5:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 2)
                 {
-                    sub_08025B78(arg0, 2);
+                    SetEntityAnimationInfoState(arg0, 2);
                 }
                 else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
@@ -2771,7 +2771,7 @@ void sub_0803D90C(u8 arg0)
                         gUnk_03003590[0].unk4 = 0;
                         gUnk_03005400.unkA = 9;
                         gUnk_03005400.unk0 = 0x3C;
-                        sub_08025B78(arg0, 9);
+                        SetEntityAnimationInfoState(arg0, 9);
                     }
                     else if (gUnk_03003590[0].unk4 == 0)
                     {
@@ -2790,7 +2790,7 @@ void sub_0803D90C(u8 arg0)
 
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0x10)
                 {
-                    sub_08025B78(arg0, 0x10);
+                    SetEntityAnimationInfoState(arg0, 0x10);
                 }
                 else if ((gUnk_03005220.unk31 != 0) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF))
                 {
@@ -2930,10 +2930,10 @@ void sub_0803E904(u8 arg0)
                 gUnk_030007E0.unkA = 0x40;
                 gUnk_030007E0.unk4 = 0x40;
 
-                sub_08025B78(0, 0);
-                sub_08025B78(0x12, 2);
-                sub_08025B78(0x17, 0);
-                sub_08025B78(0x19, 1);
+                SetEntityAnimationInfoState(0, 0);
+                SetEntityAnimationInfoState(0x12, 2);
+                SetEntityAnimationInfoState(0x17, 0);
+                SetEntityAnimationInfoState(0x19, 1);
 
                 gEntityInfo[0x12].priority = 2;
                 gUnk_03003590[0].unk2 = -0xC0;
@@ -2986,7 +2986,7 @@ void sub_0803E904(u8 arg0)
                     gEntityInfo[arg0].unkC_2 = 1;
                 }
 
-                sub_08025B78(arg0, 0);
+                SetEntityAnimationInfoState(arg0, 0);
                 gUnk_03005400.unkA = 2;
                 break;
 
@@ -3038,7 +3038,7 @@ void sub_0803E904(u8 arg0)
                         sub_0803E6D8(0x1C);
                         gUnk_03005400.unkA = 9;
                         gUnk_03005400.unk13 = 0;
-                        sub_08025B78(arg0, 6);
+                        SetEntityAnimationInfoState(arg0, 6);
                     }
                     else
                     {
@@ -3065,7 +3065,7 @@ void sub_0803E904(u8 arg0)
             case 2:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
                 {
-                    sub_08025B78(arg0, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
                 }
 
                 if ((gUnk_03004C20.sceneFrameCounter % 2) == 0)
@@ -3151,7 +3151,7 @@ void sub_0803E904(u8 arg0)
                 else
                 {
                     gUnk_03005400.unk8_6 = 0;
-                    sub_08025B78(arg0, 2);
+                    SetEntityAnimationInfoState(arg0, 2);
                     gEntityInfo[arg0].unk8.split.unk8 = 0x78;
                     gUnk_03005400.unkA = 6;
                 }
@@ -3211,7 +3211,7 @@ void sub_0803E904(u8 arg0)
                 if (gEntityInfo[arg0].unk8.split.unk8 == 0)
                 {
                     sub_0803E6D8(0x1C);
-                    sub_08025B78(arg0, 5);
+                    SetEntityAnimationInfoState(arg0, 5);
                     gEntityInfo[arg0].unk8.split.unk8 = 0xB4;
                     gUnk_03005400.unkA = 7;
                     m4aSongNumStart(0x69);
@@ -3251,7 +3251,7 @@ void sub_0803E904(u8 arg0)
                     gEntityInfo[0x16].unkF = 0x19;
                     gEntityInfo[0x15].unkF = 0x19;
 
-                    sub_08025B78(arg0, 6);
+                    SetEntityAnimationInfoState(arg0, 6);
                     m4aSongNumStart(0x6A);
                     gUnk_03005400.unkA = 8;
                 }
@@ -3262,7 +3262,7 @@ void sub_0803E904(u8 arg0)
                 {
                     gUnk_030007E0.unkA = 0x40;
                     sub_0803E6D8(0x1C);
-                    sub_08025B78(0x12, 2);
+                    SetEntityAnimationInfoState(0x12, 2);
                     gUnk_03005400.unk15 = 0;
                     gEntityInfo[arg0].unk8.split.unk8 = 0x50;
                     gUnk_03005400.unkA = 0xA;
@@ -3275,7 +3275,7 @@ void sub_0803E904(u8 arg0)
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkA = 5;
-                    sub_08025B78(arg0, 4);
+                    SetEntityAnimationInfoState(arg0, 4);
                     gEntityInfo[0x12].unkC_2 ^= 1;
                     m4aSongNumStart(0x67);
                 }
@@ -3285,7 +3285,7 @@ void sub_0803E904(u8 arg0)
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkA = 4;
-                    sub_08025B78(arg0, 3);
+                    SetEntityAnimationInfoState(arg0, 3);
                     gEntityInfo[0x12].unkC_2 ^= 1;
                     m4aSongNumStart(0x67);
                 }
@@ -3401,7 +3401,7 @@ block_124:
                     gUnk_03005400.unk13 = 0;
                     gUnk_030034DC = 0;
                     gUnk_03005400.unkA = 3;
-                    sub_08025B78(arg0, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
                 }
                 break;
         }
@@ -3637,7 +3637,7 @@ void sub_0803F9EC(u8 arg0)
                 gUnk_03005400.unk8_4 = 0;
                 gEntityInfo[arg0].priority = 1;
                 gEntityInfo[arg0].unkF = 0;
-                sub_08025B78(arg0, 0);
+                SetEntityAnimationInfoState(arg0, 0);
                 gUnk_03005400.unk0 = gUnk_08116A46[gUnk_03005400.unkC][0] * 0x3C;
                 gUnk_03005400.unkA = 4;
                 break;
@@ -3737,7 +3737,7 @@ void sub_0803F9EC(u8 arg0)
 
                     if ((s16) gEntityInfo[0x12].yPosBg2 <= 0x10)
                     {
-                        sub_08025B78(arg0, 6);
+                        SetEntityAnimationInfoState(arg0, 6);
                         gUnk_03005400.unk8_6 = 1;
                         gUnk_03005400.unk8_4 = 0;
                         if ((s8) gUnk_03005400.unk15 == 3)
@@ -3804,7 +3804,7 @@ void sub_0803F9EC(u8 arg0)
                 {
                     sub_0803F950(0x1C);
                     gUnk_03005400.unkA = 2;
-                    sub_08025B78(arg0, 2);
+                    SetEntityAnimationInfoState(arg0, 2);
                     gUnk_03005400.unk0 = 0x3C;
                 }
                 break;
@@ -3824,7 +3824,7 @@ void sub_0803F9EC(u8 arg0)
                 else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
                     DmaCopy16Wait(3, &gUnk_08078768, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
-                    sub_08025B78(arg0, 3);
+                    SetEntityAnimationInfoState(arg0, 3);
                     if (gUnk_03005400.unkC == 0)
                     {
                         gUnk_03005400.unkA = 9;
@@ -3859,7 +3859,7 @@ void sub_0803F9EC(u8 arg0)
                     gUnk_03005400.unkA = 8;
                     gEntityInfo[arg0].unkF = 0x1A;
                     DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
-                    sub_08025B78(arg0, 6);
+                    SetEntityAnimationInfoState(arg0, 6);
                 }
                 break;
 
@@ -4375,7 +4375,7 @@ void sub_08040F1C(u8 arg0)
                 gUnk_03003590[0].unk2 = -0xD0;
                 gEntityInfo[arg0].yPosBg2 = 0;
                 gEntityInfo[arg0].priority = 2;
-                sub_08025B78(arg0, 8);
+                SetEntityAnimationInfoState(arg0, 8);
                 sub_08040B50(0);
                 gEntityInfo[0x12].unk8.split.unk8 = 0;
 
@@ -4431,8 +4431,8 @@ void sub_08040F1C(u8 arg0)
                 gUnk_03003590[0].unk0 -= 8;
                 if (-((s16)gUnk_03003590[0].unk0) >= ((gBg2XMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
                 {
-                    sub_08025B78(arg0, 0);
-                    sub_08025B78(0x17, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(0x17, 0);
                     gUnk_03005400.unkA = 4;
                     gUnk_03005400.unk16 = 4;
                 }
@@ -4534,7 +4534,7 @@ void sub_08040F1C(u8 arg0)
             case 5:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
                 {
-                    sub_08025B78(arg0, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
                 }
 
                 gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
@@ -4549,7 +4549,7 @@ void sub_08040F1C(u8 arg0)
                     {
                         if (gUnk_03005400.unk13 == 1)
                         {
-                            sub_08025B78(arg0, 3);
+                            SetEntityAnimationInfoState(arg0, 3);
                             gUnk_03005400.unkA = 0xC;
                             gUnk_03005400.unk13 = 0;
                         }
@@ -4599,7 +4599,7 @@ block_89:
                 {
                     if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 1)
                     {
-                        sub_08025B78(arg0, 1);
+                        SetEntityAnimationInfoState(arg0, 1);
                         m4aSongNumStart(0x6D);
                         gUnk_03005400.unkE_1 = 1;
                         gUnk_03005400.unkD = 2;
@@ -4700,7 +4700,7 @@ block_89:
                     gEntityInfo[arg0].unk8.all = gEntityInfo[arg0].xPosBg2;
 
                     gUnk_03005400.unkA = 0xA;
-                    sub_08025B78(arg0, 0);
+                    SetEntityAnimationInfoState(arg0, 0);
                     sub_08040B50(0);
                     m4aSongNumStart(0x6E);
                 }
@@ -4723,7 +4723,7 @@ block_89:
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03005400.unk8_6 = 0;
                     gUnk_03005400.unk8_0 = 0;
-                    sub_08025B78(arg0, 2);
+                    SetEntityAnimationInfoState(arg0, 2);
                     gUnk_03005400.unk13 = 0;
                     gUnk_03005400.unkA = 0;
                 }
@@ -4741,7 +4741,7 @@ block_89:
                 else
                 {
                     gEntityInfo[arg0].unkC_2 ^= 1;
-                    sub_08025B78(arg0, 2);
+                    SetEntityAnimationInfoState(arg0, 2);
                     gUnk_03005400.unk13 += 1;
                 }
                 break;
@@ -4755,7 +4755,7 @@ block_89:
                 {
                     gEntityInfo[arg0].unkC_2 = 1;
                 }
-                sub_08025B78(arg0, 7);
+                SetEntityAnimationInfoState(arg0, 7);
                 gUnk_03005400.unkA = 7;
                 break;
 
@@ -4768,11 +4768,11 @@ block_89:
                 {
                     if (gUnk_03005400.unkB == 4)
                     {
-                        sub_08025B78(arg0, 5);
+                        SetEntityAnimationInfoState(arg0, 5);
                     }
                     else if (gUnk_03005400.unkB == 8)
                     {
-                        sub_08025B78(arg0, 9);
+                        SetEntityAnimationInfoState(arg0, 9);
                     }
                     gUnk_03005400.unkA = gUnk_03005400.unkB;
                 }
@@ -4801,7 +4801,7 @@ block_89:
                     gEntityInfo[0x16].unkF = 0x19;
                     gEntityInfo[0x15].unkF = 0x19;
                     m4aSongNumStart(0x6A);
-                    sub_08025B78(arg0, 6);
+                    SetEntityAnimationInfoState(arg0, 6);
                 }
                 else
                 {
@@ -4829,7 +4829,7 @@ block_89:
                     gEntityInfo[0x12].unk8.split.unk8 = 0;
                     gEntityInfo[0x12].priority = 2;
 
-                    sub_08025B78(arg0, 8);
+                    SetEntityAnimationInfoState(arg0, 8);
                     gUnk_03005400.unk0 = 0x20;
                     gUnk_03005400.unkA = 0xD;
                 }
@@ -4924,7 +4924,7 @@ block_89:
             case 2:
                 if (gUnk_03005400.unk8_2 != 0)
                 {
-                    sub_08025B78(arg0, 1);
+                    SetEntityAnimationInfoState(arg0, 1);
                     gUnk_03005400.unkA = 3;
                 }
                 break;
@@ -4942,7 +4942,7 @@ block_89:
                     }
                     else
                     {
-                        sub_08025B78(arg0, 0xA);
+                        SetEntityAnimationInfoState(arg0, 0xA);
                         m4aSongNumStart(0x81);
                     }
                 }
@@ -5022,11 +5022,11 @@ void sub_08041F34(u8 arg0)
         gUnk_03005220.klonoaInvincibilityTimer = 0;
         if (gUnk_03005220.unk31 == 1)
         {
-            sub_08025B78(0, 0);
+            SetEntityAnimationInfoState(0, 0);
         }
         else
         {
-            sub_08025B78(0, 4);
+            SetEntityAnimationInfoState(0, 4);
         }
 
         if (gEntityInfo[0x1E].unk16 == 1)
@@ -5080,8 +5080,8 @@ void sub_08042024(u8 arg0)
                 gUnk_03003590[0].unk0 = -0x80;
                 gIntrTable.hBlank = HBlankIntr_WavyBackground;
                 gUnk_03005400.unkA = 1;
-                sub_08025B78(arg0, 8);
-                sub_08025B78(0x15, 0);
+                SetEntityAnimationInfoState(arg0, 8);
+                SetEntityAnimationInfoState(0x15, 0);
 
                 gEntityInfo[arg0].priority = 1;
                 gEntityInfo[0x1D].priority = 1;
@@ -5207,7 +5207,7 @@ b:
                 temp_r8 = gEntityInfo[arg0].unk8.split.unk9;
                 if (temp_r8 >= ((gUnk_03005400.unkC * 2) + 1))
                 {
-                    sub_08025B78(arg0, 0xC);
+                    SetEntityAnimationInfoState(arg0, 0xC);
                     gEntityInfo[arg0].unk8.split.unk9 = 0;
                     gUnk_03005400.unkA = 0xC;
 
@@ -5270,7 +5270,7 @@ b:
                 {
                     break;
                 }
-                sub_08025B78(arg0, 9);
+                SetEntityAnimationInfoState(arg0, 9);
                 gEntityInfo[0x18].unkF = 0x19;
                 break;
 
@@ -5314,7 +5314,7 @@ b:
                 gEntityInfo[0x19].unkF = 0x19;
                 gEntityInfo[0x18].unkF = 0x19;
 
-                sub_08025B78(arg0, 0xC);
+                SetEntityAnimationInfoState(arg0, 0xC);
                 gUnk_03005400.unk16 -= 1;
                 break;
 
@@ -5328,7 +5328,7 @@ b:
                 {
                     gUnk_03005400.unkA = 7;
                     gUnk_03005400.unk13 = 0;
-                    sub_08025B78(0x15, 5);
+                    SetEntityAnimationInfoState(0x15, 5);
                     gEntityInfo[0x15].unkF = 0xE;
                     gUnk_030007E0.unkC_0 = 0;
                     gUnk_030007E0.unkC_4 = 0;
@@ -5442,7 +5442,7 @@ b:
                 gEntityInfo[0x1C].unkF = 3;
                 gEntityInfo[0x1D].unkF = 4;
 
-                sub_08025B78(0x15, 5);
+                SetEntityAnimationInfoState(0x15, 5);
                 m4aSongNumStop(0x73);
 
                 if (gUnk_03005400.unkC == 0)
@@ -5453,7 +5453,7 @@ b:
                     sub_0801E664(gEntityInfo[0x14].xPosBg2, gEntityInfo[0x14].yPosBg2, 2, 0x14);
                     gEntityInfo[0x14].unkF = 0x1C;
                     gEntityInfo[0x13].unkF = 0x1C;
-                    sub_08025B78(0x15, 5);
+                    SetEntityAnimationInfoState(0x15, 5);
                     gUnk_03005400.unkA = 6;
                     gEntityInfo[arg0].unkF = 0x1A;
                     gEntityInfo[arg0].visible = 0;
@@ -5614,13 +5614,13 @@ void sub_08042E64(u8 arg0)
     {
         if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
         {
-            sub_08025B78(arg0, 0x19);
+            SetEntityAnimationInfoState(arg0, 0x19);
             gEntityInfo[arg0].unkC_2 = 1;
         }
     }
     else if ((gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 0x19) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF))
     {
-        sub_08025B78(arg0, 0x18);
+        SetEntityAnimationInfoState(arg0, 0x18);
         gEntityInfo[arg0].unkC_2 = 0;
     }
 
@@ -5647,7 +5647,7 @@ void sub_08042E64(u8 arg0)
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 gUnk_03005400.unk0 = 0x40;
                 gUnk_03005400.unkA = 1;
-                sub_08025B78(arg0, 0x18);
+                SetEntityAnimationInfoState(arg0, 0x18);
                 break;
 
             case 1:
@@ -5765,7 +5765,7 @@ void sub_08042E64(u8 arg0)
                     gEntityInfo[0x1F].unk8.split.unk8 = 0;
                     gEntityInfo[0x1F].unkF = 7;
                     gEntityInfo[0x1F].unk16 = 1;
-                    sub_08025B78(0x1F, 0xD);
+                    SetEntityAnimationInfoState(0x1F, 0xD);
                     gUnk_03005400.unkA = 6;
                 }
                 break;
@@ -5853,7 +5853,7 @@ void sub_08042E64(u8 arg0)
 
             case 1:
                 gUnk_03005400.unk8_0 = 1;
-                sub_08025B78(arg0, 0x18);
+                SetEntityAnimationInfoState(arg0, 0x18);
 
                 if (gEntityInfo[0x1F].unkF == 0x11)
                 {
@@ -5940,7 +5940,7 @@ void sub_08042E64(u8 arg0)
                         {
                             m4aSongNumStart(0x83);
                             gEntityInfo[0x13].unkF = 1;
-                            sub_08025B78(0x13, 3);
+                            SetEntityAnimationInfoState(0x13, 3);
                             gEntityInfo[0x13].unk8.split.unk9 |= 0x40;
                             
                             temp_r5_3 = thunk_GetRandomValue() % 5;

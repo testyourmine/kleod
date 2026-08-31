@@ -378,11 +378,11 @@ void TransitionFromRoomToRoom_FadeOut(void)
         gEntityInfo[0xC].visible = 0;
         gEntityInfo[0xB].visible = 0;
 
-        // Remove sub_08026374 from callback queue
+        // Remove DrawVisionStart from callback queue
         removed = FALSE;
         for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[i] == sub_08026374) || (removed == TRUE))
+            if ((gCallbackQueue.current[i] == DrawVisionStart) || (removed == TRUE))
             {
                 gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
                 removed = TRUE;
@@ -1207,88 +1207,88 @@ void TransitionFromLevelToClearedAllVisionsScreen_FadeOut(void)
 // file split?
 
 // 25B78
-void sub_08025B78(s32 arg0, u8 state)
+void SetEntityAnimationInfoState(s32 slot, u8 state)
 {
-    if (arg0 >= 9)
+    if (slot >= 9)
     {
-        arg0 += (9 - gUnk_030007C4);
+        slot += (9 - gUnk_030007C4);
     }
 
-    gEntityAnimationInfo[arg0].state = state;
-    gEntityAnimationInfo[arg0].timer = 1;
-    gEntityAnimationInfo[arg0].frame = 0xFF;
+    gEntityAnimationInfo[slot].state = state;
+    gEntityAnimationInfo[slot].timer = 1;
+    gEntityAnimationInfo[slot].frame = 0xFF;
 }
 
 // 25BA4
-void sub_08025BA4(void)
+void UpdateEntityAnimationInfoEntries(void)
 {
-    vu32 sp0;
-    struct Unk_03005294_03005418 *var_r5;
-    struct Unk_03005294_03005418_0 **temp_r7;
-    struct Unk_03005294_03005418_0 *var_r4;
+    vu32 i;
+    struct EntityAnimationData *pAnimData;
+    struct EntityAnimationFrameData **pFrames;
+    struct EntityAnimationFrameData *pFrameData;
 
-    for (sp0 = 0; sp0 < 0x2D; sp0++)
+    for (i = 0; i < 0x2D; i++)
     {
-        if (sp0 < 9)
+        if (i < 9)
         {
-            var_r5 = &gUnk_03005418[sp0];
+            pAnimData = &gUnk_03005418[i];
         }
         else
         {
-            var_r5 = &gUnk_03005294[sp0] - 9;
+            pAnimData = &gUnk_03005294[i] - 9;
         }
-        if (var_r5->unk0 == NULL)
+        if (pAnimData->pFrames == NULL)
         {
             break;
         }
-        if (var_r5->unk0 == NULL + 1)
+        if (pAnimData->pFrames == NULL + 1)
         {
             continue;
         }
 
-        if (gEntityAnimationInfo[sp0].timer == 0xFF)
+        if (gEntityAnimationInfo[i].timer == 0xFF)
         {
             continue;
         }
 
-        if (--gEntityAnimationInfo[sp0].timer != 0)
+        if (--gEntityAnimationInfo[i].timer != 0)
         {
             continue;
         }
 
-        temp_r7 = var_r5->unk0;
-        var_r4 = temp_r7[gEntityAnimationInfo[sp0].state];
-        if (var_r4[++gEntityAnimationInfo[sp0].frame].src == -1)
+        pFrames = pAnimData->pFrames;
+        pFrameData = pFrames[gEntityAnimationInfo[i].state];
+        if (pFrameData[++gEntityAnimationInfo[i].frame].src == -1)
         {
-            gEntityAnimationInfo[sp0].frame = 0;
+            gEntityAnimationInfo[i].frame = 0;
         }
-        else if (var_r4[gEntityAnimationInfo[sp0].frame].src == -2)
+        else if (pFrameData[gEntityAnimationInfo[i].frame].src == -2)
         {
-            gEntityAnimationInfo[sp0].timer |= 0xFF;
-            gEntityInfo[var_r5->unkA].visible = 0;
-            gEntityInfo[var_r5->unkA].unkF = 0x1C;
-            gEntityInfo[var_r5->unkA].unk8.split.unk8 = 0;
+            gEntityAnimationInfo[i].timer = 0xFF;
+            gEntityInfo[pAnimData->entityInfoEntry].visible = 0;
+            gEntityInfo[pAnimData->entityInfoEntry].unkF = 0x1C;
+            gEntityInfo[pAnimData->entityInfoEntry].unk8.split.unk8 = 0;
             continue;
         }
-        else if (var_r4[gEntityAnimationInfo[sp0].frame].src > 9999)
+        else if (pFrameData[gEntityAnimationInfo[i].frame].src > 9999)
         {
-            if (var_r4[gEntityAnimationInfo[sp0].frame].src == -3)
+            if (pFrameData[gEntityAnimationInfo[i].frame].src == -3)
             {
-                gEntityAnimationInfo[sp0].timer |= 0xFF;
+                gEntityAnimationInfo[i].timer = 0xFF;
                 continue;
             }
         }
         else
         {
-            gEntityAnimationInfo[sp0].state = var_r4[gEntityAnimationInfo[sp0].frame].src;
-            gEntityAnimationInfo[sp0].frame = 0;
-            var_r4 = temp_r7[gEntityAnimationInfo[sp0].state];
+            gEntityAnimationInfo[i].state = pFrameData[gEntityAnimationInfo[i].frame].src;
+            gEntityAnimationInfo[i].frame = 0;
+            pFrameData = pFrames[gEntityAnimationInfo[i].state];
         }
 
-        gEntityAnimationInfo[sp0].timer = var_r4[gEntityAnimationInfo[sp0].frame].unk4;
-        DmaCopy16(3, var_r4[gEntityAnimationInfo[sp0].frame].src, var_r5->dest, var_r5->size);
-        gEntityInfo[var_r5->unkA].unkB_0 = var_r4[gEntityAnimationInfo[sp0].frame].unk5_0;
-        gEntityInfo[var_r5->unkA].unkB_4 = var_r4[gEntityAnimationInfo[sp0].frame].unk5_4;
+        gEntityAnimationInfo[i].timer = pFrameData[gEntityAnimationInfo[i].frame].timer;
+        DmaCopy16(3, pFrameData[gEntityAnimationInfo[i].frame].src, pAnimData->dest, pAnimData->size);
+        gEntityInfo[pAnimData->entityInfoEntry].unkB_0 = pFrameData[gEntityAnimationInfo[i].frame].unk5_0;
+        gEntityInfo[pAnimData->entityInfoEntry].unkB_4 = pFrameData[gEntityAnimationInfo[i].frame].unk5_4;
     }
 }
 
@@ -1473,43 +1473,48 @@ void DrawLevelTimer(void)
 }
 
 // 26374
-void sub_08026374(void)
+void DrawVisionStart(void)
 {
     u32 removed;
     u32 i;
 
-    if (gCallbackQueue.current[4] == sub_080264A4)
+    if (gCallbackQueue.current[4] == DrawVisionEnd)
     {
         return;
     }
 
     if (gUnk_03004C20.sceneFrameCounter <= 75)
     {
+        // Move "VISION" graphic to center of screen rightwards
         gEntityInfo[0xB].xPosScreen += 2;
     }
     else if (gUnk_03004C20.sceneFrameCounter > 216)
     {
+        // "VISION" graphic done
         gEntityInfo[0xB].visible = 0;
     }
     else if (gUnk_03004C20.sceneFrameCounter > 176)
     {
+        // Move "VISION" graphic off the screen rightwards
         gEntityInfo[0xB].xPosScreen += 4;
     }
 
     if (gUnk_03004C20.sceneFrameCounter > 20 && gUnk_03004C20.sceneFrameCounter <= 95)
     {
+        // Move vision number graphic to center of screen rightwards
         gEntityInfo[0xC].xPosScreen += 2;
     }
     else if (gUnk_03004C20.sceneFrameCounter > 236)
     {
+        // Vision number graphic done
         gEntityInfo[0xC].visible = 0;
         if (gUnk_030034E4 == 0)
         {
-            // remove sub_08026374 from callback queue
+            // remove DrawVisionStart from callback queue
             removed = FALSE;
             for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
             {
-                if ((gCallbackQueue.current[i] == sub_08026374) || (removed == TRUE))
+                if ((gCallbackQueue.current[i] == DrawVisionStart) || (removed == TRUE))
                 {
                     gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
                     removed = TRUE;
@@ -1528,12 +1533,13 @@ void sub_08026374(void)
     }
     else if (gUnk_03004C20.sceneFrameCounter > 196)
     {
+        // Move vision number graphic off the screen rightwards
         gEntityInfo[0xC].xPosScreen += 4;
     }
 }
 
 // 264A4
-void sub_080264A4(void)
+void DrawVisionEnd(void)
 {
     u32 i;
     u32 j;
@@ -1559,11 +1565,13 @@ void sub_080264A4(void)
 
     if (gUnk_03004C20.sceneFrameCounter <= 25)
     {
+        // Move "VISION" graphic to center of screen downwards
         gEntityInfo[0xB].yPosScreen += 2;
     }
 
     if (gUnk_03004C20.sceneFrameCounter > 20 && gUnk_03004C20.sceneFrameCounter <= 80)
     {
+        // Move "CLEAR" graphic to center of screen downwards
         gEntityInfo[0xC].yPosScreen += 2;
         return;
     }
@@ -1608,7 +1616,7 @@ void sub_080264A4(void)
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 5;
     }
-    else if (gUnk_03004C20.world == 0x6 && gUnk_03004C20.level == 0x3)
+    else if ((gUnk_03004C20.world == 6) && (gUnk_03004C20.level == 3))
     {
         gBlendValue = 0;
         gCallbackQueue.next[0] = InputHandler_Normal;

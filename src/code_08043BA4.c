@@ -218,7 +218,7 @@ void GameOverScreenInit(void)
         gEntityAnimationInfo[i].timer = 0xFF;
     }
 
-    sub_08025B78(0, 0x15);
+    SetEntityAnimationInfoState(0, 0x15);
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -417,7 +417,7 @@ void GameOverScreenHandler(void)
         REG_WINOUT = WINOUT_WIN01_OBJ;
     }
 
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 
     for (i = 0; i < 10; i++)
     {
@@ -989,10 +989,10 @@ void sub_080453F0(void)
 
     gUnk_030034B0.unk4 = 0x10;
     sub_08046288();
-    sub_08025B78(0, 0x22);
+    SetEntityAnimationInfoState(0, 0x22);
     sub_08045F68();
     sub_080467F4();
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -1013,7 +1013,7 @@ void sub_08045734(void)
         sub_08045F68();
         sub_08046288();
     }
-    sub_08025BA4();
+    UpdateEntityAnimationInfoEntries();
 }
 
 // 4575C
@@ -1122,7 +1122,7 @@ void sub_08045874(void)
             gBlendValue = 0;
             gUnk_03004C20.room = 0;
             gUnk_03004C20.level = gUnk_030034B0.unk6_4;
-            sub_08025B78(0, 0x22);
+            SetEntityAnimationInfoState(0, 0x22);
             gCallbackQueue.current[1] = sub_08045398;
             gUnk_03005284->unk1E = gUnk_03005284->unk0 = gUnk_03005220.lives;
 
@@ -1221,7 +1221,7 @@ void sub_08045874(void)
                 gUnk_030034B0.unk8_0 = gUnk_030034B0.unk6_4;
                 gUnk_030034B0.unk8_4 = var_r4;
                 gUnk_030034B0.unk4 = 0x20;
-                sub_08025B78(0, 1);
+                SetEntityAnimationInfoState(0, 1);
             }
 
             gEntityInfo[0].unkC_2 = 0;
@@ -1273,7 +1273,7 @@ void sub_08045874(void)
                     gUnk_030034B0.unk8_0 = gUnk_030034B0.unk6_4;
                     gUnk_030034B0.unk8_4 = var_r4;
                     gUnk_030034B0.unk4 = 0x20;
-                    sub_08025B78(0, 1);
+                    SetEntityAnimationInfoState(0, 1);
                 }
 
                 gEntityInfo[0].unkC_2 = 1;
@@ -1322,7 +1322,7 @@ void sub_08045874(void)
         {
             gUnk_030034B0.unk6_0 = 0;
             gUnk_030034B0.unk6_4 = gUnk_030034B0.unk8_4;
-            sub_08025B78(0, 0);
+            SetEntityAnimationInfoState(0, 0);
         }
     }
 
@@ -1592,7 +1592,7 @@ void sub_080467F4(void)
             }
         }
 
-        sub_08025B78(gUnk_0811762C[gUnk_03004C20.world - 1][level] + 0xD, var_r2);
+        SetEntityAnimationInfoState(gUnk_0811762C[gUnk_03004C20.world - 1][level] + 0xD, var_r2);
     }
 }
 
