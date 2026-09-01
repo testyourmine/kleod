@@ -207,7 +207,7 @@ void PauseMenuScreenInit(void)
     }
     else if (gUnk_03004C20.level == 0)
     {
-        gCallbackQueue.next[2] = LevelSelectWaitForNextFrame;
+        gCallbackQueue.next[2] = VisionSelectWaitForNextFrame;
     }
     else
     {
@@ -241,7 +241,7 @@ void PauseMenuScreenInit(void)
     }
     else if (gUnk_03004C20.level == 0)
     {
-        LevelSelectWaitForNextFrame();
+        VisionSelectWaitForNextFrame();
     }
     else
     {
@@ -468,7 +468,7 @@ void PauseMenuScreenHandler(void)
             }
             gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
             gUnk_03004C20.level = 0;
-            gCallbackQueue.current[1] = TransitionFromLevelSelectToLevel_FadeOut;
+            gCallbackQueue.current[1] = TransitionFromVisionSelectToLevel_FadeOut;
             break;
 
         case PAUSE_MENU_OPTION_BUTTON_CONFIGURATION:
@@ -486,7 +486,7 @@ void PauseMenuScreenHandler(void)
             REG_BLDCNT = 0;
             gBlendValue = 0;
             sub_080008DC();
-            gCallbackQueue.current[1] = TransitionFromLevelSelectToWorldMap_FadeOut;
+            gCallbackQueue.current[1] = TransitionFromVisionSelectToWorldMap_FadeOut;
             break;
 
         case PAUSE_MENU_OPTION_RETURN_TO_TITLE_SCREEN:
@@ -494,7 +494,7 @@ void PauseMenuScreenHandler(void)
             gUnk_03004C20.level = 9;
             gTitleScreenStage = 0;
             sub_0800A468();
-            gCallbackQueue.current[1] = TransitionFromLevelSelectToBootScreen_FadeOut;
+            gCallbackQueue.current[1] = TransitionFromVisionSelectToBootScreen_FadeOut;
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tilemap);
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tiles);
             break;
@@ -1382,7 +1382,7 @@ void sub_0803BF84(void)
             {
                 gUnk_03005284->unk4 = (gUnk_03004C20.world * 3) - 1;
                 gUnk_03003410.unkC = 0;
-                gCallbackQueue.current[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
+                gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }
             return;
         }

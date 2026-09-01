@@ -30,7 +30,7 @@ enum Songs {
     /* 0x19 */ MUS_ENDING_WAKING_UP,
     /* 0x1A */ MUS_ENDING_A_KING_MISTAKE,
     /* 0x1B */ MUS_ENDING_DREAM_FOR_ALL,
-    /* 0x1C */ MUS_VISION_SELECT, // Level select
+    /* 0x1C */ MUS_VISION_SELECT, // Vision select
     /* 0x1D */ MUS_OPENING_STICKY_SITUATION,
     /* 0x1E */ MUS_SURFBOARDING, // Hover Board levels
     /* 0x1F */ MUS_VISION_CLEAR, // Level finish
@@ -41,7 +41,7 @@ enum Songs {
 
     /* 0x24 */ SE_DUMMY,
     /* 0x25 */ SE_KLONOA_HURT, // Klonoa takes damage
-    /* 0x26 */ SE_KLONOA_WAHOO, // Klonoa says "wahoo", when throwing enemy down, and shooting out of goal cannon, need to investigate all uses
+    /* 0x26 */ SE_KLONOA_WAHOO, // Klonoa says "wahoo" (used many times)
     /* 0x27 */ SE_KLONOA_DEATH, // Klonoa loses a life
     /* 0x28 */ SE_KLONOA_WIND_BULLET, // Klonoa shoots out a wind bullet (thing that captures enemy)
     /* 0x29 */ SE_41, // Box?

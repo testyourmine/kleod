@@ -5,7 +5,7 @@
 
 void CommonWaitForNextFrame(void);
 void BossWaitForNextFrame(void);
-void LevelSelectWaitForNextFrame(void);
+void VisionSelectWaitForNextFrame(void);
 void CutsceneWaitForNextFrame(void);
 void GameOverScreenWaitForNextFrame(void);
 void ClearedAllVisionsScreenWaitForNextFrame(void);

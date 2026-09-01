@@ -448,17 +448,17 @@ void DeleteAllSaveDataScreenHandler(void)
 // 47ABC
 void sub_08047ABC(void)
 {
-    // Unused
-    if (gUnk_03004D90.unk8 != 0)
+    // Unused, likely meant to fade in to the text box
+    if (gTextBoxInfo.stage != TEXT_BOX_INFO_STAGE_DISPLAYING)
     {
-        gUnk_03004D90.unk8 = 0;
+        gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_DISPLAYING;
         REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN;
         REG_WININ &= ~WININ_WIN0_CLR;
     }
 
     if (gBlendValue > 8)
     {
-        gCallbackQueue.current[0] = sub_08047B1C;
+        gCallbackQueue.current[0] = TextBoxInit;
         return;
     }
 
@@ -468,17 +468,53 @@ void sub_08047ABC(void)
     }
 }
 
+/*
+    Text boxes:
+    00: "Use a wind bullet to catch enemies, and use them to double jump."
+    01: "Boxes come in handy. Klonoa can climb on or throw them. They can be used over and over."
+    02: "Each door has a key with a matching shape. Use a [O] shaped key on a [O] door, a [Tri] shaped key on a [Tri] door"
+    03: "Stuck? Don't worry, just press START and select "Retry" from the menu."
+    04: "Those red things are Goomis. Klonoa can grab hold of them with a wind bullet."
+    05: "Grab a box to avoid being carried away, or place it over a vent to stop the wind."
+    06: "Place a box on a Spiker to make it fall slowly. Klonoa can then ride it."
+    07: "Moving platforms will cut off the wind, however grated platforms will not."
+    08: "Grab hold of a Teton to float for a short period of time."
+    09: "To open the door, hit the switch with a wind bullet. Hitting it with a block or an enemy also works."
+    0A: "The switch will reset itself after a set period of time."
+    0B: "The door can be opened by activating three switches."
+    0C: "Stand on the switch to keep the door open. A passing enemy or a box placed on top also works."
+    0D: "The room next door revolves. Activate the switch to make it revolve and Klonoa can go to difference places."
+    0E: "Place a box or stand on one side, to raise the other."
+    0F: "Klonoa can pick up a Boomie over and over, but it'll explode when the timer reaches zero."
+    10: "Use a Boomie to clear away obstacles."
+    11: "An arrow shows which way a Boomie will explode. The explosion goes through walls too."
+    12: "Activate the switch to make the box larger or smaller."
+    13: "Large blocks will stop the wind."
+    14: "Use the switch to raise or lower the water level. Remember, Klonoa can't swim!"
+    15: "Klonoa can ride on boxes while they float."
+    16: "Use boxes to get through waterfalls. But remember, Klonoa may need one to get back."
+    17: "Arrows show which way a thrown object will travel. Use a wind bullet to change the direction of a blue arrow."
+    18: "Use the arrows to ride a box. Changing an arrow's direction is still possible while riding."
+    19: "This box can be attached to special walls and boxes. Jump while hanging from it, to climb on top."
+    1A: "This is a warp door. It will warp Klonoa to another door with the same number."
+    1B: "OK, let's begin. Collect all the [star] and head towards the exit. Stand before a sign and press [up] on the [dpad] Control Pad."
+    1C: "Take a break from the puzzles and go for a fun board ride. Keep an eye out for signs!"
+    1D: "An extra stage has been unlocked."
+    1E: "Klonoa can't swim. Touching water will hurt him and he can't go under the falls."
+    1F: "Be careful! If Klonoa falls behind or falls down he will lose a life. Hurry, but don't be careless."
+*/
+
 // 47B1C
-void sub_08047B1C(void)
+void TextBoxInit(void)
 {
     // Called when text box appears
-    u8 sp0;
+    u8 textBoxId;
     void *sp4;
     u16 *sp8;
-    s32 var_r4;
-    s32 var_r6;
+    s32 i;
+    s32 j;
 
-    sp0 = 0;
+    textBoxId = 0;
 
     m4aMPlayAllStop();
     m4aSoundVSyncOff();
@@ -489,16 +525,16 @@ void sub_08047B1C(void)
     REG_BLDY = gBlendValue;
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN1_BG0 | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_OBJ | WININ_WIN1_CLR;
     REG_WINOUT = WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
-    REG_WIN1H = gUnk_03004D90.unk4 = WIN_RANGE(DISPLAY_WIDTH_CENTER, DISPLAY_WIDTH_CENTER);
-    REG_WIN1V = gUnk_03004D90.unk6 = WIN_RANGE(DISPLAY_HEIGHT_CENTER - 4, DISPLAY_HEIGHT_CENTER - 4);
+    REG_WIN1H = gTextBoxInfo.win1H = WIN_RANGE(DISPLAY_WIDTH_CENTER, DISPLAY_WIDTH_CENTER);
+    REG_WIN1V = gTextBoxInfo.win1V = WIN_RANGE(DISPLAY_HEIGHT_CENTER - 4, DISPLAY_HEIGHT_CENTER - 4);
     REG_DISPCNT |= DISPCNT_WIN1_ON;
 
-    for (var_r4 = 0; var_r4 < gUnk_03005428; var_r4++)
+    for (i = 0; i < gUnk_03005428; i++)
     {
-        gEntityInfo[var_r4].priority += 1;
+        gEntityInfo[i].priority += 1;
     }
 
-    if (gUnk_03004D90.unk9 == 0)
+    if (gTextBoxInfo.visionSelectTextBoxIdOffset == 0)
     {
         sub_08005CF4();
         VBlankIntrWait();
@@ -510,20 +546,20 @@ void sub_08047B1C(void)
     REG_BG2CNT += 1;
     REG_BG3CNT += 1;
 
-    if (gUnk_03004D90.unk9 == 0)
+    if (gTextBoxInfo.visionSelectTextBoxIdOffset == 0)
     {
-        for (var_r4 = 0; var_r4 < 0x20; var_r4++)
+        for (i = 0; i < 0x20; i++)
         {
-            if ((gUnk_03004C20.world == gUnk_0811769C[var_r4][0]) && (gUnk_03004C20.level == gUnk_0811769C[var_r4][1]) && (((gEntityInfo[0].yPosBg2 - 0x10) >> 3) == gUnk_0811769C[var_r4][3]) && (((gEntityInfo[0].xPosBg2 + 8) >> 3) >= gUnk_0811769C[var_r4][2]) && (((gEntityInfo[0].xPosBg2 - 8) >> 3) <= (gUnk_0811769C[var_r4][2] + 3)))
+            if ((gUnk_03004C20.world == gUnk_0811769C[i][0]) && (gUnk_03004C20.level == gUnk_0811769C[i][1]) && (((gEntityInfo[0].yPosBg2 - 0x10) >> 3) == gUnk_0811769C[i][3]) && (((gEntityInfo[0].xPosBg2 + 8) >> 3) >= gUnk_0811769C[i][2]) && (((gEntityInfo[0].xPosBg2 - 8) >> 3) <= (gUnk_0811769C[i][2] + 3)))
             {
-                sp0 = var_r4;
+                textBoxId = i;
                 break;
             }
         }
     }
     else
     {
-        sp0 = gUnk_03004D90.unk9 + 0x1A;
+        textBoxId = gTextBoxInfo.visionSelectTextBoxIdOffset + 0x1A;
     }
 
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -531,40 +567,40 @@ void sub_08047B1C(void)
     m4aSoundVSyncOff();
 
     gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082F3B2C[0] & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(*gUnk_0818BA3C[sp0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(*gUnk_0818BA3C[textBoxId] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082F3B2C);
-    Decompress(gBgDataPtrs.pBufBg3Tilemap, (void*)gUnk_0818BA3C[sp0]);
+    Decompress(gBgDataPtrs.pBufBg3Tilemap, (void*)gUnk_0818BA3C[textBoxId]);
 
-    for (var_r4 = 0, var_r6 = 0; var_r4 < 0x21C; var_r6++, var_r4++)
+    for (i = 0, j = 0; i < 0x21C; j++, i++)
     {
-        if (((var_r4 % 30) == 0) && (var_r4 != 0))
+        if (((i % 30) == 0) && (i != 0))
         {
-            var_r6 += 2;
+            j += 2;
         }
-        gBgTilemapBufs[0][var_r6] = gBgDataPtrs.pBufBg3Tilemap[var_r4 + 2] + gUnk_03000800;
+        gBgTilemapBufs[0][j] = gBgDataPtrs.pBufBg3Tilemap[i + 2] + gUnk_03000800;
     }
 
-    if (sp0 != 0x1D)
+    if (textBoxId != 0x1D)
     {
-        sp4 = thunk_HeapAlloc(*gUnk_0818BB3C[sp0] & 0x7FFFFFFF, 0);
-        sp8 = thunk_HeapAlloc(*gUnk_0818BABC[sp0] & 0x7FFFFFFF, 0);
-        Decompress(sp4, (void*)gUnk_0818BB3C[sp0]);
-        Decompress(sp8, (void*)gUnk_0818BABC[sp0]);
+        sp4 = thunk_HeapAlloc(*gUnk_0818BB3C[textBoxId] & 0x7FFFFFFF, 0);
+        sp8 = thunk_HeapAlloc(*gUnk_0818BABC[textBoxId] & 0x7FFFFFFF, 0);
+        Decompress(sp4, (void*)gUnk_0818BB3C[textBoxId]);
+        Decompress(sp8, (void*)gUnk_0818BABC[textBoxId]);
 
-        for (var_r4 = 0, var_r6 = 0; var_r4 < 0x40; var_r6++, var_r4++)
+        for (i = 0, j = 0; i < 0x40; j++, i++)
         {
-            if (((var_r4 % 0x10) == 0) && (var_r4 != 0))
+            if (((i % 0x10) == 0) && (i != 0))
             {
-                var_r6 += 0x10;
+                j += 0x10;
             }
-            gBgTilemapBufs[0][0x1A8 + var_r6] = sp8[var_r4 + 2] + gUnk_03000800 + 0x132;
+            gBgTilemapBufs[0][0x1A8 + j] = sp8[i + 2] + gUnk_03000800 + 0x132;
         }
     }
 
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg3Tiles + 4, BG_VRAM + (gUnk_03000800 * 0x20), 0x2640);
-    if (sp0 != 0x1D)
+    if (textBoxId != 0x1D)
     {
-        DmaCopy16Wait(3, sp4 + 4, VRAM + 0x2640 + (gUnk_03000800 * 0x20), (*gUnk_0818BB3C[sp0] & 0x7FFFFFFF) - 4);
+        DmaCopy16Wait(3, sp4 + 4, VRAM + 0x2640 + (gUnk_03000800 * 0x20), (*gUnk_0818BB3C[textBoxId] & 0x7FFFFFFF) - 4);
     }
 
     REG_IE |= INTR_FLAG_VBLANK;
@@ -576,69 +612,70 @@ void sub_08047B1C(void)
     thunk_HeapFree(sp4);
 
     gCallbackQueue.next[0] = InputHandler_Normal;
-    gCallbackQueue.next[1] = sub_08047EC8;
+    gCallbackQueue.next[1] = TextBoxHandler;
     gCallbackQueue.next[3] = NULL + 1;
-    if (gUnk_03004D90.unk9 == 0)
+    if (gTextBoxInfo.visionSelectTextBoxIdOffset == 0)
     {
         gCallbackQueue.next[2] = CommonWaitForNextFrame;
     }
     else
     {
-        gCallbackQueue.next[2] = LevelSelectWaitForNextFrame;
+        gCallbackQueue.next[2] = VisionSelectWaitForNextFrame;
     }
     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     gCallbackQueue.nextCount = 4;
 }
 
 // 47EC8
-void sub_08047EC8(void)
+void TextBoxHandler(void)
 {
-    // Text box, probably for growing/shrinking effect
-    u32 tmp;
-    u32 tmp2;
+    // Text box, growing/shrinking effect
+    u32 win1VVelocity;
+    u32 win1HVelocity;
 
-    tmp = WIN_RANGE(2, (u8)-3); // 0x2FD, Required for matching, possibly another tmp for 0x4FB, or used inlines
+    win1HVelocity = WIN_RANGE(4, (u8)-5); // 0x4FB
+    win1VVelocity = WIN_RANGE(2, (u8)-3); // 0x2FD
 
-    if (gUnk_03004D90.unk8 == 1)
+    if (gTextBoxInfo.stage == TEXT_BOX_INFO_STAGE_REQUESTED)
     {
-        if (gUnk_03004D90.unk4 == WIN_RANGE(0, DISPLAY_WIDTH))
+        if (gTextBoxInfo.win1H == WIN_RANGE(0, DISPLAY_WIDTH))
         {
-            gUnk_03004D90.unk8 = 0;
+            gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_DISPLAYING;
             return;
         }
 
-        gUnk_03004D90.unk4 -= WIN_RANGE(4, (u8)-5); // 0x4FB
-        gUnk_03004D90.unk6 -= tmp;
-        REG_WIN1H = gUnk_03004D90.unk4;
-        REG_WIN1V = gUnk_03004D90.unk6;
+        gTextBoxInfo.win1H -= win1HVelocity;
+        gTextBoxInfo.win1V -= win1VVelocity;
+        REG_WIN1H = gTextBoxInfo.win1H;
+        REG_WIN1V = gTextBoxInfo.win1V;
     }
 
-    if (gUnk_03004D90.unk8 == 2)
+    if (gTextBoxInfo.stage == TEXT_BOX_INFO_STAGE_CLOSING)
     {
-        if (gUnk_03004D90.unk4 == WIN_RANGE(DISPLAY_WIDTH_CENTER, DISPLAY_WIDTH_CENTER))
+        if (gTextBoxInfo.win1H == WIN_RANGE(DISPLAY_WIDTH_CENTER, DISPLAY_WIDTH_CENTER))
         {
             PauseMenuScreenRestoreGfx();
             m4aSoundVSyncOn();
             m4aMPlayAllContinue();
-            gCallbackQueue.current[1] = sub_08047F80;
+            gCallbackQueue.current[1] = TextBoxRestoreGameplay;
             REG_BLDCNT = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_DARKEN;
             return;
         }
 
-        gUnk_03004D90.unk4 += WIN_RANGE(4, (u8)-5); // 0x4FB
-        gUnk_03004D90.unk6 += tmp;
-        REG_WIN1H = gUnk_03004D90.unk4;
-        REG_WIN1V = gUnk_03004D90.unk6;
+        gTextBoxInfo.win1H += win1HVelocity;
+        gTextBoxInfo.win1V += win1VVelocity;
+        REG_WIN1H = gTextBoxInfo.win1H;
+        REG_WIN1V = gTextBoxInfo.win1V;
     }
 
-    if ((gNewKeys & BUTTON_MASK) && (gUnk_03004D90.unk8 == 0))
+    if ((gNewKeys & BUTTON_MASK) && (gTextBoxInfo.stage == TEXT_BOX_INFO_STAGE_DISPLAYING))
     {
-        gUnk_03004D90.unk8 = 2;
+        gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_CLOSING;
     }
 }
 
 // 47F80
-void sub_08047F80(void)
+void TextBoxRestoreGameplay(void)
 {
     // Text box, fade back to gameplay
     u32 i;
@@ -674,7 +711,7 @@ void sub_08047F80(void)
 // 48028
 void sub_08048028(void)
 {
-    // Called on transition to level select
+    // Called on transition to vision select
     u8 nbrExStagesAllStones;
     u32 removed;
     u32 world;
@@ -748,12 +785,12 @@ void sub_08048028(void)
             gDisplayBackup.bg3Cnt = REG_BG3CNT;
             gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-            gUnk_03004D90.unk8 = 1;
-            gUnk_03004D90.unk9 = 3;
+            gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
+            gTextBoxInfo.visionSelectTextBoxIdOffset = 3;
             gBlendValue = 0;
 
-            gCallbackQueue.next[0] = sub_08047B1C;
-            gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
+            gCallbackQueue.next[0] = TextBoxInit;
+            gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -779,12 +816,12 @@ void sub_08048028(void)
             gDisplayBackup.bg3Cnt = REG_BG3CNT;
             gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-            gUnk_03004D90.unk8 = 1;
-            gUnk_03004D90.unk9 = 3;
+            gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
+            gTextBoxInfo.visionSelectTextBoxIdOffset = 3;
             gBlendValue = 0;
 
-            gCallbackQueue.next[0] = sub_08047B1C;
-            gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
+            gCallbackQueue.next[0] = TextBoxInit;
+            gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -810,12 +847,12 @@ void sub_08048028(void)
             gDisplayBackup.bg3Cnt = REG_BG3CNT;
             gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-            gUnk_03004D90.unk8 = 1;
-            gUnk_03004D90.unk9 = 3;
+            gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
+            gTextBoxInfo.visionSelectTextBoxIdOffset = 3;
             gBlendValue = 0;
 
-            gCallbackQueue.next[0] = sub_08047B1C;
-            gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
+            gCallbackQueue.next[0] = TextBoxInit;
+            gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -2294,7 +2331,7 @@ void FileSelectScreenHandler(void)
                 DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo[0][0], 0x30);
                 gUnk_03005284->unk4 = 0;
                 gUnk_03003410.unkC = 1;
-                gCallbackQueue.current[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
+                gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }
             else
             {

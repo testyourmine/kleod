@@ -1241,10 +1241,10 @@ void sub_08002FD0(void)
         gUnk_030034E4 = 1;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_080453F0;
-        gCallbackQueue.next[2] = LevelSelectWaitForNextFrame;
+        gCallbackQueue.next[2] = VisionSelectWaitForNextFrame;
         gUnk_03003410.unk5 = 0;
         gCallbackQueue.next[3] = sub_08048028;
-        gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
+        gCallbackQueue.next[4] = TransitionToVisionSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = 0;
         gCallbackQueue.nextCount = 6;
@@ -1464,7 +1464,7 @@ void sub_08003904(void)
         }
         else
         {
-            DrawLevelSelectHud_Lives();
+            DrawVisionSelectHud_Lives();
         }
 
         tileColOffset = -1;

@@ -182,9 +182,9 @@ void HBlankIntr_WavyBackground(void)
 }
 
 // FCC
-void HBlankIntr_LevelSelect(void)
+void HBlankIntr_VisionSelect(void)
 {
-    // HBlank, only active when in level select, responsible for turning BG2
+    // HBlank, only active when in vision select, responsible for turning BG2
     s32 vCount;
     s32 bg2X;
     s32 bg2Y;

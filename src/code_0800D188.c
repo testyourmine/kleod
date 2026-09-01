@@ -4457,11 +4457,11 @@ block_1696:
             gDisplayBackup.bg3Cnt = REG_BG3CNT;
             gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-            gUnk_03004D90.unk8 = 1;
-            gUnk_03004D90.unk9 = 0;
+            gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
+            gTextBoxInfo.visionSelectTextBoxIdOffset = 0;
             gBlendValue = 0;
 
-            gCallbackQueue.next[0] = sub_08047B1C;
+            gCallbackQueue.next[0] = TextBoxInit;
             gCallbackQueue.next[1] = CommonWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

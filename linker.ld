@@ -148,7 +148,7 @@ SECTIONS {
         . = 0x00004D80; gUnk_03004D80 = .;
         . = 0x00004D84; gUnk_03004D84 = .;
         . = 0x00004D88; gUnk_03004D88 = .;
-        . = 0x00004D90; gUnk_03004D90 = .;
+        . = 0x00004D90; gTextBoxInfo = .;
         . = 0x00004D9C; gTitleScreenStage = .;
         . = 0x00004DA0; gNewKeys = .;
         . = 0x00004DB0; gUnk_03004DB0 = .;

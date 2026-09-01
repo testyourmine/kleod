@@ -898,7 +898,7 @@ void sub_08045398(void)
     }
     else if (gUnk_03004C20.sceneFrameCounter > 30)
     {
-        gCallbackQueue.current[1] = TransitionFromLevelSelectToLevel_FadeOut;
+        gCallbackQueue.current[1] = TransitionFromVisionSelectToLevel_FadeOut;
         gUnk_030034B0.unk0_4 = 0;
     }
 }
@@ -906,6 +906,7 @@ void sub_08045398(void)
 // 453F0
 void sub_080453F0(void)
 {
+    // initialize vision select screen
     u16 i;
 
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -1001,12 +1002,13 @@ void sub_080453F0(void)
 
     REG_IE |= INTR_FLAG_HBLANK;
     REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
-    gIntrTable.hBlank = HBlankIntr_LevelSelect;
+    gIntrTable.hBlank = HBlankIntr_VisionSelect;
 }
 
 // 45734
 void sub_08045734(void)
 {
+    // vision select screen updater
     if (gUnk_030034E4 == 0)
     {
         sub_080468B0();
@@ -1112,7 +1114,7 @@ void sub_08045874(void)
             gUnk_030034BC = 0;
             gUnk_03003410.unk4 = 1;
             gCallbackQueue.next[0] = PauseMenuScreenInit;
-            gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
+            gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -1132,17 +1134,17 @@ void sub_08045874(void)
                 var_r2_3 = 0;
                 if ((gUnk_03004C20.level == 1) && !(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
                 {
-                    gUnk_03004D90.unk9 = 1;
+                    gTextBoxInfo.visionSelectTextBoxIdOffset = 1;
                     var_r2_3 = 1;
                 }
                 else if ((gUnk_03004C20.level == 4) && !(gUnk_03004670->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
                 {
-                    gUnk_03004D90.unk9 = 2;
+                    gTextBoxInfo.visionSelectTextBoxIdOffset = 2;
                     var_r2_3 = 1;
                 }
                 else if ((gUnk_03004C20.level == 6) && !(gUnk_03004670->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
                 {
-                    gUnk_03004D90.unk9 = 5;
+                    gTextBoxInfo.visionSelectTextBoxIdOffset = 5;
                     var_r2_3 = 1;
                 }
 
@@ -1163,9 +1165,9 @@ void sub_08045874(void)
                     gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
                     gUnk_030034BC = 0;
-                    gUnk_03004D90.unk8 = 1;
-                    gCallbackQueue.next[0] = sub_08047B1C;
-                    gCallbackQueue.next[1] = LevelSelectWaitForNextFrame;
+                    gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
+                    gCallbackQueue.next[0] = TextBoxInit;
+                    gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
                     gCallbackQueue.next[2] = NULL + 1;
                     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                     gCallbackQueue.nextCount = 3;
@@ -1646,13 +1648,13 @@ void sub_080468B0(void)
 // 469FC
 u8 sub_080469FC(void)
 {
-    u8 var_r2;
+    u8 level;
 
-    for (var_r2 = 0; var_r2 < 8; var_r2++)
+    for (level = 0; level < 8; level++)
     {
-        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> var_r2) & 1) != 0) && (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r2] == LEVEL_INFO_DREAM_STONES_MASK))
+        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> level) & 1) != 0) && (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK))
         {
-            return var_r2 + 1;
+            return level + 1;
         }
     }
     return 0;

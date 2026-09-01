@@ -8,7 +8,7 @@ void UpdateEntityAnimationInfoEntries(void);
 void DrawLevelHud_Hearts(void);
 s32 DrawLevelHud_DreamStones(void);
 void DrawLevelHud_Lives(void);
-void DrawLevelSelectHud_Lives(void);
+void DrawVisionSelectHud_Lives(void);
 void DrawLevelTimer(void);
 void DrawVisionStart(void);
 void DrawVisionEnd(void);

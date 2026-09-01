@@ -109,9 +109,9 @@ void sub_080241EC(void)
 }
 
 // 242C0
-void TransitionToLevelSelectOrLevelGameplay_FadeIn(void)
+void TransitionToVisionSelectOrLevelGameplay_FadeIn(void)
 {
-    // fade in, when transitioning into level select or level gameplay
+    // fade in, when transitioning into vision select or level gameplay
     u32 removed;
     u32 i;
 
@@ -195,11 +195,11 @@ void TransitionToLevelSelectOrLevelGameplay_FadeIn(void)
         gMosaicSize = 0;
         gBlendValue = 0;
 
-        // Remove TransitionToLevelSelectOrLevelGameplay_FadeIn from callback queue
+        // Remove TransitionToVisionSelectOrLevelGameplay_FadeIn from callback queue
         removed = FALSE;
         for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-                if ((gCallbackQueue.current[i] == TransitionToLevelSelectOrLevelGameplay_FadeIn) || (removed == TRUE))
+                if ((gCallbackQueue.current[i] == TransitionToVisionSelectOrLevelGameplay_FadeIn) || (removed == TRUE))
                 {
                     gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
                     removed = TRUE;
@@ -289,7 +289,7 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
             if (gUnk_03004C20.world == 6)
             {
                 gCallbackQueue.next[1] = sub_0803B600;
-                gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
+                gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
                 gCallbackQueue.next[3] = CommonWaitForNextFrame;
                 gCallbackQueue.next[4] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -557,9 +557,9 @@ void sub_08024B54(void)
 }
 
 // 24C34
-void TransitionFromLevelSelectToLevel_FadeOut(void)
+void TransitionFromVisionSelectToLevel_FadeOut(void)
 {
-    // fade out, when transitioning from level select to level
+    // fade out, when transitioning from vision select to level
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -791,9 +791,9 @@ void TransitionFromDeathToLevel_FadeOut(void)
 }
 
 // 2528C
-void TransitionFromWorldMapToLevelSelect_FadeOut(void)
+void TransitionFromWorldMapToVisionSelect_FadeOut(void)
 {
-    // fade out, when transitioning from world map to level select
+    // fade out, when transitioning from world map to vision select
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -918,7 +918,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         {
             gCallbackQueue.next[0] = InputHandler_Normal;
             gCallbackQueue.next[1] = sub_0803B600;
-            gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
+            gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
             gCallbackQueue.next[3] = CommonWaitForNextFrame;
             gCallbackQueue.next[4] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -987,9 +987,9 @@ void TransitionFromWorldMapToLevel_FadeOut(void)
 }
 
 // 25718
-void TransitionFromLevelSelectToWorldMap_FadeIn(void)
+void TransitionFromVisionSelectToWorldMap_FadeIn(void)
 {
-    // fade in, when transitioning from level select to world map
+    // fade in, when transitioning from vision select to world map
     u32 removed;
     u32 i;
 
@@ -1004,13 +1004,13 @@ void TransitionFromLevelSelectToWorldMap_FadeIn(void)
     gBlendValue -= 1;
     if (gBlendValue == 0)
     {
-        // remove TransitionFromLevelSelectToWorldMap_FadeIn from callback queue
+        // remove TransitionFromVisionSelectToWorldMap_FadeIn from callback queue
         // TODO: do while required to match, callback removal possibly a macro
         do {
         removed = FALSE;
         for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {
-            if ((gCallbackQueue.current[i] == TransitionFromLevelSelectToWorldMap_FadeIn) || (removed == TRUE))
+            if ((gCallbackQueue.current[i] == TransitionFromVisionSelectToWorldMap_FadeIn) || (removed == TRUE))
             {
                 gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
                 removed = TRUE;
@@ -1040,9 +1040,9 @@ void TransitionFromLevelSelectToWorldMap_FadeIn(void)
 }
 
 // 25818
-void TransitionFromLevelSelectToWorldMap_FadeOut(void)
+void TransitionFromVisionSelectToWorldMap_FadeOut(void)
 {
-    // fade out, when transitioning from level select to world map
+    // fade out, when transitioning from vision select to world map
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1067,7 +1067,7 @@ void TransitionFromLevelSelectToWorldMap_FadeOut(void)
         sub_0800A468();
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_0803B600;
-        gCallbackQueue.next[2] = TransitionFromLevelSelectToWorldMap_FadeIn;
+        gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
         gCallbackQueue.next[3] = CommonWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -1081,9 +1081,9 @@ void TransitionFromLevelSelectToWorldMap_FadeOut(void)
 }
 
 // 25900
-void TransitionFromLevelSelectToBootScreen_FadeOut(void)
+void TransitionFromVisionSelectToBootScreen_FadeOut(void)
 {
-    // fade out, when transitioning from level select to boot screen
+    // fade out, when transitioning from vision select to boot screen
     gUnk_030034E4 = 1;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1121,7 +1121,7 @@ void TransitionFromLevelToClearedAllVisionsScreen_FadeIn(void)
     gBlendValue -= 1;
     if (gBlendValue == 0)
     {
-        // remove TransitionFromLevelSelectToWorldMap_FadeIn from callback queue
+        // remove TransitionFromVisionSelectToWorldMap_FadeIn from callback queue
         removed = FALSE;
         for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
         {

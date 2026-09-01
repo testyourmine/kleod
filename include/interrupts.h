@@ -13,7 +13,7 @@ void sub_08000E14(void);
 void VBlankIntr_Cutscene(void);
 void HBlankIntr_DeleteAllSaveDataScreen(void);
 void HBlankIntr_WavyBackground(void);
-void HBlankIntr_LevelSelect(void);
+void HBlankIntr_VisionSelect(void);
 void HBlankIntr_GameOverCircleShrinkEffect(void);
 void sub_0800107C(void);
 void VCountIntr_DeathScreen(void);

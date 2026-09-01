@@ -100,7 +100,7 @@ struct SaveData {
     u8 lives[3]; // lives
     u8 world[3]; // world
     u8 level[3]; // level
-    u8 sceneType[3]; // 0 is level select, 1 is level gameplay, 2 is cutscene, 7 is world map
+    u8 sceneType[3]; // 0 is vision select, 1 is level gameplay, 2 is cutscene, 7 is world map
     u8 unk20[3];
     u8 unk23[3]; // number of completed worlds?
     u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
@@ -229,8 +229,8 @@ enum EntityId {
     /* 0x42 */ ENTITY_ID_CANNON_GOAL, // cannon that appears at end of Athletic Challenge levels (autoscroller)
     /* 0x43 */ ENTITY_ID_GLIBZ_QUAD_CANNON_BULLET, // bullets shot by Glibz Quad Cannon
 
-    /* 0x51 */ ENTITY_ID_51 = 0x51, // seems to be decorations on the level select screen
-    /* 0x52 */ ENTITY_ID_52 = 0x52, // seems to be the level icons on the level select screen
+    /* 0x51 */ ENTITY_ID_51 = 0x51, // seems to be decorations on the vision select screen
+    /* 0x52 */ ENTITY_ID_52 = 0x52, // seems to be the level icons on the vision select screen
 
     /* 0x6E */ ENTITY_ID_KLONOA = 0x6E,
     /* 0x6F */ ENTITY_ID_BOX, // throwable boxes, includes moo box and explosion direction box
@@ -796,14 +796,19 @@ extern struct Unk_080D821C *gUnk_03004D80;
 
 extern u16 gUnk_030051E0;
 
-struct Unk_03004D90 {
-    u8 pad0[0x4 - 0x0];
-    u16 unk4; // WIN1H
-    u16 unk6; // WIN1V
-    u8 unk8; // 2 is no textbox (or shrinking textbox), 1 is textbox requested (or growing textbox), 0 is textbox is being displayed (unchanging)
-    u8 unk9;
+enum TextBoxInfoStage {
+    TEXT_BOX_INFO_STAGE_DISPLAYING,
+    TEXT_BOX_INFO_STAGE_REQUESTED,
+    TEXT_BOX_INFO_STAGE_CLOSING
 };
-extern struct Unk_03004D90 gUnk_03004D90;
+struct TextBoxInfo {
+    u8 pad0[0x4 - 0x0];
+    u16 win1H; // WIN1H
+    u16 win1V; // WIN1V
+    u8 stage; // 2 is no textbox (or shrinking textbox), 1 is textbox requested (or growing textbox), 0 is textbox is being displayed (unchanging)
+    u8 visionSelectTextBoxIdOffset;
+};
+extern struct TextBoxInfo gTextBoxInfo;
 
 extern u8 gUnk_03005200;
 
@@ -845,7 +850,7 @@ enum PauseMenuType {
     PAUSE_MENU_TYPE_EX_LEVEL,
     PAUSE_MENU_TYPE_BOSS
 };
-extern u8 gPauseMenuType; // Pause menu type, 0 is level, 1 is level select, 2 is EX level, 3 is boss battle
+extern u8 gPauseMenuType; // Pause menu type, 0 is level, 1 is vision select, 2 is EX level, 3 is boss battle
 
 struct Unk_03004C08 {
     u8 unk0_0:4;

@@ -1572,7 +1572,7 @@ void sub_0800A804(void)
 
     if (gUnk_030052A0 == 0xFE)
     {
-        if ((gCallbackQueue.current[4] != TransitionFromLevelSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
+        if ((gCallbackQueue.current[4] != TransitionFromVisionSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
         {
             sub_0800D188();
         }
@@ -2006,7 +2006,7 @@ void sub_0800AC34(void)
         }
     }
 
-    if (gUnk_03005400.unkE_7 && (gCallbackQueue.current[4] != TransitionFromLevelSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
+    if (gUnk_03005400.unkE_7 && (gCallbackQueue.current[4] != TransitionFromVisionSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
     {
         sub_0800D188();
     }

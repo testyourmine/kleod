@@ -207,7 +207,7 @@ void DrawLevelHud_Lives(void)
 }
 
 // 26090
-void DrawLevelSelectHud_Lives(void)
+void DrawVisionSelectHud_Lives(void)
 {
     if (gUnk_03005220.lives >= 10)
     {
@@ -418,7 +418,7 @@ void DrawVisionEnd(void)
         }
 
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = TransitionFromWorldMapToLevelSelect_FadeOut;
+        gCallbackQueue.next[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
         gCallbackQueue.next[2] = sub_08002AC4;
         gCallbackQueue.next[3] = BossWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;

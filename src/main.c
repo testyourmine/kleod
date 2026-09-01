@@ -30,7 +30,7 @@ void AgbMain(void)
     DmaFill32(3, 0, IWRAM_START, IWRAM_END - IWRAM_START - 0x200);
 
     gIntrTable.vBlank = VBlankIntr_Common;
-    gIntrTable.hBlank = HBlankIntr_LevelSelect;
+    gIntrTable.hBlank = HBlankIntr_VisionSelect;
     gIntrTable.vCount = GenericIntr;
     gIntrTable.timer0 = GenericIntr;
     gIntrTable.timer1 = GenericIntr;

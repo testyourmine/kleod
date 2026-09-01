@@ -1783,7 +1783,7 @@ void sub_0804E0E8(void)
                 case 4:
                     gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->unk4] & 0xF;
                     gCallbackQueue.next[0] = InputHandler_Normal;
-                    gCallbackQueue.next[1] = TransitionFromLevelSelectToWorldMap_FadeOut;
+                    gCallbackQueue.next[1] = TransitionFromVisionSelectToWorldMap_FadeOut;
                     gCallbackQueue.next[2] = CommonWaitForNextFrame;
                     gCallbackQueue.next[3] = NULL + 1;
                     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

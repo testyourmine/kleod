@@ -9,9 +9,9 @@ void DeleteAllSaveDataMinigameHandler(void);
 void DeleteAllSaveDataScreenHandler(void);
 
 void sub_08047ABC(void);
-void sub_08047B1C(void);
-void sub_08047EC8(void);
-void sub_08047F80(void);
+void TextBoxInit(void);
+void TextBoxHandler(void);
+void TextBoxRestoreGameplay(void);
 void sub_08048028(void);
 
 void BootScreenInit(void);

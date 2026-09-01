@@ -211,9 +211,9 @@ void BossWaitForNextFrame(void)
 }
 
 // C45C
-void LevelSelectWaitForNextFrame(void)
+void VisionSelectWaitForNextFrame(void)
 {
-    // Level select
+    // Vision select
     sub_080098C8();
     gBg2AlphaSin = SIN(gBg2Alpha);
     gBg2AlphaCos = COS(gBg2Alpha);
@@ -515,7 +515,7 @@ void sub_0800CA0C(u32 arg0)
         gCallbackQueue.next[1] = sub_0803C808;
         gCallbackQueue.next[2] = sub_08002AC4;
         gCallbackQueue.next[3] = sub_0800AC34;
-        gCallbackQueue.next[4] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
+        gCallbackQueue.next[4] = TransitionToVisionSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = DrawVisionStart;
         gCallbackQueue.next[6] = BossWaitForNextFrame;
         gCallbackQueue.next[7] = NULL + 1;
@@ -537,7 +537,7 @@ void sub_0800CA0C(u32 arg0)
         {
             gCallbackQueue.next[2] = PuzzleStageScrollUpdate;
         }
-        gCallbackQueue.next[3] = TransitionToLevelSelectOrLevelGameplay_FadeIn;
+        gCallbackQueue.next[3] = TransitionToVisionSelectOrLevelGameplay_FadeIn;
 
         if ((arg0 == 0) || (arg0 == 1))
         {
