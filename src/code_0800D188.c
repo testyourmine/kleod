@@ -1033,7 +1033,7 @@ block_236:
                     case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                     case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                     case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                    case 0x2A:
+                    case ENTITY_ID_GRATED_PLATFORM:
                     case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                         var_r7 = 0;
                         if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x10)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x10)) && ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x10)))
@@ -1696,7 +1696,7 @@ block_474:
                             case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                             case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                             case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                            case 0x2A:
+                            case ENTITY_ID_GRATED_PLATFORM:
                             case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                                 if ((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10))
                                 {
@@ -2787,7 +2787,7 @@ exit_loop:
                         }
                         break;
 
-                    case 0x2A:
+                    case ENTITY_ID_GRATED_PLATFORM:
                         if (gUnk_03005220.unk5A == 1)
                         {
                             if ((gEntityInfo[var_sb].unk8.split.unk9 != 0) && (((gEntityInfo[0].xPosBg2 - 0xC) >= (gEntityInfo[var_sb].xPosBg2 + 0x10)) || ((gEntityInfo[0].xPosBg2 + 0xC) <= (gEntityInfo[var_sb].xPosBg2 - 0x10)) || ((gEntityInfo[0].yPosBg2 - 0x38) >= gEntityInfo[var_sb].yPosBg2) || (gEntityInfo[0].yPosBg2 <= (gEntityInfo[var_sb].yPosBg2 - 0x10))))
@@ -2832,7 +2832,7 @@ exit_loop:
                                 break;
                             }
 
-                            if (gEntityInfo[var_sb].id == 0x2A)
+                            if (gEntityInfo[var_sb].id == ENTITY_ID_GRATED_PLATFORM)
                             {
                                 if (gUnk_03005220.unk3B == 0)
                                 {

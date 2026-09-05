@@ -571,7 +571,7 @@ void sub_08014760(u8 arg0)
                             case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                             case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                             case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                            case 0x2A:
+                            case ENTITY_ID_GRATED_PLATFORM:
                             case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                                 if (((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) < (gEntityInfo[var_r6].xPosBg2 + 0x11)) && ((s32) (gEntityInfo[arg0].xPosBg2 + 7) > (s32) ((gEntityInfo[var_r6].xPosBg2 + 0x11) - 0x22)) && ((s32) (gEntityInfo[arg0].yPosBg2 - 0x18) < (s32) gEntityInfo[var_r6].yPosBg2) && ((s32) gEntityInfo[arg0].yPosBg2 > (gEntityInfo[var_r6].yPosBg2 - 0x10)))
                                 {
@@ -580,8 +580,8 @@ void sub_08014760(u8 arg0)
                                         sp8 = gEntityInfo[var_r6].yPosBg2 + -0x10;
                                         gEntityInfo[arg0].unk17 = 0;
                                         gEntityInfo[arg0].unk12 = 0;
-                                        // if (gEntityInfo[var_r6].unk11 == 0x29 || gEntityInfo[var_r6].unk11 == 0x2A)
-                                        if (gEntityInfo[var_r6].id >= 0x29 && gEntityInfo[var_r6].id <= 0x2A)
+                                        // if (gEntityInfo[var_r6].id == ENTITY_ID_MOVING_PLATFORM_HORIZONTAL && gEntityInfo[var_r6].id == ENTITY_ID_GRATED_PLATFORM)
+                                        if (gEntityInfo[var_r6].id >= ENTITY_ID_MOVING_PLATFORM_HORIZONTAL && gEntityInfo[var_r6].id <= ENTITY_ID_GRATED_PLATFORM)
                                         {
                                             if (((s32) gEntityInfo[var_r6].unk8.split.unk8 < (s32) (gEntityInfo[var_r6].unk8.split.unk9 - 0xA)) && (gEntityInfo[var_r6].unk8.split.unk8 != 0))
                                             {
@@ -864,7 +864,7 @@ void sub_08014760(u8 arg0)
 
                             case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                             case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                            case 0x2A:
+                            case ENTITY_ID_GRATED_PLATFORM:
                             case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                                 if (((gEntityInfo[arg0].xPosBg2 - 0x12) < (gEntityInfo[var_r6].xPosBg2 + 0x10)) && ((s32) ((gEntityInfo[arg0].xPosBg2 - 0x12) + 0x1C) > (s32) ((gEntityInfo[var_r6].xPosBg2 + 0x10) - 0x20)))
                                 {
@@ -1372,7 +1372,7 @@ block_379:
                         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                        case 0x2A:
+                        case ENTITY_ID_GRATED_PLATFORM:
                         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                             if ((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >= (gEntityInfo[var_r6].xPosBg2 + 0x10))
                             {
@@ -1829,7 +1829,7 @@ block_379:
                             case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                             case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                             case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                            case 0x2A:
+                            case ENTITY_ID_GRATED_PLATFORM:
                             case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                                 if ((s32) (gEntityInfo[arg0].xPosBg2 - 0xF) >= (gEntityInfo[var_r6].xPosBg2 + 0x10))
                                 {
@@ -1925,8 +1925,8 @@ block_379:
                                         {
                                             sp8 = (gEntityInfo[var_r6].yPosBg2 - 8) - 1;
                                             m4aSongNumStart(SE_OBJECT_LANDS);
-                                            // if (gEntityInfo[var_r6].unk11 == 0x29 || gEntityInfo[var_r6].unk11 == 0x2A)
-                                            if (gEntityInfo[var_r6].id >= 0x29 && gEntityInfo[var_r6].id <= 0x2A)
+                                            // if (gEntityInfo[var_r6].id == ENTITY_ID_MOVING_PLATFORM_HORIZONTAL && gEntityInfo[var_r6].id == ENTITY_ID_GRATED_PLATFORM)
+                                            if (gEntityInfo[var_r6].id >= ENTITY_ID_MOVING_PLATFORM_HORIZONTAL && gEntityInfo[var_r6].id <= ENTITY_ID_GRATED_PLATFORM)
                                             {
                                                 gEntityInfo[arg0].unkF = 0;
                                             }
@@ -3017,7 +3017,7 @@ block_128:
 
                     case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                     case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                    case 0x2A:
+                    case ENTITY_ID_GRATED_PLATFORM:
                     case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                         if ((u32) gEntityInfo[0].yPosBg2 < (u32) gEntityInfo[arg0].yPosBg2)
                         {
@@ -3390,7 +3390,7 @@ block_128:
                         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                        case 0x2A:
+                        case ENTITY_ID_GRATED_PLATFORM:
                         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                             if (((gEntityInfo[arg0].xPosBg2 - 8) < (gEntityInfo[sp28].xPosBg2 + 0x10)) && ((s32) ((gEntityInfo[arg0].xPosBg2 - 8) + 0x10) > (s32) ((gEntityInfo[sp28].xPosBg2 + 0x10) - 0x20)))
                             {
@@ -4076,7 +4076,7 @@ block_716:
                         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                        case 0x2A:
+                        case ENTITY_ID_GRATED_PLATFORM:
                         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                             if ((gEntityInfo[arg0].xPosBg2 - 8) >= (gEntityInfo[sp28].xPosBg2 + 0x10))
                             {
@@ -5076,7 +5076,7 @@ void sub_0801BD48(u8 arg0)
             break;
 
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-        case 0x2A:
+        case ENTITY_ID_GRATED_PLATFORM:
             if (++gEntityInfo[arg0].unk8.split.unk8 < (gEntityInfo[arg0].unk8.split.unk9 - 0xA))
             {
                 if (gEntityInfo[arg0].unkC_4 == 0)

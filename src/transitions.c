@@ -288,7 +288,7 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
             gCallbackQueue.next[0] = InputHandler_Normal; // Redundant, required to match
             if (gUnk_03004C20.world == 6)
             {
-                gCallbackQueue.next[1] = sub_0803B600;
+                gCallbackQueue.next[1] = WorldMapScreenInit;
                 gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
                 gCallbackQueue.next[3] = CommonWaitForNextFrame;
                 gCallbackQueue.next[4] = NULL + 1;
@@ -917,7 +917,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         else if (gUnk_03005284->unk3 == 7)
         {
             gCallbackQueue.next[0] = InputHandler_Normal;
-            gCallbackQueue.next[1] = sub_0803B600;
+            gCallbackQueue.next[1] = WorldMapScreenInit;
             gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
             gCallbackQueue.next[3] = CommonWaitForNextFrame;
             gCallbackQueue.next[4] = NULL + 1;
@@ -1066,7 +1066,7 @@ void TransitionFromVisionSelectToWorldMap_FadeOut(void)
         gUnk_03004C20.sceneFrameCounter = -1;
         sub_0800A468();
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_0803B600;
+        gCallbackQueue.next[1] = WorldMapScreenInit;
         gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;
         gCallbackQueue.next[3] = CommonWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;

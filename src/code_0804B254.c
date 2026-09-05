@@ -234,7 +234,7 @@ void sub_0804B424(void *arg0, void *arg1, u32 arg2)
 
 void sub_0804B464(s32 arg0, s32 arg1)
 {
-    sub_0804B424((void*)gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].unk16 * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].unk18);
+    sub_0804B424((void*)gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].nbrTiles * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].tileSize);
 }
 
 // (98.24%) https://decomp.me/scratch/3jF9A
@@ -434,8 +434,8 @@ void sub_0804B920(s32 arg0, s32 arg1)
     gBgInfo[temp_r7].hLength = gUnk_08057714[temp_r5][temp_r7 - 2];
     gBgInfo[temp_r7].vLength = gUnk_08057794[temp_r5][temp_r7 - 2];
 
-    gBgInfo[temp_r7].unk16 = gUnk_08057814[temp_r5][temp_r7 - 2];
-    gBgInfo[temp_r7].unk18 = gUnk_08057894[temp_r5][temp_r7 - 2];
+    gBgInfo[temp_r7].nbrTiles = gUnk_08057814[temp_r5][temp_r7 - 2];
+    gBgInfo[temp_r7].tileSize = gUnk_08057894[temp_r5][temp_r7 - 2];
     gBgInfo[temp_r7].unk14 = 0;
 
     gUnk_030034A0->unk1_0 = (gUnk_080576D4[temp_r5][temp_r7 - 2] == 0x80) ? 1 : 0;
@@ -510,8 +510,8 @@ void sub_0804BBD4(void)
     gBgInfo[0].hLength = 0x20;
     gBgInfo[0].vLength = 0x20;
 
-    gBgInfo[0].unk18 = 0x20;
-    gBgInfo[0].unk16 = 0x1C;
+    gBgInfo[0].tileSize = 0x20;
+    gBgInfo[0].nbrTiles = 0x1C;
     gBgInfo[0].unk14 = 0;
 
     DmaFill16(3, 0, gBgInfo[0].pTiles, 0x400);
@@ -538,7 +538,7 @@ void sub_0804BBD4(void)
 
 void sub_0804BD10(void)
 {
-    sub_0804ED68(gBgInfo[0].unk16 + 0x20, sub_0804BB10, 0x1D, 0x10);
+    sub_0804ED68(gBgInfo[0].nbrTiles + 0x20, sub_0804BB10, 0x1D, 0x10);
 
     gBgInfo[1].pTiles = VRAM;
     gBgInfo[1].pTilemap = VRAM + 0x3800;
@@ -546,8 +546,8 @@ void sub_0804BD10(void)
     gBgInfo[1].hOfs = 0;
     gBgInfo[1].vOfs = 0;
 
-    gBgInfo[1].unk18 = 0x20;
-    gBgInfo[1].unk14 = gBgInfo[0].unk16;
+    gBgInfo[1].tileSize = 0x20;
+    gBgInfo[1].unk14 = gBgInfo[0].nbrTiles;
 
     DmaCopy16(3, &gUnk_080576B4, PLTT + 0x1E0, 0x40); // TODO: wrong DMA size?
 

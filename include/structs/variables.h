@@ -202,8 +202,8 @@ enum EntityId {
     /* 0x27 */ ENTITY_ID_MOVING_PLATFORM_VERTICAL,
     /* 0x28 */ ENTITY_ID_FOUNTAIN_FOOTHOLD, // platform on top of geyser that rises/falls with geyser
     /* 0x29 */ ENTITY_ID_MOVING_PLATFORM_HORIZONTAL,
-
-    /* 0x2B */ ENTITY_ID_BLUE_DISAPPEARING_PLATFORM = 0x2B,
+    /* 0x2A */ ENTITY_ID_GRATED_PLATFORM,
+    /* 0x2B */ ENTITY_ID_BLUE_DISAPPEARING_PLATFORM,
     /* 0x2C */ ENTITY_ID_SMALL_DREAM_STONE,
     /* 0x2D */ ENTITY_ID_LARGE_DREAM_STONE,
     /* 0x2E */ ENTITY_ID_1_UP,
@@ -265,7 +265,7 @@ struct EntityInfo {
     /* 0x06 */ u16 yPosScreen; // Y position on screen
     /* 0x08 */ union EntityInfo_8 unk8;
     // /* 0x09 */ u8 unk9;
-    /* 0x0A */ u8 unkA;
+    /* 0x0A */ u8 unkA; // related to slot its connected to, possibly, can be its own slot or another slot
     /* 0x0B_0 */ s32 unkB_0:4; // related to X position
     /* 0x0B_4 */ s32 unkB_4:4; // related to Y position
     /* 0x0C_0 */ u32 priority:2; // priority
@@ -276,7 +276,7 @@ struct EntityInfo {
     /* 0x0D_6 */ u32 unkD_6:2;
     /* 0x0E_0 */ u32 affineEnable:1; // affine flag
     /* 0x0E_1 */ u32 affineDouble:1; // affine doubled or non-affine obj disable
-    /* 0x0F */ u8 unkF;
+    /* 0x0F */ u8 unkF; // related to state/action
     /* 0x10 */ u8 visible; // sprite is rendered, could be on-screen flag, but iFrame blinking toggles it, so unless its just abusing it, im going with rendered for now
     /* 0x11 */ u8 id; // entity id/type
     /* 0x12 */ u8 unk12;
@@ -298,9 +298,9 @@ struct BgInfo {
     /* 0x0E */ u16 tileRow; // BG top row
     /* 0x10 */ u16 hLength; // BG X length
     /* 0x12 */ u16 vLength; // BG Y length
-    /* 0x14 */ u16 unk14;
-    /* 0x16 */ u16 unk16; // BG tile length y?
-    /* 0x18 */ u8 unk18;  // BG tile length x?
+    /* 0x14 */ u16 unk14; // written to, never read
+    /* 0x16 */ u16 nbrTiles; // BG number of tiles
+    /* 0x18 */ u8 tileSize;  // BG tile size
     /* 0x19 */ u8 pad19[0x1C - 0x19];
 }; /* size = 0x1C */
 extern struct BgInfo gBgInfo[4];
@@ -852,14 +852,14 @@ enum PauseMenuType {
 };
 extern u8 gPauseMenuType; // Pause menu type, 0 is level, 1 is vision select, 2 is EX level, 3 is boss battle
 
-struct Unk_03004C08 {
-    u8 unk0_0:4;
-    u8 unk0_4:4; // world map index, 0-4 worlds, 5-7 ex1-3
-    s8 unk1;
-    u8 unk2;
+struct WorldMapInfo {
+    u8 beatenIndex:4; // index of world beaten, 0-4 worlds, 5-7 ex1-3
+    u8 currentIndex:4; // current world map index, 0-4 worlds, 5-7 ex1-3
+    s8 nextIndexOffset; // next world offset
+    u8 unlockTimer; // unlock world timer
     u8 pad3[0x4 - 0x3];
 };
-extern struct Unk_03004C08 gUnk_03004C08;
+extern struct WorldMapInfo gWorldMapInfo;
 
 extern u8 gUnk_030007CC;
 

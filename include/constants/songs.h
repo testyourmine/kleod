@@ -92,7 +92,9 @@ enum Songs {
 
     /* 0x87 */ SE_1UP_COLLECTED = 135, // 1UP collected
 
-    /* 0x8B */ SE_LEVEL_UNLOCKED = 139, // New level is unlocked
+    /* 0x89 */ SE_WORLD_UNLOCKED_DOT = 137, // Step sounds leading up to world unlock
+    /* 0x8A */ SE_WORLD_UNLOCKED, // New world is unlocked
+    /* 0x8B */ SE_LEVEL_UNLOCKED, // New level is unlocked
     /* 0x8C */ SE_KLONOA_SNORING, // Klonoa snoring during sleeping idle animation
     /* 0x8D */ SE_SILENCE_0, // Essentially mutes track
     /* 0x8E */ SE_SILENCE_1, // Essentially mutes track

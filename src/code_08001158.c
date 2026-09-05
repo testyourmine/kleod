@@ -18,11 +18,11 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
-extern u16 gUnk_08051C76[6][9][3];
-extern u16 gUnk_08051DBA[6][9][3];
-extern u16 gUnk_08051EFE[6][9][3]; // BG tile length y?
-extern u8 gUnk_08052042[6][9][3]; // BG tile length x?
+extern u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
+extern u16 gVisionBgHLength[6][9][3];
+extern u16 gVisionBgVLength[6][9][3];
+extern u16 gVisionBgNbrTiles[6][9][3];
+extern u8 gVisionBgTileSize[6][9][3];
 extern struct Unk_03004654 gUnk_080520E4[6][8];
 extern u8 gUnk_08052624[6][9];
 extern u16 gUnk_0805265A[6];
@@ -148,10 +148,10 @@ void sub_08001158(void)
     gBgInfo[0].unk14 = 0;
     gBgInfo[0].pTiles = VRAM;
     gBgInfo[0].pTilemap = VRAM + 0xE000;
-    gBgInfo[0].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo[0].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo[0].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
-    gBgInfo[0].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].hLength = gVisionBgHLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].vLength = gVisionBgVLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].nbrTiles = gVisionBgNbrTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
+    gBgInfo[0].tileSize = gVisionBgTileSize[gUnk_03004C20.world - 1][gUnk_03004C20.level][0];
     gBgInfo[1].hOfs = 0;
     gBgInfo[1].vOfs = 0;
     gBgInfo[1].unk14 = 0;
@@ -162,24 +162,24 @@ void sub_08001158(void)
     {
         gBgInfo[1].hLength = gUnk_0805265A[gUnk_03004C20.world - 1];
         gBgInfo[1].vLength = gUnk_08052666[gUnk_03004C20.world - 1];
-        gBgInfo[1].unk16 = gUnk_08052672[gUnk_03004C20.world - 1];
-        gBgInfo[1].unk18 = gUnk_0805267E[gUnk_03004C20.world - 1];
+        gBgInfo[1].nbrTiles = gUnk_08052672[gUnk_03004C20.world - 1];
+        gBgInfo[1].tileSize = gUnk_0805267E[gUnk_03004C20.world - 1];
     }
     else
     {
-        gBgInfo[1].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo[1].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo[1].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
-        gBgInfo[1].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].hLength = gVisionBgHLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].vLength = gVisionBgVLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].nbrTiles = gVisionBgNbrTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
+        gBgInfo[1].tileSize = gVisionBgTileSize[gUnk_03004C20.world - 1][gUnk_03004C20.level][1];
     }
 
     gBgInfo[2].unk14 = 0;
     gBgInfo[2].pTiles = VRAM + 0x8000;
     gBgInfo[2].pTilemap = VRAM + 0xF000;
-    gBgInfo[2].hLength = gUnk_08051C76[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo[2].vLength = gUnk_08051DBA[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo[2].unk16 = gUnk_08051EFE[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gBgInfo[2].unk18 = gUnk_08052042[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].hLength = gVisionBgHLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].vLength = gVisionBgVLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].nbrTiles = gVisionBgNbrTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
+    gBgInfo[2].tileSize = gVisionBgTileSize[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gUnk_030052A0 = 0xFE;
 
     if (gUnk_03004C20.level >= 1 && gUnk_03004C20.level <= 7)
@@ -224,9 +224,9 @@ void sub_08001158(void)
     }
     sub_08002FD0();
 
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].unk18 * gBgInfo[0].unk16);
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].unk18 * gBgInfo[1].unk16);
-    DmaCopy16Wait(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo[2].pTiles, gBgInfo[2].unk18 * gBgInfo[2].unk16);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].tileSize * gBgInfo[1].nbrTiles);
+    DmaCopy16Wait(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo[2].pTiles, gBgInfo[2].tileSize * gBgInfo[2].nbrTiles);
 
     for (var_r4 = 0; var_r4 < 0x400; var_r4++)
     {
@@ -237,8 +237,8 @@ void sub_08001158(void)
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
 
-    REG_BG0CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_MOSAIC | BGCNT_CHARBASE(0);
-    REG_BG1CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(2) | BGCNT_SCREENBASE(29) | BGCNT_MOSAIC | BGCNT_CHARBASE(1);
+    REG_BG0CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC;
+    REG_BG1CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(2) | BGCNT_SCREENBASE(29) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC;
 
     REG_BG0HOFS = (gBgInfo[0].hOfs >> 4) & 0x1FF;
     REG_BG0VOFS = (gBgInfo[0].vOfs >> 7) & 0x1FF;
@@ -287,14 +287,13 @@ void sub_08001158(void)
 
     if (gUnk_03004C20.level != 8)
     {
-        // TODO: use affine for BGCNT size?
-        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT512x256 | BGCNT_WRAP | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
+        REG_BG2CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT512x256 | BGCNT_WRAP | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
         gIntrTable.vBlank = VBlankIntr_Common;
     }
     else
     {
         var_r4 = (u32)REG_ADDR_BG2CNT; // FAKE!
-        REG_BG2CNT = gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_TXT256x512 | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
+        REG_BG2CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_AFF512x512 | BGCNT_SCREENBASE(30) | BGCNT_MOSAIC | BGCNT_CHARBASE(2) | BGCNT_PRIORITY(1);
         gIntrTable.vBlank = VBlankIntr_Boss;
         gUnk_03004C20.room = 1;
     }
@@ -1436,7 +1435,7 @@ void sub_08003904(void)
     gObjVramPtr = OBJ_VRAM0;
 
     sub_08003D80();
-    sub_08003DC0(0, 0, gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2, 0, 0, gEntityInfo[0].unkC_2, 0, 0x6E);
+    sub_08003DC0(0, 0, gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2, 0, 0, gEntityInfo[0].unkC_2, 0, ENTITY_ID_KLONOA);
     sub_08003DC0(1, 1, 0, 0, 0, 0, 0, 0x1C, 0x34);
     sub_08003DC0(2, 2, 0, 0, 0, 0, 0, 0x1C, 0x34);
     sub_08003DC0(3, 3, 0, 0, 0, 0, 0, 0x1C, 0x34);
@@ -1447,8 +1446,8 @@ void sub_08003904(void)
     sub_08003DC0(8, 8, 0, 0, 0, 0, 0, 0x1C, 0x34);
     sub_08003DC0(9, 9, 0, 0, 0, 0, 0, 0, 0);
     sub_08003DC0(0xA, 0xA, 0, 0, 0, 0, 0, 0, 0);
-    sub_08003DC0(0xB, 0xB, 0xFFE0, 0x3C, 0, 0, 0, 0, 0);
-    sub_08003DC0(0xC, 0xC, 0xFFE0, 0x74, 0, 0, 0, 0, 0);
+    sub_08003DC0(0xB, 0xB, -0x20, 0x3C, 0, 0, 0, 0, 0);
+    sub_08003DC0(0xC, 0xC, -0x20, 0x74, 0, 0, 0, 0, 0);
     LoadObjects_Common();
 
     if (gUnk_03003410.unk8 == 1)

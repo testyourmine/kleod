@@ -129,42 +129,42 @@ void sub_08003DA0(void)
 }
 
 // 3DC0
-void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 arg6, u8 arg7, u8 id)
+void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6, u8 arg7, u8 id)
 {
     u32 var_r3_3;
 
     if (id == ENTITY_ID_NONE || id >= 0x4A)
     {
-        gEntityInfo[arg0].xPosScreen = arg2;
-        gEntityInfo[arg0].yPosScreen = arg3;
+        gEntityInfo[slot].xPosScreen = x;
+        gEntityInfo[slot].yPosScreen = y;
     }
     else
     {
-        gEntityInfo[arg0].xPosBg2 = arg2;
-        gEntityInfo[arg0].yPosBg2 = arg3;
-        gEntityInfo[arg0].xPosScreen = arg2 - gBgInfo[2].hOfs;
-        gEntityInfo[arg0].yPosScreen = arg3 - gBgInfo[2].vOfs;
+        gEntityInfo[slot].xPosBg2 = x;
+        gEntityInfo[slot].yPosBg2 = y;
+        gEntityInfo[slot].xPosScreen = x - gBgInfo[2].hOfs;
+        gEntityInfo[slot].yPosScreen = y - gBgInfo[2].vOfs;
     }
-    gEntityInfo[arg0].unkA = arg1;
-    gEntityInfo[arg0].visible = 0;
-    gEntityInfo[arg0].unk8.split.unk8 = arg4;
-    gEntityInfo[arg0].unkF = arg7;
-    gEntityInfo[arg0].unkC_2 = 0;
+    gEntityInfo[slot].unkA = arg1;
+    gEntityInfo[slot].visible = 0;
+    gEntityInfo[slot].unk8.split.unk8 = arg4;
+    gEntityInfo[slot].unkF = arg7;
+    gEntityInfo[slot].unkC_2 = 0;
 
     switch (id)
     {
         case ENTITY_ID_WATER:
         case ENTITY_ID_WATERFALL:
         case ENTITY_ID_GEYSER:
-            gEntityInfo[arg0].priority = 2;
-            gEntityInfo[arg0].objMode = 1;
+            gEntityInfo[slot].priority = 2;
+            gEntityInfo[slot].objMode = 1;
             break;
 
         case ENTITY_ID_PRESSURE_SWITCH:
-            gEntityInfo[arg0].unk8.split.unk9 = 0xFF;
+            gEntityInfo[slot].unk8.split.unk9 = 0xFF;
             /* fallthrough */
         case ENTITY_ID_GATE:
-            gEntityInfo[arg0].priority = 2;
+            gEntityInfo[slot].priority = 2;
             break;
 
         case ENTITY_ID_GOOMI:
@@ -175,27 +175,27 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_SCALE_1:
         case ENTITY_ID_SCALE_2:
         case ENTITY_ID_MOON_DOOR:
-            gEntityInfo[arg0].priority = 1;
-            gEntityInfo[arg0].objMode = 0;
+            gEntityInfo[slot].priority = 1;
+            gEntityInfo[slot].objMode = 0;
             break;
 
         default:
-            gEntityInfo[arg0].priority = arg5;
-            gEntityInfo[arg0].objMode = 0;
+            gEntityInfo[slot].priority = priority;
+            gEntityInfo[slot].objMode = 0;
             break;
     }
 
     switch (id)
     {
         case ENTITY_ID_GATE_SWITCH:
-            gEntityInfo[arg0].unkC_4 = 0;
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            if (arg4 == 1 && ((gUnk_03005220.unk1_7 >> gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xC].unk0[gUnk_03004C20.room - 1].unk5) & arg4))
+            gEntityInfo[slot].unkC_4 = 0;
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            if (arg4 == 1 && ((gUnk_03005220.unk1_7 >> gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xC].unk0[gUnk_03004C20.room - 1].unk5) & arg4))
             {
-                gEntityInfo[arg0].unkC_4 = 1;
-                gEntityInfo[arg0 - 1].unkC_4 = 1;
-                gEntityInfo[arg0 - 2].unkC_4 = 1;
+                gEntityInfo[slot].unkC_4 = 1;
+                gEntityInfo[slot - 1].unkC_4 = 1;
+                gEntityInfo[slot - 2].unkC_4 = 1;
             }
             break;
 
@@ -209,40 +209,40 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 gUnk_03004C00 = 0;
             }
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_WATER:
             if (gUnk_03004C00 != 0)
             {
-                gEntityInfo[arg0].yPosBg2 += 0x1A;
+                gEntityInfo[slot].yPosBg2 += 0x1A;
                 arg6 = 1;
             }
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_GEYSER:
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_GATE:
             if (((gUnk_03005220.unk1_7 >> arg6) & 1) && (arg4 == 0xFF))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_4 = 0;
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_4 = 0;
             break;
 
         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-        case 0x2A:
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_4 = arg6;
+        case ENTITY_ID_GRATED_PLATFORM:
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_GOOMI:
@@ -250,33 +250,33 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_GOOMI_VERTICAL:
         case ENTITY_ID_GOOMI_DIAGONAL_1:
         case ENTITY_ID_GOOMI_DIAGONAL_2:
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unkC_4 = arg6;
             if (arg6 == 0)
             {
-                gEntityInfo[arg0].unk8.split.unk8 = 0;
+                gEntityInfo[slot].unk8.split.unk8 = 0;
             }
             break;
 
         case ENTITY_ID_CANNON_GOAL:
-            gEntityInfo[arg0].affineEnable = 1;
-            gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum + 1;
+            gEntityInfo[slot].affineEnable = 1;
+            gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum + 1;
             gOamAffineBuffer[gOamAffineMatrixNum + 1].pa = gOamAffineBuffer[gOamAffineMatrixNum + 1].pd = COS(0);
             gOamAffineBuffer[gOamAffineMatrixNum + 1].pc = SIN(0);
             gOamAffineBuffer[gOamAffineMatrixNum + 1].pb = -SIN(0);
-            gEntityInfo[arg0].unkC_2 = arg6;
+            gEntityInfo[slot].unkC_2 = arg6;
             break;
 
         case ENTITY_ID_RED_ARROW:
         case ENTITY_ID_BLUE_ARROW:
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unkC_4 = arg6;
             if (arg6 != 3)
             {
-                gEntityInfo[arg0].unkC_2 = arg6;
+                gEntityInfo[slot].unkC_2 = arg6;
             }
             break;
 
         case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
-            gEntityInfo[arg0].unk8.split.unk9 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = 0;
             break;
 
         case ENTITY_ID_GROWN_BLOCK:
@@ -287,47 +287,47 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
                 {
                     if (gUnk_030047B8 == 0)
                     {
-                        gUnk_030047B8 = arg0;
-                        gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                        gUnk_030047B8 = slot;
+                        gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                         gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x100;
                         gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
                         gOamAffineMatrixNum += 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].affineHFlip_matrixNum = gEntityInfo[gUnk_030047B8].affineHFlip_matrixNum;
+                        gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[gUnk_030047B8].affineHFlip_matrixNum;
                     }
                 }
                 else
                 {
                     if (gUnk_03005470 == 0)
                     {
-                        gUnk_03005470 = arg0;
-                        gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                        gUnk_03005470 = slot;
+                        gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                         gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x200;
                         gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
                         gOamAffineMatrixNum += 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].affineHFlip_matrixNum = gEntityInfo[gUnk_03005470].affineHFlip_matrixNum;
+                        gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[gUnk_03005470].affineHFlip_matrixNum;
                     }
-                    gEntityInfo[arg0].unkF = 0x1C;
+                    gEntityInfo[slot].unkF = 0x1C;
                 }
-                gEntityInfo[arg0].affineEnable = 1;
-                gEntityInfo[arg0].unkC_4 = arg6;
+                gEntityInfo[slot].affineEnable = 1;
+                gEntityInfo[slot].unkC_4 = arg6;
             }
             break;
 
         case ENTITY_ID_EXPLODABLE_BLOCK:
             if ((arg7 == 0) && ((gUnk_03005220.unk2E >> arg4) & 1))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
             else
             {
-                gEntityInfo[arg0].affineEnable = 1;
-                gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                gEntityInfo[slot].affineEnable = 1;
+                gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                 gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x100;
                 gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
                 gOamAffineMatrixNum += 1;
@@ -335,32 +335,32 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
 
         case ENTITY_ID_SCALE_1:
-            gEntityInfo[arg0].affineEnable = 1;
-            gEntityInfo[arg0].unkC_4 = arg6;
-            gEntityInfo[arg0].unk8.split.unk8 = 0x80;
+            gEntityInfo[slot].affineEnable = 1;
+            gEntityInfo[slot].unkC_4 = arg6;
+            gEntityInfo[slot].unk8.split.unk8 = 0x80;
             if (gUnk_03003610[gUnk_03005298].unk0 == 0)
             {
-                gUnk_03003610[gUnk_03005298].unk0 = arg0;
-                gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                gUnk_03003610[gUnk_03005298].unk0 = slot;
+                gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                 gOamAffineBuffer[gOamAffineMatrixNum].pa = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
                 gOamAffineBuffer[gOamAffineMatrixNum].pb = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
                 gOamAffineBuffer[gOamAffineMatrixNum].pc = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
-                gOamAffineBuffer[gOamAffineMatrixNum].pd = MultiplyQ8(COS(0), ReciprocalQ8(gEntityInfo[arg0].unk8.split.unk8));
+                gOamAffineBuffer[gOamAffineMatrixNum].pd = MultiplyQ8(COS(0), ReciprocalQ8(gEntityInfo[slot].unk8.split.unk8));
                 gOamAffineMatrixNum += 1;
-                gEntityInfo[arg0].yPosBg2 += (u8)-gEntityInfo[arg0].unk8.split.unk8 >> 3;
-                gEntityInfo[arg0 - 1].yPosBg2 += (u8)-gEntityInfo[arg0].unk8.split.unk8 >> 2;
+                gEntityInfo[slot].yPosBg2 += (u8)-gEntityInfo[slot].unk8.split.unk8 >> 3;
+                gEntityInfo[slot - 1].yPosBg2 += (u8)-gEntityInfo[slot].unk8.split.unk8 >> 2;
             }
             else
             {
-                gUnk_03003610[gUnk_03005298++].unk1 = arg0;
-                gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                gUnk_03003610[gUnk_03005298++].unk1 = slot;
+                gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                 gOamAffineBuffer[gOamAffineMatrixNum].pa = MultiplyQ8(COS(0), ReciprocalQ8(0x100));
                 gOamAffineBuffer[gOamAffineMatrixNum].pb = MultiplyQ8(SIN(0), ReciprocalQ8(0x100));
                 gOamAffineBuffer[gOamAffineMatrixNum].pc = MultiplyQ8(-SIN(0), ReciprocalQ8(0x100));
-                gOamAffineBuffer[gOamAffineMatrixNum].pd = MultiplyQ8(COS(0), ReciprocalQ8(gEntityInfo[arg0].unk8.split.unk8));
+                gOamAffineBuffer[gOamAffineMatrixNum].pd = MultiplyQ8(COS(0), ReciprocalQ8(gEntityInfo[slot].unk8.split.unk8));
                 gOamAffineMatrixNum += 1;
-                gEntityInfo[arg0].yPosBg2 += (u8)-gEntityInfo[arg0].unk8.split.unk8 >> 3;
-                gEntityInfo[arg0 - 1].yPosBg2 += (u8)-gEntityInfo[arg0].unk8.split.unk8 >> 2;
+                gEntityInfo[slot].yPosBg2 += (u8)-gEntityInfo[slot].unk8.split.unk8 >> 3;
+                gEntityInfo[slot - 1].yPosBg2 += (u8)-gEntityInfo[slot].unk8.split.unk8 >> 2;
             }
             break;
 
@@ -371,12 +371,12 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_MOO:
         case ENTITY_ID_FLYING_MOO_HORIZONTAL:
         case ENTITY_ID_GLIBZ_QUAD_CANNON:
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_2 = arg6 & 1;
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_2 = arg6 & 1;
             if (id == ENTITY_ID_GLIBZ_QUAD_CANNON)
             {
-                gEntityInfo[arg0].unkC_4 = arg6;
+                gEntityInfo[slot].unkC_4 = arg6;
             }
             break;
 
@@ -385,39 +385,39 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             /* fallthrough */
         case ENTITY_ID_FLYING_MOO_VERTICAL:
         case ENTITY_ID_TETON:
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_4 = arg6;
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_SPIKER_HORIZONTAL:
         case ENTITY_ID_SPIKER_VERTICAL:
-            gEntityInfo[arg0].unk8.split.unk8 = 0;
-            gEntityInfo[arg0].unk8.split.unk9 = arg4;
-            gEntityInfo[arg0].unkC_4 = arg6 & 1;
+            gEntityInfo[slot].unk8.split.unk8 = 0;
+            gEntityInfo[slot].unk8.split.unk9 = arg4;
+            gEntityInfo[slot].unkC_4 = arg6 & 1;
             if (arg6 & 2)
             {
-                gEntityInfo[arg0].affineEnable = 1;
-                gEntityInfo[arg0].affineDouble = 1;
+                gEntityInfo[slot].affineEnable = 1;
+                gEntityInfo[slot].affineDouble = 1;
                 if (gUnk_030052A8 == 0)
                 {
-                    gUnk_030052A8 = arg0;
-                    gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                    gUnk_030052A8 = slot;
+                    gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                     gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x70;
                     gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
                     gOamAffineMatrixNum += 1;
                 }
                 else
                 {
-                    gEntityInfo[arg0].affineHFlip_matrixNum = gEntityInfo[gUnk_030052A8].affineHFlip_matrixNum;
+                    gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[gUnk_030052A8].affineHFlip_matrixNum;
                 }
             }
             break;
 
         case ENTITY_ID_MAGNET_BLOCK_HAND:
-            gEntityInfo[arg0].affineEnable = 1;
-            gEntityInfo[arg0].affineDouble = 1;
-            gEntityInfo[arg0].affineHFlip_matrixNum = gOamAffineMatrixNum;
+            gEntityInfo[slot].affineEnable = 1;
+            gEntityInfo[slot].affineDouble = 1;
+            gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
             gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x8000;
             gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
             gOamAffineMatrixNum += 1;
@@ -425,14 +425,14 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             break;
 
         case ENTITY_ID_LEAF_1:
-            gUnk_03000790[arg4].unk0 = arg2 - 0xE;
-            gUnk_03000790[arg4].unk2 = arg2 + 0xE;
-            gUnk_03000790[arg4].unk6 = arg3;
+            gUnk_03000790[arg4].unk0 = x - 0xE;
+            gUnk_03000790[arg4].unk2 = x + 0xE;
+            gUnk_03000790[arg4].unk6 = y;
             if (arg7 == 0)
             {
-                for (var_r3_3 = arg3 - 0x20; var_r3_3 >= gCurrentRoomBg2Bounds.top; var_r3_3 -= 8)
+                for (var_r3_3 = y - 0x20; var_r3_3 >= gCurrentRoomBg2Bounds.top; var_r3_3 -= 8)
                 {
-                    if (gUnk_03004654->unk18 <= gBgDataPtrs.pBufBg2Tilemap[(arg2 >> 3) + (gBgInfo[2].hLength * (var_r3_3 >> 3))])
+                    if (gUnk_03004654->unk18 <= gBgDataPtrs.pBufBg2Tilemap[(x >> 3) + (gBgInfo[2].hLength * (var_r3_3 >> 3))])
                     {
                         gUnk_03000790[arg4].unk4 = var_r3_3 + 8;
                         gUnk_03000790[arg4].unk8 = var_r3_3 + 8;
@@ -442,8 +442,8 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             }
             /* fallthrough */
         case ENTITY_ID_LEAF_2:
-            gEntityInfo[arg0].yPosBg2 = gUnk_03000790[arg4].unk8;
-            gEntityInfo[arg0].unkC_4 = arg4;
+            gEntityInfo[slot].yPosBg2 = gUnk_03000790[arg4].unk8;
+            gEntityInfo[slot].unkC_4 = arg4;
             break;
 
         case ENTITY_ID_CIRCLE_KEY:
@@ -451,93 +451,93 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_HEART_KEY:
             if (gUnk_03005220.keys & id)
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
             break;
 
         case ENTITY_ID_KEY_DOOR:
             if ((arg7 == 0) && ((gUnk_03005220.unk14 >> arg4) & 1))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
-            gEntityInfo[arg0].unk8.split.unk9 = arg6;
+            gEntityInfo[slot].unk8.split.unk9 = arg6;
             break;
 
         case ENTITY_ID_1_UP:
             if ((arg7 == 0) && (gUnk_03005220.unk4 & (1 << arg4)))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
             break;
 
         case ENTITY_ID_SMALL_DREAM_STONE:
             if (gUnk_0300547C == 0)
             {
-                gUnk_0300547C = arg0;
+                gUnk_0300547C = slot;
             }
             /* fallthrough */
         case ENTITY_ID_LARGE_DREAM_STONE:
             if ((id == ENTITY_ID_LARGE_DREAM_STONE) && (gUnk_03000818 == 0))
             {
-                gUnk_03000818 = arg0;
+                gUnk_03000818 = slot;
             }
             if (arg4 < 0x20)
             {
                 if ((arg7 == 0) && (gUnk_03005220.unk8 & (1 << arg4)))
                 {
-                    gEntityInfo[arg0].unkF = 0x1C;
+                    gEntityInfo[slot].unkF = 0x1C;
                 }
             }
             else if ((arg7 == 0) && (gUnk_03005220.unkC & (1 << (arg4 - 0x20))))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
-            gEntityInfo[arg0].unkC_2 = arg6;
+            gEntityInfo[slot].unkC_2 = arg6;
             break;
 
         case ENTITY_ID_HEART:
             if (gUnk_030051B4 == 0)
             {
-                gUnk_030051B4 = arg0;
+                gUnk_030051B4 = slot;
                 if (gUnk_03004C20.level == 8)
                 {
-                    gUnk_030051B4 = arg0 + 1;
+                    gUnk_030051B4 = slot + 1;
                 }
             }
             if ((arg7 == 0) && ((gUnk_03005220.unk2_7 >> arg4) & 1))
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
-            gEntityInfo[arg0].unkC_2 = arg6;
+            gEntityInfo[slot].unkC_2 = arg6;
             break;
 
         case ENTITY_ID_STAR:
             if (gUnk_030008EC == 0)
             {
-                gUnk_030008EC = arg0;
+                gUnk_030008EC = slot;
             }
             if ((gUnk_03005220.stars >> arg4) & 1)
             {
-                gEntityInfo[arg0].unkF = 0x1C;
+                gEntityInfo[slot].unkF = 0x1C;
             }
-            gEntityInfo[arg0].unkC_2 = arg6;
+            gEntityInfo[slot].unkC_2 = arg6;
             break;
 
         default:
-            gEntityInfo[arg0].unkC_2 = arg6;
+            gEntityInfo[slot].unkC_2 = arg6;
             break;
     }
 
-    gEntityInfo[arg0].id = id;
+    gEntityInfo[slot].id = id;
 
     switch (id)
     {
         case ENTITY_ID_MAGNET_BLOCK:
             if (gUnk_030007F4 == 0)
             {
-                gUnk_030007F4 = arg0;
+                gUnk_030007F4 = slot;
             }
-            gUnk_0300290C = arg0;
+            gUnk_0300290C = slot;
             /* fallthrough */
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
@@ -546,22 +546,22 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03005484 == 0)
             {
-                gUnk_03005484 = arg0;
+                gUnk_03005484 = slot;
             }
-            gUnk_03004650 = arg0;
+            gUnk_03004650 = slot;
             /* fallthrough */
         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
-        case 0x2A:
+        case ENTITY_ID_GRATED_PLATFORM:
         case ENTITY_ID_WATER:
         case ENTITY_ID_SCALE_2:
         case ENTITY_ID_SPRING:
         case ENTITY_ID_MOON_DOOR:
             if (gUnk_030051D4 == 0)
             {
-                gUnk_030051D4 = arg0;
+                gUnk_030051D4 = slot;
             }
-            gUnk_030034C8 = arg0;
+            gUnk_030034C8 = slot;
             break;
     }
 
@@ -571,27 +571,27 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_BOX:
             if (gUnk_03003500 == 0)
             {
-                gUnk_03003500 = arg0;
+                gUnk_03003500 = slot;
             }
-            gUnk_03004664 = arg0;
+            gUnk_03004664 = slot;
             /* fallthrough */
         case ENTITY_ID_BOOMIE:
         case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030047BC == 0)
             {
-                gUnk_030047BC = arg0;
+                gUnk_030047BC = slot;
             }
-            gUnk_030007D4 = arg0;
+            gUnk_030007D4 = slot;
             /* fallthrough */
         case ENTITY_ID_MOO:
         case ENTITY_ID_FLYING_MOO_HORIZONTAL:
         case ENTITY_ID_FLYING_MOO_VERTICAL:
             if (gUnk_030047F8 == 0)
             {
-                gUnk_030047F8 = arg0;
+                gUnk_030047F8 = slot;
             }
-            gUnk_03003504 = arg0;
+            gUnk_03003504 = slot;
             /* fallthrough */
         case ENTITY_ID_MOO_BOARDER: 
         case 0x13: 
@@ -613,9 +613,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_TETON:
             if (gUnk_030051D8 == 0)
             {
-                gUnk_030051D8 = arg0;
+                gUnk_030051D8 = slot;
             }
-            gUnk_03004788 = arg0;
+            gUnk_03004788 = slot;
             break;
     }
 
@@ -626,7 +626,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_MAGNET_BLOCK:
         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-        case 0x2A:
+        case ENTITY_ID_GRATED_PLATFORM:
         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
         case ENTITY_ID_GROWN_BLOCK:
         case ENTITY_ID_SCALE_2:
@@ -635,9 +635,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03003634 == 0)
             {
-                gUnk_03003634 = arg0;
+                gUnk_03003634 = slot;
             }
-            gUnk_03005430 = arg0;
+            gUnk_03005430 = slot;
             /* fallthrough */
         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
         case ENTITY_ID_RED_ARROW:
@@ -650,9 +650,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_BLUE_ARROW:
             if (gUnk_03003630 == 0)
             {
-                gUnk_03003630 = arg0;
+                gUnk_03003630 = slot;
             }
-            gUnk_03004674 = arg0;
+            gUnk_03004674 = slot;
             /* fallthrough */
         case ENTITY_ID_KEY_DOOR:
         case ENTITY_ID_ONE_WAY_GATE:
@@ -661,9 +661,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
             {
                 if (gUnk_030034D8 == 0)
                 {
-                    gUnk_030034D8 = arg0;
+                    gUnk_030034D8 = slot;
                 }
-                gUnk_0300541C = arg0;
+                gUnk_0300541C = slot;
             }
             break;
     }
@@ -683,9 +683,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_030034CC == 0)
             {
-                gUnk_030034CC = arg0;
+                gUnk_030034CC = slot;
             }
-            gUnk_0300529C = arg0;
+            gUnk_0300529C = slot;
             break;
     }
 
@@ -703,9 +703,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_EXPLODABLE_BLOCK:
             if (gUnk_03000804 == 0)
             {
-                gUnk_03000804 = arg0;
+                gUnk_03000804 = slot;
             }
-            gUnk_0300082C = arg0;
+            gUnk_0300082C = slot;
             /* fallthrough */
         case ENTITY_ID_SPIKER_HORIZONTAL: 
         case ENTITY_ID_SPIKER_VERTICAL: 
@@ -714,7 +714,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case 0x1B:
         case 0x22:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-        case 0x2A:
+        case ENTITY_ID_GRATED_PLATFORM:
         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
         case ENTITY_ID_RED_ARROW:
         case ENTITY_ID_WATER_SWITCH:
@@ -732,9 +732,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030007F0 == 0)
             {
-                gUnk_030007F0 = arg0;
+                gUnk_030007F0 = slot;
             }
-            gUnk_03004C04 = arg0;
+            gUnk_03004C04 = slot;
             break;
     }
 
@@ -747,7 +747,7 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_MAGNET_BLOCK:
         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-        case 0x2A:
+        case ENTITY_ID_GRATED_PLATFORM:
         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
         case ENTITY_ID_GROWN_BLOCK:
         case ENTITY_ID_SPRING:
@@ -763,9 +763,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030047B4 == 0)
             {
-                gUnk_030047B4 = arg0;
+                gUnk_030047B4 = slot;
             }
-            gUnk_03003640 = arg0;
+            gUnk_03003640 = slot;
             /* fallthrough */
         case ENTITY_ID_KEY_DOOR:
         case 0x17:
@@ -785,9 +785,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_BLUE_ARROW:
             if (gUnk_030008F4 == 0)
             {
-                gUnk_030008F4 = arg0;
+                gUnk_030008F4 = slot;
             }
-            gUnk_030008F0 = arg0;
+            gUnk_030008F0 = slot;
             break;
     }
 
@@ -795,9 +795,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
     {
         if (gUnk_03000824 == 0)
         {
-            gUnk_03000824 = arg0;
+            gUnk_03000824 = slot;
         }
-        gUnk_03005424 = arg0;
+        gUnk_03005424 = slot;
     }
 
     switch (id)
@@ -810,9 +810,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_03002904 == 0)
             {
-                gUnk_03002904 = arg0;
+                gUnk_03002904 = slot;
             }
-            gUnk_030008FC = arg0;
+            gUnk_030008FC = slot;
             /* fallthrough */
         case ENTITY_ID_FLYING_MOO_HORIZONTAL:
         case ENTITY_ID_FLYING_MOO_VERTICAL:
@@ -820,17 +820,17 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_TETON:
             if (gUnk_030034A4 == 0)
             {
-                gUnk_030034A4 = arg0;
+                gUnk_030034A4 = slot;
             }
-            gUnk_030052B0 = arg0;
+            gUnk_030052B0 = slot;
             /* fallthrough */
         case ENTITY_ID_GROWN_BLOCK:
         case ENTITY_ID_KLONOA:
             if (gUnk_03003638 == 0)
             {
-                gUnk_03003638 = arg0;
+                gUnk_03003638 = slot;
             }
-            gUnk_03002908 = arg0;
+            gUnk_03002908 = slot;
             break;
     }
 
@@ -853,9 +853,9 @@ void sub_08003DC0(s32 arg0, u8 arg1, u16 arg2, u16 arg3, u8 arg4, u8 arg5, u8 ar
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
             if (gUnk_030052B4 == 0)
             {
-                gUnk_030052B4 = arg0;
+                gUnk_030052B4 = slot;
             }
-            gUnk_030051C4 = arg0;
+            gUnk_030051C4 = slot;
             break;
     }
 }

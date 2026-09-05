@@ -19,7 +19,7 @@
 #include "constants/songs.h"
 #include "structs/variables.h"
 
-extern const u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
+extern const u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 
 extern u8 gUnk_08064868[0x200];
 extern const u8 gUnk_08078508[0x20];
@@ -292,12 +292,12 @@ void PauseMenuScreenRestoreGfx(void)
 
     if (gUnk_030034BC == 0)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].unk18 * gBgInfo[0].unk16);
+        DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
         DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap, &gBgTilemapBufs[0], 0x480);
     }
     else
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].unk18 * gBgInfo[1].unk16);
+        DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].tileSize * gBgInfo[1].nbrTiles);
         DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap, &gBgTilemapBufs[1], 0x480);
     }
 
@@ -659,9 +659,9 @@ void ButtonConfigurationScreenHandler(void)
 }
 
 // 3AC18
-u8 sub_0803AC18(u8 arg0)
+u8 WorldMapScreenIsValidPath(u8 mapIndex)
 {
-    // Called on transition to world map
+    // Called on transition to world map, check if able to go to world
     u32 world;
     u32 level;
     u8 nbrExStagesAllStones;
@@ -669,9 +669,9 @@ u8 sub_0803AC18(u8 arg0)
     u8 nbrStagesBeaten;
     u8 nbrActionStagesAllStones;
 
-    if (arg0 < 4)
+    if (mapIndex < 4)
     {
-        if ((gUnk_03004670->levelInfo[arg0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[arg0 + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
+        if ((gUnk_03004670->levelInfo[mapIndex][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[mapIndex + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
         {
             return 1;
         }
@@ -712,15 +712,15 @@ u8 sub_0803AC18(u8 arg0)
             nbrExStagesAllStones += 1;
         }
     
-        if ((arg0 == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
+        if ((mapIndex == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             return 1;
         }
-        if ((arg0 == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        if ((mapIndex == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             return 1;
         }
-        if ((arg0 == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
+        if ((mapIndex == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
         {
             return 1;
         }
@@ -730,101 +730,102 @@ u8 sub_0803AC18(u8 arg0)
 }
 
 // 3AD94
-void sub_0803AD94(u8 arg0)
+void WorldMapScreenDrawWorld(u8 mapIndex)
 {
-    u8 var_r0;
-    u8 var_r3;
+    u8 row;
+    u8 col;
 
-    arg0 += 1;
-    if (arg0 < 5)
+    mapIndex += 1;
+    if (mapIndex < 5)
     {
         // Variables must be declared in this scope to match
-        u16 *var_r4 = &gBgTilemapBufs[1][gUnk_08116708[arg0][2] + (gUnk_08116708[arg0][3] << 5)];
-        u16 *var_r2 = &gBgTilemapBufs[1][arg0 * 0x5 + 0x280];
-        for (var_r0 = 0; var_r0 < 4; var_r0++)
+        u16 *dst = &gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + (gUnk_08116708[mapIndex][3] * 0x20)];
+        u16 *src = &gBgTilemapBufs[1][mapIndex * 0x5 + 0x280];
+        for (row = 0; row < 4; row++)
         {
-            for (var_r3 = 0; var_r3 < 5; var_r3++)
+            for (col = 0; col < 5; col++)
             {
-                var_r4[var_r3] = var_r2[var_r3];
+                dst[col] = src[col];
             }
-            var_r4 += 0x20;
-            var_r2 += 0x20;
+            dst += 0x20;
+            src += 0x20;
         }
     }
     else
     {
-        gBgTilemapBufs[1][gUnk_08116708[arg0][2] + ((gUnk_08116708[arg0][3] + 0) << 5) + 0] = gBgTilemapBufs[1][((arg0 - 5) * 2) + 0x340];
-        gBgTilemapBufs[1][gUnk_08116708[arg0][2] + ((gUnk_08116708[arg0][3] + 0) << 5) + 1] = gBgTilemapBufs[1][((arg0 - 5) * 2) + 0x341];
-        gBgTilemapBufs[1][gUnk_08116708[arg0][2] + ((gUnk_08116708[arg0][3] + 1) << 5) + 0] = gBgTilemapBufs[1][((arg0 - 5) * 2) + 0x360];
-        gBgTilemapBufs[1][gUnk_08116708[arg0][2] + ((gUnk_08116708[arg0][3] + 1) << 5) + 1] = gBgTilemapBufs[1][((arg0 - 5) * 2) + 0x361];
+        gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + ((gUnk_08116708[mapIndex][3] + 0) * 0x20) + 0] = gBgTilemapBufs[1][((mapIndex - 5) * 2) + 0x340];
+        gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + ((gUnk_08116708[mapIndex][3] + 0) * 0x20) + 1] = gBgTilemapBufs[1][((mapIndex - 5) * 2) + 0x341];
+        gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + ((gUnk_08116708[mapIndex][3] + 1) * 0x20) + 0] = gBgTilemapBufs[1][((mapIndex - 5) * 2) + 0x360];
+        gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + ((gUnk_08116708[mapIndex][3] + 1) * 0x20) + 1] = gBgTilemapBufs[1][((mapIndex - 5) * 2) + 0x361];
     }
 }
 
 // 3AE88
-void sub_0803AE88(u8 arg0, u8 arg1)
+void WorldMapScreenSetPalette(u8 mapIndex, u8 palNbr)
 {
-    u16 temp_sl;
-    u8 var_r0;
-    u8 var_r3;
-    u16 *var_r5; // Must be declared last to match
+    u16 pathTile;
+    u8 row;
+    u8 col;
+    u16 *dst; // Must be declared last to match
 
-    arg0 += 1;
-    var_r5 = &gBgTilemapBufs[1][gUnk_08116708[arg0][2] + (gUnk_08116708[arg0][3] << 5)];
-    temp_sl = var_r5[0x20];
-    for (var_r0 = 0; var_r0 < 4; var_r0++)
+    mapIndex += 1;
+    dst = &gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + (gUnk_08116708[mapIndex][3] * 0x20)];
+    pathTile = dst[0x20];
+    for (row = 0; row < 4; row++)
     {
-        for (var_r3 = 0; var_r3 < 5; var_r3++)
+        for (col = 0; col < 5; col++)
         {
-            var_r5[var_r3] = (var_r5[var_r3] & 0xFFF) | (arg1 << 0xC);
+            dst[col] = (dst[col] & 0xFFF) | (palNbr << 0xC);
         }
-        var_r5 += 0x20;
+        dst += 0x20;
     }
 
-    if (arg0 == 4)
+    if (mapIndex == 4)
     {
-        gBgTilemapBufs[1][gUnk_08116708[4][2] + (gUnk_08116708[4][3] << 5) + 0x20] = temp_sl;
+        // When unlocking world 5, don't flash the path tile
+        gBgTilemapBufs[1][gUnk_08116708[mapIndex][2] + (gUnk_08116708[mapIndex][3] * 0x20) + 0x20] = pathTile;
     }
 }
 
 // 3AF38
-void sub_0803AF38(u8 arg0)
+void WorldMapScreenDrawPath(u8 mapIndex)
 {
     vu32 a; // Required to match
-    if (arg0 < 4)
+    if (mapIndex < 4)
     {
-        gBgTilemapBufs[1][gUnk_08116748[arg0][0] + (gUnk_08116748[arg0][1] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 0];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][2] + (gUnk_08116748[arg0][3] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 1];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][4] + (gUnk_08116748[arg0][5] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 2];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][6] + (gUnk_08116748[arg0][7] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 3];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][0] + (gUnk_08116748[mapIndex][1] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 0];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][2] + (gUnk_08116748[mapIndex][3] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 1];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][4] + (gUnk_08116748[mapIndex][5] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 2];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][6] + (gUnk_08116748[mapIndex][7] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 3];
     }
     else
     {
-        gBgTilemapBufs[1][gUnk_08116748[arg0][0] + (gUnk_08116748[arg0][1] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 4];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][2] + (gUnk_08116748[arg0][3] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 5];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][4] + (gUnk_08116748[arg0][5] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 6];
-        gBgTilemapBufs[1][gUnk_08116748[arg0][6] + (gUnk_08116748[arg0][7] << 5)] = gBgTilemapBufs[1][((gUnk_08116880[arg0] + 0x1C) * 0x20) + 7];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][0] + (gUnk_08116748[mapIndex][1] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 4];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][2] + (gUnk_08116748[mapIndex][3] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 5];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][4] + (gUnk_08116748[mapIndex][5] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 6];
+        gBgTilemapBufs[1][gUnk_08116748[mapIndex][6] + (gUnk_08116748[mapIndex][7] * 0x20)] = gBgTilemapBufs[1][((gUnk_08116880[mapIndex] + 0x1C) * 0x20) + 7];
     }
 }
 
 // 3B074
-void sub_0803B074(void)
+void WorldMapScreenDrawUnlockedWorlds(void)
 {
-    u8 var_r4;
+    u8 mapIndex;
 
-    for (var_r4 = 0; var_r4 < 7; var_r4++)
+    for (mapIndex = 0; mapIndex < 7; mapIndex++)
     {
-        if (sub_0803AC18(var_r4) != 0)
+        if (WorldMapScreenIsValidPath(mapIndex) != 0)
         {
-            sub_0803AD94(var_r4);
-            sub_0803AF38(var_r4);
+            WorldMapScreenDrawWorld(mapIndex);
+            WorldMapScreenDrawPath(mapIndex);
         }
     }
 }
 
 // 3B0A0
-void sub_0803B0A0(void)
+void WorldMapScreenCheckNewWorldUnlocked(void)
 {
-    // Called on transition to world map (once)
+    // Called on transition to world map (once), checks/sets new world unlock callback
     u8 nbrExStagesAllStones;
     u8 nbrActionStagesAllStones;
     u8 world;
@@ -870,170 +871,173 @@ void sub_0803B0A0(void)
 
         if (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
-            gUnk_03004C08.unk0_0 = 4;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 4;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
         else if (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
-            gUnk_03004C08.unk0_0 = 5;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 5;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
         else if (((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
-            gUnk_03004C08.unk0_0 = 6;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 6;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
-        }
-        else
-        {
-            // gCallbackQueue.current[1] = sub_0803BF84;
         }
     }
     else
     {
         if ((gUnk_03004670->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
-            gUnk_03004C08.unk0_0 = 0;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 0;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
         else if ((gUnk_03004670->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
-            gUnk_03004C08.unk0_0 = 1;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 1;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
         else if ((gUnk_03004670->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
-            gUnk_03004C08.unk0_0 = 2;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 2;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
         else if ((gUnk_03004670->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
-            gUnk_03004C08.unk0_0 = 3;
-            gUnk_03004C08.unk2 = 0;
+            gWorldMapInfo.beatenIndex = 3;
+            gWorldMapInfo.unlockTimer = 0;
             gUnk_03004670->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
-            gCallbackQueue.current[1] = sub_0803B378;
+            gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else
-        {
-            // gCallbackQueue.current[1] = sub_0803BF84;
-        }
     }
-    gCallbackQueue.current[1] = sub_0803BF84;
+
+    gCallbackQueue.current[1] = WorldMapScreenHandler;
 }
 
 // 3B378
-void sub_0803B378(void)
+void WorldMapScreenUnlockNewWorld(void)
 {
+    // Handle animation for unlocking new world on World Map
     s32 var_r7;
     s32 temp_r6;
 
-    if (gUnk_03004C08.unk0_0 < 4)
+    if (gWorldMapInfo.beatenIndex < 4)
     {
         var_r7 = 0;
-        temp_r6 = gUnk_08116880[gUnk_03004C08.unk0_0];
+        temp_r6 = gUnk_08116880[gWorldMapInfo.beatenIndex];
     }
     else
     {
         var_r7 = 4;
-        temp_r6 = gUnk_08116880[gUnk_03004C08.unk0_0];
+        temp_r6 = gUnk_08116880[gWorldMapInfo.beatenIndex];
     }
 
-    switch ((gUnk_03004C08.unk2 / 30) - 1)
+    switch (gWorldMapInfo.unlockTimer / 30)
     {
-        case 0:
-            if ((gUnk_03004C08.unk2 % 30) == 0)
-            {
-                m4aSongNumStart(0x89);
-            }
-            gBgTilemapBufs[1][gUnk_08116748[gUnk_03004C08.unk0_0][0] + (gUnk_08116748[gUnk_03004C08.unk0_0][1] << 5)] = gBgTilemapBufs[1][0 + var_r7 + ((temp_r6 + 0x1C) << 5)];
-            break;
-
+        // After 30 frames, draw a dot
         case 1:
-            if ((gUnk_03004C08.unk2 % 30) == 0)
+            if ((gWorldMapInfo.unlockTimer % 30) == 0)
             {
-                m4aSongNumStart(0x89);
+                m4aSongNumStart(SE_WORLD_UNLOCKED_DOT);
             }
-            gBgTilemapBufs[1][gUnk_08116748[gUnk_03004C08.unk0_0][2] + (gUnk_08116748[gUnk_03004C08.unk0_0][3] << 5)] = gBgTilemapBufs[1][1 + var_r7 + ((temp_r6 + 0x1C) << 5)];
+            gBgTilemapBufs[1][gUnk_08116748[gWorldMapInfo.beatenIndex][0] + (gUnk_08116748[gWorldMapInfo.beatenIndex][1] << 5)] = gBgTilemapBufs[1][0 + var_r7 + ((temp_r6 + 0x1C) << 5)];
             break;
 
+        // After 60 frames, draw next dot
         case 2:
-            if (gUnk_03004C08.unk0_0 == 6)
+            if ((gWorldMapInfo.unlockTimer % 30) == 0)
             {
-                gUnk_03004C08.unk2 = 0x95;
+                m4aSongNumStart(SE_WORLD_UNLOCKED_DOT);
+            }
+            gBgTilemapBufs[1][gUnk_08116748[gWorldMapInfo.beatenIndex][2] + (gUnk_08116748[gWorldMapInfo.beatenIndex][3] << 5)] = gBgTilemapBufs[1][1 + var_r7 + ((temp_r6 + 0x1C) << 5)];
+            break;
+
+        // After 90 frames, draw next dot
+        case 3:
+            if (gWorldMapInfo.beatenIndex == 6)
+            {
+                // Only draw two dots if unlocking EX-3
+                gWorldMapInfo.unlockTimer = 150 - 1;
             }
             else
             {
-                if ((gUnk_03004C08.unk2 % 30) == 0)
+                if ((gWorldMapInfo.unlockTimer % 30) == 0)
                 {
-                    m4aSongNumStart(0x89);
+                    m4aSongNumStart(SE_WORLD_UNLOCKED_DOT);
                 }
-                gBgTilemapBufs[1][gUnk_08116748[gUnk_03004C08.unk0_0][4] + (gUnk_08116748[gUnk_03004C08.unk0_0][5] << 5)] = gBgTilemapBufs[1][2 + var_r7 + ((temp_r6 + 0x1C) << 5)];
+                gBgTilemapBufs[1][gUnk_08116748[gWorldMapInfo.beatenIndex][4] + (gUnk_08116748[gWorldMapInfo.beatenIndex][5] << 5)] = gBgTilemapBufs[1][2 + var_r7 + ((temp_r6 + 0x1C) << 5)];
             }
             break;
 
-        case 3:
-            if ((gUnk_03004C08.unk0_0 != 4) && (gUnk_03004C08.unk0_0 != 6))
-            {
-                if ((gUnk_03004C08.unk2 % 30) == 0)
-                {
-                    m4aSongNumStart(0x89);
-                }
-                gBgTilemapBufs[1][gUnk_08116748[gUnk_03004C08.unk0_0][6] + (gUnk_08116748[gUnk_03004C08.unk0_0][7] << 5)] = gBgTilemapBufs[1][3 + var_r7 + ((temp_r6 + 0x1C) << 5)];
-            }
-            break;
-
+        // After 120 frames, draw next dot
         case 4:
-            if ((gUnk_03004C08.unk2 % 30) == 0)
+            if ((gWorldMapInfo.beatenIndex != 4) && (gWorldMapInfo.beatenIndex != 6))
             {
-                m4aSongNumStart(0x8A);
+                if ((gWorldMapInfo.unlockTimer % 30) == 0)
+                {
+                    m4aSongNumStart(SE_WORLD_UNLOCKED_DOT);
+                }
+                gBgTilemapBufs[1][gUnk_08116748[gWorldMapInfo.beatenIndex][6] + (gUnk_08116748[gWorldMapInfo.beatenIndex][7] << 5)] = gBgTilemapBufs[1][3 + var_r7 + ((temp_r6 + 0x1C) << 5)];
+            }
+            break;
+
+        // After 150 frames, play world unlocked sound effect and flash new world
+        case 5:
+            if ((gWorldMapInfo.unlockTimer % 30) == 0)
+            {
+                m4aSongNumStart(SE_WORLD_UNLOCKED);
             }
             /* fallthrough */
-        case 5:
+        // After 180 and 210 frames, flash new world
         case 6:
-            if (gUnk_03004C08.unk0_0 < 4)
+        case 7:
+            if (gWorldMapInfo.beatenIndex < 4)
             {
                 if ((gUnk_03004C20.sceneFrameCounter % 4) == 0)
                 {
                     DmaCopy16(3, &gUnk_08116780[thunk_GetRandomValue() % 8], BG_PLTT + 0x160, 0x20);
-                    sub_0803AE88(gUnk_03004C08.unk0_0, 0xB);
+                    WorldMapScreenSetPalette(gWorldMapInfo.beatenIndex, 0xB); // 0x160 / 0x20 = 0xB
                 }
             }
             else
             {
-                sub_0803AD94(gUnk_03004C08.unk0_0);
+                WorldMapScreenDrawWorld(gWorldMapInfo.beatenIndex);
             }
             break;
 
-        case 7:
-            sub_0803AD94(gUnk_03004C08.unk0_0);
-            gCallbackQueue.current[1] = sub_0803B0A0;
+        // After 240 frames, finished
+        case 8:
+            WorldMapScreenDrawWorld(gWorldMapInfo.beatenIndex);
+            gCallbackQueue.current[1] = WorldMapScreenCheckNewWorldUnlocked;
             break;
     }
 
-    gUnk_03004C08.unk2 += 1;
+    gWorldMapInfo.unlockTimer += 1;
 }
 
 // 3B600
-void sub_0803B600(void)
+void WorldMapScreenInit(void)
 {
+    // Init World Map
     s32 i;
     s32 j;
     s32 world;
@@ -1041,13 +1045,13 @@ void sub_0803B600(void)
 
     if (gUnk_03004C20.world == 6)
     {
-        gUnk_03004C08.unk0_4 = (gUnk_03004C20.world - 1) + (gUnk_03004C20.level - 1);
+        gWorldMapInfo.currentIndex = (gUnk_03004C20.world - 1) + (gUnk_03004C20.level - 1);
     }
     else
     {
-        gUnk_03004C08.unk0_4 = gUnk_03004C20.world - 1;
+        gWorldMapInfo.currentIndex = gUnk_03004C20.world - 1;
     }
-    gUnk_03004C08.unk1 = 0;
+    gWorldMapInfo.nextIndexOffset = 0;
 
     world = gUnk_03004C20.world;
     level = gUnk_03004C20.level;
@@ -1166,11 +1170,11 @@ void sub_0803B600(void)
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR;
     REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG1 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
 
-    REG_WIN0H = gUnk_08116728[gUnk_03004C08.unk0_4][0];
-    REG_WIN0V = gUnk_08116728[gUnk_03004C08.unk0_4][1];
+    REG_WIN0H = gUnk_08116728[gWorldMapInfo.currentIndex][0];
+    REG_WIN0V = gUnk_08116728[gWorldMapInfo.currentIndex][1];
 
-    gEntityInfo[0].xPosBg2 = gUnk_08116708[gUnk_03004C08.unk0_4][0];
-    gEntityInfo[0].yPosBg2 = gUnk_08116708[gUnk_03004C08.unk0_4][1];
+    gEntityInfo[0].xPosBg2 = gUnk_08116708[gWorldMapInfo.currentIndex][0];
+    gEntityInfo[0].yPosBg2 = gUnk_08116708[gWorldMapInfo.currentIndex][1];
 
     gBgInfo[3].vOfs = 0;
     gBgInfo[3].hOfs = 0;
@@ -1197,7 +1201,7 @@ void sub_0803B600(void)
         gUnk_03004670->bestEx3TimeCentiseconds = 99;
     }
 
-    if (gUnk_03004C08.unk0_4 == 5)
+    if (gWorldMapInfo.currentIndex == 5)
     {
         // Draw "BEST/"
         gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
@@ -1228,7 +1232,7 @@ void sub_0803B600(void)
         gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
         gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
-    else if (gUnk_03004C08.unk0_4 == 6)
+    else if (gWorldMapInfo.currentIndex == 6)
     {
         // Erase "BEST/" tiles
         gBgTilemapBufs[0][0x4C] = (10 << 12);
@@ -1259,7 +1263,7 @@ void sub_0803B600(void)
         gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
         gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
-    else if (gUnk_03004C08.unk0_4 == 7)
+    else if (gWorldMapInfo.currentIndex == 7)
     {
         // Draw "BEST/"
         gBgTilemapBufs[0][0x4C] = (10 << 12) | 0xC;
@@ -1304,8 +1308,8 @@ void sub_0803B600(void)
     SetEntityAnimationInfoState(0, 0);
     UpdateEntityAnimationInfoEntries();
     gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
-    gCallbackQueue.current[1] = sub_0803B0A0;
-    sub_0803B074();
+    gCallbackQueue.current[1] = WorldMapScreenCheckNewWorldUnlocked;
+    WorldMapScreenDrawUnlockedWorlds();
     gUnk_03005284->unk1 = gUnk_03004C20.world;
     WriteSaveFile(0, 7);
     WriteSaveFile(1, 0);
@@ -1317,8 +1321,9 @@ void sub_0803B600(void)
 }
 
 // 3BF84
-void sub_0803BF84(void)
+void WorldMapScreenHandler(void)
 {
+    // Update World Map
     struct Unk_0800BEF0 sp0;
     struct Unk_0800BEF0_2 spC;
     u8 var_r4;
@@ -1335,9 +1340,9 @@ void sub_0803BF84(void)
 
     UpdateEntityAnimationInfoEntries();
 
-    if (gUnk_03004C08.unk1 == 0)
+    if (gWorldMapInfo.nextIndexOffset == 0)
     {
-        if (gUnk_03004C08.unk0_4 > 4)
+        if (gWorldMapInfo.currentIndex > 4)
         {
             if (gBgInfo[0].vOfs != 0)
             {
@@ -1352,26 +1357,26 @@ void sub_0803BF84(void)
         if (gNewKeys & (START_BUTTON | A_BUTTON))
         {
             gBlendValue = 0;
-            gUnk_03004C20.world = gUnk_03004C08.unk0_4 + 1;
+            gUnk_03004C20.world = gWorldMapInfo.currentIndex + 1;
             gUnk_03004C20.level = 0;
             gUnk_030034B0.unk6_4 = 1;
             m4aSongNumStart(SE_CURSOR_CONFIRM);
             gUnk_03005284->unk1E = gUnk_03005284->unk0 = gUnk_03005220.lives;
 
-            if (gUnk_03004C08.unk0_4 > 4)
+            if (gWorldMapInfo.currentIndex >= 5)
             {
                 gUnk_03004C20.room = 0;
-                if (gUnk_03004C08.unk0_4 == 5)
+                if (gWorldMapInfo.currentIndex == 5)
                 {
                     gUnk_03004C20.world = 6;
                     gUnk_03004C20.level = 1;
                 }
-                else if (gUnk_03004C08.unk0_4 == 6)
+                else if (gWorldMapInfo.currentIndex == 6)
                 {
                     gUnk_03004C20.world = 6;
                     gUnk_03004C20.level = 2;
                 }
-                else if (gUnk_03004C08.unk0_4 == 7)
+                else if (gWorldMapInfo.currentIndex == 7)
                 {
                     gUnk_03004C20.world = 6;
                     gUnk_03004C20.level = 3;
@@ -1387,19 +1392,20 @@ void sub_0803BF84(void)
             return;
         }
 
-        switch (gUnk_03004C08.unk0_4)
+        switch (gWorldMapInfo.currentIndex)
         {
+            // World 1
             case 0:
-                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
                 {
-                    gUnk_03004C08.unk1 = 1;
+                    gWorldMapInfo.nextIndexOffset = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
 
-                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(6) != 0))
+                if ((gHeldKeys & DPAD_UP) && (WorldMapScreenIsValidPath(6) != 0))
                 {
-                    gUnk_03004C08.unk1 = 7;
+                    gWorldMapInfo.nextIndexOffset = 7;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x25);
 
@@ -1434,58 +1440,62 @@ void sub_0803BF84(void)
                 }
                 break;
 
+            // World 2
             case 1:
-                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_UP) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
                 {
-                    gUnk_03004C08.unk1 = 1;
+                    gWorldMapInfo.nextIndexOffset = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x25);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
-                    gUnk_03004C08.unk1 = 0xFF;
+                    gWorldMapInfo.nextIndexOffset = -1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
+            // World 3
             case 2:
-                if ((gHeldKeys & DPAD_RIGHT) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_RIGHT) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
                 {
-                    gUnk_03004C08.unk1 = 1;
+                    gWorldMapInfo.nextIndexOffset = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_DOWN)
                 {
-                    gUnk_03004C08.unk1 = 0xFF;
+                    gWorldMapInfo.nextIndexOffset = -1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
 
+            // World 4
             case 3:
-                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & (DPAD_DOWN | DPAD_RIGHT)) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
                 {
-                    gUnk_03004C08.unk1 = 1;
+                    gWorldMapInfo.nextIndexOffset = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
-                    gUnk_03004C08.unk1 = 0xFF;
+                    gWorldMapInfo.nextIndexOffset = -1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
+            // World 5
             case 4:
-                if ((gHeldKeys & DPAD_UP) && (sub_0803AC18(gUnk_03004C08.unk0_4 + 1) != 0))
+                if ((gHeldKeys & DPAD_UP) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex + 1) != 0))
                 {
-                    gUnk_03004C08.unk1 = 2;
+                    gWorldMapInfo.nextIndexOffset = 2;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x25);
 
@@ -1519,9 +1529,9 @@ void sub_0803BF84(void)
                     gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
-                if ((gHeldKeys & DPAD_DOWN) && (sub_0803AC18(gUnk_03004C08.unk0_4) != 0))
+                if ((gHeldKeys & DPAD_DOWN) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
                 {
-                    gUnk_03004C08.unk1 = 1;
+                    gWorldMapInfo.nextIndexOffset = 1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x24);
 
@@ -1557,43 +1567,46 @@ void sub_0803BF84(void)
 
                 if (gHeldKeys & DPAD_LEFT)
                 {
-                    gUnk_03004C08.unk1 = 0xFF;
+                    gWorldMapInfo.nextIndexOffset = -1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 1);
                 }
                 break;
 
+            // EX-1
             case 5:
                 if (gHeldKeys & (DPAD_UP | DPAD_RIGHT))
                 {
-                    gUnk_03004C08.unk1 = 0xFF;
+                    gWorldMapInfo.nextIndexOffset = -1;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x25);
                 }
                 break;
 
+            // EX-2
             case 6:
                 if (gHeldKeys & DPAD_DOWN)
                 {
-                    gUnk_03004C08.unk1 = 0xFE;
+                    gWorldMapInfo.nextIndexOffset = -2;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
 
+            // EX-3
             case 7:
                 if (gHeldKeys & DPAD_DOWN)
                 {
-                    gUnk_03004C08.unk1 = 0xF9;
+                    gWorldMapInfo.nextIndexOffset = -7;
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     SetEntityAnimationInfoState(0, 0x24);
                 }
                 break;
         }
 
-        if (gUnk_03004C08.unk1 != 0)
+        if (gWorldMapInfo.nextIndexOffset != 0)
         {
-            if (gUnk_08116708[gUnk_03004C08.unk0_4][0] >= gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][0])
+            if (gUnk_08116708[gWorldMapInfo.currentIndex][0] >= gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][0])
             {
                 gEntityInfo[0].unkC_2 = 1;
             }
@@ -1608,14 +1621,14 @@ void sub_0803BF84(void)
     {
         sp0.unk0 = gEntityInfo[0].xPosBg2;
         sp0.unk2 = gEntityInfo[0].yPosBg2;
-        sp0.unk4 = gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][0];
-        sp0.unk6 = gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][1];
+        sp0.unk4 = gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][0];
+        sp0.unk6 = gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][1];
         sp0.unk8 = sp0.unk9 = 2;
         spC = sub_0800BEF0(sp0);
         gEntityInfo[0].xPosBg2 = spC.unk0;
         gEntityInfo[0].yPosBg2 = spC.unk2;
 
-        if ((gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1) > 4)
+        if ((gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset) > 4)
         {
             if (gBgInfo[0].vOfs != 0)
             {
@@ -1627,10 +1640,10 @@ void sub_0803BF84(void)
             gBgInfo[0].vOfs += 0x80;
         }
 
-        if ((gEntityInfo[0].xPosBg2 == gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][0]) && (gEntityInfo[0].yPosBg2 == gUnk_08116708[gUnk_03004C08.unk0_4 + gUnk_03004C08.unk1][1]))
+        if ((gEntityInfo[0].xPosBg2 == gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][0]) && (gEntityInfo[0].yPosBg2 == gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][1]))
         {
-            gUnk_03004C08.unk0_4 += gUnk_03004C08.unk1;
-            gUnk_03004C08.unk1 = 0;
+            gWorldMapInfo.currentIndex += gWorldMapInfo.nextIndexOffset;
+            gWorldMapInfo.nextIndexOffset = 0;
             if (gEntityAnimationInfo[0].state == 1)
             {
                 SetEntityAnimationInfoState(0, 0);
@@ -1799,9 +1812,10 @@ void sub_0803C808(void)
                 gEntityInfo[var_r4].priority = 0;
             }
 
-            REG_BG0CNT = BGCNT_PRIORITY(3) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
-            REG_BG1CNT = BGCNT_PRIORITY(1) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
-            REG_BG2CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E48;
+            // TODO: BGCNT_TXT or BGCNT_AFF size?
+            REG_BG0CNT = 0x0000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC;
+            REG_BG1CNT = 0x0000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(1) | BGCNT_SCREENBASE(29) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC;
+            REG_BG2CNT = 0x8000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_PRIORITY(0) | BGCNT_SCREENBASE(30) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC;
 
             sub_0803F68C(0, 0, 0);
             sub_0803F68C(1, 0, 0);
@@ -1815,9 +1829,10 @@ void sub_0803C808(void)
             gOamAffineMatrixNum = 0xF;
             gUnk_030034A8 = sub_08040F1C;
 
-            REG_BG0CNT = BGCNT_PRIORITY(3) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | 0x1C40;
-            REG_BG1CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | 0x1D44;
-            REG_BG2CNT = BGCNT_PRIORITY(0) | gUnk_08051BD4[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | 0x9E49;
+            // TODO: BGCNT_TXT or BGCNT_AFF size?
+            REG_BG0CNT = 0x0000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC;
+            REG_BG1CNT = 0x0000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(0) | BGCNT_SCREENBASE(29) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC;
+            REG_BG2CNT = 0x8000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_PRIORITY(1) | BGCNT_SCREENBASE(30) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC;
 
             gUnk_03005440.unkC = 0x30;
             gUnk_03005440.unkE = 0;

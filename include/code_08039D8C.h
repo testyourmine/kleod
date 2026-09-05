@@ -11,15 +11,16 @@ void PauseMenuScreenHandler(void);
 void ButtonConfigurationScreenInit(void);
 void ButtonConfigurationScreenHandler(void);
 
-u8 sub_0803AC18(u8 arg0);
-void sub_0803AD94(u8 arg0);
-void sub_0803AE88(u8 arg0, u8 arg1);
-void sub_0803AF38(u8 arg0);
-void sub_0803B074(void);
-void sub_0803B0A0(void);
-void sub_0803B378(void);
-void sub_0803B600(void);
-void sub_0803BF84(void);
+u8 WorldMapScreenIsValidPath(u8 mapIndex);
+void WorldMapScreenDrawWorld(u8 mapIndex);
+void WorldMapScreenSetPalette(u8 mapIndex, u8 palNbr);
+void WorldMapScreenDrawPath(u8 mapIndex);
+void WorldMapScreenDrawUnlockedWorlds(void);
+void WorldMapScreenCheckNewWorldUnlocked(void);
+void WorldMapScreenUnlockNewWorld(void);
+void WorldMapScreenInit(void);
+void WorldMapScreenHandler(void);
+
 void sub_0803C808(void);
 void sub_0803CE14(u8 arg0);
 void sub_0803CF08(u8 arg0);

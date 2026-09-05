@@ -1622,7 +1622,7 @@ void sub_0800A804(void)
                     case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
                     case ENTITY_ID_FOUNTAIN_FOOTHOLD:
                     case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
-                    case 0x2A:
+                    case ENTITY_ID_GRATED_PLATFORM:
                     case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
                         sub_0801BD48(var_r4);
                         break;

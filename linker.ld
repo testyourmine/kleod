@@ -139,7 +139,7 @@ SECTIONS {
         . = 0x00004800; gOamBuffer = .;
         . = 0x00004C00; gUnk_03004C00 = .;
         . = 0x00004C04; gUnk_03004C04 = .;
-        . = 0x00004C08; gUnk_03004C08 = .;
+        . = 0x00004C08; gWorldMapInfo = .;
         . = 0x00004C0C; gRngCount = .;
         . = 0x00004C10; gUnk_03004C10 = .;
         . = 0x00004C20; gUnk_03004C20 = .;

@@ -17,7 +17,7 @@
 #include "constants/songs.h"
 #include "structs/variables.h"
 
-extern u8 gUnk_08051BD4[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
+extern u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 
 extern u8 gUnk_080627C8[0x80];
 
@@ -941,7 +941,7 @@ void sub_080453F0(void)
         gUnk_030034B0.unk0_0 = 0;
     }
 
-    REG_BG2CNT = gUnk_08051BD4[(gUnk_03004C20.world - 1)][gUnk_03004C20.level][2] | 0x5E49;
+    REG_BG2CNT = gVisionBgColorMode[(gUnk_03004C20.world - 1)][gUnk_03004C20.level][2] | 0x5E49;
     gBgInfo[2].hOfs = 0;
     gBgInfo[2].vOfs = 0;
     
