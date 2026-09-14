@@ -3589,7 +3589,7 @@ void sub_0803F9EC(u8 arg0)
     if ((gEntityInfo[0].yPosBg2 > 0x147) && (gUnk_03005220.hearts != 0))
     {
         gUnk_03005220.hearts = 1;
-        sub_08014624(1);
+        ReceiveDamage(1);
     }
     if (gEntityInfo[arg0].unkF == 14)
     {
@@ -4364,7 +4364,7 @@ void sub_08040F1C(u8 arg0)
     if ((gEntityInfo[0].yPosBg2 > 0x14F) && (gUnk_03005220.hearts != 0))
     {
         gUnk_03005220.hearts = 1;
-        sub_08014624(1);
+        ReceiveDamage(1);
     }
     sub_08040D68();
 

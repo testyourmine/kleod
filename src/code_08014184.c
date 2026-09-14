@@ -280,7 +280,7 @@ void sub_080145A8(s32 arg0)
 }
 
 // 14624
-void sub_08014624(s32 arg0)
+void ReceiveDamage(s32 arg0)
 {
     if ((gUnk_03005220.unk46 | gUnk_03003410.unkB | gUnk_030034E4) != 0)
     {
@@ -6571,7 +6571,7 @@ void sub_0801DFC4(u8 arg0)
                             {
                                 continue;
                             }
-                            sub_08014624(1);
+                            ReceiveDamage(1);
                         }
                         else
                         {
@@ -6781,7 +6781,7 @@ void sub_0801E3FC(void)
                         case ENTITY_ID_KLONOA:
                             if ((gUnk_03005220.klonoaInvincibilityTimer == 0) || (gUnk_03005220.unk5B == 0))
                             {
-                                sub_08014624(1);
+                                ReceiveDamage(1);
                                 break;
                             }
                             continue;
@@ -7212,7 +7212,7 @@ void sub_0801F128(u8 arg0)
             SetEntityAnimationInfoState(arg0, 0);
             break;
 
-        case 14:
+        case ENTITY_ID_FLAME_WAVE:
             if ((gUnk_03004C20.sceneFrameCounter % 8) == 0)
             {
                 if (gEntityInfo[arg0].unkC_2 == 0)
@@ -7229,7 +7229,7 @@ void sub_0801F128(u8 arg0)
             {
                 if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[5 - gEntityAnimationInfo[arg0 - gUnk_0300363C].frame][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.klonoaInvincibilityTimer == 0) && (gUnk_03005400.unkC != 0))
                 {
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
 
@@ -7272,7 +7272,7 @@ void sub_0801F128(u8 arg0)
             {
                 if (((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][4]) < gEntityInfo[0].yPosBg2) && ((gEntityInfo[arg0].yPosBg2 + gUnk_080E2AB4[gEntityAnimationInfo[arg0 - gUnk_0300363C].frame + 1][5]) > (gEntityInfo[0].yPosBg2 - 0x18)) && (gUnk_03005220.klonoaInvincibilityTimer == 0) && (gUnk_03005400.unkC != 0))
                 {
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
 
@@ -9611,7 +9611,7 @@ void sub_08022CA0(u8 arg0)
                 {
                     if (((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[arg0].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[arg0].yPosBg2 - 0x60)) && (gUnk_03005220.klonoaInvincibilityTimer == 0))
                     {
-                        sub_08014624(1);
+                        ReceiveDamage(1);
                     }
                 }
             }

@@ -1921,7 +1921,7 @@ void sub_0800AC34(void)
                         sub_08023BC0(var_r6);
                         break;
 
-                    case 0x22:
+                    case ENTITY_ID_22:
                         gUnk_030034A8(var_r6);
                         break;
 

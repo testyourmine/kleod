@@ -16,7 +16,7 @@ struct Unk_08014184 sub_08014230(u16 arg1, u16 arg2, u8 arg3);
 void sub_08014318(void);
 void sub_080144C4(void);
 void sub_080145A8(s32 arg0);
-void sub_08014624(s32 arg0);
+void ReceiveDamage(s32 arg0);
 void sub_08014760(u8 arg0);
 void sub_08016EEC(u8 arg0);
 void sub_0801B044(u8 arg0);

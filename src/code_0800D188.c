@@ -328,7 +328,7 @@ void sub_0800D188(void)
             if ((gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 8)) && (gUnk_030034E4 == 0))
             {
                 gUnk_03005220.hearts = 1;
-                sub_08014624(1);
+                ReceiveDamage(1);
             }
 
             if (gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 0x10))
@@ -511,7 +511,7 @@ void sub_0800D188(void)
                 if ((gEntityInfo[0].xPosBg2 < (gBgInfo[2].hOfs + 0x10)) && (gUnk_030034E4 == 0))
                 {
                     gUnk_03005220.hearts = 1;
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
 
@@ -600,12 +600,12 @@ void sub_0800D188(void)
             {
                 if (gUnk_03005220.unk5B == 0)
                 {
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
             else
             {
-                sub_08014624(1);
+                ReceiveDamage(1);
             }
         }
         else if (sp20 == gUnk_03004654->unk19)
@@ -613,7 +613,7 @@ void sub_0800D188(void)
             if ((gUnk_03005220.klonoaInvincibilityTimer == 0) || (gUnk_03005220.unk5B == 0))
             {
                 gUnk_03005220.hearts = 1;
-                sub_08014624(1);
+                ReceiveDamage(1);
             }
         }
         else if ((gUnk_03004654->unk1 <= sp20) && (sp20 <= gUnk_03004654->unk14))
@@ -777,7 +777,7 @@ block_236:
                                 {
                                     if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 - 8 + var_r7)) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC - var_r7)))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -1172,7 +1172,7 @@ block_236:
                                 }
                                 else
                                 {
-                                    sub_08014624(0);
+                                    ReceiveDamage(0);
 block_460:
                                     sub_0801E664(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2 + 4, 0xB, 0);
                                 }
@@ -1215,7 +1215,7 @@ block_460:
                                 }
                                 else
                                 {
-                                    sub_08014624(0);
+                                    ReceiveDamage(0);
 block_474:
                                     sub_0801E664(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2 + 4, 0xB, 0);
                                 }
@@ -1322,13 +1322,13 @@ block_474:
                                 }
                                 else
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
                         break;
 
-                    case 0x16:
+                    case ENTITY_ID_BUBBLE_MOO:
                         if (gUnk_03005400.unkC == 0)
                         {
                             break;
@@ -1362,7 +1362,7 @@ block_474:
                                 {
                                     if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                     SetEntityAnimationInfoState(var_sb, 1);
                                     gEntityInfo[var_sb].unkF = 0;
@@ -1404,7 +1404,7 @@ block_474:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 0xA) - 0x2C))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -1437,7 +1437,7 @@ block_474:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 0xC) - 0x28))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -1451,13 +1451,13 @@ block_474:
                             {
                                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x18)) && (((gEntityInfo[0].xPosBg2 - 0xC) + 0x18) > ((gEntityInfo[var_sb].xPosBg2 + 0x18) - 0x30)) && ((u32) gEntityInfo[0].yPosBg2 <= 0x11C) && ((u32) gEntityInfo[0].yPosBg2 > 0x67))
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
                         break;
 
-                    case 0x1E:
+                    case ENTITY_ID_BOSS:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x1E)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x1E)))
@@ -1466,7 +1466,7 @@ block_474:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x1E))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -1482,7 +1482,7 @@ block_474:
                                 {
                                     if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 - 8)) && (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 8) - 0x30)))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -2137,7 +2137,7 @@ block_474:
                 else if (gUnk_030034E4 == 0)
                 {
                     gUnk_03005220.hearts = 1;
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
         }
@@ -2379,7 +2379,7 @@ block_869:
                             {
                                 if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 - 8 + var_r7)) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0xC - var_r7)))
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
@@ -2975,7 +2975,7 @@ block_1129:
                                 sp1C = gEntityInfo[0].yPosBg2 = gEntityInfo[var_sb].yPosBg2 + -0x16;
                                 if ((gUnk_03005220.klonoaInvincibilityTimer == 0) || (gUnk_03005220.unk5B == 0))
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
@@ -3024,7 +3024,7 @@ block_1129:
                                         }
                                         break;
                                     }
-                                    sub_08014624(0);
+                                    ReceiveDamage(0);
 block_1185:
                                     sub_0801E664(gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2 + 4, 0xB, 0);
                                 }
@@ -3084,7 +3084,7 @@ block_1185:
                         }
                         break;
 
-                    case 0x22:
+                    case ENTITY_ID_22:
                         if (gUnk_03005220.klonoaInvincibilityTimer != 0)
                         {
 
@@ -3135,7 +3135,7 @@ block_1185:
                                 }
                                 else
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
@@ -3172,7 +3172,7 @@ block_1185:
                                 }
                                 else
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
@@ -3213,7 +3213,7 @@ block_1185:
                                     {
                                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                                         {
-                                            sub_08014624(1);
+                                            ReceiveDamage(1);
                                         }
                                         SetEntityAnimationInfoState(var_sb, 1);
                                         gEntityInfo[var_sb].unkF = 0;
@@ -3256,7 +3256,7 @@ block_1185:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 0xA) - 0x2C))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -3289,7 +3289,7 @@ block_1185:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 0xC) - 0x28))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -3303,13 +3303,13 @@ block_1185:
                             {
                                 if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x18)) && (((gEntityInfo[0].xPosBg2 - 0xC) + 0x18) > ((gEntityInfo[var_sb].xPosBg2 + 0x18) - 0x30)) && ((u32) gEntityInfo[0].yPosBg2 <= 0x11C) && ((u32) gEntityInfo[0].yPosBg2 > 0x67))
                                 {
-                                    sub_08014624(1);
+                                    ReceiveDamage(1);
                                 }
                             }
                         }
                         break;
 
-                    case 0x1E:
+                    case ENTITY_ID_BOSS:
                         if (gUnk_03005220.klonoaInvincibilityTimer == 0)
                         {
                             if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0x1E)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0x1E)))
@@ -3318,7 +3318,7 @@ block_1185:
                                 {
                                     if (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x1E))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -3334,7 +3334,7 @@ block_1185:
                                 {
                                     if (((gEntityInfo[0].yPosBg2 - 0x18) < (gEntityInfo[var_sb].yPosBg2 - 8)) && (gEntityInfo[0].yPosBg2 > ((gEntityInfo[var_sb].yPosBg2 - 8) - 0x30)))
                                     {
-                                        sub_08014624(1);
+                                        ReceiveDamage(1);
                                     }
                                 }
                             }
@@ -3423,18 +3423,18 @@ block_1317:
                 {
                     if (gUnk_03005220.unk5B == 0)
                     {
-                        sub_08014624(1);
+                        ReceiveDamage(1);
                     }
                 }
                 else
                 {
-                    sub_08014624(1);
+                    ReceiveDamage(1);
                 }
             }
             else if ((gUnk_03004654->unk19 == sp20) && ((gUnk_03005220.klonoaInvincibilityTimer == 0) || (gUnk_03005220.unk5B == 0)))
             {
                 gUnk_03005220.hearts = 1;
-                sub_08014624(1);
+                ReceiveDamage(1);
             }
         }
         else

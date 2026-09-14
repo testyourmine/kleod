@@ -193,9 +193,14 @@ enum EntityId {
     /* 0x0A */ ENTITY_ID_LEAF_2, // leaf blown by gust
     /* 0x0B */ ENTITY_ID_MOO_BOARDER,
 
+    /* 0x0E */ ENTITY_ID_FLAME_WAVE = 0x0E, // from the 1st boss
+
+    /* 0x16 */ ENTITY_ID_BUBBLE_MOO = 0x16, // present on the 4th boss
     /* 0x17 */ ENTITY_ID_17, // giant eye that appears during Jillius' battle (includes mini eyes)
 
-    /* 0x22 */ ENTITY_ID_BOSS, // seems to be all bosses
+    /* 0x1E */ ENTITY_ID_BOSS = 0x1E, // seems to be all bosses and almost all hazards from them
+
+    /* 0x22 */ ENTITY_ID_22 = 0x22,
 
     /* 0x25 */ ENTITY_ID_MAGNET_BLOCK = 0x25, // green/white block that has hand that sticks to block
     /* 0x26 */ ENTITY_ID_MAGNET_BLOCK_HAND, // hand that comes out of sticky block
