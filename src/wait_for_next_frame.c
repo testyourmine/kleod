@@ -71,7 +71,7 @@ void CommonWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // TODO: should be static variables inside BossWaitForNextFrame
@@ -207,7 +207,7 @@ void BossWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // C45C
@@ -238,7 +238,7 @@ void VisionSelectWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // C564
@@ -285,7 +285,7 @@ void CutsceneWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // C7EC
@@ -319,7 +319,7 @@ void GameOverScreenWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // C900
@@ -350,7 +350,7 @@ void ClearedAllVisionsScreenWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }
 
 // CA0C
@@ -396,9 +396,9 @@ void sub_0800CA0C(u32 arg0)
     if (arg0 == 0)
     {
         gUnk_03005284->unk6 = 0;
-        gUnk_03005284->unk1 = gUnk_03004C20.world;
-        gUnk_03005284->unk2 = gUnk_03004C20.level;
-        gUnk_03005284->unk16 = 0;
+        gUnk_03005284->world = gUnk_03004C20.world;
+        gUnk_03005284->level = gUnk_03004C20.level;
+        gUnk_03005284->roomsRotationBits = 0;
         if (gUnk_03003410.unkA == 0)
         {
             WriteSaveFile(0, 1);
@@ -408,21 +408,21 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.dreamStones = 0;
         gUnk_03005220.hearts = 3;
         gUnk_03005220.keys = 0;
-        gUnk_03005220.unk14 = 0;
-        gUnk_03005220.unk3_6 = gUnk_03005220.unk3_5 = 0;
+        gUnk_03005220.keyDoorsUnlocked = 0;
+        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gUnk_03005220.moonDoorOpen = 0;
         if ((gUnk_03004C20.isHoverBoardLevel != 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
         {
-            gUnk_03005220.unk4 = gUnk_03005284->unk18;
+            gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
         }
         else
         {
-            gUnk_03005220.unk4 = 0;
+            gUnk_03005220.collected1Ups = 0;
         }
-        gUnk_03005220.unk8 = 0;
-        gUnk_03005220.unkC = 0;
-        gUnk_03005220.unk2_7 = 0;
-        gUnk_03005220.unk2E = 0;
-        gUnk_03005220.unk58 = 0;
+        gUnk_03005220.collectedDreamStones0 = 0;
+        gUnk_03005220.collectedDreamStones1 = 0;
+        gUnk_03005220.collectedHearts = 0;
+        gUnk_03005220.explodedBlocks = 0;
+        gUnk_03005220.pressedWaterSwitches = 0;
         gUnk_03005220.unk1_7 = 0;
         gUnk_03005220.unk60 = 0;
         gUnk_03005220.levelTimeCentiseconds = 0;
@@ -435,25 +435,25 @@ void sub_0800CA0C(u32 arg0)
 
     if (arg0 == 1)
     {
-        gUnk_03005220.lives = gUnk_03005284->unk0;
-        gUnk_03005220.hearts = gUnk_03005284->unk8_0;
-        gUnk_03005220.stars = gUnk_03005284->unk8_2;
-        gUnk_03005220.dreamStones = gUnk_03005284->unk8_5;
-        gUnk_03005220.keys = gUnk_03005284->unk9_4;
-        gUnk_03005220.unk4 = gUnk_03005284->unk18;
-        gUnk_03005220.unk2_7 = gUnk_03005284->unkA_7;
-        gUnk_03005220.unk3_5 = gUnk_03005284->unkB_5;
-        gUnk_03005220.unk3_6 = gUnk_03005284->unkB_6;
-        gUnk_03005220.unk8 = gUnk_03005284->unkC;
-        gUnk_03005220.unkC = gUnk_03005284->unk10;
-        gUnk_03005220.unk14 = gUnk_03005284->unk14;
-        gUnk_03005220.unk2E = gUnk_03005284->unk5;
-        gUnk_03005220.unk58 = gUnk_03005284->unk7;
+        gUnk_03005220.lives = gUnk_03005284->lives;
+        gUnk_03005220.hearts = gUnk_03005284->hearts;
+        gUnk_03005220.stars = gUnk_03005284->stars;
+        gUnk_03005220.dreamStones = gUnk_03005284->dreamStones;
+        gUnk_03005220.keys = gUnk_03005284->keys;
+        gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
+        gUnk_03005220.collectedHearts = gUnk_03005284->collectedHearts;
+        gUnk_03005220.moonDoorOpen = gUnk_03005284->moonDoorOpen;
+        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gUnk_03005284->pressedGrowingShrinkingBlockSwitch;
+        gUnk_03005220.collectedDreamStones0 = gUnk_03005284->collectedDreamStones0;
+        gUnk_03005220.collectedDreamStones1 = gUnk_03005284->collectedDreamStones1;
+        gUnk_03005220.keyDoorsUnlocked = gUnk_03005284->keyDoorsUnlocked;
+        gUnk_03005220.explodedBlocks = gUnk_03005284->explodedBlocks;
+        gUnk_03005220.pressedWaterSwitches = gUnk_03005284->pressedWaterSwitches;
         // FAKE
         do
         {
             gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
-            gUnk_03004C20.roomsRotationBits = gUnk_03005284->unk16;
+            gUnk_03004C20.roomsRotationBits = gUnk_03005284->roomsRotationBits;
             gUnk_03005220.unk60 = 0;
             gUnk_03005220.levelTimeCentiseconds = 0;
             gUnk_03005220.levelTimeSeconds = 0;
@@ -463,33 +463,33 @@ void sub_0800CA0C(u32 arg0)
     }
     else
     {
-        gUnk_03005284->unk0 = gUnk_03005220.lives;
-        gUnk_03005284->unk1 = gUnk_03004C20.world;
-        gUnk_03005284->unk2 = gUnk_03004C20.level;
-        gUnk_03005284->unk8_0 = gUnk_03005220.hearts;
-        gUnk_03005284->unk16 = gUnk_03004C20.roomsRotationBits;
-        gUnk_03005284->unk8_2 = gUnk_03005220.stars;
-        gUnk_03005284->unk9_4 = gUnk_03005220.keys;
-        gUnk_03005284->unk14 = gUnk_03005220.unk14;
-        gUnk_03005284->unkB_5 = gUnk_03005220.unk3_5;
-        gUnk_03005284->unkB_6 = gUnk_03005220.unk3_6;
-        gUnk_03005284->unk5 = gUnk_03005220.unk2E;
-        gUnk_03005284->unk7 = gUnk_03005220.unk58;
+        gUnk_03005284->lives = gUnk_03005220.lives;
+        gUnk_03005284->world = gUnk_03004C20.world;
+        gUnk_03005284->level = gUnk_03004C20.level;
+        gUnk_03005284->hearts = gUnk_03005220.hearts;
+        gUnk_03005284->roomsRotationBits = gUnk_03004C20.roomsRotationBits;
+        gUnk_03005284->stars = gUnk_03005220.stars;
+        gUnk_03005284->keys = gUnk_03005220.keys;
+        gUnk_03005284->keyDoorsUnlocked = gUnk_03005220.keyDoorsUnlocked;
+        gUnk_03005284->moonDoorOpen = gUnk_03005220.moonDoorOpen;
+        gUnk_03005284->pressedGrowingShrinkingBlockSwitch = gUnk_03005220.pressedGrowingShrinkingBlockSwitch;
+        gUnk_03005284->explodedBlocks = gUnk_03005220.explodedBlocks;
+        gUnk_03005284->pressedWaterSwitches = gUnk_03005220.pressedWaterSwitches;
         gUnk_03005284->unk9_7 = gUnk_03005220.unk1_7;
-        gUnk_03005284->unk18 = gUnk_03005220.unk4;
+        gUnk_03005284->collected1Ups = gUnk_03005220.collected1Ups;
         if (gUnk_03004C20.isHoverBoardLevel == 0)
         {
-            gUnk_03005284->unk8_5 = gUnk_03005220.dreamStones;
-            gUnk_03005284->unkC = gUnk_03005220.unk8;
-            gUnk_03005284->unk10 = gUnk_03005220.unkC;
-            gUnk_03005284->unkA_7 = gUnk_03005220.unk2_7;
+            gUnk_03005284->dreamStones = gUnk_03005220.dreamStones;
+            gUnk_03005284->collectedDreamStones0 = gUnk_03005220.collectedDreamStones0;
+            gUnk_03005284->collectedDreamStones1 = gUnk_03005220.collectedDreamStones1;
+            gUnk_03005284->collectedHearts = gUnk_03005220.collectedHearts;
         }
         else
         {
-            gUnk_03005284->unk8_5 = 0;
-            gUnk_03005284->unkC = 0;
-            gUnk_03005284->unk10 = 0;
-            gUnk_03005284->unkA_7 = 0;
+            gUnk_03005284->dreamStones = 0;
+            gUnk_03005284->collectedDreamStones0 = 0;
+            gUnk_03005284->collectedDreamStones1 = 0;
+            gUnk_03005284->collectedHearts = 0;
         }
     }
 
@@ -568,7 +568,7 @@ void sub_0800CA0C(u32 arg0)
         
     }
 
-    gUnk_030034E4 = 1;
+    gTransitioning = TRUE;
     if (gUnk_03004C20.level == 6)
     {
         gAthleticChallengeAutoScrollBaseVelocity.x = gUnk_080D89A8[gUnk_03004C20.world - 1][gUnk_03004C20.room - 1].unk0;
@@ -631,5 +631,5 @@ void TitleScreenWaitForNextFrame(void)
     gUnk_03004C20.globalFrameCounter += 1;
     gUnk_03004C20.sceneFrameCounter += 1;
     m4aSoundMain();
-    gUnk_03003420 = 1;
+    gFrameFinished = TRUE;
 }

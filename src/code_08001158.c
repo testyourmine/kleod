@@ -75,14 +75,14 @@ void sub_08001158(void)
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
-    gUnk_03004660 = 0;
+    gEnteredCannonGoal = 0;
 
     if (gUnk_03004C20.level == 0)
     {
         sp0 = 1;
         for (var_r4 = 0; var_r4 < 8; var_r4++)
         {
-            if (!(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG))
+            if (!(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG))
             {
                 sp0 = 0;
             }
@@ -194,10 +194,10 @@ void sub_08001158(void)
                 gCurrentRoomBg2Bounds.bottom = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].bottom;
 
                 temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
-                temp_r3 = (gUnk_03005284->unk16 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+                temp_r3 = (gUnk_03005284->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (temp_r4 != temp_r3)
                 {
-                    sub_0804517C(((u8)(temp_r3 + 4) - temp_r4) & 3);
+                    sub_0804517C((4 - temp_r4 + temp_r3) & 3);
                     temp_r2 = (gUnk_03004C20.room - 1) * 2;
                     temp_r1 = ((gUnk_03004C20.roomsRotationBits >> temp_r2) + 1) & 3;
                     gUnk_03004C20.roomsRotationBits = (gUnk_03004C20.roomsRotationBits & ~(3 << temp_r2)) | (temp_r1 << temp_r2);
@@ -209,17 +209,17 @@ void sub_08001158(void)
         else if (gUnk_03003410.unk9 == 1)
         {
             temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
-            temp_r3 = (gUnk_03005284->unk16 >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+            temp_r3 = (gUnk_03005284->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
             if (temp_r4 != temp_r3)
             {
-                sub_0804517C(((u8)(temp_r3 + 4) - temp_r4) & 3);
-                gUnk_03004C20.roomsRotationBits = gUnk_03005284->unk16;
+                sub_0804517C((4 - temp_r4 + temp_r3) & 3);
+                gUnk_03004C20.roomsRotationBits = gUnk_03005284->roomsRotationBits;
             }
         }
     }
     else
     {
-        gUnk_03005284->unk16 = 0;
+        gUnk_03005284->roomsRotationBits = 0;
         gUnk_03004C20.roomsRotationBits = 0;
     }
     sub_08002FD0();
@@ -595,7 +595,7 @@ void PuzzleStageScrollUpdate(void)
 
         if (gEntityInfo[0].xPosScreen > 0xE0)
         {
-            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            if ((gUnk_03005220.unk35 | gTransitioning) == 0)
             {
                 scrollFlags = SCROLL_RIGHT;
                 scrollOffset.x = 3;
@@ -603,7 +603,7 @@ void PuzzleStageScrollUpdate(void)
         }
         else if (gEntityInfo[0].xPosScreen < 0x10)
         {
-            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            if ((gUnk_03005220.unk35 | gTransitioning) == 0)
             {
                 scrollFlags = SCROLL_LEFT;
                 scrollOffset.x = -3;
@@ -612,7 +612,7 @@ void PuzzleStageScrollUpdate(void)
 
         if (gEntityInfo[0].yPosScreen < 0x20)
         {
-            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            if ((gUnk_03005220.unk35 | gTransitioning) == 0)
             {
                 scrollFlags &= SCROLL_VERTICAL;
                 scrollFlags |= SCROLL_UP;
@@ -625,7 +625,7 @@ void PuzzleStageScrollUpdate(void)
         }
         else if (gEntityInfo[0].yPosScreen > 0x90)
         {
-            if ((gUnk_03005220.unk35 | gUnk_030034E4) == 0)
+            if ((gUnk_03005220.unk35 | gTransitioning) == 0)
             {
                 scrollFlags &= SCROLL_VERTICAL;
                 scrollFlags |= SCROLL_DOWN;
@@ -782,7 +782,7 @@ void AthleticChallengeScrollUpdate(void)
     }
 
     gBgInfo[1].hOfs = gBgInfo[2].hOfs / 2;
-    if ((gUnk_03004C20.globalFrameCounter % 4) == 0 && (gUnk_03004660 == 0))
+    if ((gUnk_03004C20.globalFrameCounter % 4) == 0 && (gEnteredCannonGoal == 0))
     {
         if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)
         {
@@ -1194,7 +1194,7 @@ void sub_08002FD0(void)
             gSoundVolume = 0xFFFF;
             gUnk_03004C20.roomsRotationBits = 0;
             gUnk_03005284->unk6 = 0;
-            gUnk_03005284->unk18 = gUnk_03005220.unk4 = 0;
+            gUnk_03005284->collected1Ups = gUnk_03005220.collected1Ups = 0;
         }
         else if (gUnk_03004C20.room == 0xFF)
         {
@@ -1237,7 +1237,7 @@ void sub_08002FD0(void)
     }
     else
     {
-        gUnk_030034E4 = 1;
+        gTransitioning = TRUE;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = sub_080453F0;
         gCallbackQueue.next[2] = VisionSelectWaitForNextFrame;

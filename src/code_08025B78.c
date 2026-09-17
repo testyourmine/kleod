@@ -237,39 +237,39 @@ void DrawLevelTimer(void)
         // EX-1
 
         // If no best time, draw 99:59:99
-        if ((gUnk_03004670->bestEx1TimeMinutes | gUnk_03004670->bestEx1TimeSeconds | gUnk_03004670->bestEx1TimeCentiseconds) == 0)
+        if ((gFileProgressData->bestEx1TimeMinutes | gFileProgressData->bestEx1TimeSeconds | gFileProgressData->bestEx1TimeCentiseconds) == 0)
         {
-            gUnk_03004670->bestEx1TimeMinutes = gUnk_03004670->bestEx1TimeCentiseconds = 99;
-            gUnk_03004670->bestEx1TimeSeconds = 59;
+            gFileProgressData->bestEx1TimeMinutes = gFileProgressData->bestEx1TimeCentiseconds = 99;
+            gFileProgressData->bestEx1TimeSeconds = 59;
         }
 
         // Draw best time
-        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeMinutes / 10) + 0x312];
-        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeMinutes % 10) + 0x312];
-        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeSeconds / 10) + 0x312];
-        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeSeconds % 10) + 0x312];
-        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeCentiseconds / 10) + 0x312];
-        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->bestEx1TimeCentiseconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeMinutes / 10) + 0x312];
+        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeMinutes % 10) + 0x312];
+        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeSeconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeSeconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeCentiseconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gFileProgressData->bestEx1TimeCentiseconds % 10) + 0x312];
     }
     else
     {
         // EX-3
 
         // If no best time, draw 99:59:99
-        if ((gUnk_03004670->bestEx3TimeMinutes | gUnk_03004670->bestEx3TimeSeconds | gUnk_03004670->bestEx3TimeCentiseconds) == 0)
+        if ((gFileProgressData->bestEx3TimeMinutes | gFileProgressData->bestEx3TimeSeconds | gFileProgressData->bestEx3TimeCentiseconds) == 0)
         {
             // TODO: possible bug from copy/paste error
-            gUnk_03004670->bestEx1TimeMinutes = gUnk_03004670->bestEx1TimeCentiseconds = 99;
-            gUnk_03004670->bestEx1TimeSeconds = 59;
+            gFileProgressData->bestEx1TimeMinutes = gFileProgressData->bestEx1TimeCentiseconds = 99;
+            gFileProgressData->bestEx1TimeSeconds = 59;
         }
 
         // Draw best time
-        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeMinutes / 10) + 0x312];
-        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeMinutes % 10) + 0x312];
-        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeSeconds / 10) + 0x312];
-        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeSeconds % 10) + 0x312];
-        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeCentiseconds / 10) + 0x312];
-        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gUnk_03004670->bestEx3TimeCentiseconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x15] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeMinutes / 10) + 0x312];
+        gBgTilemapBufs[0][0x16] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeMinutes % 10) + 0x312];
+        gBgTilemapBufs[0][0x18] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeSeconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x19] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeSeconds % 10) + 0x312];
+        gBgTilemapBufs[0][0x1B] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeCentiseconds / 10) + 0x312];
+        gBgTilemapBufs[0][0x1C] = gBgTilemapBufs[0][(gFileProgressData->bestEx3TimeCentiseconds % 10) + 0x312];
     }
 
     // Draw current time
@@ -317,7 +317,7 @@ void DrawVisionStart(void)
     {
         // Vision number graphic done
         gEntityInfo[0xC].visible = 0;
-        if (gUnk_030034E4 == 0)
+        if (gTransitioning == FALSE)
         {
             // remove DrawVisionStart from callback queue
             removed = FALSE;
@@ -410,11 +410,11 @@ void DrawVisionEnd(void)
 
         if (gUnk_03004C20.world == 6)
         {
-            gUnk_03005284->unk4 = 1;
+            gUnk_03005284->cutsceneId = 1;
         }
         else
         {
-            gUnk_03005284->unk4 = (gUnk_03004C20.world * 3) + 1;
+            gUnk_03005284->cutsceneId = (gUnk_03004C20.world * 3) + 1;
         }
 
         gCallbackQueue.next[0] = InputHandler_Normal;
@@ -468,16 +468,16 @@ void DrawVisionEnd(void)
         gCallbackQueue.currentCount = 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     }
-    gUnk_03005284->unk0 = gUnk_03005220.lives;
+    gUnk_03005284->lives = gUnk_03005220.lives;
 
-    if ((gUnk_03005220.dreamStones > (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_DREAM_STONES_MASK)) || (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
+    if ((gUnk_03005220.dreamStones > (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_DREAM_STONES_MASK)) || (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] == 0))
     {
         // Required to match
         do {
-        gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.dreamStones;
+        gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] = gUnk_03005220.dreamStones;
         } while(0);
     }
-    gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= LEVEL_INFO_BEATEN_FLAG;
+    gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] |= LEVEL_INFO_BEATEN_FLAG;
 
     if (gUnk_03004C20.levelHasTimer == 1)
     {
@@ -487,19 +487,19 @@ void DrawVisionEnd(void)
         if (gUnk_03004C20.level == 1)
         {
             // Update best time in EX-1
-            if (gUnk_03005220.levelTimeMinutes < gUnk_03004670->bestEx1TimeMinutes)
+            if (gUnk_03005220.levelTimeMinutes < gFileProgressData->bestEx1TimeMinutes)
             {
                 i = 1;
             }
-            else if (gUnk_03005220.levelTimeMinutes == gUnk_03004670->bestEx1TimeMinutes)
+            else if (gUnk_03005220.levelTimeMinutes == gFileProgressData->bestEx1TimeMinutes)
             {
-                if (gUnk_03005220.levelTimeSeconds < gUnk_03004670->bestEx1TimeSeconds)
+                if (gUnk_03005220.levelTimeSeconds < gFileProgressData->bestEx1TimeSeconds)
                 {
                     i = 1;
                 }
-                else if (gUnk_03005220.levelTimeSeconds == gUnk_03004670->bestEx1TimeSeconds)
+                else if (gUnk_03005220.levelTimeSeconds == gFileProgressData->bestEx1TimeSeconds)
                 {
-                    if (gUnk_03005220.levelTimeCentiseconds < gUnk_03004670->bestEx1TimeCentiseconds)
+                    if (gUnk_03005220.levelTimeCentiseconds < gFileProgressData->bestEx1TimeCentiseconds)
                     {
                         i = 1;
                     }
@@ -508,27 +508,27 @@ void DrawVisionEnd(void)
 
             if (i != 0)
             {
-                gUnk_03004670->bestEx1TimeMinutes = gUnk_03005220.levelTimeMinutes;
-                gUnk_03004670->bestEx1TimeSeconds = gUnk_03005220.levelTimeSeconds;
-                gUnk_03004670->bestEx1TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
+                gFileProgressData->bestEx1TimeMinutes = gUnk_03005220.levelTimeMinutes;
+                gFileProgressData->bestEx1TimeSeconds = gUnk_03005220.levelTimeSeconds;
+                gFileProgressData->bestEx1TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
             }
         }
         else
         {
             // Update best time in EX-3
-            if (gUnk_03005220.levelTimeMinutes < gUnk_03004670->bestEx3TimeMinutes)
+            if (gUnk_03005220.levelTimeMinutes < gFileProgressData->bestEx3TimeMinutes)
             {
                 i = 1;
             }
-            else if (gUnk_03005220.levelTimeMinutes == gUnk_03004670->bestEx3TimeMinutes)
+            else if (gUnk_03005220.levelTimeMinutes == gFileProgressData->bestEx3TimeMinutes)
             {
-                if (gUnk_03005220.levelTimeSeconds < gUnk_03004670->bestEx3TimeSeconds)
+                if (gUnk_03005220.levelTimeSeconds < gFileProgressData->bestEx3TimeSeconds)
                 {
                     i = 1;
                 }
-                else if (gUnk_03005220.levelTimeSeconds == gUnk_03004670->bestEx3TimeSeconds)
+                else if (gUnk_03005220.levelTimeSeconds == gFileProgressData->bestEx3TimeSeconds)
                 {
-                    if (gUnk_03005220.levelTimeCentiseconds < gUnk_03004670->bestEx3TimeCentiseconds)
+                    if (gUnk_03005220.levelTimeCentiseconds < gFileProgressData->bestEx3TimeCentiseconds)
                     {
                         i = 1;
                     }
@@ -537,9 +537,9 @@ void DrawVisionEnd(void)
 
             if (i != 0)
             {
-                gUnk_03004670->bestEx3TimeMinutes = gUnk_03005220.levelTimeMinutes;
-                gUnk_03004670->bestEx3TimeSeconds = gUnk_03005220.levelTimeSeconds;
-                gUnk_03004670->bestEx3TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
+                gFileProgressData->bestEx3TimeMinutes = gUnk_03005220.levelTimeMinutes;
+                gFileProgressData->bestEx3TimeSeconds = gUnk_03005220.levelTimeSeconds;
+                gFileProgressData->bestEx3TimeCentiseconds = gUnk_03005220.levelTimeCentiseconds;
             }
         }
     }

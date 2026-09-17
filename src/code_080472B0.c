@@ -722,14 +722,14 @@ void sub_08048028(void)
     u8 nbrActionStagesAllStones;
     u8 nbrPuzzleStagesAllStones;
 
-    if (gUnk_030034E4 == 1)
+    if (gTransitioning == TRUE)
     {
         return;
     }
 
     gNewKeys = 0;
 
-    if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -740,36 +740,36 @@ void sub_08048028(void)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
     
-        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
     
-        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
 
         // Unlock EX-1 when 35 stages are beaten
-        if (!(gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_BEATEN_FLAG) && (nbrStagesBeaten == 35))
+        if (!(gFileProgressData->levelInfo[5][0] & LEVEL_INFO_BEATEN_FLAG) && (nbrStagesBeaten == 35))
         {
-            gUnk_03004670->levelInfo[5][0] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][0] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -798,9 +798,9 @@ void sub_08048028(void)
         }
 
         // Unlock EX-2 when 25 puzzle and action stages are beaten with all stones collected
-        if (!(gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_BEATEN_FLAG) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        if (!(gFileProgressData->levelInfo[5][1] & LEVEL_INFO_BEATEN_FLAG) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
-            gUnk_03004670->levelInfo[5][1] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][1] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -829,9 +829,9 @@ void sub_08048028(void)
         }
 
         // Unlock EX-3 when all stages are beaten with all stones collected
-        if (!(gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_BEATEN_FLAG) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
+        if (!(gFileProgressData->levelInfo[5][2] & LEVEL_INFO_BEATEN_FLAG) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
-            gUnk_03004670->levelInfo[5][2] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][2] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -1371,7 +1371,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
 
         // Press start
         case TITLE_SCREEN_STAGE_PRESS_START:
-            gUnk_03004658->cursorIndex = 0;
+            gMenuInfo->cursorIndex = 0;
             REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON;
 
             for (i = 0; i < 8; i++)
@@ -1845,44 +1845,44 @@ void FileSelectScreenUpdateCursor(u8 fileSelectStage)
     {
         if (gNewKeys & SELECT_BUTTON)
         {
-            gUnk_03004658->cursorIndex = (gUnk_03004658->cursorIndex + 1) % 3;
+            gMenuInfo->cursorIndex = (gMenuInfo->cursorIndex + 1) % 3;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
-        else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658->cursorIndex != 0))
+        else if ((gNewKeys & DPAD_LEFT) && (gMenuInfo->cursorIndex != 0))
         {
-            gUnk_03004658->cursorIndex -= 1;
+            gMenuInfo->cursorIndex -= 1;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
-        else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658->cursorIndex != 2))
+        else if ((gNewKeys & DPAD_RIGHT) && (gMenuInfo->cursorIndex != 2))
         {
-            gUnk_03004658->cursorIndex += 1;
+            gMenuInfo->cursorIndex += 1;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
 
-        gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + (gUnk_03004658->cursorIndex * 0x50);
+        gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + (gMenuInfo->cursorIndex * 0x50);
         gEntityInfo[0xD].yPosBg2 = gUnk_0811717C[0][0][1];
-        REG_WIN0H = WIN_RANGE((gUnk_03004658->cursorIndex * 0x50) + 8, (gUnk_03004658->cursorIndex * 0x50) + 0x48);
+        REG_WIN0H = WIN_RANGE((gMenuInfo->cursorIndex * 0x50) + 8, (gMenuInfo->cursorIndex * 0x50) + 0x48);
     }
     else
     {
         // FILE_SELECT_STAGE_CONFIRM
         if (gNewKeys & SELECT_BUTTON)
         {
-            gUnk_03004658->cursorIndex = (gUnk_03004658->cursorIndex + 1) % 2;
+            gMenuInfo->cursorIndex = (gMenuInfo->cursorIndex + 1) % 2;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
-        else if ((gNewKeys & DPAD_LEFT) && (gUnk_03004658->cursorIndex == 1))
+        else if ((gNewKeys & DPAD_LEFT) && (gMenuInfo->cursorIndex == 1))
         {
-            gUnk_03004658->cursorIndex -= 1;
+            gMenuInfo->cursorIndex -= 1;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
-        else if ((gNewKeys & DPAD_RIGHT) && (gUnk_03004658->cursorIndex == 0))
+        else if ((gNewKeys & DPAD_RIGHT) && (gMenuInfo->cursorIndex == 0))
         {
-            gUnk_03004658->cursorIndex += 1;
+            gMenuInfo->cursorIndex += 1;
             m4aSongNumStart(SE_CURSOR_MOVE);
         }
     
-        gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + ((gUnk_03004658->cursorIndex * 0x68) + 3);
+        gEntityInfo[0xD].xPosBg2 = gUnk_0811717C[0][0][0] + ((gMenuInfo->cursorIndex * 0x68) + 3);
         gEntityInfo[0xD].yPosBg2 = gUnk_0811717C[0][0][1] + 0x53;
         REG_WIN0H = WIN_RANGE(DISPLAY_WIDTH_CENTER - 0x20, DISPLAY_WIDTH_CENTER + 0x20);
     }
@@ -1932,7 +1932,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
 
         // Display selected save file
         case 0x10:
-            if (gSaveData->completedFile[gUnk_03004658->selectedSaveFile] & 0x80)
+            if (gSaveData->completedFile[gMenuInfo->selectedSaveFile] & 0x80)
             {
                 // Copy selected file tiles and make file red for completion
                 for (row = 6; row <= 14; row++)
@@ -1995,7 +1995,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
             if (gUnk_03003410.unk6 == 0)
             {
                 // New Game mode
-                if (gSaveData->startedFile[gUnk_03004658->selectedSaveFile] == 0)
+                if (gSaveData->startedFile[gMenuInfo->selectedSaveFile] == 0)
                 {
                     // Copy "Is this OK?"
                     for (row = 0; row <= 1; row++)
@@ -2046,7 +2046,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
     }
     else
     {
-        file = gUnk_03004658->selectedSaveFile;
+        file = gMenuInfo->selectedSaveFile;
         start = 1;
         end = 1;
     }
@@ -2062,7 +2062,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
             continue;
         }
 
-        if ((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL_SELECT) || (gSaveData->sceneType[file] == SCENE_TYPE_WORLD_MAP) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->unk20[file] % 3) != 0) && (gSaveData->unk20[file] != 1)))
+        if ((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL_SELECT) || (gSaveData->sceneType[file] == SCENE_TYPE_WORLD_MAP) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->cutsceneId[file] % 3) != 0) && (gSaveData->cutsceneId[file] != 1)))
         {
             if (gSaveData->world[file] == 6)
             {
@@ -2114,7 +2114,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
                 }
             }
         }
-        else if (((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL) && (gSaveData->level[file] == 8)) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->unk20[file] % 3) == 0) && (gSaveData->unk20[file] != 0)))
+        else if (((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL) && (gSaveData->level[file] == 8)) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->cutsceneId[file] % 3) == 0) && (gSaveData->cutsceneId[file] != 0)))
         {
             if ((gSaveData->world[file] == 1) || (gSaveData->world[file] == 2) || (gSaveData->world[file] == 3) || (gSaveData->world[file] == 4))
             {
@@ -2148,14 +2148,14 @@ void FileSelectScreenDrawInfo(u8 arg0)
         }
         else if (gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE)
         {
-            if (gSaveData->unk20[file] == 0)
+            if (gSaveData->cutsceneId[file] == 0)
             {
                 for (row = 0; row <= 1; row++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            if (gSaveData->unk20[file] == 1)
+            if (gSaveData->cutsceneId[file] == 1)
             {
                 for (row = 0; row <= 1; row++)
                 {
@@ -2203,10 +2203,10 @@ void FileSelectScreenDrawInfo(u8 arg0)
             }
         }
 
-        if (gSaveData->unk23[file] < 7)
+        if (gSaveData->nbrUnlockedWorlds[file] < 7)
         {
             // Draw world dots
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->unk23[file] % 3) + 0xA) * 0x1E) + (((gSaveData->unk23[file] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * col))], 0xC);
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->nbrUnlockedWorlds[file] % 3) + 0xA) * 0x1E) + (((gSaveData->nbrUnlockedWorlds[file] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * col))], 0xC);
         }
 
         // Copy "KLONOA"
@@ -2231,23 +2231,23 @@ void FileSelectScreenHandler(void)
 
         if (gUnk_03003410.unk6 == 0)
         {
-            gUnk_03004658->cursorIndex = 1;
+            gMenuInfo->cursorIndex = 1;
         }
         else
         {
-            gUnk_03004658->cursorIndex = gSaveData->lastLoadedSaveFile;
+            gMenuInfo->cursorIndex = gSaveData->lastLoadedSaveFile;
         }
 
-        gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
+        gMenuInfo->fileSelectStage = FILE_SELECT_STAGE_SELECT;
         SetEntityAnimationInfoState(7, 0);
         gEntityInfo[0xD].unkF = 0;
         m4aSongNumStart(MUS_FILE_SELECT);
     }
 
     UpdateEntityAnimationInfoEntries();
-    FileSelectScreenUpdateCursor(gUnk_03004658->fileSelectStage);
+    FileSelectScreenUpdateCursor(gMenuInfo->fileSelectStage);
 
-    if (gUnk_030034E4 == 1)
+    if (gTransitioning == TRUE)
     {
         return;
     }
@@ -2263,22 +2263,22 @@ void FileSelectScreenHandler(void)
 
     if ((gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
     {
-        if (gUnk_03004658->fileSelectStage == FILE_SELECT_STAGE_SELECT)
+        if (gMenuInfo->fileSelectStage == FILE_SELECT_STAGE_SELECT)
         {
             m4aSongNumStart(SE_CURSOR_CONFIRM);
 
-            if ((gUnk_03003410.unk6 != 1) || (gSaveData->startedFile[gUnk_03004658->cursorIndex] != 0))
+            if ((gUnk_03003410.unk6 != 1) || (gSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
             {
-                gUnk_03004658->fileSelectStage += 1; // FILE_SELECT_STAGE_CONFIRM
-                gUnk_03004658->selectedSaveFile = gUnk_03004658->cursorIndex;
+                gMenuInfo->fileSelectStage += 1; // FILE_SELECT_STAGE_CONFIRM
+                gMenuInfo->selectedSaveFile = gMenuInfo->cursorIndex;
 
-                if ((gUnk_03003410.unk6 == 0) && (gSaveData->startedFile[gUnk_03004658->cursorIndex] != 0))
+                if ((gUnk_03003410.unk6 == 0) && (gSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
                 {
-                    gUnk_03004658->cursorIndex = 1;
+                    gMenuInfo->cursorIndex = 1;
                 }
                 else
                 {
-                    gUnk_03004658->cursorIndex = 0;
+                    gMenuInfo->cursorIndex = 0;
                 }
 
                 FileSelectScreenDrawInfo(0x12);
@@ -2289,7 +2289,7 @@ void FileSelectScreenHandler(void)
             // FILE_SELECT_STAGE_CONFIRM
             if (gFileSelectScreenTransitionDelay == 0)
             {
-                if (gUnk_03004658->cursorIndex == 0)
+                if (gMenuInfo->cursorIndex == 0)
                 {
                     m4aSongNumStart(SE_CURSOR_CONFIRM);
                     gFileSelectScreenTransitionDelay = 1;
@@ -2297,8 +2297,8 @@ void FileSelectScreenHandler(void)
                 else
                 {
                     m4aSongNumStart(SE_EXIT_MENU);
-                    gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
-                    gUnk_03004658->cursorIndex = gUnk_03004658->selectedSaveFile;
+                    gMenuInfo->fileSelectStage = FILE_SELECT_STAGE_SELECT;
+                    gMenuInfo->cursorIndex = gMenuInfo->selectedSaveFile;
                     FileSelectScreenDrawInfo(0);
                 }
             }
@@ -2311,10 +2311,10 @@ void FileSelectScreenHandler(void)
         if (gFileSelectScreenTransitionDelay == 20)
         {
             gUnk_03004C20.sceneFrameCounter = -1;
-            gUnk_03004C20.world = gSaveData->world[gUnk_03004658->selectedSaveFile] + 1;
-            gUnk_03004C20.level = gSaveData->world[gUnk_03004658->selectedSaveFile] + 1;
+            gUnk_03004C20.world = gSaveData->world[gMenuInfo->selectedSaveFile] + 1;
+            gUnk_03004C20.level = gSaveData->world[gMenuInfo->selectedSaveFile] + 1;
 
-            gSaveData->currentSaveFile = gUnk_03004658->selectedSaveFile;
+            gSaveData->currentSaveFile = gMenuInfo->selectedSaveFile;
             gSaveData->currentSaveFileAddress = gSaveData->currentSaveFile * 0x10;
             gBlendValue = 0;
             sub_080008DC();
@@ -2322,14 +2322,14 @@ void FileSelectScreenHandler(void)
             if (gUnk_03003410.unk6 == 0)
             {
                 DmaFill32(3, 0, gUnk_03005284, 0x24);
-                DmaFill32(3, 0, gUnk_03004670, 0x40);
+                DmaFill32(3, 0, gFileProgressData, 0x40);
                 gUnk_03004C20.world = 1;
-                gUnk_03005284->unk1 = 1;
-                gUnk_03005284->unk0 = gUnk_03005220.lives = 3;
+                gUnk_03005284->world = 1;
+                gUnk_03005284->lives = gUnk_03005220.lives = 3;
                 gUnk_03005284->shootButtonConfig = 2;
                 gUnk_03005284->jumpButtonConfig = 1;
-                DmaFill16(3, 0x7F7F, &gUnk_03004670->levelInfo[0][0], 0x30);
-                gUnk_03005284->unk4 = 0;
+                DmaFill16(3, 0x7F7F, &gFileProgressData->levelInfo[0][0], 0x30);
+                gUnk_03005284->cutsceneId = 0;
                 gUnk_03003410.unkC = 1;
                 gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }
@@ -2342,7 +2342,7 @@ void FileSelectScreenHandler(void)
 
     if (gNewKeys & B_BUTTON)
     {
-        if (gUnk_03004658->fileSelectStage == FILE_SELECT_STAGE_SELECT)
+        if (gMenuInfo->fileSelectStage == FILE_SELECT_STAGE_SELECT)
         {
             gBlendValue = 0x10;
             gTitleScreenStage = 0;
@@ -2356,8 +2356,8 @@ void FileSelectScreenHandler(void)
         else
         {
             // FILE_SELECT_STAGE_CONFIRM
-            gUnk_03004658->fileSelectStage = FILE_SELECT_STAGE_SELECT;
-            gUnk_03004658->cursorIndex = gUnk_03004658->selectedSaveFile;
+            gMenuInfo->fileSelectStage = FILE_SELECT_STAGE_SELECT;
+            gMenuInfo->cursorIndex = gMenuInfo->selectedSaveFile;
             FileSelectScreenDrawInfo(0);
             m4aSongNumStart(SE_EXIT_MENU);
         }

@@ -59,17 +59,17 @@ void AgbMain(void)
     gUnk_03004C20.sceneFrameCounter = 0;
     gUnk_03004C20.demoNumber = 0xFF;
 
-    gUnk_03004658 = thunk_HeapAlloc(0x18, 0);
+    gMenuInfo = thunk_HeapAlloc(0x18, 0);
     gUnk_03005284 = thunk_HeapAlloc(0x24, 0);
-    gUnk_03004670 = thunk_HeapAlloc(0x40, 0);
+    gFileProgressData = thunk_HeapAlloc(0x40, 0);
     gSaveData = thunk_HeapAlloc(0x2C, 0);
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
     gBlendValue = gMosaicSize = 0;
     gUnk_03005428 = 1;
-    gUnk_03005284->unk16 = 0;
+    gUnk_03005284->roomsRotationBits = 0;
     gUnk_03004C20.roomsRotationBits = 0;
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     thunk_UpdateRng();
     SetEepromTimerIntr(3, (u32 *) &gIntrTable.timer3);
 
@@ -158,10 +158,10 @@ void InputHandler_AttractMode(void)
     gNewKeys = keyInput & ~gHeldKeys;
     gHeldKeys = keyInput;
 
-    if ((gUnk_030034E4 == 0) && (((keyInput == 0) && (gUnk_03004C20.demoNextInputTimer == 0xFF)) || (gNewKeysAttract & (START_BUTTON | A_BUTTON))))
+    if ((gTransitioning == FALSE) && (((keyInput == 0) && (gUnk_03004C20.demoNextInputTimer == 0xFF)) || (gNewKeysAttract & (START_BUTTON | A_BUTTON))))
     {
         // End attract demo
-        gUnk_030034E4 = 1;
+        gTransitioning = TRUE;
         gMosaicSize = gBlendValue = 0;
         gUnk_03003410.unk7 = 2;
 

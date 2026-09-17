@@ -200,7 +200,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_WATER_SWITCH:
-            if ((arg7 == 0) && ((gUnk_03005220.unk58 >> arg4) & 1))
+            if ((arg7 == 0) && ((gUnk_03005220.pressedWaterSwitches >> arg4) & 1))
             {
                 arg6 = 1;
                 gUnk_03004C00 = 1;
@@ -282,7 +282,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
         case ENTITY_ID_GROWN_BLOCK:
             if (arg7 != 0x1C)
             {
-                arg6 = arg6 ^ gUnk_03005220.unk3_6;
+                arg6 = arg6 ^ gUnk_03005220.pressedGrowingShrinkingBlockSwitch;
                 if (arg6 == 1)
                 {
                     if (gUnk_030047B8 == 0)
@@ -320,7 +320,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_EXPLODABLE_BLOCK:
-            if ((arg7 == 0) && ((gUnk_03005220.unk2E >> arg4) & 1))
+            if ((arg7 == 0) && ((gUnk_03005220.explodedBlocks >> arg4) & 1))
             {
                 gEntityInfo[slot].unkF = 0x1C;
             }
@@ -456,7 +456,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_KEY_DOOR:
-            if ((arg7 == 0) && ((gUnk_03005220.unk14 >> arg4) & 1))
+            if ((arg7 == 0) && ((gUnk_03005220.keyDoorsUnlocked >> arg4) & 1))
             {
                 gEntityInfo[slot].unkF = 0x1C;
             }
@@ -464,7 +464,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_1_UP:
-            if ((arg7 == 0) && (gUnk_03005220.unk4 & (1 << arg4)))
+            if ((arg7 == 0) && (gUnk_03005220.collected1Ups & (1 << arg4)))
             {
                 gEntityInfo[slot].unkF = 0x1C;
             }
@@ -483,14 +483,17 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             }
             if (arg4 < 0x20)
             {
-                if ((arg7 == 0) && (gUnk_03005220.unk8 & (1 << arg4)))
+                if ((arg7 == 0) && (gUnk_03005220.collectedDreamStones0 & (1 << arg4)))
                 {
                     gEntityInfo[slot].unkF = 0x1C;
                 }
             }
-            else if ((arg7 == 0) && (gUnk_03005220.unkC & (1 << (arg4 - 0x20))))
+            else
             {
-                gEntityInfo[slot].unkF = 0x1C;
+                if ((arg7 == 0) && (gUnk_03005220.collectedDreamStones1 & (1 << (arg4 - 0x20))))
+                {
+                    gEntityInfo[slot].unkF = 0x1C;
+                }
             }
             gEntityInfo[slot].unkC_2 = arg6;
             break;
@@ -504,7 +507,7 @@ void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
                     gUnk_030051B4 = slot + 1;
                 }
             }
-            if ((arg7 == 0) && ((gUnk_03005220.unk2_7 >> arg4) & 1))
+            if ((arg7 == 0) && ((gUnk_03005220.collectedHearts >> arg4) & 1))
             {
                 gEntityInfo[slot].unkF = 0x1C;
             }

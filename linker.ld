@@ -70,7 +70,7 @@ SECTIONS {
         . = 0x00002910; gBg2Alpha = .;
         . = 0x00002920; gEntityInfo = .;
         . = 0x00003410; gUnk_03003410 = .;
-        . = 0x00003420; gUnk_03003420 = .;
+        . = 0x00003420; gFrameFinished = .;
         . = 0x00003430; gBgInfo = .;
         . = 0x000034A0; gUnk_030034A0 = .;
         . = 0x000034A4; gUnk_030034A4 = .;
@@ -87,7 +87,7 @@ SECTIONS {
         . = 0x000034D8; gUnk_030034D8 = .;
         . = 0x000034DC; gUnk_030034DC = .;
         . = 0x000034E0; gUnk_030034E0 = .;
-        . = 0x000034E4; gUnk_030034E4 = .;
+        . = 0x000034E4; gTransitioning = .;
         . = 0x000034E8; gAthleticChallengeAutoScrollBaseVelocity = .;
         . = 0x000034F0; gUnk_030034F0 = .;
         . = 0x000034F4; gUnk_030034F4 = .;
@@ -116,13 +116,13 @@ SECTIONS {
         . = 0x00003F56; gUnk_03003F56 = .;
         . = 0x00004650; gUnk_03004650 = .;
         . = 0x00004654; gUnk_03004654 = .;
-        . = 0x00004658; gUnk_03004658 = .;
+        . = 0x00004658; gMenuInfo = .;
         . = 0x0000465C; gDma2CntHBackup = .;
-        . = 0x00004660; gUnk_03004660 = .;
+        . = 0x00004660; gEnteredCannonGoal = .;
         . = 0x00004664; gUnk_03004664 = .;
         . = 0x00004668; gNewKeysAttract = .;
         . = 0x0000466C; gUnk_0300466C = .;
-        . = 0x00004670; gUnk_03004670 = .;
+        . = 0x00004670; gFileProgressData = .;
         . = 0x00004674; gUnk_03004674 = .;
         . = 0x00004678; gBg2AlphaSin = .;
         . = 0x00004680; gOamAffineBuffer = .;
@@ -184,7 +184,7 @@ SECTIONS {
         . = 0x000052AC; gUnk_030052AC = .;
         . = 0x000052B0; gUnk_030052B0 = .;
         . = 0x000052B4; gUnk_030052B4 = .;
-        . = 0x000052B8; gUnk_030052B8 = .;
+        . = 0x000052B8; gSongToResume = .;
         . = 0x000052C0; gUnk_030052C0 = .;
         . = 0x00005400; gUnk_03005400 = .;
         . = 0x00005418; gUnk_03005418 = .;

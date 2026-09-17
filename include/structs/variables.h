@@ -53,20 +53,20 @@ enum FileSelectStage {
     FILE_SELECT_STAGE_SELECT,
     FILE_SELECT_STAGE_CONFIRM
 };
-struct Unk_03004658 {
+struct MenuInfo {
     u8 pad0[0xC - 0x0];
     u8 cursorIndex; // cursor index? used in a lot of places so need to confirm
     u8 selectedSaveFile; // selected save file
     u8 padE[0xF - 0xE];
     s8 fileSelectStage; // stage, 0 is select, 1 is confirm
 };
-extern struct Unk_03004658 *gUnk_03004658;
+extern struct MenuInfo *gMenuInfo;
 
 #define LEVEL_INFO_DREAM_STONES_MASK 0x7F
 #define LEVEL_INFO_BEATEN_FLAG 0x80
 
-struct Unk_03004670 {
-    /* 0x00 */ u8 unk0; // number of completed worlds. seemingly unused
+struct FileProgressData {
+    /* 0x00 */ u8 nbrUnlockedWorlds; // number of unlocked worlds
     /* 0x01 */ u8 bestEx1TimeMinutes; // minutes of best time in EX-1
     /* 0x02 */ u8 bestEx1TimeSeconds; // seconds of best time in EX-1
     /* 0x03 */ u8 bestEx1TimeCentiseconds; // centiseconds of best time in EX-1
@@ -80,7 +80,7 @@ struct Unk_03004670 {
     /* 0x3D */ u8 xorChecksum;
     /* 0x3E */ u8 pad3E[0x40 - 0x3E];
 }; /* size = 0x40 */
-extern struct Unk_03004670 *gUnk_03004670;
+extern struct FileProgressData *gFileProgressData;
 
 // I feel like there's a better name I could use
 enum SceneType {
@@ -101,48 +101,48 @@ struct SaveData {
     u8 world[3]; // world
     u8 level[3]; // level
     u8 sceneType[3]; // 0 is vision select, 1 is level gameplay, 2 is cutscene, 7 is world map
-    u8 unk20[3];
-    u8 unk23[3]; // number of completed worlds?
+    u8 cutsceneId[3]; // last accessed (or maybe just current) cutscene number
+    u8 nbrUnlockedWorlds[3]; // number of unlocked worlds
     u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
     u8 completedFile[3]; // 0x80 is file completed flag
 };
 extern struct SaveData *gSaveData;
 
 struct Unk_03005284 {
-    /* 0x00 */ u8 unk0; // lives
-    /* 0x01 */ u8 unk1; // world
-    /* 0x02 */ u8 unk2; // level
-    /* 0x03 */ u8 unk3; // sceneType
-    /* 0x04 */ u8 unk4;
-    /* 0x05 */ u8 unk5;
+    /* 0x00 */ u8 lives; // lives
+    /* 0x01 */ u8 world; // world
+    /* 0x02 */ u8 level; // level
+    /* 0x03 */ u8 sceneType; // sceneType
+    /* 0x04 */ u8 cutsceneId; // last accessed (or maybe just current) cutscene number
+    /* 0x05 */ u8 explodedBlocks;
     /* 0x06 */ u8 unk6;
-    /* 0x07 */ u8 unk7;
-    /* 0x08_0 */ u8 unk8_0:2; // hearts
-    /* 0x08_2 */ u8 unk8_2:3; // stars
-    /* 0x08_5 */ u8 unk8_5:7; // dreamStones
-    /* 0x09_4 */ u8 unk9_4:3; // keys
+    /* 0x07 */ u8 pressedWaterSwitches;
+    /* 0x08_0 */ u8 hearts:2; // hearts
+    /* 0x08_2 */ u8 stars:3; // stars
+    /* 0x08_5 */ u8 dreamStones:7; // dreamStones
+    /* 0x09_4 */ u8 keys:3; // keys
     /* 0x09_7 */ u8 unk9_7:8;
-    /* 0x0A_7 */ u8 unkA_7:6;
-    /* 0x0B_5 */ u8 unkB_5:1;
-    /* 0x0B_6 */ u8 unkB_6:1;
-    /* 0x0C */ u32 unkC;
-    /* 0x10 */ u32 unk10;
-    /* 0x14 */ u16 unk14;
-    /* 0x16 */ u16 unk16;
-    /* 0x18 */ u32 unk18;
+    /* 0x0A_7 */ u8 collectedHearts:6;
+    /* 0x0B_5 */ u8 moonDoorOpen:1;
+    /* 0x0B_6 */ u8 pressedGrowingShrinkingBlockSwitch:1;
+    /* 0x0C */ u32 collectedDreamStones0;
+    /* 0x10 */ u32 collectedDreamStones1;
+    /* 0x14 */ u16 keyDoorsUnlocked;
+    /* 0x16 */ u16 roomsRotationBits;
+    /* 0x18 */ u32 collected1Ups;
     /* 0x1C */ u8 shootButtonConfig; // Type 1 sets shoot to B, Type 2 sets shoot to A
     /* 0x1D */ u8 jumpButtonConfig; // Type 1 sets jump to A, Type 2 sets jump to B
-    /* 0x1E */ u8 unk1E;
+    /* 0x1E */ u8 prevLives; // number of lives before entering a stage, restores life count when quitting stage
     /* 0x1F */ u8 pad1F[0x20 - 0x1F];
     /* 0x20 */ u8 addChecksum;
     /* 0x21 */ u8 xorChecksum;
     /* 0x22 */ u8 pad22[0x24 - 0x22];
 }; /* size = 0x24 */
-extern struct Unk_03005284 *gUnk_03005284;
+extern struct Unk_03005284 *gUnk_03005284; // gStageProgress? Need to think of a good name
 
-extern s8 gUnk_03004784;
+extern u8 gUnk_03004784; // unused
 extern u16 gSoundVolume;
-extern u8 gUnk_0300548C;
+extern u8 gUnk_0300548C; // unused
 extern u8 gBlendValue; // BLDALPHA/BLDY
 extern u8 gMosaicSize; // MOSAIC
 
@@ -152,7 +152,7 @@ extern u16 gHeldKeys;
 
 extern u16 gHeldKeysAttract;
 extern u16 gNewKeysAttract;
-extern u8 gUnk_030034E4;
+extern u8 gTransitioning;
 
 struct BgDataPtrs {
     /* 0x00 */ void *pBufBg0Tiles; // BG0 tiles
@@ -167,7 +167,7 @@ struct BgDataPtrs {
 extern struct BgDataPtrs gBgDataPtrs;
 extern void *gUnk_03005290;
 
-extern u8 gUnk_03003420;
+extern u8 gFrameFinished;
 extern u8 gUnk_03005428;
 
 extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
@@ -379,7 +379,7 @@ extern s16 gUnk_030034F8;
 extern s16 gBg2PD; // BG2PD
 extern u8 gBg2Alpha; // alpha
 extern u16 gBg2XMag; // xMag
-extern u8 gUnk_03004660;
+extern u8 gEnteredCannonGoal;
 extern s16 gBg2PA; // BG2PA
 extern s16 gBg2PC; // BG2PC
 extern u8 gUnk_030052A0;
@@ -410,30 +410,30 @@ struct Unk_03005220 {
     /* 0x00_2 */ u32 stars:3; // bitfield of stars
     /* 0x00_5 */ u32 dreamStones:7; // dream stones
     /* 0x01_4 */ u32 keys:3; // bitfield of keys
-    /* 0x01_7 */ u32 unk1_7:8;
-    /* 0x02_7 */ u32 unk2_7:6; // relates to collecting hearts and 1 ups
-    /* 0x03_5 */ u32 unk3_5:1; // moon door open
-    /* 0x03_6 */ u32 unk3_6:1;
-    /* 0x03_7 */ u32 unk3_7:1;
-    /* 0x04 */ u32 unk4;
-    /* 0x08 */ u32 unk8;
-    /* 0x0C */ u32 unkC;
+    /* 0x01_7 */ u32 unk1_7:8; // bitfield of gate switches?
+    /* 0x02_7 */ u32 collectedHearts:6; // bitfield of collected hearts in level
+    /* 0x03_5 */ u32 moonDoorOpen:1; // moon door open
+    /* 0x03_6 */ u32 pressedGrowingShrinkingBlockSwitch:1; // growing/shrinking block switch is pressed
+    /* 0x03_7 */ u32 oneWayGateOpen:1; // one way gate is open
+    /* 0x04 */ u32 collected1Ups; // bitfield of collected 1-UPS in level
+    /* 0x08 */ u32 collectedDreamStones0; // bitfield of collected Dream Stones in level. Both in Puzzle Stages, only small in Hover Board stages, not used in Athletic Challenge Stages.
+    /* 0x0C */ u32 collectedDreamStones1; // bitfield of collected Dream Stones in level. Not used in Puzzle Stages, only large in Hover Board stages, both in Athletic Challenge Stages.
     /* 0x10 */ u32 unk10;
-    /* 0x14 */ u16 unk14;
+    /* 0x14 */ u16 keyDoorsUnlocked; // bitfield of key doors that are unlocked in level
     /* 0x16 */ u16 unk16;
     /* 0x18 */ u16 unk18;
     /* 0x1A */ u16 unk1A;
     /* 0x1D */ u16 klonoaIdleTimer; // Idle timer, picks a random idle animation after 20 seconds
-    /* 0x1E */ u16 unk1E;
-    /* 0x20 */ u16 unk20;
-    /* 0x22 */ u16 unk22;
+    /* 0x1E */ u16 windBulletLeftXPosBg2; // Wind Bullet left X position in BG2 (todo: why two position?)
+    /* 0x20 */ u16 windBulletRightXPosBg2; // Wind Bullet right X position in BG2
+    /* 0x22 */ u16 windBulletYPosBg2; // Wind Bullet Y position in BG2
     /* 0x24 */ u16 unk24;
-    /* 0x26 */ s16 unk26;
-    /* 0x28 */ s16 unk28;
-    /* 0x2A */ s16 unk2A;
-    /* 0x2C */ s16 unk2C;
-    /* 0x2E */ u8 unk2E;
-    /* 0x2F */ s8 unk2F; // Entity id of object being stood on (also activated briefly when hand comes out of grabby box)
+    /* 0x26 */ s16 klonoaXVel; // Klonoa's (normal) X velocity
+    /* 0x28 */ s16 klonoaYVel; // Klonoa's (normal) Y velocity
+    /* 0x2A */ s16 klonoaCannonXVel; // Klonoa's X velocity controlled by cannon goal
+    /* 0x2C */ s16 klonoaCannonYVel; // Klonoa's Y velocity controller by cannon goal
+    /* 0x2E */ u8 explodedBlocks; // Bitfield of explodable blocks that have been exploded
+    /* 0x2F */ s8 unk2F; // Klonoa's Hover Board X velocity?
     /* 0x30 */ u8 unk30; // Klonoa is in falling state
     /* 0x31 */ u8 unk31; // Klonoa is on ground
     /* 0x32 */ u8 windBulletDirection; // Direction wind bullet fired, 0 is right, 1 is left
@@ -448,11 +448,11 @@ struct Unk_03005220 {
     /* 0x3B */ u8 unk3B; // Wind gust timer
     /* 0x3C */ u8 unk3C; // Klonoa jumping type, 1 is normal, 2 is double jump (only during brief moment of throwing), 3 is from Goomi
     /* 0x3D */ u8 unk3D; // Flutter usability, 0 is usable (if in mid-air), 2 is mid-flutter (in-use), 1 is falling after flutter (disabled until hit ground)
-    /* 0x3E */ u8 klonoaInvincibilityTimer; // Invincibility timer (usually from being hit)
-    /* 0x3F */ u8 unk3F; // Entity id of Goomi being held on to
+    /* 0x3E */ u8 klonoaInvulnerabilityTimer; // Invulnerability timer (usually from being hit)
+    /* 0x3F */ u8 unk3F; // Entity slot of Goomi being held on to, also when Magnet Box hand comes out, and standing on Box thats falling on wind. Possibly entity slot affecting Klonoa's position?
     /* 0x40 */ u8 unk40;
     /* 0x41 */ u8 unk41; // In the process of throwing entity
-    /* 0x42 */ u8 unk42; // Entity id of entity being carried
+    /* 0x42 */ u8 unk42; // Entity slot of entity being carried
     /* 0x43 */ u8 unk43; // State of entity being carried, 0 is not carried, 1 is carried, 2 is being squished (for enemy)
     /* 0x44 */ u8 unk44;
     /* 0x45 */ u8 unk45;
@@ -474,10 +474,10 @@ struct Unk_03005220 {
     /* 0x55 */ s8 unk55; // Box Y position as its being picked up and put into position?
     /* 0x56 */ s8 unk56;
     /* 0x57 */ s8 unk57;
-    /* 0x58 */ u8 unk58;
+    /* 0x58 */ u8 pressedWaterSwitches; // bitfield of Water Switches that are pressed
     /* 0x59 */ u8 unk59;
     /* 0x5A */ u8 unk5A;
-    /* 0x5B */ u8 unk5B; // Klonoa is invincible (usually from being hit)
+    /* 0x5B */ u8 unk5B; // Klonoa is invulnerable (usually from being hit)
     /* 0x5C */ u8 unk5C; // Related to being able to control Klonoa
     /* 0x5D */ u8 allStarsCollected; // All 3 stars collected
     /* 0x5E */ u8 klonoaPrevIdleAnimation; // The previous idle animation state ID (28-32)
@@ -820,7 +820,7 @@ extern u8 gUnk_03005200;
 extern void *gUnk_030034F4;
 extern void *gUnk_030052AC;
 
-extern u16 gUnk_030052B8;
+extern u16 gSongToResume; // Maybe "gCurrentSong", but its only used for levels
 
 enum TitleScreenStage {
     TITLE_SCREEN_STAGE_INTRO_LOGO_ANIMATION, // Also works as none

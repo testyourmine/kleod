@@ -14,12 +14,12 @@ void VBlankIntr_Common(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -45,12 +45,12 @@ void sub_08000AC8(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -67,12 +67,12 @@ void VBlankIntr_TitleScreenAndWorldMap(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -88,12 +88,12 @@ void VBlankIntr_Boss(void)
 
     DmaCopy32Wait(3, &gOamBuffer, OAM, OAM_SIZE / 2);
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -105,12 +105,12 @@ void VBlankIntr_ClearedAllVisionsScreen(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -122,12 +122,12 @@ void sub_08000E14(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 
@@ -148,12 +148,12 @@ void VBlankIntr_Cutscene(void)
 
     DmaCopy32(3, &gOamBuffer, OAM, OAM_SIZE);
 
-    if (gUnk_03003420 == 0)
+    if (!gFrameFinished)
     {
         m4aSoundMain();
     }
 
-    gUnk_03003420 = 0;
+    gFrameFinished = FALSE;
     INTR_CHECK = INTR_FLAG_VBLANK;
 }
 

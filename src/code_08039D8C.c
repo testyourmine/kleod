@@ -197,7 +197,7 @@ void PauseMenuScreenInit(void)
     }
 
     gBlendValue = 9;
-    gUnk_03004658->cursorIndex = 0;
+    gMenuInfo->cursorIndex = 0;
     gCallbackQueue.next[0] = InputHandler_Normal;
     gCallbackQueue.next[1] = PauseMenuScreenHandler;
     gCallbackQueue.next[3] = NULL + 1;
@@ -352,15 +352,15 @@ void PauseMenuScreenHandler(void)
     option = (gNewKeys & (START_BUTTON | B_BUTTON)) != 0;
     if (gNewKeys & A_BUTTON)
     {
-        option = gUnk_03004658->cursorIndex + 1;
+        option = gMenuInfo->cursorIndex + 1;
     }
 
     if (gNewKeys & (DPAD_DOWN | DPAD_UP))
     {
         for (row = 0; row < 2; row++)
         {
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xA5], 0x4);
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xB7], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7], 0x4);
         }
 
         if ((gPauseMenuType == PAUSE_MENU_TYPE_NORMAL_LEVEL) || (gPauseMenuType == PAUSE_MENU_TYPE_EX_LEVEL))
@@ -368,20 +368,20 @@ void PauseMenuScreenHandler(void)
             if (gNewKeys & DPAD_DOWN)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
-                gUnk_03004658->cursorIndex += 1;
-                if (gUnk_03004658->cursorIndex > 3)
+                gMenuInfo->cursorIndex += 1;
+                if (gMenuInfo->cursorIndex > 3)
                 {
-                    gUnk_03004658->cursorIndex = 0;
+                    gMenuInfo->cursorIndex = 0;
                 }
             }
 
             if (gNewKeys & DPAD_UP)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
-                gUnk_03004658->cursorIndex -= 1;
-                if (gUnk_03004658->cursorIndex & 0x80)
+                gMenuInfo->cursorIndex -= 1;
+                if (gMenuInfo->cursorIndex & 0x80)
                 {
-                    gUnk_03004658->cursorIndex = 3;
+                    gMenuInfo->cursorIndex = 3;
                 }
             }
         }
@@ -391,20 +391,20 @@ void PauseMenuScreenHandler(void)
             if (gNewKeys & DPAD_DOWN)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
-                gUnk_03004658->cursorIndex += 1;
-                if (gUnk_03004658->cursorIndex > 2)
+                gMenuInfo->cursorIndex += 1;
+                if (gMenuInfo->cursorIndex > 2)
                 {
-                    gUnk_03004658->cursorIndex = 0;
+                    gMenuInfo->cursorIndex = 0;
                 }
             }
 
             if (gNewKeys & DPAD_UP)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
-                gUnk_03004658->cursorIndex -= 1;
-                if (gUnk_03004658->cursorIndex & 0x80)
+                gMenuInfo->cursorIndex -= 1;
+                if (gMenuInfo->cursorIndex & 0x80)
                 {
-                    gUnk_03004658->cursorIndex = 2;
+                    gMenuInfo->cursorIndex = 2;
                 }
             }
         }
@@ -415,13 +415,13 @@ void PauseMenuScreenHandler(void)
             {
                 if (gUnk_030034BC == 0)
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col] + gUnk_03000800;
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col] + gUnk_03000800;
+                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col] + gUnk_03000800;
+                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col] + gUnk_03000800;
                 }
                 else
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col];
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gUnk_03004658->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col];
+                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col];
+                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col];
                 }
             }
         }
@@ -451,15 +451,15 @@ void PauseMenuScreenHandler(void)
         case PAUSE_MENU_OPTION_RETRY:
             PauseMenuScreenRestoreGfx();
             gCallbackQueue.current[1] = TransitionFromDeathToLevel_FadeOut;
-            gUnk_03005220.unk4 = gUnk_03005284->unk18;
-            gUnk_03005220.lives = gUnk_03005284->unk0;
-            gUnk_03005220.hearts = gUnk_03005284->unk8_0;
+            gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
+            gUnk_03005220.lives = gUnk_03005284->lives;
+            gUnk_03005220.hearts = gUnk_03005284->hearts;
             REG_BLDCNT = 0;
             gBlendValue = 0;
             break;
 
         case PAUSE_MENU_OPTION_SELECT_VISION:
-            gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
+            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
             PauseMenuScreenRestoreGfx();
             gBlendValue = 0;
             if (gUnk_03004C20.world == 6 && gUnk_03004C20.level == 8)
@@ -480,7 +480,7 @@ void PauseMenuScreenHandler(void)
         case PAUSE_MENU_OPTION_WORLD_MAP:
             if (gUnk_03004C20.level != 0)
             {
-                gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
+                gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
             }
             PauseMenuScreenRestoreGfx();
             REG_BLDCNT = 0;
@@ -671,12 +671,12 @@ u8 WorldMapScreenIsValidPath(u8 mapIndex)
 
     if (mapIndex < 4)
     {
-        if ((gUnk_03004670->levelInfo[mapIndex][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[mapIndex + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
+        if ((gFileProgressData->levelInfo[mapIndex][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[mapIndex + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
         {
             return 1;
         }
     }
-    else if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    else if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -687,40 +687,40 @@ u8 WorldMapScreenIsValidPath(u8 mapIndex)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
 
-        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
-        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
     
-        if ((mapIndex == 4) && ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
+        if ((mapIndex == 4) && ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             return 1;
         }
-        if ((mapIndex == 5) && ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        if ((mapIndex == 5) && ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             return 1;
         }
-        if ((mapIndex == 6) && ((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
+        if ((mapIndex == 6) && ((gFileProgressData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
         {
             return 1;
         }
@@ -833,7 +833,7 @@ void WorldMapScreenCheckNewWorldUnlocked(void)
     u8 nbrStagesBeaten;
     u8 nbrPuzzleStagesAllStones;
 
-    if (gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -844,87 +844,87 @@ void WorldMapScreenCheckNewWorldUnlocked(void)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gUnk_03004670->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
 
-        if ((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
-        if ((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
 
-        if (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
+        if (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             gWorldMapInfo.beatenIndex = 4;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        else if (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             gWorldMapInfo.beatenIndex = 5;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if (((gUnk_03004670->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
+        else if (((gFileProgressData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
             gWorldMapInfo.beatenIndex = 6;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
     }
     else
     {
-        if ((gUnk_03004670->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        if ((gFileProgressData->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 0;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gUnk_03004670->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileProgressData->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 1;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gUnk_03004670->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileProgressData->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 2;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gUnk_03004670->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gUnk_03004670->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileProgressData->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 3;
             gWorldMapInfo.unlockTimer = 0;
-            gUnk_03004670->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
@@ -1186,19 +1186,19 @@ void WorldMapScreenInit(void)
     gBgInfo[0].vOfs = 0x400;
 
     // Set best EX-1 time to 99:59:99 if no best time
-    if ((gUnk_03004670->bestEx1TimeMinutes == 0) && (gUnk_03004670->bestEx1TimeSeconds == 0) && (gUnk_03004670->bestEx1TimeCentiseconds == 0))
+    if ((gFileProgressData->bestEx1TimeMinutes == 0) && (gFileProgressData->bestEx1TimeSeconds == 0) && (gFileProgressData->bestEx1TimeCentiseconds == 0))
     {
-        gUnk_03004670->bestEx1TimeMinutes = 99;
-        gUnk_03004670->bestEx1TimeSeconds = 59;
-        gUnk_03004670->bestEx1TimeCentiseconds = 99;
+        gFileProgressData->bestEx1TimeMinutes = 99;
+        gFileProgressData->bestEx1TimeSeconds = 59;
+        gFileProgressData->bestEx1TimeCentiseconds = 99;
     }
 
     // Set best EX-3 time to 99:59:99 if no best time
-    if ((gUnk_03004670->bestEx3TimeMinutes == 0) && (gUnk_03004670->bestEx3TimeSeconds == 0) && (gUnk_03004670->bestEx3TimeCentiseconds == 0))
+    if ((gFileProgressData->bestEx3TimeMinutes == 0) && (gFileProgressData->bestEx3TimeSeconds == 0) && (gFileProgressData->bestEx3TimeCentiseconds == 0))
     {
-        gUnk_03004670->bestEx3TimeMinutes = 99;
-        gUnk_03004670->bestEx3TimeSeconds = 59;
-        gUnk_03004670->bestEx3TimeCentiseconds = 99;
+        gFileProgressData->bestEx3TimeMinutes = 99;
+        gFileProgressData->bestEx3TimeSeconds = 59;
+        gFileProgressData->bestEx3TimeCentiseconds = 99;
     }
 
     if (gWorldMapInfo.currentIndex == 5)
@@ -1211,14 +1211,14 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
         // Draw best time
-        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes % 10) + 1);
         gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds / 10) + 1);
-        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds % 10) + 1);
         gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds / 10) + 1);
-        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds % 10) + 1);
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds % 10) + 1);
 
         // Draw dream stone icon
         gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
@@ -1229,8 +1229,8 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
         // Draw collected dream stone amount
-        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gWorldMapInfo.currentIndex == 6)
     {
@@ -1260,8 +1260,8 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
         // Draw collected dream stone amount
-        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gWorldMapInfo.currentIndex == 7)
     {
@@ -1273,14 +1273,14 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
         // Draw best time
-        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes % 10) + 1);
         gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds / 10) + 1);
-        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds % 10) + 1);
         gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds / 10) + 1);
-        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds % 10) + 1);
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds % 10) + 1);
 
         // Erase dream stone icon tile
         gBgTilemapBufs[0][0x2C] = (10 << 12);
@@ -1310,7 +1310,7 @@ void WorldMapScreenInit(void)
     gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
     gCallbackQueue.current[1] = WorldMapScreenCheckNewWorldUnlocked;
     WorldMapScreenDrawUnlockedWorlds();
-    gUnk_03005284->unk1 = gUnk_03004C20.world;
+    gUnk_03005284->world = gUnk_03004C20.world;
     WriteSaveFile(0, 7);
     WriteSaveFile(1, 0);
 
@@ -1328,7 +1328,7 @@ void WorldMapScreenHandler(void)
     struct Unk_0800BEF0_2 spC;
     u8 var_r4;
 
-    if (gUnk_030034E4 == 1)
+    if (gTransitioning == TRUE)
     {
         return;
     }
@@ -1361,7 +1361,7 @@ void WorldMapScreenHandler(void)
             gUnk_03004C20.level = 0;
             gUnk_030034B0.unk6_4 = 1;
             m4aSongNumStart(SE_CURSOR_CONFIRM);
-            gUnk_03005284->unk1E = gUnk_03005284->unk0 = gUnk_03005220.lives;
+            gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
 
             if (gWorldMapInfo.currentIndex >= 5)
             {
@@ -1385,7 +1385,7 @@ void WorldMapScreenHandler(void)
             }
             else
             {
-                gUnk_03005284->unk4 = (gUnk_03004C20.world * 3) - 1;
+                gUnk_03005284->cutsceneId = (gUnk_03004C20.world * 3) - 1;
                 gUnk_03003410.unkC = 0;
                 gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }
@@ -1417,14 +1417,14 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
                     // Draw best time
-                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx3TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx3TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds % 10) + 1);
                     gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx3TimeCentiseconds % 10) + 1);
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds % 10) + 1);
 
                     // Erase dream stone icon tile
                     gBgTilemapBufs[0][0x2C] = (10 << 12);
@@ -1525,8 +1525,8 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
                     // Draw collected dream stone amount
-                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if ((gHeldKeys & DPAD_DOWN) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
@@ -1543,14 +1543,14 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
                     // Draw best time
-                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gUnk_03004670->bestEx1TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gUnk_03004670->bestEx1TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds % 10) + 1);
                     gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gUnk_03004670->bestEx1TimeCentiseconds % 10) + 1);
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds % 10) + 1);
 
                     // Draw dream stone icon
                     gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
@@ -1561,8 +1561,8 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
                     // Draw collected dream stone amount
-                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gUnk_03004670->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)
@@ -2764,7 +2764,7 @@ void sub_0803D90C(u8 arg0)
                     gUnk_03005400.unkD = 5;
                     gUnk_03005400.unk8_6 = 0;
 
-                    if ((gUnk_03005220.unk31 != 0) && (gUnk_03005220.klonoaInvincibilityTimer == 0))
+                    if ((gUnk_03005220.unk31 != 0) && (gUnk_03005220.klonoaInvulnerabilityTimer == 0))
                     {
                         gEntityInfo[0].yPosBg2 -= 0x30;
                     }
@@ -5035,7 +5035,7 @@ void sub_08041F34(u8 arg0)
         gEntityInfo[0x14].unkF = 0x19;
         gEntityInfo[0x13].unkF = 0x19;
 
-        gUnk_03005220.klonoaInvincibilityTimer = 0;
+        gUnk_03005220.klonoaInvulnerabilityTimer = 0;
         if (gUnk_03005220.unk31 == 1)
         {
             SetEntityAnimationInfoState(0, 0);
@@ -5613,7 +5613,7 @@ void sub_08042E64(u8 arg0)
 
     gEntityInfo[arg0].affineHFlip_matrixNum = 3;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
-    if (gUnk_030034E4 == 1)
+    if (gTransitioning == TRUE)
     {
         return;
     }

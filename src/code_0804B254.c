@@ -596,14 +596,14 @@ void sub_0804BE58(void)
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
-    if (gUnk_03004C20.world > gUnk_03004670->unk0)
+    if (gUnk_03004C20.world > gFileProgressData->nbrUnlockedWorlds)
     {
-        gUnk_03004670->unk0 = gUnk_03004C20.world;
+        gFileProgressData->nbrUnlockedWorlds = gUnk_03004C20.world;
     }
     WriteSaveFile(1, 0);
-    gUnk_03005284->unk1 = gUnk_03004C20.world;
+    gUnk_03005284->world = gUnk_03004C20.world;
     WriteSaveFile(0, 2);
-    sub_0804BAD4(gUnk_03005284->unk4);
+    sub_0804BAD4(gUnk_03005284->cutsceneId);
     sub_0804BB3C();
     sub_0804BB88();
     sub_0804BBD4();
@@ -1623,7 +1623,7 @@ void sub_0804DEBC(void)
 
 s32 sub_0804DF80(void)
 {
-    gUnk_030034E4 = 1;
+    gTransitioning = TRUE;
 
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1634,7 +1634,7 @@ s32 sub_0804DF80(void)
             gBlendValue -= 1;
             if (gBlendValue <= gUnk_030034A0->unk6)
             {
-                gUnk_030034E4 = 0;
+                gTransitioning = FALSE;
                 gBlendValue = gUnk_030034A0->unk6;
                 return 0;
             }
@@ -1644,7 +1644,7 @@ s32 sub_0804DF80(void)
             gBlendValue += 1;
             if (gBlendValue >= gUnk_030034A0->unk6)
             {
-                gUnk_030034E4 = 0;
+                gTransitioning = FALSE;
                 gBlendValue = gUnk_030034A0->unk6;
                 return 0;
             }
@@ -1700,7 +1700,7 @@ void sub_0804E008(void)
 
 void sub_0804E0E8(void)
 {
-    gUnk_030034E4 = 1;
+    gTransitioning = TRUE;
 
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -1725,7 +1725,7 @@ void sub_0804E0E8(void)
     {
         gBlendValue = 0x10;
 
-        gUnk_030034E4 = 0;
+        gTransitioning = FALSE;
         sub_0804BF7C();
         sub_0800A468();
 
@@ -1735,10 +1735,10 @@ void sub_0804E0E8(void)
         m4aMPlayAllStop();
         gSoundVolume = 0x100;
 
-        if ((gUnk_0805769C[gUnk_03005284->unk4] & 0xF0) != 0)
+        if ((gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF0) != 0)
         {
-            gUnk_03004C20.world = gUnk_0805769C[gUnk_03005284->unk4] >> 4;
-            switch (gUnk_0805769C[gUnk_03005284->unk4] & 0xF)
+            gUnk_03004C20.world = gUnk_0805769C[gUnk_03005284->cutsceneId] >> 4;
+            switch (gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF)
             {
                 case 2:
                     if (gUnk_03004C20.world == 5)
@@ -1765,7 +1765,7 @@ void sub_0804E0E8(void)
                     if (gUnk_03004C20.world != 0)
                     {
                         gMosaicSize = 0xF;
-                        gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->unk4] & 0xF;
+                        gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF;
                         gUnk_03003410.unk9 = 0;
                         gUnk_03003410.unkA = 0;
 
@@ -1781,7 +1781,7 @@ void sub_0804E0E8(void)
                     break;
         
                 case 4:
-                    gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->unk4] & 0xF;
+                    gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF;
                     gCallbackQueue.next[0] = InputHandler_Normal;
                     gCallbackQueue.next[1] = TransitionFromVisionSelectToWorldMap_FadeOut;
                     gCallbackQueue.next[2] = CommonWaitForNextFrame;
@@ -1851,7 +1851,7 @@ void sub_0804E490(void)
 
 void sub_0804E4D4(void)
 {
-    gUnk_030034E4 = 1;
+    gTransitioning = TRUE;
 
     gUnk_030034A0->unk1_6 = 0;
     gUnk_030034A0->unk5 = gUnk_03004D84[2];
@@ -1863,7 +1863,7 @@ void sub_0804E4D4(void)
 
 void sub_0804E520(void)
 {
-    gUnk_030034E4 = 1;
+    gTransitioning = TRUE;
 
     gUnk_030034A0->unk1_6 = 1;
     gUnk_030034A0->unk5 = gUnk_03004D84[2];
@@ -2172,7 +2172,7 @@ void sub_0804EB64(void)
     }
 
     gUnk_030034A0->unk0_6 = 0;
-    if ((gUnk_030034E4 != 0) && (sub_0804DF80() != 0))
+    if ((gTransitioning != 0) && (sub_0804DF80() != 0))
     {
         return;
     }

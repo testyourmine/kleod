@@ -261,7 +261,7 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
                 gEntityInfo[i].yPosScreen = gEntityInfo[i].yPosBg2 - gBgInfo[2].vOfs;
             }
 
-            gUnk_03004658->cursorIndex = 0;
+            gMenuInfo->cursorIndex = 0;
 
             for (i = 0xD; i <= 0xE; i++)
             {
@@ -311,7 +311,7 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
             REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
-            gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
+            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
             WriteSaveFile(0, 1);
 
             REG_IE |= INTR_FLAG_VBLANK;
@@ -349,7 +349,7 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
                 gEntityInfo[i].unkF = 0x1C;
             }
 
-            gUnk_03004658->cursorIndex = 0xD;
+            gMenuInfo->cursorIndex = 0xD;
 
             for (i = 0x23; i <= 0x24; i++)
             {
@@ -389,7 +389,7 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
             REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
-            gUnk_03005284->unk0 = gUnk_03005220.lives = gUnk_03005284->unk1E;
+            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
             WriteSaveFile(0, 1);
 
             REG_IE |= INTR_FLAG_VBLANK;
@@ -460,7 +460,7 @@ void GameOverScreenHandler(void)
         case GAME_OVER_SCREEN_STAGE_SELECT_OPTION:
             if ((gNewKeys & A_BUTTON) || (gNewKeys & START_BUTTON))
             {
-                if (gUnk_03004658->cursorIndex != 0)
+                if (gMenuInfo->cursorIndex != 0)
                 {
                     gBlendValue = 0x10;
                     gGameOverScreenStage = GAME_OVER_SCREEN_STAGE_GOOD_NIGHT;
@@ -486,28 +486,28 @@ void GameOverScreenHandler(void)
 
             if (gNewKeys & DPAD_LEFT)
             {
-                if (gUnk_03004658->cursorIndex != 0)
+                if (gMenuInfo->cursorIndex != 0)
                 {
                     m4aSongNumStart(SE_CURSOR_MOVE);
                 }
-                gUnk_03004658->cursorIndex = 0;
+                gMenuInfo->cursorIndex = 0;
             }
             else if (gNewKeys & DPAD_RIGHT)
             {
-                if (gUnk_03004658->cursorIndex == 0)
+                if (gMenuInfo->cursorIndex == 0)
                 {
                     m4aSongNumStart(SE_CURSOR_MOVE);
                 }
-                gUnk_03004658->cursorIndex = 1;
+                gMenuInfo->cursorIndex = 1;
             }
 
-            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pa = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
-            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pb = -((SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]) << 1) >> 1);
-            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pc = SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
-            gOamAffineBuffer[gUnk_03004658->cursorIndex + 1].pd = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gMenuInfo->cursorIndex + 1].pa = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gMenuInfo->cursorIndex + 1].pb = -((SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]) << 1) >> 1);
+            gOamAffineBuffer[gMenuInfo->cursorIndex + 1].pc = SIN(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
+            gOamAffineBuffer[gMenuInfo->cursorIndex + 1].pd = COS(gUnk_0811712A[(gUnk_03004C20.sceneFrameCounter >> 1) % 0x10]);
 
-            gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pa = gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pd = 0x100;
-            gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pb = gOamAffineBuffer[!gUnk_03004658->cursorIndex + 1].pc = 0;
+            gOamAffineBuffer[!gMenuInfo->cursorIndex + 1].pa = gOamAffineBuffer[!gMenuInfo->cursorIndex + 1].pd = 0x100;
+            gOamAffineBuffer[!gMenuInfo->cursorIndex + 1].pb = gOamAffineBuffer[!gMenuInfo->cursorIndex + 1].pc = 0;
             break;
 
         case GAME_OVER_SCREEN_STAGE_GOOD_NIGHT:
@@ -922,21 +922,21 @@ void sub_080453F0(void)
     {
         gUnk_030034B0.unk0_1 = 0;
     }
-    gUnk_03005284->unk1 = gUnk_03004C20.world;
-    gUnk_03005284->unk2 = gUnk_030034B0.unk6_4;
+    gUnk_03005284->world = gUnk_03004C20.world;
+    gUnk_03005284->level = gUnk_030034B0.unk6_4;
     WriteSaveFile(0, 0);
     WriteSaveFile(1, 0);
     gUnk_030034B0.unk0_0 = 1;
     
     for (i = 0; i < 8; i++)
     {
-        if (!(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
+        if (!(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
         {
             gUnk_030034B0.unk0_0 = 0;
         }
     }
 
-    if ((gUnk_03004C20.world == 5) && !(gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
+    if ((gUnk_03004C20.world == 5) && !(gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
     {
         gUnk_030034B0.unk0_0 = 0;
     }
@@ -968,7 +968,7 @@ void sub_080453F0(void)
 
     for (i = 0; i < 7; i++)
     {
-        if (!(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
+        if (!(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
         {
             continue;
         }
@@ -984,9 +984,9 @@ void sub_080453F0(void)
     gBgInfo[1].hOfs = gBg2Alpha;
     gBgInfo[1].vOfs = 0x10;
     gCallbackQueue.current[1] = sub_08045734;
-    if ((gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK)
+    if ((gFileProgressData->levelInfo[gUnk_03004C20.world - 1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK)
     {
-        gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][0] = 0;
+        gFileProgressData->levelInfo[gUnk_03004C20.world - 1][0] = 0;
     }
 
     gUnk_030034B0.unk4 = 0x10;
@@ -1009,7 +1009,7 @@ void sub_080453F0(void)
 void sub_08045734(void)
 {
     // vision select screen updater
-    if (gUnk_030034E4 == 0)
+    if (gTransitioning == FALSE)
     {
         sub_080468B0();
         sub_08045874();
@@ -1127,22 +1127,22 @@ void sub_08045874(void)
             gUnk_03004C20.level = gUnk_030034B0.unk6_4;
             SetEntityAnimationInfoState(0, 0x22);
             gCallbackQueue.current[1] = sub_08045398;
-            gUnk_03005284->unk1E = gUnk_03005284->unk0 = gUnk_03005220.lives;
+            gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
 
             if (gUnk_03004C20.world == 1)
             {
                 var_r2_3 = 0;
-                if ((gUnk_03004C20.level == 1) && !(gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
+                if ((gUnk_03004C20.level == 1) && !(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 1;
                     var_r2_3 = 1;
                 }
-                else if ((gUnk_03004C20.level == 4) && !(gUnk_03004670->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
+                else if ((gUnk_03004C20.level == 4) && !(gFileProgressData->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 2;
                     var_r2_3 = 1;
                 }
-                else if ((gUnk_03004C20.level == 6) && !(gUnk_03004670->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
+                else if ((gUnk_03004C20.level == 6) && !(gFileProgressData->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 5;
                     var_r2_3 = 1;
@@ -1216,7 +1216,7 @@ void sub_08045874(void)
                     break;
             }
 
-            if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
+            if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
@@ -1268,7 +1268,7 @@ void sub_08045874(void)
                         break;
                 }
 
-                if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
+                if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][var_r4 - 1] != LEVEL_INFO_DREAM_STONES_MASK)
                 {
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     gUnk_03004C20.sceneFrameCounter = 0;
@@ -1497,7 +1497,7 @@ void sub_08046288(void)
                     }
                     else
                     {
-                        nbrCollectedStones = gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk6_4 - 1] & LEVEL_INFO_DREAM_STONES_MASK;
+                        nbrCollectedStones = gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk6_4 - 1] & LEVEL_INFO_DREAM_STONES_MASK;
                         if (nbrCollectedStones == LEVEL_INFO_DREAM_STONES_MASK)
                         {
                             nbrCollectedStones = 0;
@@ -1567,7 +1567,7 @@ void sub_080467F4(void)
 
     for (level = 0; level < 8; level++)
     {
-        if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK)
+        if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK)
         {
             var_r2 = 0;
         }
@@ -1585,10 +1585,10 @@ void sub_080467F4(void)
             {
                 var_r2 = 1;
             }
-            if (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][level] & LEVEL_INFO_BEATEN_FLAG)
+            if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] & LEVEL_INFO_BEATEN_FLAG)
             {
                 var_r2 += 1;
-                if ((level == 7) && (gUnk_03004C20.world == 5) && ((gUnk_03004670->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG) == 0))
+                if ((level == 7) && (gUnk_03004C20.world == 5) && ((gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG) == 0))
                 {
                     var_r2 -= 1;
                 }
@@ -1623,7 +1623,7 @@ void sub_080468B0(void)
         if (gUnk_030034B0.unk5 == 0x40)
         {
             m4aSongNumStart(SE_LEVEL_UNLOCKED);
-            gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_030034B0.unk7_0 - 1] &= LEVEL_INFO_BEATEN_FLAG;
             sub_080467F4();
         }
 
@@ -1652,7 +1652,7 @@ u8 sub_080469FC(void)
 
     for (level = 0; level < 8; level++)
     {
-        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> level) & 1) != 0) && (gUnk_03004670->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK))
+        if ((((gUnk_0811765C[gUnk_03004C20.world][gUnk_030034B0.unk7_4] >> level) & 1) != 0) && (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK))
         {
             return level + 1;
         }

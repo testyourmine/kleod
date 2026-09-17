@@ -55,7 +55,7 @@ void LoadAllSaveData(void)
         gSaveData->world[saveFile] = buf[1];
         gSaveData->level[saveFile] = buf[2];
         gSaveData->sceneType[saveFile] = buf[3];
-        gSaveData->unk20[saveFile] = buf[4];
+        gSaveData->cutsceneId[saveFile] = buf[4];
 
         if (gSaveData->lives[saveFile] >= 100)
         {
@@ -63,7 +63,7 @@ void LoadAllSaveData(void)
         }
 
         ReadEepromDword(i + 6, (u16 *) buf);
-        gSaveData->unk23[saveFile] = buf[0];
+        gSaveData->nbrUnlockedWorlds[saveFile] = buf[0];
 
         ReadEepromDword(i + 0xC, (u16 *) buf);
         gSaveData->completedFile[saveFile] = buf[7];
@@ -122,7 +122,7 @@ u16 WriteSaveFile(u32 arg0, u8 arg1)
     if (arg0 == 0)
     {
         var_r4 = (u8*) gUnk_03005284;
-        gUnk_03005284->unk3 = arg1;
+        gUnk_03005284->sceneType = arg1;
         gUnk_03005284->addChecksum = gUnk_03005284->xorChecksum = 0;
 
         // update gUnk_03005284 checksum
@@ -143,21 +143,21 @@ u16 WriteSaveFile(u32 arg0, u8 arg1)
     }
     else
     {
-        var_r6 = (u8*) gUnk_03004670;
+        var_r6 = (u8*) gFileProgressData;
         StringCopy((u8 *) gSaveData->saveFileString, (u8 *) sSaveFileString);
         ProgramEepromDwordEx(gSaveData->currentSaveFileAddress, (u16 *) gSaveData);
-        gUnk_03004670->addChecksum = gUnk_03004670->xorChecksum = 0;
+        gFileProgressData->addChecksum = gFileProgressData->xorChecksum = 0;
 
-        // update gUnk_03004670 checksum
-        for (j = 0; j < OFFSET_OF(struct Unk_03004670, addChecksum); j++)
+        // update gFileProgressData checksum
+        for (j = 0; j < OFFSET_OF(struct FileProgressData, addChecksum); j++)
         {
-            gUnk_03004670->addChecksum += var_r6[0];
-            gUnk_03004670->xorChecksum ^= var_r6[0];
+            gFileProgressData->addChecksum += var_r6[0];
+            gFileProgressData->xorChecksum ^= var_r6[0];
             var_r6 += 1;
         }
 
-        // Save gUnk_03004670 to EEPROM addresses 6-0xE
-        var_r6 = (u8*) gUnk_03004670;
+        // Save gFileProgressData to EEPROM addresses 6-0xE
+        var_r6 = (u8*) gFileProgressData;
         for (j = 6; j <= 0xE; j++)
         {
             retval = ProgramEepromDwordEx(gSaveData->currentSaveFileAddress + j, (u16 *) var_r6);
@@ -232,14 +232,14 @@ u16 LoadSaveFile(s32 arg0)
             retval = 2;
         }
 
-        if (gUnk_03005284->unk0 >= 100)
+        if (gUnk_03005284->lives >= 100)
         {
-            gUnk_03005284->unk0 = 3;
+            gUnk_03005284->lives = 3;
         }
     }
     else
     {
-        var_r5_2 = (u8*) gUnk_03004670;
+        var_r5_2 = (u8*) gFileProgressData;
         ReadEepromDword(gSaveData->currentSaveFileAddress, (u16 *) gSaveData);
         if (StringCompare(gSaveData->saveFileString, (u8 *) sSaveFileString) != 0)
         {
@@ -254,17 +254,17 @@ u16 LoadSaveFile(s32 arg0)
                 var_r5_2 += 8;
             }
 
-            // calculate gUnk_03004670 checksum
-            var_r5_2 = (u8*) gUnk_03004670;
-            for (j = 0; j < OFFSET_OF(struct Unk_03004670, addChecksum); j++)
+            // calculate gFileProgressData checksum
+            var_r5_2 = (u8*) gFileProgressData;
+            for (j = 0; j < OFFSET_OF(struct FileProgressData, addChecksum); j++)
             {
                 addChecksum += var_r5_2[0];
                 xorChecksum ^= var_r5_2[0];
                 var_r5_2 += 1;
             }
 
-            // verify gUnk_03004670 checksum matches
-            if ((addChecksum != gUnk_03004670->addChecksum) || (xorChecksum != gUnk_03004670->xorChecksum))
+            // verify gFileProgressData checksum matches
+            if ((addChecksum != gFileProgressData->addChecksum) || (xorChecksum != gFileProgressData->xorChecksum))
             {
                 retval = 2;
             }

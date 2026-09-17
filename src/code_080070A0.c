@@ -1550,7 +1550,7 @@ void sub_0800A804(void)
     u32 var_r2;
     u32 var_r4;
 
-    if ((gNewKeys & START_BUTTON) && (gUnk_030034E4 == 0) && (gUnk_03005220.unk46 == 0))
+    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0))
     {
         for (var_r2 = 0; var_r2 < 10; var_r2++)
         {
@@ -1741,7 +1741,7 @@ void sub_0800AC34(void)
         gEntityInfo[0].priority = 0;
     }
 
-    if ((gNewKeys & START_BUTTON) && (gUnk_030034E4 == 0) && (gUnk_03005220.unk46 == 0) && (gUnk_03005400.unkC != 0))
+    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0) && (gUnk_03005400.unkC != 0))
     {
         for (var_r2 = 0; var_r2 < 10; var_r2++)
         {
@@ -2180,7 +2180,7 @@ void sub_0800B3C0(void)
                 break;
 
             case ENTITY_ID_MOON_DOOR:
-                if (gUnk_03005220.unk3_5 != 0)
+                if (gUnk_03005220.moonDoorOpen != 0)
                 {
                     SetEntityAnimationInfoState(var_sb, 2);
                 }
@@ -2251,8 +2251,8 @@ void sub_0800B3C0(void)
                 break;
 
             case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
-                gEntityInfo[var_sb].unkC_4 = gUnk_03005220.unk3_6;
-                if (gUnk_03005220.unk3_6 == 0)
+                gEntityInfo[var_sb].unkC_4 = gUnk_03005220.pressedGrowingShrinkingBlockSwitch;
+                if (gUnk_03005220.pressedGrowingShrinkingBlockSwitch == 0)
                 {
                     DmaCopy16(3, &gUnk_08063368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5), 0x80);
                 }
