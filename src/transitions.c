@@ -405,7 +405,7 @@ void TransitionFromRoomToRoom_FadeOut(void)
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
-        LevelOrCityInit();
+        LevelOrWorldInit();
         sub_0800B3C0();
         if (gUnk_03004C20.isHoverBoardLevel == 1)
         {

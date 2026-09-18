@@ -222,7 +222,7 @@ void sub_08001158(void)
         gUnk_03005284->roomsRotationBits = 0;
         gUnk_03004C20.roomsRotationBits = 0;
     }
-    LevelOrCityInit();
+    LevelOrWorldInit();
 
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].tileSize * gBgInfo[1].nbrTiles);
@@ -1159,9 +1159,9 @@ void sub_08002AC4(void)
 }
 
 // 2FD0
-void LevelOrCityInit(void)
+void LevelOrWorldInit(void)
 {
-    enum LevelLoadType var_r6;
+    u32 var_r6;
 
     var_r6 = LEVEL_LOAD_START;
 

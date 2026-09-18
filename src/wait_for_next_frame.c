@@ -354,7 +354,7 @@ void ClearedAllVisionsScreenWaitForNextFrame(void)
 }
 
 // CA0C
-void sub_0800CA0C(enum LevelLoadType levelLoadType)
+void sub_0800CA0C(u32 levelLoadType)
 {
     // Called once per level/room load
     u32 var_r4;
