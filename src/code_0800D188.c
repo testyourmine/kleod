@@ -733,7 +733,7 @@ block_236:
                                     {
                                         if (gEntityInfo[var_sb].unkF > 0xF)
                                         {
-                                            gEntityInfo[var_sb].unkF = gUnk_03005220.unk39;
+                                            gEntityInfo[var_sb].unkF = 0;
                                         }
                                         sp18 = gEntityInfo[0].xPosBg2 = sp18 - gUnk_03005220.unk56;
                                     }

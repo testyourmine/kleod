@@ -261,6 +261,26 @@ enum EntityId {
     /* 0x7D */ ENTITY_ID_FLYING_BOOMIE_VERTICAL,
 };
 
+enum EntityState {
+    /* 0x00 */ ENTITY_STATE_NORMAL, // Normal processing
+    /* 0x07 */ ENTITY_STATE_MAGNETIZED_UP = 7, // Magnet block is stuck upwards
+    /* 0x08 */ ENTITY_STATE_MAGNETIZED_RIGHT = 8, // Magnet block is stuck rightwards
+    /* 0x09 */ ENTITY_STATE_MAGNETIZED_LEFT = 9, // Magnet block is stuck leftwards
+    /* 0x0A */ ENTITY_STATE_MAGNETIZING = 10, // Magnet block is in process of connecting to magnet
+    /* 0x0E */ ENTITY_STATE_BOUNCED_UP = 14, // Bounced by arrow upwards
+    /* 0x0F */ ENTITY_STATE_BOUNCED_DOWN = 15, // Bounced by arrow downwards
+    /* 0x10 */ ENTITY_STATE_BOUNCED_RIGHT = 16, // Bounced by arrow rightwards
+    /* 0x11 */ ENTITY_STATE_BOUNCED_LEFT = 17, // Bounced by arrow leftwards
+    /* 0x13 */ ENTITY_STATE_CARRIED = 19, // Being carried by Klonoa
+    /* 0x15 */ ENTITY_STATE_THROWN_RIGHT = 21, // Thrown by Klonoa rightwards
+    /* 0x16 */ ENTITY_STATE_THROWN_LEFT = 22, // Thrown by Klonoa leftwards
+    /* 0x17 */ ENTITY_STATE_THROWN_DOWN = 23, // Thrown by Klonoa downwards
+    /* 0x19 */ ENTITY_STATE_RESPAWN = 25, // Being respawned
+    /* 0x1A */ ENTITY_26 = 26, // Seems to be a "disappearing" flag, where it flashes
+    /* 0x1B */ ENTITY_STATE_EXPLODING = 27, // Boomie is exploding
+    /* 0x1C */ ENTITY_STATE_STOP_PROCESSING = 28, // Seems to be when a entity stops being processed, for example when Klonoa dies and everything fades out
+};
+
 // TODO: figure out if unk8 can be loaded as u16 without union, or what the real solution is
 union __attribute__((packed)) EntityInfo_8 {
     struct __attribute__((packed)) {
