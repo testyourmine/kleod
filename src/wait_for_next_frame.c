@@ -354,10 +354,9 @@ void ClearedAllVisionsScreenWaitForNextFrame(void)
 }
 
 // CA0C
-void sub_0800CA0C(u32 arg0)
+void sub_0800CA0C(enum LevelLoadType levelLoadType)
 {
     // Called once per level/room load
-    // arg0 is 0 when starting level, 1 when loading from file select (if saved progress), 2 when reloading (room/retry/death)
     u32 var_r4;
 
     gUnk_03003508 = 3;
@@ -393,7 +392,7 @@ void sub_0800CA0C(u32 arg0)
         gEntityInfo[0].unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_0;
     }
 
-    if (arg0 == 0)
+    if (levelLoadType == LEVEL_LOAD_START)
     {
         gUnk_03005284->unk6 = 0;
         gUnk_03005284->world = gUnk_03004C20.world;
@@ -433,7 +432,7 @@ void sub_0800CA0C(u32 arg0)
         gUnk_03005220.klonoaPrevIdleAnimation = 0;
     }
 
-    if (arg0 == 1)
+    if (levelLoadType == LEVEL_LOAD_FROM_FILE_SELECT)
     {
         gUnk_03005220.lives = gUnk_03005284->lives;
         gUnk_03005220.hearts = gUnk_03005284->hearts;
@@ -539,7 +538,7 @@ void sub_0800CA0C(u32 arg0)
         }
         gCallbackQueue.next[3] = TransitionToVisionSelectOrLevelGameplay_FadeIn;
 
-        if ((arg0 == 0) || (arg0 == 1))
+        if ((levelLoadType == LEVEL_LOAD_START) || (levelLoadType == LEVEL_LOAD_FROM_FILE_SELECT))
         {
             if (gUnk_03003410.unkA == 0)
             {

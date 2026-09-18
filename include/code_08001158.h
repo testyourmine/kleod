@@ -26,7 +26,7 @@ void PuzzleStageScrollUpdate(void);
 void AthleticChallengeScrollUpdate(void);
 void HoverBoardScrollUpdate(void);
 void sub_08002AC4(void);
-void sub_08002FD0(void);
+void LevelOrCityInit(void);
 void sub_0800343C(u8 arg0);
 void ClearedAllVisionsScreenInit(void);
 void ClearedAllVisionsScreenHandler(void);

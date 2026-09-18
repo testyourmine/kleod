@@ -222,7 +222,7 @@ void sub_08001158(void)
         gUnk_03005284->roomsRotationBits = 0;
         gUnk_03004C20.roomsRotationBits = 0;
     }
-    sub_08002FD0();
+    LevelOrCityInit();
 
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].tileSize * gBgInfo[1].nbrTiles);
@@ -1159,16 +1159,16 @@ void sub_08002AC4(void)
 }
 
 // 2FD0
-void sub_08002FD0(void)
+void LevelOrCityInit(void)
 {
-    u32 var_r6;
+    enum LevelLoadType var_r6;
 
-    var_r6 = 0;
+    var_r6 = LEVEL_LOAD_START;
 
     gUnk_03004654 = &gUnk_080520E4[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
     gUnk_03000800 = gUnk_08052624[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
-    if (gUnk_03004C20.level == 0)
+    if (gUnk_03004C20.level == 0) // .level = 0 means "starting a city"
     {
         gSoundVolume = 0xFFFF;
         gUnk_03004C20.room = 1;
@@ -1177,7 +1177,7 @@ void sub_08002FD0(void)
         gCurrentRoomBg2Bounds.right = 0x100;
         gCurrentRoomBg2Bounds.bottom = 0x100;
     }
-    else if (gUnk_03004C20.level == 8)
+    else if (gUnk_03004C20.level == 8) // .level = 8 means "starting a boss vision"
     {
         gSoundVolume = 0xFFFF;
         gUnk_03004C20.room = 1;
@@ -1186,7 +1186,7 @@ void sub_08002FD0(void)
         gCurrentRoomBg2Bounds.right = 0x200;
         gCurrentRoomBg2Bounds.bottom = 0x200;
     }
-    else
+    else // starting a regular vision
     {
         if (gUnk_03004C20.room == 0)
         {
@@ -1207,12 +1207,12 @@ void sub_08002FD0(void)
             else
             {
                 gUnk_030051C8 = gUnk_03005284->unk6;
-                var_r6 = 1;
+                var_r6 = LEVEL_LOAD_FROM_FILE_SELECT;
             }
         }
         else
         {
-            var_r6 = 2;
+            var_r6 = LEVEL_LOAD_RELOAD;
         }
 
         gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_2;

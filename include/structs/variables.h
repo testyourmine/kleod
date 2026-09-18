@@ -90,6 +90,12 @@ enum SceneType {
     SCENE_TYPE_WORLD_MAP = 7
 };
 
+enum LevelLoadType {
+    LEVEL_LOAD_START,
+    LEVEL_LOAD_FROM_FILE_SELECT,
+    LEVEL_LOAD_RELOAD
+};
+
 struct SaveData {
     u8 saveFileString[9]; // "K_KLONOA"
     u8 pad9[0x10 - 0x9];
