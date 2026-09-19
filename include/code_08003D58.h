@@ -3,10 +3,11 @@
 
 #include "global.h"
 
+void EntityInit(void);
 void sub_08003D58(void);
 void sub_08003D80(void);
 void sub_08003DA0(void);
-void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6, u8 arg7, u8 id);
+void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6, u8 arg7, u8 id);
 void sub_08005CF4(void);
 void sub_080070A0(void);
 void sub_080098C8(void);

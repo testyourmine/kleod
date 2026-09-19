@@ -269,15 +269,15 @@ NONMATCH("asm/nonmatching/sub_0804B4B0.inc", void sub_0804B4B0(s32 arg0, s32 arg
         {
             for (var_r7 = 0; var_r7 < gBgInfo[2].hLength; var_r7++)
             {
-                gUnk_03004DB0[var_r7] = temp_r8[var_r7 + (var_r3 * gBgInfo[2].hLength)];
+                gBg2TilemapData[var_r7] = temp_r8[var_r7 + (var_r3 * gBgInfo[2].hLength)];
             }
             
             for (var_r7 = gBgInfo[2].hLength; var_r7 < var_sl; var_r7++)
             {
-                gUnk_03004DB0[var_r7] = 0;
+                gBg2TilemapData[var_r7] = 0;
             }
 
-            DmaCopy16Wait(3, gUnk_03004DB0, gBgInfo[2].pTilemap + (var_r3 * var_sl), var_sl);
+            DmaCopy16Wait(3, gBg2TilemapData, gBgInfo[2].pTilemap + (var_r3 * var_sl), var_sl);
         }
 
         for (var_r3 = gBgInfo[2].vLength; var_r3 < var_sl; var_r3++)
@@ -773,7 +773,7 @@ void sub_0804C300(void)
     var_sb = sub_0804B254(gUnk_03004D84 + 2);
     for (var_r8 = 0; gUnk_08189F04[var_sb][var_r8].unk0 != 0xFFFF; var_r8++)
     {
-        sub_08003DC0(gUnk_03005428++, gUnk_08189F04[var_sb][var_r8].unk7, gUnk_08189F04[var_sb][var_r8].unk0, gUnk_08189F04[var_sb][var_r8].unk2, gUnk_08189F04[var_sb][var_r8].unk4, gUnk_08189F04[var_sb][var_r8].unk9, gUnk_08189F04[var_sb][var_r8].unk5, gUnk_08189F04[var_sb][var_r8].unk6, gUnk_08189F04[var_sb][var_r8].unk8);
+        EntityCreate(gUnk_03005428++, gUnk_08189F04[var_sb][var_r8].unk7, gUnk_08189F04[var_sb][var_r8].unk0, gUnk_08189F04[var_sb][var_r8].unk2, gUnk_08189F04[var_sb][var_r8].unk4, gUnk_08189F04[var_sb][var_r8].unk9, gUnk_08189F04[var_sb][var_r8].unk5, gUnk_08189F04[var_sb][var_r8].unk6, gUnk_08189F04[var_sb][var_r8].unk8);
     }
     gUnk_03004D84 += 4;
 }
@@ -1749,9 +1749,9 @@ void sub_0804E0E8(void)
                         gUnk_03003410.unk9 = 0;
                         gUnk_03003410.unkA = 0;
 
-                        gCallbackQueue.next[0] = sub_08001158;
+                        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
                         gUnk_03003410.unk8 = 1;
-                        gCallbackQueue.next[1] = sub_08003904;
+                        gCallbackQueue.next[1] = EntityInit;
                         gCallbackQueue.next[2] = NULL + 1;
                         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                         gCallbackQueue.nextCount = 3;
@@ -1769,9 +1769,9 @@ void sub_0804E0E8(void)
                         gUnk_03003410.unk9 = 0;
                         gUnk_03003410.unkA = 0;
 
-                        gCallbackQueue.next[0] = sub_08001158;
+                        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
                         gUnk_03003410.unk8 = 1;
-                        gCallbackQueue.next[1] = sub_08003904;
+                        gCallbackQueue.next[1] = EntityInit;
                         gCallbackQueue.next[2] = NULL + 1;
                         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                         gCallbackQueue.nextCount = 3;

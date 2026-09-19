@@ -108,7 +108,7 @@ void DeleteAllSaveDataScreenInit(void)
     gUnk_03003410.unk8 = 1;
     gUnk_03004C20.level = 1;
     gUnk_03004C20.world = 1;
-    sub_08003904();
+    EntityInit();
 
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -1078,7 +1078,7 @@ void TitleScreenInit(void)
 
     gUnk_03004C20.world = 1;
     gUnk_03003410.unk8 = 0;
-    sub_08003904();
+    EntityInit();
 
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
@@ -1125,7 +1125,7 @@ void TitleScreenInit(void)
     gUnk_03005428 = 0xD;
     for (i = 0; gUnk_08116590[i].unk0 != 0xFFFF; i++)
     {
-        sub_08003DC0(gUnk_03005428++, gUnk_08116590[i].unk7, gUnk_08116590[i].unk0, gUnk_08116590[i].unk2, gUnk_08116590[i].unk4, 0, gUnk_08116590[i].unk5, gUnk_08116590[i].unk6, gUnk_08116590[i].unk8);
+        EntityCreate(gUnk_03005428++, gUnk_08116590[i].unk7, gUnk_08116590[i].unk0, gUnk_08116590[i].unk2, gUnk_08116590[i].unk4, 0, gUnk_08116590[i].unk5, gUnk_08116590[i].unk6, gUnk_08116590[i].unk8);
     }
     gUnk_03005428 += 0xA;
 
@@ -1498,8 +1498,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON;
             break;
 
-        // Go to demo
-        case TITLE_SCREEN_STAGE_GO_TO_DEMO:
+        // Begin demo
+        case TITLE_SCREEN_STAGE_BEGIN_DEMO:
             REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
             break;
 
@@ -1592,7 +1592,7 @@ void TitleScreenHandler(void)
 
                 if ((gUnk_03004C20.sceneFrameCounter >= 0x400) && (gBlendValue == 0))
                 {
-                    gTitleScreenStage = TITLE_SCREEN_STAGE_GO_TO_DEMO;
+                    gTitleScreenStage = TITLE_SCREEN_STAGE_BEGIN_DEMO;
                     TitleScreenStageSetup(gTitleScreenStage);
                 }
             }
@@ -1682,8 +1682,8 @@ void TitleScreenHandler(void)
             DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
             break;
 
-        // Go to demo
-        case TITLE_SCREEN_STAGE_GO_TO_DEMO:
+        // Begin demo
+        case TITLE_SCREEN_STAGE_BEGIN_DEMO:
             gBlendValue = gUnk_03004C20.sceneFrameCounter / 4;
             if (gUnk_03004C20.sceneFrameCounter < 0x40)
             {
@@ -1694,9 +1694,9 @@ void TitleScreenHandler(void)
             gUnk_03004C20.sceneFrameCounter = -1;
             gTitleScreenStage = 0;
             gMosaicSize = 0xF;
-            gBlendValue = 0x10;
+            gBlendValue = BLEND_MAX;
 
-            gUnk_03004C20.demoInputIndex = 0xFE;
+            gUnk_03004C20.demoInputIndex = -2;
             gUnk_03004C20.demoNextInputTimer = 0;
             gUnk_03004C20.demoNumber += 1;
             if (gUnk_03004C20.demoNumber > 2)
@@ -1717,7 +1717,7 @@ void TitleScreenHandler(void)
             }
             else
             {
-                gUnk_03005220.lives = 0x63;
+                gUnk_03005220.lives = 99;
                 gUnk_03004C20.world = 2;
                 gUnk_03004C20.level = 5;
             }
@@ -1725,9 +1725,9 @@ void TitleScreenHandler(void)
 
             gUnk_03003410.unk9 = 0;
             gUnk_03003410.unkA = 1;
-            gCallbackQueue.next[0] = sub_08001158;
+            gCallbackQueue.next[0] = VisionAndVisionSelectInit;
             gUnk_03003410.unk8 = 1;
-            gCallbackQueue.next[1] = sub_08003904;
+            gCallbackQueue.next[1] = EntityInit;
             gCallbackQueue.next[2] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 3;
@@ -1766,7 +1766,7 @@ void FileSelectScreenInit(void)
 
     gUnk_03004C20.world = 1;
     gUnk_03003410.unk8 = 0;
-    sub_08003904();
+    EntityInit();
 
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -1810,7 +1810,7 @@ void FileSelectScreenInit(void)
     
     for (i = 0; i < 20; i++)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg2Tilemap + (i * 0x1E), gUnk_03004DB0 + (i * 0x20), 0x1E);
+        DmaCopy16(3, gBgDataPtrs.pBufBg2Tilemap + (i * 0x1E), gBg2TilemapData + (i * 0x20), 0x1E);
         DmaFill16(3, 0, &gBgTilemapBufs[1][0] + (i * 0x20), 0x3C);
         DmaFill16(3, 0, &gBgTilemapBufs[0][0] + (i * 0x20), 0x3C);
     }

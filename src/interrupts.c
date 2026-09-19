@@ -10,7 +10,7 @@ void VBlankIntr_Common(void)
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03004DB0, gBgInfo[2].pTilemap, 0x400);
+    DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, 0x400);
 
     DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
 
@@ -84,7 +84,7 @@ void VBlankIntr_Boss(void)
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gUnk_03003650, gBgInfo[2].pTilemap, 0x1000);
+    DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, 0x1000);
 
     DmaCopy32Wait(3, &gOamBuffer, OAM, OAM_SIZE / 2);
 

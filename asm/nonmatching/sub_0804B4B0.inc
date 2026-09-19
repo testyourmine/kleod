@@ -75,7 +75,7 @@ _0804B52A:
 	ldrh r0, [r0]
 	cmp r7, r0
 	bge _0804B554
-	ldr r4, _0804B5F4 @ =gUnk_03004DB0
+	ldr r4, _0804B5F4 @ =gBg2TilemapData
 	ldr r2, _0804B5F8 @ =gBgInfo+0x48
 _0804B53E:
 	adds r1, r7, r4
@@ -94,7 +94,7 @@ _0804B554:
 	ldrh r7, [r2]
 	cmp r7, sl
 	bhs _0804B56A
-	ldr r2, _0804B5F4 @ =gUnk_03004DB0
+	ldr r2, _0804B5F4 @ =gBg2TilemapData
 	movs r1, #0
 _0804B560:
 	adds r0, r7, r2
@@ -104,7 +104,7 @@ _0804B560:
 	blo _0804B560
 _0804B56A:
 	ldr r1, _0804B5FC @ =0x040000D4
-	ldr r3, _0804B5F4 @ =gUnk_03004DB0
+	ldr r3, _0804B5F4 @ =gBg2TilemapData
 	str r3, [r1]
 	ldr r4, _0804B5EC @ =gBgInfo
 	ldr r0, [r4, #0x3c]
@@ -173,7 +173,7 @@ _0804B5E4: .4byte gUnk_08057ACC
 _0804B5E8: .4byte gUnk_030034A0
 _0804B5EC: .4byte gBgInfo
 _0804B5F0: .4byte gUnk_08189CCC
-_0804B5F4: .4byte gUnk_03004DB0
+_0804B5F4: .4byte gBg2TilemapData
 _0804B5F8: .4byte gBgInfo+0x48
 _0804B5FC: .4byte 0x040000D4
 _0804B600: .4byte 0x0300347A

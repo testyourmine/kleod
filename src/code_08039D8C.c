@@ -1062,7 +1062,7 @@ void WorldMapScreenInit(void)
     gUnk_03004C20.world = 1;
     gUnk_03004C20.level = 1;
     gUnk_03004C20.unkA = 0;
-    sub_08003904();
+    EntityInit();
 
     gUnk_03004C20.world = world;
     gUnk_03004C20.level = level;
@@ -1855,13 +1855,13 @@ void sub_0803C808(void)
             gEntityInfo[0x12].unk8.split.unk9 = 0x10;
 
             gUnk_03005400.unkE_7 = 1;
-            gUnk_030007E0.unkC_0 = 3;
-            gUnk_030007E0.unkC_4 = 0;
-            gUnk_030007E0.unk6 = 0x78;
-            gUnk_030007E0.unk0 = 0x78;
-            gUnk_030007E0.unk8 = 0x80;
-            gUnk_030007E0.unk2 = 0x80;
-            gUnk_030007E0.unkA = 0;
+            gBossStageScroll.unkC_0 = 3;
+            gBossStageScroll.unkC_4 = 0;
+            gBossStageScroll.targetXPos = 0x78;
+            gBossStageScroll.currXPos = 0x78;
+            gBossStageScroll.targetYPos = 0x80;
+            gBossStageScroll.currYPos = 0x80;
+            gBossStageScroll.targetAlpha = 0;
             break;
     }
     
@@ -2282,14 +2282,14 @@ void sub_0803D90C(u8 arg0)
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gUnk_030007E0.unkC_0 = 5;
-                gUnk_030007E0.unkC_4 = 1;
-                gUnk_030007E0.unk6 = gEntityInfo[0].xPosBg2;
-                gUnk_030007E0.unk0 = gEntityInfo[0].xPosBg2;
-                gUnk_030007E0.unk8 = gEntityInfo[0].yPosBg2;
-                gUnk_030007E0.unk2 = gEntityInfo[0].yPosBg2;
-                gUnk_030007E0.unkA = 0;
-                gUnk_030007E0.unk4 = 0;
+                gBossStageScroll.unkC_0 = 5;
+                gBossStageScroll.unkC_4 = 1;
+                gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2;
+                gBossStageScroll.currXPos = gEntityInfo[0].xPosBg2;
+                gBossStageScroll.targetYPos = gEntityInfo[0].yPosBg2;
+                gBossStageScroll.currYPos = gEntityInfo[0].yPosBg2;
+                gBossStageScroll.targetAlpha = 0;
+                gBossStageScroll.currAlpha = 0;
 
                 gEntityInfo[0].xPosBg2 = 0;
                 gEntityInfo[0].yPosBg2 = 0x12A;
@@ -2698,8 +2698,8 @@ void sub_0803D90C(u8 arg0)
                 if ((s16)gEntityInfo[arg0].yPosBg2 < 0x30)
                 {
                     gUnk_03005400.unkA = 7;
-                    gUnk_030007E0.unkC_0 = 3;
-                    gUnk_030007E0.unk8 = 0x8C;
+                    gBossStageScroll.unkC_0 = 3;
+                    gBossStageScroll.targetYPos = 0x8C;
                 }
                 break;
 
@@ -2768,8 +2768,8 @@ void sub_0803D90C(u8 arg0)
                     {
                         gEntityInfo[0].yPosBg2 -= 0x30;
                     }
-                    gUnk_030007E0.unkC_0 = 5;
-                    gUnk_030007E0.unk8 = 0x78;
+                    gBossStageScroll.unkC_0 = 5;
+                    gBossStageScroll.targetYPos = 0x78;
 
                     gEntityInfo[0x15].unkC_2 = 0;
                     gEntityInfo[0x16].unkC_2 = 1;
@@ -2937,14 +2937,14 @@ void sub_0803E904(u8 arg0)
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gUnk_030007E0.unkC_0 = 1;
-                gUnk_030007E0.unkC_4 = 0;
-                gUnk_030007E0.unk6 = 0x78;
-                gUnk_030007E0.unk0 = 0x78;
-                gUnk_030007E0.unk8 = 0x50;
-                gUnk_030007E0.unk2 = 0x50;
-                gUnk_030007E0.unkA = 0x40;
-                gUnk_030007E0.unk4 = 0x40;
+                gBossStageScroll.unkC_0 = 1;
+                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.targetXPos = 0x78;
+                gBossStageScroll.currXPos = 0x78;
+                gBossStageScroll.targetYPos = 0x50;
+                gBossStageScroll.currYPos = 0x50;
+                gBossStageScroll.targetAlpha = 0x40;
+                gBossStageScroll.currAlpha = 0x40;
 
                 SetEntityAnimationInfoState(0, 0);
                 SetEntityAnimationInfoState(0x12, 2);
@@ -3133,11 +3133,11 @@ void sub_0803E904(u8 arg0)
                     gUnk_03005400.unk15 = 2;
                     gUnk_03005400.unkA = 0xA;
 
-                    gUnk_030007E0.unkC_0 = 6;
-                    gUnk_030007E0.unkC_4 = 0;
-                    gUnk_030007E0.unk6 = 0x78;
-                    gUnk_030007E0.unk8 = 0x3C;
-                    gUnk_030007E0.unkA = 0x40;
+                    gBossStageScroll.unkC_0 = 6;
+                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.targetXPos = 0x78;
+                    gBossStageScroll.targetYPos = 0x3C;
+                    gBossStageScroll.targetAlpha = 0x40;
                 }
                 break;
 
@@ -3188,16 +3188,16 @@ void sub_0803E904(u8 arg0)
                 {
                     gUnk_03005400.unk14 = 0;
                     gUnk_03005400.unkA = gUnk_03005400.unk15;
-                    gUnk_030007E0.unkC_0 = 1;
-                    gUnk_030007E0.unkC_4 = 0;
-                    gUnk_030007E0.unk6 = 0x78;
-                    gUnk_030007E0.unk8 = 0x50;
-                    gUnk_030007E0.unkA = 0x40;
+                    gBossStageScroll.unkC_0 = 1;
+                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.targetXPos = 0x78;
+                    gBossStageScroll.targetYPos = 0x50;
+                    gBossStageScroll.targetAlpha = 0x40;
                 }
                 break;
 
             case 6:
-                gUnk_030007E0.unkA = 0x80;
+                gBossStageScroll.targetAlpha = 0x80;
                 gUnk_03005400.unk8_0 = 0;
                 gUnk_03005400.unk8_6 = 1;
 
@@ -3276,7 +3276,7 @@ void sub_0803E904(u8 arg0)
             case 8:
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
-                    gUnk_030007E0.unkA = 0x40;
+                    gBossStageScroll.targetAlpha = 0x40;
                     sub_0803E6D8(0x1C);
                     SetEntityAnimationInfoState(0x12, 2);
                     gUnk_03005400.unk15 = 0;
@@ -3595,14 +3595,14 @@ void sub_0803F9EC(u8 arg0)
     {
         if (gUnk_03005400.unkA == 0)
         {
-            gUnk_030007E0.unkC_0 = 7;
-            gUnk_030007E0.unkC_4 = 0;
-            gUnk_030007E0.unk6 = 0x78;
-            gUnk_030007E0.unk0 = 0x78;
-            gUnk_030007E0.unk8 = 0xA0;
-            gUnk_030007E0.unk2 = 0xA0;
-            gUnk_030007E0.unkA = 0x60;
-            gUnk_030007E0.unk4 = 0x60;
+            gBossStageScroll.unkC_0 = 7;
+            gBossStageScroll.unkC_4 = 0;
+            gBossStageScroll.targetXPos = 0x78;
+            gBossStageScroll.currXPos = 0x78;
+            gBossStageScroll.targetYPos = 0xA0;
+            gBossStageScroll.currYPos = 0xA0;
+            gBossStageScroll.targetAlpha = 0x60;
+            gBossStageScroll.currAlpha = 0x60;
             gUnk_03005400.unk9 = 0;
             gUnk_03005400.unk8_4 = 1;
             gEntityInfo[arg0].unkF = 0;
@@ -3677,7 +3677,7 @@ void sub_0803F9EC(u8 arg0)
                         {
                             for (var_r4 = 0; var_r4 < 3; var_r4++)
                             {
-                                gUnk_03003650[var_r3 + 0x17][8 + var_r4 + (gUnk_03005400.unk13 * 8)] = gBgDataPtrs.pBufBg2Tilemap[(var_r1 * 3) + var_r4 + ((var_r3 + 0x2D) * gBgInfo[2].hLength)];
+                                gBossBg2TilemapData[var_r3 + 0x17][8 + var_r4 + (gUnk_03005400.unk13 * 8)] = gBgDataPtrs.pBufBg2Tilemap[(var_r1 * 3) + var_r4 + ((var_r3 + 0x2D) * gBgInfo[2].hLength)];
                             }
                         }
                     }
@@ -4235,7 +4235,7 @@ void sub_08040B50(u8 arg0)
 
         for (var_sb = 0; var_sb < 6; var_sb++)
         {
-            sub_08003DC0(var_sb + 0x18, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk2, 0, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk5, arg0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk29);
+            EntityCreate(var_sb + 0x18, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk2, 0, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk0[gUnk_03004C20.room - 1].unk5, arg0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb + 0xB].unk29);
 
             if ((gEntityInfo[var_sb + 0x18].unkC_4 == 3) || (gEntityInfo[var_sb + 0x18].unkC_4 == 1))
             {
@@ -4396,14 +4396,14 @@ void sub_08040F1C(u8 arg0)
                 gEntityInfo[0x12].unk8.split.unk8 = 0;
 
                 gUnk_03005400.unkA = 1;
-                gUnk_030007E0.unkC_0 = 0;
-                gUnk_030007E0.unkC_4 = 0;
-                gUnk_030007E0.unk6 = 0x78;
-                gUnk_030007E0.unk0 = 0x78;
-                gUnk_030007E0.unk8 = 0x46;
-                gUnk_030007E0.unk2 = 0x46;
-                gUnk_030007E0.unkA = 0x60;
-                gUnk_030007E0.unk4 = 0x60;
+                gBossStageScroll.unkC_0 = 0;
+                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.targetXPos = 0x78;
+                gBossStageScroll.currXPos = 0x78;
+                gBossStageScroll.targetYPos = 0x46;
+                gBossStageScroll.currYPos = 0x46;
+                gBossStageScroll.targetAlpha = 0x60;
+                gBossStageScroll.currAlpha = 0x60;
                 gUnk_03005400.unkE_2 = 1;
                 gUnk_03005400.unkE_7 = 1;
                 break;
@@ -5106,14 +5106,14 @@ void sub_08042024(u8 arg0)
                 gEntityInfo[0x16].priority = 1;
                 gEntityInfo[0x15].priority = 1;
 
-                gUnk_030007E0.unkC_0 = 0;
-                gUnk_030007E0.unkC_4 = 0;
-                gUnk_030007E0.unk6 = gEntityInfo[0x12].xPosBg2 - 0x78;
-                gUnk_030007E0.unk0 = gEntityInfo[0x12].xPosBg2 - 0x78;
-                gUnk_030007E0.unk8 = gEntityInfo[0x12].yPosBg2;
-                gUnk_030007E0.unk2 = gEntityInfo[0x12].yPosBg2;
-                gUnk_030007E0.unkA = 0x60;
-                gUnk_030007E0.unk4 = 0x60;
+                gBossStageScroll.unkC_0 = 0;
+                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.targetXPos = gEntityInfo[0x12].xPosBg2 - 0x78;
+                gBossStageScroll.currXPos = gEntityInfo[0x12].xPosBg2 - 0x78;
+                gBossStageScroll.targetYPos = gEntityInfo[0x12].yPosBg2;
+                gBossStageScroll.currYPos = gEntityInfo[0x12].yPosBg2;
+                gBossStageScroll.targetAlpha = 0x60;
+                gBossStageScroll.currAlpha = 0x60;
                 gUnk_03005400.unkE_7 = 1;
                 break;
 
@@ -5132,9 +5132,9 @@ void sub_08042024(u8 arg0)
                 {
                     gEntityInfo[arg0].unkF = 0;
                     gUnk_03005400.unkA = 2;
-                    gUnk_030007E0.unkC_0 = 1;
-                    gUnk_030007E0.unkC_4 = 0;
-                    gUnk_030007E0.unkA = 0x60;
+                    gBossStageScroll.unkC_0 = 1;
+                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.targetAlpha = 0x60;
 
                     gEntityInfo[0x14].unkF = 0x19;
                     gEntityInfo[0x13].unkF = 0x19;
@@ -5346,11 +5346,11 @@ b:
                     gUnk_03005400.unk13 = 0;
                     SetEntityAnimationInfoState(0x15, 5);
                     gEntityInfo[0x15].unkF = 0xE;
-                    gUnk_030007E0.unkC_0 = 0;
-                    gUnk_030007E0.unkC_4 = 0;
-                    gUnk_030007E0.unk6 = 0x78;
-                    gUnk_030007E0.unk8 = 0x50;
-                    gUnk_030007E0.unkA = 0x40;
+                    gBossStageScroll.unkC_0 = 0;
+                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.targetXPos = 0x78;
+                    gBossStageScroll.targetYPos = 0x50;
+                    gBossStageScroll.targetAlpha = 0x40;
                     gUnk_030052A0 = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
@@ -5415,11 +5415,11 @@ b:
                 if (gBlendValue > 8)
                 {
                     gUnk_03005400.unkA = 0xA;
-                    gUnk_030007E0.unkC_0 = 0;
-                    gUnk_030007E0.unkC_4 = 0;
-                    gUnk_030007E0.unk6 = 0x78;
-                    gUnk_030007E0.unk8 = 0x50;
-                    gUnk_030007E0.unkA = 0x40;
+                    gBossStageScroll.unkC_0 = 0;
+                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.targetXPos = 0x78;
+                    gBossStageScroll.targetYPos = 0x50;
+                    gBossStageScroll.targetAlpha = 0x40;
                     gUnk_030052A0 = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
@@ -5645,11 +5645,11 @@ void sub_08042E64(u8 arg0)
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gUnk_030007E0.unkC_0 = 3;
-                gUnk_030007E0.unkC_4 = 0;
-                gUnk_030007E0.unk6 = 0x78;
-                gUnk_030007E0.unk8 = 0x80;
-                gUnk_030007E0.unkA = 0;
+                gBossStageScroll.unkC_0 = 3;
+                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.targetXPos = 0x78;
+                gBossStageScroll.targetYPos = 0x80;
+                gBossStageScroll.targetAlpha = 0;
                 gUnk_03005400.unk8_0 = 1;
                 gUnk_03005400.unk8_6 = 1;
 
@@ -5688,8 +5688,8 @@ void sub_08042E64(u8 arg0)
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gUnk_030007E0.unk8 = 0x80;
-                gUnk_030007E0.unkA = 0;
+                gBossStageScroll.targetYPos = 0x80;
+                gBossStageScroll.targetAlpha = 0;
                 gUnk_03005400.unk0 = 0x78;
                 gUnk_03005400.unkA = 1;
                 break;
@@ -5723,16 +5723,16 @@ void sub_08042E64(u8 arg0)
             case 3:
                 if (gUnk_03005400.unkC == 2)
                 {
-                    gUnk_030007E0.unkC_0 = 3;
-                    gUnk_030007E0.unkA = 0;
-                    gUnk_030007E0.unk8 = 0x90;
+                    gBossStageScroll.unkC_0 = 3;
+                    gBossStageScroll.targetAlpha = 0;
+                    gBossStageScroll.targetYPos = 0x90;
                     gUnk_03005400.unk13 = gUnk_08116AA4[gUnk_03005400.unkC - 1];
                     gUnk_03005400.unkA = 2;
                 }
                 else
                 {
-                    gUnk_030007E0.unkA = 0x50;
-                    gUnk_030007E0.unk8 = 0xA0;
+                    gBossStageScroll.targetAlpha = 0x50;
+                    gBossStageScroll.targetYPos = 0xA0;
                     gUnk_03005400.unk13 = gUnk_08116AA7[gUnk_03005400.unkC - 1];
                     gUnk_03005400.unkA = 5;
                 }
@@ -5768,21 +5768,16 @@ void sub_08042E64(u8 arg0)
                 break;
 
             case 5:
-                if (gUnk_030007E0.unk2 != gUnk_030007E0.unk8)
+                if (gBossStageScroll.currYPos == gBossStageScroll.targetYPos)
                 {
-
-                }
-                else if (gUnk_030007E0.unk4 != gUnk_030007E0.unkA)
-                {
-
-                }
-                else
-                {
-                    gEntityInfo[0x1F].unk8.split.unk8 = 0;
-                    gEntityInfo[0x1F].unkF = 7;
-                    gEntityInfo[0x1F].unk16 = 1;
-                    SetEntityAnimationInfoState(0x1F, 0xD);
-                    gUnk_03005400.unkA = 6;
+                    if (gBossStageScroll.currAlpha == gBossStageScroll.targetAlpha)
+                    {
+                        gEntityInfo[0x1F].unk8.split.unk8 = 0;
+                        gEntityInfo[0x1F].unkF = 7;
+                        gEntityInfo[0x1F].unk16 = 1;
+                        SetEntityAnimationInfoState(0x1F, 0xD);
+                        gUnk_03005400.unkA = 6;
+                    }
                 }
                 break;
 

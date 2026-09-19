@@ -9,7 +9,7 @@ void VisionSelectWaitForNextFrame(void);
 void CutsceneWaitForNextFrame(void);
 void GameOverScreenWaitForNextFrame(void);
 void ClearedAllVisionsScreenWaitForNextFrame(void);
-void sub_0800CA0C(u32 arg0);
+void SetUpRoomInfo(u32 levelLoadType);
 void TitleScreenWaitForNextFrame(void);
 
 #endif // GUARD_WAIT_FOR_NEXT_FRAME_H

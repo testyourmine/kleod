@@ -37,7 +37,7 @@ SECTIONS {
         . = 0x000007D4; gUnk_030007D4 = .;
         . = 0x000007D8; gMosaicSize = .;
         . = 0x000007DC; gObjPalRamPtr = .;
-        . = 0x000007E0; gUnk_030007E0 = .;
+        . = 0x000007E0; gBossStageScroll = .;
         . = 0x000007F0; gUnk_030007F0 = .;
         . = 0x000007F4; gUnk_030007F4 = .;
         . = 0x000007F8; gDeleteAllSaveDataScreenStage = .;
@@ -108,7 +108,7 @@ SECTIONS {
         . = 0x00003638; gUnk_03003638 = .;
         . = 0x0000363C; gUnk_0300363C = .;
         . = 0x00003640; gUnk_03003640 = .;
-        . = 0x00003650; gUnk_03003650 = .;
+        . = 0x00003650; gBossBg2TilemapData = .;
         . = 0x00003790; gUnk_03003790 = .;
         . = 0x00003D16; gUnk_03003D16 = .;
         . = 0x00003DD6; gUnk_03003DD6 = .;
@@ -151,7 +151,7 @@ SECTIONS {
         . = 0x00004D90; gTextBoxInfo = .;
         . = 0x00004D9C; gTitleScreenStage = .;
         . = 0x00004DA0; gNewKeys = .;
-        . = 0x00004DB0; gUnk_03004DB0 = .;
+        . = 0x00004DB0; gBg2TilemapData = .;
         . = 0x000051B0; gBg2AlphaCos = .;
         . = 0x000051B4; gUnk_030051B4 = .;
         . = 0x000051B8; gAthleticChallengeScrollFlags = .;

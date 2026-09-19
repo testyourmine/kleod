@@ -419,7 +419,7 @@ void DrawVisionEnd(void)
 
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
-        gCallbackQueue.next[2] = sub_08002AC4;
+        gCallbackQueue.next[2] = BossStageScrollUpdate;
         gCallbackQueue.next[3] = BossWaitForNextFrame;
         gCallbackQueue.next[4] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;

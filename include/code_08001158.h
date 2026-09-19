@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-void sub_08001158(void);
+void VisionAndVisionSelectInit(void);
 
 enum ScrollFlags {
     SCROLL_NONE = 0x0,
@@ -25,11 +25,10 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset);
 void PuzzleStageScrollUpdate(void);
 void AthleticChallengeScrollUpdate(void);
 void HoverBoardScrollUpdate(void);
-void sub_08002AC4(void);
-void LevelOrWorldInit(void);
-void sub_0800343C(u8 arg0);
+void BossStageScrollUpdate(void);
+void SetUpRoomVisuals(void);
+void LoadBg2TilemapData(u8 tileYOffset);
 void ClearedAllVisionsScreenInit(void);
 void ClearedAllVisionsScreenHandler(void);
-void sub_08003904(void);
 
 #endif // GUARD_CODE_08001158_H

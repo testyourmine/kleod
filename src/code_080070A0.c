@@ -2119,7 +2119,7 @@ void sub_0800B3C0(void)
 
     for (var_sb = 0; gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[0].unk0 != 0xFFFF; var_sb++)
     {
-        sub_08003DC0(gUnk_03005428++, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk2, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk4, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk5, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk6, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk29);
+        EntityCreate(gUnk_03005428++, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk2, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk4, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk5, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk6, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk29);
 
         if ((gEntityInfo[gUnk_03005428 - 1].id >= ENTITY_ID_WATER) && (gEntityInfo[gUnk_03005428 - 1].id <= ENTITY_ID_MOON_DOOR))
         {

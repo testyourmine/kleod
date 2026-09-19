@@ -4,6 +4,7 @@
 #include "code_08014184.h"
 #include "transitions.h"
 #include "code_08025B78.h"
+#include "code_0802688C.h"
 #include "code_08039D8C.h"
 #include "code_08043BA4.h"
 #include "math.h"
@@ -31,7 +32,14 @@ extern const union Unk_03000820 gUnk_080E2A7C;
 
 extern const u8 gUnk_080E2A84[0x6][0x8];
 
+extern void (*gUnk_08116620[6][9])(void); // pointers to "load level" functions
+
+extern void *gUnk_08189A24[6][9];
+
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
+
+extern void gUnk_0805553C;
+extern void gUnk_080555A8;
 
 extern u8 gUnk_08061FC8[0x80];
 extern u8 gUnk_080627C8[0x80];
@@ -50,6 +58,169 @@ extern u8 gUnk_080B9268[0x80];
 extern u8 gUnk_080B92E8[0x80];
 extern u8 gUnk_080B9468[0x200];
 extern u8 gUnk_080B9668[0x200];
+
+// 3904
+void EntityInit(void)
+{
+    // Initialize the entity system
+    // Called once when loading any scene with entities
+    u32 tileColOffset;
+    u32 i;
+    u32 collectedItems;
+    u32 item;
+
+    REG_IE &= ~INTR_FLAG_VBLANK;
+    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
+
+    m4aSoundVSyncOff();
+    m4aMPlayAllStop();
+
+    for (i = 0; i < 0x2D; i++)
+    {
+        gEntityAnimationInfo[i].state = -1;
+        gEntityAnimationInfo[i].timer = -1;
+    }
+
+    if (gUnk_03003410.unk8 == 0)
+    {
+        gUnk_03004C20.level = 0;
+    }
+    gUnk_030051DC = gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level];
+
+    gObjPalRamPtr = OBJ_PLTT;
+    gObjVramPtr = OBJ_VRAM0;
+
+    sub_08003D80();
+    EntityCreate(0, 0, gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2, 0, 0, gEntityInfo[0].unkC_2, 0, ENTITY_ID_KLONOA);
+    EntityCreate(1, 1, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(2, 2, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(3, 3, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(4, 4, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(5, 5, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(6, 6, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(7, 7, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(8, 8, 0, 0, 0, 0, 0, 0x1C, 0x34);
+    EntityCreate(9, 9, 0, 0, 0, 0, 0, 0, 0);
+    EntityCreate(0xA, 0xA, 0, 0, 0, 0, 0, 0, 0);
+    EntityCreate(0xB, 0xB, -0x20, 0x3C, 0, 0, 0, 0, 0);
+    EntityCreate(0xC, 0xC, -0x20, 0x74, 0, 0, 0, 0, 0);
+    LoadObjects_Common();
+
+    if (gUnk_03003410.unk8 == 1)
+    {
+        if (gUnk_03004C20.level != 0)
+        {
+            DrawLevelHud_Lives();
+            DrawLevelHud_Hearts();
+            if ((gUnk_03004C20.level != 8) && (gUnk_03004C20.world != 0x6 || gUnk_03004C20.level != 0x3))
+            {
+                DrawLevelHud_DreamStones();
+            }
+        }
+        else
+        {
+            DrawVisionSelectHud_Lives();
+        }
+
+        tileColOffset = -1;
+
+        // draw collected stars
+        collectedItems = gUnk_03005220.stars;
+        for (item = 0; item < 3; item++)
+        {
+            if (collectedItems & 1)
+            {
+                tileColOffset += 1;
+                collectedItems &= ~1;
+            }
+            else if (collectedItems & 2)
+            {
+                tileColOffset += 1;
+                collectedItems &= ~2;
+            }
+            else if (collectedItems & 4)
+            {
+                tileColOffset += 1;
+                collectedItems &= ~4;
+            }
+            else
+            {
+                break;
+            }
+
+            gBgTilemapBufs[0][(tileColOffset * 2) + 0x24D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28C];
+            gBgTilemapBufs[0][(tileColOffset * 2) + 0x24E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28D];
+            gBgTilemapBufs[0][(tileColOffset * 2) + 0x26D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AC];
+            gBgTilemapBufs[0][(tileColOffset * 2) + 0x26E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AD];
+        }
+
+        // draw collected keys
+        collectedItems = gUnk_03005220.keys;
+        for (item = 0; item < 3; item++)
+        {
+            if (collectedItems & 1)
+            {
+                tileColOffset = 0;
+                collectedItems &= ~1;
+            }
+            else if (collectedItems & 2)
+            {
+                tileColOffset = 2;
+                collectedItems &= ~2;
+            }
+            else if (collectedItems & 4)
+            {
+                tileColOffset = 4;
+                collectedItems &= ~4;
+            }
+            else
+            {
+                break;
+            }
+
+            gBgTilemapBufs[0][tileColOffset + 0x247] = gBgTilemapBufs[0][tileColOffset + 0x286];
+            gBgTilemapBufs[0][tileColOffset + 0x248] = gBgTilemapBufs[0][tileColOffset + 0x287];
+            gBgTilemapBufs[0][tileColOffset + 0x267] = gBgTilemapBufs[0][tileColOffset + 0x2A6];
+            gBgTilemapBufs[0][tileColOffset + 0x268] = gBgTilemapBufs[0][tileColOffset + 0x2A7];
+        }
+    }
+
+    gUnk_08116620[gUnk_03004C20.world - 1][gUnk_03004C20.level]();
+
+    // Redundant if-else statement required to match
+    if (gUnk_03004C20.level)
+    {
+        gUnk_030007C4 = 0xD;
+    }
+    else
+    {
+        gUnk_030007C4 = 0xD;
+    }
+    gUnk_0300363C = gUnk_030007C4 - 9;
+
+    if (gUnk_03004C20.level == 0)
+    {
+        sub_0804575C();
+    }
+    else
+    {
+        sub_0800B3C0();
+    }
+
+    if ((gUnk_03004C20.unkA == 0) || (gUnk_03004C20.level == 8))
+    {
+        gUnk_03005418 = &gUnk_0805553C;
+    }
+    else
+    {
+        gUnk_03005418 = &gUnk_080555A8;
+    }
+    gUnk_03005294 = gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level];
+
+    REG_IE |= INTR_FLAG_VBLANK;
+    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
+    m4aSoundVSyncOn();
+}
 
 // 3D58
 void sub_08003D58(void)
@@ -129,7 +300,7 @@ void sub_08003DA0(void)
 }
 
 // 3DC0
-void sub_08003DC0(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6, u8 arg7, u8 id)
+void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6, u8 arg7, u8 id)
 {
     u32 var_r3_3;
 

@@ -177,8 +177,8 @@ extern u8 gFrameFinished;
 extern u8 gUnk_03005428;
 
 extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
-extern u8 gUnk_03004DB0[]; // BG2 tilemap data
-extern u8 gUnk_03003650[][0x40];
+extern u8 gBg2TilemapData[]; // BG2 tilemap data, possibly "gCommonBg2TilemapData"
+extern u8 gBossBg2TilemapData[][0x40]; // Boss stage BG2 tilemap data
 
 extern u16 gUnk_03004C40[];
 extern u16 gUnk_030052C0[];
@@ -526,18 +526,18 @@ extern struct AthleticChallengeAutoScrollBaseVelocity gAthleticChallengeAutoScro
 extern u8 gAthleticChallengeScrollFlags;
 extern s32 gAthleticChallengeAutoScrollXVelocity;
 
-struct Unk_030007E0 {
-    /* 0x0 */ s16 unk0;
-    /* 0x2 */ s16 unk2;
-    /* 0x4 */ u16 unk4;
-    /* 0x6 */ s16 unk6;
-    /* 0x8 */ s16 unk8;
-    /* 0xA */ u16 unkA;
-    /* 0xC_0 */ u8 unkC_0:4;
-    /* 0xC_4 */ u8 unkC_4:4;
+struct BossStageScroll {
+    /* 0x0 */ s16 currXPos; 
+    /* 0x2 */ s16 currYPos; 
+    /* 0x4 */ u16 currAlpha;
+    /* 0x6 */ s16 targetXPos;
+    /* 0x8 */ s16 targetYPos;
+    /* 0xA */ u16 targetAlpha;
+    /* 0xC_0 */ u8 unkC_0:4; // determines target X/Y values
+    /* 0xC_4 */ u8 unkC_4:4; // determines target Alpha value
     /* 0xD */ u8 padD[0x10 - 0xD];
 }; /* size = 0x10 */
-extern struct Unk_030007E0 gUnk_030007E0;
+extern struct BossStageScroll gBossStageScroll; // Maybe more aptly "Camera" than "Scroll"
 
 struct Unk_03005400 {
     /* 0x00 */ u16 unk0;
@@ -852,7 +852,7 @@ enum TitleScreenStage {
     TITLE_SCREEN_STAGE_INTRO_LOGO_ANIMATION, // Also works as none
     TITLE_SCREEN_STAGE_PRESS_START,
     TITLE_SCREEN_STAGE_NEW_GAME_OR_CONTINUE = 5,
-    TITLE_SCREEN_STAGE_GO_TO_DEMO,
+    TITLE_SCREEN_STAGE_BEGIN_DEMO,
     TITLE_SCREEN_STAGE_GO_TO_FILE_SELECT
 };
 extern u8 gTitleScreenStage;

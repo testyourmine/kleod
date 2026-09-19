@@ -299,9 +299,9 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
                 gUnk_03004C20.level = 0;
                 gUnk_03003410.unk9 = 0;
                 gUnk_03003410.unkA = 0;
-                gCallbackQueue.next[0] = sub_08001158;
+                gCallbackQueue.next[0] = VisionAndVisionSelectInit;
                 gUnk_03003410.unk8 = 1;
-                gCallbackQueue.next[1] = sub_08003904;
+                gCallbackQueue.next[1] = EntityInit;
                 gCallbackQueue.next[2] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 3;
@@ -405,7 +405,7 @@ void TransitionFromRoomToRoom_FadeOut(void)
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
-        LevelOrWorldInit();
+        SetUpRoomVisuals();
         sub_0800B3C0();
         if (gUnk_03004C20.isHoverBoardLevel == 1)
         {
@@ -540,9 +540,9 @@ void sub_08024B54(void)
         gMenuInfo->cursorIndex = 0;
         gCallbackQueue.next[0] += 0; // FAKE
         gUnk_03003410.unkA = gUnk_03003410.unk9 = 0;
-        gCallbackQueue.next[0] = sub_08001158;
+        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
         gUnk_03003410.unk8 = 1;
-        gCallbackQueue.next[1] = sub_08003904;
+        gCallbackQueue.next[1] = EntityInit;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
@@ -595,9 +595,9 @@ void TransitionFromVisionSelectToLevel_FadeOut(void)
                 sub_08003D58();
                 gUnk_03003410.unk9 = 0;
                 gUnk_03003410.unkA = 0;
-                gCallbackQueue.next[0] = sub_08001158;
+                gCallbackQueue.next[0] = VisionAndVisionSelectInit;
                 gUnk_03003410.unk8 = 1;
-                gCallbackQueue.next[1] = sub_08003904;
+                gCallbackQueue.next[1] = EntityInit;
                 gCallbackQueue.next[2] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 3;
@@ -749,9 +749,9 @@ void TransitionFromDeathToLevel_FadeOut(void)
         *(vu16 *)PLTT = 0;
         gUnk_03003410.unk9 = 1;
         gUnk_03003410.unkA = 0;
-        gCallbackQueue.next[0] = sub_08001158;
+        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
         gUnk_03003410.unk8 = 1;
-        gCallbackQueue.next[1] = sub_08003904;
+        gCallbackQueue.next[1] = EntityInit;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
@@ -925,9 +925,9 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
 
         gUnk_03003410.unk9 = 0;
         gUnk_03003410.unkA = 0;
-        gCallbackQueue.next[0] = sub_08001158;
+        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
         gUnk_03003410.unk8 = 1;
-        gCallbackQueue.next[1] = sub_08003904;
+        gCallbackQueue.next[1] = EntityInit;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;
@@ -965,9 +965,9 @@ void TransitionFromWorldMapToLevel_FadeOut(void)
         sub_08003D58();
         gUnk_03003410.unk9 = 0;
         gUnk_03003410.unkA = 0;
-        gCallbackQueue.next[0] = sub_08001158;
+        gCallbackQueue.next[0] = VisionAndVisionSelectInit;
         gUnk_03003410.unk8 = 1;
-        gCallbackQueue.next[1] = sub_08003904;
+        gCallbackQueue.next[1] = EntityInit;
         gCallbackQueue.next[2] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 3;

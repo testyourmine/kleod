@@ -354,7 +354,7 @@ void ClearedAllVisionsScreenWaitForNextFrame(void)
 }
 
 // CA0C
-void sub_0800CA0C(u32 levelLoadType)
+void SetUpRoomInfo(u32 levelLoadType)
 {
     // Called once per level/room load
     u32 var_r4;
@@ -512,7 +512,7 @@ void sub_0800CA0C(u32 levelLoadType)
     if (gUnk_03004C20.level == 8)
     {
         gCallbackQueue.next[1] = sub_0803C808;
-        gCallbackQueue.next[2] = sub_08002AC4;
+        gCallbackQueue.next[2] = BossStageScrollUpdate;
         gCallbackQueue.next[3] = sub_0800AC34;
         gCallbackQueue.next[4] = TransitionToVisionSelectOrLevelGameplay_FadeIn;
         gCallbackQueue.next[5] = DrawVisionStart;

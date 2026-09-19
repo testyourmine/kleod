@@ -5,7 +5,6 @@
 #include "code_08014184.h"
 #include "transitions.h"
 #include "code_08025B78.h"
-#include "code_0802688C.h"
 #include "code_08039D8C.h"
 #include "code_08043BA4.h"
 #include "code_080472B0.h"
@@ -29,8 +28,6 @@ extern u16 gUnk_0805265A[6];
 extern u16 gUnk_08052666[6];
 extern u16 gUnk_08052672[6];
 extern u8 gUnk_0805267E[6];
-extern void gUnk_0805553C;
-extern void gUnk_080555A8;
 
 extern struct CurrentRoomBg2Bounds gUnk_080D2E88[6][0x7][0x14];
 
@@ -46,8 +43,6 @@ extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
 extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
 
-extern void (*gUnk_08116620[6][9])(void); // pointers to "load level" functions
-
 extern void* gUnk_08188F5C[6][9];   // pointers to BG palettes (level)
 extern u32 *gUnk_08189034[6][9][3]; // pointers to BG tiles (level)
 extern u32 *gUnk_081892BC[6][9][3]; // pointers to BG tilemaps (level)
@@ -56,13 +51,13 @@ extern u32 *gUnk_08189544[6]; // pointers to BG palettes (overworld)
 extern u32 *gUnk_0818955C[6]; // pointers to BG1 tiles (overworld)
 extern u32 *gUnk_08189574[6]; // pointers to BG1 tilemaps (overworld)
 
-extern void *gUnk_08189A24[6][9];
 extern u32 *gUnk_0818B7AC[6*2];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 // 1158
-void sub_08001158(void)
+void VisionAndVisionSelectInit(void)
 {
+    // Init vision select and vision
     s32 sp0;
     s32 temp_r1;
     u8 temp_r2;
@@ -222,7 +217,7 @@ void sub_08001158(void)
         gUnk_03005284->roomsRotationBits = 0;
         gUnk_03004C20.roomsRotationBits = 0;
     }
-    LevelOrWorldInit();
+    SetUpRoomVisuals();
 
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, gBgInfo[1].tileSize * gBgInfo[1].nbrTiles);
@@ -334,7 +329,7 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
             tile = gBgInfo[2].vOfs >> 3;
             for (i = 0; i < (DISPLAY_HEIGHT / 8) + 1; i++)
             {
-                gUnk_03004DB0[(((i + tile) % 0x20) * 0x20) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
+                gBg2TilemapData[(((i + tile) % 0x20) * 0x20) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
             }
         }
     }
@@ -356,7 +351,7 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
             tile = gBgInfo[2].vOfs / 8;
             for (i = 0; i < (DISPLAY_HEIGHT / 8) + 1; i++)
             {
-                gUnk_03004DB0[(((i + tile) % 0x20) * 0x20) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
+                gBg2TilemapData[(((i + tile) % 0x20) * 0x20) + dest] = gBgDataPtrs.pBufBg2Tilemap[((i + tile) * gBgInfo[2].hLength) + src];
             }
         }
     }
@@ -379,7 +374,7 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
             src = (((newTileOffset + gBgInfo[2].vLength) % gBgInfo[2].vLength) * gBgInfo[2].hLength) + tile;
             for (i = 0; i < (DISPLAY_WIDTH / 8) + 1; i++)
             {
-                gUnk_03004DB0[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
+                gBg2TilemapData[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
             }
         }
     }
@@ -406,7 +401,7 @@ void ScrollBg2LevelData(u8 scrollFlags, struct ScrollOffset scrollOffset)
             src = (((newTileOffset + (DISPLAY_HEIGHT / 8)) % gBgInfo[2].vLength) * gBgInfo[2].hLength) + tile;
             for (i = 0; i < (DISPLAY_WIDTH / 8) + 1; i++)
             {
-                gUnk_03004DB0[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
+                gBg2TilemapData[dest + ((i + tile) % 0x20)] = gBgDataPtrs.pBufBg2Tilemap[src + i];
             }
         }
     }
@@ -926,106 +921,107 @@ void HoverBoardScrollUpdate(void)
 }
 
 // 2AC4
-void sub_08002AC4(void)
+void BossStageScrollUpdate(void)
 {
+    // Boss (level 8) scrolling
     s16 var_r1;
     s16 var_r5;
 
-    switch (gUnk_030007E0.unkC_0)
+    switch (gBossStageScroll.unkC_0)
     {
         case 0:
             break;
 
         case 1:
-            gUnk_030007E0.unk6 = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
-            gUnk_030007E0.unk8 = gEntityInfo[0].yPosBg2 - 0x8C;
+            gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetYPos = gEntityInfo[0].yPosBg2 - 0x8C;
             break;
 
         case 2:
-            gUnk_030007E0.unk6 = (gEntityInfo[0].xPosBg2 + ((gEntityInfo[0x12].xPosBg2 - gEntityInfo[0].xPosBg2) / 2)) - DISPLAY_WIDTH_CENTER;
-            gUnk_030007E0.unk8 = (gEntityInfo[0].yPosBg2 + (((gEntityInfo[0x12].yPosBg2 - 0x40) - (gEntityInfo[0].yPosBg2)) / 2)) - 0x50;
+            gBossStageScroll.targetXPos = (gEntityInfo[0].xPosBg2 + ((gEntityInfo[0x12].xPosBg2 - gEntityInfo[0].xPosBg2) / 2)) - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetYPos = (gEntityInfo[0].yPosBg2 + (((gEntityInfo[0x12].yPosBg2 - 0x40) - (gEntityInfo[0].yPosBg2)) / 2)) - 0x50;
             break;
 
         case 3:
-            gUnk_030007E0.unk6 = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
             break;
 
         case 4:
-            gUnk_030007E0.unk6 = DISPLAY_WIDTH * 2 - gEntityInfo[0].xPosBg2;
-            gUnk_030007E0.unk8 = DISPLAY_HEIGHT * 2 - gEntityInfo[0].yPosBg2;
+            gBossStageScroll.targetXPos = DISPLAY_WIDTH * 2 - gEntityInfo[0].xPosBg2;
+            gBossStageScroll.targetYPos = DISPLAY_HEIGHT * 2 - gEntityInfo[0].yPosBg2;
             break;
 
         case 5:
-            gUnk_030007E0.unk6 = (gEntityInfo[0].xPosBg2 + ((gEntityInfo[0x12].xPosBg2 - gEntityInfo[0].xPosBg2) / 2)) - DISPLAY_WIDTH_CENTER;
-            gUnk_030007E0.unk8 = 0x94;
+            gBossStageScroll.targetXPos = (gEntityInfo[0].xPosBg2 + ((gEntityInfo[0x12].xPosBg2 - gEntityInfo[0].xPosBg2) / 2)) - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetYPos = 0x94;
             break;
 
         case 6:
-            gUnk_030007E0.unk6 = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
-            gUnk_030007E0.unk8 = 0x5C;
+            gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetYPos = 0x5C;
             break;
 
         case 7:
-            gUnk_030007E0.unk6 = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
+            gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2 - DISPLAY_WIDTH_CENTER;
             if (gEntityInfo[0].yPosBg2 <= 0xA9)
             {
-                gUnk_030007E0.unk8 = 0x3C;
+                gBossStageScroll.targetYPos = 0x3C;
             }
             else
             {
-                gUnk_030007E0.unk8 = 0xA0;
+                gBossStageScroll.targetYPos = 0xA0;
             }
             break;
     }
 
-    if (gUnk_030007E0.unk0 > gUnk_030007E0.unk6)
+    if (gBossStageScroll.currXPos > gBossStageScroll.targetXPos)
     {
-        gUnk_030007E0.unk0 -= 1;
+        gBossStageScroll.currXPos -= 1;
     }
-    if (gUnk_030007E0.unk0 < gUnk_030007E0.unk6)
+    if (gBossStageScroll.currXPos < gBossStageScroll.targetXPos)
     {
-        gUnk_030007E0.unk0 += 1;
-    }
-
-    if (gUnk_030007E0.unk2 > gUnk_030007E0.unk8)
-    {
-        gUnk_030007E0.unk2 -= 1;
-    }
-    if (gUnk_030007E0.unk2 < gUnk_030007E0.unk8)
-    {
-        gUnk_030007E0.unk2 += 1;
+        gBossStageScroll.currXPos += 1;
     }
 
-    if (gUnk_030007E0.unk0 < 0)
+    if (gBossStageScroll.currYPos > gBossStageScroll.targetYPos)
     {
-        gUnk_030007E0.unk0 = 0;
+        gBossStageScroll.currYPos -= 1;
     }
-    if (gUnk_030007E0.unk2 < 0x3C)
+    if (gBossStageScroll.currYPos < gBossStageScroll.targetYPos)
     {
-        gUnk_030007E0.unk2 = 0x3C;
-    }
-
-    if (gUnk_030007E0.unk0 > DISPLAY_WIDTH)
-    {
-        gUnk_030007E0.unk0 = DISPLAY_WIDTH;
-    }
-    if (gUnk_030007E0.unk2 > DISPLAY_HEIGHT)
-    {
-        gUnk_030007E0.unk2 = DISPLAY_HEIGHT;
+        gBossStageScroll.currYPos += 1;
     }
 
-    gBgInfo[2].hOfs = gUnk_030007E0.unk0;
+    if (gBossStageScroll.currXPos < 0)
+    {
+        gBossStageScroll.currXPos = 0;
+    }
+    if (gBossStageScroll.currYPos < (DISPLAY_HEIGHT_CENTER - 20))
+    {
+        gBossStageScroll.currYPos = DISPLAY_HEIGHT_CENTER - 20;
+    }
+
+    if (gBossStageScroll.currXPos > DISPLAY_WIDTH)
+    {
+        gBossStageScroll.currXPos = DISPLAY_WIDTH;
+    }
+    if (gBossStageScroll.currYPos > DISPLAY_HEIGHT)
+    {
+        gBossStageScroll.currYPos = DISPLAY_HEIGHT;
+    }
+
+    gBgInfo[2].hOfs = gBossStageScroll.currXPos;
     if (gBg2Alpha == 0)
     {
-        gBgInfo[2].vOfs = gUnk_030007E0.unk2 + 0x10;
+        gBgInfo[2].vOfs = gBossStageScroll.currYPos + 0x10;
     }
     else
     {
-        gBgInfo[2].vOfs = gUnk_030007E0.unk2;
+        gBgInfo[2].vOfs = gBossStageScroll.currYPos;
     }
-    gBgInfo[1].hOfs = (gUnk_030007E0.unk0 / 15);
+    gBgInfo[1].hOfs = (gBossStageScroll.currXPos / 15);
 
-    switch (gUnk_030007E0.unkC_4)
+    switch (gBossStageScroll.unkC_4)
     {
         case 0:
             break;
@@ -1045,38 +1041,38 @@ void sub_08002AC4(void)
 
             if (var_r5 > var_r1)
             {
-                gUnk_030007E0.unkA = var_r5 & 0xFE;
+                gBossStageScroll.targetAlpha = var_r5 & 0xFE;
             }
             else
             {
-                gUnk_030007E0.unkA = var_r1 & 0xFE;
+                gBossStageScroll.targetAlpha = var_r1 & 0xFE;
             }
             break;
     }
 
-    if (gUnk_030007E0.unk4 > gUnk_030007E0.unkA)
+    if (gBossStageScroll.currAlpha > gBossStageScroll.targetAlpha)
     {
-        gUnk_030007E0.unk4 -= 2;
+        gBossStageScroll.currAlpha -= 2;
     }
-    if (gUnk_030007E0.unk4 < gUnk_030007E0.unkA)
+    if (gBossStageScroll.currAlpha < gBossStageScroll.targetAlpha)
     {
-        gUnk_030007E0.unk4 += 2;
-    }
-
-    if (gUnk_030007E0.unkC_4)
-    {
-        if (gUnk_030007E0.unk4 > 0x60)
-        {
-            gUnk_030007E0.unk4 = 0x60;
-        }
-        if (gUnk_030007E0.unk4 == 0)
-        {
-            gUnk_030007E0.unk4 = 0;
-        }
+        gBossStageScroll.currAlpha += 2;
     }
 
-    gBg2XMag = 0x100 - gUnk_030007E0.unk4;
-    gBg2YMag = 0x100 - gUnk_030007E0.unk4;
+    if (gBossStageScroll.unkC_4)
+    {
+        if (gBossStageScroll.currAlpha > 0x60)
+        {
+            gBossStageScroll.currAlpha = 0x60;
+        }
+        if (gBossStageScroll.currAlpha == 0)
+        {
+            gBossStageScroll.currAlpha = 0;
+        }
+    }
+
+    gBg2XMag = 0x100 - gBossStageScroll.currAlpha;
+    gBg2YMag = 0x100 - gBossStageScroll.currAlpha;
 
     if (gUnk_03004C20.world == 4)
     {
@@ -1159,17 +1155,19 @@ void sub_08002AC4(void)
 }
 
 // 2FD0
-void LevelOrWorldInit(void)
+void SetUpRoomVisuals(void)
 {
-    u32 var_r6;
+    // Load room gfx/info for vision select or current room
+    u32 i;
 
-    var_r6 = LEVEL_LOAD_START;
+    i = LEVEL_LOAD_START; // Used multiple times. Here it represents LevelLoadType
 
     gUnk_03004654 = &gUnk_080520E4[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1];
     gUnk_03000800 = gUnk_08052624[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 
-    if (gUnk_03004C20.level == 0) // .level = 0 means "starting a city"
+    if (gUnk_03004C20.level == 0)
     {
+        // Vision select
         gSoundVolume = 0xFFFF;
         gUnk_03004C20.room = 1;
         gCurrentRoomBg2Bounds.left = 0;
@@ -1177,8 +1175,9 @@ void LevelOrWorldInit(void)
         gCurrentRoomBg2Bounds.right = 0x100;
         gCurrentRoomBg2Bounds.bottom = 0x100;
     }
-    else if (gUnk_03004C20.level == 8) // .level = 8 means "starting a boss vision"
+    else if (gUnk_03004C20.level == 8)
     {
+        // Boss stage
         gSoundVolume = 0xFFFF;
         gUnk_03004C20.room = 1;
         gCurrentRoomBg2Bounds.left = 0;
@@ -1186,8 +1185,9 @@ void LevelOrWorldInit(void)
         gCurrentRoomBg2Bounds.right = 0x200;
         gCurrentRoomBg2Bounds.bottom = 0x200;
     }
-    else // starting a regular vision
+    else
     {
+        // Regular vision
         if (gUnk_03004C20.room == 0)
         {
             gUnk_030051C8 = gUnk_03004654->unk1 - 1;
@@ -1207,12 +1207,12 @@ void LevelOrWorldInit(void)
             else
             {
                 gUnk_030051C8 = gUnk_03005284->unk6;
-                var_r6 = LEVEL_LOAD_FROM_FILE_SELECT;
+                i = LEVEL_LOAD_FROM_FILE_SELECT;
             }
         }
         else
         {
-            var_r6 = LEVEL_LOAD_RELOAD;
+            i = LEVEL_LOAD_RELOAD;
         }
 
         gUnk_03004C20.room = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_2;
@@ -1233,7 +1233,7 @@ void LevelOrWorldInit(void)
 
     if (gUnk_03004C20.level != 0)
     {
-        sub_0800CA0C(var_r6);
+        SetUpRoomInfo(i);
     }
     else
     {
@@ -1282,17 +1282,17 @@ void LevelOrWorldInit(void)
 
     if (gUnk_03004C20.level != 8)
     {
-        sub_0800343C(0);
-        DmaCopy16Wait(3, &gUnk_03004DB0, gBgInfo[2].pTilemap, 0x400);
+        LoadBg2TilemapData(0);
+        DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, 0x400);
     }
     else
     {
-        DmaFill16(3, 0, &gUnk_03003650, 0x1000);
-        for (var_r6 = 0; var_r6 < 0x28; var_r6++)
+        DmaFill16(3, 0, &gBossBg2TilemapData, 0x1000);
+        for (i = 0; i < 0x28; i++)
         {
-            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[var_r6 * gBgInfo[2].hLength], &gUnk_03003650[var_r6], 0x3C);
+            DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[i * gBgInfo[2].hLength], &gBossBg2TilemapData[i], 0x3C);
         }
-        DmaCopy16Wait(3, &gUnk_03003650, gBgInfo[2].pTilemap, 0x1000);
+        DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, 0x1000);
     }
 
     if (gUnk_03004C20.level == 8)
@@ -1306,13 +1306,15 @@ void LevelOrWorldInit(void)
 }
 
 // 343C
-void sub_0800343C(u8 arg0)
+void LoadBg2TilemapData(u8 tileYOffset)
 {
+    // Load BG2 tilemap data from buffer
+    // Called once when loading vision select or room
     u32 destIdx;
     u32 temp_r2;
     u32 srcIdx;
 
-    gBgInfo[2].vOfs -= arg0 * 8;
+    gBgInfo[2].vOfs -= tileYOffset * 8;
 
     for (srcIdx = 0; srcIdx < 0x400; srcIdx++)
     {
@@ -1331,10 +1333,10 @@ void sub_0800343C(u8 arg0)
         {
             destIdx += gBgInfo[2].hOfs / 8;
         }
-        gUnk_03004DB0[destIdx % 0x400] = gBgDataPtrs.pBufBg2Tilemap[(gBgInfo[2].hLength * (srcIdx / 0x20)) + (srcIdx % 0x20) + ((gBgInfo[2].vOfs / 8) * gBgInfo[2].hLength) + (gBgInfo[2].hOfs / 8)];
+        gBg2TilemapData[destIdx % 0x400] = gBgDataPtrs.pBufBg2Tilemap[(gBgInfo[2].hLength * (srcIdx / 0x20)) + (srcIdx % 0x20) + ((gBgInfo[2].vOfs / 8) * gBgInfo[2].hLength) + (gBgInfo[2].hOfs / 8)];
     }
 
-    gBgInfo[2].vOfs += arg0 * 8;
+    gBgInfo[2].vOfs += tileYOffset * 8;
 }
 
 // 350C
@@ -1403,165 +1405,4 @@ void ClearedAllVisionsScreenHandler(void)
         gUnk_03004C20.level = 3;
         gCallbackQueue.current[1] = TransitionFromDemoToTitleScreen_FadeOut;
     }
-}
-
-// 3904
-void sub_08003904(void)
-{
-    u32 tileColOffset;
-    u32 var_r2;
-    u32 collectedItems;
-    u32 item;
-
-    REG_IE &= ~INTR_FLAG_VBLANK;
-    REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
-
-    m4aSoundVSyncOff();
-    m4aMPlayAllStop();
-
-    for (var_r2 = 0; var_r2 < 0x2D; var_r2++)
-    {
-        gEntityAnimationInfo[var_r2].state = -1;
-        gEntityAnimationInfo[var_r2].timer = -1;
-    }
-
-    if (gUnk_03003410.unk8 == 0)
-    {
-        gUnk_03004C20.level = 0;
-    }
-    gUnk_030051DC = gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level];
-
-    gObjPalRamPtr = OBJ_PLTT;
-    gObjVramPtr = OBJ_VRAM0;
-
-    sub_08003D80();
-    sub_08003DC0(0, 0, gEntityInfo[0].xPosBg2, gEntityInfo[0].yPosBg2, 0, 0, gEntityInfo[0].unkC_2, 0, ENTITY_ID_KLONOA);
-    sub_08003DC0(1, 1, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(2, 2, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(3, 3, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(4, 4, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(5, 5, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(6, 6, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(7, 7, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(8, 8, 0, 0, 0, 0, 0, 0x1C, 0x34);
-    sub_08003DC0(9, 9, 0, 0, 0, 0, 0, 0, 0);
-    sub_08003DC0(0xA, 0xA, 0, 0, 0, 0, 0, 0, 0);
-    sub_08003DC0(0xB, 0xB, -0x20, 0x3C, 0, 0, 0, 0, 0);
-    sub_08003DC0(0xC, 0xC, -0x20, 0x74, 0, 0, 0, 0, 0);
-    LoadObjects_Common();
-
-    if (gUnk_03003410.unk8 == 1)
-    {
-        if (gUnk_03004C20.level != 0)
-        {
-            DrawLevelHud_Lives();
-            DrawLevelHud_Hearts();
-            if ((gUnk_03004C20.level != 8) && (gUnk_03004C20.world != 0x6 || gUnk_03004C20.level != 0x3))
-            {
-                DrawLevelHud_DreamStones();
-            }
-        }
-        else
-        {
-            DrawVisionSelectHud_Lives();
-        }
-
-        tileColOffset = -1;
-
-        // draw collected stars
-        collectedItems = gUnk_03005220.stars;
-        for (item = 0; item < 3; item++)
-        {
-            if (collectedItems & 1)
-            {
-                tileColOffset += 1;
-                collectedItems &= ~1;
-            }
-            else if (collectedItems & 2)
-            {
-                tileColOffset += 1;
-                collectedItems &= ~2;
-            }
-            else if (collectedItems & 4)
-            {
-                tileColOffset += 1;
-                collectedItems &= ~4;
-            }
-            else
-            {
-                break;
-            }
-
-            gBgTilemapBufs[0][(tileColOffset * 2) + 0x24D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28C];
-            gBgTilemapBufs[0][(tileColOffset * 2) + 0x24E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x28D];
-            gBgTilemapBufs[0][(tileColOffset * 2) + 0x26D] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AC];
-            gBgTilemapBufs[0][(tileColOffset * 2) + 0x26E] = gBgTilemapBufs[0][(tileColOffset * 2) + 0x2AD];
-        }
-
-        // draw collected keys
-        collectedItems = gUnk_03005220.keys;
-        for (item = 0; item < 3; item++)
-        {
-            if (collectedItems & 1)
-            {
-                tileColOffset = 0;
-                collectedItems &= ~1;
-            }
-            else if (collectedItems & 2)
-            {
-                tileColOffset = 2;
-                collectedItems &= ~2;
-            }
-            else if (collectedItems & 4)
-            {
-                tileColOffset = 4;
-                collectedItems &= ~4;
-            }
-            else
-            {
-                break;
-            }
-
-            gBgTilemapBufs[0][tileColOffset + 0x247] = gBgTilemapBufs[0][tileColOffset + 0x286];
-            gBgTilemapBufs[0][tileColOffset + 0x248] = gBgTilemapBufs[0][tileColOffset + 0x287];
-            gBgTilemapBufs[0][tileColOffset + 0x267] = gBgTilemapBufs[0][tileColOffset + 0x2A6];
-            gBgTilemapBufs[0][tileColOffset + 0x268] = gBgTilemapBufs[0][tileColOffset + 0x2A7];
-        }
-    }
-
-    gUnk_08116620[gUnk_03004C20.world - 1][gUnk_03004C20.level]();
-
-    // Redundant if-else statement required to match
-    if (gUnk_03004C20.level)
-    {
-        gUnk_030007C4 = 0xD;
-    }
-    else
-    {
-        gUnk_030007C4 = 0xD;
-    }
-    gUnk_0300363C = gUnk_030007C4 - 9;
-
-    if (gUnk_03004C20.level == 0)
-    {
-        sub_0804575C();
-    }
-    else
-    {
-        sub_0800B3C0();
-    }
-
-    if ((gUnk_03004C20.unkA == 0) || (gUnk_03004C20.level == 8))
-    {
-        gUnk_03005418 = &gUnk_0805553C;
-    }
-    else
-    {
-        gUnk_03005418 = &gUnk_080555A8;
-    }
-    gUnk_03005294 = gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level];
-
-    REG_IE |= INTR_FLAG_VBLANK;
-    REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
-    m4aSoundVSyncOn();
 }
