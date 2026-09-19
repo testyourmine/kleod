@@ -860,7 +860,7 @@ extern u8 gTitleScreenStage;
 struct Unk_030034B0 {
     u8 unk0_0:1;
     u8 unk0_1:3;
-    u8 unk0_4:1;
+    u8 transitioningFromWorldToLevel:1;
     u8 unk1;
     u8 unk2;
     u8 unk3;

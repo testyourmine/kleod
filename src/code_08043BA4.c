@@ -888,18 +888,18 @@ void sub_080452E8(void)
 }
 
 // 45398
-void sub_08045398(void)
+void TransitionFromVisionSelectToLevel(void)
 {
-    if (gUnk_030034B0.unk0_4 == 0)
+    if (gUnk_030034B0.transitioningFromWorldToLevel == FALSE)
     {
         m4aSongNumStart(SE_KLONOA_WAHOO);
-        gUnk_030034B0.unk0_4 = 1;
+        gUnk_030034B0.transitioningFromWorldToLevel = TRUE;
         gUnk_03004C20.sceneFrameCounter = 0;
     }
     else if (gUnk_03004C20.sceneFrameCounter > 30)
     {
         gCallbackQueue.current[1] = TransitionFromVisionSelectToLevel_FadeOut;
-        gUnk_030034B0.unk0_4 = 0;
+        gUnk_030034B0.transitioningFromWorldToLevel = FALSE;
     }
 }
 
@@ -1126,7 +1126,7 @@ void sub_08045874(void)
             gUnk_03004C20.room = 0;
             gUnk_03004C20.level = gUnk_030034B0.unk6_4;
             SetEntityAnimationInfoState(0, 0x22);
-            gCallbackQueue.current[1] = sub_08045398;
+            gCallbackQueue.current[1] = TransitionFromVisionSelectToLevel;
             gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
 
             if (gUnk_03004C20.world == 1)
