@@ -10,7 +10,7 @@ void sub_08044BB8(void);
 void sub_08044F6C(u8 arg0);
 void sub_0804517C(u8 arg0);
 void sub_080452E8(void);
-void sub_08045398(void);
+void TransitionFromVisionSelectToLevel(void);
 void sub_080453F0(void);
 void sub_08045734(void);
 void sub_0804575C(void);
