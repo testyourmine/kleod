@@ -1423,8 +1423,6 @@ void sub_0800A49C(void)
 // A5B8
 void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
 {
-    s32 temp_r0;
-    s32 temp_r0_2;
     s16 temp_r1;
     s16 temp_r2;
     s32 var_r2;
@@ -1438,19 +1436,8 @@ void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
     temp_r1 = gBgInfo[2].hOfs - gEntityInfo[arg0].xPosScreen;
     temp_r2 = gBgInfo[2].vOfs - gEntityInfo[arg0].yPosScreen;
 
-    temp_r0 = temp_r1 * gBg2XMag;
-    if (temp_r0 < 0)
-    {
-        temp_r0 += 0xFF;
-    }
-    var_r4 = temp_r0 >> 8;
-
-    temp_r0_2 = temp_r2 * gBg2YMag;
-    if (temp_r0_2 < 0)
-    {
-        temp_r0_2 += 0xFF;
-    }
-    var_r2 = temp_r0_2 >> 8;
+    var_r4 = (temp_r1 * gBg2XMag) / 0x100;
+    var_r2 = (temp_r2 * gBg2YMag) / 0x100;
 
     var_r4 = gBgInfo[2].hOfs - var_r4;
     if (arg0 > 0xC)
