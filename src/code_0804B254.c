@@ -1727,7 +1727,7 @@ void sub_0804E0E8(void)
 
         gTransitioning = FALSE;
         sub_0804BF7C();
-        sub_0800A468();
+        EntityResetOamBuffer();
 
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;

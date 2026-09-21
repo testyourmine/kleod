@@ -536,7 +536,7 @@ void TextBoxInit(void)
 
     if (gTextBoxInfo.visionSelectTextBoxIdOffset == 0)
     {
-        sub_08005CF4();
+        EntityCommonTransferToOamBuffer();
         VBlankIntrWait();
     }
 

@@ -44,8 +44,8 @@ extern struct Unk_0300542C *gUnk_0818B704[6][7];
 void CommonWaitForNextFrame(void)
 {
     // Normal, called during Namco boot, file select, world map, level gameplay, delete all save data
-    sub_0800A49C();
-    sub_08005CF4();
+    EntityCommonUpdateScreenPositions();
+    EntityCommonTransferToOamBuffer();
 
     VBlankIntrWait();
 
@@ -74,64 +74,69 @@ void CommonWaitForNextFrame(void)
     gFrameFinished = TRUE;
 }
 
-// TODO: should be static variables inside BossWaitForNextFrame
-extern u8 gUnk_03000000;
-extern u8 gUnk_03000001;
-extern u8 gUnk_03000002;
-extern u8 gUnk_03000003;
+// bss
+static u8 sBossShakeXIntensity; // 0x03000000
+static u8 sBossShakeYIntensity; // 0x03000001
+static u8 sBossShakeXPhase; // 0x03000002
+static u8 sBossShakeYPhase; // 0x03000003
 
 // C108
 void BossWaitForNextFrame(void)
 {
     // Boss battle
-    s8 sp0;
-    s8 sp4;
+    s8 shakeX;
+    s8 shakeY;
     s32 temp_r0_2;
-    s32 var_r3_2;
     s32 var_r8;
     s32 var_sb;
-    u16 var_r2_2;
+    u8 temp_r4;
     u32 var_r5_2;
     u32 var_r6;
-    u8 temp_r4;
+    u16 bg2HOfs;
+    u16 bg2VOfs;
 
     if (gUnk_03005400.unkE_1)
     {
-        gUnk_03000001 = gUnk_03005400.unkD * 2;
-        gUnk_03000003 = 0x20;
+        // Start shaking in the Y direction
+        sBossShakeYIntensity = gUnk_03005400.unkD * 2;
+        sBossShakeYPhase = 0x20;
         gUnk_03005400.unkE_1 = 0;
     }
 
     if (gUnk_03005400.unkE_0)
     {
-        gUnk_03000000 = gUnk_03005400.unkD * 2;
-        gUnk_03000002 = 0x20;
+        // Start shaking in the X direction
+        sBossShakeXIntensity = gUnk_03005400.unkD * 2;
+        sBossShakeXPhase = 0x20;
         gUnk_03005400.unkE_0 = 0;
     }
 
-    if (gUnk_03000000 != 0)
+    if (sBossShakeXIntensity != 0)
     {
-        gUnk_03000002 += 0x20;
-        gUnk_03000002 %= 0x100;
-        if ((gUnk_03000002 % 0x80) == 0)
+        // Progress phase and decrease intensity on 0x80 increments
+        sBossShakeXPhase += 0x20;
+        sBossShakeXPhase %= 0x100;
+        if ((sBossShakeXPhase % 0x80) == 0)
         {
-            gUnk_03000000 -= 1;
+            sBossShakeXIntensity -= 1;
         }
     }
-    if (gUnk_03000001 != 0)
+    if (sBossShakeYIntensity != 0)
     {
-        gUnk_03000003 += 0x20;
-        gUnk_03000003 %= 0x100;
-        if ((gUnk_03000003 % 0x80) == 0)
+        // Progress phase and decrease intensity on 0x80 increments
+        sBossShakeYPhase += 0x20;
+        sBossShakeYPhase %= 0x100;
+        if ((sBossShakeYPhase % 0x80) == 0)
         {
-            gUnk_03000001 -= 1;
+            sBossShakeYIntensity -= 1;
         }
     }
 
-    sp0 = ((s16)(gUnk_03000000 * SIN(gUnk_03000002)) >> 0x8) * 2;
-    sp4 = ((s16)(-gUnk_03000001 * SIN(gUnk_03000003)) >> 0x8) * 2;
-    sub_0800A71C(sp0, sp4);
-    sub_080070A0();
+    // phase controls how strong intensity is
+    shakeX = ((s16)(sBossShakeXIntensity * SIN(sBossShakeXPhase)) >> 0x8) * 2;
+    shakeY = ((s16)(-sBossShakeYIntensity * SIN(sBossShakeYPhase)) >> 0x8) * 2;
+    EntityBossUpdateScreenPositions(shakeX, shakeY);
+    EntityBossTransferToOamBuffer();
 
     if ((gUnk_03004C20.world == 5) || (gUnk_03004C20.world == 6))
     {
@@ -174,14 +179,14 @@ void BossWaitForNextFrame(void)
         }
     }
 
-    var_r3_2 = gBgInfo[2].hOfs;
-    var_r2_2 = gBgInfo[2].vOfs;
+    bg2HOfs = gBgInfo[2].hOfs;
+    bg2VOfs = gBgInfo[2].vOfs;
     if ((gUnk_03004C20.world == 4) && (gUnk_03004C20.level == 8))
     {
-        var_r2_2 += 0x20;
+        bg2VOfs += 0x20;
     }
-    gBg2X = (((var_r3_2 << 8) - (var_r3_2 * gBg2PA)) - (var_r2_2 * gBg2PB)) + ((gBgInfo[2].hOfs + sp0) << 8);
-    gBg2Y = (((var_r2_2 << 8) - (var_r3_2 * gBg2PC)) - (var_r2_2 * gBg2PD)) + ((gBgInfo[2].vOfs + sp4) << 8);
+    gBg2X = (bg2HOfs << 8) - (bg2HOfs * gBg2PA) - (bg2VOfs * gBg2PB) + ((gBgInfo[2].hOfs + shakeX) << 8);
+    gBg2Y = (bg2VOfs << 8) - (bg2HOfs * gBg2PC) - (bg2VOfs * gBg2PD) + ((gBgInfo[2].vOfs + shakeY) << 8);
 
     VBlankIntrWait();
 
@@ -214,7 +219,7 @@ void BossWaitForNextFrame(void)
 void VisionSelectWaitForNextFrame(void)
 {
     // Vision select
-    sub_080098C8();
+    EntityVisionSelectTransferToOamBuffer();
     gBg2AlphaSin = SIN(gBg2Alpha);
     gBg2AlphaCos = COS(gBg2Alpha);
 
@@ -245,7 +250,7 @@ void VisionSelectWaitForNextFrame(void)
 void CutsceneWaitForNextFrame(void)
 {
     // Cutscenes
-    sub_08005CF4();
+    EntityCommonTransferToOamBuffer();
 
     VBlankIntrWait();
 
@@ -292,8 +297,8 @@ void CutsceneWaitForNextFrame(void)
 void GameOverScreenWaitForNextFrame(void)
 {
     // Game over, good night
-    sub_0800A49C();
-    sub_08005CF4();
+    EntityCommonUpdateScreenPositions();
+    EntityCommonTransferToOamBuffer();
 
     VBlankIntrWait();
 
@@ -611,7 +616,7 @@ void SetUpRoomInfo(u32 levelLoadType)
 void TitleScreenWaitForNextFrame(void)
 {
     // Title screen
-    sub_08005CF4();
+    EntityCommonTransferToOamBuffer();
 
     VBlankIntrWait();
 

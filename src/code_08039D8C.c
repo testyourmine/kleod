@@ -279,7 +279,7 @@ void PauseMenuScreenRestoreGfx(void)
         gEntityInfo[i].priority -= 1;
     }
 
-    sub_08005CF4();
+    EntityCommonTransferToOamBuffer();
 
     VBlankIntrWait();
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -493,7 +493,7 @@ void PauseMenuScreenHandler(void)
             gBlendValue = 0;
             gUnk_03004C20.level = 9;
             gTitleScreenStage = 0;
-            sub_0800A468();
+            EntityResetOamBuffer();
             gCallbackQueue.current[1] = TransitionFromVisionSelectToBootScreen_FadeOut;
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tilemap);
             thunk_HeapFree(gBgDataPtrs.pBufBg3Tiles);

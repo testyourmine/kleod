@@ -250,7 +250,7 @@ void TransitionFromTitleScreenToFileSelect_FadeOut(void)
     gBlendValue += 1;
     if (gBlendValue == BLEND_MAX)
     {
-        sub_0800A468();
+        EntityResetOamBuffer();
         gUnk_03004C20.sceneFrameCounter = -1;
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = FileSelectScreenHandler;
@@ -366,7 +366,7 @@ void TransitionFromRoomToRoom_FadeOut(void)
         gBlendValue = BLEND_MAX;
         gMosaicSize = 0xF;
         gTransitioning = FALSE;
-        sub_0800A468();
+        EntityResetOamBuffer();
 
         gBg2XMag = gBg2YMag = 0x100;
         gBg2Alpha = 0;
@@ -1057,7 +1057,7 @@ void TransitionFromVisionSelectToWorldMap_FadeOut(void)
 
         gMenuInfo->cursorIndex = 0;
         gUnk_03004C20.sceneFrameCounter = -1;
-        sub_0800A468();
+        EntityResetOamBuffer();
         gCallbackQueue.next[0] = InputHandler_Normal;
         gCallbackQueue.next[1] = WorldMapScreenInit;
         gCallbackQueue.next[2] = TransitionFromVisionSelectToWorldMap_FadeIn;

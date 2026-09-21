@@ -54,7 +54,7 @@ extern u8 gUnk_080B9668[0x200];
 extern void sub_0801C82C(u32); // should be u8 param
 
 /*
-    For some reason, sub_080070A0 won't match if it's with the code in code_08003D58.c
+    For some reason, EntityBossTransferToOamBuffer won't match if it's with the code in code_08003D58.c
     The split is weird, so it's possible some of these functions were in individual files
     Also possible there's some codegen in the previous functions that needs to be fixed,
     somehow allowing to match by itself, but not together
@@ -62,7 +62,7 @@ extern void sub_0801C82C(u32); // should be u8 param
 */
 
 // 70A0
-void sub_080070A0(void)
+void EntityBossTransferToOamBuffer(void)
 {
     s32 sp0;
     struct Unk_0300466C_4 *var_r5;
@@ -116,7 +116,7 @@ void sub_080070A0(void)
     s32 var_sb_7;
     s32 var_sl;
 
-    sub_0800A468();
+    EntityResetOamBuffer();
     gOamBufferPtr = gOamBuffer;
 
     if (gEntityInfo[0xB].visible == 1)
@@ -1064,7 +1064,7 @@ void sub_080070A0(void)
 }
 
 // 98C8
-void sub_080098C8(void)
+void EntityVisionSelectTransferToOamBuffer(void)
 {
     s32 sp0;
     s32 sp4;
@@ -1086,7 +1086,7 @@ void sub_080098C8(void)
     u8 temp_r1_6;
     u8 temp_r1_7;
 
-    sub_0800A468();
+    EntityResetOamBuffer();
     gOamBufferPtr = gOamBuffer;
 
     sp0 = gEntityInfo[0].yPosScreen;
@@ -1362,26 +1362,27 @@ void sub_080098C8(void)
 }
 
 // A468
-void sub_0800A468(void)
+void EntityResetOamBuffer(void)
 {
-    s32 var_r2;
-    u16 *var_r5;
-    union Unk_03000820 var;
+    s32 i;
+    u16 *pOamAffineBuf;
+    union Unk_03000820 defaultOam;
 
-    var_r5 = (u16*)gOamAffineBuffer;
-    var = gUnk_080E2A7C;
+    pOamAffineBuf = (u16*)gOamAffineBuffer;
+    defaultOam = gUnk_080E2A7C;
 
-    for (var_r2 = 0; var_r2 < 0x80; var_r2++)
+    for (i = 0; i < 0x80; i++)
     {
-        gOamBuffer[var_r2].all = var.all;
-        gOamBuffer[var_r2].all.affineParam = *var_r5++;
+        gOamBuffer[i].all = defaultOam.all;
+        gOamBuffer[i].all.affineParam = *pOamAffineBuf++;
     }
 }
 
 // A49C
-void sub_0800A49C(void)
+void EntityCommonUpdateScreenPositions(void)
 {
-    s32 var_r5;
+    // Update screen position and visible flag for all entities (normal)
+    s32 slot;
 
     // Update Klonoa screen position
     gEntityInfo[0].xPosScreen = gEntityInfo[0].xPosBg2 - gBgInfo[2].hOfs;
@@ -1396,135 +1397,138 @@ void sub_0800A49C(void)
         gEntityInfo[0xA].yPosScreen = gEntityInfo[0xA].yPosBg2 - gBgInfo[2].vOfs;
     }
 
-    for (var_r5 = 1; var_r5 < gUnk_03005428; var_r5++)
+    for (slot = 1; slot < gUnk_03005428; slot++)
     {
-        if (var_r5 == 9)
+        if (slot == 9)
         {
-            var_r5 = 0xD;
+            slot = 0xD;
         }
 
-        if (gEntityInfo[var_r5].unkF < 0x19)
+        if (gEntityInfo[slot].unkF < 0x19)
         {
-            gEntityInfo[var_r5].xPosScreen = gEntityInfo[var_r5].xPosBg2 - gBgInfo[2].hOfs;
-            gEntityInfo[var_r5].yPosScreen = gEntityInfo[var_r5].yPosBg2 - gBgInfo[2].vOfs;
-            if ((gEntityInfo[var_r5].xPosScreen >= (DISPLAY_WIDTH + 35) && gEntityInfo[var_r5].xPosScreen <= (u16)(-36))
-                || (gEntityInfo[var_r5].yPosScreen >= (DISPLAY_HEIGHT + 64) && gEntityInfo[var_r5].yPosScreen <= (u16)(-36)))
+            gEntityInfo[slot].xPosScreen = gEntityInfo[slot].xPosBg2 - gBgInfo[2].hOfs;
+            gEntityInfo[slot].yPosScreen = gEntityInfo[slot].yPosBg2 - gBgInfo[2].vOfs;
+            if ((gEntityInfo[slot].xPosScreen >= (DISPLAY_WIDTH + 35) && gEntityInfo[slot].xPosScreen <= (u16)(-36))
+                || (gEntityInfo[slot].yPosScreen >= (DISPLAY_HEIGHT + 64) && gEntityInfo[slot].yPosScreen <= (u16)(-36)))
             {
-                gEntityInfo[var_r5].visible = 0;
+                gEntityInfo[slot].visible = 0;
             }
             else
             {
-                gEntityInfo[var_r5].visible = 1;
+                gEntityInfo[slot].visible = 1;
             }
         }
     }
 }
 
 // A5B8
-void sub_0800A5B8(u8 arg0, s8 arg1, s8 arg2)
+void EntityUpdateScreenPositionAffine(u8 slot, s8 xOffset, s8 yOffset)
 {
-    s16 temp_r1;
-    s16 temp_r2;
-    s32 var_r2;
-    s32 var_r4;
+    // Update entity x/y (affine) with optional offset
+    s16 bg2XOffset;
+    s16 bg2YOffset;
+    s32 yPos;
+    s32 xPos;
     struct Unk_0300466C_4 *var_r0;
 
-    arg1++,arg1--; //fake
-    gEntityInfo[arg0].xPosScreen = gEntityInfo[arg0].xPosBg2 - arg1 - gBgInfo[2].hOfs;
-    gEntityInfo[arg0].yPosScreen = gEntityInfo[arg0].yPosBg2 - arg2 - gBgInfo[2].vOfs;
+    xOffset++,xOffset--; //fake
+    gEntityInfo[slot].xPosScreen = gEntityInfo[slot].xPosBg2 - xOffset - gBgInfo[2].hOfs;
+    gEntityInfo[slot].yPosScreen = gEntityInfo[slot].yPosBg2 - yOffset - gBgInfo[2].vOfs;
 
-    temp_r1 = gBgInfo[2].hOfs - gEntityInfo[arg0].xPosScreen;
-    temp_r2 = gBgInfo[2].vOfs - gEntityInfo[arg0].yPosScreen;
+    bg2XOffset = gBgInfo[2].hOfs - gEntityInfo[slot].xPosScreen;
+    bg2YOffset = gBgInfo[2].vOfs - gEntityInfo[slot].yPosScreen;
 
-    var_r4 = (temp_r1 * gBg2XMag) / 0x100;
-    var_r2 = (temp_r2 * gBg2YMag) / 0x100;
+    xPos = (bg2XOffset * gBg2XMag) / 0x100;
+    yPos = (bg2YOffset * gBg2YMag) / 0x100;
 
-    var_r4 = gBgInfo[2].hOfs - var_r4;
-    if (arg0 > 0xC)
+    xPos = gBgInfo[2].hOfs - xPos;
+    if (slot >= 0xD)
     {
-        var_r0 = (void*)gUnk_030051DC[arg0 - 0xD].unk4;
+        var_r0 = gUnk_030051DC[slot - 0xD].unk4;
     }
     else
     {
-        var_r0 = gUnk_08078FC8[arg0].unk4;
+        var_r0 = gUnk_08078FC8[slot].unk4;
     }
 
     switch (var_r0->shape_size & 0xF)
     {
-        case 3:
-        case 11:
-            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 3);
+        // TODO: 3 is not a valid shape, so is this what is meant?
+        case SPRITE_SIZE_8x16 | SPRITE_SIZE_16x8:   // 3 = 0 | 3
+        case SPRITE_SIZE_32x16 | SPRITE_SIZE_16x32: // 11 = 8 | 3
+            yPos = gBgInfo[2].vOfs - yPos + ((0x100 - gBg2YMag) >> 3);
             break;
 
-        case 1:
-        case 6:
-        case 8:
-            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 5);
+        case SPRITE_SIZE_16x8:  // 1 = 0 | 1
+        case SPRITE_SIZE_8x32:  // 6 = 4 | 2
+        case SPRITE_SIZE_32x32: // 8 = 8 | 0
+            yPos = gBgInfo[2].vOfs - yPos + ((0x100 - gBg2YMag) >> 5);
             break;
 
-        case 0:
-        case 4:
-        case 5:
-            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 6);
+        case SPRITE_SIZE_8x8:   // 0 = 0 | 0
+        case SPRITE_SIZE_16x16: // 4 = 4 | 0
+        case SPRITE_SIZE_32x8:  // 5 = 4 | 1
+            yPos = gBgInfo[2].vOfs - yPos + ((0x100 - gBg2YMag) >> 6);
             break;
 
         default:
-            var_r2 = gBgInfo[2].vOfs - var_r2 + ((0x100 - gBg2YMag) >> 4);
+            yPos = gBgInfo[2].vOfs - yPos + ((0x100 - gBg2YMag) >> 4);
             break;
     }
 
-    gEntityInfo[arg0].xPosScreen = var_r4;
-    gEntityInfo[arg0].yPosScreen = var_r2;
+    gEntityInfo[slot].xPosScreen = xPos;
+    gEntityInfo[slot].yPosScreen = yPos;
 }
 
 // A71C
-void sub_0800A71C(s8 arg0, s8 arg1)
+void EntityBossUpdateScreenPositions(s8 xOffset, s8 yOffset)
 {
-    s32 var_r5;
+    // Update screen position and visible flag for all entities (on boss stage)
+    s32 slot;
 
-    for (var_r5 = 0; var_r5 < 0xB; var_r5++)
+    for (slot = 0; slot < 0xB; slot++)
     {
-        sub_0800A5B8(var_r5, arg0, arg1);
+        EntityUpdateScreenPositionAffine(slot, xOffset, yOffset);
     }
 
-    for (var_r5 = 0xD; var_r5 < gUnk_03005428; var_r5++)
+    for (slot = 0xD; slot < gUnk_03005428; slot++)
     {
-        if (gEntityInfo[var_r5].unkF == 0x1A)
+        if (gEntityInfo[slot].unkF == 0x1A)
         {
-            gEntityInfo[var_r5].visible = 0;
+            gEntityInfo[slot].visible = 0;
             continue;
         }
 
-        if (gEntityInfo[var_r5].affineEnable == 1)
+        if (gEntityInfo[slot].affineEnable == 1)
         {
-            if (gEntityInfo[var_r5].unkF < 0x19)
+            if (gEntityInfo[slot].unkF < 0x19)
             {
-                sub_0800A5B8(var_r5, arg0, arg1);
-                if (gEntityInfo[var_r5].id != 0)
+                EntityUpdateScreenPositionAffine(slot, xOffset, yOffset);
+                if (gEntityInfo[slot].id != 0)
                 {
-                    if ((gEntityInfo[var_r5].xPosScreen >= (DISPLAY_WIDTH + 67) && gEntityInfo[var_r5].xPosScreen <= (u16)(-68))
-                        || (gEntityInfo[var_r5].yPosScreen >= (DISPLAY_HEIGHT + 96) && gEntityInfo[var_r5].yPosScreen <= (u16)(-68)))
+                    if ((gEntityInfo[slot].xPosScreen >= (DISPLAY_WIDTH + 67) && gEntityInfo[slot].xPosScreen <= (u16)(-68))
+                        || (gEntityInfo[slot].yPosScreen >= (DISPLAY_HEIGHT + 96) && gEntityInfo[slot].yPosScreen <= (u16)(-68)))
                     {
-                        gEntityInfo[var_r5].visible = 0;
+                        gEntityInfo[slot].visible = 0;
                     }
                     else
                     {
-                        gEntityInfo[var_r5].visible = 1;
+                        gEntityInfo[slot].visible = 1;
                     }
                 }
             }
         }
         else
         {
-            if (gEntityInfo[var_r5].unkF == 0x1C)
+            if (gEntityInfo[slot].unkF == 0x1C)
             {
-                gEntityInfo[var_r5].visible = 0;
+                gEntityInfo[slot].visible = 0;
             }
             else
             {
-                gEntityInfo[var_r5].xPosScreen = gEntityInfo[var_r5].xPosBg2;
-                gEntityInfo[var_r5].yPosScreen = gEntityInfo[var_r5].yPosBg2;
-                gEntityInfo[var_r5].visible = 1;
+                gEntityInfo[slot].xPosScreen = gEntityInfo[slot].xPosBg2;
+                gEntityInfo[slot].yPosScreen = gEntityInfo[slot].yPosBg2;
+                gEntityInfo[slot].visible = 1;
             }
         }
     }
@@ -1534,14 +1538,15 @@ void sub_0800A71C(s8 arg0, s8 arg1)
 // A804
 void sub_0800A804(void)
 {
-    u32 var_r2;
-    u32 var_r4;
+    // Process (call update functions) for all entities (common)
+    u32 i;
+    u32 slot;
 
     if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0))
     {
-        for (var_r2 = 0; var_r2 < 10; var_r2++)
+        for (i = 0; i < 10; i++)
         {
-            gCallbackQueue.previous[var_r2] = gCallbackQueue.current[var_r2];
+            gCallbackQueue.previous[i] = gCallbackQueue.current[i];
         }
 
         gCallbackQueue.previousCount = gCallbackQueue.currentCount;
@@ -1564,17 +1569,17 @@ void sub_0800A804(void)
             sub_0800D188();
         }
 
-        for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+        for (slot = 0xD; slot < gUnk_03005428; slot++)
         {
-            if (gEntityInfo[var_r4].unkF != 0x1C)
+            if (gEntityInfo[slot].unkF != 0x1C)
             {
-                switch (gEntityInfo[var_r4].id)
+                switch (gEntityInfo[slot].id)
                 {
                     case ENTITY_ID_MAGNET_BLOCK:
                     case ENTITY_ID_BOX:
-                        if (gEntityInfo[var_r4].unk8.split.unk8 != 1)
+                        if (gEntityInfo[slot].unk8.split.unk8 != 1)
                         {
-                            sub_08014760(var_r4);
+                            sub_08014760(slot);
                         }
                         break;
 
@@ -1589,13 +1594,13 @@ void sub_0800A804(void)
                     case ENTITY_ID_BOOMIE:
                     case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
                     case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
-                        sub_08016EEC(var_r4);
+                        sub_08016EEC(slot);
                         break;
 
                     case ENTITY_ID_CIRCLE_KEY:
                     case ENTITY_ID_TRIANGLE_KEY:
                     case ENTITY_ID_HEART_KEY:
-                        sub_0801CE38(var_r4);
+                        sub_0801CE38(slot);
                         break;
 
                     case ENTITY_ID_GOOMI:
@@ -1603,7 +1608,7 @@ void sub_0800A804(void)
                     case ENTITY_ID_GOOMI_VERTICAL:
                     case ENTITY_ID_GOOMI_DIAGONAL_1:
                     case ENTITY_ID_GOOMI_DIAGONAL_2:
-                        sub_0801B688(var_r4);
+                        sub_0801B688(slot);
                         break;
 
                     case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
@@ -1611,87 +1616,87 @@ void sub_0800A804(void)
                     case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
                     case ENTITY_ID_GRATED_PLATFORM:
                     case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
-                        sub_0801BD48(var_r4);
+                        sub_0801BD48(slot);
                         break;
 
                     case ENTITY_ID_SPRING:
-                        sub_0801BB6C(var_r4);
+                        sub_0801BB6C(slot);
                         break;
 
                     case ENTITY_ID_HOVER_BOARD_SPRING:
-                        sub_0801BCC0(var_r4);
+                        sub_0801BCC0(slot);
                         break;
 
                     case ENTITY_ID_PRESSURE_SWITCH:
                     case ENTITY_ID_WATER_SWITCH:
                     case ENTITY_ID_GATE_SWITCH:
                     case ENTITY_ID_GROWING_SHRINKING_BLOCK_SWITCH:
-                        sub_0801C150(var_r4);
+                        sub_0801C150(slot);
                         break;
 
                     case ENTITY_ID_WATERFALL:
-                        sub_0801C6EC(var_r4);
+                        sub_0801C6EC(slot);
                         break;
 
                     case ENTITY_ID_SCALE_1:
-                        sub_0801C82C(var_r4);
+                        sub_0801C82C(slot);
                         break;
 
                     case ENTITY_ID_LEAF_1:
                     case ENTITY_ID_LEAF_2:
-                        sub_0801D0D8(var_r4);
+                        sub_0801D0D8(slot);
                         break;
 
                     case ENTITY_ID_GROWN_BLOCK:
-                        if ((var_r4 == gUnk_030047B8) || (var_r4 == gUnk_03005470))
+                        if ((slot == gUnk_030047B8) || (slot == gUnk_03005470))
                         {
-                            sub_0801D4AC(var_r4);
+                            sub_0801D4AC(slot);
                         }
                         break;
 
                     case ENTITY_ID_EXPLODABLE_BLOCK:
-                        sub_0801D4AC(var_r4);
+                        sub_0801D4AC(slot);
                         break;
 
                     case 0xC:
-                        sub_0801DE44(var_r4);
+                        sub_0801DE44(slot);
                         break;
 
                     case ENTITY_ID_GLIBZ_QUAD_CANNON_BULLET:
-                        sub_0801DFC4(var_r4);
+                        sub_0801DFC4(slot);
                         break;
 
                     case ENTITY_ID_BLUE_ARROW:
-                        if (gEntityInfo[var_r4].unk8.split.unk8 != 0)
+                        if (gEntityInfo[slot].unk8.split.unk8 != 0)
                         {
-                            gEntityInfo[var_r4].unk8.split.unk8 -= 1;
+                            gEntityInfo[slot].unk8.split.unk8 -= 1;
                         }
                         break;
 
                     case ENTITY_ID_MAGNET_BLOCK_HAND:
-                        sub_0801D6B0(var_r4);
+                        sub_0801D6B0(slot);
                         break;
 
                     case ENTITY_ID_CANNON_GOAL:
                         {
-                            if (gEntityInfo[var_r4].unk8.all != 0)
+                            if (gEntityInfo[slot].unk8.all != 0)
                             {
-                                sub_0801B044(var_r4);
+                                sub_0801B044(slot);
                             }
                         }
                         break;
 
                     case ENTITY_ID_STAR:
-                        if (gEntityInfo[var_r4].unkF == 2)
+                        if (gEntityInfo[slot].unkF == 2)
                         {
-                            sub_0801E1A8(var_r4);
+                            sub_0801E1A8(slot);
                         }
                         break;
 
                     case ENTITY_ID_1_UP:
-                        if (gEntityInfo[var_r4].unkF == 2)
+                        if (gEntityInfo[slot].unkF == 2)
                         {
-                            sub_0801E354(var_r4);
+                            sub_0801E354(slot);
                         }
                         break;
                 }
@@ -1718,10 +1723,11 @@ extern void sub_08021DAC(s32); // should be u8 param
 // AC34
 void sub_0800AC34(void)
 {
-    s32 var_r6;
+    // // Process (i.e. call update functions) for all entities (boss)
+    s32 slot;
     struct EntityInfo *temp_r1_2;
     struct EntityInfo *temp_r1_5;
-    u32 var_r2;
+    u32 i;
 
     if (gUnk_03005220.hearts == 0)
     {
@@ -1730,9 +1736,9 @@ void sub_0800AC34(void)
 
     if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0) && (gUnk_03005400.unkC != 0))
     {
-        for (var_r2 = 0; var_r2 < 10; var_r2++)
+        for (i = 0; i < 10; i++)
         {
-            gCallbackQueue.previous[var_r2] = gCallbackQueue.current[var_r2];
+            gCallbackQueue.previous[i] = gCallbackQueue.current[i];
         }
 
         gCallbackQueue.previousCount = gCallbackQueue.currentCount;
@@ -1758,13 +1764,13 @@ void sub_0800AC34(void)
 
     UpdateEntityAnimationInfoEntries();
 
-    for (var_r6 = 0; var_r6 < gUnk_03005428; var_r6++)
+    for (slot = 0; slot < gUnk_03005428; slot++)
     {
-        if (gEntityInfo[var_r6].id == ENTITY_ID_HEART)
+        if (gEntityInfo[slot].id == ENTITY_ID_HEART)
         {
-            if (gEntityInfo[var_r6].unkF == 0x1C)
+            if (gEntityInfo[slot].unkF == 0x1C)
             {
-                if (gEntityInfo[var_r6].unk8.split.unk8 == 0)
+                if (gEntityInfo[slot].unk8.split.unk8 == 0)
                 {
                     if (gUnk_03005400.unk2 < 0xE10)
                     {
@@ -1772,21 +1778,21 @@ void sub_0800AC34(void)
                     }
                     if (gUnk_03005400.unk2 == 0xE10)
                     {
-                        gEntityInfo[var_r6].unkF = 0x19;
+                        gEntityInfo[slot].unkF = 0x19;
                         gUnk_03005400.unk2 = 0;
                     }
                 }
             }
         }
 
-        if (gEntityInfo[var_r6].unkF != 0x1C)
+        if (gEntityInfo[slot].unkF != 0x1C)
         {
-            if (gEntityInfo[var_r6].id != 0)
+            if (gEntityInfo[slot].id != 0)
             {
-                gEntityInfo[var_r6].affineHFlip_matrixNum = gEntityInfo[var_r6].unkC_2;
-                gEntityInfo[var_r6].affineDouble = 0;
+                gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[slot].unkC_2;
+                gEntityInfo[slot].affineDouble = 0;
 
-                switch (gEntityInfo[var_r6].id)
+                switch (gEntityInfo[slot].id)
                 {
                     case ENTITY_ID_MOO_BOARDER:
                     case ENTITY_ID_MOO:
@@ -1794,127 +1800,127 @@ void sub_0800AC34(void)
                     case ENTITY_ID_FLYING_MOO_VERTICAL:
                         if (gUnk_03004C20.world == 2)
                         {
-                            if (gEntityInfo[var_r6].unkF == 0x13)
+                            if (gEntityInfo[slot].unkF == 0x13)
                             {
-                                gEntityInfo[var_r6].affineHFlip_matrixNum = gOamAffineMatrixNum;
+                                gEntityInfo[slot].affineHFlip_matrixNum = gOamAffineMatrixNum;
                             }
                         }
-                        sub_08016EEC(var_r6);
+                        sub_08016EEC(slot);
                         break;
 
                     case ENTITY_ID_HEART:
-                        gEntityInfo[var_r6].affineHFlip_matrixNum = 4;
-                        gEntityInfo[var_r6].affineDouble = 1;
-                        sub_0801F02C(var_r6);
+                        gEntityInfo[slot].affineHFlip_matrixNum = 4;
+                        gEntityInfo[slot].affineDouble = 1;
+                        sub_0801F02C(slot);
                         break;
 
                     case 0x10:
-                        switch (gEntityInfo[var_r6].unkF)
+                        switch (gEntityInfo[slot].unkF)
                         {
                             case 0:
                                 break;
 
                             case 25:
-                                SetEntityAnimationInfoState(var_r6, 0);
-                                gEntityInfo[var_r6].visible = 1;
-                                gEntityInfo[var_r6].unkF = 0;
+                                SetEntityAnimationInfoState(slot, 0);
+                                gEntityInfo[slot].visible = 1;
+                                gEntityInfo[slot].unkF = 0;
                                 break;
                         }
                         break;
 
                     case 0x11:
-                        sub_0801F128(var_r6);
+                        sub_0801F128(slot);
                         break;
 
                     case 0x12:
-                        sub_0801F4D0(var_r6);
+                        sub_0801F4D0(slot);
                         break;
 
                     case 0x13:
-                        sub_0801F648(var_r6);
+                        sub_0801F648(slot);
                         break;
 
                     case 0x14:
-                        sub_0801FADC(var_r6);
+                        sub_0801FADC(slot);
                         break;
 
                     case 0x16:
-                        sub_0801FFF0(var_r6);
+                        sub_0801FFF0(slot);
                         break;
 
                     case 0x15:
-                        gEntityInfo[var_r6].affineEnable = 1;
-                        gEntityInfo[var_r6].affineHFlip_matrixNum = 3;
+                        gEntityInfo[slot].affineEnable = 1;
+                        gEntityInfo[slot].affineHFlip_matrixNum = 3;
                         if (gEntityAnimationInfo[0x12 - gUnk_0300363C].state == 0)
                         {
-                            gEntityInfo[var_r6].unkF = 0;
-                            gEntityInfo[var_r6].visible = 1;
-                            gEntityInfo[var_r6].xPosBg2 = gEntityInfo[0x12].xPosBg2;
-                            gEntityInfo[var_r6].yPosBg2 = gEntityInfo[0x12].yPosBg2 - 0x3C;
+                            gEntityInfo[slot].unkF = 0;
+                            gEntityInfo[slot].visible = 1;
+                            gEntityInfo[slot].xPosBg2 = gEntityInfo[0x12].xPosBg2;
+                            gEntityInfo[slot].yPosBg2 = gEntityInfo[0x12].yPosBg2 - 0x3C;
                         }
                         else
                         {
-                            gEntityInfo[var_r6].unkF = 0x1A;
-                            gEntityInfo[var_r6].visible = 0;
+                            gEntityInfo[slot].unkF = 0x1A;
+                            gEntityInfo[slot].visible = 0;
                         }
                         break;
 
                     case 0x17:
-                        gEntityInfo[var_r6].affineDouble = 1;
-                        sub_080202D4(var_r6);
+                        gEntityInfo[slot].affineDouble = 1;
+                        sub_080202D4(slot);
                         break;
 
                     case 0x18:
-                        sub_08021194(var_r6);
+                        sub_08021194(slot);
                         break;
 
                     case 0x19:
-                        sub_08020FB8(var_r6);
+                        sub_08020FB8(slot);
                         break;
 
                     case 0x1A:
-                        sub_0802192C(var_r6);
+                        sub_0802192C(slot);
                         break;
 
                     case 0x1D:
-                        sub_08021AD4(var_r6);
+                        sub_08021AD4(slot);
                         break;
 
                     case 0x1C:
-                        gEntityInfo[var_r6].affineHFlip_matrixNum = 5;
-                        gEntityInfo[var_r6].affineDouble = 1;
-                        sub_08022CA0(var_r6);
+                        gEntityInfo[slot].affineHFlip_matrixNum = 5;
+                        gEntityInfo[slot].affineDouble = 1;
+                        sub_08022CA0(slot);
                         break;
 
                     case 0x1E:
-                        gEntityInfo[var_r6].affineHFlip_matrixNum = 6;
-                        gUnk_03003590[3].unk5_0 = gEntityInfo[var_r6].unkC_2;
-                        sub_08023988(var_r6);
+                        gEntityInfo[slot].affineHFlip_matrixNum = 6;
+                        gUnk_03003590[3].unk5_0 = gEntityInfo[slot].unkC_2;
+                        sub_08023988(slot);
                         break;
 
                     case 0x1B:
-                        sub_08021DAC(var_r6);
+                        sub_08021DAC(slot);
                         break;
 
                     case 0x1F:
-                        if (var_r6 > 0x18)
+                        if (slot > 0x18)
                         {
-                            gEntityInfo[var_r6].affineHFlip_matrixNum = 10;
+                            gEntityInfo[slot].affineHFlip_matrixNum = 10;
                         }
                         else
                         {
-                            gEntityInfo[var_r6].affineHFlip_matrixNum = var_r6 - 0xF;
+                            gEntityInfo[slot].affineHFlip_matrixNum = slot - 0xF;
                         }
-                        sub_08023BC0(var_r6);
+                        sub_08023BC0(slot);
                         break;
 
                     case ENTITY_ID_22:
-                        gUnk_030034A8(var_r6);
+                        gUnk_030034A8(slot);
                         break;
 
                     case ENTITY_ID_LEAF_1:
                     case ENTITY_ID_LEAF_2:
-                        sub_0801D0D8(var_r6);
+                        sub_0801D0D8(slot);
                         break;
 
                     case ENTITY_ID_GOOMI:
@@ -1922,71 +1928,71 @@ void sub_0800AC34(void)
                     case ENTITY_ID_GOOMI_VERTICAL:
                     case ENTITY_ID_GOOMI_DIAGONAL_1:
                     case ENTITY_ID_GOOMI_DIAGONAL_2:
-                        sub_0801B688(var_r6);
+                        sub_0801B688(slot);
                         break;
 
                     case ENTITY_ID_RED_ARROW:
-                        gEntityInfo[var_r6].affineHFlip_matrixNum = var_r6 - 0x13;
-                        gUnk_03003590[var_r6 - 0x16].unk2 = 0x40;
-                        gUnk_03003590[var_r6 - 0x16].unk0 = 0x40;
-                        gUnk_03003590[var_r6 - 0x16].unk5_0 = gEntityInfo[var_r6].unkC_2;
+                        gEntityInfo[slot].affineHFlip_matrixNum = slot - 0x13;
+                        gUnk_03003590[slot - 0x16].unk2 = 0x40;
+                        gUnk_03003590[slot - 0x16].unk0 = 0x40;
+                        gUnk_03003590[slot - 0x16].unk5_0 = gEntityInfo[slot].unkC_2;
 
-                        if (gEntityInfo[var_r6].unkC_2 & 2)
+                        if (gEntityInfo[slot].unkC_2 & 2)
                         {
-                            gUnk_03003590[var_r6 - 0x16].unk4 = 0x80;
+                            gUnk_03003590[slot - 0x16].unk4 = 0x80;
                         }
                         else
                         {
-                            gUnk_03003590[var_r6 - 0x16].unk4 = 0;
+                            gUnk_03003590[slot - 0x16].unk4 = 0;
                         }
                         break;
 
                     case 0x44:
                     case 0x45:
-                        temp_r1_2 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][var_r6 - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
+                        temp_r1_2 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
                         if (((temp_r1_2->id != 0x22) && (temp_r1_2->unkF == 0x1C)) || (temp_r1_2->unkF == 0x19))
                         {
-                            gEntityInfo[var_r6].xPosBg2 = 0x200;
+                            gEntityInfo[slot].xPosBg2 = 0x200;
                             break;
                         }
 
-                        gEntityInfo[var_r6].xPosBg2 = temp_r1_2->xPosBg2;
-                        gEntityInfo[var_r6].yPosBg2 = gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][var_r6 - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]].yPosBg2 & ~7;
+                        gEntityInfo[slot].xPosBg2 = temp_r1_2->xPosBg2;
+                        gEntityInfo[slot].yPosBg2 = gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]].yPosBg2 & ~7;
                         
-                        temp_r1_5 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][var_r6 - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
+                        temp_r1_5 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
                         if (temp_r1_5->id == 0x22)
                         {
                             if (temp_r1_5->unkC_2 == 0)
                             {
-                                gEntityInfo[var_r6].xPosBg2 -= 6;
+                                gEntityInfo[slot].xPosBg2 -= 6;
                             }
                             else
                             {
-                                gEntityInfo[var_r6].xPosBg2 += 9;
+                                gEntityInfo[slot].xPosBg2 += 9;
                             }
 
-                            gEntityInfo[var_r6].affineHFlip_matrixNum = 5;
-                            gEntityInfo[var_r6].affineDouble = 1;
+                            gEntityInfo[slot].affineHFlip_matrixNum = 5;
+                            gEntityInfo[slot].affineDouble = 1;
                             gUnk_03003590[2].unk0 = 0x100;
                             gUnk_03003590[2].unk2 = 0x80;
                         }
 
                         while (1)
                         {
-                            u32 tmp2 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[var_r6].xPosBg2 >> 3) + ((gEntityInfo[var_r6].yPosBg2 >> 3) * gBgInfo[2].hLength)];
+                            u32 tmp2 = gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[slot].xPosBg2 >> 3) + ((gEntityInfo[slot].yPosBg2 >> 3) * gBgInfo[2].hLength)];
                             if (gUnk_03004654->unk1B <= tmp2)
                             {
-                                gEntityInfo[var_r6].yPosBg2 += 0xA;
+                                gEntityInfo[slot].yPosBg2 += 0xA;
                                 break;
                             }
 
-                            gEntityInfo[var_r6].yPosBg2 += 8;
+                            gEntityInfo[slot].yPosBg2 += 8;
                         }
                         
                         break;
 
                     case 0x20:
-                        sub_0803CE14(var_r6);
+                        sub_0803CE14(slot);
                         break;
                 }
             }

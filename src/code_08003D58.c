@@ -246,7 +246,7 @@ void sub_08003D58(void)
     }
     while (var_r1 != 0);
 
-    sub_0800A468();
+    EntityResetOamBuffer();
 }
 
 // 3D80
@@ -1035,7 +1035,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
 }
 
 // 5CF4
-void sub_08005CF4(void)
+void EntityCommonTransferToOamBuffer(void)
 {
     s32 sp0;
     struct Unk_0300466C_4 *var_r5;
@@ -1066,7 +1066,7 @@ void sub_08005CF4(void)
     s32 var_sb_5;
     s32 var_sl;
 
-    sub_0800A468();
+    EntityResetOamBuffer();
     gOamBufferPtr = gOamBuffer;
 
     if (gEntityInfo[0xB].visible == 1)

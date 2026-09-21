@@ -108,7 +108,7 @@ void GameOverScreenInit(void)
     m4aMPlayAllStop();
 
     sub_08003D58();
-    sub_0800A468();
+    EntityResetOamBuffer();
     REG_DISPCNT = DISPCNT_MODE_1 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_WIN0_ON;
     gUnk_03005488 = 0;
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN1_BG0 | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_CLR;
