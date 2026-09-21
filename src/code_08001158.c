@@ -1239,7 +1239,7 @@ void SetUpRoomVisuals(void)
     {
         gTransitioning = TRUE;
         gCallbackQueue.next[0] = InputHandler_Normal;
-        gCallbackQueue.next[1] = sub_080453F0;
+        gCallbackQueue.next[1] = VisionSelectInit;
         gCallbackQueue.next[2] = VisionSelectWaitForNextFrame;
         gUnk_03003410.unk5 = 0;
         gCallbackQueue.next[3] = sub_08048028;

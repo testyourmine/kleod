@@ -466,7 +466,7 @@ void PauseMenuScreenHandler(void)
             {
                 gUnk_03004C20.world = 5;
             }
-            gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
+            gVisionSelectInfo.currentVision = gUnk_03004C20.level;
             gUnk_03004C20.level = 0;
             gCallbackQueue.current[1] = TransitionFromVisionSelectToLevel_FadeOut;
             break;
@@ -1359,7 +1359,7 @@ void WorldMapScreenHandler(void)
             gBlendValue = 0;
             gUnk_03004C20.world = gWorldMapInfo.currentIndex + 1;
             gUnk_03004C20.level = 0;
-            gUnk_030034B0.unk6_4 = 1;
+            gVisionSelectInfo.currentVision = 1;
             m4aSongNumStart(SE_CURSOR_CONFIRM);
             gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
 

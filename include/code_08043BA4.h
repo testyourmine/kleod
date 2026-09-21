@@ -10,16 +10,16 @@ void sub_08044BB8(void);
 void sub_08044F6C(u8 arg0);
 void sub_0804517C(u8 arg0);
 void sub_080452E8(void);
-void sub_08045398(void);
-void sub_080453F0(void);
-void sub_08045734(void);
-void sub_0804575C(void);
-void sub_08045874(void);
-void sub_08045F68(void);
-void sub_08046288(void);
-void sub_080467F4(void);
-void sub_080468B0(void);
-u8 sub_080469FC(void);
+void VisionSelectBeginTransitionToVision(void);
+void VisionSelectInit(void);
+void VisionSelectHandler(void);
+void VisionSelectCreateEntities(void);
+void VisionSelectInputAndMovement(void);
+void VisionSelectUpdateRotationAndEntities(void);
+void VisionSelectDrawVisionInfo(void);
+void VisionSelectDrawVisionIcons(void);
+void VisionSelectUpdateUnlockVisionSequence(void);
+u8 VisionSelectGetUnlockedVision(void);
 void sub_08046A64(u8 arg0);
 
 #endif // GUARD_CODE_08043BA4_H

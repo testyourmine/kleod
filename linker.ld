@@ -76,7 +76,7 @@ SECTIONS {
         . = 0x000034A4; gUnk_030034A4 = .;
         . = 0x000034A8; gUnk_030034A8 = .;
         . = 0x000034AC; gBg2XMag = .;
-        . = 0x000034B0; gUnk_030034B0 = .;
+        . = 0x000034B0; gVisionSelectInfo = .;
         . = 0x000034BC; gUnk_030034BC = .;
         . = 0x000034C0; gPauseMenuType = .;
         . = 0x000034C4; gUnk_030034C4 = .;

@@ -625,7 +625,7 @@ void sub_0804BE58(void)
 
     gUnk_03004C20.unkA = 0;
     gUnk_03004C20.isHoverBoardLevel = 0;
-    gUnk_030034B0.unk6_4 = 1;
+    gVisionSelectInfo.currentVision = 1;
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;

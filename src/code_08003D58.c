@@ -200,7 +200,7 @@ void EntityInit(void)
 
     if (gUnk_03004C20.level == 0)
     {
-        sub_0804575C();
+        VisionSelectCreateEntities();
     }
     else
     {

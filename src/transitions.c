@@ -899,7 +899,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         }
         else if (gUnk_03005284->sceneType == SCENE_TYPE_LEVEL_SELECT)
         {
-            gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
+            gVisionSelectInfo.currentVision = gUnk_03004C20.level;
             gUnk_03004C20.level = 0;
         }
         else if (gUnk_03005284->sceneType == SCENE_TYPE_CUTSCENE)

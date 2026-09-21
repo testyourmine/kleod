@@ -857,23 +857,23 @@ enum TitleScreenStage {
 };
 extern u8 gTitleScreenStage;
 
-struct Unk_030034B0 {
-    u8 unk0_0:1;
-    u8 unk0_1:3;
-    u8 unk0_4:1;
-    u8 unk1;
-    u8 unk2;
-    u8 unk3;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6_0:4;
-    u8 unk6_4:4;
-    u8 unk7_0:4;
-    u8 unk7_4:4;
-    u8 unk8_0:4;
-    u8 unk8_4:4;
+struct VisionSelectInfo {
+    /* 0x0_0 */ u8 unk0_0:1; // all visions in world beaten?
+    /* 0x0_1 */ u8 unk0_1:3; // seems to be slot offset for gEntityInfo, 6 on world 1, else 0
+    /* 0x0_4 */ u8 startedTransitionToVision:1;
+    /* 0x1 */ u8 alpha; // rotation offset
+    /* 0x2 */ s8 unk2; // yPos related
+    /* 0x3 */ u8 drawStageTimer; // timer for draw stages
+    /* 0x4 */ u8 drawStage; // top nybble is "main" stage, bottom nybble is "sub" stage
+    /* 0x5 */ u8 visionUnlockTimer; // timer when unlocking vision
+    /* 0x6_0 */ u8 moveDirection:4; // moving direction, 0 is nowhere, 1 is right, 2 is left
+    /* 0x6_4 */ u8 currentVision:4; // selected vision
+    /* 0x7_0 */ u8 unlockedVision:4; // vision to unlock
+    /* 0x7_4 */ u8 unk7_4:4; // vision related
+    /* 0x8_0 */ u8 visionLeftFrom:4; // vision traveled from
+    /* 0x8_4 */ u8 visionGoingTo:4; // vision traveling to
 };
-extern struct Unk_030034B0 gUnk_030034B0;
+extern struct VisionSelectInfo gVisionSelectInfo;
 
 enum PauseMenuType {
     PAUSE_MENU_TYPE_NORMAL_LEVEL,

@@ -390,7 +390,7 @@ void DrawVisionEnd(void)
         return;
     }
 
-    gUnk_030034B0.unk6_4 = gUnk_03004C20.level;
+    gVisionSelectInfo.currentVision = gUnk_03004C20.level;
     if (gUnk_03004C20.level == 8)
     {
         if (gBlendValue != 0)
