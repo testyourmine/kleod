@@ -259,9 +259,14 @@ SECTIONS {
     } >rom
 
     rodata : ALIGN(4) {
+        src/data/data_08051BD4.o(.rodata);
         asm/data/data_08051BD4.o(.rodata);
         src/data/trig.o(.rodata);
         asm/data/data_080D9094.o(.rodata);
+        src/code_08039D8C.o(.rodata);
+        asm/data/data_08117120.o(.rodata);
+        src/code_0804B254.o(.rodata);
+        asm/data/data_081177F4.o(.rodata);
         src/data/m4a_tables.o(.rodata);
         asm/data/sound_data.o(.rodata);
         src/eeprom.o(.rodata);

@@ -39,13 +39,6 @@ extern const u16 gUnk_08057B4C[];
 
 extern const u16 gUnk_081177C4[];
 
-extern u8 gUnk_081177E4[0x10];
-
-extern s8 gUnk_081177F4[4][0x8];
-
-extern s8 gUnk_08117834[0x10];
-extern u8 gUnk_08117844[0x10];
-
 extern const void (*gUnk_08117854[0xA])(void);
 extern const void (*gUnk_0811787C[0xF])(void);
 extern const void (*gUnk_081178B8[0x8])(void);
@@ -920,9 +913,25 @@ void sub_0804C86C(void)
 
 void sub_0804C898(void)
 {
-    u8 subroutine_arg0[0x10];
-
-    memcpy(&subroutine_arg0, &gUnk_081177E4, 0x10); // TODO: actually initialize memory
+    // 0x1177e4
+    u8 subroutine_arg0[0x10] = {
+        [0] = 0,
+        [1] = 1,
+        [2] = 2,
+        [3] = 4,
+        [4] = 6,
+        [5] = 4,
+        [6] = 2,
+        [7] = 1,
+        [8] = 0,
+        [9] = -1,
+        [10] = -2,
+        [11] = -4,
+        [12] = -6,
+        [13] = -4,
+        [14] = -2,
+        [15] = -1
+    };
 
     if (gUnk_0300081C->unk17_1 != 0)
     {
@@ -1199,9 +1208,13 @@ s32 sub_0804CF80(s32 arg0)
 
 s32 sub_0804CFD0(s32 arg0)
 {
-    s8 subroutine_arg0[4][0x10];
-
-    memcpy(&subroutine_arg0, &gUnk_081177F4, 0x40); // TODO: actually initialize memory
+    // 0x1177f4
+    s8 subroutine_arg0[4][0x10] = {
+        [0] = { 1, 1, 2, -2, -1, -1, 0, 0, 1, 1, 2, -2, -1, -1, 0, 0 },
+        [1] = { -1, -1, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0 },
+        [2] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        [3] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+    };
 
     gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosBg2 += subroutine_arg0[gUnk_030052A4[arg0].unk1F][(u32)(gUnk_030052A4[arg0].unkE >> gUnk_030052A4[arg0].unk1A) % 0x10] * gUnk_030052A4[arg0].unk1C;
     gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosScreen = gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosBg2 >> 4;
@@ -1242,12 +1255,45 @@ s32 sub_0804D0B0(s32 arg0)
     s32 var_r0_4;
     s32 var_r4;
     u8 temp_r5;
-    s8 sp0[0x10];
-    u8 sp10[0x10];
 
-    // TODO: actually initialize memory
-    memcpy(&sp0, &gUnk_08117834, 0x10);
-    memcpy(&sp10, &gUnk_08117844, 0x10);
+    // 0x117834
+    s8 sp0[0x10] = {
+        32,
+        36,
+        -24,
+        -8,
+        8,
+        14,
+        20,
+        8,
+        40,
+        -20,
+        -30,
+        32,
+        46,
+        24,
+        64,
+        48
+    };
+    // 0x117844
+    u8 sp10[0x10] = {
+        130,
+        96,
+        100,
+        92,
+        107,
+        76,
+        120,
+        77,
+        130,
+        80,
+        128,
+        70,
+        124,
+        82,
+        112,
+        70
+    };
 
     switch (gUnk_030052A4[arg0].unk3_3)
     {

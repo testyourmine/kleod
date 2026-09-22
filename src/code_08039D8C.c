@@ -65,7 +65,6 @@ extern const u8 gUnk_08116A86[5][6];
 extern const u8 gUnk_08116AA4[3];
 extern const u8 gUnk_08116AA7[3];
 extern const u8 gUnk_0811710A[6];
-extern u16 gUnk_08117110[8];
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 extern const void *gUnk_0818B9F8[];
@@ -4975,9 +4974,18 @@ block_89:
         gNewKeys = gHeldKeys = 0;
     }
     {
-        // TODO: put gUnk_08117110 data here
-        u16 subroutine_arg0[8];
-        memcpy(&subroutine_arg0, &gUnk_08117110, 0x10);
+        // 0x117110
+        u16 subroutine_arg0[8] = {
+                [0] = 20,
+                [1] = 23,
+                [2] = 26,
+                [3] = 29,
+                [4] = 29,
+                [5] = 26,
+                [6] = 23,
+                [7] = 20
+        };
+
         if (gUnk_03005400.unkA == 0xD)
         {
             var_r1_4 = (gUnk_03004C20.sceneFrameCounter / 2) % 8;
