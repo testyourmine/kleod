@@ -1493,7 +1493,7 @@ block_474:
         }
     }
 
-    if (gNewKeys & gUnk_03005284->jumpButtonConfig)
+    if (gNewKeys & gSceneSaveData->jumpButtonConfig)
     {
         if ((gUnk_03005220.unk3C != 0) && (gUnk_03005220.unk42 == 0))
         {
@@ -1847,7 +1847,7 @@ block_474:
         }
     }
 
-    if ((gHeldKeys & gUnk_03005284->jumpButtonConfig) && ((gUnk_03005220.unk3D | gUnk_03005220.unk3C | gUnk_03005220.unk42 | gUnk_03005220.unk31 | gUnk_03005220.unk3A | gUnk_03005220.unk34) == 0))
+    if ((gHeldKeys & gSceneSaveData->jumpButtonConfig) && ((gUnk_03005220.unk3D | gUnk_03005220.unk3C | gUnk_03005220.unk42 | gUnk_03005220.unk31 | gUnk_03005220.unk3A | gUnk_03005220.unk34) == 0))
     {
         gUnk_03005220.unk3D = 2;
         gUnk_03005220.unk30 = 0;
@@ -1953,7 +1953,7 @@ block_474:
             }
             else if (gUnk_03005220.unk3D > 1)
             {
-                if (!(gHeldKeys & gUnk_03005284->jumpButtonConfig))
+                if (!(gHeldKeys & gSceneSaveData->jumpButtonConfig))
                 {
                     gUnk_03005220.unk3D = 1;
                     m4aSongNumStart(SE_SILENCE_1);
@@ -2038,7 +2038,7 @@ block_474:
                     }
 
                     gUnk_03005220.unk30 = 1;
-                    if ((gUnk_03005220.unk3C != 0) && (gHeldKeys & gUnk_03005284->jumpButtonConfig))
+                    if ((gUnk_03005220.unk3C != 0) && (gHeldKeys & gSceneSaveData->jumpButtonConfig))
                     {
                         if ((gUnk_03005220.unk3D | gUnk_03005220.unk42 | gUnk_03005220.unk34) == 0)
                         {
@@ -3710,7 +3710,7 @@ block_1433:
         }
     }
 
-    if (gNewKeys & (gUnk_03005284->shootButtonConfig | R_BUTTON))
+    if (gNewKeys & (gSceneSaveData->shootButtonConfig | R_BUTTON))
     {
         if ((gUnk_03005220.windBulletDisableTimer | gUnk_03005220.unk40 | gUnk_03005220.unk41 | gUnk_03005220.unk34 | gUnk_03005220.unk35) != 0)
         {

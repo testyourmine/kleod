@@ -4938,7 +4938,7 @@ void sub_0801BB6C(u8 arg0)
         return;
     }
 
-    if ((gHeldKeys & gUnk_03005284->jumpButtonConfig) && (gUnk_030034F0 < 30))
+    if ((gHeldKeys & gSceneSaveData->jumpButtonConfig) && (gUnk_030034F0 < 30))
     {
         if (gUnk_03005220.unk3C == 2)
         {
@@ -6046,7 +6046,7 @@ void sub_0801D4AC(u8 arg0)
         var_r1 = 0;
     }
 
-    var_r1 ^= gUnk_03005284->pressedGrowingShrinkingBlockSwitch;
+    var_r1 ^= gSceneSaveData->pressedGrowingShrinkingBlockSwitch;
     if (gUnk_03005220.pressedGrowingShrinkingBlockSwitch != (var_r1 ^ gEntityInfo[arg0].unkC_4))
     {
         if (gEntityInfo[arg0].unkC_4 == 1)

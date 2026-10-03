@@ -311,8 +311,8 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
             REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
-            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
-            WriteSaveFile(0, 1);
+            gSceneSaveData->lives = gUnk_03005220.lives = gSceneSaveData->prevLives;
+            WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION);
 
             REG_IE |= INTR_FLAG_VBLANK;
             REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -389,13 +389,13 @@ void GameOverScreenStageSetup(s32 gameOverScreenStage)
             REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
             m4aSoundVSyncOff();
 
-            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
-            WriteSaveFile(0, 1);
+            gSceneSaveData->lives = gUnk_03005220.lives = gSceneSaveData->prevLives;
+            WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION);
 
             REG_IE |= INTR_FLAG_VBLANK;
             REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
 
-            LoadAllSaveData();
+            LoadGlobalSaveData();
             return;
     }
 }
@@ -922,21 +922,21 @@ void VisionSelectInit(void)
     {
         gVisionSelectInfo.unk0_1 = 0;
     }
-    gUnk_03005284->world = gUnk_03004C20.world;
-    gUnk_03005284->level = gVisionSelectInfo.currentVision;
-    WriteSaveFile(0, 0);
-    WriteSaveFile(1, 0);
+    gSceneSaveData->world = gUnk_03004C20.world;
+    gSceneSaveData->level = gVisionSelectInfo.currentVision;
+    WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION_SELECT);
+    WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
     gVisionSelectInfo.unk0_0 = 1;
     
     for (i = 0; i < 8; i++)
     {
-        if (!(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
+        if (!(gFileSaveData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG))
         {
             gVisionSelectInfo.unk0_0 = 0;
         }
     }
 
-    if ((gUnk_03004C20.world == 5) && !(gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
+    if ((gUnk_03004C20.world == 5) && !(gFileSaveData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
     {
         gVisionSelectInfo.unk0_0 = 0;
     }
@@ -969,7 +969,7 @@ void VisionSelectInit(void)
 
     for (i = 0; i < 7; i++)
     {
-        if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG)
+        if (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][i] & LEVEL_INFO_BEATEN_FLAG)
         {
             gVisionSelectInfo.unk7_4 = i;
             gVisionSelectInfo.unlockedVision = VisionSelectGetUnlockedVision();
@@ -983,9 +983,9 @@ void VisionSelectInit(void)
     gBgInfo[1].hOfs = gBg2Alpha;
     gBgInfo[1].vOfs = 0x10;
     gCallbackQueue.current[1] = VisionSelectHandler;
-    if ((gFileProgressData->levelInfo[gUnk_03004C20.world - 1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK)
+    if ((gFileSaveData->levelInfo[gUnk_03004C20.world - 1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK)
     {
-        gFileProgressData->levelInfo[gUnk_03004C20.world - 1][0] = 0;
+        gFileSaveData->levelInfo[gUnk_03004C20.world - 1][0] = 0;
     }
 
     gVisionSelectInfo.drawStage = 0x10;
@@ -1126,22 +1126,22 @@ void VisionSelectInputAndMovement(void)
             gUnk_03004C20.level = gVisionSelectInfo.currentVision;
             SetEntityAnimationInfoState(0, 0x22);
             gCallbackQueue.current[1] = VisionSelectBeginTransitionToVision;
-            gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
+            gSceneSaveData->prevLives = gSceneSaveData->lives = gUnk_03005220.lives;
 
             if (gUnk_03004C20.world == 1)
             {
                 textboxRequested = FALSE;
-                if ((gUnk_03004C20.level == 1) && !(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
+                if ((gUnk_03004C20.level == 1) && !(gFileSaveData->levelInfo[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 1;
                     textboxRequested = TRUE;
                 }
-                else if ((gUnk_03004C20.level == 4) && !(gFileProgressData->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
+                else if ((gUnk_03004C20.level == 4) && !(gFileSaveData->levelInfo[0][3] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 2;
                     textboxRequested = TRUE;
                 }
-                else if ((gUnk_03004C20.level == 6) && !(gFileProgressData->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
+                else if ((gUnk_03004C20.level == 6) && !(gFileSaveData->levelInfo[0][5] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     gTextBoxInfo.visionSelectTextBoxIdOffset = 5;
                     textboxRequested = TRUE;
@@ -1215,7 +1215,7 @@ void VisionSelectInputAndMovement(void)
                     break;
             }
 
-            if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][visionGoingTo - 1] != LEVEL_INFO_DREAM_STONES_MASK)
+            if (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][visionGoingTo - 1] != LEVEL_INFO_DREAM_STONES_MASK)
             {
                 m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
@@ -1271,7 +1271,7 @@ void VisionSelectInputAndMovement(void)
                         break;
                 }
 
-                if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][visionGoingTo - 1] != LEVEL_INFO_DREAM_STONES_MASK)
+                if (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][visionGoingTo - 1] != LEVEL_INFO_DREAM_STONES_MASK)
                 {
                     m4aSongNumStart(SE_CURSOR_MOVE);
                     gUnk_03004C20.sceneFrameCounter = 0;
@@ -1500,7 +1500,7 @@ void VisionSelectDrawVisionInfo(void)
                     }
                     else
                     {
-                        nbrCollectedStones = gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gVisionSelectInfo.currentVision - 1] & LEVEL_INFO_DREAM_STONES_MASK;
+                        nbrCollectedStones = gFileSaveData->levelInfo[gUnk_03004C20.world - 1][gVisionSelectInfo.currentVision - 1] & LEVEL_INFO_DREAM_STONES_MASK;
                         if (nbrCollectedStones == LEVEL_INFO_DREAM_STONES_MASK)
                         {
                             nbrCollectedStones = 0;
@@ -1570,7 +1570,7 @@ void VisionSelectDrawVisionIcons(void)
 
     for (level = 0; level < 8; level++)
     {
-        if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK)
+        if (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK)
         {
             // If the level has not been unlocked, don't draw it
             state = 0;
@@ -1592,11 +1592,11 @@ void VisionSelectDrawVisionIcons(void)
                 // Draw puzzle stage icon
                 state = 1;
             }
-            if (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] & LEVEL_INFO_BEATEN_FLAG)
+            if (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][level] & LEVEL_INFO_BEATEN_FLAG)
             {
                 // Set icon as beaten
                 state += 1;
-                if ((level == 7) && (gUnk_03004C20.world == 5) && !(gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
+                if ((level == 7) && (gUnk_03004C20.world == 5) && !(gFileSaveData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG))
                 {
                     state -= 1;
                 }
@@ -1631,7 +1631,7 @@ void VisionSelectUpdateUnlockVisionSequence(void)
         if (gVisionSelectInfo.visionUnlockTimer == 0x40)
         {
             m4aSongNumStart(SE_LEVEL_UNLOCKED);
-            gFileProgressData->levelInfo[gUnk_03004C20.world - 1][gVisionSelectInfo.unlockedVision - 1] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[gUnk_03004C20.world - 1][gVisionSelectInfo.unlockedVision - 1] &= LEVEL_INFO_BEATEN_FLAG;
             VisionSelectDrawVisionIcons();
         }
 
@@ -1660,7 +1660,7 @@ u8 VisionSelectGetUnlockedVision(void)
 
     for (level = 0; level < 8; level++)
     {
-        if ((((gUnk_0811765C[gUnk_03004C20.world][gVisionSelectInfo.unk7_4] >> level) & 1) != 0) && (gFileProgressData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK))
+        if ((((gUnk_0811765C[gUnk_03004C20.world][gVisionSelectInfo.unk7_4] >> level) & 1) != 0) && (gFileSaveData->levelInfo[gUnk_03004C20.world - 1][level] == LEVEL_INFO_DREAM_STONES_MASK))
         {
             return level + 1;
         }

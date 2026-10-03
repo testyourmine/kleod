@@ -4,11 +4,14 @@
 #include "util.h"
 #include "structs/variables.h"
 
-extern const u16 sEmptyEepromData[4];
-extern const u8 sSaveFileString[9]; // "K_KLONOA"
+const u16 sEmptyEepromData[4] = { 0, 0, 0, 0 };
+const u8 sSaveFileString[9] = "K_KLONOA"; // TODO: might be 12 long, will become clear when next data is done
 
-// 46B6C
-void LoadAllSaveData(void)
+/**
+ * @brief 46B6C | Load global save data from EEPROM
+ * 
+ */
+void LoadGlobalSaveData(void)
 {
     // Called on boot, and exit to title screen
     u32 saveFile;
@@ -43,42 +46,42 @@ void LoadAllSaveData(void)
             {
                 ProgramEepromDwordEx(j, (u16 *) sEmptyEepromData);
             }
-            gSaveData->startedFile[saveFile] = 0;
+            gGlobalSaveData->startedFile[saveFile] = 0;
             continue;
         }
 
-        gSaveData->startedFile[saveFile] = 4;
+        gGlobalSaveData->startedFile[saveFile] = 4;
 
         // Load saved data from EEPROM
         ReadEepromDword(i + 1, (u16 *) buf);
-        gSaveData->lives[saveFile] = buf[0];
-        gSaveData->world[saveFile] = buf[1];
-        gSaveData->level[saveFile] = buf[2];
-        gSaveData->sceneType[saveFile] = buf[3];
-        gSaveData->cutsceneId[saveFile] = buf[4];
+        gGlobalSaveData->lives[saveFile] = buf[0];
+        gGlobalSaveData->world[saveFile] = buf[1];
+        gGlobalSaveData->level[saveFile] = buf[2];
+        gGlobalSaveData->sceneType[saveFile] = buf[3];
+        gGlobalSaveData->cutsceneId[saveFile] = buf[4];
 
-        if (gSaveData->lives[saveFile] >= 100)
+        if (gGlobalSaveData->lives[saveFile] >= 100)
         {
-            gSaveData->lives[saveFile] = 3;
+            gGlobalSaveData->lives[saveFile] = 3;
         }
 
         ReadEepromDword(i + 6, (u16 *) buf);
-        gSaveData->nbrUnlockedWorlds[saveFile] = buf[0];
+        gGlobalSaveData->nbrUnlockedWorlds[saveFile] = buf[0];
 
         ReadEepromDword(i + 0xC, (u16 *) buf);
-        gSaveData->completedFile[saveFile] = buf[7];
+        gGlobalSaveData->completedFile[saveFile] = buf[7];
     }
 
     // Update last loaded save file
     ReadEepromDword(0x30, (u16 *) buf);
-    if (((gSaveData->startedFile[0] | gSaveData->startedFile[1] | gSaveData->startedFile[2]) != 0) && (buf[0] < 3))
+    if (((gGlobalSaveData->startedFile[0] | gGlobalSaveData->startedFile[1] | gGlobalSaveData->startedFile[2]) != 0) && (buf[0] < 3))
     {
-        gSaveData->lastLoadedSaveFile = buf[0];
+        gGlobalSaveData->lastLoadedSaveFile = buf[0];
     }
     else
     {
-        gSaveData->lastLoadedSaveFile = 1;
-        ProgramEepromDwordEx(0x30, (u16 *) &gSaveData->lastLoadedSaveFile);
+        gGlobalSaveData->lastLoadedSaveFile = 1;
+        ProgramEepromDwordEx(0x30, (u16 *) &gGlobalSaveData->lastLoadedSaveFile);
     }
 
     REG_DMA0CNT_H = gDma0CntHBackup;
@@ -95,12 +98,18 @@ void LoadAllSaveData(void)
     m4aSoundVSyncOn();
 }
 
-// 46DB8
-u16 WriteSaveFile(u32 arg0, u8 arg1)
+/**
+ * @brief 46DB8 | Write current save file to EEPROM
+ * 
+ * @param saveDataType Save data type
+ * @param sceneType Scene type
+ * @return u16 0 for success, else error
+ */
+u16 WriteSaveFile(u32 saveDataType, u8 sceneType)
 {
     // Called when loading save file, and world/level/room/etc transitions
-    u8 *var_r6;
-    u8 *var_r4;
+    u8 *pFileSaveData;
+    u8 *pSceneSaveData;
     u16 retval;
     u32 i;
     u32 j;
@@ -119,49 +128,50 @@ u16 WriteSaveFile(u32 arg0, u8 arg1)
 
     // Yes, they really used a goto loop instead of a while loop
     loop_1:
-    if (arg0 == 0)
+    if (saveDataType == SAVE_DATA_TYPE_SCENE)
     {
-        var_r4 = (u8*) gUnk_03005284;
-        gUnk_03005284->sceneType = arg1;
-        gUnk_03005284->addChecksum = gUnk_03005284->xorChecksum = 0;
+        pSceneSaveData = (u8*) gSceneSaveData;
+        gSceneSaveData->sceneType = sceneType;
+        gSceneSaveData->addChecksum = gSceneSaveData->xorChecksum = 0;
 
-        // update gUnk_03005284 checksum
-        for (j = 0; j < OFFSET_OF(struct Unk_03005284, addChecksum); j++)
+        // update gSceneSaveData checksum
+        for (j = 0; j < OFFSET_OF(struct SceneSaveData, addChecksum); j++)
         {
-            gUnk_03005284->addChecksum += var_r4[0];
-            gUnk_03005284->xorChecksum ^= var_r4[0];
-            var_r4 += 1;
+            gSceneSaveData->addChecksum += pSceneSaveData[0];
+            gSceneSaveData->xorChecksum ^= pSceneSaveData[0];
+            pSceneSaveData += 1;
         }
 
-        // Save gUnk_03005284 to EEPROM addresses 1-5
-        var_r4 = (u8*) gUnk_03005284;
+        // Save gSceneSaveData to EEPROM addresses 0x1-0x5
+        pSceneSaveData = (u8*) gSceneSaveData;
         for (j = 1; j <= 5; j++)
         {
-            retval = ProgramEepromDwordEx(gSaveData->currentSaveFileAddress + j, (u16 *) var_r4);
-            var_r4 += 8;
+            retval = ProgramEepromDwordEx(gGlobalSaveData->currentSaveFileAddress + j, (u16 *) pSceneSaveData);
+            pSceneSaveData += 8;
         }
     }
     else
     {
-        var_r6 = (u8*) gFileProgressData;
-        StringCopy((u8 *) gSaveData->saveFileString, (u8 *) sSaveFileString);
-        ProgramEepromDwordEx(gSaveData->currentSaveFileAddress, (u16 *) gSaveData);
-        gFileProgressData->addChecksum = gFileProgressData->xorChecksum = 0;
+        // SAVE_DATA_TYPE_FILE
+        pFileSaveData = (u8*) gFileSaveData;
+        StringCopy((u8 *) gGlobalSaveData->saveFileString, (u8 *) sSaveFileString);
+        ProgramEepromDwordEx(gGlobalSaveData->currentSaveFileAddress, (u16 *) gGlobalSaveData);
+        gFileSaveData->addChecksum = gFileSaveData->xorChecksum = 0;
 
-        // update gFileProgressData checksum
-        for (j = 0; j < OFFSET_OF(struct FileProgressData, addChecksum); j++)
+        // update gFileSaveData checksum
+        for (j = 0; j < OFFSET_OF(struct FileSaveData, addChecksum); j++)
         {
-            gFileProgressData->addChecksum += var_r6[0];
-            gFileProgressData->xorChecksum ^= var_r6[0];
-            var_r6 += 1;
+            gFileSaveData->addChecksum += pFileSaveData[0];
+            gFileSaveData->xorChecksum ^= pFileSaveData[0];
+            pFileSaveData += 1;
         }
 
-        // Save gFileProgressData to EEPROM addresses 6-0xE
-        var_r6 = (u8*) gFileProgressData;
+        // Save gFileSaveData to EEPROM addresses 0x6-0xE
+        pFileSaveData = (u8*) gFileSaveData;
         for (j = 6; j <= 0xE; j++)
         {
-            retval = ProgramEepromDwordEx(gSaveData->currentSaveFileAddress + j, (u16 *) var_r6);
-            var_r6 += 8;
+            retval = ProgramEepromDwordEx(gGlobalSaveData->currentSaveFileAddress + j, (u16 *) pFileSaveData);
+            pFileSaveData += 8;
         }
     }
 
@@ -180,12 +190,17 @@ u16 WriteSaveFile(u32 arg0, u8 arg1)
     return retval;
 }
 
-// 46F6C
-u16 LoadSaveFile(s32 arg0)
+/**
+ * @brief 46F6C | Load current save file from EEPROM
+ * 
+ * @param saveDataType Save data type
+ * @return u16 0 for success, else error
+ */
+u16 LoadSaveFile(u32 saveDataType)
 {
     // Called when loading save file
-    u8 *var_r5;
-    u8 *var_r5_2;
+    u8 *pSceneSaveData;
+    u8 *pFileSaveData;
     u16 retval;
     u32 j;
     u32 i;
@@ -207,64 +222,65 @@ u16 LoadSaveFile(s32 arg0)
     REG_DMA3CNT_H &= ~DMA_ENABLE;
 
     loop_1:
-    if (arg0 == 0)
+    if (saveDataType == SAVE_DATA_TYPE_SCENE)
     {
-        // Load EEPROM addresses 1-5 to gUnk_03005284
-        var_r5 = (u8*) gUnk_03005284;
+        // Load EEPROM addresses 0x1-0x5 to gSceneSaveData
+        pSceneSaveData = (u8*) gSceneSaveData;
         for (j = 1; j <= 5; j++)
         {
-            retval = ReadEepromDword(gSaveData->currentSaveFileAddress + j, (u16 *) var_r5);
-            var_r5 += 8;
+            retval = ReadEepromDword(gGlobalSaveData->currentSaveFileAddress + j, (u16 *) pSceneSaveData);
+            pSceneSaveData += 8;
         }
 
-        // calculate gUnk_03005284 checksum
-        var_r5 = (u8*) gUnk_03005284;
-        for (j = 0; j < OFFSET_OF(struct Unk_03005284, addChecksum); j++)
+        // calculate gSceneSaveData checksum
+        pSceneSaveData = (u8*) gSceneSaveData;
+        for (j = 0; j < OFFSET_OF(struct SceneSaveData, addChecksum); j++)
         {
-            addChecksum += var_r5[0];
-            xorChecksum ^= var_r5[0];
-            var_r5 += 1;
+            addChecksum += pSceneSaveData[0];
+            xorChecksum ^= pSceneSaveData[0];
+            pSceneSaveData += 1;
         }
 
-        // verify gUnk_03005284 checksum matches
-        if ((addChecksum != gUnk_03005284->addChecksum) || (xorChecksum != gUnk_03005284->xorChecksum))
+        // verify gSceneSaveData checksum matches
+        if ((addChecksum != gSceneSaveData->addChecksum) || (xorChecksum != gSceneSaveData->xorChecksum))
         {
             retval = 2;
         }
 
-        if (gUnk_03005284->lives >= 100)
+        if (gSceneSaveData->lives >= 100)
         {
-            gUnk_03005284->lives = 3;
+            gSceneSaveData->lives = 3;
         }
     }
     else
     {
-        var_r5_2 = (u8*) gFileProgressData;
-        ReadEepromDword(gSaveData->currentSaveFileAddress, (u16 *) gSaveData);
-        if (StringCompare(gSaveData->saveFileString, (u8 *) sSaveFileString) != 0)
+        // SAVE_DATA_TYPE_FILE
+        pFileSaveData = (u8*) gFileSaveData;
+        ReadEepromDword(gGlobalSaveData->currentSaveFileAddress, (u16 *) gGlobalSaveData);
+        if (StringCompare(gGlobalSaveData->saveFileString, (u8 *) sSaveFileString) != 0)
         {
             retval = 1;
         }
         else
         {
-            // Load EEPROM addresses 6-0xE to gSaveData
+            // Load EEPROM addresses 0x6-0xE to gGlobalSaveData
             for (j = 6; j <= 0xE; j++)
             {
-                retval = ReadEepromDword(gSaveData->currentSaveFileAddress + j, (u16 *) var_r5_2);
-                var_r5_2 += 8;
+                retval = ReadEepromDword(gGlobalSaveData->currentSaveFileAddress + j, (u16 *) pFileSaveData);
+                pFileSaveData += 8;
             }
 
-            // calculate gFileProgressData checksum
-            var_r5_2 = (u8*) gFileProgressData;
-            for (j = 0; j < OFFSET_OF(struct FileProgressData, addChecksum); j++)
+            // calculate gFileSaveData checksum
+            pFileSaveData = (u8*) gFileSaveData;
+            for (j = 0; j < OFFSET_OF(struct FileSaveData, addChecksum); j++)
             {
-                addChecksum += var_r5_2[0];
-                xorChecksum ^= var_r5_2[0];
-                var_r5_2 += 1;
+                addChecksum += pFileSaveData[0];
+                xorChecksum ^= pFileSaveData[0];
+                pFileSaveData += 1;
             }
 
-            // verify gFileProgressData checksum matches
-            if ((addChecksum != gFileProgressData->addChecksum) || (xorChecksum != gFileProgressData->xorChecksum))
+            // verify gFileSaveData checksum matches
+            if ((addChecksum != gFileSaveData->addChecksum) || (xorChecksum != gFileSaveData->xorChecksum))
             {
                 retval = 2;
             }
@@ -286,7 +302,11 @@ u16 LoadSaveFile(s32 arg0)
     return retval;
 }
 
-// 4713C
+/**
+ * @brief 4713C | Delete all save data in EEPROM
+ * 
+ * @return u16 0 for success, else error
+ */
 u16 DeleteAllSaveData(void)
 {
     // Called when deleting all save data
@@ -328,7 +348,10 @@ u16 DeleteAllSaveData(void)
     return retval;
 }
 
-// 471F4
+/**
+ * @brief 471F4 | Update and save loaded save file to EEPROM
+ * 
+ */
 void WriteCurrentSaveFile(void)
 {
     // Called when loading save file
@@ -342,8 +365,8 @@ void WriteCurrentSaveFile(void)
     REG_DMA2CNT_H &= ~DMA_ENABLE;
     REG_DMA3CNT_H &= ~DMA_ENABLE;
 
-    gSaveData->lastLoadedSaveFile = gSaveData->currentSaveFile;
-    ProgramEepromDwordEx(0x30, (u16 *) &gSaveData->lastLoadedSaveFile);
+    gGlobalSaveData->lastLoadedSaveFile = gGlobalSaveData->currentSaveFile;
+    ProgramEepromDwordEx(0x30, (u16 *) &gGlobalSaveData->lastLoadedSaveFile);
 
     REG_DMA0CNT_H = gDma0CntHBackup;
     REG_DMA1CNT_H = gDma1CntHBackup;

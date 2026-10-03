@@ -119,7 +119,7 @@ SECTIONS {
         . = 0x00004664; gUnk_03004664 = .;
         . = 0x00004668; gNewKeysAttract = .;
         . = 0x0000466C; gUnk_0300466C = .;
-        . = 0x00004670; gFileProgressData = .;
+        . = 0x00004670; gFileSaveData = .;
         . = 0x00004674; gUnk_03004674 = .;
         . = 0x00004678; gBg2AlphaSin = .;
         . = 0x00004680; gOamAffineBuffer = .;
@@ -132,7 +132,7 @@ SECTIONS {
         . = 0x000047BC; gUnk_030047BC = .;
         . = 0x000047C0; gIntrTable = .;
         . = 0x000047F8; gUnk_030047F8 = .;
-        . = 0x000047FC; gSaveData = .;
+        . = 0x000047FC; gGlobalSaveData = .;
         . = 0x00004800; gOamBuffer = .;
         . = 0x00004C00; gUnk_03004C00 = .;
         . = 0x00004C04; gUnk_03004C04 = .;
@@ -168,7 +168,7 @@ SECTIONS {
         . = 0x0000520C; gDma0CntHBackup = .;
         . = 0x00005210; gSoundVolume = .;
         . = 0x00005220; gUnk_03005220 = .;
-        . = 0x00005284; gUnk_03005284 = .;
+        . = 0x00005284; gSceneSaveData = .;
         . = 0x00005288; gOamAffineMatrixNum = .;
         . = 0x0000528C; gUnk_0300528C = .;
         . = 0x00005290; gUnk_03005290 = .;
@@ -269,6 +269,8 @@ SECTIONS {
         asm/data/data_080D9094.o(.rodata);
         src/code_08039D8C.o(.rodata);
         asm/data/data_08117120.o(.rodata);
+        src/save.o(.rodata);
+        asm/data/data_0811769C.o(.rodata);
         src/code_0804B254.o(.rodata);
         asm/data/data_081177F4.o(.rodata);
         src/data/m4a_tables.o(.rodata);

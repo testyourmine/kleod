@@ -729,7 +729,7 @@ void sub_08048028(void)
 
     gNewKeys = 0;
 
-    if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    if (gFileSaveData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -740,36 +740,36 @@ void sub_08048028(void)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileSaveData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
     
-        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
     
-        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
 
         // Unlock EX-1 when 35 stages are beaten
-        if (!(gFileProgressData->levelInfo[5][0] & LEVEL_INFO_BEATEN_FLAG) && (nbrStagesBeaten == 35))
+        if (!(gFileSaveData->levelInfo[5][0] & LEVEL_INFO_BEATEN_FLAG) && (nbrStagesBeaten == 35))
         {
-            gFileProgressData->levelInfo[5][0] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][0] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -798,9 +798,9 @@ void sub_08048028(void)
         }
 
         // Unlock EX-2 when 25 puzzle and action stages are beaten with all stones collected
-        if (!(gFileProgressData->levelInfo[5][1] & LEVEL_INFO_BEATEN_FLAG) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        if (!(gFileSaveData->levelInfo[5][1] & LEVEL_INFO_BEATEN_FLAG) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
-            gFileProgressData->levelInfo[5][1] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][1] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -829,9 +829,9 @@ void sub_08048028(void)
         }
 
         // Unlock EX-3 when all stages are beaten with all stones collected
-        if (!(gFileProgressData->levelInfo[5][2] & LEVEL_INFO_BEATEN_FLAG) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
+        if (!(gFileSaveData->levelInfo[5][2] & LEVEL_INFO_BEATEN_FLAG) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
-            gFileProgressData->levelInfo[5][2] |= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][2] |= LEVEL_INFO_BEATEN_FLAG;
     
             for (i = 0; i < 10; i++)
             {
@@ -917,7 +917,7 @@ void BootScreenInit(void)
     REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC | BGCNT_SCREENBASE(15);
 
     DmaCopy16Wait(3, gBgTilemapBufs, gBgInfo[0].pTilemap, 0x800);
-    LoadAllSaveData();
+    LoadGlobalSaveData();
     gTitleScreenStage = 0;
 }
 
@@ -1064,8 +1064,8 @@ void TitleScreenInit(void)
     u16 i;
     void *heapPtr;
 
-    gUnk_03005284->shootButtonConfig = 2;
-    gUnk_03005284->jumpButtonConfig = 1;
+    gSceneSaveData->shootButtonConfig = 2;
+    gSceneSaveData->jumpButtonConfig = 1;
     gUnk_03004C20.unkA = 0;
     gUnk_03004C20.isHoverBoardLevel = 0;
 
@@ -1250,7 +1250,7 @@ void TitleScreenInit(void)
     m4aSoundVSyncOn();
 
     gBlendValue = 0;
-    gSaveFilesStarted = gSaveData->startedFile[0] | gSaveData->startedFile[1] | gSaveData->startedFile[2];
+    gSaveFilesStarted = gGlobalSaveData->startedFile[0] | gGlobalSaveData->startedFile[1] | gGlobalSaveData->startedFile[2];
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[1][0], gBgInfo[1].pTilemap, 0x800);
@@ -1918,7 +1918,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
 
                 for (file = 0; file < 3; file++)
                 {
-                    if (gSaveData->completedFile[file] & 0x80)
+                    if (gGlobalSaveData->completedFile[file] & 0x80)
                     {
                         // Make file red if file completed
                         for (col = 0; col <= 9; col++)
@@ -1932,7 +1932,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
 
         // Display selected save file
         case 0x10:
-            if (gSaveData->completedFile[gMenuInfo->selectedSaveFile] & 0x80)
+            if (gGlobalSaveData->completedFile[gMenuInfo->selectedSaveFile] & 0x80)
             {
                 // Copy selected file tiles and make file red for completion
                 for (row = 6; row <= 14; row++)
@@ -1995,7 +1995,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
             if (gUnk_03003410.unk6 == 0)
             {
                 // New Game mode
-                if (gSaveData->startedFile[gMenuInfo->selectedSaveFile] == 0)
+                if (gGlobalSaveData->startedFile[gMenuInfo->selectedSaveFile] == 0)
                 {
                     // Copy "Is this OK?"
                     for (row = 0; row <= 1; row++)
@@ -2053,7 +2053,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
     
     for (col = start; col <= end; col++, file++)
     {
-        if (!gSaveData->startedFile[file])
+        if (!gGlobalSaveData->startedFile[file])
         {
             // Copy "NO"
             DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x168, &gBgTilemapBufs[0][0x124 + (col * 0xA)], 0x4);
@@ -2062,30 +2062,30 @@ void FileSelectScreenDrawInfo(u8 arg0)
             continue;
         }
 
-        if ((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL_SELECT) || (gSaveData->sceneType[file] == SCENE_TYPE_WORLD_MAP) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->cutsceneId[file] % 3) != 0) && (gSaveData->cutsceneId[file] != 1)))
+        if ((gGlobalSaveData->sceneType[file] == SCENE_TYPE_VISION_SELECT) || (gGlobalSaveData->sceneType[file] == SCENE_TYPE_WORLD_MAP) || ((gGlobalSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gGlobalSaveData->cutsceneId[file] % 3) != 0) && (gGlobalSaveData->cutsceneId[file] != 1)))
         {
-            if (gSaveData->world[file] == 6)
+            if (gGlobalSaveData->world[file] == 6)
             {
                 for (row = 0; row <= 1; row++)
                 {
                     // Copy "EX-"
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0x10) * 0x1E) + 0xC), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x8);
                     // Copy level number
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + gSaveData->level[file] * 2), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + gGlobalSaveData->level[file] * 2), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
                 }
             }
-            else if ((gSaveData->world[file] == 1) || (gSaveData->world[file] == 2) || (gSaveData->world[file] == 3) || (gSaveData->world[file] == 4))
+            else if ((gGlobalSaveData->world[file] == 1) || (gGlobalSaveData->world[file] == 2) || (gGlobalSaveData->world[file] == 3) || (gGlobalSaveData->world[file] == 4))
             {
                 // Copy "World X" (x is current world)
                 // TODO: investigate what each DmaCopy actually does
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->world[file] % 2)) * 0x1E) + ((gSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gGlobalSaveData->world[file] % 2)) * 0x1E) + ((gGlobalSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
                 for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gSaveData->world[file] - 1) * 2) + 0xA + row) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((((gGlobalSaveData->world[file] - 1) * 2) + 0xA + row) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            else if (gSaveData->world[file] == 5)
+            else if (gGlobalSaveData->world[file] == 5)
             {
                 // Copy "World 5"
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
@@ -2098,34 +2098,34 @@ void FileSelectScreenDrawInfo(u8 arg0)
             }
             else
             {
-                gSaveData->world[file] = 1;
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((gSaveData->world[file] / 3) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
+                gGlobalSaveData->world[file] = 1;
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((gGlobalSaveData->world[file] / 3) * 0x6) + 0xC0), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
                 for (row = 0; row <= 1; row++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xA) * 0x1E) + 0x12), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 1], 0xC);
                 }
 
-                gSaveData->level[file] = 1;
+                gGlobalSaveData->level[file] = 1;
 
                 for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 5], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gGlobalSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + ((col * 0xA)) + 5], 0x4);
                 }
             }
         }
-        else if (((gSaveData->sceneType[file] == SCENE_TYPE_LEVEL) && (gSaveData->level[file] == 8)) || ((gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gSaveData->cutsceneId[file] % 3) == 0) && (gSaveData->cutsceneId[file] != 0)))
+        else if (((gGlobalSaveData->sceneType[file] == SCENE_TYPE_VISION) && (gGlobalSaveData->level[file] == 8)) || ((gGlobalSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE) && ((gGlobalSaveData->cutsceneId[file] % 3) == 0) && (gGlobalSaveData->cutsceneId[file] != 0)))
         {
-            if ((gSaveData->world[file] == 1) || (gSaveData->world[file] == 2) || (gSaveData->world[file] == 3) || (gSaveData->world[file] == 4))
+            if ((gGlobalSaveData->world[file] == 1) || (gGlobalSaveData->world[file] == 2) || (gGlobalSaveData->world[file] == 3) || (gGlobalSaveData->world[file] == 4))
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gSaveData->world[file] % 2)) * 0x1E) + ((gSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((7 - (gGlobalSaveData->world[file] % 2)) * 0x1E) + ((gGlobalSaveData->world[file] / 3) * 6) + 0xC), &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
                 for (row = 0; row <= 1; row++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xC) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            else if ((gSaveData->world[file] == 5) || (gSaveData->world[file] == 6))
+            else if ((gGlobalSaveData->world[file] == 5) || (gGlobalSaveData->world[file] == 6))
             {
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xCC, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
@@ -2136,26 +2136,26 @@ void FileSelectScreenDrawInfo(u8 arg0)
             }
             else
             {
-                gSaveData->world[file] = 1;
+                gGlobalSaveData->world[file] = 1;
                 DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0xC0, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
-                gSaveData->level[file] = 1;
+                gGlobalSaveData->level[file] = 1;
 
                 for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gGlobalSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
                 }
             }
         }
-        else if (gSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE)
+        else if (gGlobalSaveData->sceneType[file] == SCENE_TYPE_CUTSCENE)
         {
-            if (gSaveData->cutsceneId[file] == 0)
+            if (gGlobalSaveData->cutsceneId[file] == 0)
             {
                 for (row = 0; row <= 1; row++)
                 {
                     DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + (((row + 0xE) * 0x1E) + 0x18), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0xC);
                 }
             }
-            if (gSaveData->cutsceneId[file] == 1)
+            if (gGlobalSaveData->cutsceneId[file] == 1)
             {
                 for (row = 0; row <= 1; row++)
                 {
@@ -2167,7 +2167,7 @@ void FileSelectScreenDrawInfo(u8 arg0)
         {
             DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + 0x14A, &gBgTilemapBufs[0][0x102 + (col * 0xA)], 0xC);
 
-            if (gSaveData->world[file] == 6)
+            if (gGlobalSaveData->world[file] == 6)
             {
                 for (row = 0; row <= 1; row++)
                 {
@@ -2176,14 +2176,14 @@ void FileSelectScreenDrawInfo(u8 arg0)
             }
             else
             {
-                if (gSaveData->world[file] > 5)
+                if (gGlobalSaveData->world[file] > 5)
                 {
-                    gSaveData->world[file] = 1;
+                    gGlobalSaveData->world[file] = 1;
                 }
 
                 for (row = 0; row <= 1; row++)
                 {
-                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->world[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x4);
+                    DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gGlobalSaveData->world[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 1], 0x4);
                 }
 
                 for (row = 0; row <= 1; row++)
@@ -2192,21 +2192,21 @@ void FileSelectScreenDrawInfo(u8 arg0)
                 }
             }
 
-            if (gSaveData->level[file] > 7)
+            if (gGlobalSaveData->level[file] > 7)
             {
-                gSaveData->level[file] = 1;
+                gGlobalSaveData->level[file] = 1;
             }
 
             for (row = 0; row <= 1; row++)
             {
-                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
+                DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((row + 0xE) * 0x1E) + gGlobalSaveData->level[file] * 2)), &gBgTilemapBufs[0][1 + ((row + 9) * 0x20) + (col * 0xA) + 5], 0x4);
             }
         }
 
-        if (gSaveData->nbrUnlockedWorlds[file] < 7)
+        if (gGlobalSaveData->nbrUnlockedWorlds[file] < 7)
         {
             // Draw world dots
-            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gSaveData->nbrUnlockedWorlds[file] % 3) + 0xA) * 0x1E) + (((gSaveData->nbrUnlockedWorlds[file] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * col))], 0xC);
+            DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap + ((((gGlobalSaveData->nbrUnlockedWorlds[file] % 3) + 0xA) * 0x1E) + (((gGlobalSaveData->nbrUnlockedWorlds[file] - 1) / 3) * 6) + 0x6), &gBgTilemapBufs[0][0x162 + ((0xA * col))], 0xC);
         }
 
         // Copy "KLONOA"
@@ -2214,9 +2214,9 @@ void FileSelectScreenDrawInfo(u8 arg0)
         // Copy "x"
         gBgTilemapBufs[0][0x1A4 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x190];
         // Copy tens digit of lives
-        gBgTilemapBufs[0][0x1A5 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->lives[file] / 10)];
+        gBgTilemapBufs[0][0x1A5 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gGlobalSaveData->lives[file] / 10)];
         // Copy ones digit of lives
-        gBgTilemapBufs[0][0x1A6 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gSaveData->lives[file] % 10)];
+        gBgTilemapBufs[0][0x1A6 + (0xA * col)] = gBgDataPtrs.pBufBg0Tilemap[0x186 + (gGlobalSaveData->lives[file] % 10)];
     }
 }
 
@@ -2235,7 +2235,7 @@ void FileSelectScreenHandler(void)
         }
         else
         {
-            gMenuInfo->cursorIndex = gSaveData->lastLoadedSaveFile;
+            gMenuInfo->cursorIndex = gGlobalSaveData->lastLoadedSaveFile;
         }
 
         gMenuInfo->fileSelectStage = FILE_SELECT_STAGE_SELECT;
@@ -2267,12 +2267,12 @@ void FileSelectScreenHandler(void)
         {
             m4aSongNumStart(SE_CURSOR_CONFIRM);
 
-            if ((gUnk_03003410.unk6 != 1) || (gSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
+            if ((gUnk_03003410.unk6 != 1) || (gGlobalSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
             {
                 gMenuInfo->fileSelectStage += 1; // FILE_SELECT_STAGE_CONFIRM
                 gMenuInfo->selectedSaveFile = gMenuInfo->cursorIndex;
 
-                if ((gUnk_03003410.unk6 == 0) && (gSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
+                if ((gUnk_03003410.unk6 == 0) && (gGlobalSaveData->startedFile[gMenuInfo->cursorIndex] != 0))
                 {
                     gMenuInfo->cursorIndex = 1;
                 }
@@ -2311,25 +2311,25 @@ void FileSelectScreenHandler(void)
         if (gFileSelectScreenTransitionDelay == 20)
         {
             gUnk_03004C20.sceneFrameCounter = -1;
-            gUnk_03004C20.world = gSaveData->world[gMenuInfo->selectedSaveFile] + 1;
-            gUnk_03004C20.level = gSaveData->world[gMenuInfo->selectedSaveFile] + 1;
+            gUnk_03004C20.world = gGlobalSaveData->world[gMenuInfo->selectedSaveFile] + 1;
+            gUnk_03004C20.level = gGlobalSaveData->world[gMenuInfo->selectedSaveFile] + 1;
 
-            gSaveData->currentSaveFile = gMenuInfo->selectedSaveFile;
-            gSaveData->currentSaveFileAddress = gSaveData->currentSaveFile * 0x10;
+            gGlobalSaveData->currentSaveFile = gMenuInfo->selectedSaveFile;
+            gGlobalSaveData->currentSaveFileAddress = gGlobalSaveData->currentSaveFile * 0x10;
             gBlendValue = 0;
             sub_080008DC();
 
             if (gUnk_03003410.unk6 == 0)
             {
-                DmaFill32(3, 0, gUnk_03005284, 0x24);
-                DmaFill32(3, 0, gFileProgressData, 0x40);
+                DmaFill32(3, 0, gSceneSaveData, 0x24);
+                DmaFill32(3, 0, gFileSaveData, 0x40);
                 gUnk_03004C20.world = 1;
-                gUnk_03005284->world = 1;
-                gUnk_03005284->lives = gUnk_03005220.lives = 3;
-                gUnk_03005284->shootButtonConfig = 2;
-                gUnk_03005284->jumpButtonConfig = 1;
-                DmaFill16(3, 0x7F7F, &gFileProgressData->levelInfo[0][0], 0x30);
-                gUnk_03005284->cutsceneId = 0;
+                gSceneSaveData->world = 1;
+                gSceneSaveData->lives = gUnk_03005220.lives = 3;
+                gSceneSaveData->shootButtonConfig = 2;
+                gSceneSaveData->jumpButtonConfig = 1;
+                DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo[0][0], 0x30);
+                gSceneSaveData->cutsceneId = 0;
                 gUnk_03003410.unkC = 1;
                 gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }

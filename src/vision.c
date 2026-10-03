@@ -77,7 +77,7 @@ void VisionAndVisionSelectInit(void)
         sp0 = 1;
         for (var_r4 = 0; var_r4 < 8; var_r4++)
         {
-            if (!(gFileProgressData->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG))
+            if (!(gFileSaveData->levelInfo[gUnk_03004C20.world - 1][var_r4] & LEVEL_INFO_BEATEN_FLAG))
             {
                 sp0 = 0;
             }
@@ -189,7 +189,7 @@ void VisionAndVisionSelectInit(void)
                 gCurrentRoomBg2Bounds.bottom = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].bottom;
 
                 temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
-                temp_r3 = (gUnk_03005284->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+                temp_r3 = (gSceneSaveData->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (temp_r4 != temp_r3)
                 {
                     sub_0804517C((4 - temp_r4 + temp_r3) & 3);
@@ -204,17 +204,17 @@ void VisionAndVisionSelectInit(void)
         else if (gUnk_03003410.unk9 == 1)
         {
             temp_r4 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
-            temp_r3 = (gUnk_03005284->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+            temp_r3 = (gSceneSaveData->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
             if (temp_r4 != temp_r3)
             {
                 sub_0804517C((4 - temp_r4 + temp_r3) & 3);
-                gUnk_03004C20.roomsRotationBits = gUnk_03005284->roomsRotationBits;
+                gUnk_03004C20.roomsRotationBits = gSceneSaveData->roomsRotationBits;
             }
         }
     }
     else
     {
-        gUnk_03005284->roomsRotationBits = 0;
+        gSceneSaveData->roomsRotationBits = 0;
         gUnk_03004C20.roomsRotationBits = 0;
     }
     SetUpRoomVisuals();
@@ -1193,20 +1193,20 @@ void SetUpRoomVisuals(void)
             gUnk_030051C8 = gUnk_03004654->unk1 - 1;
             gSoundVolume = 0xFFFF;
             gUnk_03004C20.roomsRotationBits = 0;
-            gUnk_03005284->unk6 = 0;
-            gUnk_03005284->collected1Ups = gUnk_03005220.collected1Ups = 0;
+            gSceneSaveData->unk6 = 0;
+            gSceneSaveData->collected1Ups = gUnk_03005220.collected1Ups = 0;
         }
         else if (gUnk_03004C20.room == 0xFF)
         {
             gSoundVolume = 0xFFFF;
-            if ((gUnk_03005284->unk6 == 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
+            if ((gSceneSaveData->unk6 == 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
             {
                 gUnk_030051C8 = gUnk_03004654->unk1 - 1;
                 gUnk_03004C20.roomsRotationBits = 0;
             }
             else
             {
-                gUnk_030051C8 = gUnk_03005284->unk6;
+                gUnk_030051C8 = gSceneSaveData->unk6;
                 i = LEVEL_LOAD_FROM_FILE_SELECT;
             }
         }

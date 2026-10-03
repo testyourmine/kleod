@@ -399,14 +399,14 @@ void SetUpRoomInfo(u32 levelLoadType)
 
     if (levelLoadType == LEVEL_LOAD_START)
     {
-        gUnk_03005284->unk6 = 0;
-        gUnk_03005284->world = gUnk_03004C20.world;
-        gUnk_03005284->level = gUnk_03004C20.level;
-        gUnk_03005284->roomsRotationBits = 0;
+        gSceneSaveData->unk6 = 0;
+        gSceneSaveData->world = gUnk_03004C20.world;
+        gSceneSaveData->level = gUnk_03004C20.level;
+        gSceneSaveData->roomsRotationBits = 0;
         if (gUnk_03003410.unkA == 0)
         {
-            WriteSaveFile(0, 1);
-            WriteSaveFile(1, 0);
+            WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION);
+            WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
         }
         gUnk_03005220.stars = 0;
         gUnk_03005220.dreamStones = 0;
@@ -416,7 +416,7 @@ void SetUpRoomInfo(u32 levelLoadType)
         gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gUnk_03005220.moonDoorOpen = 0;
         if ((gUnk_03004C20.isHoverBoardLevel != 0) || ((gUnk_03004C20.world == 6) && ((gUnk_03004C20.level == 1) || (gUnk_03004C20.level == 3))))
         {
-            gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
+            gUnk_03005220.collected1Ups = gSceneSaveData->collected1Ups;
         }
         else
         {
@@ -439,25 +439,25 @@ void SetUpRoomInfo(u32 levelLoadType)
 
     if (levelLoadType == LEVEL_LOAD_FROM_FILE_SELECT)
     {
-        gUnk_03005220.lives = gUnk_03005284->lives;
-        gUnk_03005220.hearts = gUnk_03005284->hearts;
-        gUnk_03005220.stars = gUnk_03005284->stars;
-        gUnk_03005220.dreamStones = gUnk_03005284->dreamStones;
-        gUnk_03005220.keys = gUnk_03005284->keys;
-        gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
-        gUnk_03005220.collectedHearts = gUnk_03005284->collectedHearts;
-        gUnk_03005220.moonDoorOpen = gUnk_03005284->moonDoorOpen;
-        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gUnk_03005284->pressedGrowingShrinkingBlockSwitch;
-        gUnk_03005220.collectedDreamStones0 = gUnk_03005284->collectedDreamStones0;
-        gUnk_03005220.collectedDreamStones1 = gUnk_03005284->collectedDreamStones1;
-        gUnk_03005220.keyDoorsUnlocked = gUnk_03005284->keyDoorsUnlocked;
-        gUnk_03005220.explodedBlocks = gUnk_03005284->explodedBlocks;
-        gUnk_03005220.pressedWaterSwitches = gUnk_03005284->pressedWaterSwitches;
+        gUnk_03005220.lives = gSceneSaveData->lives;
+        gUnk_03005220.hearts = gSceneSaveData->hearts;
+        gUnk_03005220.stars = gSceneSaveData->stars;
+        gUnk_03005220.dreamStones = gSceneSaveData->dreamStones;
+        gUnk_03005220.keys = gSceneSaveData->keys;
+        gUnk_03005220.collected1Ups = gSceneSaveData->collected1Ups;
+        gUnk_03005220.collectedHearts = gSceneSaveData->collectedHearts;
+        gUnk_03005220.moonDoorOpen = gSceneSaveData->moonDoorOpen;
+        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gSceneSaveData->pressedGrowingShrinkingBlockSwitch;
+        gUnk_03005220.collectedDreamStones0 = gSceneSaveData->collectedDreamStones0;
+        gUnk_03005220.collectedDreamStones1 = gSceneSaveData->collectedDreamStones1;
+        gUnk_03005220.keyDoorsUnlocked = gSceneSaveData->keyDoorsUnlocked;
+        gUnk_03005220.explodedBlocks = gSceneSaveData->explodedBlocks;
+        gUnk_03005220.pressedWaterSwitches = gSceneSaveData->pressedWaterSwitches;
         // FAKE
         do
         {
-            gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
-            gUnk_03004C20.roomsRotationBits = gUnk_03005284->roomsRotationBits;
+            gUnk_03005220.unk1_7 = gSceneSaveData->unk9_7;
+            gUnk_03004C20.roomsRotationBits = gSceneSaveData->roomsRotationBits;
             gUnk_03005220.unk60 = 0;
             gUnk_03005220.levelTimeCentiseconds = 0;
             gUnk_03005220.levelTimeSeconds = 0;
@@ -467,33 +467,33 @@ void SetUpRoomInfo(u32 levelLoadType)
     }
     else
     {
-        gUnk_03005284->lives = gUnk_03005220.lives;
-        gUnk_03005284->world = gUnk_03004C20.world;
-        gUnk_03005284->level = gUnk_03004C20.level;
-        gUnk_03005284->hearts = gUnk_03005220.hearts;
-        gUnk_03005284->roomsRotationBits = gUnk_03004C20.roomsRotationBits;
-        gUnk_03005284->stars = gUnk_03005220.stars;
-        gUnk_03005284->keys = gUnk_03005220.keys;
-        gUnk_03005284->keyDoorsUnlocked = gUnk_03005220.keyDoorsUnlocked;
-        gUnk_03005284->moonDoorOpen = gUnk_03005220.moonDoorOpen;
-        gUnk_03005284->pressedGrowingShrinkingBlockSwitch = gUnk_03005220.pressedGrowingShrinkingBlockSwitch;
-        gUnk_03005284->explodedBlocks = gUnk_03005220.explodedBlocks;
-        gUnk_03005284->pressedWaterSwitches = gUnk_03005220.pressedWaterSwitches;
-        gUnk_03005284->unk9_7 = gUnk_03005220.unk1_7;
-        gUnk_03005284->collected1Ups = gUnk_03005220.collected1Ups;
+        gSceneSaveData->lives = gUnk_03005220.lives;
+        gSceneSaveData->world = gUnk_03004C20.world;
+        gSceneSaveData->level = gUnk_03004C20.level;
+        gSceneSaveData->hearts = gUnk_03005220.hearts;
+        gSceneSaveData->roomsRotationBits = gUnk_03004C20.roomsRotationBits;
+        gSceneSaveData->stars = gUnk_03005220.stars;
+        gSceneSaveData->keys = gUnk_03005220.keys;
+        gSceneSaveData->keyDoorsUnlocked = gUnk_03005220.keyDoorsUnlocked;
+        gSceneSaveData->moonDoorOpen = gUnk_03005220.moonDoorOpen;
+        gSceneSaveData->pressedGrowingShrinkingBlockSwitch = gUnk_03005220.pressedGrowingShrinkingBlockSwitch;
+        gSceneSaveData->explodedBlocks = gUnk_03005220.explodedBlocks;
+        gSceneSaveData->pressedWaterSwitches = gUnk_03005220.pressedWaterSwitches;
+        gSceneSaveData->unk9_7 = gUnk_03005220.unk1_7;
+        gSceneSaveData->collected1Ups = gUnk_03005220.collected1Ups;
         if (gUnk_03004C20.isHoverBoardLevel == 0)
         {
-            gUnk_03005284->dreamStones = gUnk_03005220.dreamStones;
-            gUnk_03005284->collectedDreamStones0 = gUnk_03005220.collectedDreamStones0;
-            gUnk_03005284->collectedDreamStones1 = gUnk_03005220.collectedDreamStones1;
-            gUnk_03005284->collectedHearts = gUnk_03005220.collectedHearts;
+            gSceneSaveData->dreamStones = gUnk_03005220.dreamStones;
+            gSceneSaveData->collectedDreamStones0 = gUnk_03005220.collectedDreamStones0;
+            gSceneSaveData->collectedDreamStones1 = gUnk_03005220.collectedDreamStones1;
+            gSceneSaveData->collectedHearts = gUnk_03005220.collectedHearts;
         }
         else
         {
-            gUnk_03005284->dreamStones = 0;
-            gUnk_03005284->collectedDreamStones0 = 0;
-            gUnk_03005284->collectedDreamStones1 = 0;
-            gUnk_03005284->collectedHearts = 0;
+            gSceneSaveData->dreamStones = 0;
+            gSceneSaveData->collectedDreamStones0 = 0;
+            gSceneSaveData->collectedDreamStones1 = 0;
+            gSceneSaveData->collectedHearts = 0;
         }
     }
 

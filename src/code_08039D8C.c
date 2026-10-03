@@ -450,15 +450,15 @@ void PauseMenuScreenHandler(void)
         case PAUSE_MENU_OPTION_RETRY:
             PauseMenuScreenRestoreGfx();
             gCallbackQueue.current[1] = TransitionFromDeathToLevel_FadeOut;
-            gUnk_03005220.collected1Ups = gUnk_03005284->collected1Ups;
-            gUnk_03005220.lives = gUnk_03005284->lives;
-            gUnk_03005220.hearts = gUnk_03005284->hearts;
+            gUnk_03005220.collected1Ups = gSceneSaveData->collected1Ups;
+            gUnk_03005220.lives = gSceneSaveData->lives;
+            gUnk_03005220.hearts = gSceneSaveData->hearts;
             REG_BLDCNT = 0;
             gBlendValue = 0;
             break;
 
         case PAUSE_MENU_OPTION_SELECT_VISION:
-            gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
+            gSceneSaveData->lives = gUnk_03005220.lives = gSceneSaveData->prevLives;
             PauseMenuScreenRestoreGfx();
             gBlendValue = 0;
             if (gUnk_03004C20.world == 6 && gUnk_03004C20.level == 8)
@@ -479,7 +479,7 @@ void PauseMenuScreenHandler(void)
         case PAUSE_MENU_OPTION_WORLD_MAP:
             if (gUnk_03004C20.level != 0)
             {
-                gUnk_03005284->lives = gUnk_03005220.lives = gUnk_03005284->prevLives;
+                gSceneSaveData->lives = gUnk_03005220.lives = gSceneSaveData->prevLives;
             }
             PauseMenuScreenRestoreGfx();
             REG_BLDCNT = 0;
@@ -585,13 +585,13 @@ void ButtonConfigurationScreenHandler(void)
 
             if (gNewKeys & DPAD_RIGHT)
             {
-                gUnk_03005284->shootButtonConfig = 1;
+                gSceneSaveData->shootButtonConfig = 1;
                 m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
             }
             else if (gNewKeys & DPAD_LEFT)
             {
-                gUnk_03005284->shootButtonConfig = 2;
+                gSceneSaveData->shootButtonConfig = 2;
                 m4aSongNumStart(SE_CURSOR_MOVE);
                 gUnk_03004C20.sceneFrameCounter = 0;
             }
@@ -611,13 +611,13 @@ void ButtonConfigurationScreenHandler(void)
                 gUnk_03004C20.sceneFrameCounter = 200;
 
                 // Subtraction and exclusive or seem to have the same effect here
-                if ((gNewKeys & A_BUTTON) && (gUnk_03005284->shootButtonConfig == gUnk_03005284->jumpButtonConfig))
+                if ((gNewKeys & A_BUTTON) && (gSceneSaveData->shootButtonConfig == gSceneSaveData->jumpButtonConfig))
                 {
-                    gUnk_03005284->jumpButtonConfig = 3 ^ gUnk_03005284->jumpButtonConfig; // Effectively changes 1 to 2, or 2 to 1
+                    gSceneSaveData->jumpButtonConfig = 3 ^ gSceneSaveData->jumpButtonConfig; // Effectively changes 1 to 2, or 2 to 1
                 }
                 else
                 {
-                    gUnk_03005284->shootButtonConfig = 3 - gUnk_03005284->jumpButtonConfig; // Effectively changes 1 to 2, or 2 to 1
+                    gSceneSaveData->shootButtonConfig = 3 - gSceneSaveData->jumpButtonConfig; // Effectively changes 1 to 2, or 2 to 1
                 }
             }
         }
@@ -646,7 +646,7 @@ void ButtonConfigurationScreenHandler(void)
 
     if (gUnk_03004C20.sceneFrameCounter < 200)
     {
-        if (gUnk_03005284->shootButtonConfig == 1)
+        if (gSceneSaveData->shootButtonConfig == 1)
         {
             REG_WIN1H = WIN_RANGE(0, (DISPLAY_WIDTH - 0x10) - gUnk_03004C20.sceneFrameCounter);
         }
@@ -670,12 +670,12 @@ u8 WorldMapScreenIsValidPath(u8 mapIndex)
 
     if (mapIndex < 4)
     {
-        if ((gFileProgressData->levelInfo[mapIndex][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[mapIndex + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
+        if ((gFileSaveData->levelInfo[mapIndex][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileSaveData->levelInfo[mapIndex + 1][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK))
         {
             return 1;
         }
     }
-    else if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    else if (gFileSaveData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -686,40 +686,40 @@ u8 WorldMapScreenIsValidPath(u8 mapIndex)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileSaveData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
 
-        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
-        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
     
-        if ((mapIndex == 4) && ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
+        if ((mapIndex == 4) && ((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             return 1;
         }
-        if ((mapIndex == 5) && ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        if ((mapIndex == 5) && ((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             return 1;
         }
-        if ((mapIndex == 6) && ((gFileProgressData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
+        if ((mapIndex == 6) && ((gFileSaveData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) != LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones + nbrExStagesAllStones) == 37))
         {
             return 1;
         }
@@ -832,7 +832,7 @@ void WorldMapScreenCheckNewWorldUnlocked(void)
     u8 nbrStagesBeaten;
     u8 nbrPuzzleStagesAllStones;
 
-    if (gFileProgressData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
+    if (gFileSaveData->levelInfo[5][7] & LEVEL_INFO_BEATEN_FLAG)
     {
         nbrActionStagesAllStones = 0;
         nbrPuzzleStagesAllStones = 0;
@@ -843,87 +843,87 @@ void WorldMapScreenCheckNewWorldUnlocked(void)
         {
             for (level = 0; level < 7; level++)
             {
-                if (((level == 3) || (level == 5)) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
+                if (((level == 3) || (level == 5)) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 100))
                 {
                     nbrActionStagesAllStones += 1;
                 }
-                else if ((level != 7) && ((gFileProgressData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
+                else if ((level != 7) && ((gFileSaveData->levelInfo[world][level] & LEVEL_INFO_DREAM_STONES_MASK) == 30))
                 {
                     nbrPuzzleStagesAllStones += 1;
                 }
 
-                if (gFileProgressData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
+                if (gFileSaveData->levelInfo[world][level] & LEVEL_INFO_BEATEN_FLAG)
                 {
                     nbrStagesBeaten += 1;
                 }
             }
         }
 
-        if ((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
-        if ((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
+        if ((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == 30)
         {
             nbrExStagesAllStones += 1;
         }
 
-        if (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
+        if (((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && (nbrStagesBeaten == 35))
         {
             gWorldMapInfo.beatenIndex = 4;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][0] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
+        else if (((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrPuzzleStagesAllStones + nbrActionStagesAllStones) >= 25))
         {
             gWorldMapInfo.beatenIndex = 5;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][1] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if (((gFileProgressData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
+        else if (((gFileSaveData->levelInfo[5][2] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK) && ((nbrExStagesAllStones + nbrActionStagesAllStones + nbrPuzzleStagesAllStones) == 37))
         {
             gWorldMapInfo.beatenIndex = 6;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[5][2] = LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
     }
     else
     {
-        if ((gFileProgressData->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        if ((gFileSaveData->levelInfo[0][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileSaveData->levelInfo[1][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 0;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[1][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gFileProgressData->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileSaveData->levelInfo[1][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileSaveData->levelInfo[2][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 1;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[2][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gFileProgressData->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileSaveData->levelInfo[2][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileSaveData->levelInfo[3][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 2;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[3][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
-        else if ((gFileProgressData->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileProgressData->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
+        else if ((gFileSaveData->levelInfo[3][7] & LEVEL_INFO_BEATEN_FLAG) && ((gFileSaveData->levelInfo[4][0] & LEVEL_INFO_DREAM_STONES_MASK) == LEVEL_INFO_DREAM_STONES_MASK))
         {
             gWorldMapInfo.beatenIndex = 3;
             gWorldMapInfo.unlockTimer = 0;
-            gFileProgressData->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
+            gFileSaveData->levelInfo[4][0] &= LEVEL_INFO_BEATEN_FLAG;
             gCallbackQueue.current[1] = WorldMapScreenUnlockNewWorld;
             return;
         }
@@ -1185,19 +1185,19 @@ void WorldMapScreenInit(void)
     gBgInfo[0].vOfs = 0x400;
 
     // Set best EX-1 time to 99:59:99 if no best time
-    if ((gFileProgressData->bestEx1TimeMinutes == 0) && (gFileProgressData->bestEx1TimeSeconds == 0) && (gFileProgressData->bestEx1TimeCentiseconds == 0))
+    if ((gFileSaveData->bestEx1TimeMinutes == 0) && (gFileSaveData->bestEx1TimeSeconds == 0) && (gFileSaveData->bestEx1TimeCentiseconds == 0))
     {
-        gFileProgressData->bestEx1TimeMinutes = 99;
-        gFileProgressData->bestEx1TimeSeconds = 59;
-        gFileProgressData->bestEx1TimeCentiseconds = 99;
+        gFileSaveData->bestEx1TimeMinutes = 99;
+        gFileSaveData->bestEx1TimeSeconds = 59;
+        gFileSaveData->bestEx1TimeCentiseconds = 99;
     }
 
     // Set best EX-3 time to 99:59:99 if no best time
-    if ((gFileProgressData->bestEx3TimeMinutes == 0) && (gFileProgressData->bestEx3TimeSeconds == 0) && (gFileProgressData->bestEx3TimeCentiseconds == 0))
+    if ((gFileSaveData->bestEx3TimeMinutes == 0) && (gFileSaveData->bestEx3TimeSeconds == 0) && (gFileSaveData->bestEx3TimeCentiseconds == 0))
     {
-        gFileProgressData->bestEx3TimeMinutes = 99;
-        gFileProgressData->bestEx3TimeSeconds = 59;
-        gFileProgressData->bestEx3TimeCentiseconds = 99;
+        gFileSaveData->bestEx3TimeMinutes = 99;
+        gFileSaveData->bestEx3TimeSeconds = 59;
+        gFileSaveData->bestEx3TimeCentiseconds = 99;
     }
 
     if (gWorldMapInfo.currentIndex == 5)
@@ -1210,14 +1210,14 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
         // Draw best time
-        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileSaveData->bestEx1TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileSaveData->bestEx1TimeMinutes % 10) + 1);
         gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds / 10) + 1);
-        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileSaveData->bestEx1TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileSaveData->bestEx1TimeSeconds % 10) + 1);
         gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds / 10) + 1);
-        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds % 10) + 1);
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileSaveData->bestEx1TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileSaveData->bestEx1TimeCentiseconds % 10) + 1);
 
         // Draw dream stone icon
         gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
@@ -1228,8 +1228,8 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
         // Draw collected dream stone amount
-        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gWorldMapInfo.currentIndex == 6)
     {
@@ -1259,8 +1259,8 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
         // Draw collected dream stone amount
-        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+        gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+        gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
     }
     else if (gWorldMapInfo.currentIndex == 7)
     {
@@ -1272,14 +1272,14 @@ void WorldMapScreenInit(void)
         gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
         // Draw best time
-        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes / 10) + 1);
-        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes % 10) + 1);
+        gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileSaveData->bestEx3TimeMinutes / 10) + 1);
+        gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileSaveData->bestEx3TimeMinutes % 10) + 1);
         gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds / 10) + 1);
-        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds % 10) + 1);
+        gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileSaveData->bestEx3TimeSeconds / 10) + 1);
+        gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileSaveData->bestEx3TimeSeconds % 10) + 1);
         gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds / 10) + 1);
-        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds % 10) + 1);
+        gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileSaveData->bestEx3TimeCentiseconds / 10) + 1);
+        gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileSaveData->bestEx3TimeCentiseconds % 10) + 1);
 
         // Erase dream stone icon tile
         gBgTilemapBufs[0][0x2C] = (10 << 12);
@@ -1309,9 +1309,9 @@ void WorldMapScreenInit(void)
     gIntrTable.vBlank = VBlankIntr_TitleScreenAndWorldMap;
     gCallbackQueue.current[1] = WorldMapScreenCheckNewWorldUnlocked;
     WorldMapScreenDrawUnlockedWorlds();
-    gUnk_03005284->world = gUnk_03004C20.world;
-    WriteSaveFile(0, 7);
-    WriteSaveFile(1, 0);
+    gSceneSaveData->world = gUnk_03004C20.world;
+    WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_WORLD_MAP);
+    WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
 
     REG_IE |= INTR_FLAG_VBLANK;
     REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -1360,7 +1360,7 @@ void WorldMapScreenHandler(void)
             gUnk_03004C20.level = 0;
             gVisionSelectInfo.currentVision = 1;
             m4aSongNumStart(SE_CURSOR_CONFIRM);
-            gUnk_03005284->prevLives = gUnk_03005284->lives = gUnk_03005220.lives;
+            gSceneSaveData->prevLives = gSceneSaveData->lives = gUnk_03005220.lives;
 
             if (gWorldMapInfo.currentIndex >= 5)
             {
@@ -1384,7 +1384,7 @@ void WorldMapScreenHandler(void)
             }
             else
             {
-                gUnk_03005284->cutsceneId = (gUnk_03004C20.world * 3) - 1;
+                gSceneSaveData->cutsceneId = (gUnk_03004C20.world * 3) - 1;
                 gUnk_03003410.unkC = 0;
                 gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
             }
@@ -1416,14 +1416,14 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
                     // Draw best time
-                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx3TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileSaveData->bestEx3TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileSaveData->bestEx3TimeMinutes % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx3TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileSaveData->bestEx3TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileSaveData->bestEx3TimeSeconds % 10) + 1);
                     gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx3TimeCentiseconds % 10) + 1);
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileSaveData->bestEx3TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileSaveData->bestEx3TimeCentiseconds % 10) + 1);
 
                     // Erase dream stone icon tile
                     gBgTilemapBufs[0][0x2C] = (10 << 12);
@@ -1524,8 +1524,8 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
                     // Draw collected dream stone amount
-                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileSaveData->levelInfo[5][1] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if ((gHeldKeys & DPAD_DOWN) && (WorldMapScreenIsValidPath(gWorldMapInfo.currentIndex) != 0))
@@ -1542,14 +1542,14 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x50] = (10 << 12) | 0x10;
 
                     // Draw best time
-                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes / 10) + 1);
-                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileProgressData->bestEx1TimeMinutes % 10) + 1);
+                    gBgTilemapBufs[0][0x6D] = (10 << 12) | ((gFileSaveData->bestEx1TimeMinutes / 10) + 1);
+                    gBgTilemapBufs[0][0x6E] = (10 << 12) | ((gFileSaveData->bestEx1TimeMinutes % 10) + 1);
                     gBgTilemapBufs[0][0x6F] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds / 10) + 1);
-                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileProgressData->bestEx1TimeSeconds % 10) + 1);
+                    gBgTilemapBufs[0][0x70] = (10 << 12) | ((gFileSaveData->bestEx1TimeSeconds / 10) + 1);
+                    gBgTilemapBufs[0][0x71] = (10 << 12) | ((gFileSaveData->bestEx1TimeSeconds % 10) + 1);
                     gBgTilemapBufs[0][0x72] = (10 << 12) | 0xB;
-                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds / 10) + 1);
-                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileProgressData->bestEx1TimeCentiseconds % 10) + 1);
+                    gBgTilemapBufs[0][0x73] = (10 << 12) | ((gFileSaveData->bestEx1TimeCentiseconds / 10) + 1);
+                    gBgTilemapBufs[0][0x74] = (10 << 12) | ((gFileSaveData->bestEx1TimeCentiseconds % 10) + 1);
 
                     // Draw dream stone icon
                     gBgTilemapBufs[0][0x2C] = (10 << 12) | 0x11;
@@ -1560,8 +1560,8 @@ void WorldMapScreenHandler(void)
                     gBgTilemapBufs[0][0x32] = (10 << 12) | 0x1;
 
                     // Draw collected dream stone amount
-                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
-                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileProgressData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
+                    gBgTilemapBufs[0][0x2E] = (10 << 12) | (((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) / 10) + 1);
+                    gBgTilemapBufs[0][0x2F] = (10 << 12) | (((gFileSaveData->levelInfo[5][0] & LEVEL_INFO_DREAM_STONES_MASK) % 10) + 1);
                 }
 
                 if (gHeldKeys & DPAD_LEFT)

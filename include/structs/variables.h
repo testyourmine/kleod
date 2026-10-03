@@ -34,17 +34,18 @@ struct CallbackQueue {
 extern struct CallbackQueue gCallbackQueue;
 
 struct Unk_03003410 {
-    u32 unk0;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6; // file mode, 0 is New Game, 1 is Continue
-    u8 unk7;
-    u8 unk8;
-    u8 unk9;
-    u8 unkA;
-    u8 unkB; // related to end of level, 1 is hoverboard slowing down, 2 is autoscroller cannon shooting Klonoa off, 3 is showing Vision Clear
-    u8 unkC;
-};
+    /* 0x0 */ u32 unk0;
+    /* 0x4 */ u8 unk4;
+    /* 0x5 */ u8 unk5;
+    /* 0x6 */ u8 unk6; // file mode, 0 is New Game, 1 is Continue
+    /* 0x7 */ u8 unk7;
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 unk9;
+    /* 0xA */ u8 unkA;
+    /* 0xB */ u8 unkB; // related to end of level, 1 is hoverboard slowing down, 2 is autoscroller cannon shooting Klonoa off, 3 is showing Vision Clear
+    /* 0xC */ u8 unkC;
+    /* 0xD */ u8 padD[0x10 - 0xD];
+}; /* size = 0x10 */
 extern struct Unk_03003410 gUnk_03003410;
 
 extern u16 *gUnk_030034FC;
@@ -54,18 +55,18 @@ enum FileSelectStage {
     FILE_SELECT_STAGE_CONFIRM
 };
 struct MenuInfo {
-    u8 pad0[0xC - 0x0];
-    u8 cursorIndex; // cursor index? used in a lot of places so need to confirm
-    u8 selectedSaveFile; // selected save file
-    u8 padE[0xF - 0xE];
-    s8 fileSelectStage; // stage, 0 is select, 1 is confirm
-};
+    /* 0x0 */ u8 pad0[0xC - 0x0];
+    /* 0xC */ u8 cursorIndex; // cursor index? used in a lot of places so need to confirm
+    /* 0xD */ u8 selectedSaveFile; // selected save file
+    /* 0xE */ u8 padE[0xF - 0xE];
+    /* 0xF */ s8 fileSelectStage; // stage, 0 is select, 1 is confirm
+}; /* size = 0x10 */
 extern struct MenuInfo *gMenuInfo;
 
 #define LEVEL_INFO_DREAM_STONES_MASK 0x7F
 #define LEVEL_INFO_BEATEN_FLAG 0x80
 
-struct FileProgressData {
+struct FileSaveData {
     /* 0x00 */ u8 nbrUnlockedWorlds; // number of unlocked worlds
     /* 0x01 */ u8 bestEx1TimeMinutes; // minutes of best time in EX-1
     /* 0x02 */ u8 bestEx1TimeSeconds; // seconds of best time in EX-1
@@ -80,14 +81,19 @@ struct FileProgressData {
     /* 0x3D */ u8 xorChecksum;
     /* 0x3E */ u8 pad3E[0x40 - 0x3E];
 }; /* size = 0x40 */
-extern struct FileProgressData *gFileProgressData;
+extern struct FileSaveData *gFileSaveData;
 
 // I feel like there's a better name I could use
 enum SceneType {
-    SCENE_TYPE_LEVEL_SELECT,
-    SCENE_TYPE_LEVEL,
+    SCENE_TYPE_VISION_SELECT,
+    SCENE_TYPE_VISION,
     SCENE_TYPE_CUTSCENE,
     SCENE_TYPE_WORLD_MAP = 7
+};
+// Same here
+enum SaveDataType {
+    SAVE_DATA_TYPE_SCENE,
+    SAVE_DATA_TYPE_FILE
 };
 
 enum LevelLoadType {
@@ -96,25 +102,25 @@ enum LevelLoadType {
     LEVEL_LOAD_RELOAD
 };
 
-struct SaveData {
-    u8 saveFileString[9]; // "K_KLONOA"
-    u8 pad9[0x10 - 0x9];
-    u8 currentSaveFile; // current save file
-    u8 currentSaveFileAddress; // save file EEPROM address
-    u8 lastLoadedSaveFile; // last loaded save file
-    u8 pad13[0x14 - 0x13];
-    u8 lives[3]; // lives
-    u8 world[3]; // world
-    u8 level[3]; // level
-    u8 sceneType[3]; // 0 is vision select, 1 is level gameplay, 2 is cutscene, 7 is world map
-    u8 cutsceneId[3]; // last accessed (or maybe just current) cutscene number
-    u8 nbrUnlockedWorlds[3]; // number of unlocked worlds
-    u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
-    u8 completedFile[3]; // 0x80 is file completed flag
-};
-extern struct SaveData *gSaveData;
+struct GlobalSaveData {
+    /* 0x00 */ u8 saveFileString[9]; // "K_KLONOA"
+    /* 0x09 */ u8 pad9[0x10 - 0x9];
+    /* 0x10 */ u8 currentSaveFile; // current save file
+    /* 0x11 */ u8 currentSaveFileAddress; // save file EEPROM address
+    /* 0x12 */ u8 lastLoadedSaveFile; // last loaded save file
+    /* 0x13 */ u8 pad13[0x14 - 0x13];
+    /* 0x14 */ u8 lives[3]; // lives
+    /* 0x17 */ u8 world[3]; // world
+    /* 0x1A */ u8 level[3]; // level
+    /* 0x1D */ u8 sceneType[3]; // 0 is vision select, 1 is level gameplay, 2 is cutscene, 7 is world map
+    /* 0x20 */ u8 cutsceneId[3]; // last accessed (or maybe just current) cutscene number
+    /* 0x23 */ u8 nbrUnlockedWorlds[3]; // number of unlocked worlds
+    /* 0x26 */ u8 startedFile[3]; // 0x4 is file has been started, 0x0 is file not started
+    /* 0x29 */ u8 completedFile[3]; // 0x80 is file completed flag
+}; /* size = 0x2C */
+extern struct GlobalSaveData *gGlobalSaveData;
 
-struct Unk_03005284 {
+struct SceneSaveData {
     /* 0x00 */ u8 lives; // lives
     /* 0x01 */ u8 world; // world
     /* 0x02 */ u8 level; // level
@@ -144,7 +150,7 @@ struct Unk_03005284 {
     /* 0x21 */ u8 xorChecksum;
     /* 0x22 */ u8 pad22[0x24 - 0x22];
 }; /* size = 0x24 */
-extern struct Unk_03005284 *gUnk_03005284; // gStageProgress? Need to think of a good name
+extern struct SceneSaveData *gSceneSaveData; // TODO: Maybe needs a better name
 
 extern u8 gUnk_03004784; // unused
 extern u16 gSoundVolume;
@@ -171,7 +177,7 @@ struct BgDataPtrs {
     /* 0x1C */ u16 *pBufBg3Tilemap; // BG3 tilemap
 }; /* size = 0x20 */
 extern struct BgDataPtrs gBgDataPtrs;
-extern void *gUnk_03005290;
+extern void *gUnk_03005290; // Data decompressed here, but not used for anything
 
 extern u8 gFrameFinished;
 extern u8 gUnk_03005428;
@@ -374,7 +380,8 @@ struct Unk_030034A0 {
     /* 0x1C_4 */ u8 unk1C_4:1;
     /* 0x1C_5 */ u8 unk1C_5:1;
     /* 0x1C_6 */ u8 unk1C_6:1;
-}; /* size = ? */
+    /* 0x1D */ u8 pad1D[0x20 - 0x1D];
+}; /* size = 0x20 */
 extern struct Unk_030034A0 *gUnk_030034A0;
 
 struct Unk_03004C20 {
@@ -392,7 +399,8 @@ struct Unk_03004C20 {
     /* 0x12 */ u8 demoNumber;
     /* 0x13 */ u8 demoInputIndex;
     /* 0x14 */ u8 demoNextInputTimer;
-}; /* size = ? */
+    /* 0x15 */ u8 pad15[0x18 - 0x15];
+}; /* size = 0x18 */
 extern struct Unk_03004C20 gUnk_03004C20;
 
 extern s32 gBg2X; // BG2X
@@ -572,7 +580,7 @@ struct Unk_03005400 {
     /* 0x14 */ u8 unk14;
     /* 0x15 */ s8 unk15;
     /* 0x16 */ s8 unk16;
-    /* 0z17 */ u8 pad17[0x18 - 0x17];
+    /* 0x17 */ u8 pad17[0x18 - 0x17];
 }; /* size = 0x18 */
 extern struct Unk_03005400 gUnk_03005400;
 
@@ -650,33 +658,35 @@ extern struct EntityAnimationInfo gEntityAnimationInfo[];
 extern u8 gUnk_0300363C;
 
 struct Unk_0300466C_4 {
-    u16 tileNum; // tileNum
-    u8 bpp_paletteNum; // bottom 7 bits is paletteNum, top bit is bpp
-    s8 unk3; // related to xPos
-    u8 unk4; // related to yPos
-    u8 shape_size; // bottom 2 bits is size, next two bits is shape
-};
+    /* 0x0 */ u16 tileNum; // tileNum
+    /* 0x2 */ u8 bpp_paletteNum; // bottom 7 bits is paletteNum, top bit is bpp
+    /* 0x3 */ s8 unk3; // related to xPos
+    /* 0x4 */ u8 unk4; // related to yPos
+    /* 0x5 */ u8 shape_size; // bottom 2 bits is size, next two bits is shape
+    /* 0x6 */ u8 pad6[0x8 - 0x6];
+}; /* size = 0x8 */
 struct Unk_0300466C {
-    u8 unk0;
-    u8 pad1[0x4 - 0x1];
-    struct Unk_0300466C_4 *unk4;
-};
+    /* 0x0 */ u8 unk0;
+    /* 0x1 */ u8 pad1[0x4 - 0x1];
+    /* 0x4 */ struct Unk_0300466C_4 *unk4;
+}; /* size = 0x8 */
 extern struct Unk_0300466C *gUnk_0300466C;
 extern struct Unk_0300466C *gUnk_030051DC;
 
 struct EntityAnimationFrameData {
-    u32 src;
-    u8 timer;
-    s32 unk5_0:4; // related to X position
-    s32 unk5_4:4; // related to Y position
-};
+    /* 0x0 */ u32 src;
+    /* 0x4 */ u8 timer;
+    /* 0x5_0 */ s32 unk5_0:4; // related to X position
+    /* 0x5_4 */ s32 unk5_4:4; // related to Y position
+    /* 0x6 */ u8 pad6[0x8 - 0x6];
+}; /* size = 0x8 */
 struct EntityAnimationData {
-    struct EntityAnimationFrameData **pFrames;
-    void *dest;
-    u16 size;
-    u8 entityInfoEntry;
-    u8 padB[0xC - 0xB];
-};
+    /* 0x0 */ struct EntityAnimationFrameData **pFrames;
+    /* 0x4 */ void *dest;
+    /* 0x8 */ u16 size;
+    /* 0xA */ u8 entityInfoEntry;
+    /* 0xB */ u8 padB[0xC - 0xB];
+}; /* size = 0xC */
 extern struct EntityAnimationData *gUnk_03005294;
 extern struct EntityAnimationData *gUnk_03005418;
 
@@ -811,14 +821,15 @@ extern void *gUnk_03004C10;
 extern u16 gUnk_030034DC;
 
 struct DisplayBackup {
-    s32 sceneFrameCounter;
-    u16 bldCnt;
-    u16 bg0Cnt;
-    u16 bg1Cnt;
-    u16 bg2Cnt;
-    u16 bg3Cnt;
-    u8 blendValue;
-};
+    /* 0x0 */ s32 sceneFrameCounter;
+    /* 0x4 */ u16 bldCnt;
+    /* 0x6 */ u16 bg0Cnt;
+    /* 0x8 */ u16 bg1Cnt;
+    /* 0xA */ u16 bg2Cnt;
+    /* 0xC */ u16 bg3Cnt;
+    /* 0xE */ u8 blendValue;
+    /* 0xF */ u8 padF[0x10 - 0xF];
+}; /* size = 0x10 */
 extern struct DisplayBackup gDisplayBackup;
 
 extern u8 gUnk_03000810;
@@ -826,20 +837,21 @@ extern u8 gUnk_030034C4;
 extern u16 gUnk_03003508;
 
 struct Unk_080D821C_4 {
-    u16 unk0;
-    u16 unk2;
-    u16 unk4;
-    u16 unk6;
-    u8 unk8;
-};
+    /* 0x0 */ u16 unk0;
+    /* 0x2 */ u16 unk2;
+    /* 0x4 */ u16 unk4;
+    /* 0x6 */ u16 unk6;
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 pad9[0xC - 0x9];
+}; /* size = 0xC */
 struct Unk_080D821C {
-    u16 unk0;
-    u16 unk2;
-    struct Unk_080D821C_4 *unk4;
-    u8 unk8;
-    u8 unk9;
-    u8 padA[0xC - 0xA];
-};
+    /* 0x0 */ u16 unk0;
+    /* 0x2 */ u16 unk2;
+    /* 0x4 */ struct Unk_080D821C_4 *unk4;
+    /* 0x8 */ u8 unk8;
+    /* 0x9 */ u8 unk9;
+    /* 0xA */ u8 padA[0xC - 0xA];
+}; /* size = 0xC */
 extern struct Unk_080D821C *gUnk_03004D80;
 
 extern u16 gUnk_030051E0;
@@ -850,12 +862,13 @@ enum TextBoxInfoStage {
     TEXT_BOX_INFO_STAGE_CLOSING
 };
 struct TextBoxInfo {
-    u8 pad0[0x4 - 0x0];
-    u16 win1H; // WIN1H
-    u16 win1V; // WIN1V
-    u8 stage; // 2 is no textbox (or shrinking textbox), 1 is textbox requested (or growing textbox), 0 is textbox is being displayed (unchanging)
-    u8 visionSelectTextBoxIdOffset;
-};
+    /* 0x0 */ u8 pad0[0x4 - 0x0];
+    /* 0x4 */ u16 win1H; // WIN1H
+    /* 0x6 */ u16 win1V; // WIN1V
+    /* 0x8 */ u8 stage; // 2 is no textbox (or shrinking textbox), 1 is textbox requested (or growing textbox), 0 is textbox is being displayed (unchanging)
+    /* 0x9 */ u8 visionSelectTextBoxIdOffset;
+    /* 0xA */ u8 padA[0xC - 0xA];
+}; /* size = 0xC */
 extern struct TextBoxInfo gTextBoxInfo;
 
 extern u8 gUnk_03005200;
@@ -889,7 +902,8 @@ struct VisionSelectInfo {
     /* 0x7_4 */ u8 unk7_4:4; // vision related
     /* 0x8_0 */ u8 visionLeftFrom:4; // vision traveled from
     /* 0x8_4 */ u8 visionGoingTo:4; // vision traveling to
-};
+    /* 0x9 */ u8 pad9[0xC - 0x9];
+}; /* size = 0xC */
 extern struct VisionSelectInfo gVisionSelectInfo;
 
 enum PauseMenuType {
@@ -901,25 +915,26 @@ enum PauseMenuType {
 extern u8 gPauseMenuType; // Pause menu type, 0 is level, 1 is vision select, 2 is EX level, 3 is boss battle
 
 struct WorldMapInfo {
-    u8 beatenIndex:4; // index of world beaten, 0-4 worlds, 5-7 ex1-3
-    u8 currentIndex:4; // current world map index, 0-4 worlds, 5-7 ex1-3
-    s8 nextIndexOffset; // next world offset
-    u8 unlockTimer; // unlock world timer
-    u8 pad3[0x4 - 0x3];
-};
+    /* 0x0_0 */ u8 beatenIndex:4; // index of world beaten, 0-4 worlds, 5-7 ex1-3
+    /* 0x0_4 */ u8 currentIndex:4; // current world map index, 0-4 worlds, 5-7 ex1-3
+    /* 0x5 */ s8 nextIndexOffset; // next world offset
+    /* 0x6 */ u8 unlockTimer; // unlock world timer
+    /* 0x7 */ u8 pad7[0x8 - 0x7];
+}; /* size = 0x8 */
 extern struct WorldMapInfo gWorldMapInfo;
 
 extern u8 gUnk_030007CC;
 
 struct Unk_0803D4AC {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    s8 unk3;
-    s8 unk4;
-    u8 unk5;
-    u8 unk6;
-};
+    /* 0x0 */ u8 unk0;
+    /* 0x1 */ u8 unk1;
+    /* 0x2 */ u8 unk2;
+    /* 0x3 */ s8 unk3;
+    /* 0x4 */ s8 unk4;
+    /* 0x5 */ u8 unk5;
+    /* 0x6 */ u8 unk6;
+    /* 0x7 */ u8 pad7[0x8 - 0x7];
+}; /* size = 0x8 */
 extern struct Unk_0803D4AC gUnk_03003620;
 
 extern u8 gUnk_03003D16[][8]; // TODO: type
@@ -939,9 +954,9 @@ enum GameOverScreenStage {
 extern u8 gGameOverScreenStage;
 
 struct Unk_030034D4 {
-    u16 unk0;
-    u16 unk2;
-};
+    /* 0x0 */ u16 unk0;
+    /* 0x2 */ u16 unk2;
+}; /* size = 0x4 */
 extern struct Unk_030034D4 *gUnk_030034D4;
 
 extern u16 gDma3CntHBackup; // DMA3CNT_H

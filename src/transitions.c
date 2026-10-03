@@ -267,6 +267,7 @@ void TransitionFromDemoToTitleScreen_FadeOut(void)
 {
     // fade out, when transitioning from demo to title screen
     // also called when transitioning from cleared all visions screen to world map
+    // also called when transitioning from vision to vision select
     gTransitioning = TRUE;
     if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
     {
@@ -410,13 +411,13 @@ void TransitionFromRoomToRoom_FadeOut(void)
         if (gUnk_03004C20.isHoverBoardLevel == 1)
         {
             gUnk_030051C8 = gUnk_03004654->unk1 - 1;
-            gUnk_03005284->hearts = 3;
+            gSceneSaveData->hearts = 3;
         }
         else
         {
-            gUnk_03005284->unk6 = gUnk_030051C8;
+            gSceneSaveData->unk6 = gUnk_030051C8;
         }
-        WriteSaveFile(0, 1);
+        WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION);
 
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -539,7 +540,8 @@ void sub_08024B54(void)
 
         gMenuInfo->cursorIndex = 0;
         gCallbackQueue.next[0] += 0; // FAKE
-        gUnk_03003410.unkA = gUnk_03003410.unk9 = 0;
+        gUnk_03003410.unk9 = 0;
+        gUnk_03003410.unkA = 0;
         gCallbackQueue.next[0] = VisionAndVisionSelectInit;
         gUnk_03003410.unk8 = 1;
         gCallbackQueue.next[1] = EntityInit;
@@ -583,7 +585,7 @@ void TransitionFromVisionSelectToLevel_FadeOut(void)
         {
             if ((gUnk_03004C20.world != 6) && (gUnk_03004C20.level == 8))
             {
-                gUnk_03005284->cutsceneId = gUnk_03004C20.world * 3;
+                gSceneSaveData->cutsceneId = gUnk_03004C20.world * 3;
                 gBlendValue = BLEND_MAX;
                 gCallbackQueue.next[0] = sub_0804BE58;
                 gCallbackQueue.next[1] = NULL + 1;
@@ -639,7 +641,7 @@ void TransitionFromLevelToDeath_FadeOut(void)
 block_9:
         if (gBlendValue == 1)
         {
-            REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | ({0xFFFF8F00;});
+            REG_DISPSTAT = (REG_DISPSTAT & 0xFF) | ({143 << 8;});
             gIntrTable.vCount = VCountIntr_DeathScreen;
             REG_IE |= INTR_FLAG_VCOUNT;
             REG_DISPSTAT |= DISPSTAT_VCOUNT_INTR;
@@ -757,29 +759,29 @@ void TransitionFromDeathToLevel_FadeOut(void)
         gCallbackQueue.nextCount = 3;
         gSoundVolume = 0xFFFF;
 
-        gUnk_03005220.stars = gUnk_03005284->stars;
-        gUnk_03005220.dreamStones = gUnk_03005284->dreamStones;
-        gUnk_03005220.keys = gUnk_03005284->keys;
-        gUnk_03005220.keyDoorsUnlocked = gUnk_03005284->keyDoorsUnlocked;
-        gUnk_03005220.moonDoorOpen = gUnk_03005284->moonDoorOpen;
-        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gUnk_03005284->pressedGrowingShrinkingBlockSwitch;
-        gUnk_03005220.collectedDreamStones0 = gUnk_03005284->collectedDreamStones0;
-        gUnk_03005220.collectedDreamStones1 = gUnk_03005284->collectedDreamStones1;
-        gUnk_03005220.collectedHearts = gUnk_03005284->collectedHearts;
-        gUnk_03005220.explodedBlocks = gUnk_03005284->explodedBlocks;
-        gUnk_03005220.pressedWaterSwitches = gUnk_03005284->pressedWaterSwitches;
-        gUnk_03005220.unk1_7 = gUnk_03005284->unk9_7;
-        gUnk_03005284->lives = gUnk_03005220.lives;
+        gUnk_03005220.stars = gSceneSaveData->stars;
+        gUnk_03005220.dreamStones = gSceneSaveData->dreamStones;
+        gUnk_03005220.keys = gSceneSaveData->keys;
+        gUnk_03005220.keyDoorsUnlocked = gSceneSaveData->keyDoorsUnlocked;
+        gUnk_03005220.moonDoorOpen = gSceneSaveData->moonDoorOpen;
+        gUnk_03005220.pressedGrowingShrinkingBlockSwitch = gSceneSaveData->pressedGrowingShrinkingBlockSwitch;
+        gUnk_03005220.collectedDreamStones0 = gSceneSaveData->collectedDreamStones0;
+        gUnk_03005220.collectedDreamStones1 = gSceneSaveData->collectedDreamStones1;
+        gUnk_03005220.collectedHearts = gSceneSaveData->collectedHearts;
+        gUnk_03005220.explodedBlocks = gSceneSaveData->explodedBlocks;
+        gUnk_03005220.pressedWaterSwitches = gSceneSaveData->pressedWaterSwitches;
+        gUnk_03005220.unk1_7 = gSceneSaveData->unk9_7;
+        gSceneSaveData->lives = gUnk_03005220.lives;
 
         REG_IE &= ~INTR_FLAG_VBLANK;
         REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOff();
 
-        if (gUnk_03005284->unk6 == 0)
+        if (gSceneSaveData->unk6 == 0)
         {
-            gUnk_03005284->unk6 = gUnk_03004654->unk1 - 1;
+            gSceneSaveData->unk6 = gUnk_03004654->unk1 - 1;
         }
-        WriteSaveFile(0, 1);
+        WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_VISION);
 
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
@@ -814,9 +816,9 @@ void TransitionFromWorldMapToVisionSelect_FadeOut(void)
         if (gUnk_03003410.unkC == 1)
         {
             WriteCurrentSaveFile();
-            WriteSaveFile(1, 0);
-            gUnk_03005284->world = gUnk_03004C20.world;
-            WriteSaveFile(0, 2);
+            WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
+            gSceneSaveData->world = gUnk_03004C20.world;
+            WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_CUTSCENE);
         }
 
         gCallbackQueue.next[0] = sub_0804BE58;
@@ -835,6 +837,8 @@ void TransitionFromWorldMapToVisionSelect_FadeOut(void)
 void TransitionFromFileSelectToLevel_FadeOut(void)
 {
     // fade out, when transitioning from file select to gameplay
+    s32 error;
+
     gTransitioning = TRUE;
     gSoundVolume -= 0x10;
     if (gSoundVolume > 0x10)
@@ -866,43 +870,53 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         m4aSoundVSyncOff();
 
         gTransitioning = FALSE;
-        if (LoadSaveFile(1) != 0)
+        if (LoadSaveFile(SAVE_DATA_TYPE_FILE) != 0)
         {
-            DmaFill32(3, 0, &gFileProgressData->nbrUnlockedWorlds, 0x40);
-            DmaFill16(3, 0x7F7F, &gFileProgressData->levelInfo, 0x30);
-            goto block_8;
+            // If issue loading file data, reset it
+            DmaFill32(3, 0, &gFileSaveData->nbrUnlockedWorlds, 0x40);
+            DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo, 0x30);
+            error = 1;
         }
-        if (LoadSaveFile(0) != 0)
+        else if (LoadSaveFile(SAVE_DATA_TYPE_SCENE) != 0)
         {
-    block_8:
-            DmaFill32(3, 0, &gUnk_03005284->lives, 0x24);
+            error = 1;
+        }
+        else
+        {
+            error = 0;
+        }
+
+        if (error)
+        {
+            // If issue loading save data, reset scene save data
+            DmaFill32(3, 0, &gSceneSaveData->lives, 0x24);
             gUnk_03004C20.world = 1;
-            gUnk_03005284->world = 1;
-            gUnk_03005284->lives = gUnk_03005220.lives = 3;
-            gUnk_03005284->shootButtonConfig = 2;
-            gUnk_03005284->jumpButtonConfig = 1;
+            gSceneSaveData->world = 1;
+            gSceneSaveData->lives = gUnk_03005220.lives = 3;
+            gSceneSaveData->shootButtonConfig = 2;
+            gSceneSaveData->jumpButtonConfig = 1;
         }
         WriteCurrentSaveFile();
-        gFileProgressData->unk38 += 1;
+        gFileSaveData->unk38 += 1;
 
         REG_IE |= INTR_FLAG_VBLANK;
         REG_DISPSTAT |= DISPSTAT_VBLANK_INTR;
         m4aSoundVSyncOn();
 
-        gUnk_03005220.lives = gUnk_03005284->lives;
-        gUnk_03004C20.world = gUnk_03005284->world;
-        gUnk_03004C20.level = gUnk_03005284->level;
+        gUnk_03005220.lives = gSceneSaveData->lives;
+        gUnk_03004C20.world = gSceneSaveData->world;
+        gUnk_03004C20.level = gSceneSaveData->level;
 
-        if (gUnk_03005284->sceneType == SCENE_TYPE_LEVEL)
+        if (gSceneSaveData->sceneType == SCENE_TYPE_VISION)
         {
             gUnk_03004C20.room = 0xFF;
         }
-        else if (gUnk_03005284->sceneType == SCENE_TYPE_LEVEL_SELECT)
+        else if (gSceneSaveData->sceneType == SCENE_TYPE_VISION_SELECT)
         {
             gVisionSelectInfo.currentVision = gUnk_03004C20.level;
             gUnk_03004C20.level = 0;
         }
-        else if (gUnk_03005284->sceneType == SCENE_TYPE_CUTSCENE)
+        else if (gSceneSaveData->sceneType == SCENE_TYPE_CUTSCENE)
         {
             gCallbackQueue.next[0] = sub_0804BE58;
             gCallbackQueue.next[1] = NULL + 1;
@@ -910,7 +924,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
             gCallbackQueue.nextCount = 2;
             return;
         }
-        else if (gUnk_03005284->sceneType == SCENE_TYPE_WORLD_MAP)
+        else if (gSceneSaveData->sceneType == SCENE_TYPE_WORLD_MAP)
         {
             gCallbackQueue.next[0] = InputHandler_Normal;
             gCallbackQueue.next[1] = WorldMapScreenInit;
@@ -1162,9 +1176,9 @@ void TransitionFromLevelToClearedAllVisionsScreen_FadeOut(void)
         m4aSoundVSyncOff();
 
         m4aMPlayAllStop();
-        gUnk_03005284->world = 6;
-        WriteSaveFile(0, 7);
-        WriteSaveFile(1, 0);
+        gSceneSaveData->world = 6;
+        WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_WORLD_MAP);
+        WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
         gTransitioning = FALSE;
         sub_08003D58();
         sub_080008DC();

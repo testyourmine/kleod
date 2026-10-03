@@ -587,14 +587,14 @@ void sub_0804BE58(void)
     m4aSoundVSyncOff();
     m4aMPlayAllStop();
 
-    if (gUnk_03004C20.world > gFileProgressData->nbrUnlockedWorlds)
+    if (gUnk_03004C20.world > gFileSaveData->nbrUnlockedWorlds)
     {
-        gFileProgressData->nbrUnlockedWorlds = gUnk_03004C20.world;
+        gFileSaveData->nbrUnlockedWorlds = gUnk_03004C20.world;
     }
-    WriteSaveFile(1, 0);
-    gUnk_03005284->world = gUnk_03004C20.world;
-    WriteSaveFile(0, 2);
-    sub_0804BAD4(gUnk_03005284->cutsceneId);
+    WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
+    gSceneSaveData->world = gUnk_03004C20.world;
+    WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_CUTSCENE);
+    sub_0804BAD4(gSceneSaveData->cutsceneId);
     sub_0804BB3C();
     sub_0804BB88();
     sub_0804BBD4();
@@ -1779,10 +1779,10 @@ void sub_0804E0E8(void)
         m4aMPlayAllStop();
         gSoundVolume = 0x100;
 
-        if ((gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF0) != 0)
+        if ((gUnk_0805769C[gSceneSaveData->cutsceneId] & 0xF0) != 0)
         {
-            gUnk_03004C20.world = gUnk_0805769C[gUnk_03005284->cutsceneId] >> 4;
-            switch (gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF)
+            gUnk_03004C20.world = gUnk_0805769C[gSceneSaveData->cutsceneId] >> 4;
+            switch (gUnk_0805769C[gSceneSaveData->cutsceneId] & 0xF)
             {
                 case 2:
                     if (gUnk_03004C20.world == 5)
@@ -1809,7 +1809,7 @@ void sub_0804E0E8(void)
                     if (gUnk_03004C20.world != 0)
                     {
                         gMosaicSize = 0xF;
-                        gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF;
+                        gUnk_03004C20.level = gUnk_0805769C[gSceneSaveData->cutsceneId] & 0xF;
                         gUnk_03003410.unk9 = 0;
                         gUnk_03003410.unkA = 0;
 
@@ -1825,7 +1825,7 @@ void sub_0804E0E8(void)
                     break;
         
                 case 4:
-                    gUnk_03004C20.level = gUnk_0805769C[gUnk_03005284->cutsceneId] & 0xF;
+                    gUnk_03004C20.level = gUnk_0805769C[gSceneSaveData->cutsceneId] & 0xF;
                     gCallbackQueue.next[0] = InputHandler_Normal;
                     gCallbackQueue.next[1] = TransitionFromVisionSelectToWorldMap_FadeOut;
                     gCallbackQueue.next[2] = CommonWaitForNextFrame;

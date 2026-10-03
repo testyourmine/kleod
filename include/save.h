@@ -3,9 +3,9 @@
 
 #include "global.h"
 
-void LoadAllSaveData(void);
-u16 WriteSaveFile(u32 arg0, u8 arg1);
-u16 LoadSaveFile(s32 arg0);
+void LoadGlobalSaveData(void);
+u16 WriteSaveFile(u32 saveDataType, u8 sceneType);
+u16 LoadSaveFile(u32 saveDataType);
 u16 DeleteAllSaveData(void);
 void WriteCurrentSaveFile(void);
 

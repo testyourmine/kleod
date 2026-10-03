@@ -60,14 +60,14 @@ void AgbMain(void)
     gUnk_03004C20.demoNumber = 0xFF;
 
     gMenuInfo = thunk_HeapAlloc(0x18, 0);
-    gUnk_03005284 = thunk_HeapAlloc(0x24, 0);
-    gFileProgressData = thunk_HeapAlloc(0x40, 0);
-    gSaveData = thunk_HeapAlloc(0x2C, 0);
+    gSceneSaveData = thunk_HeapAlloc(0x24, 0);
+    gFileSaveData = thunk_HeapAlloc(0x40, 0);
+    gGlobalSaveData = thunk_HeapAlloc(0x2C, 0);
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
     gBlendValue = gMosaicSize = 0;
     gUnk_03005428 = 1;
-    gUnk_03005284->roomsRotationBits = 0;
+    gSceneSaveData->roomsRotationBits = 0;
     gUnk_03004C20.roomsRotationBits = 0;
     gFrameFinished = FALSE;
     thunk_UpdateRng();
