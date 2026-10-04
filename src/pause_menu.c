@@ -121,7 +121,7 @@ void PauseMenuScreenInit(void)
         gDisplayBackup.bg3Cnt = REG_BG3CNT;
         gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-        for (i = 0; i < gUnk_03005428; i++)
+        for (i = 0; i < gEntitySlotCount; i++)
         {
             gEntityInfo[i].priority += 1;
         }
@@ -206,7 +206,7 @@ void PauseMenuScreenRestoreGfx(void)
     // Pause menu, handle drawing stuff after selecting option
     s32 i;
 
-    for (i = 0; i < gUnk_03005428; i++)
+    for (i = 0; i < gEntitySlotCount; i++)
     {
         gEntityInfo[i].priority -= 1;
     }

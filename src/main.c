@@ -66,7 +66,7 @@ void AgbMain(void)
     gUnk_030034FC = thunk_HeapAlloc(0x11, 1);
 
     gBlendValue = gMosaicSize = 0;
-    gUnk_03005428 = 1;
+    gEntitySlotCount = 1;
     gSceneSaveData->roomsRotationBits = 0;
     gUnk_03004C20.roomsRotationBits = 0;
     gFrameFinished = FALSE;

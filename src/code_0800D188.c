@@ -81,7 +81,7 @@ void sub_0800D188(void)
                 REG_BLDY = BLDY_MAX;
                 REG_BLDCNT = BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2;
                 
-                for (var_sb = 1; var_sb < gUnk_03005428; var_sb++)
+                for (var_sb = 1; var_sb < gEntitySlotCount; var_sb++)
                 {
                     gEntityInfo[var_sb].objMode = 1;
                 }
@@ -671,7 +671,7 @@ void sub_0800D188(void)
 block_236:
     if ((gEntityInfo[0].xPosBg2 != sp18) || (gUnk_03005220.unk56 != 0))
     {
-        for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
+        for (var_sb = 0xD; var_sb < gEntitySlotCount; var_sb++)
         {
             if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].visible != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
             {
@@ -2184,7 +2184,7 @@ block_474:
             }
         }
 
-        for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
+        for (var_sb = 0xD; var_sb < gEntitySlotCount; var_sb++)
         {
             if ((gEntityInfo[var_sb].unkF == 0x1A) || ((gEntityInfo[var_sb].visible != 0) && (gEntityInfo[var_sb].unkF <= 0x12)))
             {

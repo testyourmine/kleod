@@ -4477,7 +4477,7 @@ block_716:
                 {
                     gEntityInfo[arg0].unk8.split.unk8 = 0;
                     gEntityInfo[arg0].unkF = 0x19;
-                    sub_08044F6C(arg0);
+                    RoomRotationUpdateEntityPosition(arg0);
                     return;
                 }
                 sub_0801E664(gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8 + 4) & 7][0] + gEntityInfo[arg0].xPosBg2, gUnk_0818B8D0[(gEntityInfo[arg0].unk8.split.unk8 + 4) & 7][1] + gEntityInfo[arg0].yPosBg2, 6, 0);
@@ -5734,7 +5734,7 @@ void sub_0801CE38(u8 arg0)
     {
         if ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
-            sub_08044F6C(arg0);
+            RoomRotationUpdateEntityPosition(arg0);
             gEntityInfo[arg0].xPosBg2 += SIN((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 0x6;
             gEntityInfo[arg0].yPosBg2 += COS((gUnk_03004C20.sceneFrameCounter % 0x80) * 2) >> 0x6;
         }
@@ -5782,7 +5782,7 @@ void sub_0801CE38(u8 arg0)
 
         if ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3)
         {
-            sub_08044F6C(arg0);
+            RoomRotationUpdateEntityPosition(arg0);
             gEntityInfo[arg0].xPosBg2 -= SIN(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9;
             gEntityInfo[arg0].yPosBg2 += COS(gEntityInfo[arg0].unk8.split.unk8) >> gEntityInfo[arg0].unk8.split.unk9;
         }
@@ -6066,7 +6066,7 @@ void sub_0801D4AC(u8 arg0)
                 var_r1 = gUnk_03005470;
             }
 
-            for (var_r3 = var_r1; (var_r3 < gUnk_03005428) && (gEntityInfo[var_r3].id == ENTITY_ID_GROWN_BLOCK); var_r3++)
+            for (var_r3 = var_r1; (var_r3 < gEntitySlotCount) && (gEntityInfo[var_r3].id == ENTITY_ID_GROWN_BLOCK); var_r3++)
             {
                 if (gEntityInfo[arg0].affineHFlip_matrixNum == gEntityInfo[var_r3].affineHFlip_matrixNum)
                 {
@@ -6903,7 +6903,7 @@ void sub_0801E664(u16 arg0, u16 arg1, u8 arg2, u8 arg3)
     {
         gEntityInfo[var_r6].priority = 1;
         gEntityInfo[var_r6].unk8.split.unk8 = arg3;
-        sub_08044F6C(arg3);
+        RoomRotationUpdateEntityPosition(arg3);
         gEntityInfo[var_r6].xPosBg2 = gEntityInfo[arg3].xPosBg2;
         gEntityInfo[var_r6].yPosBg2 = gEntityInfo[arg3].yPosBg2;
         return;
@@ -6967,7 +6967,7 @@ void sub_0801E664(u16 arg0, u16 arg1, u8 arg2, u8 arg3)
             {
                 gEntityInfo[arg3].unkF = 0x19;
             }
-            sub_08044F6C(arg3);
+            RoomRotationUpdateEntityPosition(arg3);
         }
     }
     else if (arg2 == 3 || arg2 == 4 || arg2 == 5)
@@ -7106,7 +7106,7 @@ void sub_0801EAA4(u8 arg0)
             var_r0_4 = gUnk_03005470;
         }
 
-        for (var_r3 = var_r0_4; (var_r3 < gUnk_03005428) && (gEntityInfo[var_r3].id == ENTITY_ID_GROWN_BLOCK); var_r3++)
+        for (var_r3 = var_r0_4; (var_r3 < gEntitySlotCount) && (gEntityInfo[var_r3].id == ENTITY_ID_GROWN_BLOCK); var_r3++)
         {
             if (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_r3 - 0xD].unk0[gUnk_03004C20.room - 1].unk6 == 0)
             {
@@ -7126,10 +7126,10 @@ void sub_0801EAA4(u8 arg0)
     }
     else
     {
-        if (gUnk_030052A0 == 0xFE)
+        if (gRoomRotationAlpha == 0xFE)
         {
-            gUnk_030052A0 = 0x41;
-            gCallbackQueue.current[1] = sub_08044BB8;
+            gRoomRotationAlpha = 0x41;
+            gCallbackQueue.current[1] = RoomRotationHandler;
             m4aSongNumStart(SE_ROTATE_ROOM);
         }
     }

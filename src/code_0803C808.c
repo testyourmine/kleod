@@ -116,7 +116,7 @@ void sub_0803C808(void)
         gEntityInfo[var_r4].priority = 1;
     }
 
-    for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+    for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
     {
         gEntityInfo[var_r4].affineEnable = 1;
         gEntityInfo[var_r4].affineHFlip_matrixNum = 0;
@@ -198,7 +198,7 @@ void sub_0803C808(void)
             gUnk_030034A8 = sub_0803F9EC;
             gOamAffineMatrixNum = 0xF;
 
-            for (var_r4 = 0; var_r4 < gUnk_03005428; var_r4++)
+            for (var_r4 = 0; var_r4 < gEntitySlotCount; var_r4++)
             {
                 gEntityInfo[var_r4].priority = 0;
             }
@@ -360,7 +360,7 @@ void sub_0803CF08(u8 arg0)
         REG_BLDCNT = BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_EFFECT_BLEND;
         gBlendValue = BLEND_MAX;
 
-        for (var_r6 = 0x12; var_r6 < gUnk_03005428; var_r6++)
+        for (var_r6 = 0x12; var_r6 < gEntitySlotCount; var_r6++)
         {
             gEntityInfo[var_r6].objMode = 1;
         }
@@ -3751,10 +3751,10 @@ b:
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x50;
                     gBossStageScroll.targetAlpha = 0x40;
-                    gUnk_030052A0 = gBg2Alpha;
+                    gRoomRotationAlpha = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
-                    gCallbackQueue.current[2] = sub_080452E8;
+                    gCallbackQueue.current[2] = BossRoomRotationHandler;
                     break;
                 }
 
@@ -3820,10 +3820,10 @@ b:
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x50;
                     gBossStageScroll.targetAlpha = 0x40;
-                    gUnk_030052A0 = gBg2Alpha;
+                    gRoomRotationAlpha = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
-                    gCallbackQueue.current[2] = sub_080452E8;
+                    gCallbackQueue.current[2] = BossRoomRotationHandler;
                     break;
                 }
 

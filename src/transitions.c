@@ -623,7 +623,7 @@ void TransitionFromLevelToDeath_FadeOut(void)
     gTransitioning = TRUE;
     if (gBlendValue == 0)
     {
-        for (i = 1; i < gUnk_03005428; i++)
+        for (i = 1; i < gEntitySlotCount; i++)
         {
             gEntityInfo[i].visible = 0;
             gEntityInfo[i].unkF = 0x1C;

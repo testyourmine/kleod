@@ -102,7 +102,7 @@ void DeleteAllSaveDataScreenInit(void)
     m4aSoundVSyncOff();
 
     gDeleteAllSaveDataMinigameUnlocked = HeldUp();
-    gUnk_03005428 = 1;
+    gEntitySlotCount = 1;
     sub_08003D58();
     DmaCopy32(3, gOamBuffer, OAM, 0x400);
 
@@ -115,7 +115,7 @@ void DeleteAllSaveDataScreenInit(void)
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
-    for (i = 0; i < gUnk_03005428; i++)
+    for (i = 0; i < gEntitySlotCount; i++)
     {
         gEntityInfo[i].priority = 3;
         gEntityInfo[i].visible = 0;
@@ -530,7 +530,7 @@ void TextBoxInit(void)
     REG_WIN1V = gTextBoxInfo.win1V = WIN_RANGE(DISPLAY_HEIGHT_CENTER - 4, DISPLAY_HEIGHT_CENTER - 4);
     REG_DISPCNT |= DISPCNT_WIN1_ON;
 
-    for (i = 0; i < gUnk_03005428; i++)
+    for (i = 0; i < gEntitySlotCount; i++)
     {
         gEntityInfo[i].priority += 1;
     }
@@ -889,7 +889,7 @@ void BootScreenInit(void)
     s32 i;
     s32 j;
 
-    gUnk_03005428 = 1;
+    gEntitySlotCount = 1;
     sub_08003D58();
 
     DmaCopy32(3, gOamBuffer, OAM, 0x400);
@@ -941,7 +941,7 @@ void NamcoScreenInit(void)
     REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(14);
     REG_BG1CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(15);
 
-    gUnk_03005428 = 1;
+    gEntitySlotCount = 1;
     sub_08003D58();
 
     DmaCopy32(3, gOamBuffer, OAM, 0x400);
@@ -1123,12 +1123,12 @@ void TitleScreenInit(void)
     thunk_HeapFree(heapPtr - 4);
     gUnk_030051DC = gUnk_0807D7B0;
 
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
     for (i = 0; gUnk_08116590[i].unk0 != 0xFFFF; i++)
     {
-        EntityCreate(gUnk_03005428++, gUnk_08116590[i].unk7, gUnk_08116590[i].unk0, gUnk_08116590[i].unk2, gUnk_08116590[i].unk4, 0, gUnk_08116590[i].unk5, gUnk_08116590[i].unk6, gUnk_08116590[i].unk8);
+        EntityCreate(gEntitySlotCount++, gUnk_08116590[i].unk7, gUnk_08116590[i].unk0, gUnk_08116590[i].unk2, gUnk_08116590[i].unk4, 0, gUnk_08116590[i].unk5, gUnk_08116590[i].unk6, gUnk_08116590[i].unk8);
     }
-    gUnk_03005428 += 0xA;
+    gEntitySlotCount += 0xA;
 
     for (i = 0; i < 0xE; i++)
     {

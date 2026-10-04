@@ -175,7 +175,7 @@ void VisionAndVisionSelectInit(void)
     gBgInfo[2].vLength = gVisionBgVLength[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gBgInfo[2].nbrTiles = gVisionBgNbrTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
     gBgInfo[2].tileSize = gVisionBgTileSize[gUnk_03004C20.world - 1][gUnk_03004C20.level][2];
-    gUnk_030052A0 = 0xFE;
+    gRoomRotationAlpha = 0xFE;
 
     if (gUnk_03004C20.level >= 1 && gUnk_03004C20.level <= 7)
     {
@@ -192,7 +192,7 @@ void VisionAndVisionSelectInit(void)
                 temp_r3 = (gSceneSaveData->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (temp_r4 != temp_r3)
                 {
-                    sub_0804517C((4 - temp_r4 + temp_r3) & 3);
+                    RoomRotationBg2((4 - temp_r4 + temp_r3) & 3);
                     temp_r2 = (gUnk_03004C20.room - 1) * 2;
                     temp_r1 = ((gUnk_03004C20.roomsRotationBits >> temp_r2) + 1) & 3;
                     gUnk_03004C20.roomsRotationBits = (gUnk_03004C20.roomsRotationBits & ~(3 << temp_r2)) | (temp_r1 << temp_r2);
@@ -207,7 +207,7 @@ void VisionAndVisionSelectInit(void)
             temp_r3 = (gSceneSaveData->roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
             if (temp_r4 != temp_r3)
             {
-                sub_0804517C((4 - temp_r4 + temp_r3) & 3);
+                RoomRotationBg2((4 - temp_r4 + temp_r3) & 3);
                 gUnk_03004C20.roomsRotationBits = gSceneSaveData->roomsRotationBits;
             }
         }
@@ -423,7 +423,7 @@ void PuzzleStageScrollUpdate(void)
     var_r8 = 0;
     var_ip = 0;
 
-    if (gUnk_030052A0 == 0xFE)
+    if (gRoomRotationAlpha == 0xFE)
     {
         if (gUnk_0300542C != NULL)
         {
@@ -1222,8 +1222,8 @@ void SetUpRoomVisuals(void)
         gCurrentRoomBg2Bounds.right = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].right;
         gCurrentRoomBg2Bounds.bottom = gUnk_080D2E88[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_03004C20.room - 1].bottom;
 
-        gUnk_030051CC.unk0 = gCurrentRoomBg2Bounds.left + ((gCurrentRoomBg2Bounds.right - gCurrentRoomBg2Bounds.left) >> 1);
-        gUnk_030051CC.unk2 = gCurrentRoomBg2Bounds.top + ((gCurrentRoomBg2Bounds.bottom - gCurrentRoomBg2Bounds.top) >> 1);
+        gCurrentRoomBg2Center.x = gCurrentRoomBg2Bounds.left + ((gCurrentRoomBg2Bounds.right - gCurrentRoomBg2Bounds.left) >> 1);
+        gCurrentRoomBg2Center.y = gCurrentRoomBg2Bounds.top + ((gCurrentRoomBg2Bounds.bottom - gCurrentRoomBg2Bounds.top) >> 1);
     }
 
     gUnk_03004C20.unkA = 0;

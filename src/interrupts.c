@@ -12,7 +12,7 @@ void VBlankIntr_Common(void)
     DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, 0x400);
 
-    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
     if (!gFrameFinished)
     {
@@ -43,7 +43,7 @@ void sub_08000AC8(void)
     DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, 0x800);
 
-    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
     if (!gFrameFinished)
     {
@@ -65,7 +65,7 @@ void VBlankIntr_TitleScreenAndWorldMap(void)
     DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, 0x800);
     DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, 0x800);
 
-    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
     if (!gFrameFinished)
     {
@@ -103,7 +103,7 @@ void VBlankIntr_ClearedAllVisionsScreen(void)
     // Called during cleared all visions screen
     m4aSoundVSync();
 
-    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
     if (!gFrameFinished)
     {
@@ -120,7 +120,7 @@ void sub_08000E14(void)
     // Never called?
     m4aSoundVSync();
 
-    DmaCopy32(3, &gOamBuffer, OAM, gUnk_03005428 * sizeof(OamData));
+    DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
     if (!gFrameFinished)
     {

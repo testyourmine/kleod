@@ -642,7 +642,7 @@ void sub_0804BFD0(void)
     DmaFill16(3, 0, gUnk_030007C8, 0x100);
     sub_08003D58();
     DmaCopy32(3, gOamBuffer, OAM, 0x400);
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
 }
@@ -663,7 +663,7 @@ void sub_0804C050(void)
     }
 
     sub_08003D58();
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
 }
@@ -764,7 +764,7 @@ void sub_0804C300(void)
     var_sb = sub_0804B254(gUnk_03004D84 + 2);
     for (var_r8 = 0; gUnk_08189F04[var_sb][var_r8].unk0 != 0xFFFF; var_r8++)
     {
-        EntityCreate(gUnk_03005428++, gUnk_08189F04[var_sb][var_r8].unk7, gUnk_08189F04[var_sb][var_r8].unk0, gUnk_08189F04[var_sb][var_r8].unk2, gUnk_08189F04[var_sb][var_r8].unk4, gUnk_08189F04[var_sb][var_r8].unk9, gUnk_08189F04[var_sb][var_r8].unk5, gUnk_08189F04[var_sb][var_r8].unk6, gUnk_08189F04[var_sb][var_r8].unk8);
+        EntityCreate(gEntitySlotCount++, gUnk_08189F04[var_sb][var_r8].unk7, gUnk_08189F04[var_sb][var_r8].unk0, gUnk_08189F04[var_sb][var_r8].unk2, gUnk_08189F04[var_sb][var_r8].unk4, gUnk_08189F04[var_sb][var_r8].unk9, gUnk_08189F04[var_sb][var_r8].unk5, gUnk_08189F04[var_sb][var_r8].unk6, gUnk_08189F04[var_sb][var_r8].unk8);
     }
     gUnk_03004D84 += 4;
 }
@@ -1301,7 +1301,7 @@ s32 sub_0804D0B0(s32 arg0)
                 break;
             }
             
-            for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+            for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
             {
                 if (var_r4 < 0)
                 {
@@ -1341,7 +1341,7 @@ s32 sub_0804D0B0(s32 arg0)
             break;
 
         case 1:
-            for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+            for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
             {
                 if (gEntityInfo[var_r4].id != 0x50)
                 {
@@ -1373,7 +1373,7 @@ s32 sub_0804D0B0(s32 arg0)
                 // FAKE: can it match without empty do while?
                 do
                 {
-                    for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+                    for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
                     {
                         if (var_r4 < 0)
                         {
@@ -1395,7 +1395,7 @@ s32 sub_0804D0B0(s32 arg0)
             break;
 
         case 2:
-            for (var_r4 = 0xD; var_r4 < gUnk_03005428; var_r4++)
+            for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
             {
                 gEntityInfo[var_r4].visible = 0;
             }

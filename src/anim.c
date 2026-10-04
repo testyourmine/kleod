@@ -398,7 +398,7 @@ void DrawVisionEnd(void)
             return;
         }
 
-        for (i = 0xD; i < gUnk_03005428; i++)
+        for (i = 0xD; i < gEntitySlotCount; i++)
         {
             gEntityInfo[i].unkF = 0x1A;
         }

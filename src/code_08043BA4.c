@@ -117,7 +117,7 @@ void GameOverScreenInit(void)
     REG_WIN1V = WIN_RANGE(0x1, 0x8F);
     gIntrTable.hBlank = HBlankIntr_GameOverCircleShrinkEffect;
     gUnk_030051DC = gUnk_0807D248;
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
 
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
@@ -186,9 +186,9 @@ void GameOverScreenInit(void)
 
     for (i = 0; gUnk_08116464[i].unk0 != 0xFFFF; i++)
     {
-        EntityCreate(gUnk_03005428++, gUnk_08116464[i].unk7, gUnk_08116464[i].unk0, gUnk_08116464[i].unk2, gUnk_08116464[i].unk4, 0, gUnk_08116464[i].unk5, gUnk_08116464[i].unk6, gUnk_08116464[i].unk8);
+        EntityCreate(gEntitySlotCount++, gUnk_08116464[i].unk7, gUnk_08116464[i].unk0, gUnk_08116464[i].unk2, gUnk_08116464[i].unk4, 0, gUnk_08116464[i].unk5, gUnk_08116464[i].unk6, gUnk_08116464[i].unk8);
     }
-    gUnk_03005428 += 0xC;
+    gEntitySlotCount += 0xC;
     
     for (i = 0xD; i <= 0x24; i++)
     {
@@ -573,7 +573,7 @@ void GameOverScreenHandler(void)
 }
 
 // 44BB8
-void sub_08044BB8(void)
+void RoomRotationHandler(void)
 {
     u32 i;
     struct ScrollOffset scrollOffset;
@@ -581,28 +581,28 @@ void sub_08044BB8(void)
 
     scrollFlags = SCROLL_NONE;
 
-    if (gUnk_030052A0 == 0x41)
+    if (gRoomRotationAlpha == 0x41)
     {
         scrollOffset.x = 0;
         scrollOffset.y = 0;
 
-        if ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) < gUnk_030051CC.unk0)
+        if ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) < gCurrentRoomBg2Center.x)
         {
             scrollFlags = SCROLL_RIGHT;
             scrollOffset.x = 1;
         }
-        else if ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) > gUnk_030051CC.unk0)
+        else if ((gBgInfo[2].hOfs + DISPLAY_WIDTH_CENTER) > gCurrentRoomBg2Center.x)
         {
             scrollFlags = SCROLL_LEFT;
             scrollOffset.x = -1;
         }
 
-        if ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) < gUnk_030051CC.unk2)
+        if ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) < gCurrentRoomBg2Center.y)
         {
             scrollFlags |= SCROLL_DOWN;
             scrollOffset.y = 1;
         }
-        else if ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) > gUnk_030051CC.unk2)
+        else if ((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) > gCurrentRoomBg2Center.y)
         {
             scrollFlags |= SCROLL_UP;
             scrollOffset.y = -1;
@@ -615,26 +615,26 @@ void sub_08044BB8(void)
         }
 
         LoadBg2TilemapData(6);
-        gUnk_030052A0 = 0x40;
+        gRoomRotationAlpha = 0x40;
     }
 
-    if (gUnk_030052A0 == 0x40)
+    if (gRoomRotationAlpha == 0x40)
     {
         i = 1;
     }
-    else if (gUnk_030052A0 > 0x35)
+    else if (gRoomRotationAlpha > 0x35)
     {
         i = 4;
     }
-    else if (gUnk_030052A0 > 0xC)
+    else if (gRoomRotationAlpha > 0xC)
     {
         i = 0;
     }
-    else if (gUnk_030052A0 == 0xC)
+    else if (gRoomRotationAlpha == 0xC)
     {
         i = -3;
     }
-    else if (gUnk_030052A0 > 2)
+    else if (gRoomRotationAlpha > 2)
     {
         i = -4;
     }
@@ -644,11 +644,11 @@ void sub_08044BB8(void)
     }
     gBg2XMag = gBg2YMag += i;
 
-    if (gUnk_030052A0 == 0x40)
+    if (gRoomRotationAlpha == 0x40)
     {
-        gUnk_030034D4 = thunk_HeapAlloc(gUnk_03005428, 2);
+        gUnk_030034D4 = thunk_HeapAlloc(gEntitySlotCount, 2);
 
-        for (i = 0; i < gUnk_03005428; i++)
+        for (i = 0; i < gEntitySlotCount; i++)
         {
             if (gEntityInfo[i].unkF <= 0x1A)
             {
@@ -671,12 +671,12 @@ void sub_08044BB8(void)
         }
     }
 
-    for (i = 0; i < gUnk_03005428; i++)
+    for (i = 0; i < gEntitySlotCount; i++)
     {
         if (gEntityInfo[i].unkF <= 0x1A)
         {
-            gEntityInfo[i].xPosBg2 = gUnk_030051CC.unk0 + ((((gUnk_030034D4[i].unk0 - gUnk_030051CC.unk0) * SIN(PI - gUnk_030052A0)) - ((gUnk_030034D4[i].unk2 - gUnk_030051CC.unk2) * SIN(PI_2 - gUnk_030052A0))) >> 8);
-            gEntityInfo[i].yPosBg2 = gUnk_030051CC.unk2 + ((((gUnk_030034D4[i].unk0 - gUnk_030051CC.unk0) * SIN(PI_2 - gUnk_030052A0)) + ((gUnk_030034D4[i].unk2 - gUnk_030051CC.unk2) * SIN(PI - gUnk_030052A0))) >> 8);
+            gEntityInfo[i].xPosBg2 = gCurrentRoomBg2Center.x + ((((gUnk_030034D4[i].unk0 - gCurrentRoomBg2Center.x) * SIN(PI - gRoomRotationAlpha)) - ((gUnk_030034D4[i].unk2 - gCurrentRoomBg2Center.y) * SIN(PI_2 - gRoomRotationAlpha))) >> 8);
+            gEntityInfo[i].yPosBg2 = gCurrentRoomBg2Center.y + ((((gUnk_030034D4[i].unk0 - gCurrentRoomBg2Center.x) * SIN(PI_2 - gRoomRotationAlpha)) + ((gUnk_030034D4[i].unk2 - gCurrentRoomBg2Center.y) * SIN(PI - gRoomRotationAlpha))) >> 8);
 
             if ((i == 0) || (gEntityInfo[i].id == 0x34) || (gEntityInfo[i].id == ENTITY_ID_BOX) || (gEntityInfo[i].id >= ENTITY_ID_MOO))
             {
@@ -698,9 +698,9 @@ void sub_08044BB8(void)
         }
     }
 
-    gUnk_030052A0 -= 2;
+    gRoomRotationAlpha -= 2;
     gBg2Alpha += 2;
-    if (gUnk_030052A0 != 0xFE)
+    if (gRoomRotationAlpha != 0xFE)
     {
         return;
     }
@@ -709,7 +709,7 @@ void sub_08044BB8(void)
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
-    sub_0804517C(1);
+    RoomRotationBg2(1);
     gBg2Alpha = 0;
     LoadBg2TilemapData(6);
     gUnk_03005220.unk3C = 0;
@@ -748,118 +748,127 @@ void sub_08044BB8(void)
 }
 
 // 44F6C
-void sub_08044F6C(u8 arg0)
+void RoomRotationUpdateEntityPosition(u8 slot)
 {
-    u16 var_r9;
-    u16 var_ip;
-    u16 var_sl;
-    u16 var_r8;
+    // (Usually) called for each entity when loading room
+    // Might better be called "RoomRotationSetEntityPosition" or something else, maybe not even rotation in the name
+    u16 alpha;
+    u16 yOffset;
+    u16 xOffset;
+    u16 entityXPosBg2;
 
-    if (arg0 == 0)
+    if (slot == 0)
     {
-        gEntityInfo[0].xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk0;
-        gEntityInfo[0].yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk2;
-        gEntityInfo[0].unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_0;
+        gEntityInfo[slot].xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk0;
+        gEntityInfo[slot].yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk2;
+        gEntityInfo[slot].unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_0;
     }
     else
     {
-        gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0;
-        gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2;
+        gEntityInfo[slot].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk0;
+        gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk2;
     }
 
-    var_r9 = ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3) * 0x40;
-    if (var_r9 != 0)
+    alpha = ((gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3) * 0x40;
+    if (alpha != 0)
     {
-        var_r8 = gEntityInfo[arg0].xPosBg2;
+        entityXPosBg2 = gEntityInfo[slot].xPosBg2;
 
-        var_sl = 0;
-        var_ip = 0;
-        if ((arg0 == 0) || (gEntityInfo[arg0].id == ENTITY_ID_BOX) || (gEntityInfo[arg0].id >= ENTITY_ID_MOO))
+        xOffset = 0;
+        yOffset = 0;
+        if ((slot == 0) || (gEntityInfo[slot].id == ENTITY_ID_BOX) || (gEntityInfo[slot].id >= ENTITY_ID_MOO))
         {
-            var_ip = -14;
-            if (gEntityInfo[arg0].id == ENTITY_ID_BOX)
+            yOffset = -14;
+            if (gEntityInfo[slot].id == ENTITY_ID_BOX)
             {
-                var_sl = -4;
+                xOffset = -4;
             }
         }
-        else if ((gEntityInfo[arg0].id == ENTITY_ID_ROTATION_SWITCH) || (gEntityInfo[arg0].id == ENTITY_ID_CIRCLE_KEY))
+        else if ((gEntityInfo[slot].id == ENTITY_ID_ROTATION_SWITCH) || (gEntityInfo[slot].id == ENTITY_ID_CIRCLE_KEY))
         {
-            var_ip = -8;
+            yOffset = -8;
         }
 
-        gEntityInfo[arg0].xPosBg2 = gUnk_030051CC.unk0 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * COS(var_r9)) - ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * SIN(var_r9))) >> 8) - var_sl;
-        gEntityInfo[arg0].yPosBg2 = gUnk_030051CC.unk2 + ((((var_r8 - gUnk_030051CC.unk0 + var_sl) * SIN(var_r9)) + ((gEntityInfo[arg0].yPosBg2 - gUnk_030051CC.unk2 + var_ip) * COS(var_r9))) >> 8) - var_ip;
+        gEntityInfo[slot].xPosBg2 = gCurrentRoomBg2Center.x + ((((entityXPosBg2 - gCurrentRoomBg2Center.x + xOffset) * COS(alpha)) - ((gEntityInfo[slot].yPosBg2 - gCurrentRoomBg2Center.y + yOffset) * SIN(alpha))) >> 8) - xOffset;
+        gEntityInfo[slot].yPosBg2 = gCurrentRoomBg2Center.y + ((((entityXPosBg2 - gCurrentRoomBg2Center.x + xOffset) * SIN(alpha)) + ((gEntityInfo[slot].yPosBg2 - gCurrentRoomBg2Center.y + yOffset) * COS(alpha))) >> 8) - yOffset;
     }
 }
 
 // 4517C
-void sub_0804517C(u8 arg0)
+void RoomRotationBg2(u8 nbrRotations)
 {
-    u32 sp4;
-    u32 temp_ip;
-    u32 temp_r6;
-    u32 var_r7;
-    u32 var_sb;
-    u32 var_r1;
-    u32 var_r3;
-    u32 var_r5;
-    u32 var_r4;
+    // Called when room finishes rotating
+    u32 bottom;
+    u32 topLeft;
+    u32 corner;
+    u32 left;
+    u32 top;
+    u32 rotation;
+    u32 i;
+    u32 length;
+    u32 tmp;
+    u32 right;
 
-    for (var_r1 = 0; var_r1 < arg0; var_r1++)
+    for (rotation = 0; rotation < nbrRotations; rotation++)
     {
-        var_r7 = (gCurrentRoomBg2Bounds.left + 0x18) >> 3;
-        var_sb = (gCurrentRoomBg2Bounds.top + 0x18) >> 3;
-        var_r5 = (((gCurrentRoomBg2Bounds.right - 0x18) >> 3) - var_r7) - 1;
-        sp4 = ((gCurrentRoomBg2Bounds.bottom - 0x18) >> 3) - 1;
+        left = (gCurrentRoomBg2Bounds.left + 0x18) >> 3;
+        top = (gCurrentRoomBg2Bounds.top + 0x18) >> 3;
+        right = (gCurrentRoomBg2Bounds.right - 0x18) >> 3;
+        length = (right - left) - 1;
+        bottom = ((gCurrentRoomBg2Bounds.bottom - 0x18) >> 3) - 1;
 
+        // Perform a clockwise rotation, working from out to in
         while (1)
         {
-            temp_ip = (gBgInfo[2].hLength * var_sb) + var_r7;
-            temp_r6 = (gBgInfo[2].hLength * var_sb) + var_r7 + var_r5;
-            for (var_r3 = 0; var_r3 < var_r5; var_r3++)
+            // Swap top with right
+            topLeft = (gBgInfo[2].hLength * top) + left;
+            corner = (gBgInfo[2].hLength * top) + left + length; // top right
+            for (i = 0; i < length; i++)
             {
-                var_r4 = gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3];
-                gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3] = gBgDataPtrs.pBufBg2Tilemap[(var_r3 * gBgInfo[2].hLength) + temp_r6];
-                gBgDataPtrs.pBufBg2Tilemap[(var_r3 * gBgInfo[2].hLength) + temp_r6] = var_r4;
+                tmp = gBgDataPtrs.pBufBg2Tilemap[topLeft + i];
+                gBgDataPtrs.pBufBg2Tilemap[topLeft + i] = gBgDataPtrs.pBufBg2Tilemap[(i * gBgInfo[2].hLength) + corner];
+                gBgDataPtrs.pBufBg2Tilemap[(i * gBgInfo[2].hLength) + corner] = tmp;
             }
-    
-            temp_ip = (gBgInfo[2].hLength * var_sb) + var_r7;
-            temp_r6 = (gBgInfo[2].hLength * sp4) + var_r7 + var_r5;
-            for (var_r3 = 0; var_r3 < var_r5; var_r3++)
-            {
-                var_r4 = gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3];
-                gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3] = gBgDataPtrs.pBufBg2Tilemap[temp_r6 - var_r3];
-                gBgDataPtrs.pBufBg2Tilemap[temp_r6 - var_r3] = var_r4;
-            }
-    
-            temp_ip = (gBgInfo[2].hLength * var_sb) + var_r7;
-            temp_r6 = (gBgInfo[2].hLength * sp4) + var_r7;
-            for (var_r3 = 0; var_r3 < var_r5; var_r3++)
-            {
-                var_r4 = gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3];
-                gBgDataPtrs.pBufBg2Tilemap[temp_ip + var_r3] = gBgDataPtrs.pBufBg2Tilemap[temp_r6 - (var_r3 * gBgInfo[2].hLength)];
-                gBgDataPtrs.pBufBg2Tilemap[temp_r6 - (var_r3 * gBgInfo[2].hLength)] = var_r4;
-            }
-    
-            var_r7 += 1;
-            var_sb += 1;
 
-            if (var_r5 < 2)
+            // Swap top with bottom
+            topLeft = (gBgInfo[2].hLength * top) + left;
+            corner = (gBgInfo[2].hLength * bottom) + left + length; // bottom right
+            for (i = 0; i < length; i++)
+            {
+                tmp = gBgDataPtrs.pBufBg2Tilemap[topLeft + i];
+                gBgDataPtrs.pBufBg2Tilemap[topLeft + i] = gBgDataPtrs.pBufBg2Tilemap[corner - i];
+                gBgDataPtrs.pBufBg2Tilemap[corner - i] = tmp;
+            }
+
+            // Swap top with left
+            topLeft = (gBgInfo[2].hLength * top) + left;
+            corner = (gBgInfo[2].hLength * bottom) + left; // bottom left
+            for (i = 0; i < length; i++)
+            {
+                tmp = gBgDataPtrs.pBufBg2Tilemap[topLeft + i];
+                gBgDataPtrs.pBufBg2Tilemap[topLeft + i] = gBgDataPtrs.pBufBg2Tilemap[corner - (i * gBgInfo[2].hLength)];
+                gBgDataPtrs.pBufBg2Tilemap[corner - (i * gBgInfo[2].hLength)] = tmp;
+            }
+
+            left += 1;
+            top += 1;
+
+            if (length < 2)
                 break;
 
-            var_r5 -= 2;
-            sp4 -= 1;
+            length -= 2;
+            bottom -= 1;
         }
     }
 }
 
 // 452E8
-void sub_080452E8(void)
+void BossRoomRotationHandler(void)
 {
     if ((gBossStageScroll.currXPos == gBossStageScroll.targetXPos) && (gBossStageScroll.currYPos == gBossStageScroll.targetYPos) && (gBossStageScroll.currAlpha == gBossStageScroll.targetAlpha))
     {
-        gBg2Alpha = gUnk_030052A0 += 1;
-        if ((gUnk_030052A0 % 0x80) == 0)
+        gBg2Alpha = gRoomRotationAlpha += 1;
+        if ((gRoomRotationAlpha % 0x80) == 0)
         {
             if (gBg2Alpha == 0x80)
             {
@@ -873,17 +882,20 @@ void sub_080452E8(void)
             gCallbackQueue.current[2] = sub_0800AC34;
         }
 
-        gUnk_03003590[0].unk4 = -gUnk_030052A0;
-        if (gUnk_030052A0 < 0x80)
+        gUnk_03003590[0].unk4 = -gRoomRotationAlpha;
+        if (gRoomRotationAlpha < 0x80)
         {
             if (gUnk_030007CC < 0x50)
             {
                 gUnk_030007CC += 1;
             }
         }
-        else if (gUnk_030007CC != 0)
+        else
         {
-            gUnk_030007CC -= 1;
+            if (gUnk_030007CC != 0)
+            {
+                gUnk_030007CC -= 1;
+            }
         }
     }
 }
@@ -1024,14 +1036,14 @@ void VisionSelectCreateEntities(void)
 {
     u8 i;
 
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
     
     for (i = 0; gUnk_0811717C[gUnk_03004C20.world - 1][i][0] != 0xFF; i++)
     {
-        EntityCreate(gUnk_03005428, gUnk_0811717C[gUnk_03004C20.world - 1][i][3], gUnk_0811717C[gUnk_03004C20.world - 1][i][0], gUnk_0811717C[gUnk_03004C20.world - 1][i][1], gUnk_0811717C[gUnk_03004C20.world - 1][i][2], 1, 0, 0x1C, gUnk_0811717C[gUnk_03004C20.world - 1][i][4]);
-        gEntityInfo[gUnk_03005428].xPosBg2 = gUnk_0811717C[gUnk_03004C20.world - 1][i][0];
-        gEntityInfo[gUnk_03005428].yPosBg2 = gUnk_0811717C[gUnk_03004C20.world - 1][i][1];
-        gUnk_03005428 += 1;
+        EntityCreate(gEntitySlotCount, gUnk_0811717C[gUnk_03004C20.world - 1][i][3], gUnk_0811717C[gUnk_03004C20.world - 1][i][0], gUnk_0811717C[gUnk_03004C20.world - 1][i][1], gUnk_0811717C[gUnk_03004C20.world - 1][i][2], 1, 0, 0x1C, gUnk_0811717C[gUnk_03004C20.world - 1][i][4]);
+        gEntityInfo[gEntitySlotCount].xPosBg2 = gUnk_0811717C[gUnk_03004C20.world - 1][i][0];
+        gEntityInfo[gEntitySlotCount].yPosBg2 = gUnk_0811717C[gUnk_03004C20.world - 1][i][1];
+        gEntitySlotCount += 1;
     }
 }
 
@@ -1378,16 +1390,16 @@ void VisionSelectUpdateRotationAndEntities(void)
     gEntityInfo[0].yPosScreen = (((SIN(gVisionSelectInfo.alpha) * gVisionSelectInfo.unk2) >> 8) / 3) + 0x6E;
     gEntityInfo[0].priority = 1;
 
-    for (i = gVisionSelectInfo.unk0_1 + 0xD; i < gUnk_03005428; i++)
+    for (i = gVisionSelectInfo.unk0_1 + 0xD; i < gEntitySlotCount; i++)
     {
         alpha = gBg2Alpha + 0x40 + gEntityInfo[i].yPosBg2;
         gEntityInfo[i].xPosScreen = ((COS(alpha) * gEntityInfo[i].xPosBg2) >> 8) + 0x78;
         gEntityInfo[i].yPosScreen = (((SIN(alpha) * gEntityInfo[i].xPosBg2) >> 8) / 3) + 0x66;
     }
 
-    sub_08046A64(gUnk_03005428 - (gVisionSelectInfo.unk0_1 + 0xD));
+    sub_08046A64(gEntitySlotCount - (gVisionSelectInfo.unk0_1 + 0xD));
 
-    for (i = gVisionSelectInfo.unk0_1 + 0xD; i < gUnk_03005428; i++)
+    for (i = gVisionSelectInfo.unk0_1 + 0xD; i < gEntitySlotCount; i++)
     {
         if ((gEntityInfo[i].id <= 0x50) || (gEntityInfo[i].id >= 0x54))
         {

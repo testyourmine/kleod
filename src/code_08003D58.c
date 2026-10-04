@@ -1392,7 +1392,7 @@ void EntityCommonTransferToOamBuffer(void)
         }
     }
 
-    for (sp0 = 0xD; sp0 < gUnk_03005428; sp0++)
+    for (sp0 = 0xD; sp0 < gEntitySlotCount; sp0++)
     {
         if (gEntityInfo[sp0].visible == 1)
         {

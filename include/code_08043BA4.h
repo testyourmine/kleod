@@ -6,10 +6,10 @@
 void GameOverScreenInit(void);
 void GameOverScreenStageSetup(s32 gameOverScreenStage);
 void GameOverScreenHandler(void);
-void sub_08044BB8(void);
-void sub_08044F6C(u8 arg0);
-void sub_0804517C(u8 arg0);
-void sub_080452E8(void);
+void RoomRotationHandler(void);
+void RoomRotationUpdateEntityPosition(u8 slot);
+void RoomRotationBg2(u8 nbrRotations);
+void BossRoomRotationHandler(void);
 void VisionSelectBeginTransitionToVision(void);
 void VisionSelectInit(void);
 void VisionSelectHandler(void);

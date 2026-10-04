@@ -785,7 +785,7 @@ void EntityBossTransferToOamBuffer(void)
             }
         }
 
-        for (sp0 = 0xD; sp0 < gUnk_03005428; sp0++)
+        for (sp0 = 0xD; sp0 < gEntitySlotCount; sp0++)
         {
             if (gEntityInfo[sp0].visible != 1)
             {
@@ -931,7 +931,7 @@ void EntityBossTransferToOamBuffer(void)
             }
         }
 
-        for (sp0 = 0xD; sp0 < gUnk_03005428; sp0++)
+        for (sp0 = 0xD; sp0 < gEntitySlotCount; sp0++)
         {
             if (gEntityInfo[sp0].visible == 1)
             {
@@ -1093,7 +1093,7 @@ void EntityVisionSelectTransferToOamBuffer(void)
     sp0 = gEntityInfo[0].yPosScreen;
     sp4 = gEntityInfo[0].xPosScreen;
 
-    for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
+    for (var_sb = 0xD; var_sb < gEntitySlotCount; var_sb++)
     {
         if (gEntityInfo[var_sb].visible == 1)
         {
@@ -1230,7 +1230,7 @@ void EntityVisionSelectTransferToOamBuffer(void)
         }
     }
 
-    for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
+    for (var_sb = 0xD; var_sb < gEntitySlotCount; var_sb++)
     {
         if (gEntityInfo[var_sb].visible == 1)
         {
@@ -1398,7 +1398,7 @@ void EntityCommonUpdateScreenPositions(void)
         gEntityInfo[0xA].yPosScreen = gEntityInfo[0xA].yPosBg2 - gBgInfo[2].vOfs;
     }
 
-    for (slot = 1; slot < gUnk_03005428; slot++)
+    for (slot = 1; slot < gEntitySlotCount; slot++)
     {
         if (slot == 9)
         {
@@ -1492,7 +1492,7 @@ void EntityBossUpdateScreenPositions(s8 xOffset, s8 yOffset)
         EntityUpdateScreenPositionAffine(slot, xOffset, yOffset);
     }
 
-    for (slot = 0xD; slot < gUnk_03005428; slot++)
+    for (slot = 0xD; slot < gEntitySlotCount; slot++)
     {
         if (gEntityInfo[slot].unkF == 0x1A)
         {
@@ -1563,14 +1563,14 @@ void sub_0800A804(void)
         return;
     }
 
-    if (gUnk_030052A0 == 0xFE)
+    if (gRoomRotationAlpha == 0xFE)
     {
         if ((gCallbackQueue.current[4] != TransitionFromVisionSelectToLevel_FadeOut) && (gCallbackQueue.current[4] != TransitionFromRoomToRoom_FadeOut))
         {
             sub_0800D188();
         }
 
-        for (slot = 0xD; slot < gUnk_03005428; slot++)
+        for (slot = 0xD; slot < gEntitySlotCount; slot++)
         {
             if (gEntityInfo[slot].unkF != 0x1C)
             {
@@ -1765,7 +1765,7 @@ void sub_0800AC34(void)
 
     UpdateEntityAnimationInfoEntries();
 
-    for (slot = 0; slot < gUnk_03005428; slot++)
+    for (slot = 0; slot < gEntitySlotCount; slot++)
     {
         if (gEntityInfo[slot].id == ENTITY_ID_HEART)
         {
@@ -2036,7 +2036,7 @@ void sub_0800B3C0(void)
     sp28 = 0;
 
     sub_08003DA0();
-    gUnk_03005428 = 0xD;
+    gEntitySlotCount = 0xD;
 
     // gUnk_03003610->unk3 = 0;
     // gUnk_03003610->unk2 = 0;
@@ -2113,19 +2113,19 @@ void sub_0800B3C0(void)
 
     for (var_sb = 0; gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[0].unk0 != 0xFFFF; var_sb++)
     {
-        EntityCreate(gUnk_03005428++, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk2, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk4, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk5, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk6, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk29);
+        EntityCreate(gEntitySlotCount++, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk28, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk2, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk4, 0, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk5, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[gUnk_03004C20.room - 1].unk6, gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk29);
 
-        if ((gEntityInfo[gUnk_03005428 - 1].id >= ENTITY_ID_WATER) && (gEntityInfo[gUnk_03005428 - 1].id <= ENTITY_ID_MOON_DOOR))
+        if ((gEntityInfo[gEntitySlotCount - 1].id >= ENTITY_ID_WATER) && (gEntityInfo[gEntitySlotCount - 1].id <= ENTITY_ID_MOON_DOOR))
         {
             continue;
         }
 
-        if ((gEntityInfo[gUnk_03005428 - 1].id >= ENTITY_ID_LEAF_1) && (gEntityInfo[gUnk_03005428 - 1].id <= ENTITY_ID_LEAF_2))
+        if ((gEntityInfo[gEntitySlotCount - 1].id >= ENTITY_ID_LEAF_1) && (gEntityInfo[gEntitySlotCount - 1].id <= ENTITY_ID_LEAF_2))
         {
             continue;
         }
 
-        sub_08044F6C(gUnk_03005428 - 1);
+        RoomRotationUpdateEntityPosition(gEntitySlotCount - 1);
     }
 
     if (gUnk_03004C20.unkA == 1)
@@ -2136,7 +2136,7 @@ void sub_0800B3C0(void)
     }
     gUnk_03004C10 = NULL;
 
-    for (var_sb = 0xD; var_sb < gUnk_03005428; var_sb++)
+    for (var_sb = 0xD; var_sb < gEntitySlotCount; var_sb++)
     {
         switch (gEntityInfo[var_sb].id)
         {

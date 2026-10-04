@@ -180,7 +180,7 @@ extern struct BgDataPtrs gBgDataPtrs;
 extern void *gUnk_03005290; // Data decompressed here, but not used for anything
 
 extern u8 gFrameFinished;
-extern u8 gUnk_03005428;
+extern u8 gEntitySlotCount; // Number of entity slots, or next available slot
 
 extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
 extern u8 gBg2TilemapData[]; // BG2 tilemap data, possibly "gCommonBg2TilemapData"
@@ -416,7 +416,7 @@ extern u16 gBg2XMag; // xMag
 extern u8 gEnteredCannonGoal;
 extern s16 gBg2PA; // BG2PA
 extern s16 gBg2PC; // BG2PC
-extern u8 gUnk_030052A0;
+extern u8 gRoomRotationAlpha;
 extern u16 gBg2YMag; // yMag
 extern s16 gBg2PB; // BG2PB
 
@@ -638,11 +638,11 @@ extern struct Unk_03004654 *gUnk_03004654;
 
 extern u8 gUnk_030051C8;
 
-struct Unk_030051CC {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
+struct CurrentRoomBg2Center {
+    /* 0x0 */ u16 x;
+    /* 0x2 */ u16 y;
 }; /* size = 0x4 */
-extern struct Unk_030051CC gUnk_030051CC;
+extern struct CurrentRoomBg2Center gCurrentRoomBg2Center;
 
 extern u8 gUnk_030007C4;
 extern void * volatile gObjPalRamPtr; // OBJ palette ptr
@@ -710,13 +710,13 @@ struct Unk_03003610 {
 }; /* size = 0x4 */
 extern struct Unk_03003610 gUnk_03003610[];
 
-struct Unk_03004680 {
+struct OamAffineBuffer {
     /* 0x0 */ u16 pa; // object affine PA
     /* 0x2 */ u16 pb; // object affine PB
     /* 0x4 */ u16 pc; // object affine PC
     /* 0x6 */ u16 pd; // object affine PD
 }; /* size = 0x8 */ 
-extern struct Unk_03004680 gOamAffineBuffer[]; // OAM affine buffer
+extern struct OamAffineBuffer gOamAffineBuffer[]; // OAM affine buffer
 
 extern u32 gUnk_030007D4;
 extern s32 gUnk_030007F0;
@@ -923,7 +923,7 @@ struct WorldMapInfo {
 }; /* size = 0x8 */
 extern struct WorldMapInfo gWorldMapInfo;
 
-extern u8 gUnk_030007CC;
+extern u8 gUnk_030007CC; // related to size of giant eye in Jillius fight
 
 struct Unk_0803D4AC {
     /* 0x0 */ u8 unk0;
