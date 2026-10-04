@@ -5,7 +5,7 @@
 #include "transitions.h"
 #include "anim.h"
 #include "code_0802688C.h"
-#include "code_08039D8C.h"
+#include "code_0803C808.h"
 #include "code_08043BA4.h"
 #include "math.h"
 #include "data/trig.h"

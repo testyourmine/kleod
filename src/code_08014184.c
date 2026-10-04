@@ -3,7 +3,7 @@
 #include "code_08003D58.h"
 #include "transitions.h"
 #include "anim.h"
-#include "code_08039D8C.h"
+#include "code_0803C808.h"
 #include "code_08043BA4.h"
 #include "main.h"
 #include "math.h"

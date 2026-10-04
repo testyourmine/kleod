@@ -236,7 +236,9 @@ SECTIONS {
         src/transitions.o(.text);
         src/anim.o(.text);
         src/code_0802688C.o(.text);
-        src/code_08039D8C.o(.text);
+        src/pause_menu.o(.text);
+        src/world_map.o(.text);
+        src/code_0803C808.o(.text);
         src/decompress.o(.text);
         src/code_08043BA4.o(.text);
         src/save.o(.text);
@@ -267,7 +269,7 @@ SECTIONS {
         asm/data/data_08078B08.o(.rodata);
         src/data/trig.o(.rodata);
         asm/data/data_080D9094.o(.rodata);
-        src/code_08039D8C.o(.rodata);
+        src/code_0803C808.o(.rodata);
         asm/data/data_08117120.o(.rodata);
         src/save.o(.rodata);
         asm/data/data_0811769C.o(.rodata);

@@ -1,25 +1,8 @@
-#ifndef GUARD_CODE_08039D8C_H
-#define GUARD_CODE_08039D8C_H
+#ifndef GUARD_CODE_0803C808_H
+#define GUARD_CODE_0803C808_H
 
 #include "global.h"
 #include "structs/variables.h"
-
-void PauseMenuScreenInit(void);
-void PauseMenuScreenRestoreGfx(void);
-void PauseMenuScreenHandler(void);
-
-void ButtonConfigurationScreenInit(void);
-void ButtonConfigurationScreenHandler(void);
-
-u8 WorldMapScreenIsValidPath(u8 mapIndex);
-void WorldMapScreenDrawWorld(u8 mapIndex);
-void WorldMapScreenSetPalette(u8 mapIndex, u8 palNbr);
-void WorldMapScreenDrawPath(u8 mapIndex);
-void WorldMapScreenDrawUnlockedWorlds(void);
-void WorldMapScreenCheckNewWorldUnlocked(void);
-void WorldMapScreenUnlockNewWorld(void);
-void WorldMapScreenInit(void);
-void WorldMapScreenHandler(void);
 
 void sub_0803C808(void);
 void sub_0803CE14(u8 arg0);
@@ -43,4 +26,4 @@ void sub_08042024(u8 arg0);
 void sub_08042BEC(void);
 void sub_08042E64(u8 arg0);
 
-#endif // GUARD_CODE_08039D8C_H
+#endif // GUARD_CODE_0803C808_H

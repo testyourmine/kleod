@@ -4,11 +4,12 @@
 #include "vision.h"
 #include "code_08003D58.h"
 #include "wait_for_next_frame.h"
-#include "code_08039D8C.h"
+#include "code_0803C808.h"
 #include "save.h"
 #include "code_080472B0.h"
 #include "interrupts.h"
 #include "main.h"
+#include "world_map.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
