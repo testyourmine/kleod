@@ -6,8 +6,8 @@
 #include "anim.h"
 #include "code_0802688C.h"
 #include "code_0803C808.h"
-#include "code_08043BA4.h"
 #include "math.h"
+#include "vision_select.h"
 #include "data/trig.h"
 #include "structs/variables.h"
 

@@ -240,7 +240,9 @@ SECTIONS {
         src/world_map.o(.text);
         src/code_0803C808.o(.text);
         src/decompress.o(.text);
-        src/code_08043BA4.o(.text);
+        src/game_over.o(.text);
+        src/rotation.o(.text);
+        src/vision_select.o(.text);
         src/save.o(.text);
         src/code_080472B0.o(.text);
         src/code_0804B254.o(.text);

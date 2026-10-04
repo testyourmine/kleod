@@ -5,9 +5,9 @@
 #include "transitions.h"
 #include "anim.h"
 #include "code_0803C808.h"
-#include "code_08043BA4.h"
 #include "math.h"
 #include "pause_menu.h"
+#include "rotation.h"
 #include "data/trig.h"
 #include "structs/variables.h"
 
