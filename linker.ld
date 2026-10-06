@@ -235,7 +235,7 @@ SECTIONS {
         src/code_08014184.o(.text);
         src/transitions.o(.text);
         src/anim.o(.text);
-        src/code_0802688C.o(.text);
+        src/load_entity_graphics.o(.text);
         src/pause_menu.o(.text);
         src/world_map.o(.text);
         src/code_0803C808.o(.text);

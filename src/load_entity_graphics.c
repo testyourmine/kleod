@@ -1,5 +1,5 @@
 #include "global.h"
-#include "code_0802688C.h"
+#include "load_entity_graphics.h"
 #include "transitions.h"
 #include "anim.h"
 #include "structs/variables.h"
@@ -218,7 +218,7 @@ extern u8 gUnk_080A5888[0x800];
 }
 
 // 2688C
-void LoadObjects_World1Select(void)
+void LoadEntityGraphics_World1Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E68, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805D9E8, gObjVramPtr, 0x200);
@@ -305,7 +305,7 @@ void LoadObjects_World1Select(void)
 }
 
 // 26F68
-void LoadObjects_World2Select(void)
+void LoadEntityGraphics_World2Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -358,7 +358,7 @@ void LoadObjects_World2Select(void)
 }
 
 // 27364
-void LoadObjects_World3Select(void)
+void LoadEntityGraphics_World3Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -418,7 +418,7 @@ void LoadObjects_World3Select(void)
 }
 
 // 277CC
-void LoadObjects_World4Select(void)
+void LoadEntityGraphics_World4Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -488,7 +488,7 @@ void LoadObjects_World4Select(void)
 }
 
 // 27CF8
-void LoadObjects_World5Select(void)
+void LoadEntityGraphics_World5Select(void)
 {
     DmaCopy16Wait(3, &gUnk_08077EE8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805EAE8, gObjVramPtr, 0x200);
@@ -545,13 +545,13 @@ void LoadObjects_World5Select(void)
 }
 
 // 28104
-void sub_08028104(void)
+void LoadEntityGraphics_World6Select_Unused(void)
 {
     return;
 }
 
 // 28108
-void LoadObjects_World1Level1(void)
+void LoadEntityGraphics_World1Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -595,7 +595,7 @@ void LoadObjects_World1Level1(void)
 }
 
 // 28440
-void LoadObjects_World1Level2(void)
+void LoadEntityGraphics_World1Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -638,7 +638,7 @@ void LoadObjects_World1Level2(void)
 }
 
 // 28750
-void LoadObjects_World1Level3(void)
+void LoadEntityGraphics_World1Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -693,7 +693,7 @@ void LoadObjects_World1Level3(void)
 }
 
 // 28B4C
-void LoadObjects_World1Level4(void)
+void LoadEntityGraphics_World1Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -738,7 +738,7 @@ void LoadObjects_World1Level4(void)
 }
 
 // 28E8C
-void LoadObjects_World1Level5(void)
+void LoadEntityGraphics_World1Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -816,7 +816,7 @@ void LoadObjects_World1Level5(void)
 }
 
 // 2946C
-void LoadObjects_World1Level6(void)
+void LoadEntityGraphics_World1Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -880,7 +880,7 @@ void LoadObjects_World1Level6(void)
 }
 
 // 29968
-void LoadObjects_World1Level7(void)
+void LoadEntityGraphics_World1Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -950,7 +950,7 @@ void LoadObjects_World1Level7(void)
 }
 
 // 29EAC
-void LoadObjects_World1Boss(void)
+void LoadEntityGraphics_World1Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -1007,7 +1007,7 @@ void LoadObjects_World1Boss(void)
 }
 
 // 2A31C
-void LoadObjects_World2Level1(void)
+void LoadEntityGraphics_World2Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1087,7 +1087,7 @@ void LoadObjects_World2Level1(void)
 }
 
 // 2A948
-void LoadObjects_World2Level2(void)
+void LoadEntityGraphics_World2Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1178,7 +1178,7 @@ void LoadObjects_World2Level2(void)
 }
 
 // 2B05C
-void LoadObjects_World2Level3(void)
+void LoadEntityGraphics_World2Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1269,7 +1269,7 @@ void LoadObjects_World2Level3(void)
 }
 
 // 2B768
-void LoadObjects_World2Level4(void)
+void LoadEntityGraphics_World2Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -1313,7 +1313,7 @@ void LoadObjects_World2Level4(void)
 }
 
 // 2BA84
-void LoadObjects_World2Level5(void)
+void LoadEntityGraphics_World2Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1409,7 +1409,7 @@ void LoadObjects_World2Level5(void)
 }
 
 // 2C1F8
-void LoadObjects_World2Level6(void)
+void LoadEntityGraphics_World2Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -1495,7 +1495,7 @@ void LoadObjects_World2Level6(void)
 }
 
 // 2C8B0
-void LoadObjects_World2Level7(void)
+void LoadEntityGraphics_World2Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1590,7 +1590,7 @@ void LoadObjects_World2Level7(void)
 }
 
 // 2D028
-void LoadObjects_World2Boss(void)
+void LoadEntityGraphics_World2Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -1653,7 +1653,7 @@ void LoadObjects_World2Boss(void)
 }
 
 // 2D558
-void LoadObjects_World3Level1(void)
+void LoadEntityGraphics_World3Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1738,7 +1738,7 @@ void LoadObjects_World3Level1(void)
 }
 
 // 2DBC4
-void LoadObjects_World3Level2(void)
+void LoadEntityGraphics_World3Level2(void)
 {
 
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
@@ -1837,7 +1837,7 @@ void LoadObjects_World3Level2(void)
 }
 
 // 2E374
-void LoadObjects_World3Level3(void)
+void LoadEntityGraphics_World3Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -1939,7 +1939,7 @@ void LoadObjects_World3Level3(void)
 }
 
 // 2EB78
-void LoadObjects_World3Level4(void)
+void LoadEntityGraphics_World3Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -1985,7 +1985,7 @@ void LoadObjects_World3Level4(void)
 }
 
 // 2EEC0
-void LoadObjects_World3Level5(void)
+void LoadEntityGraphics_World3Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2067,7 +2067,7 @@ void LoadObjects_World3Level5(void)
 }
 
 // 2F53C
-void LoadObjects_World3Level6(void)
+void LoadEntityGraphics_World3Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -2131,7 +2131,7 @@ void LoadObjects_World3Level6(void)
 }
 
 // 2FA28
-void LoadObjects_World3Level7(void)
+void LoadEntityGraphics_World3Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2227,7 +2227,7 @@ void LoadObjects_World3Level7(void)
 }
 
 // 301A8
-void LoadObjects_World3Boss(void)
+void LoadEntityGraphics_World3Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -2286,7 +2286,7 @@ void LoadObjects_World3Boss(void)
 }
 
 // 30680
-void LoadObjects_World4Level1(void)
+void LoadEntityGraphics_World4Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2375,7 +2375,7 @@ void LoadObjects_World4Level1(void)
 }
 
 // 30D38
-void LoadObjects_World4Level2(void)
+void LoadEntityGraphics_World4Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2463,7 +2463,7 @@ void LoadObjects_World4Level2(void)
 }
 
 // 313F8
-void LoadObjects_World4Level3(void)
+void LoadEntityGraphics_World4Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2552,7 +2552,7 @@ void LoadObjects_World4Level3(void)
 }
 
 // 31ADC
-void LoadObjects_World4Level4(void)
+void LoadEntityGraphics_World4Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -2602,7 +2602,7 @@ void LoadObjects_World4Level4(void)
 }
 
 // 31E7C
-void LoadObjects_World4Level5(void)
+void LoadEntityGraphics_World4Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2709,7 +2709,7 @@ void LoadObjects_World4Level5(void)
 }
 
 // 326E8
-void LoadObjects_World4Level6(void)
+void LoadEntityGraphics_World4Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -2790,7 +2790,7 @@ void LoadObjects_World4Level6(void)
 }
 
 // 32D3C
-void LoadObjects_World4Level7(void)
+void LoadEntityGraphics_World4Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -2898,7 +2898,7 @@ void LoadObjects_World4Level7(void)
 }
 
 // 335D4
-void LoadObjects_World4Boss(void)
+void LoadEntityGraphics_World4Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -2960,7 +2960,7 @@ void LoadObjects_World4Boss(void)
 }
 
 // 33AAC
-void LoadObjects_World5Level1(void)
+void LoadEntityGraphics_World5Level1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3034,7 +3034,7 @@ void LoadObjects_World5Level1(void)
 }
 
 // 34078
-void LoadObjects_World5Level2(void)
+void LoadEntityGraphics_World5Level2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3137,7 +3137,7 @@ void LoadObjects_World5Level2(void)
 }
 
 // 348B0
-void LoadObjects_World5Level3(void)
+void LoadEntityGraphics_World5Level3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3254,7 +3254,7 @@ void LoadObjects_World5Level3(void)
 }
 
 // 35210
-void LoadObjects_World5Level4(void)
+void LoadEntityGraphics_World5Level4(void)
 {
     DmaCopy16Wait(3, &gUnk_0805FA08, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -3318,7 +3318,7 @@ void LoadObjects_World5Level4(void)
 }
 
 // 356E4
-void LoadObjects_World5Level5(void)
+void LoadEntityGraphics_World5Level5(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3421,7 +3421,7 @@ void LoadObjects_World5Level5(void)
 }
 
 // 35EF8
-void LoadObjects_World5Level6(void)
+void LoadEntityGraphics_World5Level6(void)
 {
     DmaCopy16Wait(3, &gUnk_08078468, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805FE08, gObjVramPtr, 0x800);
@@ -3503,7 +3503,7 @@ void LoadObjects_World5Level6(void)
 }
 
 // 36564
-void LoadObjects_World5Level7(void)
+void LoadEntityGraphics_World5Level7(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3639,7 +3639,7 @@ void LoadObjects_World5Level7(void)
 }
 
 // 37038
-void LoadObjects_World5Boss(void)
+void LoadEntityGraphics_World5Boss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -3700,7 +3700,7 @@ void LoadObjects_World5Boss(void)
 }
 
 // 375A0
-void sub_080375A0(void)
+void LoadEntityGraphics_Ex1(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3806,7 +3806,7 @@ void sub_080375A0(void)
 }
 
 // 37DD4
-void sub_08037DD4(void)
+void LoadEntityGraphics_Ex2(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -3936,7 +3936,7 @@ void sub_08037DD4(void)
 }
 
 // 3881C
-void sub_0803881C(void)
+void LoadEntityGraphics_Ex3(void)
 {
     DmaCopy16Wait(3, &gUnk_08078308, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_0805ECE8, gObjVramPtr, 0x200);
@@ -4068,7 +4068,7 @@ void sub_0803881C(void)
 }
 
 // 392A4
-void sub_080392A4(void)
+void LoadEntityGraphics_FinalBoss(void)
 {
     DmaCopy16Wait(3, &gUnk_080784A8, gObjPalRamPtr, 0x20);
     DmaCopy16Wait(3, &gUnk_08060A08, gObjVramPtr, 0x80);
@@ -4143,7 +4143,7 @@ void sub_080392A4(void)
 }
 
 // 39920
-void LoadObjects_Common(void)
+void LoadEntityGraphics_Common(void)
 {
     DmaCopy16Wait(3, &gUnk_08077E28, gObjPalRamPtr, 0x20);
     gObjPalRamPtr += 0x20;

@@ -4,7 +4,7 @@
 #include "code_08014184.h"
 #include "transitions.h"
 #include "anim.h"
-#include "code_0802688C.h"
+#include "load_entity_graphics.h"
 #include "code_0803C808.h"
 #include "math.h"
 #include "vision_select.h"
@@ -104,7 +104,7 @@ void EntityInit(void)
     EntityCreate(0xA, 0xA, 0, 0, 0, 0, 0, 0, 0);
     EntityCreate(0xB, 0xB, -0x20, 0x3C, 0, 0, 0, 0, 0);
     EntityCreate(0xC, 0xC, -0x20, 0x74, 0, 0, 0, 0, 0);
-    LoadObjects_Common();
+    LoadEntityGraphics_Common();
 
     if (gUnk_03003410.unk8 == 1)
     {
