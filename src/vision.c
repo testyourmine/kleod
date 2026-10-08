@@ -53,7 +53,6 @@ extern u32 *gUnk_0818955C[6]; // pointers to BG1 tiles (overworld)
 extern u32 *gUnk_08189574[6]; // pointers to BG1 tilemaps (overworld)
 
 extern u32 *gUnk_0818B7AC[6*2];
-extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 // 1158
 void VisionAndVisionSelectInit(void)

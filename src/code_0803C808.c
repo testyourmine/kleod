@@ -1355,13 +1355,13 @@ void sub_0803E904(u8 arg0)
                 gUnk_03005400.unk13 += 4;
                 gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 5);
 
-                if ((s16) gUnk_03003590[0].unk0 < gUnk_081168E2[gUnk_03005400.unkC])
+                if (gUnk_03003590[0].unk0 < gUnk_081168E2[gUnk_03005400.unkC])
                 {
                     gUnk_03003590[0].unk0 += 1;
                     gUnk_03003590[0].unk2 += 1;
                 }
 
-                if (((s16) gUnk_03003590[0].unk0 == gUnk_081168E2[gUnk_03005400.unkC]) && (gUnk_03005400.unk13 == 0x40))
+                if ((gUnk_03003590[0].unk0 == gUnk_081168E2[gUnk_03005400.unkC]) && (gUnk_03005400.unk13 == 0x40))
                 {
                     sub_0803E6D8(0x1C);
                     gUnk_03005400.unkA = 2;
@@ -1702,7 +1702,7 @@ void sub_0803E904(u8 arg0)
                 if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03003590[0].unk4 += 4;
-                    if ((s16) gUnk_03003590[0].unk0 <= -0xF0)
+                    if (gUnk_03003590[0].unk0 <= -0xF0)
                     {
                         if (gUnk_03005220.unk31 != 0)
                         {
@@ -2505,7 +2505,7 @@ void sub_0803F9EC(u8 arg0)
 
             case 11:
                 gEntityInfo[arg0].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
-                if ((s16) gUnk_03003590[0].unk0 > -0xA0)
+                if (gUnk_03003590[0].unk0 > -0xA0)
                 {
                     gUnk_03003590[0].unk0 -= 2;
                     gUnk_03003590[0].unk2 -= 2;
@@ -2551,7 +2551,7 @@ void sub_0803F9EC(u8 arg0)
                 }
                 if (gUnk_03005400.unk6 == 1)
                 {
-                    if ((s16) gUnk_03003590[0].unk0 <= 0x7F)
+                    if (gUnk_03003590[0].unk0 <= 0x7F)
                     {
                         gUnk_03003590[0].unk0 += 4;
                         gUnk_03003590[0].unk2 += 4;
@@ -2573,7 +2573,7 @@ void sub_0803F9EC(u8 arg0)
                 }
                 if (gUnk_03005400.unk6 == 2)
                 {
-                    if ((s16) gUnk_03003590[0].unk0 <= 0x9F)
+                    if (gUnk_03003590[0].unk0 <= 0x9F)
                     {
                         gUnk_03003590[0].unk0 += 4;
                         gUnk_03003590[0].unk2 += 4;
@@ -2825,7 +2825,7 @@ void sub_08040F1C(u8 arg0)
             case 0x2:
                 gUnk_03003590[0].unk0 += 8;
                 gUnk_03003590[0].unk2 += 8;
-                if ((s16) gUnk_03003590[0].unk0 <= 0)
+                if (gUnk_03003590[0].unk0 <= 0)
                 {
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03003590[0].unk0 = 0;
@@ -2836,7 +2836,7 @@ void sub_08040F1C(u8 arg0)
 
             case 0x3:
                 gUnk_03003590[0].unk0 -= 8;
-                if (-((s16)gUnk_03003590[0].unk0) >= ((gBg2XMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
+                if (-(gUnk_03003590[0].unk0) >= ((gBg2XMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
                 {
                     SetEntityAnimationInfoState(arg0, 0);
                     SetEntityAnimationInfoState(0x17, 0);
@@ -2851,7 +2851,7 @@ void sub_08040F1C(u8 arg0)
                     gEntityInfo[arg0].yPosBg2 -= 1;
                 }
 
-                if ((((s16) gUnk_03003590[0].unk0 >= 0) || ((s16) (gUnk_03003590[0].unk0 += 8) >= 0)) && (gEntityInfo[arg0].yPosBg2 <= 0xB0))
+                if (((gUnk_03003590[0].unk0 >= 0) || ((gUnk_03003590[0].unk0 += 8) >= 0)) && (gEntityInfo[arg0].yPosBg2 <= 0xB0))
                 {
                     gUnk_03005400.unkA = 0xFF;
                     gUnk_03005400.unk0 = 0x40;
@@ -3059,7 +3059,7 @@ block_89:
                     gUnk_03003590[0].unk0 += 8;
                     gEntityInfo[0x12].xPosBg2 += (gUnk_03005400.unk13 * (1 - ((gUnk_03004C20.sceneFrameCounter % 2) * 2)));
                     gUnk_03005400.unk13 += 4;
-                    if (-((s16) gUnk_03003590[0].unk2) < ((gBg2YMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
+                    if (-gUnk_03003590[0].unk2 < ((gBg2YMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
                     {
 
                     }
@@ -3124,7 +3124,7 @@ block_89:
                     gUnk_03005400.unk13 -= 2;
                 }
 
-                if ((s16) gUnk_03003590[0].unk0 == 0)
+                if (gUnk_03003590[0].unk0 == 0)
                 {
                     gUnk_03003590[0].unk0 = 0;
                     gUnk_03003590[0].unk2 = 0;
@@ -4249,7 +4249,7 @@ void sub_08042E64(u8 arg0)
                         gUnk_03005400.unkA = 3;
                     }
 
-                    if ((s16) gUnk_03003590[0].unk0 < 0)
+                    if (gUnk_03003590[0].unk0 < 0)
                     {
                         gUnk_03003590[0].unk0 += 8;
                         gUnk_03003590[0].unk2 += 8;

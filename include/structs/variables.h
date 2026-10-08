@@ -806,8 +806,8 @@ extern union Unk_03000820 gOamBuffer[]; // OAM buffer
 extern u8 gUnk_030034BC;
 
 struct Unk_03003590 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
+    /* 0x0 */ s16 unk0;
+    /* 0x2 */ s16 unk2;
     /* 0x4 */ u8 unk4;
     /* 0x5_0 */ u8 unk5_0:1;
     /* 0x6 */ u8 pad6[0x8 - 0x6];

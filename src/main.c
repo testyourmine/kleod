@@ -195,12 +195,13 @@ void InputHandler_AttractMode(void)
 }
 
 // 87C
-void sub_0800087C(u8 arg0, u8 arg1)
+void sub_0800087C(u8 slot, u8 digit)
 {
+    // Draw Boomie timer
     DmaCopy16(
         3,
-        gUnk_0818B8A8[arg1],
-        OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xD].tileNum * 0x20),
+        gUnk_0818B8A8[digit],
+        OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20),
         0x20
     );
 }
