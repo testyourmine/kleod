@@ -6,7 +6,6 @@
 #include "wait_for_next_frame.h"
 #include "code_0803C808.h"
 #include "save.h"
-#include "code_080472B0.h"
 #include "interrupts.h"
 #include "main.h"
 #include "constants/songs.h"

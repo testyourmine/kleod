@@ -244,7 +244,11 @@ SECTIONS {
         src/rotation.o(.text);
         src/vision_select.o(.text);
         src/save.o(.text);
-        src/code_080472B0.o(.text);
+        src/delete_all_save_data_screen.o(.text);
+        src/text_box.o(.text);
+        src/boot.o(.text);
+        src/title_screen.o(.text);
+        src/file_select_screen.o(.text);
         src/code_0804B254.o(.text);
         asm/m4a0.o(.text);
         src/m4a.o(.text);
