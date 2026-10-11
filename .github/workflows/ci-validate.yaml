@@ -38,6 +38,9 @@ jobs:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
           SECRET_NAME: baserom.gba
 
+    - name: Update
+      run: sudo apt update -y
+
     - name: Install Packages
       run: sudo apt-get install -y git make build-essential libpng-dev gcc-arm-none-eabi binutils-arm-none-eabi
 
