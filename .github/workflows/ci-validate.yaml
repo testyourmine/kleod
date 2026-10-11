@@ -39,7 +39,7 @@ jobs:
           SECRET_NAME: baserom.gba
 
     - name: Install Packages
-      run: sudo apt-get install -y git make build-essential libpng-dev gcc-arm-none-eabi binutils-arm-none-eabi
+      run: sudo apt-get install -y git make build-essential gcc-arm-none-eabi binutils-arm-none-eabi
 
     - name: Install dependencies
       run: python3 -m pip install mapfile_parser
