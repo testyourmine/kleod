@@ -17,4 +17,4 @@ versions:
 tools:
   mapfile_parser:
     progress_report:
-      report_data: False
+      report_data: True
