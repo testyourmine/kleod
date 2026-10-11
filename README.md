@@ -1,8 +1,10 @@
 # Klonoa: Empire of Dreams
 
-[![Progress]](https://decomp.dev/testyourmine/kleod/us)
+[![Code Progress]](https://decomp.dev/testyourmine/kleod/us)
+[![Data Progress]](https://decomp.dev/testyourmine/kleod/us)
 
-[Progress]: https://decomp.dev/testyourmine/kleod/us.svg?mode=shield
+[Code Progress]: https://decomp.dev/testyourmine/kleod.svg?mode=shield&label=US+Code+Progress&measure=matched_code_percent
+[Data Progress]: https://decomp.dev/testyourmine/kleod.svg?mode=shield&label=US+Data+Progress&measure=matched_data_percent
 
 This is a decompilation of Klonoa: Empire of Dreams (USA).
 
