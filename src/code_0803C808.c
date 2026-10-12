@@ -64,9 +64,10 @@ extern const void *gUnk_0818B9F8[];
 // 3C808
 void sub_0803C808(void)
 {
-    u32 var_r4_4;
-    u32 var_r3;
-    u32 var_r4;
+    // Boss init
+    u32 removed;
+    u32 i;
+    u32 slot;
 
     gUnk_030007CC = gUnk_081168DC[gUnk_03004C20.world - 1];
 
@@ -109,28 +110,28 @@ void sub_0803C808(void)
 
     DmaFill16(3, 0, &gUnk_03003590, 0x80);
 
-    for (var_r4 = 0; var_r4 < 0xB; var_r4++)
+    for (slot = 0; slot < 0xB; slot++)
     {
-        gEntityInfo[var_r4].affineEnable = 1;
-        gEntityInfo[var_r4].affineHFlip_matrixNum = 0;
-        gEntityInfo[var_r4].priority = 1;
+        gEntityInfo[slot].affineEnable = 1;
+        gEntityInfo[slot].affineHFlip_matrixNum = 0;
+        gEntityInfo[slot].priority = 1;
     }
 
-    for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
+    for (slot = 0xD; slot < gEntitySlotCount; slot++)
     {
-        gEntityInfo[var_r4].affineEnable = 1;
-        gEntityInfo[var_r4].affineHFlip_matrixNum = 0;
+        gEntityInfo[slot].affineEnable = 1;
+        gEntityInfo[slot].affineHFlip_matrixNum = 0;
 
-        switch (gEntityInfo[var_r4].id)
+        switch (gEntityInfo[slot].id)
         {
             case ENTITY_ID_NONE:
-                gEntityInfo[var_r4].affineEnable = 0;
-                gEntityInfo[var_r4].priority = 0;
+                gEntityInfo[slot].affineEnable = 0;
+                gEntityInfo[slot].priority = 0;
                 break;
 
             case 0x20:
-                gEntityInfo[var_r4].affineEnable = 0;
-                gEntityInfo[var_r4].priority = 0;
+                gEntityInfo[slot].affineEnable = 0;
+                gEntityInfo[slot].priority = 0;
                 break;
 
             case ENTITY_ID_MOO_BOARDER:
@@ -143,33 +144,33 @@ void sub_0803C808(void)
             case ENTITY_ID_BOOMIE:
             case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
             case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
-                gEntityInfo[var_r4].priority = 0;
+                gEntityInfo[slot].priority = 0;
                 break;
 
             case ENTITY_ID_RED_ARROW:
-                gEntityInfo[var_r4].priority = 2;
+                gEntityInfo[slot].priority = 2;
                 break;
 
             default:
-                gEntityInfo[var_r4].priority = 1;
+                gEntityInfo[slot].priority = 1;
                 break;
 
         }
 
-        if ((gEntityInfo[var_r4].id == 0) && (gEntityInfo[var_r4].unkF != 0x1C))
+        if ((gEntityInfo[slot].id == 0) && (gEntityInfo[slot].unkF != 0x1C))
         {
-            gEntityInfo[var_r4].visible = 1;
+            gEntityInfo[slot].visible = 1;
         }
     }
 
-    switch (gUnk_03004C20.world - 1)
+    switch (gUnk_03004C20.world)
     {
-        case 0:
+        case 1:
             gUnk_030034A8 = sub_0803D90C;
             gOamAffineMatrixNum = 5;
             break;
 
-        case 1:
+        case 2:
             gUnk_030034A8 = sub_0803E904;
             gOamAffineMatrixNum = 5;
 
@@ -194,13 +195,13 @@ void sub_0803C808(void)
             gEntityInfo[0x18].affineHFlip_matrixNum = 0;
             break;
 
-        case 2:
+        case 3:
             gUnk_030034A8 = sub_0803F9EC;
             gOamAffineMatrixNum = 0xF;
 
-            for (var_r4 = 0; var_r4 < gEntitySlotCount; var_r4++)
+            for (slot = 0; slot < gEntitySlotCount; slot++)
             {
-                gEntityInfo[var_r4].priority = 0;
+                gEntityInfo[slot].priority = 0;
             }
 
             // TODO: BGCNT_TXT or BGCNT_AFF size?
@@ -216,7 +217,7 @@ void sub_0803C808(void)
             sub_0803F68C(5, 0, 0);
             break;
 
-        case 3:
+        case 4:
             gOamAffineMatrixNum = 0xF;
             gUnk_030034A8 = sub_08040F1C;
 
@@ -235,12 +236,12 @@ void sub_0803C808(void)
             gUnk_03005440.unk1E = 0x200;
             break;
 
-        case 4:
+        case 5:
             gOamAffineMatrixNum = 0xF;
             gUnk_030034A8 = sub_08042024;
             break;
 
-        case 5:
+        case 6:
             gOamAffineMatrixNum = 0xF;
             gUnk_030034A8 = sub_08042E64;
             gEntityInfo[0x12].unk8.split.unk9 = 0x10;
@@ -256,20 +257,20 @@ void sub_0803C808(void)
             break;
     }
     
-    var_r4_4 = 0;
-    for (var_r3 = 0; var_r3 < (gCallbackQueue.currentCount - 1); var_r3++)
+    removed = FALSE;
+    for (i = 0; i < (gCallbackQueue.currentCount - 1); i++)
     {
-        if ((gCallbackQueue.current[var_r3] == sub_0803C808) || (var_r4_4 == 1))
+        if ((gCallbackQueue.current[i] == sub_0803C808) || (removed == TRUE))
         {
-            gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3 + 1];
-            var_r4_4 = 1;
+            gCallbackQueue.next[i] = gCallbackQueue.current[i + 1];
+            removed = TRUE;
         }
         else
         {
-            gCallbackQueue.next[var_r3] = gCallbackQueue.current[var_r3];
+            gCallbackQueue.next[i] = gCallbackQueue.current[i];
         }
     }
-    if (var_r4_4 == 1)
+    if (removed == TRUE)
     {
         gCallbackQueue.nextCount = gCallbackQueue.currentCount - 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
@@ -431,85 +432,85 @@ void sub_0803D140(u8 arg0)
 // 3D15C
 void sub_0803D15C(void)
 {
-    u8 sp0;
-    s16 temp_r4;
-    s16 temp_r7;
-    s16 temp_sb;
-    s16 temp_sl;
-    u8 var_r4;
+    u8 i;
+    s16 pd;
+    s16 pc;
+    s16 pb;
+    s16 pa;
+    u8 alpha;
 
-    temp_sl = MultiplyQ8(COS(0), ReciprocalQ8(gBg2XMag));
-    temp_sb = MultiplyQ8(SIN(0), ReciprocalQ8(gBg2XMag));
-    temp_r7 = MultiplyQ8(-SIN(0), ReciprocalQ8(gBg2YMag));
-    temp_r4 = MultiplyQ8(COS(0), ReciprocalQ8(gBg2YMag));
+    pa = MultiplyQ8(COS(0), ReciprocalQ8(gBg2XMag));
+    pb = MultiplyQ8(SIN(0), ReciprocalQ8(gBg2XMag));
+    pc = MultiplyQ8(-SIN(0), ReciprocalQ8(gBg2YMag));
+    pd = MultiplyQ8(COS(0), ReciprocalQ8(gBg2YMag));
 
-    gOamAffineBuffer[0].pa = temp_sl;
-    gOamAffineBuffer[0].pb = temp_sb;
-    gOamAffineBuffer[0].pc = temp_r7;
-    gOamAffineBuffer[0].pd = temp_r4;
+    gOamAffineBuffer[0].pa = pa;
+    gOamAffineBuffer[0].pb = pb;
+    gOamAffineBuffer[0].pc = pc;
+    gOamAffineBuffer[0].pd = pd;
 
-    gOamAffineBuffer[1].pa = -temp_sl;
-    gOamAffineBuffer[1].pb = temp_sb;
-    gOamAffineBuffer[1].pc = temp_r7;
-    gOamAffineBuffer[1].pd = temp_r4;
+    gOamAffineBuffer[1].pa = -pa;
+    gOamAffineBuffer[1].pb = pb;
+    gOamAffineBuffer[1].pc = pc;
+    gOamAffineBuffer[1].pd = pd;
 
-    gOamAffineBuffer[2].pa = temp_sl;
-    gOamAffineBuffer[2].pb = temp_sb;
-    gOamAffineBuffer[2].pc = temp_r7;
-    gOamAffineBuffer[2].pd = -temp_r4;
+    gOamAffineBuffer[2].pa = pa;
+    gOamAffineBuffer[2].pb = pb;
+    gOamAffineBuffer[2].pc = pc;
+    gOamAffineBuffer[2].pd = -pd;
 
-    temp_sl = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
-    temp_sb = MultiplyQ8(SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
-    temp_r7 = MultiplyQ8(-SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
-    temp_r4 = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
+    pa = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
+    pb = MultiplyQ8(SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2XMag + gUnk_03003590[0].unk0 + gUnk_030007CC));
+    pc = MultiplyQ8(-SIN(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
+    pd = MultiplyQ8(COS(gUnk_03003590[0].unk4), ReciprocalQ8(gBg2YMag + gUnk_03003590[0].unk2 + gUnk_030007CC));
 
     if (gUnk_03003590[0].unk5_0 == 0)
     {
-        gOamAffineBuffer[3].pa = temp_sl;
-        gOamAffineBuffer[3].pc = temp_r7;
+        gOamAffineBuffer[3].pa = pa;
+        gOamAffineBuffer[3].pc = pc;
     }
     else
     {
-        gOamAffineBuffer[3].pa = -temp_sl;
-        gOamAffineBuffer[3].pc = -temp_r7;
+        gOamAffineBuffer[3].pa = -pa;
+        gOamAffineBuffer[3].pc = -pc;
     }
-    gOamAffineBuffer[3].pb = temp_sb;
-    gOamAffineBuffer[3].pd = temp_r4;
+    gOamAffineBuffer[3].pb = pb;
+    gOamAffineBuffer[3].pd = pd;
 
-    for (sp0 = 1; sp0 < 0x10; sp0++)
+    for (i = 1; i < 0x10; i++)
     {
-        if (gUnk_03003590[sp0].unk5_0 == 0)
+        if (gUnk_03003590[i].unk5_0 == 0)
         {
-            var_r4 = gUnk_03003590[sp0].unk4;
+            alpha = gUnk_03003590[i].unk4;
         }
         else
         {
-            var_r4 = -gUnk_03003590[sp0].unk4;
+            alpha = -gUnk_03003590[i].unk4;
         }
 
-        temp_sl = MultiplyQ8(COS(var_r4), ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
-        temp_sb = MultiplyQ8(SIN(var_r4), ReciprocalQ8(gBg2XMag + gUnk_03003590[sp0].unk0));
-        temp_r7 = MultiplyQ8(-SIN(var_r4), ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
-        temp_r4 = MultiplyQ8(COS(var_r4), ReciprocalQ8(gBg2YMag + gUnk_03003590[sp0].unk2));
+        pa = MultiplyQ8(COS(alpha), ReciprocalQ8(gBg2XMag + gUnk_03003590[i].unk0));
+        pb = MultiplyQ8(SIN(alpha), ReciprocalQ8(gBg2XMag + gUnk_03003590[i].unk0));
+        pc = MultiplyQ8(-SIN(alpha), ReciprocalQ8(gBg2YMag + gUnk_03003590[i].unk2));
+        pd = MultiplyQ8(COS(alpha), ReciprocalQ8(gBg2YMag + gUnk_03003590[i].unk2));
 
-        if (gUnk_03003590[sp0].unk5_0 == 0)
+        if (gUnk_03003590[i].unk5_0 == 0)
         {
-            gOamAffineBuffer[sp0 + 3].pa = temp_sl;
+            gOamAffineBuffer[i + 3].pa = pa;
         }
         else
         {
-            gOamAffineBuffer[sp0 + 3].pa = -temp_sl;
+            gOamAffineBuffer[i + 3].pa = -pa;
         }
-        if ((gUnk_03003590[sp0].unk5_0 != 0) && (gUnk_03003590[sp0].unk4 != 0))
+        if ((gUnk_03003590[i].unk5_0 != 0) && (gUnk_03003590[i].unk4 != 0))
         {
-            gOamAffineBuffer[sp0 + 3].pc = -temp_r7;
+            gOamAffineBuffer[i + 3].pc = -pc;
         }
         else
         {
-            gOamAffineBuffer[sp0 + 3].pc = temp_r7;
+            gOamAffineBuffer[i + 3].pc = pc;
         }
-        gOamAffineBuffer[sp0 + 3].pb = temp_sb;
-        gOamAffineBuffer[sp0 + 3].pd = temp_r4;
+        gOamAffineBuffer[i + 3].pb = pb;
+        gOamAffineBuffer[i + 3].pd = pd;
     }
 }
 
@@ -650,28 +651,31 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
 }
 
 // 3D90C
-void sub_0803D90C(u8 arg0)
+void sub_0803D90C(u8 slot)
 {
+    // World 1 boss (Chipple)
     s32 var_r0_3;
     u8 var_r2;
     s32 var_r9;
     u8 temp_r3_4;
 
     do {} while(0); // Required to match
-    gEntityInfo[arg0].affineHFlip_matrixNum = 3;
-    gEntityInfo[arg0].affineDouble = 1;
+    gEntityInfo[slot].affineHFlip_matrixNum = 3;
+    gEntityInfo[slot].affineDouble = 1;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
     }
     gUnk_03003620 = gUnk_081168E8[gUnk_03005400.unk9];
-    sub_0803D4AC(arg0, gUnk_03003620);
+    sub_0803D4AC(slot, gUnk_03003620);
 
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
+        // Init
         switch (gUnk_03005400.unkA)
         {
+            // Setup
             case 0:
                 gBossStageScroll.unkC_0 = 5;
                 gBossStageScroll.unkC_4 = 1;
@@ -685,11 +689,12 @@ void sub_0803D90C(u8 arg0)
                 gEntityInfo[0].xPosBg2 = 0;
                 gEntityInfo[0].yPosBg2 = 0x12A;
                 SetEntityAnimationInfoState(0, 1);
-                SetEntityAnimationInfoState(arg0, 0);
+                SetEntityAnimationInfoState(slot, 0);
                 gUnk_03005400.unk8_0 = 0;
                 gUnk_03005400.unkA = 1;
                 break;
 
+            // Move Klonoa right
             case 1:
                 gEntityInfo[0].xPosBg2 += 2;
                 if (gEntityInfo[0].xPosBg2 > 0x77)
@@ -700,6 +705,7 @@ void sub_0803D90C(u8 arg0)
                 }
                 break;
 
+            // Make Klonoa Jump
             case 2:
                 gEntityInfo[0].xPosBg2 += 1;
                 if (gEntityInfo[0].yPosBg2 > 0xD1)
@@ -718,6 +724,7 @@ void sub_0803D90C(u8 arg0)
                 }
                 break;
 
+            // Make Klonoa fall
             case 3:
                 gEntityInfo[0].xPosBg2 += 1;
                 gEntityInfo[0].yPosBg2 += 1;
@@ -725,59 +732,62 @@ void sub_0803D90C(u8 arg0)
                 {
                     m4aSongNumStart(SE_KLONOA_LANDING);
                     m4aSongNumStart(0x64);
-                    SetEntityAnimationInfoState(arg0, 0xC);
+                    SetEntityAnimationInfoState(slot, 0xC);
                     gUnk_03005400.unkE_7 = 1;
                     gUnk_03005400.unkA = 4;
-                    gUnk_03005400.unk0 = 0xA0;
+                    gUnk_03005400.unk0 = 160; // 2.667 seconds 
                 }
                 break;
 
+            // Wait 2.667 seconds to set normal processing
             case 4:
                 if (gUnk_03005400.unk0 == 0)
                 {
                     gUnk_03005400.unk8_4 = 1;
                     gUnk_03005400.unkA = 0;
-                    gEntityInfo[arg0].unkF = 0;
+                    gEntityInfo[slot].unkF = 0;
                     gEntityInfo[0x13].unkF = 0x19;
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 26)
+    else if (gEntityInfo[slot].unkF == 26)
     {
-        gEntityInfo[arg0].unkF = 0;
+        // Exiting stage
+        gEntityInfo[slot].unkF = 0;
     }
-    else if (gEntityInfo[arg0].unkF == 0)
+    else if (gEntityInfo[slot].unkF == 0)
     {
+        // Normal
         switch (gUnk_03005400.unkA)
         {
             case 1:
                 if (gUnk_03005400.unk0 == 0)
                 {
                     gUnk_03005400.unk0 = 0x3C;
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += 0x10;
+                        gEntityInfo[slot].xPosBg2 += 0x10;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 0x10;
+                        gEntityInfo[slot].xPosBg2 -= 0x10;
                     }
 
-                    if (gEntityInfo[arg0].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0]))
+                    if (gEntityInfo[slot].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0]))
                     {
-                        gEntityInfo[arg0].xPosBg2 = 0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0];
+                        gEntityInfo[slot].xPosBg2 = 0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0];
                     }
-                    if (gEntityInfo[arg0].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40))
+                    if (gEntityInfo[slot].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40))
                     {
-                        gEntityInfo[arg0].xPosBg2 = gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40;
+                        gEntityInfo[slot].xPosBg2 = gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40;
                     }
                     gUnk_03005400.unk8_0 = 1;
                 }
 
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20, 0x20);
                     if (gUnk_03005400.unkC == 0)
                     {
                         sub_0801E664(gEntityInfo[0x13].xPosBg2, gEntityInfo[0x13].yPosBg2, 2, 0x13);
@@ -798,49 +808,49 @@ void sub_0803D90C(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20, 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20, 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20, 0x20);
                     }
                 }
                 break;
 
             case 14:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     if (gUnk_03005400.unk8_2)
                     {
                         gUnk_03005400.unkA = 9;
                     }
                 }
-                else if ((gEntityAnimationInfo[arg0 - gUnk_0300363C].timer > 0x10) || (gEntityAnimationInfo[arg0 - gUnk_0300363C].frame <= 2))
+                else if ((gEntityAnimationInfo[slot - gUnk_0300363C].timer > 0x10) || (gEntityAnimationInfo[slot - gUnk_0300363C].frame <= 2))
                 {
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                     }
 
-                    if (gEntityInfo[arg0].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0]))
+                    if (gEntityInfo[slot].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0]))
                     {
-                        gEntityInfo[arg0].xPosBg2 = 0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0];
+                        gEntityInfo[slot].xPosBg2 = 0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0];
                     }
-                    if (gEntityInfo[arg0].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40))
+                    if (gEntityInfo[slot].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40))
                     {
-                        gEntityInfo[arg0].xPosBg2 = gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40;
+                        gEntityInfo[slot].xPosBg2 = gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40;
                     }
                 }
                 break;
 
             case 10:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 1)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 1)
                 {
-                    SetEntityAnimationInfoState(arg0, 1);
+                    SetEntityAnimationInfoState(slot, 1);
                     gUnk_03005400.unk9 = 0;
                     sub_0803D140(0);
                     gUnk_03005400.unk0 = gUnk_081169F9[gUnk_03005400.unkC - 1][1];
@@ -854,20 +864,20 @@ void sub_0803D90C(u8 arg0)
                 break;
 
             case 11:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkA = gUnk_03005400.unkB;
                 }
                 break;
 
             case 9:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 4)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 4)
                 {
-                    SetEntityAnimationInfoState(arg0, 4);
+                    SetEntityAnimationInfoState(slot, 4);
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    if (((gEntityInfo[0].xPosBg2 < gEntityInfo[arg0].xPosBg2) && (gEntityInfo[arg0].unkC_2 == 0)) || ((gEntityInfo[0].xPosBg2 > gEntityInfo[arg0].xPosBg2) && (gEntityInfo[arg0].unkC_2 == 1)))
+                    if (((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 0)) || ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 1)))
                     {
                         gUnk_03005400.unkA = 2;
                     }
@@ -879,28 +889,28 @@ void sub_0803D90C(u8 arg0)
                 break;
 
             case 2:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0xE)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0xE)
                 {
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0xF)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0xF)
                     {
-                        SetEntityAnimationInfoState(arg0, 0xE);
+                        SetEntityAnimationInfoState(slot, 0xE);
                     }
-                    else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                    else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                     {
                         gUnk_03005400.unkA = 0;
                     }
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    gEntityInfo[arg0].unkC_2 ^= 1;
-                    SetEntityAnimationInfoState(arg0, 0xF);
+                    gEntityInfo[slot].unkC_2 ^= 1;
+                    SetEntityAnimationInfoState(slot, 0xF);
                 }
                 break;
 
             case 0:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0)
                 {
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                     gUnk_03005400.unk0 = 0x20;
                 }
                 if (gUnk_03005400.unk0 == 0)
@@ -910,9 +920,9 @@ void sub_0803D90C(u8 arg0)
                 break;
 
             case 13:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0xA)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0xA)
                 {
-                    SetEntityAnimationInfoState(arg0, 0xA);
+                    SetEntityAnimationInfoState(slot, 0xA);
                     gUnk_03005400.unk0 = gUnk_081169F9[gUnk_03005400.unkC - 1][0];
                 }
 
@@ -921,7 +931,7 @@ void sub_0803D90C(u8 arg0)
                     break;
                 }
 
-                var_r0_3 = Abs(gEntityInfo[arg0].xPosBg2 - gEntityInfo[0].xPosBg2);
+                var_r0_3 = Abs(gEntityInfo[slot].xPosBg2 - gEntityInfo[0].xPosBg2);
                 if (var_r0_3 < 0)
                 {
                     var_r0_3 += 7;
@@ -937,48 +947,48 @@ void sub_0803D90C(u8 arg0)
                 {
                     gUnk_03005400.unkA = 4;
                     gUnk_03005400.unk13 = temp_r3_4 * 4;
-                    gUnk_03005400.unk6 = gEntityInfo[arg0].yPosBg2;
+                    gUnk_03005400.unk6 = gEntityInfo[slot].yPosBg2;
 
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gUnk_03005400.unk4 = gEntityInfo[arg0].xPosBg2 + (temp_r3_4 * 4);
-                        gEntityInfo[arg0].unk8.split.unk8 = 0x80;
+                        gUnk_03005400.unk4 = gEntityInfo[slot].xPosBg2 + (temp_r3_4 * 4);
+                        gEntityInfo[slot].unk8.split.unk8 = 0x80;
                     }
                     else
                     {
-                        gUnk_03005400.unk4 = gEntityInfo[arg0].xPosBg2 - (temp_r3_4 * 4);
-                        gEntityInfo[arg0].unk8.split.unk8 = 0;
+                        gUnk_03005400.unk4 = gEntityInfo[slot].xPosBg2 - (temp_r3_4 * 4);
+                        gEntityInfo[slot].unk8.split.unk8 = 0;
                     }
                 }
                 break;
 
             case 3:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 6)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 6)
                 {
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 5)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 5)
                     {
-                        SetEntityAnimationInfoState(arg0, 6);
+                        SetEntityAnimationInfoState(slot, 6);
                         break;
                     }
 
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                         if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
                         {
-                            gEntityInfo[arg0].xPosBg2 += 1;
+                            gEntityInfo[slot].xPosBg2 += 1;
                         }
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                         if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
                         {
-                            gEntityInfo[arg0].xPosBg2 -= 1;
+                            gEntityInfo[slot].xPosBg2 -= 1;
                         }
                     }
 
-                    if ((gEntityInfo[arg0].xPosBg2 >= (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40)) && (gEntityInfo[arg0].xPosBg2 <= (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0])))
+                    if ((gEntityInfo[slot].xPosBg2 >= (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40)) && (gEntityInfo[slot].xPosBg2 <= (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0])))
                     {
                         break;
                     }
@@ -995,23 +1005,24 @@ void sub_0803D90C(u8 arg0)
                     break;
                 }
 
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    SetEntityAnimationInfoState(arg0, 5);
+                    SetEntityAnimationInfoState(slot, 5);
                 }
                 break;
 
             case 4:
-                switch (gEntityAnimationInfo[arg0 - gUnk_0300363C].state)
+                switch (gEntityAnimationInfo[slot - gUnk_0300363C].state)
                 {
                     default:
-                        SetEntityAnimationInfoState(arg0, 7);
+                        SetEntityAnimationInfoState(slot, 7);
                         gUnk_03005400.unk8_4 = 1;
                         break;
 
                     case 8:
-                        var_r9 = gEntityInfo[arg0].xPosBg2;
-                        if (((u32) (u8) (gEntityInfo[arg0].unk8.split.unk8 - 0x31) <= 0x2E) || ((u32) (u8) (gEntityInfo[arg0].unk8.split.unk8 + 0x4F) <= 0x2E))
+                        var_r9 = gEntityInfo[slot].xPosBg2;
+                        if (((gEntityInfo[slot].unk8.split.unk8 > 0x30) && (gEntityInfo[slot].unk8.split.unk8 < 0x60)) ||
+                            ((gEntityInfo[slot].unk8.split.unk8 > 0xB0) && (gEntityInfo[slot].unk8.split.unk8 < 0xE0)))
                         {
                             var_r2 = 1;
                         }
@@ -1019,28 +1030,28 @@ void sub_0803D90C(u8 arg0)
                         {
                             var_r2 = 2;
                         }
-                        if (gEntityInfo[arg0].unkC_2 == 0)
+                        if (gEntityInfo[slot].unkC_2 == 0)
                         {
-                            gEntityInfo[arg0].unk8.split.unk8 += var_r2;
+                            gEntityInfo[slot].unk8.split.unk8 += var_r2;
                         }
                         else
                         {
-                            gEntityInfo[arg0].unk8.split.unk8 -= var_r2;
+                            gEntityInfo[slot].unk8.split.unk8 -= var_r2;
                         }
 
-                        gEntityInfo[arg0].xPosBg2 = ((gUnk_03005400.unk13 * COS(gEntityInfo[arg0].unk8.split.unk8)) >> 8) + gUnk_03005400.unk4;
-                        gEntityInfo[arg0].yPosBg2 = ((SIN(gEntityInfo[arg0].unk8.split.unk8) * 5) >> 4) + gUnk_03005400.unk6;
-                        if ((gEntityInfo[arg0].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40)) || (gEntityInfo[arg0].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0])))
+                        gEntityInfo[slot].xPosBg2 = ((gUnk_03005400.unk13 * COS(gEntityInfo[slot].unk8.split.unk8)) >> 8) + gUnk_03005400.unk4;
+                        gEntityInfo[slot].yPosBg2 = ((SIN(gEntityInfo[slot].unk8.split.unk8) * 5) >> 4) + gUnk_03005400.unk6;
+                        if ((gEntityInfo[slot].xPosBg2 < (gUnk_08116888[gUnk_03004C20.world - 1][0] + 0x40)) || (gEntityInfo[slot].xPosBg2 > (0x190 - gUnk_08116888[gUnk_03004C20.world - 1][0])))
                         {
-                            gEntityInfo[arg0].xPosBg2 = var_r9;
+                            gEntityInfo[slot].xPosBg2 = var_r9;
                         }
 
-                        if ((gEntityInfo[arg0].unk8.split.unk8 != 0) && (gEntityInfo[arg0].unk8.split.unk8 != 0x80))
+                        if ((gEntityInfo[slot].unk8.split.unk8 != 0) && (gEntityInfo[slot].unk8.split.unk8 != 0x80))
                         {
                             return;
                         }
 
-                        SetEntityAnimationInfoState(arg0, 9);
+                        SetEntityAnimationInfoState(slot, 9);
                         m4aSongNumStart(0x43);
                         gUnk_03005400.unkE_1 = 1;
                         gUnk_03005400.unkD = 2;
@@ -1056,24 +1067,24 @@ void sub_0803D90C(u8 arg0)
                         break;
 
                     case 7:
-                        if ((gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 1) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].frame == 1))
+                        if ((gEntityAnimationInfo[slot - gUnk_0300363C].timer == 1) && (gEntityAnimationInfo[slot - gUnk_0300363C].frame == 1))
                         {
                             m4aSongNumStart(0x65);
                         }
-                        if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                        if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                         {
-                            SetEntityAnimationInfoState(arg0, 8);
+                            SetEntityAnimationInfoState(slot, 8);
                         }
                         break;
                 }
                 break;
 
             case 5:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 2)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 2)
                 {
-                    SetEntityAnimationInfoState(arg0, 2);
+                    SetEntityAnimationInfoState(slot, 2);
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkE_1 = 1;
                     gUnk_03005400.unkD = 3;
@@ -1085,8 +1096,8 @@ void sub_0803D90C(u8 arg0)
 
             case 6:
                 gUnk_03003590[0].unk4 += 8;
-                gEntityInfo[arg0].yPosBg2 -= 4;
-                if ((s16)gEntityInfo[arg0].yPosBg2 < 0x30)
+                gEntityInfo[slot].yPosBg2 -= 4;
+                if ((s16)gEntityInfo[slot].yPosBg2 < 0x30)
                 {
                     gUnk_03005400.unkA = 7;
                     gBossStageScroll.unkC_0 = 3;
@@ -1105,16 +1116,16 @@ void sub_0803D90C(u8 arg0)
 
                 if (gUnk_03005400.unk0 > 0xA)
                 {
-                    if ((gEntityInfo[0].xPosBg2 < gEntityInfo[arg0].xPosBg2) && (gEntityInfo[arg0].unkC_2 == 0))
+                    if ((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 0))
                     {
                         s32 tmp; // FAKE
-                        gEntityInfo[arg0].unkC_2 = 1;
+                        gEntityInfo[slot].unkC_2 = 1;
                         gUnk_03005400.unkF = tmp = -gUnk_03005400.unkF;
                     }
-                    else if ((gEntityInfo[0].xPosBg2 > gEntityInfo[arg0].xPosBg2) && (gEntityInfo[arg0].unkC_2 == 1))
+                    else if ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 1))
                     {
                         s32 tmp; // FAKE
-                        gEntityInfo[arg0].unkC_2 = 0;
+                        gEntityInfo[slot].unkC_2 = 0;
                         gUnk_03005400.unkF = tmp = -gUnk_03005400.unkF;
                     }
                 }
@@ -1164,10 +1175,10 @@ void sub_0803D90C(u8 arg0)
 
                     gEntityInfo[0x15].unkC_2 = 0;
                     gEntityInfo[0x16].unkC_2 = 1;
-                    gEntityInfo[0x15].xPosBg2 = gEntityInfo[arg0].xPosBg2 + 0x20;
-                    gEntityInfo[0x16].xPosBg2 = gEntityInfo[arg0].xPosBg2 - 0x20;
-                    gEntityInfo[0x15].yPosBg2 = gEntityInfo[arg0].yPosBg2 + 0xC;
-                    gEntityInfo[0x16].yPosBg2 = gEntityInfo[arg0].yPosBg2 + 0xC;
+                    gEntityInfo[0x15].xPosBg2 = gEntityInfo[slot].xPosBg2 + 0x20;
+                    gEntityInfo[0x16].xPosBg2 = gEntityInfo[slot].xPosBg2 - 0x20;
+                    gEntityInfo[0x15].yPosBg2 = gEntityInfo[slot].yPosBg2 + 0xC;
+                    gEntityInfo[0x16].yPosBg2 = gEntityInfo[slot].yPosBg2 + 0xC;
                     gEntityInfo[0x15].unkF = 0x19;
                     gEntityInfo[0x16].unkF = 0x19;
                 }
@@ -1178,7 +1189,7 @@ void sub_0803D90C(u8 arg0)
                         gUnk_03003590[0].unk4 = 0;
                         gUnk_03005400.unkA = 9;
                         gUnk_03005400.unk0 = 0x3C;
-                        SetEntityAnimationInfoState(arg0, 9);
+                        SetEntityAnimationInfoState(slot, 9);
                     }
                     else if (gUnk_03003590[0].unk4 == 0)
                     {
@@ -1195,21 +1206,22 @@ void sub_0803D90C(u8 arg0)
                 gEntityInfo[0x13].unkF = 0x1C;
                 gEntityInfo[0x14].unkF = 0x1C;
 
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0x10)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0x10)
                 {
-                    SetEntityAnimationInfoState(arg0, 0x10);
+                    SetEntityAnimationInfoState(slot, 0x10);
                 }
-                else if ((gUnk_03005220.unk31 != 0) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF))
+                else if ((gUnk_03005220.unk31 != 0) && (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF))
                 {
                     gUnk_03005400.unkE_4 = 1;
-                    gEntityInfo[arg0].unkF = 3;
+                    gEntityInfo[slot].unkF = 3;
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
-        sub_0803CF08(arg0);
+        // Boss is dead
+        sub_0803CF08(slot);
     }
 }
 
@@ -1305,8 +1317,9 @@ void sub_0803E8CC(void)
 }
 
 // 3E904
-void sub_0803E904(u8 arg0)
+void sub_0803E904(u8 slot)
 {
+    // World 2 boss (Muzika)
     u8 sp14;
     s32 var_r0_3;
     s32 var_r0_4;
@@ -1314,16 +1327,16 @@ void sub_0803E904(u8 arg0)
     do {} while(0); // Required to match
 
     sp14 = gUnk_03005400.unkC - 1;
-    gEntityInfo[arg0].affineHFlip_matrixNum = 3;
-    gEntityInfo[arg0].affineDouble = 1;
+    gEntityInfo[slot].affineHFlip_matrixNum = 3;
+    gEntityInfo[slot].affineDouble = 1;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2 ;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
     }
-    sub_0803D4AC(arg0, gUnk_03003620);
+    sub_0803D4AC(slot, gUnk_03003620);
 
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -1353,7 +1366,7 @@ void sub_0803E904(u8 arg0)
 
             case 1:
                 gUnk_03005400.unk13 += 4;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 5);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 5);
 
                 if (gUnk_03003590[0].unk0 < gUnk_081168E2[gUnk_03005400.unkC])
                 {
@@ -1372,28 +1385,28 @@ void sub_0803E904(u8 arg0)
                 gUnk_03005400.unk8_4 = 0;
                 gUnk_03005400.unk13 = 0;
                 gUnk_03005400.unk8_0 = 1;
-                gEntityInfo[arg0].unk8.split.unk8 = 0x80;
+                gEntityInfo[slot].unk8.split.unk8 = 0x80;
                 gUnk_03005400.unkA = 6;
-                gEntityInfo[arg0].unkF = 0;
+                gEntityInfo[slot].unkF = 0;
                 gEntityInfo[0x12].priority = 1;
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 0)
+    else if (gEntityInfo[slot].unkF == 0)
     {
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                if ((thunk_GetRandomValue() % 10) <= 4)
+                if ((thunk_GetRandomValue() % 10) < 5)
                 {
-                    gEntityInfo[arg0].unkC_2 = 0;
+                    gEntityInfo[slot].unkC_2 = 0;
                 }
                 else
                 {
-                    gEntityInfo[arg0].unkC_2 = 1;
+                    gEntityInfo[slot].unkC_2 = 1;
                 }
 
-                SetEntityAnimationInfoState(arg0, 0);
+                SetEntityAnimationInfoState(slot, 0);
                 gUnk_03005400.unkA = 2;
                 break;
 
@@ -1412,7 +1425,7 @@ void sub_0803E904(u8 arg0)
 
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
 
                     if (gEntityInfo[0x13].unkF != 0x1C)
                     {
@@ -1445,12 +1458,12 @@ void sub_0803E904(u8 arg0)
                         sub_0803E6D8(0x1C);
                         gUnk_03005400.unkA = 9;
                         gUnk_03005400.unk13 = 0;
-                        SetEntityAnimationInfoState(arg0, 6);
+                        SetEntityAnimationInfoState(slot, 6);
                     }
                     else
                     {
                         gUnk_03005400.unk14 = gUnk_08116A02[gUnk_03005400.unkC][4];
-                        gUnk_03005400.unk16 = gEntityInfo[arg0].unkC_2;
+                        gUnk_03005400.unk16 = gEntityInfo[slot].unkC_2;
                         gUnk_03005400.unkA = 4;
                         gUnk_03005400.unk8_0 = 0;
                     }
@@ -1459,68 +1472,60 @@ void sub_0803E904(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
 
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
                 break;
 
             case 2:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0)
                 {
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                 }
 
                 if ((gUnk_03004C20.sceneFrameCounter % 2) == 0)
                 {
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += gUnk_08116A02[gUnk_03005400.unkC][0];
+                        gEntityInfo[slot].xPosBg2 += gUnk_08116A02[gUnk_03005400.unkC][0];
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= gUnk_08116A02[gUnk_03005400.unkC][0];
+                        gEntityInfo[slot].xPosBg2 -= gUnk_08116A02[gUnk_03005400.unkC][0];
                     }
                 }
 
                 gUnk_03005400.unk13 += gUnk_08116A02[gUnk_03005400.unkC][1];
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 4);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 2) >> 4);
                 if ((gUnk_03005400.unk13 % 0x80) == 0)
                 {
                     m4aSongNumStart(0x66);
                 }
 
-                if (gEntityInfo[arg0].xPosBg2 <= 0x5F)
+                if (gEntityInfo[slot].xPosBg2 < 0x60)
                 {
-                    gEntityInfo[arg0].unkC_2 = 0;
+                    gEntityInfo[slot].unkC_2 = 0;
                     gUnk_03005400.unk14 += 1;
                 }
-                else if (gEntityInfo[arg0].xPosBg2 > 0x180)
+                else if (gEntityInfo[slot].xPosBg2 > 0x180)
                 {
-                    gEntityInfo[arg0].unkC_2 = 1;
+                    gEntityInfo[slot].unkC_2 = 1;
                     gUnk_03005400.unk14 += 1;
                 }
 
-                if (((u16) (gEntityInfo[arg0].xPosBg2 - 0xE7) <= 0x12) && (gEntityInfo[0x13].unkF == 0x1C) && (gEntityInfo[0x14].unkF == 0x1C) && (gEntityInfo[0x15].unkF == 0x1C) && (gEntityInfo[0x16].unkF == 0x1C))
+                if (((gEntityInfo[slot].xPosBg2 > 230) && (gEntityInfo[slot].xPosBg2 < 250)) && (gEntityInfo[0x13].unkF == 0x1C) && (gEntityInfo[0x14].unkF == 0x1C) && (gEntityInfo[0x15].unkF == 0x1C) && (gEntityInfo[0x16].unkF == 0x1C))
                 {
                     gUnk_03005400.unkA = 3;
                 }
-                else if (gUnk_03005400.unk14 != 3)
-                {
-
-                }
-                else if (sp14 == 2)
-                {
-
-                }
-                else
+                else if ((gUnk_03005400.unk14 == 3) && (sp14 != 2))
                 {
                     sub_0803E6D8(0x1C);
-                    gEntityInfo[arg0].unk8.split.unk8 = 0x50;
+                    gEntityInfo[slot].unk8.split.unk8 = 0x50;
                     gUnk_03005400.unk15 = 2;
                     gUnk_03005400.unkA = 0xA;
 
@@ -1536,46 +1541,46 @@ void sub_0803E904(u8 arg0)
                 {
                     struct Unk_0800BEF0_2 sp10;
                     struct Unk_0800BEF0 sp4;
-                    sp4.unk0 = gEntityInfo[arg0].xPosBg2;
-                    sp4.unk2 = gEntityInfo[arg0].yPosBg2;
-                    sp4.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
-                    sp4.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
+                    sp4.unk0 = gEntityInfo[slot].xPosBg2;
+                    sp4.unk2 = gEntityInfo[slot].yPosBg2;
+                    sp4.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk0;
+                    sp4.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2;
                     sp4.unk9 = 2;
                     sp4.unk8 = 2;
                     sp10 = sub_0800BEF0(sp4);
-                    gEntityInfo[arg0].xPosBg2 = sp10.unk0;
-                    gEntityInfo[arg0].yPosBg2 = sp10.unk2;
+                    gEntityInfo[slot].xPosBg2 = sp10.unk0;
+                    gEntityInfo[slot].yPosBg2 = sp10.unk2;
                 }
 
-                if ((gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0 >> 3) != (gEntityInfo[arg0].xPosBg2 >> 0x3))
+                if ((gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk0 >> 3) != (gEntityInfo[slot].xPosBg2 >> 0x3))
                 {
 
                 }
-                else if ((gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 >> 3) != (gEntityInfo[arg0].yPosBg2 >> 0x3))
+                else if ((gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 >> 3) != (gEntityInfo[slot].yPosBg2 >> 0x3))
                 {
 
                 }
                 else
                 {
                     gUnk_03005400.unk8_6 = 0;
-                    SetEntityAnimationInfoState(arg0, 2);
-                    gEntityInfo[arg0].unk8.split.unk8 = 0x78;
+                    SetEntityAnimationInfoState(slot, 2);
+                    gEntityInfo[slot].unk8.split.unk8 = 0x78;
                     gUnk_03005400.unkA = 6;
                 }
                 break;
 
             case 10:
                 gUnk_03005400.unk13 += 2;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 5) >> 7);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + ((COS(gUnk_03005400.unk13) * 5) >> 7);
 
-                if (gEntityInfo[arg0].unk8.split.unk8 == 0x32)
+                if (gEntityInfo[slot].unk8.split.unk8 == 0x32)
                 {
                     sub_0803E8CC();
                     sub_0803E6D8(0);
                 }
 
-                gEntityInfo[arg0].unk8.split.unk8 -= 1;
-                if (gEntityInfo[arg0].unk8.split.unk8 == 0xFF)
+                gEntityInfo[slot].unk8.split.unk8 -= 1;
+                if (gEntityInfo[slot].unk8.split.unk8 == 0xFF)
                 {
                     gUnk_03005400.unk14 = 0;
                     gUnk_03005400.unkA = gUnk_03005400.unk15;
@@ -1614,12 +1619,12 @@ void sub_0803E904(u8 arg0)
                     m4aSongNumStart(0x69);
                 }
 
-                gEntityInfo[arg0].unk8.split.unk8 -= 1;
-                if (gEntityInfo[arg0].unk8.split.unk8 == 0)
+                gEntityInfo[slot].unk8.split.unk8 -= 1;
+                if (gEntityInfo[slot].unk8.split.unk8 == 0)
                 {
                     sub_0803E6D8(0x1C);
-                    SetEntityAnimationInfoState(arg0, 5);
-                    gEntityInfo[arg0].unk8.split.unk8 = 0xB4;
+                    SetEntityAnimationInfoState(slot, 5);
+                    gEntityInfo[slot].unk8.split.unk8 = 0xB4;
                     gUnk_03005400.unkA = 7;
                     m4aSongNumStart(0x69);
                     gEntityInfo[0x16].unkF = 3;
@@ -1645,33 +1650,33 @@ void sub_0803E904(u8 arg0)
                     gUnk_03003590[0].unk2 -= 9;
                 }
 
-                gEntityInfo[arg0].unk8.split.unk8 -= 1;
-                if (gEntityInfo[arg0].unk8.split.unk8 == 0)
+                gEntityInfo[slot].unk8.split.unk8 -= 1;
+                if (gEntityInfo[slot].unk8.split.unk8 == 0)
                 {
                     gUnk_030007CC = gUnk_081168E2[gUnk_03005400.unkC];
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03003590[0].unk0 = 0;
 
-                    gEntityInfo[0x16].xPosBg2 = gEntityInfo[arg0].xPosBg2;
-                    gEntityInfo[0x15].xPosBg2 = gEntityInfo[arg0].xPosBg2;
-                    gEntityInfo[0x15].yPosBg2 = gEntityInfo[0x16].yPosBg2 = gEntityInfo[arg0].yPosBg2 - 0x3C;
+                    gEntityInfo[0x16].xPosBg2 = gEntityInfo[slot].xPosBg2;
+                    gEntityInfo[0x15].xPosBg2 = gEntityInfo[slot].xPosBg2;
+                    gEntityInfo[0x15].yPosBg2 = gEntityInfo[0x16].yPosBg2 = gEntityInfo[slot].yPosBg2 - 0x3C;
                     gEntityInfo[0x16].unkF = 0x19;
                     gEntityInfo[0x15].unkF = 0x19;
 
-                    SetEntityAnimationInfoState(arg0, 6);
+                    SetEntityAnimationInfoState(slot, 6);
                     m4aSongNumStart(0x6A);
                     gUnk_03005400.unkA = 8;
                 }
                 break;
 
             case 8:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gBossStageScroll.targetAlpha = 0x40;
                     sub_0803E6D8(0x1C);
                     SetEntityAnimationInfoState(0x12, 2);
                     gUnk_03005400.unk15 = 0;
-                    gEntityInfo[arg0].unk8.split.unk8 = 0x50;
+                    gEntityInfo[slot].unk8.split.unk8 = 0x50;
                     gUnk_03005400.unkA = 0xA;
                     gUnk_03005400.unk8_0 = 0;
                     gUnk_03005400.unk8_6 = 0;
@@ -1679,38 +1684,38 @@ void sub_0803E904(u8 arg0)
                 break;
 
             case 4:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkA = 5;
-                    SetEntityAnimationInfoState(arg0, 4);
+                    SetEntityAnimationInfoState(slot, 4);
                     gEntityInfo[0x12].unkC_2 ^= 1;
                     m4aSongNumStart(0x67);
                 }
                 goto block_124;
 
             case 5:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03005400.unkA = 4;
-                    SetEntityAnimationInfoState(arg0, 3);
+                    SetEntityAnimationInfoState(slot, 3);
                     gEntityInfo[0x12].unkC_2 ^= 1;
                     m4aSongNumStart(0x67);
                 }
                 goto block_124;
 
             case 9:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03003590[0].unk4 += 4;
                     if (gUnk_03003590[0].unk0 <= -0xF0)
                     {
                         if (gUnk_03005220.unk31 != 0)
                         {
-                            gEntityInfo[arg0].visible = 0;
-                            gEntityInfo[arg0].yPosBg2 = 0;
-                            gEntityInfo[arg0].xPosBg2 = 0;
+                            gEntityInfo[slot].visible = 0;
+                            gEntityInfo[slot].yPosBg2 = 0;
+                            gEntityInfo[slot].xPosBg2 = 0;
                             gUnk_03005400.unkE_4 = 1;
-                            gEntityInfo[arg0].unkF = 3;
+                            gEntityInfo[slot].unkF = 3;
                         }
                         else
                         {
@@ -1808,14 +1813,14 @@ block_124:
                     gUnk_03005400.unk13 = 0;
                     gUnk_030034DC = 0;
                     gUnk_03005400.unkA = 3;
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
-        sub_0803CF08(arg0);
+        sub_0803CF08(slot);
     }
     if (gUnk_03005220.hearts == 0)
     {
@@ -1961,16 +1966,17 @@ void sub_0803F950(u8 arg0)
 }
 
 // 3F9EC
-void sub_0803F9EC(u8 arg0)
+void sub_0803F9EC(u8 slot)
 {
+    // World 3 boss (Chirin)
     s32 var_r1;
     u8 var_r2;
     u8 var_r3;
     u8 var_r4;
     u8 var_r5;
 
-    gEntityInfo[arg0].affineHFlip_matrixNum = 3;
-    gEntityInfo[arg0].affineDouble = 1;
+    gEntityInfo[slot].affineHFlip_matrixNum = 3;
+    gEntityInfo[slot].affineDouble = 1;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
     if (gUnk_03005400.unk0 != 0)
     {
@@ -1982,7 +1988,7 @@ void sub_0803F9EC(u8 arg0)
         gUnk_03005220.hearts = 1;
         ReceiveDamage(1);
     }
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
         if (gUnk_03005400.unkA == 0)
         {
@@ -1996,14 +2002,14 @@ void sub_0803F9EC(u8 arg0)
             gBossStageScroll.currAlpha = 0x60;
             gUnk_03005400.unk9 = 0;
             gUnk_03005400.unk8_4 = 1;
-            gEntityInfo[arg0].unkF = 0;
+            gEntityInfo[slot].unkF = 0;
             gUnk_03005400.unkE_7 = 1;
             gUnk_03005400.unk14 = 0xFF;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 0 || gEntityInfo[arg0].unkF == 26)
+    else if (gEntityInfo[slot].unkF == 0 || gEntityInfo[slot].unkF == 26)
     {
-        sub_0803D4AC(arg0, gUnk_03003620);
+        sub_0803D4AC(slot, gUnk_03003620);
         switch (gUnk_03005400.unkA)
         {
             case 0:
@@ -2042,9 +2048,9 @@ void sub_0803F9EC(u8 arg0)
                 gUnk_03005400.unk8_6 = 0;
                 gUnk_03005400.unk8_0 = 0;
                 gUnk_03005400.unk8_4 = 0;
-                gEntityInfo[arg0].priority = 1;
-                gEntityInfo[arg0].unkF = 0;
-                SetEntityAnimationInfoState(arg0, 0);
+                gEntityInfo[slot].priority = 1;
+                gEntityInfo[slot].unkF = 0;
+                SetEntityAnimationInfoState(slot, 0);
                 gUnk_03005400.unk0 = gUnk_08116A46[gUnk_03005400.unkC][0] * 0x3C;
                 gUnk_03005400.unkA = 4;
                 break;
@@ -2086,35 +2092,35 @@ void sub_0803F9EC(u8 arg0)
                     }
                     if ((gUnk_03005400.unk14 >> gUnk_03005400.unk13) & 1)
                     {
-                        if (gEntityInfo[arg0].yPosBg2 == 0x164)
+                        if (gEntityInfo[slot].yPosBg2 == 0x164)
                         {
                             m4aSongNumStart(0x6B);
                             sub_0803F68C(gUnk_03005400.unk13, 1, 1);
                             gUnk_03005400.unkE_1 = 1;
                             gUnk_03005400.unkD = 2;
                         }
-                        if (gEntityInfo[arg0].yPosBg2 == 0x154)
+                        if (gEntityInfo[slot].yPosBg2 == 0x154)
                         {
                             m4aSongNumStart(0x6B);
                             sub_0803F68C(gUnk_03005400.unk13, 2, 1);
                             gUnk_03005400.unkE_1 = 1;
                             gUnk_03005400.unkD = 2;
                         }
-                        if (gEntityInfo[arg0].yPosBg2 == 0x144)
+                        if (gEntityInfo[slot].yPosBg2 == 0x144)
                         {
                             m4aSongNumStart(0x6B);
                             sub_0803F68C(gUnk_03005400.unk13, 3, 1);
                             gUnk_03005400.unkE_1 = 1;
                             gUnk_03005400.unkD = 4;
                         }
-                        if (gEntityInfo[arg0].yPosBg2 == 0x134)
+                        if (gEntityInfo[slot].yPosBg2 == 0x134)
                         {
                             m4aSongNumStart(0x6B);
                             sub_0803F68C(gUnk_03005400.unk13, 4, 1);
                             gUnk_03005400.unkE_1 = 1;
                             gUnk_03005400.unkD = 4;
                         }
-                        if (gEntityInfo[arg0].yPosBg2 == 0x118)
+                        if (gEntityInfo[slot].yPosBg2 == 0x118)
                         {
                             m4aSongNumStart(0x6B);
                             sub_0803F68C(gUnk_03005400.unk13, 5, 1);
@@ -2130,7 +2136,7 @@ void sub_0803F9EC(u8 arg0)
                     gUnk_03005400.unk15 += 1;
                     gUnk_03005400.unkA = 5;
                     gUnk_03005400.unk0 = 0x50;
-                    gEntityInfo[arg0].priority = 0;
+                    gEntityInfo[slot].priority = 0;
                 }
                 break;
 
@@ -2144,12 +2150,12 @@ void sub_0803F9EC(u8 arg0)
 
                     if ((s16) gEntityInfo[0x12].yPosBg2 <= 0x10)
                     {
-                        SetEntityAnimationInfoState(arg0, 6);
+                        SetEntityAnimationInfoState(slot, 6);
                         gUnk_03005400.unk8_6 = 1;
                         gUnk_03005400.unk8_4 = 0;
                         if ((s8) gUnk_03005400.unk15 == 3)
                         {
-                            gEntityInfo[arg0].priority = 2;
+                            gEntityInfo[slot].priority = 2;
                             gUnk_03005400.unk8_0 = 1;
                             gUnk_03005400.unkA = 0xB;
                         }
@@ -2171,8 +2177,8 @@ void sub_0803F9EC(u8 arg0)
                 {
                     if ((gUnk_03005400.unkC == 1) && ((thunk_GetRandomValue() % 100) > 0x46))
                     {
-                        gEntityInfo[arg0].xPosBg2 = gEntityInfo[0].xPosBg2;
-                        gEntityInfo[arg0].priority = 0;
+                        gEntityInfo[slot].xPosBg2 = gEntityInfo[0].xPosBg2;
+                        gEntityInfo[slot].priority = 0;
                         gUnk_03005400.unk8_0 = 0;
                         m4aSongNumStart(0x42);
                         gUnk_03005400.unkA = 0xD;
@@ -2193,13 +2199,13 @@ void sub_0803F9EC(u8 arg0)
                 break;
 
             case 7:
-                if (gEntityInfo[arg0].yPosBg2 <= 0x190)
+                if (gEntityInfo[slot].yPosBg2 <= 0x190)
                 {
-                    gEntityInfo[arg0].yPosBg2 += 8;
+                    gEntityInfo[slot].yPosBg2 += 8;
                 }
                 else
                 {
-                    gEntityInfo[arg0].priority = 0;
+                    gEntityInfo[slot].priority = 0;
                     gUnk_03005400.unkA = 0;
                 }
                 break;
@@ -2207,11 +2213,11 @@ void sub_0803F9EC(u8 arg0)
             case 1:
                 gUnk_03005400.unk8_0 = 1;
                 gUnk_03005400.unk8_6 = 1;
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     sub_0803F950(0x1C);
                     gUnk_03005400.unkA = 2;
-                    SetEntityAnimationInfoState(arg0, 2);
+                    SetEntityAnimationInfoState(slot, 2);
                     gUnk_03005400.unk0 = 0x3C;
                 }
                 break;
@@ -2221,17 +2227,17 @@ void sub_0803F9EC(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0xFFFF, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078768, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
-                    SetEntityAnimationInfoState(arg0, 3);
+                    DmaCopy16Wait(3, &gUnk_08078768, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    SetEntityAnimationInfoState(slot, 3);
                     if (gUnk_03005400.unkC == 0)
                     {
                         gUnk_03005400.unkA = 9;
@@ -2244,34 +2250,34 @@ void sub_0803F9EC(u8 arg0)
                 break;
 
             case 3:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     gUnk_03003590[0].unk4 += 4;
-                    if (gEntityInfo[arg0].yPosBg2 <= 0x190)
+                    if (gEntityInfo[slot].yPosBg2 <= 0x190)
                     {
-                        gEntityInfo[arg0].yPosBg2 += 2;
+                        gEntityInfo[slot].yPosBg2 += 2;
                         return;
                     }
                     for (var_r2 = 0; var_r2 < (0xA - ((gUnk_03005400.unkC - 1) * 2)); var_r2++)
                     {
                         gEntityInfo[var_r2 + 0x16].unkF = 0x18;
                     }
-                    gEntityInfo[arg0].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
-                    gEntityInfo[arg0].yPosBg2 = 0xF0;
-                    gEntityInfo[arg0].priority = 2;
+                    gEntityInfo[slot].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
+                    gEntityInfo[slot].yPosBg2 = 0xF0;
+                    gEntityInfo[slot].priority = 2;
                     gUnk_03003590[0].unk4 = 0xC0;
                     gUnk_03003590[0].unk2 = 0xFF60;
                     gUnk_03003590[0].unk0 = 0xFF60;
                     gUnk_03005400.unk4 = 1;
                     gUnk_03005400.unkA = 8;
-                    gEntityInfo[arg0].unkF = 0x1A;
-                    DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
-                    SetEntityAnimationInfoState(arg0, 6);
+                    gEntityInfo[slot].unkF = 0x1A;
+                    DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    SetEntityAnimationInfoState(slot, 6);
                 }
                 break;
 
             case 8:
-                gEntityInfo[arg0].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
+                gEntityInfo[slot].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
                 if (gUnk_03005220.hearts == 0)
                 {
                     return;
@@ -2371,23 +2377,23 @@ void sub_0803F9EC(u8 arg0)
                     break;
                 }
 
-                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                 gUnk_03005400.unk15 = 0;
                 gUnk_03005400.unk16 = 0;
                 if (gUnk_03005400.unk4 != 0)
                 {
-                    gEntityInfo[arg0].unkF = 0;
-                    gEntityInfo[arg0].visible = 1;
+                    gEntityInfo[slot].unkF = 0;
+                    gEntityInfo[slot].visible = 1;
                     if (gUnk_03005400.unk4 != 0)
                     {
-                        if (gEntityInfo[arg0].yPosBg2 > 0x2A)
+                        if (gEntityInfo[slot].yPosBg2 > 0x2A)
                         {
-                            gEntityInfo[arg0].yPosBg2 -= 2;
+                            gEntityInfo[slot].yPosBg2 -= 2;
                             break;
                         }
                     }
-                    gEntityInfo[arg0].xPosBg2 = gEntityInfo[0].xPosBg2;
-                    gEntityInfo[arg0].priority = 0;
+                    gEntityInfo[slot].xPosBg2 = gEntityInfo[0].xPosBg2;
+                    gEntityInfo[slot].priority = 0;
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03003590[0].unk0 = 0;
                     gUnk_03003590[0].unk4 = 0x40;
@@ -2408,12 +2414,12 @@ void sub_0803F9EC(u8 arg0)
                 {
                     gEntityInfo[0x12].yPosBg2 -= 4;
                 }
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                 {
                     return;
                 }
 
-                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                DmaCopy16Wait(3, &gUnk_08078728, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                 for (var_r4 = 0; var_r4 < 6; var_r4++)
                 {
                     sub_0803F68C(var_r4, 0, 0);
@@ -2442,40 +2448,40 @@ void sub_0803F9EC(u8 arg0)
                 break;
 
             case 10:
-                if ((gEntityInfo[arg0].yPosBg2 <= 0xB3) && (gUnk_03004C20.sceneFrameCounter & (arg0 - 0x23)))
+                if ((gEntityInfo[slot].yPosBg2 <= 0xB3) && (gUnk_03004C20.sceneFrameCounter & (slot - 0x23)))
                 {
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                     }
-                    if (gEntityInfo[arg0].xPosBg2 < 0x50)
+                    if (gEntityInfo[slot].xPosBg2 < 0x50)
                     {
-                        gEntityInfo[arg0].xPosBg2 = 0x50;
+                        gEntityInfo[slot].xPosBg2 = 0x50;
                     }
-                    if (gEntityInfo[arg0].xPosBg2 > 0x190)
+                    if (gEntityInfo[slot].xPosBg2 > 0x190)
                     {
-                        gEntityInfo[arg0].xPosBg2 = 0x190;
+                        gEntityInfo[slot].xPosBg2 = 0x190;
                     }
                 }
-                if (gEntityInfo[arg0].unk8.split.unk8 != 0)
+                if (gEntityInfo[slot].unk8.split.unk8 != 0)
                 {
-                    gEntityInfo[arg0].unk8.split.unk8 -= 1;
+                    gEntityInfo[slot].unk8.split.unk8 -= 1;
                 }
-                if (gEntityInfo[arg0].unk8.split.unk8 > 0x50)
+                if (gEntityInfo[slot].unk8.split.unk8 > 0x50)
                 {
-                    gEntityInfo[arg0].yPosBg2 -= 1;
+                    gEntityInfo[slot].yPosBg2 -= 1;
                 }
-                else if (gEntityInfo[arg0].unk8.split.unk8 <= 0x3C)
+                else if (gEntityInfo[slot].unk8.split.unk8 <= 0x3C)
                 {
-                    if (gEntityInfo[arg0].unk8.split.unk8 <= 0x28)
+                    if (gEntityInfo[slot].unk8.split.unk8 <= 0x28)
                     {
-                        if (gEntityInfo[arg0].yPosBg2 <= 0xD7)
+                        if (gEntityInfo[slot].yPosBg2 <= 0xD7)
                         {
-                            gEntityInfo[arg0].yPosBg2 += 1;
+                            gEntityInfo[slot].yPosBg2 += 1;
                         }
                     }
                 }
@@ -2491,7 +2497,7 @@ void sub_0803F9EC(u8 arg0)
                 {
                     break;
                 }
-                if (arg0 != 0x24)
+                if (slot != 0x24)
                 {
                     break;
                 }
@@ -2504,15 +2510,15 @@ void sub_0803F9EC(u8 arg0)
                 break;
 
             case 11:
-                gEntityInfo[arg0].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
+                gEntityInfo[slot].xPosBg2 = 0xF0 - ((8 - gBgInfo[1].hOfs) * 4);
                 if (gUnk_03003590[0].unk0 > -0xA0)
                 {
                     gUnk_03003590[0].unk0 -= 2;
                     gUnk_03003590[0].unk2 -= 2;
                 }
-                if (gEntityInfo[arg0].yPosBg2 < 0xE0)
+                if (gEntityInfo[slot].yPosBg2 < 0xE0)
                 {
-                    gEntityInfo[arg0].yPosBg2 += 2;
+                    gEntityInfo[slot].yPosBg2 += 2;
                 }
                 else
                 {
@@ -2526,23 +2532,23 @@ void sub_0803F9EC(u8 arg0)
                     gEntityInfo[var_r2 + 0x16].unkF = 0x18;
                 }
                 gUnk_03005400.unkA = 8;
-                gEntityInfo[arg0].unkF = 0x1A;
+                gEntityInfo[slot].unkF = 0x1A;
                 break;
 
             case 13:
                 if (gUnk_03005400.unk6 == 0)
                 {
-                    gEntityInfo[arg0].yPosBg2 += 4;
-                    if (gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]); // FAKE
-                    if ((gUnk_03004654->unk1B <= gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[arg0].xPosBg2 >> 3) + (((gEntityInfo[arg0].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]) && (gEntityInfo[arg0].yPosBg2 > 0x64))
+                    gEntityInfo[slot].yPosBg2 += 4;
+                    if (gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[slot].xPosBg2 >> 3) + (((gEntityInfo[slot].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]); // FAKE
+                    if ((gUnk_03004654->unk1B <= gBgDataPtrs.pBufBg2Tilemap[(gEntityInfo[slot].xPosBg2 >> 3) + (((gEntityInfo[slot].yPosBg2 - 8) >> 3) * gBgInfo[2].hLength)]) && (gEntityInfo[slot].yPosBg2 > 0x64))
                     {
-                        if (gEntityInfo[arg0].xPosBg2 < gEntityInfo[0].xPosBg2)
+                        if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                         {
-                            gEntityInfo[arg0].unkC_2 = 1;
+                            gEntityInfo[slot].unkC_2 = 1;
                         }
                         else
                         {
-                            gEntityInfo[arg0].unkC_2 = 0;
+                            gEntityInfo[slot].unkC_2 = 0;
                         }
                         gUnk_03005400.unk6 = 1;
                         m4aSongNumStart(0x7F);
@@ -2561,15 +2567,15 @@ void sub_0803F9EC(u8 arg0)
                         gUnk_03005400.unk6 = 2;
                     }
                     gUnk_03003590[0].unk4 += 4;
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                     }
-                    gEntityInfo[arg0].yPosBg2 -= 1;
+                    gEntityInfo[slot].yPosBg2 -= 1;
                 }
                 if (gUnk_03005400.unk6 == 2)
                 {
@@ -2579,29 +2585,29 @@ void sub_0803F9EC(u8 arg0)
                         gUnk_03003590[0].unk2 += 4;
                     }
                     gUnk_03003590[0].unk4 += 4;
-                    if (gEntityInfo[arg0].unkC_2 == 0)
+                    if (gEntityInfo[slot].unkC_2 == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                     }
-                    gEntityInfo[arg0].yPosBg2 += 2;
-                    if (gEntityInfo[arg0].yPosBg2 > 0x17B)
+                    gEntityInfo[slot].yPosBg2 += 2;
+                    if (gEntityInfo[slot].yPosBg2 > 0x17B)
                     {
                         gUnk_03005400.unk6 = 0;
                         gUnk_03005400.unk8_0 = 0;
-                        gEntityInfo[arg0].priority = 1;
+                        gEntityInfo[slot].priority = 1;
                         gUnk_03005400.unkA = 0;
                     }
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
-        sub_0803CF08(arg0);
+        sub_0803CF08(slot);
     }
 }
 
@@ -2736,16 +2742,17 @@ void sub_08040D68(void)
 }
 
 // 40F1C
-void sub_08040F1C(u8 arg0)
+void sub_08040F1C(u8 slot)
 {
+    // World 4 boss (Dr. Medim)
     s8 temp_r1_4;
     s8 temp_r2_4;
     u32 var_r1_4;
     u8 var_r4_2;
 
-    sub_0803D4AC(arg0, gUnk_03003620);
-    gEntityInfo[arg0].affineHFlip_matrixNum = 3;
-    gEntityInfo[arg0].affineDouble = 1;
+    sub_0803D4AC(slot, gUnk_03003620);
+    gEntityInfo[slot].affineHFlip_matrixNum = 3;
+    gEntityInfo[slot].affineDouble = 1;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
     if (gUnk_03005400.unk0 != 0)
     {
@@ -2771,7 +2778,7 @@ void sub_08040F1C(u8 arg0)
         gEntityInfo[0x14].unkF = 0x1C;
     }
 
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -2780,9 +2787,9 @@ void sub_08040F1C(u8 arg0)
                 gUnk_03005400.unk9 = 0;
                 gUnk_03003590[0].unk0 = -0xD0;
                 gUnk_03003590[0].unk2 = -0xD0;
-                gEntityInfo[arg0].yPosBg2 = 0;
-                gEntityInfo[arg0].priority = 2;
-                SetEntityAnimationInfoState(arg0, 8);
+                gEntityInfo[slot].yPosBg2 = 0;
+                gEntityInfo[slot].priority = 2;
+                SetEntityAnimationInfoState(slot, 8);
                 sub_08040B50(0);
                 gEntityInfo[0x12].unk8.split.unk8 = 0;
 
@@ -2838,7 +2845,7 @@ void sub_08040F1C(u8 arg0)
                 gUnk_03003590[0].unk0 -= 8;
                 if (-(gUnk_03003590[0].unk0) >= ((gBg2XMag + gUnk_081168DC[gUnk_03004C20.world - 1]) - 0x20))
                 {
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                     SetEntityAnimationInfoState(0x17, 0);
                     gUnk_03005400.unkA = 4;
                     gUnk_03005400.unk16 = 4;
@@ -2846,12 +2853,12 @@ void sub_08040F1C(u8 arg0)
                 break;
 
             case 0x4:
-                if (gEntityInfo[arg0].yPosBg2 > 0xA0)
+                if (gEntityInfo[slot].yPosBg2 > 0xA0)
                 {
-                    gEntityInfo[arg0].yPosBg2 -= 1;
+                    gEntityInfo[slot].yPosBg2 -= 1;
                 }
 
-                if (((gUnk_03003590[0].unk0 >= 0) || ((gUnk_03003590[0].unk0 += 8) >= 0)) && (gEntityInfo[arg0].yPosBg2 <= 0xB0))
+                if (((gUnk_03003590[0].unk0 >= 0) || ((gUnk_03003590[0].unk0 += 8) >= 0)) && (gEntityInfo[slot].yPosBg2 <= 0xB0))
                 {
                     gUnk_03005400.unkA = 0xFF;
                     gUnk_03005400.unk0 = 0x40;
@@ -2863,14 +2870,14 @@ void sub_08040F1C(u8 arg0)
                 if (gUnk_03005400.unk0 == 0)
                 {
                     gUnk_03005400.unk8_0 = 0;
-                    gEntityInfo[arg0].unkF = 0;
+                    gEntityInfo[slot].unkF = 0;
                     gUnk_03005400.unkB = 4;
                     gUnk_03005400.unkA = 6;
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 0)
+    else if (gEntityInfo[slot].unkF == 0)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -2893,7 +2900,7 @@ void sub_08040F1C(u8 arg0)
                     gUnk_03005400.unk0 = gUnk_08116A4E[0][3];
                 }
 
-                if (gEntityInfo[arg0].xPosBg2 == 0xF0)
+                if (gEntityInfo[slot].xPosBg2 == 0xF0)
                 {
                     gUnk_03005400.unk8_6 = 1;
                     gUnk_03005400.unk0 = 0;
@@ -2911,7 +2918,7 @@ void sub_08040F1C(u8 arg0)
                 gUnk_03003590[0].unk0 += 2;
                 gUnk_03003590[0].unk2 -= 2;
 
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
                     sub_08040B50(0x1C);
                     if (gUnk_03005400.unkC == 0)
@@ -2939,12 +2946,12 @@ void sub_08040F1C(u8 arg0)
                 break;
 
             case 5:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 0)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0)
                 {
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                 }
 
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
                 if ((gEntityInfo[0x15].unkF == 0x1C) && (gEntityInfo[0x16].unkF == 0x1C) && (gEntityInfo[0x13].unkF == 0x1C) && (gEntityInfo[0x14].unkF == 0x1C))
                 {
                     gUnk_03005400.unkA = 6;
@@ -2952,23 +2959,29 @@ void sub_08040F1C(u8 arg0)
                 }
                 else
                 {
-                    if (((gEntityInfo[arg0].xPosBg2 - 0x18) < gEntityInfo[0].xPosBg2) && ((gEntityInfo[arg0].xPosBg2 + 0x18) > gEntityInfo[0].xPosBg2))
+                    s32 flag;
+                    if (((gEntityInfo[slot].xPosBg2 - 0x18) < gEntityInfo[0].xPosBg2) && ((gEntityInfo[slot].xPosBg2 + 0x18) > gEntityInfo[0].xPosBg2))
                     {
                         if (gUnk_03005400.unk13 == 1)
                         {
-                            SetEntityAnimationInfoState(arg0, 3);
+                            SetEntityAnimationInfoState(slot, 3);
                             gUnk_03005400.unkA = 0xC;
                             gUnk_03005400.unk13 = 0;
+                            flag = 0;
                         }
                         else
                         {
-                            goto block_89;
+                            flag = 1;
                         }
                     }
                     else
                     {
                         gUnk_03005400.unk13 = 1;
-block_89:
+                        flag = 1;
+                    }
+
+                    if (flag)
+                    {
                         if (gUnk_03005400.unk0 == 0)
                         {
                             if ((gUnk_03005400.unkC <= 2) && ((thunk_GetRandomValue() % 100) < 50))
@@ -2993,29 +3006,29 @@ block_89:
             case 12:
                 if (gUnk_03005400.unk8_2 == 0)
                 {
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                     {
                         gUnk_03005400.unk8_4 = 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].yPosBg2 -= 1;
+                        gEntityInfo[slot].yPosBg2 -= 1;
                     }
                 }
                 else
                 {
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state != 1)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 1)
                     {
-                        SetEntityAnimationInfoState(arg0, 1);
+                        SetEntityAnimationInfoState(slot, 1);
                         m4aSongNumStart(0x6D);
                         gUnk_03005400.unkE_1 = 1;
                         gUnk_03005400.unkD = 2;
-                        if (gEntityInfo[arg0].xPosBg2 > 0x118)
+                        if (gEntityInfo[slot].xPosBg2 > 0x118)
                         {
                             gBg2Alpha = 0xE;
                             gUnk_03005400.unkE_2 = 0;
                         }
-                        if (gEntityInfo[arg0].xPosBg2 <= 0xC7)
+                        if (gEntityInfo[slot].xPosBg2 <= 0xC7)
                         {
                             gBg2Alpha = 0xF2;
                             gUnk_03005400.unkE_2 = 0;
@@ -3030,7 +3043,7 @@ block_89:
                             }
                         }
                     }
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                     {
 
                     }
@@ -3068,11 +3081,11 @@ block_89:
                         temp_r2_4 = thunk_GetRandomValue() % 0x20;
                         if (gEntityInfo[0].xPosBg2 <= 0xEF)
                         {
-                            gEntityInfo[arg0].unk8.all = 2;
+                            gEntityInfo[slot].unk8.all = 2;
                         }
                         else
                         {
-                            gEntityInfo[arg0].unk8.all = 3;
+                            gEntityInfo[slot].unk8.all = 3;
                         }
 
                         if (temp_r2_4 <= 7)
@@ -3089,7 +3102,7 @@ block_89:
                         }
 
                         gUnk_03005400.unkE_2 = 1;
-                        gEntityInfo[arg0].yPosBg2 = 0;
+                        gEntityInfo[slot].yPosBg2 = 0;
                         gUnk_03005400.unkA = 0xB;
                     }
                 }
@@ -3102,12 +3115,12 @@ block_89:
                 }
                 else
                 {
-                    gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gEntityInfo[arg0].unk8.all - 1].unk2;
-                    gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gEntityInfo[arg0].unk8.all - 1].unk0;
-                    gEntityInfo[arg0].unk8.all = gEntityInfo[arg0].xPosBg2;
+                    gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gEntityInfo[slot].unk8.all - 1].unk2;
+                    gEntityInfo[slot].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gEntityInfo[slot].unk8.all - 1].unk0;
+                    gEntityInfo[slot].unk8.all = gEntityInfo[slot].xPosBg2;
 
                     gUnk_03005400.unkA = 0xA;
-                    SetEntityAnimationInfoState(arg0, 0);
+                    SetEntityAnimationInfoState(slot, 0);
                     sub_08040B50(0);
                     m4aSongNumStart(0x6E);
                 }
@@ -3117,7 +3130,7 @@ block_89:
                 gUnk_03003590[0].unk2 += 4;
                 gUnk_03003590[0].unk0 -= 4;
 
-                gEntityInfo[0x12].xPosBg2 = gEntityInfo[arg0].unk8.all + (gUnk_03005400.unk13 * (1 - ((gUnk_03004C20.sceneFrameCounter % 2) * 2)));
+                gEntityInfo[0x12].xPosBg2 = gEntityInfo[slot].unk8.all + (gUnk_03005400.unk13 * (1 - ((gUnk_03004C20.sceneFrameCounter % 2) * 2)));
 
                 if (gUnk_03005400.unk13 != 0)
                 {
@@ -3130,7 +3143,7 @@ block_89:
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03005400.unk8_6 = 0;
                     gUnk_03005400.unk8_0 = 0;
-                    SetEntityAnimationInfoState(arg0, 2);
+                    SetEntityAnimationInfoState(slot, 2);
                     gUnk_03005400.unk13 = 0;
                     gUnk_03005400.unkA = 0;
                 }
@@ -3141,33 +3154,33 @@ block_89:
                 {
                     gUnk_03005400.unkA = 5;
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                 {
 
                 }
                 else
                 {
-                    gEntityInfo[arg0].unkC_2 ^= 1;
-                    SetEntityAnimationInfoState(arg0, 2);
+                    gEntityInfo[slot].unkC_2 ^= 1;
+                    SetEntityAnimationInfoState(slot, 2);
                     gUnk_03005400.unk13 += 1;
                 }
                 break;
 
             case 6:
-                if (gEntityInfo[arg0].xPosBg2 < gEntityInfo[0].xPosBg2)
+                if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                 {
-                    gEntityInfo[arg0].unkC_2 = 0;
+                    gEntityInfo[slot].unkC_2 = 0;
                 }
                 else
                 {
-                    gEntityInfo[arg0].unkC_2 = 1;
+                    gEntityInfo[slot].unkC_2 = 1;
                 }
-                SetEntityAnimationInfoState(arg0, 7);
+                SetEntityAnimationInfoState(slot, 7);
                 gUnk_03005400.unkA = 7;
                 break;
 
             case 7:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                 {
 
                 }
@@ -3175,19 +3188,19 @@ block_89:
                 {
                     if (gUnk_03005400.unkB == 4)
                     {
-                        SetEntityAnimationInfoState(arg0, 5);
+                        SetEntityAnimationInfoState(slot, 5);
                     }
                     else if (gUnk_03005400.unkB == 8)
                     {
-                        SetEntityAnimationInfoState(arg0, 9);
+                        SetEntityAnimationInfoState(slot, 9);
                     }
                     gUnk_03005400.unkA = gUnk_03005400.unkB;
                 }
                 break;
 
             case 8:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                 {
 
                 }
@@ -3198,17 +3211,17 @@ block_89:
                 break;
 
             case 4:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer != 0xFF)
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 + (SIN((gUnk_03004C20.sceneFrameCounter * 4) & 0xFF) >> 5);
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer != 0xFF)
                 {
 
                 }
-                else if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 5)
+                else if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 5)
                 {
                     gEntityInfo[0x16].unkF = 0x19;
                     gEntityInfo[0x15].unkF = 0x19;
                     m4aSongNumStart(0x6A);
-                    SetEntityAnimationInfoState(arg0, 6);
+                    SetEntityAnimationInfoState(slot, 6);
                 }
                 else
                 {
@@ -3236,7 +3249,7 @@ block_89:
                     gEntityInfo[0x12].unk8.split.unk8 = 0;
                     gEntityInfo[0x12].priority = 2;
 
-                    SetEntityAnimationInfoState(arg0, 8);
+                    SetEntityAnimationInfoState(slot, 8);
                     gUnk_03005400.unk0 = 0x20;
                     gUnk_03005400.unkA = 0xD;
                 }
@@ -3331,37 +3344,37 @@ block_89:
             case 2:
                 if (gUnk_03005400.unk8_2 != 0)
                 {
-                    SetEntityAnimationInfoState(arg0, 1);
+                    SetEntityAnimationInfoState(slot, 1);
                     gUnk_03005400.unkA = 3;
                 }
                 break;
 
             case 3:
-                if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+                if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 0xA)
+                    if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 0xA)
                     {
                         if (gUnk_03005220.unk31 != 0)
                         {
                             gUnk_03005400.unkE_4 = 1;
-                            gEntityInfo[arg0].unkF = 3;
+                            gEntityInfo[slot].unkF = 3;
                         }
                     }
                     else
                     {
-                        SetEntityAnimationInfoState(arg0, 0xA);
+                        SetEntityAnimationInfoState(slot, 0xA);
                         m4aSongNumStart(0x81);
                     }
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
         gNewKeys = gHeldKeys = 0;
-        sub_0803CF08(arg0);
+        sub_0803CF08(slot);
     }
-    else if (gEntityInfo[arg0].unkF == 4)
+    else if (gEntityInfo[slot].unkF == 4)
     {
         gNewKeys = gHeldKeys = 0;
     }
@@ -3431,7 +3444,7 @@ void sub_08041F34(u8 arg0)
         gUnk_03005400.unkE_7 = 1;
 
         gEntityInfo[0].unkF = 0;
-        gEntityInfo[0].visible = arg0;
+        gEntityInfo[0].visible = 1;
         gEntityInfo[0x14].unkF = 0x19;
         gEntityInfo[0x13].unkF = 0x19;
 
@@ -3473,8 +3486,9 @@ void sub_08041F34(u8 arg0)
 
 // Need to fix fakematches https://decomp.me/scratch/XVPSx
 // 42024
-void sub_08042024(u8 arg0)
+void sub_08042024(u8 slot)
 {
+    // World 5 boss (Jillius)
     struct Unk_0800BEF0 sp0;
     struct Unk_0800BEF0_2 spC;
     u32 temp_r1;
@@ -3487,7 +3501,7 @@ void sub_08042024(u8 arg0)
         gUnk_03005400.unk0 -= 1;
     }
 
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -3496,10 +3510,10 @@ void sub_08042024(u8 arg0)
                 gUnk_03003590[0].unk0 = -0x80;
                 gIntrTable.hBlank = HBlankIntr_WavyBackground;
                 gUnk_03005400.unkA = 1;
-                SetEntityAnimationInfoState(arg0, 8);
+                SetEntityAnimationInfoState(slot, 8);
                 SetEntityAnimationInfoState(0x15, 0);
 
-                gEntityInfo[arg0].priority = 1;
+                gEntityInfo[slot].priority = 1;
                 gEntityInfo[0x1D].priority = 1;
                 gEntityInfo[0x1C].priority = 1;
                 gEntityInfo[0x17].priority = 1;
@@ -3530,7 +3544,7 @@ void sub_08042024(u8 arg0)
             case 0xFF:
                 if (gUnk_03005400.unk0 == 0)
                 {
-                    gEntityInfo[arg0].unkF = 0;
+                    gEntityInfo[slot].unkF = 0;
                     gUnk_03005400.unkA = 2;
                     gBossStageScroll.unkC_0 = 1;
                     gBossStageScroll.unkC_4 = 0;
@@ -3547,37 +3561,37 @@ void sub_08042024(u8 arg0)
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 0 || gEntityInfo[arg0].unkF == 26)
+    else if (gEntityInfo[slot].unkF == 0 || gEntityInfo[slot].unkF == 26)
     {
-        sub_0803D4AC(arg0, gUnk_03003620);
+        sub_0803D4AC(slot, gUnk_03003620);
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gEntityInfo[arg0].visible = 1;
-                gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
-                gEntityInfo[arg0].unkF = 0;
+                gEntityInfo[slot].visible = 1;
+                gEntityInfo[slot].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk0;
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2;
+                gEntityInfo[slot].unkF = 0;
                 gUnk_03005400.unkA = 2;
                 break;
 
             case 1:
-                sp0.unk0 = gEntityInfo[arg0].xPosBg2;
-                sp0.unk2 = gEntityInfo[arg0].yPosBg2;
-                sp0.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
-                sp0.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
+                sp0.unk0 = gEntityInfo[slot].xPosBg2;
+                sp0.unk2 = gEntityInfo[slot].yPosBg2;
+                sp0.unk4 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk0;
+                sp0.unk6 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2;
                 sp0.unk8 = sp0.unk9 = 2;
                 spC = sub_0800BEF0(sp0);
-                gEntityInfo[arg0].xPosBg2 = spC.unk0;
-                gEntityInfo[arg0].yPosBg2 = spC.unk2;
-                if (((gEntityInfo[arg0].xPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk0 >> 3)) && ((gEntityInfo[arg0].yPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[gUnk_03004C20.room - 1].unk2 >> 3)))
+                gEntityInfo[slot].xPosBg2 = spC.unk0;
+                gEntityInfo[slot].yPosBg2 = spC.unk2;
+                if (((gEntityInfo[slot].xPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk0 >> 3)) && ((gEntityInfo[slot].yPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk2 >> 3)))
                 {
                     gUnk_03005400.unk0 = 0x1E;
                     gUnk_03005400.unkA = 0xD;
                 }
 
                 goto b;
-                gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x12;
-                gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x13;
+                gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x12;
+                gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x13;
                 break;
 
             case 13:
@@ -3587,14 +3601,14 @@ void sub_08042024(u8 arg0)
                     gUnk_03003590[0].unk2 = 0;
                     gUnk_03003590[0].unk0 = 0;
 
-                    gEntityInfo[arg0].visible = 0;
-                    gEntityInfo[arg0].unkF = 0x1A;
+                    gEntityInfo[slot].visible = 0;
+                    gEntityInfo[slot].unkF = 0x1A;
 
                     gEntityInfo[0x1D].unkC_2 = 0;
                     gEntityInfo[0x1C].unkC_2 = 0;
 
-                    gEntityInfo[arg0].yPosBg2 = 0;
-                    gEntityInfo[arg0].xPosBg2 = 0;
+                    gEntityInfo[slot].yPosBg2 = 0;
+                    gEntityInfo[slot].xPosBg2 = 0;
 
                     gEntityInfo[0x1D].yPosBg2 = 0;
                     gEntityInfo[0x1D].xPosBg2 = 0;
@@ -3608,23 +3622,23 @@ void sub_08042024(u8 arg0)
                 else
                 {
 b:
-                    gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x12;
-                    gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) & 0xFF) << 0x10) >> 0x13;
+                    gUnk_03003590[0].unk0 = (COS((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x12;
+                    gUnk_03003590[0].unk2 = (SIN((gUnk_03004C20.sceneFrameCounter * 8) % 0x100) << 0x10) >> 0x13;
                 }
                 break;
 
             case 2:
-                gEntityInfo[arg0].unk8.split.unk8 += 1;
-                if (gEntityInfo[arg0].unk8.split.unk8 == 0)
+                gEntityInfo[slot].unk8.split.unk8 += 1;
+                if (gEntityInfo[slot].unk8.split.unk8 == 0)
                 {
-                    gEntityInfo[arg0].unk8.split.unk9 += 1;
+                    gEntityInfo[slot].unk8.split.unk9 += 1;
                 }
 
-                temp_r8 = gEntityInfo[arg0].unk8.split.unk9;
+                temp_r8 = gEntityInfo[slot].unk8.split.unk9;
                 if (temp_r8 >= ((gUnk_03005400.unkC * 2) + 1))
                 {
-                    SetEntityAnimationInfoState(arg0, 0xC);
-                    gEntityInfo[arg0].unk8.split.unk9 = 0;
+                    SetEntityAnimationInfoState(slot, 0xC);
+                    gEntityInfo[slot].unk8.split.unk9 = 0;
                     gUnk_03005400.unkA = 0xC;
 
                     temp_r1 = thunk_GetRandomValue() % 4;
@@ -3648,51 +3662,51 @@ b:
                     break;
                 }
 
-                if (gEntityInfo[arg0].xPosBg2 <= 0x40)
+                if (gEntityInfo[slot].xPosBg2 <= 0x40)
                 {
-                    gEntityInfo[arg0].unkC_2 = 0;
+                    gEntityInfo[slot].unkC_2 = 0;
                 }
-                if (gEntityInfo[arg0].xPosBg2 > 0x19F)
+                if (gEntityInfo[slot].xPosBg2 > 0x19F)
                 {
-                    gEntityInfo[arg0].unkC_2 = 1;
+                    gEntityInfo[slot].unkC_2 = 1;
                 }
 
-                gEntityInfo[arg0].xPosBg2 += 1 - (gEntityInfo[arg0].unkC_2 * 2);
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
+                gEntityInfo[slot].xPosBg2 += 1 - (gEntityInfo[slot].unkC_2 * 2);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[slot].unk8.split.unk8) << 0x10) >> 0x15);
                 tmp = temp_r8 & 1;
                 if (tmp != 1)
                 {
                     break;
                 }
 
-                if (gEntityInfo[arg0].xPosBg2 < gEntityInfo[0].xPosBg2)
+                if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                 {
-                    gEntityInfo[arg0].unkC_2 = 0;
+                    gEntityInfo[slot].unkC_2 = 0;
                 }
                 else
                 {
-                    gEntityInfo[arg0].unkC_2 = 1;
+                    gEntityInfo[slot].unkC_2 = 1;
                 }
 
                 gUnk_03005400.unkA = 3;
-                gEntityInfo[arg0].unk8.split.unk9 += 1;
+                gEntityInfo[slot].unk8.split.unk9 += 1;
                 break;
 
             case 3:
-                gEntityInfo[arg0].unk8.split.unk8 += 1;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
+                gEntityInfo[slot].unk8.split.unk8 += 1;
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[slot].unk8.split.unk8) << 0x10) >> 0x15);
 
                 if (gEntityInfo[0x18].unkF != 0x1C)
                 {
                     break;
                 }
-                SetEntityAnimationInfoState(arg0, 9);
+                SetEntityAnimationInfoState(slot, 9);
                 gEntityInfo[0x18].unkF = 0x19;
                 break;
 
             case 12:
-                gEntityInfo[arg0].unk8.split.unk8 += 1;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[arg0].unk8.split.unk8) << 0x10) >> 0x15);
+                gEntityInfo[slot].unk8.split.unk8 += 1;
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[slot].unk8.split.unk8) << 0x10) >> 0x15);
 
                 if (gEntityInfo[0x18].id == 0x1A)
                 {
@@ -3730,7 +3744,7 @@ b:
                 gEntityInfo[0x19].unkF = 0x19;
                 gEntityInfo[0x18].unkF = 0x19;
 
-                SetEntityAnimationInfoState(arg0, 0xC);
+                SetEntityAnimationInfoState(slot, 0xC);
                 gUnk_03005400.unk16 -= 1;
                 break;
 
@@ -3853,8 +3867,8 @@ b:
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 REG_BLDCNT = 0;
 
-                gEntityInfo[arg0].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk0;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg0 - 0xD].unk0[0].unk2;
+                gEntityInfo[slot].xPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk0;
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2;
                 gEntityInfo[0x1C].unkF = 3;
                 gEntityInfo[0x1D].unkF = 4;
 
@@ -3871,14 +3885,14 @@ b:
                     gEntityInfo[0x13].unkF = 0x1C;
                     SetEntityAnimationInfoState(0x15, 5);
                     gUnk_03005400.unkA = 6;
-                    gEntityInfo[arg0].unkF = 0x1A;
-                    gEntityInfo[arg0].visible = 0;
+                    gEntityInfo[slot].unkF = 0x1A;
+                    gEntityInfo[slot].visible = 0;
                 }
                 else
                 {
                     gUnk_03005400.unkA = 0;
                     gEntityInfo[0x15].unkF = 0;
-                    gEntityInfo[arg0].unkF = 0;
+                    gEntityInfo[slot].unkF = 0;
                 }
                 break;
 
@@ -3888,14 +3902,14 @@ b:
                 if (gUnk_03005220.unk31 != 0)
                 {
                     gUnk_03005400.unkE_4 = 1;
-                    gEntityInfo[arg0].unkF = 3;
+                    gEntityInfo[slot].unkF = 3;
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
-        sub_0803CF08(arg0);
+        sub_0803CF08(slot);
     }
 }
 
@@ -4003,22 +4017,23 @@ void sub_08042BEC(void)
 
 // Need to fix fakematches https://decomp.me/scratch/klQGz
 // 42E64
-void sub_08042E64(u8 arg0)
+void sub_08042E64(u8 slot)
 {
+    // Final boss (Bagoo)
     s32 var_r2_2;
     u32 var_r3_2;
     u32 var_r4;
     u32 temp_r0_8;
     u8 temp_r5_3;
 
-    gEntityInfo[arg0].affineHFlip_matrixNum = 3;
+    gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
     if (gTransitioning == TRUE)
     {
         return;
     }
 
-    sub_0803D4AC(arg0, gUnk_03003620);
+    sub_0803D4AC(slot, gUnk_03003620);
     sub_08042BEC();
 
     if (gUnk_03005400.unk0 != 0)
@@ -4026,21 +4041,24 @@ void sub_08042E64(u8 arg0)
         gUnk_03005400.unk0 -= 1;
     }
 
-    if (gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 0x18)
+    if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 0x18)
     {
-        if (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF)
+        if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
         {
-            SetEntityAnimationInfoState(arg0, 0x19);
-            gEntityInfo[arg0].unkC_2 = 1;
+            SetEntityAnimationInfoState(slot, 0x19);
+            gEntityInfo[slot].unkC_2 = 1;
         }
     }
-    else if ((gEntityAnimationInfo[arg0 - gUnk_0300363C].state == 0x19) && (gEntityAnimationInfo[arg0 - gUnk_0300363C].timer == 0xFF))
+    else if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 0x19)
     {
-        SetEntityAnimationInfoState(arg0, 0x18);
-        gEntityInfo[arg0].unkC_2 = 0;
+        if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
+        {
+            SetEntityAnimationInfoState(slot, 0x18);
+            gEntityInfo[slot].unkC_2 = 0;
+        }
     }
 
-    if (gEntityInfo[arg0].unkF == 14)
+    if (gEntityInfo[slot].unkF == 14)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -4063,27 +4081,27 @@ void sub_08042E64(u8 arg0)
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 gUnk_03005400.unk0 = 0x40;
                 gUnk_03005400.unkA = 1;
-                SetEntityAnimationInfoState(arg0, 0x18);
+                SetEntityAnimationInfoState(slot, 0x18);
                 break;
 
             case 1:
                 if (gUnk_03005400.unk0 == 0)
                 {
-                    gEntityInfo[arg0].priority = 2;
+                    gEntityInfo[slot].priority = 2;
                     gEntityInfo[0x21].priority = 2;
                     gEntityInfo[0x20].priority = 2;
                     gEntityInfo[0x1F].priority = 2;
                     gEntityInfo[0x13].priority = 1;
                     gEntityInfo[0x15].priority = 0;
                     gEntityInfo[0x14].priority = 0;
-                    gEntityInfo[arg0].unkF = 0x1A;
+                    gEntityInfo[slot].unkF = 0x1A;
                     gUnk_03005400.unkA = 1;
                     gEntityInfo[0x13].unkF = 0x19;
                 }
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 26)
+    else if (gEntityInfo[slot].unkF == 26)
     {
         switch (gUnk_03005400.unkA)
         {
@@ -4106,11 +4124,11 @@ void sub_08042E64(u8 arg0)
 
                 if (gUnk_03005400.unk0 == 0)
                 {
-                    gEntityInfo[arg0].unkF = 0;
+                    gEntityInfo[slot].unkF = 0;
                     gEntityInfo[0x13].unkF = 0x19;
                     gUnk_03005400.unkA = 0;
-                    gEntityInfo[arg0].yPosBg2 = 0x138;
-                    gEntityInfo[arg0].priority = 2;
+                    gEntityInfo[slot].yPosBg2 = 0x138;
+                    gEntityInfo[slot].priority = 2;
                     gEntityInfo[0x21].priority = 2;
                     gEntityInfo[0x20].priority = 2;
                     gEntityInfo[0x1F].priority = 2;
@@ -4221,16 +4239,16 @@ void sub_08042E64(u8 arg0)
 
             case 9:
                 gNewKeys = gHeldKeys = 0;
-                sub_0803CF08(arg0);
+                sub_0803CF08(slot);
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 0)
+    else if (gEntityInfo[slot].unkF == 0)
     {
         switch (gUnk_03005400.unkA)
         {
             case 0:
-                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x13].xPosBg2;
+                gEntityInfo[slot].xPosBg2 = gEntityInfo[0x13].xPosBg2;
                 if (gEntityInfo[0x1F].unkF != 0xE)
                 {
 
@@ -4239,7 +4257,7 @@ void sub_08042E64(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 3) == 0)
                     {
-                        gEntityInfo[arg0].yPosBg2 -= 1;
+                        gEntityInfo[slot].yPosBg2 -= 1;
                     }
 
                     if (gBlendValue == BLEND_MAX)
@@ -4264,7 +4282,7 @@ void sub_08042E64(u8 arg0)
 
             case 1:
                 gUnk_03005400.unk8_0 = 1;
-                SetEntityAnimationInfoState(arg0, 0x18);
+                SetEntityAnimationInfoState(slot, 0x18);
 
                 if (gEntityInfo[0x1F].unkF == 0x11)
                 {
@@ -4284,9 +4302,9 @@ void sub_08042E64(u8 arg0)
             case 2:
                 if (gUnk_03005400.unk0 == 1)
                 {
-                    DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
 
-                    gEntityInfo[arg0].unkF = 0x1A;
+                    gEntityInfo[slot].unkF = 0x1A;
                     if (gEntityInfo[0x14].unkF != 0x1C)
                     {
                         sub_0801E664(gEntityInfo[0x14].xPosBg2, gEntityInfo[0x14].yPosBg2, 2, 0x14);
@@ -4311,11 +4329,11 @@ void sub_08042E64(u8 arg0)
                 {
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                     {
-                        DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
                     {
-                        DmaFill16(3, 0x1F, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[arg0 - 0xC].bpp_paletteNum * 0x20), 0x20);
+                        DmaFill16(3, 0x1F, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
                     }
                 }
                 break;
@@ -4367,13 +4385,13 @@ void sub_08042E64(u8 arg0)
                     }
                     if ((gUnk_03004C20.sceneFrameCounter % 2) == 0)
                     {
-                        gEntityInfo[arg0].xPosBg2 = (SIN((u8) gUnk_03005400.unk4) >> 0x1) + 0xF0;
+                        gEntityInfo[slot].xPosBg2 = (SIN((u8) gUnk_03005400.unk4) >> 0x1) + 0xF0;
                     }
                 }
             // case 4:                     /* switch 4 */
 
                 goto block_145;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
 
             case 9:
@@ -4382,15 +4400,15 @@ void sub_08042E64(u8 arg0)
                     if (gUnk_03005400.unk8_5 != 0)
                     {
                         goto block_147;
-                        gEntityInfo[arg0].xPosBg2 -= 1;
+                        gEntityInfo[slot].xPosBg2 -= 1;
                     }
                     else
                     {
-                        gEntityInfo[arg0].xPosBg2 += 1;
+                        gEntityInfo[slot].xPosBg2 += 1;
                     }
                 }
                 goto block_146;
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
 
             case 5:
@@ -4410,7 +4428,7 @@ void sub_08042E64(u8 arg0)
                 }
                 else
                 {
-                    gEntityInfo[arg0].priority = 1;
+                    gEntityInfo[slot].priority = 1;
                     gEntityInfo[0x1F].unkF = 0x10;
                     gEntityInfo[0x21].unkF = 0x1A;
                     gEntityInfo[0x20].unkF = 0x1A;
@@ -4426,8 +4444,8 @@ void sub_08042E64(u8 arg0)
                     gBlendValue -= 1;
                 }
 
-                gEntityInfo[arg0].xPosBg2 = gEntityInfo[0x1F].xPosBg2;
-                gEntityInfo[arg0].yPosBg2 = gEntityInfo[0x1F].yPosBg2 - 4;
+                gEntityInfo[slot].xPosBg2 = gEntityInfo[0x1F].xPosBg2;
+                gEntityInfo[slot].yPosBg2 = gEntityInfo[0x1F].yPosBg2 - 4;
                 if (gEntityInfo[0x1F].unkF == 0x12)
                 {
                     gUnk_03005400.unkA = 7;
@@ -4448,15 +4466,15 @@ void sub_08042E64(u8 arg0)
                     {
                         sub_0801E664(gEntityInfo[0x15].xPosBg2, gEntityInfo[0x15].yPosBg2, 2U, 0x15U);
                     }
-                    gEntityInfo[arg0].unkF = 0x1A;
+                    gEntityInfo[slot].unkF = 0x1A;
                     gUnk_03005400.unkA = 0;
                 }
                 break;
                 // TODO: fix this mess
 block_147:
-                gEntityInfo[arg0].xPosBg2 -= 1;
+                gEntityInfo[slot].xPosBg2 -= 1;
 block_146:
-                if (gEntityInfo[arg0].xPosBg2 < 0xE0 || gEntityInfo[arg0].xPosBg2 > 0x100)
+                if (gEntityInfo[slot].xPosBg2 < 0xE0 || gEntityInfo[slot].xPosBg2 > 0x100)
                 {
                     gUnk_03005400.unk16 = 1;
                     gUnk_03005400.unkA = 4;
@@ -4466,15 +4484,15 @@ block_146:
                 }
             case 4:
 block_145:
-                gEntityInfo[arg0].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
+                gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][6].unk0[0].unk2 - ((SIN((u8) gUnk_03005400.unk4) << 0x10) >> 0x15);
                 break;
         }
     }
-    else if (gEntityInfo[arg0].unkF == 3)
+    else if (gEntityInfo[slot].unkF == 3)
     {
         gNewKeys = gHeldKeys = 0;
     }
-    else if (gEntityInfo[arg0].unkF == 4)
+    else if (gEntityInfo[slot].unkF == 4)
     {
         gNewKeys = gHeldKeys = 0;
     }

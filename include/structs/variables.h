@@ -549,7 +549,7 @@ extern struct BossStageScroll gBossStageScroll; // Maybe more aptly "Camera" tha
 
 struct Unk_03005400 {
     /* 0x00 */ u16 unk0;
-    /* 0x02 */ u16 unk2;
+    /* 0x02 */ u16 unk2; // timer to spawn heart
     /* 0x04 */ u16 unk4;
     /* 0x06 */ u16 unk6;
     /* 0x08_0 */u8 unk8_0:1;
@@ -561,9 +561,9 @@ struct Unk_03005400 {
     /* 0x08_6 */u8 unk8_6:1;
     /* 0x08_7 */u8 unk8_7:1;
     /* 0x09 */ u8 unk9;
-    /* 0x0A */ u8 unkA;
+    /* 0x0A */ u8 unkA; // boss stage
     /* 0x0B */ u8 unkB;
-    /* 0x0C */ u8 unkC;
+    /* 0x0C */ u8 unkC; // boss health
     /* 0x0D */ u8 unkD;
     /* 0x0E_0 */ u8 unkE_0:1;
     /* 0x0E_1 */ u8 unkE_1:1;
@@ -572,10 +572,10 @@ struct Unk_03005400 {
     /* 0x0E_4 */ u8 unkE_4:1;
     /* 0x0E_5 */ u8 unkE_5:2; // TODO: verify
     /* 0x0E_4 */ u8 unkE_7:1;
-    /* 0x0F */ s8 unkF;
-    /* 0x10 */ s8 unk10;
-    /* 0x11 */ u8 unk11;
-    /* 0x12 */ u8 unk12;
+    /* 0x0F */ s8 unkF;  // X velocity?
+    /* 0x10 */ s8 unk10; // Y velocity?
+    /* 0x11 */ u8 unk11; // X acceleration?
+    /* 0x12 */ u8 unk12; // Y acceleration?
     /* 0x13 */ u8 unk13;
     /* 0x14 */ u8 unk14;
     /* 0x15 */ s8 unk15;
