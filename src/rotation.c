@@ -226,7 +226,7 @@ void RoomRotationUpdateEntityPosition(u8 slot)
     {
         gEntityInfo[slot].xPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk0;
         gEntityInfo[slot].yPosBg2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk2;
-        gEntityInfo[slot].unkC_2 = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_0;
+        gEntityInfo[slot].hvFlip = gUnk_080D48C8[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][gUnk_030051C8 - (gUnk_03004654->unk1 - 1)].unk4_0;
     }
     else
     {
@@ -330,19 +330,19 @@ void RoomRotationBg2(u8 nbrRotations)
 // 452E8
 void BossRoomRotationHandler(void)
 {
-    if ((gBossStageScroll.currXPos == gBossStageScroll.targetXPos) && (gBossStageScroll.currYPos == gBossStageScroll.targetYPos) && (gBossStageScroll.currAlpha == gBossStageScroll.targetAlpha))
+    if ((gBossStageScroll.currXPos == gBossStageScroll.targetXPos) && (gBossStageScroll.currYPos == gBossStageScroll.targetYPos) && (gBossStageScroll.currMag == gBossStageScroll.targetMag))
     {
         gBg2Alpha = gRoomRotationAlpha += 1;
         if ((gRoomRotationAlpha % 0x80) == 0)
         {
             if (gBg2Alpha == 0x80)
             {
-                gBossStageScroll.targetAlpha = 0x7E;
+                gBossStageScroll.targetMag = 0x7E;
             }
             else
             {
                 gBossStageScroll.unkC_0 = 1;
-                gBossStageScroll.targetAlpha = 0x60;
+                gBossStageScroll.targetMag = 0x60;
             }
             gCallbackQueue.current[2] = sub_0800AC34;
         }

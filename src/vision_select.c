@@ -359,7 +359,7 @@ void VisionSelectInputAndMovement(void)
                 SetEntityAnimationInfoState(0, 1);
             }
 
-            gEntityInfo[0].unkC_2 = 0;
+            gEntityInfo[0].hvFlip = 0;
         }
         else if ((gHeldKeys & DPAD_LEFT))
         {
@@ -415,7 +415,7 @@ void VisionSelectInputAndMovement(void)
                     SetEntityAnimationInfoState(0, 1);
                 }
 
-                gEntityInfo[0].unkC_2 = 1;
+                gEntityInfo[0].hvFlip = 1;
             }
         }
     }
@@ -486,7 +486,7 @@ void VisionSelectUpdateRotationAndEntities(void)
     pc = MultiplyQ8(-SIN(0), ReciprocalQ8(0));
     pd = MultiplyQ8(COS(0), ReciprocalQ8(0xA0));
 
-    if (gEntityInfo[0].unkC_2 == 0)
+    if (gEntityInfo[0].hvFlip == 0)
     {
         gOamAffineBuffer->pa = pa;
     }

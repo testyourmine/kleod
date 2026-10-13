@@ -924,8 +924,8 @@ void HoverBoardScrollUpdate(void)
 void BossStageScrollUpdate(void)
 {
     // Boss (level 8) scrolling
-    s16 var_r1;
-    s16 var_r5;
+    s16 xDist;
+    s16 yDist;
 
     switch (gBossStageScroll.unkC_0)
     {
@@ -1021,58 +1021,58 @@ void BossStageScrollUpdate(void)
     }
     gBgInfo[1].hOfs = (gBossStageScroll.currXPos / 15);
 
-    switch (gBossStageScroll.unkC_4)
+    switch (gBossStageScroll.dynamicMag)
     {
         case 0:
             break;
 
         case 1:
-            var_r5 = Abs(gEntityInfo[0].xPosBg2 - gEntityInfo[0x12].xPosBg2) - DISPLAY_HEIGHT;
-            if (var_r5 < 0)
+            xDist = Abs(gEntityInfo[0].xPosBg2 - gEntityInfo[0x12].xPosBg2) - (DISPLAY_WIDTH_CENTER + 40);
+            if (xDist < 0)
             {
-                var_r5 = 0;
+                xDist = 0;
             }
 
-            var_r1 = Abs(gEntityInfo[0].yPosBg2 - gEntityInfo[0x12].yPosBg2);
-            if (var_r1 < 0)
+            yDist = Abs(gEntityInfo[0].yPosBg2 - gEntityInfo[0x12].yPosBg2);
+            if (yDist < 0)
             {
-                var_r1 = 0;
+                yDist = 0;
             }
 
-            if (var_r5 > var_r1)
+            if (xDist > yDist)
             {
-                gBossStageScroll.targetAlpha = var_r5 & 0xFE;
+                gBossStageScroll.targetMag = xDist & 0xFE;
             }
             else
             {
-                gBossStageScroll.targetAlpha = var_r1 & 0xFE;
+                gBossStageScroll.targetMag = yDist & 0xFE;
             }
             break;
     }
 
-    if (gBossStageScroll.currAlpha > gBossStageScroll.targetAlpha)
+    if (gBossStageScroll.currMag > gBossStageScroll.targetMag)
     {
-        gBossStageScroll.currAlpha -= 2;
+        gBossStageScroll.currMag -= 2;
     }
-    if (gBossStageScroll.currAlpha < gBossStageScroll.targetAlpha)
+    if (gBossStageScroll.currMag < gBossStageScroll.targetMag)
     {
-        gBossStageScroll.currAlpha += 2;
-    }
-
-    if (gBossStageScroll.unkC_4)
-    {
-        if (gBossStageScroll.currAlpha > 0x60)
-        {
-            gBossStageScroll.currAlpha = 0x60;
-        }
-        if (gBossStageScroll.currAlpha == 0)
-        {
-            gBossStageScroll.currAlpha = 0;
-        }
+        gBossStageScroll.currMag += 2;
     }
 
-    gBg2XMag = 0x100 - gBossStageScroll.currAlpha;
-    gBg2YMag = 0x100 - gBossStageScroll.currAlpha;
+    if (gBossStageScroll.dynamicMag)
+    {
+        if (gBossStageScroll.currMag > 0x60)
+        {
+            gBossStageScroll.currMag = 0x60;
+        }
+        if (gBossStageScroll.currMag == 0)
+        {
+            gBossStageScroll.currMag = 0;
+        }
+    }
+
+    gBg2XMag = 0x100 - gBossStageScroll.currMag;
+    gBg2YMag = 0x100 - gBossStageScroll.currMag;
 
     if (gUnk_03004C20.world == 4)
     {

@@ -306,7 +306,7 @@ struct EntityInfo {
     /* 0x0B_0 */ s32 unkB_0:4; // related to X position
     /* 0x0B_4 */ s32 unkB_4:4; // related to Y position
     /* 0x0C_0 */ u32 priority:2; // priority
-    /* 0x0C_2 */ u32 unkC_2:2; // related to direction, bit 1 is hFlip, bit 2 is vFlip
+    /* 0x0C_2 */ u32 hvFlip:2; // related to direction, bit 1 is hFlip, bit 2 is vFlip
     /* 0x0C_4 */ u32 unkC_4:4; // related to direction/rotation?
     /* 0x0D_0 */ u32 objMode:2; // objMode
     /* 0x0D_2 */ u32 affineHFlip_matrixNum:4; // bottom 3 bits is matrix number (0-7), 4th bit is hFlip
@@ -535,14 +535,14 @@ extern u8 gAthleticChallengeScrollFlags;
 extern s32 gAthleticChallengeAutoScrollXVelocity;
 
 struct BossStageScroll {
-    /* 0x0 */ s16 currXPos; 
-    /* 0x2 */ s16 currYPos; 
-    /* 0x4 */ u16 currAlpha;
+    /* 0x0 */ s16 currXPos;
+    /* 0x2 */ s16 currYPos;
+    /* 0x4 */ u16 currMag; // current zoom/shrink
     /* 0x6 */ s16 targetXPos;
     /* 0x8 */ s16 targetYPos;
-    /* 0xA */ u16 targetAlpha;
+    /* 0xA */ u16 targetMag;  // target zoom/shrink
     /* 0xC_0 */ u8 unkC_0:4; // determines target X/Y values
-    /* 0xC_4 */ u8 unkC_4:4; // determines target Alpha value
+    /* 0xC_4 */ u8 dynamicMag:4; // enable dynamic magnification relative to boss/Klonoa
     /* 0xD */ u8 padD[0x10 - 0xD];
 }; /* size = 0x10 */
 extern struct BossStageScroll gBossStageScroll; // Maybe more aptly "Camera" than "Scroll"
@@ -661,7 +661,7 @@ struct Unk_0300466C_4 {
     /* 0x0 */ u16 tileNum; // tileNum
     /* 0x2 */ u8 bpp_paletteNum; // bottom 7 bits is paletteNum, top bit is bpp
     /* 0x3 */ s8 unk3; // related to xPos
-    /* 0x4 */ u8 unk4; // related to yPos
+    /* 0x4 */ s8 unk4; // related to yPos
     /* 0x5 */ u8 shape_size; // bottom 2 bits is size, next two bits is shape
     /* 0x6 */ u8 pad6[0x8 - 0x6];
 }; /* size = 0x8 */

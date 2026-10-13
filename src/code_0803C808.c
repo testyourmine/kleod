@@ -184,13 +184,13 @@ void sub_0803C808(void)
             gEntityInfo[0x18].affineEnable = 1;
             gEntityInfo[0x17].affineEnable = 1;
 
-            gEntityInfo[0x19].unkC_2 = 1;
-            gEntityInfo[0x17].unkC_2 = 1;
+            gEntityInfo[0x19].hvFlip = 1;
+            gEntityInfo[0x17].hvFlip = 1;
             gEntityInfo[0x19].affineHFlip_matrixNum = 1;
             gEntityInfo[0x17].affineHFlip_matrixNum = 1;
 
-            gEntityInfo[0x1A].unkC_2 = 0;
-            gEntityInfo[0x18].unkC_2 = 0;
+            gEntityInfo[0x1A].hvFlip = 0;
+            gEntityInfo[0x18].hvFlip = 0;
             gEntityInfo[0x1A].affineHFlip_matrixNum = 0;
             gEntityInfo[0x18].affineHFlip_matrixNum = 0;
             break;
@@ -248,12 +248,12 @@ void sub_0803C808(void)
 
             gUnk_03005400.unkE_7 = 1;
             gBossStageScroll.unkC_0 = 3;
-            gBossStageScroll.unkC_4 = 0;
+            gBossStageScroll.dynamicMag = 0;
             gBossStageScroll.targetXPos = 0x78;
             gBossStageScroll.currXPos = 0x78;
             gBossStageScroll.targetYPos = 0x80;
             gBossStageScroll.currYPos = 0x80;
-            gBossStageScroll.targetAlpha = 0;
+            gBossStageScroll.targetMag = 0;
             break;
     }
     
@@ -607,7 +607,7 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
     var_r3 = 0;
     if ((gUnk_03004C20.globalFrameCounter & arg1.unk1) == arg1.unk1)
     {
-        if (gEntityInfo[arg0].unkC_2 == 0)
+        if (gEntityInfo[arg0].hvFlip == 0)
         {
             gUnk_03005400.unkF += gUnk_03005400.unk11;
             if ((gUnk_03005400.unkF >> 4) > arg1.unk3)
@@ -662,7 +662,7 @@ void sub_0803D90C(u8 slot)
     do {} while(0); // Required to match
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gEntityInfo[slot].affineDouble = 1;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
@@ -678,13 +678,13 @@ void sub_0803D90C(u8 slot)
             // Setup
             case 0:
                 gBossStageScroll.unkC_0 = 5;
-                gBossStageScroll.unkC_4 = 1;
+                gBossStageScroll.dynamicMag = 1;
                 gBossStageScroll.targetXPos = gEntityInfo[0].xPosBg2;
                 gBossStageScroll.currXPos = gEntityInfo[0].xPosBg2;
                 gBossStageScroll.targetYPos = gEntityInfo[0].yPosBg2;
                 gBossStageScroll.currYPos = gEntityInfo[0].yPosBg2;
-                gBossStageScroll.targetAlpha = 0;
-                gBossStageScroll.currAlpha = 0;
+                gBossStageScroll.targetMag = 0;
+                gBossStageScroll.currMag = 0;
 
                 gEntityInfo[0].xPosBg2 = 0;
                 gEntityInfo[0].yPosBg2 = 0x12A;
@@ -765,7 +765,7 @@ void sub_0803D90C(u8 slot)
                 if (gUnk_03005400.unk0 == 0)
                 {
                     gUnk_03005400.unk0 = 0x3C;
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 0x10;
                     }
@@ -827,7 +827,7 @@ void sub_0803D90C(u8 slot)
                 }
                 else if ((gEntityAnimationInfo[slot - gUnk_0300363C].timer > 0x10) || (gEntityAnimationInfo[slot - gUnk_0300363C].frame <= 2))
                 {
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 -= 1;
                     }
@@ -877,7 +877,7 @@ void sub_0803D90C(u8 slot)
                 }
                 else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    if (((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 0)) || ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 1)))
+                    if (((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].hvFlip == 0)) || ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].hvFlip == 1)))
                     {
                         gUnk_03005400.unkA = 2;
                     }
@@ -902,7 +902,7 @@ void sub_0803D90C(u8 slot)
                 }
                 else if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    gEntityInfo[slot].unkC_2 ^= 1;
+                    gEntityInfo[slot].hvFlip ^= 1;
                     SetEntityAnimationInfoState(slot, 0xF);
                 }
                 break;
@@ -949,7 +949,7 @@ void sub_0803D90C(u8 slot)
                     gUnk_03005400.unk13 = temp_r3_4 * 4;
                     gUnk_03005400.unk6 = gEntityInfo[slot].yPosBg2;
 
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gUnk_03005400.unk4 = gEntityInfo[slot].xPosBg2 + (temp_r3_4 * 4);
                         gEntityInfo[slot].unk8.split.unk8 = 0x80;
@@ -971,7 +971,7 @@ void sub_0803D90C(u8 slot)
                         break;
                     }
 
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 1;
                         if ((gUnk_03004C20.sceneFrameCounter % 2) != 0)
@@ -1030,7 +1030,7 @@ void sub_0803D90C(u8 slot)
                         {
                             var_r2 = 2;
                         }
-                        if (gEntityInfo[slot].unkC_2 == 0)
+                        if (gEntityInfo[slot].hvFlip == 0)
                         {
                             gEntityInfo[slot].unk8.split.unk8 += var_r2;
                         }
@@ -1116,16 +1116,16 @@ void sub_0803D90C(u8 slot)
 
                 if (gUnk_03005400.unk0 > 0xA)
                 {
-                    if ((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 0))
+                    if ((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].hvFlip == 0))
                     {
                         s32 tmp; // FAKE
-                        gEntityInfo[slot].unkC_2 = 1;
+                        gEntityInfo[slot].hvFlip = 1;
                         gUnk_03005400.unkF = tmp = -gUnk_03005400.unkF;
                     }
-                    else if ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].unkC_2 == 1))
+                    else if ((gEntityInfo[0].xPosBg2 > gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].hvFlip == 1))
                     {
                         s32 tmp; // FAKE
-                        gEntityInfo[slot].unkC_2 = 0;
+                        gEntityInfo[slot].hvFlip = 0;
                         gUnk_03005400.unkF = tmp = -gUnk_03005400.unkF;
                     }
                 }
@@ -1173,8 +1173,8 @@ void sub_0803D90C(u8 slot)
                     gBossStageScroll.unkC_0 = 5;
                     gBossStageScroll.targetYPos = 0x78;
 
-                    gEntityInfo[0x15].unkC_2 = 0;
-                    gEntityInfo[0x16].unkC_2 = 1;
+                    gEntityInfo[0x15].hvFlip = 0;
+                    gEntityInfo[0x16].hvFlip = 1;
                     gEntityInfo[0x15].xPosBg2 = gEntityInfo[slot].xPosBg2 + 0x20;
                     gEntityInfo[0x16].xPosBg2 = gEntityInfo[slot].xPosBg2 - 0x20;
                     gEntityInfo[0x15].yPosBg2 = gEntityInfo[slot].yPosBg2 + 0xC;
@@ -1329,7 +1329,7 @@ void sub_0803E904(u8 slot)
     sp14 = gUnk_03005400.unkC - 1;
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gEntityInfo[slot].affineDouble = 1;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2 ;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip ;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
@@ -1342,13 +1342,13 @@ void sub_0803E904(u8 slot)
         {
             case 0:
                 gBossStageScroll.unkC_0 = 1;
-                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.dynamicMag = 0;
                 gBossStageScroll.targetXPos = 0x78;
                 gBossStageScroll.currXPos = 0x78;
                 gBossStageScroll.targetYPos = 0x50;
                 gBossStageScroll.currYPos = 0x50;
-                gBossStageScroll.targetAlpha = 0x40;
-                gBossStageScroll.currAlpha = 0x40;
+                gBossStageScroll.targetMag = 0x40;
+                gBossStageScroll.currMag = 0x40;
 
                 SetEntityAnimationInfoState(0, 0);
                 SetEntityAnimationInfoState(0x12, 2);
@@ -1399,11 +1399,11 @@ void sub_0803E904(u8 slot)
             case 0:
                 if ((thunk_GetRandomValue() % 10) < 5)
                 {
-                    gEntityInfo[slot].unkC_2 = 0;
+                    gEntityInfo[slot].hvFlip = 0;
                 }
                 else
                 {
-                    gEntityInfo[slot].unkC_2 = 1;
+                    gEntityInfo[slot].hvFlip = 1;
                 }
 
                 SetEntityAnimationInfoState(slot, 0);
@@ -1463,7 +1463,7 @@ void sub_0803E904(u8 slot)
                     else
                     {
                         gUnk_03005400.unk14 = gUnk_08116A02[gUnk_03005400.unkC][4];
-                        gUnk_03005400.unk16 = gEntityInfo[slot].unkC_2;
+                        gUnk_03005400.unk16 = gEntityInfo[slot].hvFlip;
                         gUnk_03005400.unkA = 4;
                         gUnk_03005400.unk8_0 = 0;
                     }
@@ -1490,7 +1490,7 @@ void sub_0803E904(u8 slot)
 
                 if ((gUnk_03004C20.sceneFrameCounter % 2) == 0)
                 {
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += gUnk_08116A02[gUnk_03005400.unkC][0];
                     }
@@ -1509,12 +1509,12 @@ void sub_0803E904(u8 slot)
 
                 if (gEntityInfo[slot].xPosBg2 < 0x60)
                 {
-                    gEntityInfo[slot].unkC_2 = 0;
+                    gEntityInfo[slot].hvFlip = 0;
                     gUnk_03005400.unk14 += 1;
                 }
                 else if (gEntityInfo[slot].xPosBg2 > 0x180)
                 {
-                    gEntityInfo[slot].unkC_2 = 1;
+                    gEntityInfo[slot].hvFlip = 1;
                     gUnk_03005400.unk14 += 1;
                 }
 
@@ -1530,10 +1530,10 @@ void sub_0803E904(u8 slot)
                     gUnk_03005400.unkA = 0xA;
 
                     gBossStageScroll.unkC_0 = 6;
-                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.dynamicMag = 0;
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x3C;
-                    gBossStageScroll.targetAlpha = 0x40;
+                    gBossStageScroll.targetMag = 0x40;
                 }
                 break;
 
@@ -1585,15 +1585,15 @@ void sub_0803E904(u8 slot)
                     gUnk_03005400.unk14 = 0;
                     gUnk_03005400.unkA = gUnk_03005400.unk15;
                     gBossStageScroll.unkC_0 = 1;
-                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.dynamicMag = 0;
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x50;
-                    gBossStageScroll.targetAlpha = 0x40;
+                    gBossStageScroll.targetMag = 0x40;
                 }
                 break;
 
             case 6:
-                gBossStageScroll.targetAlpha = 0x80;
+                gBossStageScroll.targetMag = 0x80;
                 gUnk_03005400.unk8_0 = 0;
                 gUnk_03005400.unk8_6 = 1;
 
@@ -1672,7 +1672,7 @@ void sub_0803E904(u8 slot)
             case 8:
                 if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
                 {
-                    gBossStageScroll.targetAlpha = 0x40;
+                    gBossStageScroll.targetMag = 0x40;
                     sub_0803E6D8(0x1C);
                     SetEntityAnimationInfoState(0x12, 2);
                     gUnk_03005400.unk15 = 0;
@@ -1688,7 +1688,7 @@ void sub_0803E904(u8 slot)
                 {
                     gUnk_03005400.unkA = 5;
                     SetEntityAnimationInfoState(slot, 4);
-                    gEntityInfo[0x12].unkC_2 ^= 1;
+                    gEntityInfo[0x12].hvFlip ^= 1;
                     m4aSongNumStart(0x67);
                 }
                 goto block_124;
@@ -1698,7 +1698,7 @@ void sub_0803E904(u8 slot)
                 {
                     gUnk_03005400.unkA = 4;
                     SetEntityAnimationInfoState(slot, 3);
-                    gEntityInfo[0x12].unkC_2 ^= 1;
+                    gEntityInfo[0x12].hvFlip ^= 1;
                     m4aSongNumStart(0x67);
                 }
                 goto block_124;
@@ -1803,11 +1803,11 @@ block_124:
                 {
                     if (gEntityInfo[0x12].xPosBg2 < 0xF0)
                     {
-                        gEntityInfo[0x12].unkC_2 = 0;
+                        gEntityInfo[0x12].hvFlip = 0;
                     }
                     else
                     {
-                        gEntityInfo[0x12].unkC_2 = 1;
+                        gEntityInfo[0x12].hvFlip = 1;
                     }
 
                     gUnk_03005400.unk13 = 0;
@@ -1977,7 +1977,7 @@ void sub_0803F9EC(u8 slot)
 
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gEntityInfo[slot].affineDouble = 1;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
@@ -1993,13 +1993,13 @@ void sub_0803F9EC(u8 slot)
         if (gUnk_03005400.unkA == 0)
         {
             gBossStageScroll.unkC_0 = 7;
-            gBossStageScroll.unkC_4 = 0;
+            gBossStageScroll.dynamicMag = 0;
             gBossStageScroll.targetXPos = 0x78;
             gBossStageScroll.currXPos = 0x78;
             gBossStageScroll.targetYPos = 0xA0;
             gBossStageScroll.currYPos = 0xA0;
-            gBossStageScroll.targetAlpha = 0x60;
-            gBossStageScroll.currAlpha = 0x60;
+            gBossStageScroll.targetMag = 0x60;
+            gBossStageScroll.currMag = 0x60;
             gUnk_03005400.unk9 = 0;
             gUnk_03005400.unk8_4 = 1;
             gEntityInfo[slot].unkF = 0;
@@ -2036,11 +2036,11 @@ void sub_0803F9EC(u8 slot)
                 gEntityInfo[0x12].yPosBg2 = 0x190;
                 if (gEntityInfo[0].xPosBg2 < gEntityInfo[0x12].xPosBg2)
                 {
-                    gEntityInfo[0x12].unkC_2 = 1;
+                    gEntityInfo[0x12].hvFlip = 1;
                 }
                 else
                 {
-                    gEntityInfo[0x12].unkC_2 = 0;
+                    gEntityInfo[0x12].hvFlip = 0;
                 }
                 gUnk_03003590[0].unk2 = 0;
                 gUnk_03003590[0].unk0 = 0;
@@ -2450,7 +2450,7 @@ void sub_0803F9EC(u8 slot)
             case 10:
                 if ((gEntityInfo[slot].yPosBg2 <= 0xB3) && (gUnk_03004C20.sceneFrameCounter & (slot - 0x23)))
                 {
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 1;
                     }
@@ -2544,11 +2544,11 @@ void sub_0803F9EC(u8 slot)
                     {
                         if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                         {
-                            gEntityInfo[slot].unkC_2 = 1;
+                            gEntityInfo[slot].hvFlip = 1;
                         }
                         else
                         {
-                            gEntityInfo[slot].unkC_2 = 0;
+                            gEntityInfo[slot].hvFlip = 0;
                         }
                         gUnk_03005400.unk6 = 1;
                         m4aSongNumStart(0x7F);
@@ -2567,7 +2567,7 @@ void sub_0803F9EC(u8 slot)
                         gUnk_03005400.unk6 = 2;
                     }
                     gUnk_03003590[0].unk4 += 4;
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 1;
                     }
@@ -2585,7 +2585,7 @@ void sub_0803F9EC(u8 slot)
                         gUnk_03003590[0].unk2 += 4;
                     }
                     gUnk_03003590[0].unk4 += 4;
-                    if (gEntityInfo[slot].unkC_2 == 0)
+                    if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 1;
                     }
@@ -2753,7 +2753,7 @@ void sub_08040F1C(u8 slot)
     sub_0803D4AC(slot, gUnk_03003620);
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gEntityInfo[slot].affineDouble = 1;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
         gUnk_03005400.unk0 -= 1;
@@ -2795,13 +2795,13 @@ void sub_08040F1C(u8 slot)
 
                 gUnk_03005400.unkA = 1;
                 gBossStageScroll.unkC_0 = 0;
-                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.dynamicMag = 0;
                 gBossStageScroll.targetXPos = 0x78;
                 gBossStageScroll.currXPos = 0x78;
                 gBossStageScroll.targetYPos = 0x46;
                 gBossStageScroll.currYPos = 0x46;
-                gBossStageScroll.targetAlpha = 0x60;
-                gBossStageScroll.currAlpha = 0x60;
+                gBossStageScroll.targetMag = 0x60;
+                gBossStageScroll.currMag = 0x60;
                 gUnk_03005400.unkE_2 = 1;
                 gUnk_03005400.unkE_7 = 1;
                 break;
@@ -3160,7 +3160,7 @@ void sub_08040F1C(u8 slot)
                 }
                 else
                 {
-                    gEntityInfo[slot].unkC_2 ^= 1;
+                    gEntityInfo[slot].hvFlip ^= 1;
                     SetEntityAnimationInfoState(slot, 2);
                     gUnk_03005400.unk13 += 1;
                 }
@@ -3169,11 +3169,11 @@ void sub_08040F1C(u8 slot)
             case 6:
                 if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                 {
-                    gEntityInfo[slot].unkC_2 = 0;
+                    gEntityInfo[slot].hvFlip = 0;
                 }
                 else
                 {
-                    gEntityInfo[slot].unkC_2 = 1;
+                    gEntityInfo[slot].hvFlip = 1;
                 }
                 SetEntityAnimationInfoState(slot, 7);
                 gUnk_03005400.unkA = 7;
@@ -3521,13 +3521,13 @@ void sub_08042024(u8 slot)
                 gEntityInfo[0x15].priority = 1;
 
                 gBossStageScroll.unkC_0 = 0;
-                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.dynamicMag = 0;
                 gBossStageScroll.targetXPos = gEntityInfo[0x12].xPosBg2 - 0x78;
                 gBossStageScroll.currXPos = gEntityInfo[0x12].xPosBg2 - 0x78;
                 gBossStageScroll.targetYPos = gEntityInfo[0x12].yPosBg2;
                 gBossStageScroll.currYPos = gEntityInfo[0x12].yPosBg2;
-                gBossStageScroll.targetAlpha = 0x60;
-                gBossStageScroll.currAlpha = 0x60;
+                gBossStageScroll.targetMag = 0x60;
+                gBossStageScroll.currMag = 0x60;
                 gUnk_03005400.unkE_7 = 1;
                 break;
 
@@ -3547,8 +3547,8 @@ void sub_08042024(u8 slot)
                     gEntityInfo[slot].unkF = 0;
                     gUnk_03005400.unkA = 2;
                     gBossStageScroll.unkC_0 = 1;
-                    gBossStageScroll.unkC_4 = 0;
-                    gBossStageScroll.targetAlpha = 0x60;
+                    gBossStageScroll.dynamicMag = 0;
+                    gBossStageScroll.targetMag = 0x60;
 
                     gEntityInfo[0x14].unkF = 0x19;
                     gEntityInfo[0x13].unkF = 0x19;
@@ -3604,8 +3604,8 @@ void sub_08042024(u8 slot)
                     gEntityInfo[slot].visible = 0;
                     gEntityInfo[slot].unkF = 0x1A;
 
-                    gEntityInfo[0x1D].unkC_2 = 0;
-                    gEntityInfo[0x1C].unkC_2 = 0;
+                    gEntityInfo[0x1D].hvFlip = 0;
+                    gEntityInfo[0x1C].hvFlip = 0;
 
                     gEntityInfo[slot].yPosBg2 = 0;
                     gEntityInfo[slot].xPosBg2 = 0;
@@ -3664,14 +3664,14 @@ b:
 
                 if (gEntityInfo[slot].xPosBg2 <= 0x40)
                 {
-                    gEntityInfo[slot].unkC_2 = 0;
+                    gEntityInfo[slot].hvFlip = 0;
                 }
                 if (gEntityInfo[slot].xPosBg2 > 0x19F)
                 {
-                    gEntityInfo[slot].unkC_2 = 1;
+                    gEntityInfo[slot].hvFlip = 1;
                 }
 
-                gEntityInfo[slot].xPosBg2 += 1 - (gEntityInfo[slot].unkC_2 * 2);
+                gEntityInfo[slot].xPosBg2 += 1 - (gEntityInfo[slot].hvFlip * 2);
                 gEntityInfo[slot].yPosBg2 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[0].unk2 - ((SIN(gEntityInfo[slot].unk8.split.unk8) << 0x10) >> 0x15);
                 tmp = temp_r8 & 1;
                 if (tmp != 1)
@@ -3681,11 +3681,11 @@ b:
 
                 if (gEntityInfo[slot].xPosBg2 < gEntityInfo[0].xPosBg2)
                 {
-                    gEntityInfo[slot].unkC_2 = 0;
+                    gEntityInfo[slot].hvFlip = 0;
                 }
                 else
                 {
-                    gEntityInfo[slot].unkC_2 = 1;
+                    gEntityInfo[slot].hvFlip = 1;
                 }
 
                 gUnk_03005400.unkA = 3;
@@ -3761,10 +3761,10 @@ b:
                     SetEntityAnimationInfoState(0x15, 5);
                     gEntityInfo[0x15].unkF = 0xE;
                     gBossStageScroll.unkC_0 = 0;
-                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.dynamicMag = 0;
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x50;
-                    gBossStageScroll.targetAlpha = 0x40;
+                    gBossStageScroll.targetMag = 0x40;
                     gRoomRotationAlpha = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
@@ -3830,10 +3830,10 @@ b:
                 {
                     gUnk_03005400.unkA = 0xA;
                     gBossStageScroll.unkC_0 = 0;
-                    gBossStageScroll.unkC_4 = 0;
+                    gBossStageScroll.dynamicMag = 0;
                     gBossStageScroll.targetXPos = 0x78;
                     gBossStageScroll.targetYPos = 0x50;
-                    gBossStageScroll.targetAlpha = 0x40;
+                    gBossStageScroll.targetMag = 0x40;
                     gRoomRotationAlpha = gBg2Alpha;
                     m4aSongNumStart(0x73);
                     sub_08041F34(0);
@@ -3991,12 +3991,12 @@ void sub_08042BEC(void)
         if (gEntityInfo[0x14].xPosBg2 < 0x14)
         {
             gEntityInfo[0x14].xPosBg2 = 0x14;
-            gEntityInfo[0x14].unkC_2 = 0;
+            gEntityInfo[0x14].hvFlip = 0;
         }
         if (gEntityInfo[0x14].xPosBg2 > 0x1C4)
         {
             gEntityInfo[0x14].xPosBg2 = 0x1C4;
-            gEntityInfo[0x14].unkC_2 = 1;
+            gEntityInfo[0x14].hvFlip = 1;
         }
     }
 
@@ -4005,12 +4005,12 @@ void sub_08042BEC(void)
         if (gEntityInfo[0x15].xPosBg2 < 0x14)
         {
             gEntityInfo[0x15].xPosBg2 = 0x14;
-            gEntityInfo[0x15].unkC_2 = 0;
+            gEntityInfo[0x15].hvFlip = 0;
         }
         if (gEntityInfo[0x15].xPosBg2 > 0x1C4)
         {
             gEntityInfo[0x15].xPosBg2 = 0x1C4;
-            gEntityInfo[0x15].unkC_2 = 1;
+            gEntityInfo[0x15].hvFlip = 1;
         }
     }
 }
@@ -4027,7 +4027,7 @@ void sub_08042E64(u8 slot)
     u8 temp_r5_3;
 
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gTransitioning == TRUE)
     {
         return;
@@ -4046,7 +4046,7 @@ void sub_08042E64(u8 slot)
         if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
         {
             SetEntityAnimationInfoState(slot, 0x19);
-            gEntityInfo[slot].unkC_2 = 1;
+            gEntityInfo[slot].hvFlip = 1;
         }
     }
     else if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 0x19)
@@ -4054,7 +4054,7 @@ void sub_08042E64(u8 slot)
         if (gEntityAnimationInfo[slot - gUnk_0300363C].timer == 0xFF)
         {
             SetEntityAnimationInfoState(slot, 0x18);
-            gEntityInfo[slot].unkC_2 = 0;
+            gEntityInfo[slot].hvFlip = 0;
         }
     }
 
@@ -4064,10 +4064,10 @@ void sub_08042E64(u8 slot)
         {
             case 0:
                 gBossStageScroll.unkC_0 = 3;
-                gBossStageScroll.unkC_4 = 0;
+                gBossStageScroll.dynamicMag = 0;
                 gBossStageScroll.targetXPos = 0x78;
                 gBossStageScroll.targetYPos = 0x80;
-                gBossStageScroll.targetAlpha = 0;
+                gBossStageScroll.targetMag = 0;
                 gUnk_03005400.unk8_0 = 1;
                 gUnk_03005400.unk8_6 = 1;
 
@@ -4107,7 +4107,7 @@ void sub_08042E64(u8 slot)
         {
             case 0:
                 gBossStageScroll.targetYPos = 0x80;
-                gBossStageScroll.targetAlpha = 0;
+                gBossStageScroll.targetMag = 0;
                 gUnk_03005400.unk0 = 0x78;
                 gUnk_03005400.unkA = 1;
                 break;
@@ -4142,14 +4142,14 @@ void sub_08042E64(u8 slot)
                 if (gUnk_03005400.unkC == 2)
                 {
                     gBossStageScroll.unkC_0 = 3;
-                    gBossStageScroll.targetAlpha = 0;
+                    gBossStageScroll.targetMag = 0;
                     gBossStageScroll.targetYPos = 0x90;
                     gUnk_03005400.unk13 = gUnk_08116AA4[gUnk_03005400.unkC - 1];
                     gUnk_03005400.unkA = 2;
                 }
                 else
                 {
-                    gBossStageScroll.targetAlpha = 0x50;
+                    gBossStageScroll.targetMag = 0x50;
                     gBossStageScroll.targetYPos = 0xA0;
                     gUnk_03005400.unk13 = gUnk_08116AA7[gUnk_03005400.unkC - 1];
                     gUnk_03005400.unkA = 5;
@@ -4188,7 +4188,7 @@ void sub_08042E64(u8 slot)
             case 5:
                 if (gBossStageScroll.currYPos == gBossStageScroll.targetYPos)
                 {
-                    if (gBossStageScroll.currAlpha == gBossStageScroll.targetAlpha)
+                    if (gBossStageScroll.currMag == gBossStageScroll.targetMag)
                     {
                         gEntityInfo[0x1F].unk8.split.unk8 = 0;
                         gEntityInfo[0x1F].unkF = 7;
@@ -4497,5 +4497,5 @@ block_145:
         gNewKeys = gHeldKeys = 0;
     }
 
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].unkC_2;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
 }

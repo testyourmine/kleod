@@ -977,11 +977,11 @@ void WorldMapScreenHandler(void)
         {
             if (gUnk_08116708[gWorldMapInfo.currentIndex][0] >= gUnk_08116708[gWorldMapInfo.currentIndex + gWorldMapInfo.nextIndexOffset][0])
             {
-                gEntityInfo[0].unkC_2 = 1;
+                gEntityInfo[0].hvFlip = 1;
             }
             else
             {
-                gEntityInfo[0].unkC_2 = 0;
+                gEntityInfo[0].hvFlip = 0;
             }
             gUnk_030034DC = 0;
         }

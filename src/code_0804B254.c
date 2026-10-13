@@ -54,7 +54,7 @@ extern const u32 *gUnk_08189CCC[][2];
 
 extern const void *gUnk_08189DCC[];
 
-extern const void *gUnk_08189E84[];
+extern struct Unk_0300466C *gUnk_08189E84[];
 
 struct Unk_08189F04 {
     u16 unk0;
@@ -733,7 +733,7 @@ void sub_0804C1FC(void)
 
 void sub_0804C218(s32 arg0)
 {
-    gUnk_030051DC = (struct Unk_0300466C *) gUnk_08189E84[arg0];
+    gUnk_030051DC = gUnk_08189E84[arg0];
 }
 
 void sub_0804C230(void)
@@ -855,7 +855,7 @@ void sub_0804C6E0(void)
 {
     gEntityInfo[gUnk_03004D84[2] + 0xD].visible = gUnk_03004D84[3] >> 7;
     gEntityInfo[gUnk_03004D84[2] + 0xD].unkF = (!(gUnk_03004D84[3] & 0x80)) ? 0x1C : 0;
-    gEntityInfo[gUnk_03004D84[2] + 0xD].unkC_2 = (gUnk_03004D84[3] >> 4) & 3;
+    gEntityInfo[gUnk_03004D84[2] + 0xD].hvFlip = (gUnk_03004D84[3] >> 4) & 3;
     gEntityInfo[gUnk_03004D84[2] + 0xD].priority = (gUnk_03004D84[3] & 3);
 
     gUnk_03004D84 += 4;

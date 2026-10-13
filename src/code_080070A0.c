@@ -141,19 +141,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0xB].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5->unk3 * 2) + gEntityInfo[0xB].xPosScreen + ((s32) (gEntityInfo[0xB].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5->unk4 + ((s8)var_r5->unk4 >> 1) + gEntityInfo[0xB].yPosScreen + (((s8)gEntityInfo[0xB].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5->unk3 * 2) + gEntityInfo[0xB].xPosScreen + ((gEntityInfo[0xB].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5->unk4 + (var_r5->unk4 >> 1) + gEntityInfo[0xB].yPosScreen + ((gEntityInfo[0xB].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5->unk3 * 2) + gEntityInfo[0xB].xPosScreen + ((s32) (gEntityInfo[0xB].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5->unk4 + ((s8)var_r5->unk4 >> 1) + gEntityInfo[0xB].yPosScreen + ((s8) (gEntityInfo[0xB].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5->unk3 * 2) + gEntityInfo[0xB].xPosScreen + ((gEntityInfo[0xB].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5->unk4 + (var_r5->unk4 >> 1) + gEntityInfo[0xB].yPosScreen + ((gEntityInfo[0xB].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5->unk3 + gEntityInfo[0xB].xPosScreen + ((s32) (gEntityInfo[0xB].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0xB].yPosScreen + var_r5->unk4 + ((s8) (gEntityInfo[0xB].unkB_4));
+                gOamBufferPtr->split.x = var_r5->unk3 + gEntityInfo[0xB].xPosScreen + ((gEntityInfo[0xB].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0xB].yPosScreen + var_r5->unk4 + ((gEntityInfo[0xB].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5->bpp_paletteNum >> 7;
@@ -174,8 +174,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0xB].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0xB].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0xB].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0xB].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -205,19 +205,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0xC].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5_2->unk3 * 2) + gEntityInfo[0xC].xPosScreen + ((s32) (gEntityInfo[0xC].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5_2->unk4 + ((s8)var_r5_2->unk4 >> 1) + gEntityInfo[0xC].yPosScreen + (((s8)gEntityInfo[0xC].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5_2->unk3 * 2) + gEntityInfo[0xC].xPosScreen + ((gEntityInfo[0xC].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5_2->unk4 + (var_r5_2->unk4 >> 1) + gEntityInfo[0xC].yPosScreen + ((gEntityInfo[0xC].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5_2->unk3 * 2) + gEntityInfo[0xC].xPosScreen + ((s32) (gEntityInfo[0xC].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5_2->unk4 + ((s8)var_r5_2->unk4 >> 1) + gEntityInfo[0xC].yPosScreen + ((s8) (gEntityInfo[0xC].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5_2->unk3 * 2) + gEntityInfo[0xC].xPosScreen + ((gEntityInfo[0xC].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5_2->unk4 + (var_r5_2->unk4 >> 1) + gEntityInfo[0xC].yPosScreen + ((gEntityInfo[0xC].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5_2->unk3 + gEntityInfo[0xC].xPosScreen + ((s32) (gEntityInfo[0xC].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0xC].yPosScreen + var_r5_2->unk4 + ((s8) (gEntityInfo[0xC].unkB_4));
+                gOamBufferPtr->split.x = var_r5_2->unk3 + gEntityInfo[0xC].xPosScreen + ((gEntityInfo[0xC].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0xC].yPosScreen + var_r5_2->unk4 + ((gEntityInfo[0xC].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5_2->bpp_paletteNum >> 7;
@@ -238,8 +238,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0xC].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0xC].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0xC].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0xC].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -269,19 +269,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0xD].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5_3->unk3 * 2) + gEntityInfo[0xD].xPosScreen + ((s32) (gEntityInfo[0xD].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5_3->unk4 + ((s8)var_r5_3->unk4 >> 1) + gEntityInfo[0xD].yPosScreen + (((s8)gEntityInfo[0xD].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5_3->unk3 * 2) + gEntityInfo[0xD].xPosScreen + ((gEntityInfo[0xD].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5_3->unk4 + (var_r5_3->unk4 >> 1) + gEntityInfo[0xD].yPosScreen + ((gEntityInfo[0xD].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5_3->unk3 * 2) + gEntityInfo[0xD].xPosScreen + ((s32) (gEntityInfo[0xD].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5_3->unk4 + ((s8)var_r5_3->unk4 >> 1) + gEntityInfo[0xD].yPosScreen + ((s8) (gEntityInfo[0xD].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5_3->unk3 * 2) + gEntityInfo[0xD].xPosScreen + ((gEntityInfo[0xD].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5_3->unk4 + (var_r5_3->unk4 >> 1) + gEntityInfo[0xD].yPosScreen + ((gEntityInfo[0xD].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5_3->unk3 + gEntityInfo[0xD].xPosScreen + ((s32) (gEntityInfo[0xD].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0xD].yPosScreen + var_r5_3->unk4 + ((s8) (gEntityInfo[0xD].unkB_4));
+                gOamBufferPtr->split.x = var_r5_3->unk3 + gEntityInfo[0xD].xPosScreen + ((gEntityInfo[0xD].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0xD].yPosScreen + var_r5_3->unk4 + ((gEntityInfo[0xD].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5_3->bpp_paletteNum >> 7;
@@ -302,8 +302,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0xD].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0xD].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0xD].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0xD].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -335,19 +335,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0xE].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5_4->unk3 * 2) + gEntityInfo[0xE].xPosScreen + ((s32) (gEntityInfo[0xE].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5_4->unk4 + ((s8)var_r5_4->unk4 >> 1) + gEntityInfo[0xE].yPosScreen + (((s8)gEntityInfo[0xE].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5_4->unk3 * 2) + gEntityInfo[0xE].xPosScreen + ((gEntityInfo[0xE].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5_4->unk4 + (var_r5_4->unk4 >> 1) + gEntityInfo[0xE].yPosScreen + ((gEntityInfo[0xE].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5_4->unk3 * 2) + gEntityInfo[0xE].xPosScreen + ((s32) (gEntityInfo[0xE].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5_4->unk4 + ((s8)var_r5_4->unk4 >> 1) + gEntityInfo[0xE].yPosScreen + ((s8) (gEntityInfo[0xE].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5_4->unk3 * 2) + gEntityInfo[0xE].xPosScreen + ((gEntityInfo[0xE].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5_4->unk4 + (var_r5_4->unk4 >> 1) + gEntityInfo[0xE].yPosScreen + ((gEntityInfo[0xE].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5_4->unk3 + gEntityInfo[0xE].xPosScreen + ((s32) (gEntityInfo[0xE].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0xE].yPosScreen + var_r5_4->unk4 + ((s8) (gEntityInfo[0xE].unkB_4));
+                gOamBufferPtr->split.x = var_r5_4->unk3 + gEntityInfo[0xE].xPosScreen + ((gEntityInfo[0xE].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0xE].yPosScreen + var_r5_4->unk4 + ((gEntityInfo[0xE].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5_4->bpp_paletteNum >> 7;
@@ -368,8 +368,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0xE].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0xE].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0xE].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0xE].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -401,19 +401,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0xF].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5_5->unk3 * 2) + gEntityInfo[0xF].xPosScreen + ((s32) (gEntityInfo[0xF].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5_5->unk4 + ((s8)var_r5_5->unk4 >> 1) + gEntityInfo[0xF].yPosScreen + (((s8)gEntityInfo[0xF].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5_5->unk3 * 2) + gEntityInfo[0xF].xPosScreen + ((gEntityInfo[0xF].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5_5->unk4 + (var_r5_5->unk4 >> 1) + gEntityInfo[0xF].yPosScreen + ((gEntityInfo[0xF].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5_5->unk3 * 2) + gEntityInfo[0xF].xPosScreen + ((s32) (gEntityInfo[0xF].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5_5->unk4 + ((s8)var_r5_5->unk4 >> 1) + gEntityInfo[0xF].yPosScreen + ((s8) (gEntityInfo[0xF].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5_5->unk3 * 2) + gEntityInfo[0xF].xPosScreen + ((gEntityInfo[0xF].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5_5->unk4 + (var_r5_5->unk4 >> 1) + gEntityInfo[0xF].yPosScreen + ((gEntityInfo[0xF].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5_5->unk3 + gEntityInfo[0xF].xPosScreen + ((s32) (gEntityInfo[0xF].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0xF].yPosScreen + var_r5_5->unk4 + ((s8) (gEntityInfo[0xF].unkB_4));
+                gOamBufferPtr->split.x = var_r5_5->unk3 + gEntityInfo[0xF].xPosScreen + ((gEntityInfo[0xF].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0xF].yPosScreen + var_r5_5->unk4 + ((gEntityInfo[0xF].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5_5->bpp_paletteNum >> 7;
@@ -434,8 +434,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0xF].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0xF].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0xF].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0xF].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -467,19 +467,19 @@ void EntityBossTransferToOamBuffer(void)
             {
                 if (gEntityInfo[0x10].id == 0x1C)
                 {
-                    gOamBufferPtr->split.x = (var_r5_6->unk3 * 2) + gEntityInfo[0x10].xPosScreen + ((s32) (gEntityInfo[0x10].unkB_0) << 4);
-                    gOamBufferPtr->split.y = var_r5_6->unk4 + ((s8)var_r5_6->unk4 >> 1) + gEntityInfo[0x10].yPosScreen + (((s8)gEntityInfo[0x10].unkB_4) << 4);
+                    gOamBufferPtr->split.x = (var_r5_6->unk3 * 2) + gEntityInfo[0x10].xPosScreen + ((gEntityInfo[0x10].unkB_0) << 4);
+                    gOamBufferPtr->split.y = var_r5_6->unk4 + (var_r5_6->unk4 >> 1) + gEntityInfo[0x10].yPosScreen + ((gEntityInfo[0x10].unkB_4) << 4);
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = (var_r5_6->unk3 * 2) + gEntityInfo[0x10].xPosScreen + ((s32) (gEntityInfo[0x10].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = var_r5_6->unk4 + ((s8)var_r5_6->unk4 >> 1) + gEntityInfo[0x10].yPosScreen + ((s8) (gEntityInfo[0x10].unkB_4));
+                    gOamBufferPtr->split.x = (var_r5_6->unk3 * 2) + gEntityInfo[0x10].xPosScreen + ((gEntityInfo[0x10].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = var_r5_6->unk4 + (var_r5_6->unk4 >> 1) + gEntityInfo[0x10].yPosScreen + ((gEntityInfo[0x10].unkB_4));
                 }
             }
             else
             {
-                gOamBufferPtr->split.x = var_r5_6->unk3 + gEntityInfo[0x10].xPosScreen + ((s32) (gEntityInfo[0x10].unkB_0 << 4) >> 4);
-                gOamBufferPtr->split.y = gEntityInfo[0x10].yPosScreen + var_r5_6->unk4 + ((s8) (gEntityInfo[0x10].unkB_4));
+                gOamBufferPtr->split.x = var_r5_6->unk3 + gEntityInfo[0x10].xPosScreen + ((gEntityInfo[0x10].unkB_0 << 4) >> 4);
+                gOamBufferPtr->split.y = gEntityInfo[0x10].yPosScreen + var_r5_6->unk4 + ((gEntityInfo[0x10].unkB_4));
             }
 
             gOamBufferPtr->split.bpp = var_r5_6->bpp_paletteNum >> 7;
@@ -500,8 +500,8 @@ void EntityBossTransferToOamBuffer(void)
             }
             else
             {
-                gOamBufferPtr->split.hFlip = gEntityInfo[0x10].unkC_2 & 1;
-                gOamBufferPtr->split.vFlip = gEntityInfo[0x10].unkC_2 >> 1;
+                gOamBufferPtr->split.hFlip = gEntityInfo[0x10].hvFlip & 1;
+                gOamBufferPtr->split.vFlip = gEntityInfo[0x10].hvFlip >> 1;
             }
             
             gOamBufferPtr += 1;
@@ -535,19 +535,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7->unk4 + ((s8)var_r7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7->unk4 + (var_r7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7->unk4 + ((s8)var_r7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7->unk4 + (var_r7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7->bpp_paletteNum >> 7;
@@ -567,8 +567,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -602,19 +602,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0 + 0x16].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[sp0 + 0x16].xPosScreen + ((s32) (gEntityInfo[sp0 + 0x16].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_2->unk4 + ((s8)var_r7_2->unk4 >> 1) + gEntityInfo[sp0 + 0x16].yPosScreen + (((s8)gEntityInfo[sp0 + 0x16].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[sp0 + 0x16].xPosScreen + ((gEntityInfo[sp0 + 0x16].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_2->unk4 + (var_r7_2->unk4 >> 1) + gEntityInfo[sp0 + 0x16].yPosScreen + ((gEntityInfo[sp0 + 0x16].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[sp0 + 0x16].xPosScreen + ((s32) (gEntityInfo[sp0 + 0x16].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_2->unk4 + ((s8)var_r7_2->unk4 >> 1) + gEntityInfo[sp0 + 0x16].yPosScreen + ((s8) (gEntityInfo[sp0 + 0x16].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[sp0 + 0x16].xPosScreen + ((gEntityInfo[sp0 + 0x16].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_2->unk4 + (var_r7_2->unk4 >> 1) + gEntityInfo[sp0 + 0x16].yPosScreen + ((gEntityInfo[sp0 + 0x16].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_2->unk3 + gEntityInfo[sp0 + 0x16].xPosScreen + ((s32) (gEntityInfo[sp0 + 0x16].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0 + 0x16].yPosScreen + var_r7_2->unk4 + ((s8) (gEntityInfo[sp0 + 0x16].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_2->unk3 + gEntityInfo[sp0 + 0x16].xPosScreen + ((gEntityInfo[sp0 + 0x16].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0 + 0x16].yPosScreen + var_r7_2->unk4 + ((gEntityInfo[sp0 + 0x16].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_2->bpp_paletteNum >> 7;
@@ -634,8 +634,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0 + 0x16].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0 + 0x16].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0 + 0x16].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0 + 0x16].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -673,19 +673,19 @@ void EntityBossTransferToOamBuffer(void)
                 {
                     if (gEntityInfo[0x12].id == 0x1C)
                     {
-                        gOamBufferPtr->split.x = (var_r5_7->unk3 * 2) + gEntityInfo[0x12].xPosScreen + ((s32) (gEntityInfo[0x12].unkB_0) << 4);
-                        gOamBufferPtr->split.y = var_r5_7->unk4 + ((s8)var_r5_7->unk4 >> 1) + gEntityInfo[0x12].yPosScreen + (((s8)gEntityInfo[0x12].unkB_4) << 4);
+                        gOamBufferPtr->split.x = (var_r5_7->unk3 * 2) + gEntityInfo[0x12].xPosScreen + ((gEntityInfo[0x12].unkB_0) << 4);
+                        gOamBufferPtr->split.y = var_r5_7->unk4 + (var_r5_7->unk4 >> 1) + gEntityInfo[0x12].yPosScreen + ((gEntityInfo[0x12].unkB_4) << 4);
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = (var_r5_7->unk3 * 2) + gEntityInfo[0x12].xPosScreen + ((s32) (gEntityInfo[0x12].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = var_r5_7->unk4 + ((s8)var_r5_7->unk4 >> 1) + gEntityInfo[0x12].yPosScreen + ((s8) (gEntityInfo[0x12].unkB_4));
+                        gOamBufferPtr->split.x = (var_r5_7->unk3 * 2) + gEntityInfo[0x12].xPosScreen + ((gEntityInfo[0x12].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = var_r5_7->unk4 + (var_r5_7->unk4 >> 1) + gEntityInfo[0x12].yPosScreen + ((gEntityInfo[0x12].unkB_4));
                     }
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = var_r5_7->unk3 + gEntityInfo[0x12].xPosScreen + ((s32) (gEntityInfo[0x12].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = gEntityInfo[0x12].yPosScreen + var_r5_7->unk4 + ((s8) (gEntityInfo[0x12].unkB_4));
+                    gOamBufferPtr->split.x = var_r5_7->unk3 + gEntityInfo[0x12].xPosScreen + ((gEntityInfo[0x12].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = gEntityInfo[0x12].yPosScreen + var_r5_7->unk4 + ((gEntityInfo[0x12].unkB_4));
                 }
     
                 gOamBufferPtr->split.bpp = var_r5_7->bpp_paletteNum >> 7;
@@ -706,8 +706,8 @@ void EntityBossTransferToOamBuffer(void)
                 }
                 else
                 {
-                    gOamBufferPtr->split.hFlip = gEntityInfo[0x12].unkC_2 & 1;
-                    gOamBufferPtr->split.vFlip = gEntityInfo[0x12].unkC_2 >> 1;
+                    gOamBufferPtr->split.hFlip = gEntityInfo[0x12].hvFlip & 1;
+                    gOamBufferPtr->split.vFlip = gEntityInfo[0x12].hvFlip >> 1;
                 }
                 
                 gOamBufferPtr += 1;
@@ -743,19 +743,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_3->unk4 + ((s8)var_r7_3->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_3->unk4 + (var_r7_3->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_3->unk4 + ((s8)var_r7_3->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_3->unk4 + (var_r7_3->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_3->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_3->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_3->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_3->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_3->bpp_paletteNum >> 7;
@@ -775,8 +775,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -816,19 +816,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_4->unk4 + ((s8)var_r7_4->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_4->unk4 + (var_r7_4->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_4->unk4 + ((s8)var_r7_4->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_4->unk4 + (var_r7_4->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_4->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_4->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_4->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_4->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_4->bpp_paletteNum >> 7;
@@ -848,8 +848,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -889,19 +889,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_5->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_5->unk4 + ((s8)var_r7_5->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_5->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_5->unk4 + (var_r7_5->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_5->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_5->unk4 + ((s8)var_r7_5->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_5->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_5->unk4 + (var_r7_5->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_5->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_5->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_5->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_5->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_5->bpp_paletteNum >> 7;
@@ -921,8 +921,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -953,19 +953,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_6->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_6->unk4 + ((s8)var_r7_6->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_6->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_6->unk4 + (var_r7_6->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_6->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_6->unk4 + ((s8)var_r7_6->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_6->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_6->unk4 + (var_r7_6->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_6->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_6->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_6->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_6->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_6->bpp_paletteNum >> 7;
@@ -985,8 +985,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -1020,19 +1020,19 @@ void EntityBossTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[sp0].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_7->unk4 + ((s8)var_r7_7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + (((s8)gEntityInfo[sp0].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_7->unk4 + (var_r7_7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_7->unk4 + ((s8)var_r7_7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((s8) (gEntityInfo[sp0].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_7->unk3 * 2) + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_7->unk4 + (var_r7_7->unk4 >> 1) + gEntityInfo[sp0].yPosScreen + ((gEntityInfo[sp0].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_7->unk3 + gEntityInfo[sp0].xPosScreen + ((s32) (gEntityInfo[sp0].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_7->unk4 + ((s8) (gEntityInfo[sp0].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_7->unk3 + gEntityInfo[sp0].xPosScreen + ((gEntityInfo[sp0].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[sp0].yPosScreen + var_r7_7->unk4 + ((gEntityInfo[sp0].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_7->bpp_paletteNum >> 7;
@@ -1052,8 +1052,8 @@ void EntityBossTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[sp0].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[sp0].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -1123,19 +1123,19 @@ void EntityVisionSelectTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[var_sb].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7->unk4 + ((s8)var_r7->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + (((s8)gEntityInfo[var_sb].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7->unk4 + (var_r7->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7->unk4 + ((s8)var_r7->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((s8) (gEntityInfo[var_sb].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7->unk4 + (var_r7->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7->unk3 + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7->unk4 + ((s8) (gEntityInfo[var_sb].unkB_4));
+                        gOamBufferPtr->split.x = var_r7->unk3 + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7->unk4 + ((gEntityInfo[var_sb].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7->bpp_paletteNum >> 7;
@@ -1155,8 +1155,8 @@ void EntityVisionSelectTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -1188,19 +1188,19 @@ void EntityVisionSelectTransferToOamBuffer(void)
                 {
                     if (gEntityInfo[var_sb].id == 0x1C)
                     {
-                        gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0) << 4);
-                        gOamBufferPtr->split.y = var_r7_2->unk4 + ((s8)var_r7_2->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + (((s8)gEntityInfo[var_sb].unkB_4) << 4);
+                        gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0) << 4);
+                        gOamBufferPtr->split.y = var_r7_2->unk4 + (var_r7_2->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4) << 4);
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = var_r7_2->unk4 + ((s8)var_r7_2->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((s8) (gEntityInfo[var_sb].unkB_4));
+                        gOamBufferPtr->split.x = (var_r7_2->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = var_r7_2->unk4 + (var_r7_2->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4));
                     }
                 }
                 else
                 {
-                    gOamBufferPtr->split.x = var_r7_2->unk3 + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                    gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_2->unk4 + ((s8) (gEntityInfo[var_sb].unkB_4));
+                    gOamBufferPtr->split.x = var_r7_2->unk3 + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                    gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_2->unk4 + ((gEntityInfo[var_sb].unkB_4));
                 }
                 
                 gOamBufferPtr->split.bpp = var_r7_2->bpp_paletteNum >> 7;
@@ -1220,8 +1220,8 @@ void EntityVisionSelectTransferToOamBuffer(void)
                 }
                 else
                 {
-                    gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].unkC_2 & 1;
-                    gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].unkC_2 >> 1;
+                    gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].hvFlip & 1;
+                    gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].hvFlip >> 1;
                 }
                 
                 gOamBufferPtr += 1;
@@ -1256,19 +1256,19 @@ void EntityVisionSelectTransferToOamBuffer(void)
                         {
                             if (gEntityInfo[var_sb].id == 0x1C)
                             {
-                                gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0) << 4);
-                                gOamBufferPtr->split.y = var_r7_3->unk4 + ((s8)var_r7_3->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + (((s8)gEntityInfo[var_sb].unkB_4) << 4);
+                                gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0) << 4);
+                                gOamBufferPtr->split.y = var_r7_3->unk4 + (var_r7_3->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4) << 4);
                             }
                             else
                             {
-                                gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                                gOamBufferPtr->split.y = var_r7_3->unk4 + ((s8)var_r7_3->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((s8) (gEntityInfo[var_sb].unkB_4));
+                                gOamBufferPtr->split.x = (var_r7_3->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                                gOamBufferPtr->split.y = var_r7_3->unk4 + (var_r7_3->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4));
                             }
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = var_r7_3->unk3 + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_3->unk4 + ((s8) (gEntityInfo[var_sb].unkB_4));
+                            gOamBufferPtr->split.x = var_r7_3->unk3 + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_3->unk4 + ((gEntityInfo[var_sb].unkB_4));
                         }
                         
                         gOamBufferPtr->split.bpp = var_r7_3->bpp_paletteNum >> 7;
@@ -1288,8 +1288,8 @@ void EntityVisionSelectTransferToOamBuffer(void)
                         }
                         else
                         {
-                            gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].unkC_2 & 1;
-                            gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].unkC_2 >> 1;
+                            gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].hvFlip & 1;
+                            gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].hvFlip >> 1;
                         }
                         
                         gOamBufferPtr += 1;
@@ -1318,19 +1318,19 @@ void EntityVisionSelectTransferToOamBuffer(void)
                     {
                         if (gEntityInfo[var_sb].id == 0x1C)
                         {
-                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0) << 4);
-                            gOamBufferPtr->split.y = var_r7_4->unk4 + ((s8)var_r7_4->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + (((s8)gEntityInfo[var_sb].unkB_4) << 4);
+                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0) << 4);
+                            gOamBufferPtr->split.y = var_r7_4->unk4 + (var_r7_4->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4) << 4);
                         }
                         else
                         {
-                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                            gOamBufferPtr->split.y = var_r7_4->unk4 + ((s8)var_r7_4->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((s8) (gEntityInfo[var_sb].unkB_4));
+                            gOamBufferPtr->split.x = (var_r7_4->unk3 * 2) + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                            gOamBufferPtr->split.y = var_r7_4->unk4 + (var_r7_4->unk4 >> 1) + gEntityInfo[var_sb].yPosScreen + ((gEntityInfo[var_sb].unkB_4));
                         }
                     }
                     else
                     {
-                        gOamBufferPtr->split.x = var_r7_4->unk3 + gEntityInfo[var_sb].xPosScreen + ((s32) (gEntityInfo[var_sb].unkB_0 << 4) >> 4);
-                        gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_4->unk4 + ((s8) (gEntityInfo[var_sb].unkB_4));
+                        gOamBufferPtr->split.x = var_r7_4->unk3 + gEntityInfo[var_sb].xPosScreen + ((gEntityInfo[var_sb].unkB_0 << 4) >> 4);
+                        gOamBufferPtr->split.y = gEntityInfo[var_sb].yPosScreen + var_r7_4->unk4 + ((gEntityInfo[var_sb].unkB_4));
                     }
                     
                     gOamBufferPtr->split.bpp = var_r7_4->bpp_paletteNum >> 7;
@@ -1350,8 +1350,8 @@ void EntityVisionSelectTransferToOamBuffer(void)
                     }
                     else
                     {
-                        gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].unkC_2 & 1;
-                        gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].unkC_2 >> 1;
+                        gOamBufferPtr->split.hFlip = gEntityInfo[var_sb].hvFlip & 1;
+                        gOamBufferPtr->split.vFlip = gEntityInfo[var_sb].hvFlip >> 1;
                     }
                     
                     gOamBufferPtr += 1;
@@ -1790,7 +1790,7 @@ void sub_0800AC34(void)
         {
             if (gEntityInfo[slot].id != 0)
             {
-                gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[slot].unkC_2;
+                gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[slot].hvFlip;
                 gEntityInfo[slot].affineDouble = 0;
 
                 switch (gEntityInfo[slot].id)
@@ -1895,7 +1895,7 @@ void sub_0800AC34(void)
 
                     case 0x1E:
                         gEntityInfo[slot].affineHFlip_matrixNum = 6;
-                        gUnk_03003590[3].unk5_0 = gEntityInfo[slot].unkC_2;
+                        gUnk_03003590[3].unk5_0 = gEntityInfo[slot].hvFlip;
                         sub_08023988(slot);
                         break;
 
@@ -1936,9 +1936,9 @@ void sub_0800AC34(void)
                         gEntityInfo[slot].affineHFlip_matrixNum = slot - 0x13;
                         gUnk_03003590[slot - 0x16].unk2 = 0x40;
                         gUnk_03003590[slot - 0x16].unk0 = 0x40;
-                        gUnk_03003590[slot - 0x16].unk5_0 = gEntityInfo[slot].unkC_2;
+                        gUnk_03003590[slot - 0x16].unk5_0 = gEntityInfo[slot].hvFlip;
 
-                        if (gEntityInfo[slot].unkC_2 & 2)
+                        if (gEntityInfo[slot].hvFlip & 2)
                         {
                             gUnk_03003590[slot - 0x16].unk4 = 0x80;
                         }
@@ -1963,7 +1963,7 @@ void sub_0800AC34(void)
                         temp_r1_5 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
                         if (temp_r1_5->id == 0x22)
                         {
-                            if (temp_r1_5->unkC_2 == 0)
+                            if (temp_r1_5->hvFlip == 0)
                             {
                                 gEntityInfo[slot].xPosBg2 -= 6;
                             }
@@ -2257,7 +2257,7 @@ void sub_0800B3C0(void)
                 break;
 
             case ENTITY_ID_ROTATION_SWITCH:
-                temp_r3_3 = ((s32) gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
+                temp_r3_3 = (gUnk_03004C20.roomsRotationBits >> ((gUnk_03004C20.room - 1) * 2)) & 3;
                 if (gUnk_03004C10 == NULL)
                 {
                     gUnk_03004C10 = OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum << 5);

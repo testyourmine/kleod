@@ -147,7 +147,7 @@ void DeleteAllSaveDataMinigameHandler(void)
         if (gHeldKeys & R_BUTTON)
         {
             // Move Right
-            gEntityInfo[0].unkC_2 = 0;
+            gEntityInfo[0].hvFlip = 0;
             if (gEntityAnimationInfo[0].state != 1)
             {
                 // Set Klonoa to moving
@@ -162,7 +162,7 @@ void DeleteAllSaveDataMinigameHandler(void)
         else if (gHeldKeys & L_BUTTON)
         {
             // Move left
-            gEntityInfo[0].unkC_2 = 1;
+            gEntityInfo[0].hvFlip = 1;
             if (gEntityAnimationInfo[0].state != 1)
             {
                 // Set Klonoa to moving
@@ -211,7 +211,7 @@ void DeleteAllSaveDataMinigameHandler(void)
                 gEntityInfo[i].yPosBg2 = 0;
                 gEntityInfo[i].unk8.split.unk9 = (thunk_GetRandomValue() % 3) + 2; // Set random velocity between 2 and 4
                 gEntityInfo[i].unkF = 0;
-                gEntityInfo[i].unkC_2 = thunk_GetRandomValue() % 4; // Random orientation
+                gEntityInfo[i].hvFlip = thunk_GetRandomValue() % 4; // Random orientation
 
                 // First four Moos are red, next two are green
                 if (i <= 17)
