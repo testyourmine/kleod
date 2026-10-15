@@ -3505,7 +3505,7 @@ block_1433:
                                     continue;
                                 }
                                 gEntityInfo[var_sb].unk8.split.unk9 = 0;
-                                gEntityInfo[var_sb - gUnk_03004C38].unkC_4 = 0;
+                                gEntityInfo[var_sb - gMagnetBlockHandEntityCount].unkC_4 = 0;
                             }
 
                             if (gEntityInfo[var_sb].unkF != 0)
@@ -3576,8 +3576,8 @@ exit_loop2:
                             gEntityInfo[var_sb].unkF = 0x13;
                             if (gEntityInfo[var_sb].id >= ENTITY_ID_BOOMIE)
                             {
-                                gEntityInfo[gUnk_0300528C + var_sb].unkF = 0;
-                                gEntityInfo[gUnk_0300528C + var_sb].unk8.split.unk9 = 0;
+                                gEntityInfo[gBoomieExplosionCountdownEntitySlotOffset + var_sb].unkF = 0;
+                                gEntityInfo[gBoomieExplosionCountdownEntitySlotOffset + var_sb].unk8.split.unk9 = 0;
                             }
 
                             gUnk_03005220.unk42 = var_sb;
@@ -4337,21 +4337,21 @@ block_1643:
     if ((gUnk_03004C20.globalFrameCounter % 8) == 0)
     {
         temp_r5_26 = (gUnk_03004C20.globalFrameCounter >> 3) & 3;
-        if (gUnk_0300547C != 0)
+        if (gSmallDreamStoneFirstEntitySlot != 0)
         {
-            DmaCopy16(3, gUnk_0818B9B8[0][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_0300547C - 0xD].tileNum * 0x20), 0x20);
+            DmaCopy16(3, gUnk_0818B9B8[0][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gSmallDreamStoneFirstEntitySlot - 0xD].tileNum * 0x20), 0x20);
         }
-        if (gUnk_03000818 != 0)
+        if (gLargeDreamStoneFirstEntitySlot != 0)
         {
-            DmaCopy16(3, gUnk_0818B9B8[1][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_03000818 - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, gUnk_0818B9B8[1][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gLargeDreamStoneFirstEntitySlot - 0xD].tileNum * 0x20), 0x80);
         }
-        if (gUnk_030051B4 != 0)
+        if (gHeartFirstEntitySlot != 0)
         {
-            DmaCopy16(3, gUnk_0818B9B8[2][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030051B4 - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, gUnk_0818B9B8[2][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gHeartFirstEntitySlot - 0xD].tileNum * 0x20), 0x80);
         }
-        if (gUnk_030008EC != 0)
+        if (gStarFirstEntitySlot != 0)
         {
-            DmaCopy16(3, gUnk_0818B9B8[3][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gUnk_030008EC - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, gUnk_0818B9B8[3][temp_r5_26], OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[gStarFirstEntitySlot - 0xD].tileNum * 0x20), 0x80);
         }
     }
     else

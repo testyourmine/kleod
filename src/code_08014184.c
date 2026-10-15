@@ -5125,7 +5125,7 @@ void sub_0801D6B0(u8 slot)
     u32 var_ip;
     u8 temp_r3_6;
 
-    sp0 = slot + gUnk_03004C38;
+    sp0 = slot + gMagnetBlockHandEntityCount;
     sp8 = gEntityInfo[sp0].xPosBg2;
     spC = gEntityInfo[sp0].yPosBg2;
     if (gUnk_03005220.unk59 != 0)
@@ -5460,8 +5460,8 @@ check_unk9: // TODO: get rid of gotos with this label
 
     if (((s8) gEntityInfo[slot].unk8.split.unk8 | (s8) gEntityInfo[slot].unk8.split.unk9) != 0)
     {
-        gEntityInfo[slot].xPosBg2 = gEntityInfo[slot + gUnk_03004C38].xPosBg2 + ((s8) gEntityInfo[slot].unk8.split.unk8 - 4);
-        gEntityInfo[slot].yPosBg2 = gEntityInfo[slot + gUnk_03004C38].yPosBg2 + ((s8) gEntityInfo[slot].unk8.split.unk9 + 4);
+        gEntityInfo[slot].xPosBg2 = gEntityInfo[slot + gMagnetBlockHandEntityCount].xPosBg2 + ((s8) gEntityInfo[slot].unk8.split.unk8 - 4);
+        gEntityInfo[slot].yPosBg2 = gEntityInfo[slot + gMagnetBlockHandEntityCount].yPosBg2 + ((s8) gEntityInfo[slot].unk8.split.unk9 + 4);
     }
     else
     {
@@ -5473,44 +5473,44 @@ check_unk9: // TODO: get rid of gotos with this label
 // 1DE44
 void sub_0801DE44(u8 slot)
 {
-    // Called by entity id 0xC
+    // Called by ENTITY_ID_BOOMIE_EXPLOSION_COUNTDOWN
     if (--gEntityInfo[slot].unk8.split.unk9 == 0xFF)
     {
         gEntityInfo[slot].unk8.split.unk9 = 0x19;
         if (gEntityInfo[slot].unk8.split.unk8 < 6)
         {
-            sub_0801E664(gEntityInfo[slot - gUnk_0300528C].xPosBg2, gEntityInfo[slot - gUnk_0300528C].yPosBg2, gEntityInfo[slot].unk8.split.unk8 + 0xC, 0);
+            sub_0801E664(gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].xPosBg2, gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].yPosBg2, gEntityInfo[slot].unk8.split.unk8 + 0xC, 0);
         }
 
         if (--gEntityInfo[slot].unk8.split.unk8 == 0)
         {
-            sub_0801E664(gEntityInfo[slot - gUnk_0300528C].xPosBg2, gEntityInfo[slot - gUnk_0300528C].yPosBg2, 2, slot - gUnk_0300528C);
+            sub_0801E664(gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].xPosBg2, gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].yPosBg2, 2, slot - gBoomieExplosionCountdownEntitySlotOffset);
         }
         else
         {
             m4aSongNumStart(SE_BOOMIE_COUNTDOWN);
             if (gEntityInfo[slot].unk8.split.unk8 > 9)
             {
-                gEntityInfo[slot + gUnk_0300528C].unkF = 0;
-                sub_0800087C(slot + gUnk_0300528C, gEntityInfo[slot].unk8.split.unk8 / 10);
+                gEntityInfo[slot + gBoomieExplosionCountdownEntitySlotOffset].unkF = 0;
+                sub_0800087C(slot + gBoomieExplosionCountdownEntitySlotOffset, gEntityInfo[slot].unk8.split.unk8 / 10);
             }
 
             sub_0800087C(slot, gEntityInfo[slot].unk8.split.unk8 % 10);
             if (gEntityInfo[slot].unk8.split.unk8 == 9)
             {
-                gEntityInfo[slot + gUnk_0300528C].unkF = 0x1C;
-                gEntityInfo[slot + gUnk_0300528C].visible = 0;
+                gEntityInfo[slot + gBoomieExplosionCountdownEntitySlotOffset].unkF = 0x1C;
+                gEntityInfo[slot + gBoomieExplosionCountdownEntitySlotOffset].visible = 0;
             }
         }
     }
 
-    gEntityInfo[slot].xPosBg2 = gEntityInfo[slot - gUnk_0300528C].xPosBg2;
-    gEntityInfo[slot].yPosBg2 = gEntityInfo[slot - gUnk_0300528C].yPosBg2 - 0x20;
+    gEntityInfo[slot].xPosBg2 = gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].xPosBg2;
+    gEntityInfo[slot].yPosBg2 = gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].yPosBg2 - 0x20;
 
     if (gEntityInfo[slot].unk8.split.unk8 > 9)
     {
-        gEntityInfo[slot + gUnk_0300528C].xPosBg2 = gEntityInfo[slot - gUnk_0300528C].xPosBg2 - 3;
-        gEntityInfo[slot + gUnk_0300528C].yPosBg2 = gEntityInfo[slot - gUnk_0300528C].yPosBg2 - 0x20;
+        gEntityInfo[slot + gBoomieExplosionCountdownEntitySlotOffset].xPosBg2 = gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].xPosBg2 - 3;
+        gEntityInfo[slot + gBoomieExplosionCountdownEntitySlotOffset].yPosBg2 = gEntityInfo[slot - gBoomieExplosionCountdownEntitySlotOffset].yPosBg2 - 0x20;
         gEntityInfo[slot].xPosBg2 += 3;
     }
 }
@@ -5931,22 +5931,22 @@ void sub_0801E664(u16 arg0, u16 arg1, u8 arg2, u8 arg3)
 
         if (gEntityInfo[arg3].id >= ENTITY_ID_BOOMIE)
         {
-            if (arg3 == gUnk_03003610->unk2)
+            if (arg3 == gUnk_03003610[0].unk2)
             {
-                SetEntityAnimationInfoState(gUnk_03003610->unk3, 0);
-                gUnk_03003610->unk2 = 0;
+                SetEntityAnimationInfoState(gUnk_03003610[0].unk3, 0);
+                gUnk_03003610[0].unk2 = 0;
             }
 
-            if (gEntityInfo[arg3 + gUnk_0300528C].unk8.split.unk8 > 9)
+            if (gEntityInfo[arg3 + gBoomieExplosionCountdownEntitySlotOffset].unk8.split.unk8 > 9)
             {
-                gEntityInfo[arg3 + (gUnk_0300528C * 2)].unkF = 0x1C;
-                gEntityInfo[arg3 + (gUnk_0300528C * 2)].visible = 0;
+                gEntityInfo[arg3 + (gBoomieExplosionCountdownEntitySlotOffset * 2)].unkF = 0x1C;
+                gEntityInfo[arg3 + (gBoomieExplosionCountdownEntitySlotOffset * 2)].visible = 0;
             }
 
-            gEntityInfo[arg3 + gUnk_0300528C].unkF = 0x1C;
-            gEntityInfo[arg3 + gUnk_0300528C].visible = 0;
-            gEntityInfo[arg3 + gUnk_0300528C].unk8.split.unk8 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg3 + gUnk_0300528C - 0xD].unk0[gUnk_03004C20.room - 1].unk4;
-            gEntityInfo[arg3 + gUnk_0300528C].unk8.split.unk9 = 0;
+            gEntityInfo[arg3 + gBoomieExplosionCountdownEntitySlotOffset].unkF = 0x1C;
+            gEntityInfo[arg3 + gBoomieExplosionCountdownEntitySlotOffset].visible = 0;
+            gEntityInfo[arg3 + gBoomieExplosionCountdownEntitySlotOffset].unk8.split.unk8 = gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][arg3 + gBoomieExplosionCountdownEntitySlotOffset - 0xD].unk0[gUnk_03004C20.room - 1].unk4;
+            gEntityInfo[arg3 + gBoomieExplosionCountdownEntitySlotOffset].unk8.split.unk9 = 0;
             gEntityInfo[arg3].unkF = 0x1B;
         }
         else

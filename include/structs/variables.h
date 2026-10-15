@@ -204,6 +204,7 @@ enum EntityId {
     /* 0x09 */ ENTITY_ID_LEAF_1, // leaf blown by gust
     /* 0x0A */ ENTITY_ID_LEAF_2, // leaf blown by gust
     /* 0x0B */ ENTITY_ID_MOO_BOARDER,
+    /* 0x0C */ ENTITY_ID_BOOMIE_EXPLOSION_COUNTDOWN, // explosion countdown that appears when carrying Boomie
 
     /* 0x0E */ ENTITY_ID_FLAME_WAVE = 0x0E, // from the 1st boss
 
@@ -693,20 +694,20 @@ extern struct EntityAnimationData *gUnk_03005418;
 extern void * volatile gObjVramPtr; // OBJ vram ptr
 
 struct Unk_03000790 {
-    /* 0x0 */ u16 unk0; // related to X position
-    /* 0x2 */ u16 unk2; // related to X position
-    /* 0x4 */ u16 unk4; // related to Y position
-    /* 0x6 */ u16 unk6; // related to Y position
-    /* 0x8 */ u16 unk8; // related to Y Position?
+    /* 0x0 */ u16 unk0; // left hitbox
+    /* 0x2 */ u16 unk2; // right hitbox
+    /* 0x4 */ u16 unk4; // upper hitbox?
+    /* 0x6 */ u16 unk6; // lower hitbox
+    /* 0x8 */ u16 unk8; // upper hitbox?
     /* 0xA */ u8 padA[0x10 - 0xA];
 }; /* size = 0x10 */
-extern struct Unk_03000790 gUnk_03000790[];
+extern struct Unk_03000790 gUnk_03000790[]; // left blower vent thing
 
 struct Unk_03003610 {
-    /* 0x0 */ u8 unk0;
-    /* 0x1 */ u8 unk1;
-    /* 0x2 */ u8 unk2;
-    /* 0x3 */ u8 unk3;
+    /* 0x0 */ u8 unk0; // left scale slot
+    /* 0x1 */ u8 unk1; // right scale slot
+    /* 0x2 */ u8 unk2; // klonoa is not standing on scale, or possibly left scale is moving up
+    /* 0x3 */ u8 unk3; // timer delay until begin moving again
 }; /* size = 0x4 */
 extern struct Unk_03003610 gUnk_03003610[];
 
@@ -718,58 +719,82 @@ struct OamAffineBuffer {
 }; /* size = 0x8 */ 
 extern struct OamAffineBuffer gOamAffineBuffer[]; // OAM affine buffer
 
-extern u32 gUnk_030007D4;
-extern s32 gUnk_030007F0;
-extern s32 gUnk_030007F4;
-extern s32 gUnk_03000804;
-extern u8 gUnk_03000818;
-extern s32 gUnk_03000824;
-extern s32 gUnk_0300082C;
-extern u8 gUnk_030008EC;
-extern s32 gUnk_030008F0;
-extern s32 gUnk_030008F4;
-extern s32 gUnk_030008FC;
-extern s32 gUnk_03002904;
-extern s32 gUnk_03002908;
-extern s32 gUnk_0300290C;
-extern s32 gUnk_030034A4;
-extern s32 gUnk_030034C8;
-extern s32 gUnk_030034CC;
-extern s32 gUnk_030034D8;
-extern s32 gUnk_03003500;
-extern s32 gUnk_03003504;
-extern s32 gUnk_03003630;
-extern s32 gUnk_03003634;
-extern s32 gUnk_03003638;
-extern s32 gUnk_03003640;
-extern s32 gUnk_03004650;
-extern u32 gUnk_03004664;
-extern s32 gUnk_03004674;
-extern s32 gUnk_03004788;
-extern s32 gUnk_030047B4;
-extern u8 gUnk_030047B8;
-extern s32 gUnk_030047BC;
-extern s32 gUnk_030047F8;
-extern u8 gUnk_03004C00;
-extern s32 gUnk_03004C04;
-extern u8 gUnk_03004C38;
-extern u8 gUnk_030051B4;
-extern s32 gUnk_030051C4;
-extern s32 gUnk_030051D4;
-extern s32 gUnk_030051D8;
+extern s32 gUnk_030047BC; // begin slot
+extern u32 gUnk_030007D4; // end slot
+
+extern s32 gUnk_030007F0; // begin slot
+extern s32 gUnk_03004C04; // end slot
+
+extern s32 gUnk_030007F4; // begin slot
+extern s32 gUnk_0300290C; // end slot
+
+extern s32 gUnk_03000804; // begin slot
+extern s32 gUnk_0300082C; // end slot
+
+extern u8 gLargeDreamStoneFirstEntitySlot; // slot, ENTITY_ID_LARGE_DREAM_STONE
+
+extern s32 gUnk_03000824; // begin slot
+extern s32 gUnk_03005424; // end slot
+
+extern u8 gStarFirstEntitySlot; // slot, ENTITY_ID_STAR
+
+extern s32 gUnk_030008F4; // begin slot
+extern s32 gUnk_030008F0; // end slot
+
+extern s32 gUnk_03002904; // begin slot?
+extern s32 gUnk_030008FC; // end slot
+
+extern s32 gUnk_030034A4; // begin slot
+extern s32 gUnk_030052B0; // end slot
+
+extern s32 gUnk_030051D4; // begin slot
+extern s32 gUnk_030034C8; // end slot
+
+extern s32 gUnk_030034CC; // begin slot
+extern s32 gUnk_0300529C; // end slot
+
+extern s32 gUnk_030034D8; // begin slot
+extern s32 gUnk_0300541C; // end slot
+
+extern s32 gUnk_03003500; // begin slot
+extern u32 gUnk_03004664; // end slot
+
+extern s32 gUnk_030047F8; // begin slot
+extern s32 gUnk_03003504; // end slot
+
+extern s32 gUnk_03003630; // begin slot
+extern s32 gUnk_03004674; // end slot
+
+extern s32 gUnk_03003634; // begin slot
+extern s32 gUnk_03005430; // end slot
+
+extern s32 gUnk_03003638; // begin slot?
+extern s32 gUnk_03002908; // end slot
+
+extern s32 gUnk_03005484; // begin slot
+extern s32 gUnk_03004650; // end slot
+
+extern s32 gUnk_030051D8; // begin slot
+extern s32 gUnk_03004788; // end slot
+
+extern s32 gUnk_030047B4; // begin slot
+extern s32 gUnk_03003640; // end slot
+
+extern u8 gUnk_030047B8; // slot, ENTITY_ID_GROWN_BLOCK
+extern u8 gUnk_03005470; // slot, ENTITY_ID_GROWN_BLOCK
+
+extern u8 gSpawnWaterLowered; // boolean, water is spawned in room already lowered
+extern u8 gMagnetBlockHandEntityCount; // number of ENTITY_ID_MAGNET_BLOCK_HAND, or maybe more like slot offset for magnet block
+extern u8 gHeartFirstEntitySlot; // slot, ENTITY_ID_HEART
 extern u8 gOamAffineMatrixNum; // OAM affine matrix number
-extern u8 gUnk_0300528C;
-extern u8 gUnk_03005298;
-extern s32 gUnk_0300529C;
-extern u8 gUnk_030052A8;
-extern s32 gUnk_030052B0;
-extern s32 gUnk_030052B4;
-extern s32 gUnk_0300541C;
-extern s32 gUnk_03005424;
-extern s32 gUnk_03005430;
-extern u8 gUnk_03005470;
-extern u8 gUnk_0300547C;
-extern s32 gUnk_03005484;
+extern u8 gBoomieExplosionCountdownEntitySlotOffset; // slot offset of countdown, or maybe more like number of boomie slots
+extern u8 gUnk_03005298; // index, related to ENTITY_ID_SCALE_1
+extern u8 gUnk_030052A8; // slot, related to ENTITY_ID_SPIKER_HORIZONTAL/ENTITY_ID_SPIKER_VERTICAL
+
+extern s32 gUnk_030052B4; // begin slot
+extern s32 gUnk_030051C4; // end slot
+
+extern u8 gSmallDreamStoneFirstEntitySlot; // slot, ENTITY_ID_SMALL_DREAM_STONE
 
 // TODO: this is OamData, but non-rotation version
 union Unk_03000820 {

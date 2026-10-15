@@ -45,7 +45,7 @@ SECTIONS {
         . = 0x0000080C; gRngState = .;
         . = 0x00000810; gUnk_03000810 = .;
         . = 0x00000814; gUnk_03000814 = .;
-        . = 0x00000818; gUnk_03000818 = .;
+        . = 0x00000818; gLargeDreamStoneFirstEntitySlot = .;
         . = 0x0000081C; gUnk_0300081C = .;
         . = 0x00000820; gOamBufferPtr = .;
         . = 0x00000824; gUnk_03000824 = .;
@@ -54,7 +54,7 @@ SECTIONS {
         . = 0x00000830; gEntityAnimationInfo = .;
         . = 0x000008E4; gDma3CntHBackup = .;
         . = 0x000008E8; gUnk_030008E8 = .;
-        . = 0x000008EC; gUnk_030008EC = .;
+        . = 0x000008EC; gStarFirstEntitySlot = .;
         . = 0x000008F0; gUnk_030008F0 = .;
         . = 0x000008F4; gUnk_030008F4 = .;
         . = 0x000008F8; gDeleteAllSaveDataScreenCursor = .;
@@ -134,13 +134,13 @@ SECTIONS {
         . = 0x000047F8; gUnk_030047F8 = .;
         . = 0x000047FC; gGlobalSaveData = .;
         . = 0x00004800; gOamBuffer = .;
-        . = 0x00004C00; gUnk_03004C00 = .;
+        . = 0x00004C00; gSpawnWaterLowered = .;
         . = 0x00004C04; gUnk_03004C04 = .;
         . = 0x00004C08; gWorldMapInfo = .;
         . = 0x00004C0C; gRngCount = .;
         . = 0x00004C10; gUnk_03004C10 = .;
         . = 0x00004C20; gUnk_03004C20 = .;
-        . = 0x00004C38; gUnk_03004C38 = .;
+        . = 0x00004C38; gMagnetBlockHandEntityCount = .;
         . = 0x00004C40; gUnk_03004C40 = .;
         . = 0x00004D80; gUnk_03004D80 = .;
         . = 0x00004D84; gUnk_03004D84 = .;
@@ -150,7 +150,7 @@ SECTIONS {
         . = 0x00004DA0; gNewKeys = .;
         . = 0x00004DB0; gBg2TilemapData = .;
         . = 0x000051B0; gBg2AlphaCos = .;
-        . = 0x000051B4; gUnk_030051B4 = .;
+        . = 0x000051B4; gHeartFirstEntitySlot = .;
         . = 0x000051B8; gAthleticChallengeScrollFlags = .;
         . = 0x000051BC; gBg2PC = .;
         . = 0x000051C4; gUnk_030051C4 = .;
@@ -170,7 +170,7 @@ SECTIONS {
         . = 0x00005220; gUnk_03005220 = .;
         . = 0x00005284; gSceneSaveData = .;
         . = 0x00005288; gOamAffineMatrixNum = .;
-        . = 0x0000528C; gUnk_0300528C = .;
+        . = 0x0000528C; gBoomieExplosionCountdownEntitySlotOffset = .;
         . = 0x00005290; gUnk_03005290 = .;
         . = 0x00005294; gUnk_03005294 = .;
         . = 0x00005298; gUnk_03005298 = .;
@@ -197,7 +197,7 @@ SECTIONS {
         . = 0x00005470; gUnk_03005470 = .;
         . = 0x00005474; gPreviousBg2VOfs = .;
         . = 0x00005478; gHeapPtr = .;
-        . = 0x0000547C; gUnk_0300547C = .;
+        . = 0x0000547C; gSmallDreamStoneFirstEntitySlot = .;
         . = 0x00005480; gAthleticChallengeAutoScrollXVelocity = .;
         . = 0x00005484; gUnk_03005484 = .;
         . = 0x00005488; gUnk_03005488 = .;

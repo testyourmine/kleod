@@ -443,18 +443,18 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             if ((arg7 == 0) && ((gUnk_03005220.pressedWaterSwitches >> arg4) & 1))
             {
                 arg6 = 1;
-                gUnk_03004C00 = 1;
+                gSpawnWaterLowered = 1;
             }
             else
             {
-                gUnk_03004C00 = 0;
+                gSpawnWaterLowered = 0;
             }
             gEntityInfo[slot].unk8.split.unk9 = arg4;
             gEntityInfo[slot].unkC_4 = arg6;
             break;
 
         case ENTITY_ID_WATER:
-            if (gUnk_03004C00 != 0)
+            if (gSpawnWaterLowered != 0)
             {
                 gEntityInfo[slot].yPosBg2 += 0x1A;
                 arg6 = 1;
@@ -606,7 +606,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
 
         case ENTITY_ID_BOOMIE:
         case ENTITY_ID_FLYING_BOOMIE_HORIZONTAL:
-            gUnk_0300528C += 1;
+            gBoomieExplosionCountdownEntitySlotOffset += 1;
             /* fallthrough */
         case ENTITY_ID_MOO:
         case ENTITY_ID_FLYING_MOO_HORIZONTAL:
@@ -621,7 +621,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_FLYING_BOOMIE_VERTICAL:
-            gUnk_0300528C += 1;
+            gBoomieExplosionCountdownEntitySlotOffset += 1;
             /* fallthrough */
         case ENTITY_ID_FLYING_MOO_VERTICAL:
         case ENTITY_ID_TETON:
@@ -661,7 +661,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             gOamAffineBuffer[gOamAffineMatrixNum].pa = gOamAffineBuffer[gOamAffineMatrixNum].pd = 0x8000;
             gOamAffineBuffer[gOamAffineMatrixNum].pb = gOamAffineBuffer[gOamAffineMatrixNum].pc = 0;
             gOamAffineMatrixNum += 1;
-            gUnk_03004C38 += 1;
+            gMagnetBlockHandEntityCount += 1;
             break;
 
         case ENTITY_ID_LEAF_1:
@@ -711,16 +711,20 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_SMALL_DREAM_STONE:
-            if (gUnk_0300547C == 0)
+            if (gSmallDreamStoneFirstEntitySlot == 0)
             {
-                gUnk_0300547C = slot;
+                gSmallDreamStoneFirstEntitySlot = slot;
             }
             /* fallthrough */
         case ENTITY_ID_LARGE_DREAM_STONE:
-            if ((id == ENTITY_ID_LARGE_DREAM_STONE) && (gUnk_03000818 == 0))
+            if (id == ENTITY_ID_LARGE_DREAM_STONE)
             {
-                gUnk_03000818 = slot;
+                if (gLargeDreamStoneFirstEntitySlot == 0)
+                {
+                    gLargeDreamStoneFirstEntitySlot = slot;
+                }
             }
+
             if (arg4 < 0x20)
             {
                 if ((arg7 == 0) && (gUnk_03005220.collectedDreamStones0 & (1 << arg4)))
@@ -739,14 +743,15 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_HEART:
-            if (gUnk_030051B4 == 0)
+            if (gHeartFirstEntitySlot == 0)
             {
-                gUnk_030051B4 = slot;
+                gHeartFirstEntitySlot = slot;
                 if (gUnk_03004C20.level == 8)
                 {
-                    gUnk_030051B4 = slot + 1;
+                    gHeartFirstEntitySlot += 1;
                 }
             }
+
             if ((arg7 == 0) && ((gUnk_03005220.collectedHearts >> arg4) & 1))
             {
                 gEntityInfo[slot].unkF = 0x1C;
@@ -755,10 +760,11 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             break;
 
         case ENTITY_ID_STAR:
-            if (gUnk_030008EC == 0)
+            if (gStarFirstEntitySlot == 0)
             {
-                gUnk_030008EC = slot;
+                gStarFirstEntitySlot = slot;
             }
+
             if ((gUnk_03005220.stars >> arg4) & 1)
             {
                 gEntityInfo[slot].unkF = 0x1C;
@@ -1680,7 +1686,7 @@ void sub_0800A804(void)
                         sub_0801D4AC(slot);
                         break;
 
-                    case 0xC:
+                    case ENTITY_ID_BOOMIE_EXPLOSION_COUNTDOWN:
                         sub_0801DE44(slot);
                         break;
 
@@ -1728,7 +1734,7 @@ void sub_0800A804(void)
         UpdateEntityAnimationInfoEntries();
     }
 
-    if (gUnk_0300528C != 0)
+    if (gBoomieExplosionCountdownEntitySlotOffset != 0)
     {
         sub_0801E3FC();
     }
@@ -2059,18 +2065,18 @@ void sub_0800B3C0(void)
     sub_08003DA0();
     gEntitySlotCount = 0xD;
 
-    // gUnk_03003610->unk3 = 0;
-    // gUnk_03003610->unk2 = 0;
-    // gUnk_03004C38 = 0;
+    // gUnk_03003610[0].unk3 = 0;
+    // gUnk_03003610[0].unk2 = 0;
+    // gMagnetBlockHandEntityCount = 0;
     // gUnk_030052A8 = 0;
     // gUnk_030034E0 = 0;
     // gUnk_03005470 = 0;
     // gUnk_030047B8 = 0;
     // gOamAffineMatrixNum = 0;
-    // gUnk_0300528C = 0;
+    // gBoomieExplosionCountdownEntitySlotOffset = 0;
     // gUnk_03005298 = 0;
 
-    gUnk_03005298 = gUnk_0300528C = gOamAffineMatrixNum = gUnk_030047B8 = gUnk_03005470 = gUnk_030034E0 = gUnk_030052A8 = gUnk_03004C38 = gUnk_03003610[0].unk2 = gUnk_03003610[0].unk3 = 0;
+    gUnk_03005298 = gBoomieExplosionCountdownEntitySlotOffset = gOamAffineMatrixNum = gUnk_030047B8 = gUnk_03005470 = gUnk_030034E0 = gUnk_030052A8 = gMagnetBlockHandEntityCount = gUnk_03003610[0].unk2 = gUnk_03003610[0].unk3 = 0;
 
     // gUnk_030008FC = 0;
     // gUnk_03002904 = 0;
@@ -2125,12 +2131,12 @@ void sub_0800B3C0(void)
         gUnk_03003610[var_sb].unk0 = 0;
     }
 
-    // gUnk_030008EC = 0;
-    // gUnk_030051B4 = 0;
-    // gUnk_03000818 = 0;
-    // gUnk_0300547C = 0;
+    // gStarFirstEntitySlot = 0;
+    // gHeartFirstEntitySlot = 0;
+    // gLargeDreamStoneFirstEntitySlot = 0;
+    // gSmallDreamStoneFirstEntitySlot = 0;
 
-    gUnk_0300547C = gUnk_03000818 = gUnk_030051B4 = gUnk_030008EC = 0;
+    gSmallDreamStoneFirstEntitySlot = gLargeDreamStoneFirstEntitySlot = gHeartFirstEntitySlot = gStarFirstEntitySlot = 0;
 
     for (var_sb = 0; gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][var_sb].unk0[0].unk0 != 0xFFFF; var_sb++)
     {
