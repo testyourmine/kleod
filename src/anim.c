@@ -45,6 +45,7 @@ void UpdateEntityAnimationInfoEntries(void)
         {
             pAnimData = &gUnk_03005294[i] - 9;
         }
+
         if (pAnimData->pFrames == NULL)
         {
             break;
@@ -58,7 +59,6 @@ void UpdateEntityAnimationInfoEntries(void)
         {
             continue;
         }
-
         if (--gEntityAnimationInfo[i].timer != 0)
         {
             continue;

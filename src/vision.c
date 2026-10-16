@@ -44,7 +44,7 @@ extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
 extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
 
-extern void* gUnk_08188F5C[6][9];   // pointers to BG palettes (level)
+extern u32 *gUnk_08188F5C[6][9];   // pointers to BG palettes (level)
 extern u32 *gUnk_08189034[6][9][3]; // pointers to BG tiles (level)
 extern u32 *gUnk_081892BC[6][9][3]; // pointers to BG tilemaps (level)
 

@@ -40,8 +40,8 @@ extern struct EntityAnimationData *gUnk_08189A24[6][9];
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
-extern void gUnk_0805553C;
-extern void gUnk_080555A8;
+extern struct EntityAnimationData gUnk_0805553C[9];
+extern struct EntityAnimationData gUnk_080555A8[9];
 
 extern u8 gUnk_08061FC8[0x80];
 extern u8 gUnk_080627C8[0x80];
@@ -278,11 +278,11 @@ void EntityInit(void)
 
     if ((gUnk_03004C20.unkA == 0) || (gUnk_03004C20.level == 8))
     {
-        gUnk_03005418 = &gUnk_0805553C;
+        gUnk_03005418 = gUnk_0805553C;
     }
     else
     {
-        gUnk_03005418 = &gUnk_080555A8;
+        gUnk_03005418 = gUnk_080555A8;
     }
     gUnk_03005294 = gUnk_08189A24[gUnk_03004C20.world - 1][gUnk_03004C20.level];
 

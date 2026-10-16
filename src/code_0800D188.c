@@ -15,7 +15,7 @@
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
-extern struct EntityAnimationData gUnk_08055614[];
+extern struct EntityAnimationData gUnk_08055614[9];
 
 extern u16 gUnk_08057C50;
 extern u16 gUnk_08057C58;

@@ -275,11 +275,12 @@ SECTIONS {
         src/data/trig.o(.rodata);
         asm/data/data_080D9094.o(.rodata);
         src/code_0803C808.o(.rodata);
-        asm/data/data_08117120.o(.rodata);
+        src/game_over.o(.rodata);
+        src/vision_select.o(.rodata);
         src/save.o(.rodata);
-        asm/data/data_0811769C.o(.rodata);
+        src/text_box.o(.rodata);
+        src/title_screen.o(.rodata);
         src/code_0804B254.o(.rodata);
-        asm/data/data_081177F4.o(.rodata);
         src/data/m4a_tables.o(.rodata);
         asm/data/sound_data.o(.rodata);
         src/eeprom.o(.rodata);
