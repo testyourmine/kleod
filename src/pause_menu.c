@@ -12,16 +12,16 @@
 
 extern const u8 gUnk_081166F8[4][4];
 
-extern u32 gUnk_082EAF8C;
-extern u32 gUnk_082EB488;
-extern u32 gUnk_082EB5B8;
-extern u32 gUnk_082EBB20;
-extern u32 gUnk_082EBC68;
-extern u32 gUnk_082EC1A4;
-extern u32 gUnk_082EC2E4;
-extern u32 gUnk_082EC7C8;
-extern u32 gUnk_082EC8F4;
-extern u32 gUnk_082ECD74;
+extern u32 gUnk_082EAF8C[];
+extern u32 gUnk_082EB488[];
+extern u32 gUnk_082EB5B8[];
+extern u32 gUnk_082EBB20[];
+extern u32 gUnk_082EBC68[];
+extern u32 gUnk_082EC1A4[];
+extern u32 gUnk_082EC2E4[];
+extern u32 gUnk_082EC7C8[];
+extern u32 gUnk_082EC8F4[];
+extern u32 gUnk_082ECD74[];
 
 // 39D8C
 void PauseMenuScreenInit(void)
@@ -68,30 +68,30 @@ void PauseMenuScreenInit(void)
 
     if (gPauseMenuType == PAUSE_MENU_TYPE_BOSS)
     {
-        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EAF8C & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EB488 & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EAF8C[0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EB488[0] & 0x7FFFFFFF, 0);
         Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082EAF8C);
         Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082EB488);
     }
     else if (gPauseMenuType == PAUSE_MENU_TYPE_NORMAL_LEVEL)
     {
-        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EB5B8 & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EBB20 & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EB5B8[0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EBB20[0] & 0x7FFFFFFF, 0);
         Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082EB5B8);
         Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082EBB20);
     }
     else if (gPauseMenuType == PAUSE_MENU_TYPE_EX_LEVEL)
     {
-        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EBC68 & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EC1A4 & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EBC68[0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EC1A4[0] & 0x7FFFFFFF, 0);
         Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082EBC68);
         Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082EC1A4);
     }
     else
     {
         // PAUSE_MENU_TYPE_LEVEL_SELECT
-        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EC2E4 & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EC7C8 & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EC2E4[0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082EC7C8[0] & 0x7FFFFFFF, 0);
         Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082EC2E4);
         Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082EC7C8);
     }
@@ -454,8 +454,8 @@ void ButtonConfigurationScreenInit(void)
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
     m4aSoundVSyncOff();
 
-    gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EC8F4 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082ECD74 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg3Tiles = thunk_HeapAlloc(gUnk_082EC8F4[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg3Tilemap = thunk_HeapAlloc(gUnk_082ECD74[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg3Tiles, &gUnk_082EC8F4);
     Decompress(gBgDataPtrs.pBufBg3Tilemap, &gUnk_082ECD74);
 

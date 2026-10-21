@@ -17,15 +17,15 @@ extern const u8 gUnk_08116748[7][8];
 extern const u8 gUnk_08116780[8][0x20];
 extern const u8 gUnk_08116880[8];
 
-extern u32 gUnk_083128F8;
-extern u32 gUnk_08312A58;
-extern u32 gUnk_08312B70;
-extern u32 gUnk_08312BD8;
-extern u32 gUnk_08313C34;
-extern u32 gUnk_08313F24;
-extern u32 gUnk_083141F0;
-extern u32 gUnk_083142EC;
-extern u32 gUnk_083155C4;
+extern u32 gUnk_083128F8[];
+extern u32 gUnk_08312A58[];
+extern u32 gUnk_08312B70[];
+extern u32 gUnk_08312BD8[];
+extern u32 gUnk_08313C34[];
+extern u32 gUnk_08313F24[];
+extern u32 gUnk_083141F0[];
+extern u32 gUnk_083142EC[];
+extern u32 gUnk_083155C4[];
 
 // 3AC18
 u8 WorldMapScreenIsValidPath(u8 mapIndex)
@@ -465,10 +465,10 @@ void WorldMapScreenInit(void)
     gBgInfo[3].pTilemap = BG_VRAM + 0xF800;
     DecompressDma(&gUnk_083128F8, BG_PLTT, BG_PLTT_SIZE);
 
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_08312BD8 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_08313C34 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08312A58[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_08312B70[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_08312BD8[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_08313C34[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_08312A58);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_08312B70);
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_08312BD8);
@@ -500,10 +500,10 @@ void WorldMapScreenInit(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tiles - 4);
 
-    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08313F24 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_083141F0 & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_083142EC & 0x7FFFFFFF, 0);
-    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_083155C4 & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(gUnk_08313F24[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(gUnk_083141F0[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(gUnk_083142EC[0] & 0x7FFFFFFF, 0);
+    gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(gUnk_083155C4[0] & 0x7FFFFFFF, 0);
     Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_08313F24);
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_083141F0);
     Decompress(gBgDataPtrs.pBufBg1Tiles, &gUnk_083142EC);

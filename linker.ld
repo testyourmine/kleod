@@ -287,6 +287,10 @@ SECTIONS {
         asm/data/data_08188E5C.o(.rodata);
     } >rom
 
+    data : ALIGN(4) {
+        src/data/data_0818BBBC.o(.data);
+    } >rom
+
     /* DWARF 2 sections */
     .debug_aranges  0 : { *(.debug_aranges) }
     .debug_pubnames 0 : { *(.debug_pubnames) }

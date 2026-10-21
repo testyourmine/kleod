@@ -40,6 +40,7 @@
 Thumbs.db
 /build/
 /data/
+/scripts/
 cmake-build-*
 sound/songs/midi/*.s
 src/*.s
