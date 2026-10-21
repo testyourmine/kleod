@@ -7,12 +7,9 @@
 #include "save.h"
 #include "title_screen.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u32 gUnk_082F43C4[];
-extern u32 gUnk_082F47A8[];
-extern u32 gUnk_082F48BC[];
 
 // 4832C
 void BootScreenInit(void)

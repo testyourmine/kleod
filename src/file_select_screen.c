@@ -9,18 +9,11 @@
 #include "title_screen.h"
 #include "transitions.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const u8 gUnk_0811717C[6][40][5];
-
-extern u32 gUnk_082F8BF8[];
-extern u32 gUnk_082FA784[];
-extern u32 gUnk_082FA8C0[];
-extern u32 gUnk_082FB0E0[];
-extern u32 gUnk_082FB280[];
-extern u32 gUnk_082FBB9C[];
-extern u32 gUnk_082FBE10[];
 
 // 49BFC
 void FileSelectScreenInit(void)

@@ -11,6 +11,7 @@
 #include "interrupts.h"
 #include "main.h"
 #include "math.h"
+#include "data/data_0818BBBC.h"
 #include "data/trig.h"
 #include "structs/variables.h"
 
@@ -79,12 +80,7 @@ struct Unk_08189F04 {
     u8 unk9;
     u8 padA[0xC - 0xA];
 };
-extern const struct Unk_08189F04 gUnk_08189F04[][0x10];
-
-extern u32 gUnk_082EA584[];
-extern u32 gUnk_082EA730[];
-extern u32 gUnk_082EA7F0[];
-extern const u32 gUnk_082EA854[];
+extern const struct Unk_08189F04 gUnk_08189F04[0x20][0x10];
 
 extern void sub_0804BFD0();                                   /* extern */
 extern void sub_0804C0D4();                                   /* extern */

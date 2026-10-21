@@ -6,6 +6,7 @@
 #include "main.h"
 #include "pause_menu.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
@@ -49,8 +50,6 @@ const u16 gUnk_0811769C[32][4] = {
 extern const u32 *gUnk_0818BA3C[0x20];
 extern const u32 *gUnk_0818BABC[0x20];
 extern const u32 *gUnk_0818BB3C[0x20];
-
-extern u32 gUnk_082F3B2C[];
 
 // 47ABC
 void sub_08047ABC(void)

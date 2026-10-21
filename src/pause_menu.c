@@ -7,21 +7,11 @@
 #include "main.h"
 #include "transitions.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const u8 gUnk_081166F8[4][4];
-
-extern u32 gUnk_082EAF8C[];
-extern u32 gUnk_082EB488[];
-extern u32 gUnk_082EB5B8[];
-extern u32 gUnk_082EBB20[];
-extern u32 gUnk_082EBC68[];
-extern u32 gUnk_082EC1A4[];
-extern u32 gUnk_082EC2E4[];
-extern u32 gUnk_082EC7C8[];
-extern u32 gUnk_082EC8F4[];
-extern u32 gUnk_082ECD74[];
 
 // 39D8C
 void PauseMenuScreenInit(void)

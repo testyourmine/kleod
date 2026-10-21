@@ -284,6 +284,7 @@ SECTIONS {
         src/data/m4a_tables.o(.rodata);
         asm/data/sound_data.o(.rodata);
         src/eeprom.o(.rodata);
+        src/data/data_08188E5C.o(.data);
         asm/data/data_08188E5C.o(.rodata);
     } >rom
 

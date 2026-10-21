@@ -8,6 +8,7 @@
 #include "transitions.h"
 #include "vision.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
@@ -51,18 +52,6 @@ const u16 gUnk_081177A4[8][2] = {
     [6] = { 95, 95 },
     [7] = { 95, 95 }
 };
-
-extern u32 gUnk_082F4934[];
-extern u32 gUnk_082F49E4[];
-extern u32 gUnk_082F4B10[];
-extern u32 gUnk_082F4D3C[];
-extern u32 gUnk_082F518C[];
-extern u32 gUnk_082F5920[];
-extern u32 gUnk_082F5D0C[];
-extern u32 gUnk_082F7D64[];
-
-extern u32 gUnk_08366214[];
-extern u32 gUnk_08367468[];
 
 // 4886C
 void TitleScreenInit(void)

@@ -8,6 +8,7 @@
 #include "rand.h"
 #include "save.h"
 #include "transitions.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
@@ -16,16 +17,6 @@ extern const u16 gUnk_08116728[8][2];
 extern const u8 gUnk_08116748[7][8];
 extern const u8 gUnk_08116780[8][0x20];
 extern const u8 gUnk_08116880[8];
-
-extern u32 gUnk_083128F8[];
-extern u32 gUnk_08312A58[];
-extern u32 gUnk_08312B70[];
-extern u32 gUnk_08312BD8[];
-extern u32 gUnk_08313C34[];
-extern u32 gUnk_08313F24[];
-extern u32 gUnk_083141F0[];
-extern u32 gUnk_083142EC[];
-extern u32 gUnk_083155C4[];
 
 // 3AC18
 u8 WorldMapScreenIsValidPath(u8 mapIndex)

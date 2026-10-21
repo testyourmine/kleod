@@ -7,15 +7,9 @@
 #include "interrupts.h"
 #include "rand.h"
 #include "save.h"
+#include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u32 gUnk_082ECEA8[];
-extern u32 gUnk_082ECEF8[];
-extern u32 gUnk_082ED1FC[];
-
-extern u32 gUnk_08312A58[];
-extern u32 gUnk_08312B70[];
 
 // 472B0
 u8 HeldUp(void)
