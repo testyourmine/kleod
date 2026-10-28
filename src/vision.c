@@ -44,13 +44,13 @@ extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
 extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
 
-extern u32 *gUnk_08188F5C[6][9];   // pointers to BG palettes (level)
-extern u32 *gUnk_08189034[6][9][3]; // pointers to BG tiles (level)
-extern u32 *gUnk_081892BC[6][9][3]; // pointers to BG tilemaps (level)
+extern u32 *gVisionBgPalettes[6][9];   // pointers to BG palettes (level)
+extern u32 *gVisionBgTiles[6][9][3]; // pointers to BG tiles (level)
+extern u32 *gVisionBgTilemaps[6][9][3]; // pointers to BG tilemaps (level)
 
-extern u32 *gUnk_08189544[6]; // pointers to BG palettes (overworld)
-extern u32 *gUnk_0818955C[6]; // pointers to BG1 tiles (overworld)
-extern u32 *gUnk_08189574[6]; // pointers to BG1 tilemaps (overworld)
+extern u32 *gVisionSelectBgPalettes[6]; // pointers to BG palettes (overworld)
+extern u32 *gVisionSelectBgTiles[6]; // pointers to BG1 tiles (overworld)
+extern u32 *gVisionSelectBgTilemaps[6]; // pointers to BG1 tilemaps (overworld)
 
 extern u32 *gUnk_0818B7AC[6*2];
 
@@ -91,35 +91,35 @@ void VisionAndVisionSelectInit(void)
             gUnk_03005290 = DecompressAlloc(gUnk_0818B7AC[((gUnk_03004C20.level >> 3) * 6) + (gUnk_03004C20.world - 1)]) + 4;
         }
 
-        gBgDataPtrs.pBufBg2Tiles = thunk_HeapAlloc(*gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(*gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg2Tiles = thunk_HeapAlloc(*gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg2Tilemap = thunk_HeapAlloc(*gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] & 0x7FFFFFFF, 0);
         if ((sp0 == 1) && (gUnk_03004C20.level == 0))
         {
-            gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(*gUnk_0818955C[gUnk_03004C20.world - 1] & 0x7FFFFFFF, 0);
-            gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(*gUnk_08189574[gUnk_03004C20.world - 1] & 0x7FFFFFFF, 0);
+            gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(*gVisionSelectBgTiles[gUnk_03004C20.world - 1] & 0x7FFFFFFF, 0);
+            gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(*gVisionSelectBgTilemaps[gUnk_03004C20.world - 1] & 0x7FFFFFFF, 0);
         }
         else
         {
-            gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(*gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] & 0x7FFFFFFF, 0);
-            gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(*gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] & 0x7FFFFFFF, 0);
+            gBgDataPtrs.pBufBg1Tiles = thunk_HeapAlloc(*gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] & 0x7FFFFFFF, 0);
+            gBgDataPtrs.pBufBg1Tilemap = thunk_HeapAlloc(*gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] & 0x7FFFFFFF, 0);
         }
-        gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(*gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
-        gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(*gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(*gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
+        gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(*gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] & 0x7FFFFFFF, 0);
 
-        Decompress(gBgDataPtrs.pBufBg0Tiles, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
-        Decompress(gBgDataPtrs.pBufBg0Tilemap, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
+        Decompress(gBgDataPtrs.pBufBg0Tiles, gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
+        Decompress(gBgDataPtrs.pBufBg0Tilemap, gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][0]);
         if ((sp0 == 1) && (gUnk_03004C20.level == 0))
         {
-            Decompress(gBgDataPtrs.pBufBg1Tiles, gUnk_0818955C[gUnk_03004C20.world - 1]);
-            Decompress(gBgDataPtrs.pBufBg1Tilemap, gUnk_08189574[gUnk_03004C20.world - 1]);
+            Decompress(gBgDataPtrs.pBufBg1Tiles, gVisionSelectBgTiles[gUnk_03004C20.world - 1]);
+            Decompress(gBgDataPtrs.pBufBg1Tilemap, gVisionSelectBgTilemaps[gUnk_03004C20.world - 1]);
         }
         else
         {
-            Decompress(gBgDataPtrs.pBufBg1Tiles, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
-            Decompress(gBgDataPtrs.pBufBg1Tilemap, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
+            Decompress(gBgDataPtrs.pBufBg1Tiles, gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
+            Decompress(gBgDataPtrs.pBufBg1Tilemap, gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][1]);
         }
-        Decompress(gBgDataPtrs.pBufBg2Tiles, gUnk_08189034[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
-        Decompress(gBgDataPtrs.pBufBg2Tilemap, gUnk_081892BC[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
+        Decompress(gBgDataPtrs.pBufBg2Tiles, gVisionBgTiles[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
+        Decompress(gBgDataPtrs.pBufBg2Tilemap, gVisionBgTilemaps[gUnk_03004C20.world - 1][gUnk_03004C20.level][2]);
 
         gBgDataPtrs.pBufBg0Tiles += 4;
         gBgDataPtrs.pBufBg0Tilemap += 2;
@@ -131,11 +131,11 @@ void VisionAndVisionSelectInit(void)
 
     if ((gUnk_03004C20.level == 0) && (sp0 == 1))
     {
-        DecompressDma(gUnk_08189544[gUnk_03004C20.world - 1], BG_PLTT, BG_PLTT_SIZE);
+        DecompressDma(gVisionSelectBgPalettes[gUnk_03004C20.world - 1], BG_PLTT, BG_PLTT_SIZE);
     }
     else
     {
-        DecompressDma(gUnk_08188F5C[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
+        DecompressDma(gVisionBgPalettes[gUnk_03004C20.world - 1][gUnk_03004C20.level], BG_PLTT, BG_PLTT_SIZE);
     }
 
     gBgInfo[0].hOfs = 0;
