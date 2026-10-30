@@ -620,7 +620,7 @@ void VisionSelectInputAndMovement(void)
             }
             gCallbackQueue.previousCount = gCallbackQueue.currentCount;
 
-            gUnk_030034BC = 0;
+            gPauseMenuBg = 0;
             gUnk_03003410.unk4 = 1;
             gCallbackQueue.next[0] = PauseMenuScreenInit;
             gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
@@ -673,7 +673,7 @@ void VisionSelectInputAndMovement(void)
                     gDisplayBackup.bg3Cnt = REG_BG3CNT;
                     gDisplayBackup.sceneFrameCounter = gUnk_03004C20.sceneFrameCounter;
 
-                    gUnk_030034BC = 0;
+                    gPauseMenuBg = 0;
                     gTextBoxInfo.stage = TEXT_BOX_INFO_STAGE_REQUESTED;
                     gCallbackQueue.next[0] = TextBoxInit;
                     gCallbackQueue.next[1] = VisionSelectWaitForNextFrame;
@@ -898,11 +898,11 @@ void VisionSelectUpdateRotationAndEntities(void)
 
     for (i = gVisionSelectInfo.unk0_1 + 0xD; i < gEntitySlotCount; i++)
     {
-        if ((gEntityInfo[i].id <= 0x50) || (gEntityInfo[i].id >= 0x54))
+        if ((gEntityInfo[i].id <= ENTITY_ID_50) || (gEntityInfo[i].id >= ENTITY_ID_54))
         {
             gEntityInfo[i].visible = 0;
         }
-        else if ((gVisionSelectInfo.unk0_0 != 0) && (gEntityInfo[i].id == 0x53))
+        else if ((gVisionSelectInfo.unk0_0 != 0) && (gEntityInfo[i].id == ENTITY_ID_53))
         {
             gEntityInfo[i].visible = 0;
         }

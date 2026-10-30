@@ -120,7 +120,7 @@ void RoomRotationHandler(void)
                 gUnk_030034D4[i].unk0 = gEntityInfo[i].xPosBg2;
                 gUnk_030034D4[i].unk2 = gEntityInfo[i].yPosBg2;
 
-                if ((i == 0) || (gEntityInfo[i].id == 0x34) || (gEntityInfo[i].id == ENTITY_ID_BOX) || (gEntityInfo[i].id >= ENTITY_ID_MOO))
+                if ((i == 0) || (gEntityInfo[i].id == ENTITY_ID_34) || (gEntityInfo[i].id == ENTITY_ID_BOX) || (gEntityInfo[i].id >= ENTITY_ID_MOO))
                 {
                     gUnk_030034D4[i].unk2 = gEntityInfo[i].yPosBg2 - 0xE;
                     if (gEntityInfo[i].id == ENTITY_ID_BOX)
@@ -143,7 +143,7 @@ void RoomRotationHandler(void)
             gEntityInfo[i].xPosBg2 = gCurrentRoomBg2Center.x + ((((gUnk_030034D4[i].unk0 - gCurrentRoomBg2Center.x) * SIN(PI - gRoomRotationAlpha)) - ((gUnk_030034D4[i].unk2 - gCurrentRoomBg2Center.y) * SIN(PI_2 - gRoomRotationAlpha))) >> 8);
             gEntityInfo[i].yPosBg2 = gCurrentRoomBg2Center.y + ((((gUnk_030034D4[i].unk0 - gCurrentRoomBg2Center.x) * SIN(PI_2 - gRoomRotationAlpha)) + ((gUnk_030034D4[i].unk2 - gCurrentRoomBg2Center.y) * SIN(PI - gRoomRotationAlpha))) >> 8);
 
-            if ((i == 0) || (gEntityInfo[i].id == 0x34) || (gEntityInfo[i].id == ENTITY_ID_BOX) || (gEntityInfo[i].id >= ENTITY_ID_MOO))
+            if ((i == 0) || (gEntityInfo[i].id == ENTITY_ID_34) || (gEntityInfo[i].id == ENTITY_ID_BOX) || (gEntityInfo[i].id >= ENTITY_ID_MOO))
             {
                 gEntityInfo[i].yPosBg2 += 0xE;
                 if (gEntityInfo[i].id == ENTITY_ID_BOX)

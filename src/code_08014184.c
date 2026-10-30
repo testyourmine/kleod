@@ -2061,7 +2061,7 @@ block_128:
                         }
                         break;
 
-                    case 0x1E:
+                    case ENTITY_ID_BOSS:
                         if (((gEntityInfo[slot].xPosBg2 - 4) < (gEntityInfo[sp28].xPosBg2 + 0x1E)) && ((gEntityInfo[slot].xPosBg2 + 4) > (gEntityInfo[sp28].xPosBg2 - 0x1E)))
                         {
                             if (gEntityInfo[sp28].unkF == 0)
@@ -2479,7 +2479,7 @@ block_128:
                         }
                         break;
 
-                    case 0x18:
+                    case ENTITY_ID_18:
                         if (((gEntityInfo[slot].xPosBg2 - 8) < (gEntityInfo[sp28].xPosBg2 + 0x14)) && ((gEntityInfo[slot].xPosBg2 + 8) > (gEntityInfo[sp28].xPosBg2 - 0x14)) &&
                             ((gEntityInfo[slot].yPosBg2 - 0x14) < (gEntityInfo[sp28].yPosBg2 - 0xC)) && (gEntityInfo[slot].yPosBg2 > (gEntityInfo[sp28].yPosBg2 - 0x34)))
                         {
@@ -2836,7 +2836,7 @@ block_128:
                         }
                         break;
 
-                    case 0x22:
+                    case ENTITY_ID_22:
                         sp38 = 0;
                         if ((gUnk_03005400.unkC != 0) && (gUnk_03005400.unk8_0 == 0))
                         {
@@ -2938,7 +2938,7 @@ block_128:
                         }
                         break;
 
-                    case 0x17:
+                    case ENTITY_ID_17:
                         var_sb_4 = 0;
                         if (gEntityInfo[sp28].unkF == 0)
                         {
@@ -2993,7 +2993,7 @@ block_128:
                         }
                         break;
 
-                    case 0x18:
+                    case ENTITY_ID_18:
                         if (((gEntityInfo[slot].xPosBg2 - 8) < (gEntityInfo[sp28].xPosBg2 + 0x14)) && ((gEntityInfo[slot].xPosBg2 + 8) > (gEntityInfo[sp28].xPosBg2 - 0x14)) &&
                             ((gEntityInfo[slot].yPosBg2 - 0x14) < (gEntityInfo[sp28].yPosBg2 - 0xC)) && (gEntityInfo[slot].yPosBg2 > (gEntityInfo[sp28].yPosBg2 - 0x34)))
                         {
@@ -3036,7 +3036,7 @@ block_128:
                         }
                         break;
 
-                    case 0x1B:
+                    case ENTITY_ID_1B:
                         if (((gEntityInfo[slot].xPosBg2 - 8) < (gEntityInfo[sp28].xPosBg2 + 0x14)) && ((gEntityInfo[slot].xPosBg2 + 8) > (gEntityInfo[sp28].xPosBg2 - 0x14)) &&
                             ((gEntityInfo[slot].yPosBg2 - 0x14) < (gEntityInfo[sp28].yPosBg2 - 8)) && (gEntityInfo[slot].yPosBg2 > (gEntityInfo[sp28].yPosBg2 - 0x28)))
                         {
@@ -3294,7 +3294,7 @@ block_128:
                             }
                             break;
 
-                        case 0x22:
+                        case ENTITY_ID_22:
                             var_ip = 0;
                             if (gUnk_03005400.unkC == 0)
                             {
@@ -3368,7 +3368,7 @@ block_128:
                             }
                             break;
 
-                        case 0x17:
+                        case ENTITY_ID_17:
                             if (gEntityInfo[sp28].unkF == 0)
                             {
                                 break;
@@ -3417,7 +3417,7 @@ block_128:
                             }
                             break;
 
-                        case 0x1B:
+                        case ENTITY_ID_1B:
                             if (((gEntityInfo[slot].xPosBg2 - 8) < (gEntityInfo[sp28].xPosBg2 + 0x14)) && ((gEntityInfo[slot].xPosBg2 + 8) > (gEntityInfo[sp28].xPosBg2 - 0x14)) &&
                                 ((gEntityInfo[slot].yPosBg2 - 0x14) < (gEntityInfo[sp28].yPosBg2 - 8)) && (gEntityInfo[slot].yPosBg2 > (gEntityInfo[sp28].yPosBg2 - 0x28)))
                             {
@@ -7660,13 +7660,13 @@ void sub_0802192C(u8 slot)
             switch (slot)
             {
                 case 0x18:
-                    gEntityInfo[slot].id = 0x18;
+                    gEntityInfo[slot].id = ENTITY_ID_18;
                     break;
 
                 case 0x19:
                 case 0x1A:
                 case 0x1B:
-                    gEntityInfo[slot].id = 0x19;
+                    gEntityInfo[slot].id = ENTITY_ID_19;
                     break;
             }
 

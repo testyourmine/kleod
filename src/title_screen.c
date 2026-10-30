@@ -127,7 +127,7 @@ void TitleScreenInit(void)
 
     for (i = 0; i < 0xE; i++)
     {
-        gEntityInfo[i].id = 0x1C;
+        gEntityInfo[i].id = ENTITY_ID_1C;
         gEntityInfo[i].visible = 0;
     }
 
@@ -173,7 +173,7 @@ void TitleScreenInit(void)
     for (i = 8; i < 0xB; i++)
     {
         gEntityInfo[i + 0xD].visible = 0;
-        gEntityInfo[i + 0xD].id = 0x1C;
+        gEntityInfo[i + 0xD].id = ENTITY_ID_1C;
         gEntityInfo[i + 0xD].unkF = 0;
     }
 
@@ -260,7 +260,7 @@ void TitleScreenInit(void)
     REG_BG2VOFS = (gBgInfo[2].vOfs >> 7) & 0x1FF;
 
     gUnk_03005220.hearts = 3;
-    gEntityInfo[0].id = 0x1C;
+    gEntityInfo[0].id = ENTITY_ID_1C;
     gEntityInfo[0].xPosBg2 = 0xFF;
     gEntityInfo[0].xPosScreen = 0xFF;
     gEntityInfo[0].yPosBg2 = 0xFF;
@@ -373,7 +373,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             for (i = 0; i < 8; i++)
             {
                 gEntityInfo[i + 0xD].visible = 1;
-                gEntityInfo[i + 0xD].id = 0x54;
+                gEntityInfo[i + 0xD].id = ENTITY_ID_54;
                 gEntityInfo[i + 0xD].xPosScreen = gUnk_0811779C[i];
                 gEntityInfo[0xE].priority = 1;
 
@@ -398,7 +398,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             for (i = 8; i < 0xB; i++)
             {
                 gEntityInfo[i + 0xD].visible = 1;
-                gEntityInfo[i + 0xD].id = 0x54;
+                gEntityInfo[i + 0xD].id = ENTITY_ID_54;
                 gEntityInfo[i + 0xD].unkF = 0;
                 // TODO: some sort of addition required to match
                 gEntityInfo[i + 0xD].yPosScreen = 0x83;
@@ -458,7 +458,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             for (i = 8; i < 0xB; i++)
             {
                 gEntityInfo[i + 0xD].visible = 0;
-                gEntityInfo[i + 0xD].id = 0x1C;
+                gEntityInfo[i + 0xD].id = ENTITY_ID_1C;
                 gEntityInfo[i + 0xD].unkF = 0;
                 gEntityInfo[i + 0xD].xPosScreen = 0;
                 gEntityInfo[i + 0xD].yPosScreen = 0;
@@ -468,7 +468,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
             for (i = 0; i < 8; i++)
             {
                 gEntityInfo[i + 0xD].visible = 1;
-                gEntityInfo[i + 0xD].id = 0x54;
+                gEntityInfo[i + 0xD].id = ENTITY_ID_54;
                 gEntityInfo[i + 0xD].xPosScreen = gUnk_0811779C[i];
                 gEntityInfo[0xE].priority = 1;
 
@@ -598,7 +598,7 @@ void TitleScreenHandler(void)
                 for (i = 8; i < 0xB; i++)
                 {
                     gEntityInfo[i + 0xD].visible = 1;
-                    gEntityInfo[i + 0xD].id = 0x54;
+                    gEntityInfo[i + 0xD].id = ENTITY_ID_54;
                 }
             }
             else
@@ -606,7 +606,7 @@ void TitleScreenHandler(void)
                 for (i = 8; i < 0xB; i++)
                 {
                     gEntityInfo[i + 0xD].visible = 0;
-                    gEntityInfo[i + 0xD].id = 0x1C;
+                    gEntityInfo[i + 0xD].id = ENTITY_ID_1C;
                 }
             }
             break;

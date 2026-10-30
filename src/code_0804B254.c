@@ -1305,7 +1305,7 @@ s32 sub_0804D0B0(s32 arg0)
                 }
                 temp_r5 = var_r4 - ((var_r0_4 >> 3) * 8);
 
-                if (gEntityInfo[var_r4].id != 0x50)
+                if (gEntityInfo[var_r4].id != ENTITY_ID_50)
                 {
                     gEntityInfo[var_r4].visible = 0;
                     continue;
@@ -1335,7 +1335,7 @@ s32 sub_0804D0B0(s32 arg0)
         case 1:
             for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
             {
-                if (gEntityInfo[var_r4].id != 0x50)
+                if (gEntityInfo[var_r4].id != ENTITY_ID_50)
                 {
                     continue;
                 }

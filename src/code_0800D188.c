@@ -228,15 +228,8 @@ void sub_0800D188(void)
             if (gHeldKeys & DPAD_RIGHT)
             {
                 gEntityInfo[0].hvFlip = 0;
-                if ((gUnk_03005220.unk34 | gUnk_03005220.unk39) != 0)
-                {
-        
-                }
-                else if ((gUnk_03005220.unk3A != 0) && (gUnk_03005220.unk3B == 0) && (gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_BOX) && (gEntityInfo[gUnk_03005220.unk42].id != ENTITY_ID_MAGNET_BLOCK))
-                {
-        
-                }
-                else
+                if (((gUnk_03005220.unk34 | gUnk_03005220.unk39) == 0) &&
+                    ((gUnk_03005220.unk3A == 0) || (gUnk_03005220.unk3B != 0) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_BOX) || (gEntityInfo[gUnk_03005220.unk42].id == ENTITY_ID_MAGNET_BLOCK)))
                 {
                     gUnk_03005220.klonoaXVel += 0x150;
                     if (gUnk_03005220.klonoaXVel > 0x1800)
@@ -1068,7 +1061,7 @@ void sub_0800D188(void)
                                 gEntityInfo[0].xPosBg2 = sp18;
                             }
 
-                            if ((gEntityInfo[var_sb].id > 0x28) && (gEntityInfo[var_sb].id < 0x2B))
+                            if ((gEntityInfo[var_sb].id >= ENTITY_ID_MOVING_PLATFORM_HORIZONTAL) && (gEntityInfo[var_sb].id <= ENTITY_ID_GRATED_PLATFORM))
                             {
                                 if (gEntityInfo[var_sb].unk8.split.unk8 < (gEntityInfo[var_sb].unk8.split.unk9 - 0xA))
                                 {
@@ -1195,7 +1188,7 @@ block_474:
                     }
                     break;
 
-                case 0x22:
+                case ENTITY_ID_22:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -1248,7 +1241,7 @@ block_474:
                     }
                     break;
 
-                case 0x17:
+                case ENTITY_ID_17:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -1264,8 +1257,8 @@ block_474:
                     }
                     break;
 
-                case 0x18:
-                case 0x19:
+                case ENTITY_ID_18:
+                case ENTITY_ID_19:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -1278,7 +1271,7 @@ block_474:
                     }
                     break;
 
-                case 0x1A:
+                case ENTITY_ID_1A:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -1307,7 +1300,7 @@ block_474:
                     }
                     break;
 
-                case 0x1F:
+                case ENTITY_ID_1F:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -2751,7 +2744,7 @@ block_1185:
                     }
                     break;
 
-                case 0x14:
+                case ENTITY_ID_14:
                     if (gEntityInfo[var_sb].unkF != 0xF)
                     {
                         break;
@@ -2768,7 +2761,7 @@ block_1185:
                     }
                     break;
 
-                case 0x16:
+                case ENTITY_ID_BUBBLE_MOO:
                     if (gUnk_03005400.unkC == 0)
                     {
                         break;
@@ -2789,7 +2782,7 @@ block_1185:
                     }
                     break;
 
-                case 0x17:
+                case ENTITY_ID_17:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -2805,8 +2798,8 @@ block_1185:
                     }
                     break;
 
-                case 0x18:
-                case 0x19:
+                case ENTITY_ID_18:
+                case ENTITY_ID_19:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -2819,7 +2812,7 @@ block_1185:
                     }
                     break;
 
-                case 0x1A:
+                case ENTITY_ID_1A:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -2848,7 +2841,7 @@ block_1185:
                     }
                     break;
 
-                case 0x1F:
+                case ENTITY_ID_1F:
                     if (gUnk_03005220.klonoaInvulnerabilityTimer != 0)
                     {
                         break;
@@ -3602,8 +3595,8 @@ exit_loop2:
                             }
                             break;
 
-                        case 0x13:
-                        case 0x16:
+                        case ENTITY_ID_13:
+                        case ENTITY_ID_BUBBLE_MOO:
                             if ((gEntityInfo[var_sb].unkF != 0xE) && (gEntityInfo[var_sb].unkF != 0xF))
                             {
                                 continue;
@@ -3653,7 +3646,7 @@ exit_loop2:
                             no_continue2:
                             break;
 
-                        case 0x1F:
+                        case ENTITY_ID_1F:
                             if (gEntityInfo[var_sb].unk8.split.unk8 == 0)
                             {
                                 continue;

@@ -22,7 +22,7 @@ void PauseMenuScreenInit(void)
     s32 dstCol;
     s32 var_sl;
 
-    if (gUnk_030034BC == 0)
+    if (gPauseMenuBg == 0)
     {
         var_sl = gUnk_03000800;
     }
@@ -94,10 +94,10 @@ void PauseMenuScreenInit(void)
         {
             dstCol += 2;
         }
-        gBgTilemapBufs[gUnk_030034BC][dstCol] = gBgDataPtrs.pBufBg3Tilemap[srcCol + 2] + var_sl;
+        gBgTilemapBufs[gPauseMenuBg][dstCol] = gBgDataPtrs.pBufBg3Tilemap[srcCol + 2] + var_sl;
     }
 
-    DmaCopy16(3, &gBgTilemapBufs[gUnk_030034BC], gBgInfo[gUnk_030034BC].pTilemap, 0x800);
+    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, 0x800);
 
     REG_DISPCNT &= ~DISPCNT_WIN1_ON;
 
@@ -115,7 +115,7 @@ void PauseMenuScreenInit(void)
         {
             gEntityInfo[i].priority += 1;
         }
-        gBgInfo[gUnk_030034BC].hOfs = 0;
+        gBgInfo[gPauseMenuBg].hOfs = 0;
     }
 
     gBlendValue = 9;
@@ -144,12 +144,12 @@ void PauseMenuScreenInit(void)
     }
     else if (gPauseMenuType == PAUSE_MENU_TYPE_EX_LEVEL)
     {
-        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gUnk_030034BC].pTiles + (var_sl * 0x20), 0xC60);
+        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gPauseMenuBg].pTiles + (var_sl * 0x20), 0xC60);
     }
     else
     {
         // PAUSE_MENU_TYPE_NORMAL_LEVEL or PAUSE_MENU_TYPE_BOSS
-        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gUnk_030034BC].pTiles + (var_sl * 0x20), 0xCE0);
+        DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gPauseMenuBg].pTiles + (var_sl * 0x20), 0xCE0);
     }
 
     REG_IE |= INTR_FLAG_VBLANK;
@@ -172,7 +172,7 @@ void PauseMenuScreenInit(void)
 
     if (gUnk_03003410.unk4 != 0)
     {
-        if (gUnk_030034BC == 0)
+        if (gPauseMenuBg == 0)
         {
             REG_BG0CNT &= ~BGCNT_PRIORITY_MASK; // set priority to 0
             REG_BG0CNT += 0;
@@ -212,7 +212,7 @@ void PauseMenuScreenRestoreGfx(void)
     thunk_HeapFree(gBgDataPtrs.pBufBg3Tilemap);
     thunk_HeapFree(gBgDataPtrs.pBufBg3Tiles);
 
-    if (gUnk_030034BC == 0)
+    if (gPauseMenuBg == 0)
     {
         DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, gBgInfo[0].tileSize * gBgInfo[0].nbrTiles);
         DmaCopy16(3, gBgDataPtrs.pBufBg0Tilemap, &gBgTilemapBufs[0], 0x480);
@@ -241,7 +241,7 @@ void PauseMenuScreenRestoreGfx(void)
         DrawLevelTimer();
     }
 
-    DmaCopy16(3, &gBgTilemapBufs[gUnk_030034BC], gBgInfo[gUnk_030034BC].pTilemap, 0x800);
+    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, 0x800);
 
     if (gUnk_03004C20.levelHasTimer == 1)
     {
@@ -281,8 +281,8 @@ void PauseMenuScreenHandler(void)
     {
         for (row = 0; row < 2; row++)
         {
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5], 0x4);
-            DmaFill16(3, 0, &gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5], 0x4);
+            DmaFill16(3, 0, &gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7], 0x4);
         }
 
         if ((gPauseMenuType == PAUSE_MENU_TYPE_NORMAL_LEVEL) || (gPauseMenuType == PAUSE_MENU_TYPE_EX_LEVEL))
@@ -335,15 +335,15 @@ void PauseMenuScreenHandler(void)
         {
             for (col = 0; col < 2; col++)
             {
-                if (gUnk_030034BC == 0)
+                if (gPauseMenuBg == 0)
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col] + gUnk_03000800;
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col] + gUnk_03000800;
+                    gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col] + gUnk_03000800;
+                    gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col] + gUnk_03000800;
                 }
                 else
                 {
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col];
-                    gBgTilemapBufs[gUnk_030034BC][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col];
+                    gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xA5 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0x9D + col];
+                    gBgTilemapBufs[gPauseMenuBg][((row + (gMenuInfo->cursorIndex * 3)) * 0x20) + 0xB7 + col] = gBgDataPtrs.pBufBg3Tilemap[(row * 0x1E) + 0xAF + col];
                 }
             }
         }
@@ -431,7 +431,7 @@ void ButtonConfigurationScreenInit(void)
     s32 dstCol;
     s32 var_r7;
 
-    if (gUnk_030034BC == 0)
+    if (gPauseMenuBg == 0)
     {
         var_r7 = gUnk_03000800;
     }
@@ -455,13 +455,13 @@ void ButtonConfigurationScreenInit(void)
         {
             dstCol += 2;
         }
-        gBgTilemapBufs[gUnk_030034BC][dstCol] = gBgDataPtrs.pBufBg3Tilemap[srcCol + 2] + var_r7;
+        gBgTilemapBufs[gPauseMenuBg][dstCol] = gBgDataPtrs.pBufBg3Tilemap[srcCol + 2] + var_r7;
     }
 
     REG_WIN1H = WIN_RANGE(0, DISPLAY_WIDTH);
     REG_WIN1V = WIN_RANGE(30, DISPLAY_HEIGHT - 0x10);
 
-    if (gUnk_030034BC == 0)
+    if (gPauseMenuBg == 0)
     {
         REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_CLR | WININ_WIN1_BG1 | WININ_WIN1_BG2 | WININ_WIN1_OBJ | WININ_WIN1_CLR;
     }
@@ -484,7 +484,7 @@ void ButtonConfigurationScreenInit(void)
     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     gCallbackQueue.nextCount = 4;
 
-    DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gUnk_030034BC].pTiles + (var_r7 << 5), 0xB80);
+    DmaCopy16(3, gBgDataPtrs.pBufBg3Tiles + 4, gBgInfo[gPauseMenuBg].pTiles + (var_r7 << 5), 0xB80);
 
     REG_DISPCNT |= DISPCNT_WIN1_ON;
     REG_IE |= INTR_FLAG_VBLANK;

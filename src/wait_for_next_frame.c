@@ -143,7 +143,7 @@ void BossWaitForNextFrame(void)
     {
         if ((gCallbackQueue.current[1] == PauseMenuScreenHandler) || (gCallbackQueue.current[0] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == PauseMenuScreenInit) || (gCallbackQueue.current[1] == ButtonConfigurationScreenHandler) || (gCallbackQueue.current[1] == ButtonConfigurationScreenInit))
         {
-            if (gUnk_030034BC == 0)
+            if (gPauseMenuBg == 0)
             {
                 var_sb = 0;
                 var_r8 = 1;
@@ -284,7 +284,7 @@ void CutsceneWaitForNextFrame(void)
     gBg2PC = MultiplyQ8(-SIN(gBg2Alpha), ReciprocalQ8(gBg2YMag));
     gBg2PD = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2YMag));
 
-    gBg2X = ((gBgInfo[2].hOfs * 0x10) - (gBg2PA * DISPLAY_WIDTH_CENTER)) - (gBg2PB * 0x78);
+    gBg2X = ((gBgInfo[2].hOfs * 0x10) - (gBg2PA * 0x78)) - (gBg2PB * 0x78);
     gBg2Y = ((gBgInfo[2].vOfs * 0x10) - (gBg2PC * 0x28)) - (gBg2PD * 0x28);
 
     thunk_UpdateRng();

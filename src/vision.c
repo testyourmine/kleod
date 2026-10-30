@@ -634,7 +634,7 @@ void PuzzleStageScrollUpdate(void)
         }
     }
 
-    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
+    gBgInfo[1].hOfs = gBgInfo[2].hOfs / 2;
     if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)
     {
         gBgInfo[1].vOfs += (gBgInfo[2].vOfs - gPreviousBg2VOfs) & 1;
@@ -889,7 +889,7 @@ void HoverBoardScrollUpdate(void)
         ScrollBg2LevelData(scrollFlags, scrollOffset);
     }
 
-    gBgInfo[1].hOfs = (gBgInfo[2].hOfs >> 1);
+    gBgInfo[1].hOfs = gBgInfo[2].hOfs / 2;
     if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
     {
         if (gBgInfo[2].vOfs >= gPreviousBg2VOfs)

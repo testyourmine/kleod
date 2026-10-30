@@ -843,9 +843,9 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             gUnk_03003504 = slot;
             /* fallthrough */
         case ENTITY_ID_MOO_BOARDER: 
-        case 0x13: 
-        case 0x16: 
-        case 0x1F:
+        case ENTITY_ID_13: 
+        case ENTITY_ID_BUBBLE_MOO: 
+        case ENTITY_ID_1F:
         case ENTITY_ID_GOOMI:
         case ENTITY_ID_GOOMI_HORIZONTAL:
         case ENTITY_ID_GOOMI_VERTICAL:
@@ -920,7 +920,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
     switch (id)
     {
         case ENTITY_ID_KEY_DOOR:
-        case 0x1E:
+        case ENTITY_ID_BOSS:
         case ENTITY_ID_MAGNET_BLOCK:
         case ENTITY_ID_GROWN_BLOCK:
         case ENTITY_ID_WATER:
@@ -959,9 +959,9 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
         case ENTITY_ID_SPIKER_HORIZONTAL: 
         case ENTITY_ID_SPIKER_VERTICAL: 
         case ENTITY_ID_MOO_BOARDER: 
-        case 0x17:
-        case 0x1B:
-        case 0x22:
+        case ENTITY_ID_17:
+        case ENTITY_ID_1B:
+        case ENTITY_ID_22:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
         case ENTITY_ID_GRATED_PLATFORM:
         case ENTITY_ID_BLUE_DISAPPEARING_PLATFORM:
@@ -992,7 +992,7 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
         case ENTITY_ID_SPIKER_HORIZONTAL:
         case ENTITY_ID_SPIKER_VERTICAL:
         case ENTITY_ID_MOO_BOARDER:
-        case 0x18:
+        case ENTITY_ID_18:
         case ENTITY_ID_MAGNET_BLOCK:
         case ENTITY_ID_MOVING_PLATFORM_VERTICAL:
         case ENTITY_ID_MOVING_PLATFORM_HORIZONTAL:
@@ -1017,9 +1017,9 @@ void EntityCreate(s32 slot, u8 arg1, u16 x, u16 y, u8 arg4, u8 priority, u8 arg6
             gUnk_03003640 = slot;
             /* fallthrough */
         case ENTITY_ID_KEY_DOOR:
-        case 0x17:
-        case 0x1B:
-        case 0x22:
+        case ENTITY_ID_17:
+        case ENTITY_ID_1B:
+        case ENTITY_ID_22:
         case ENTITY_ID_FOUNTAIN_FOOTHOLD:
         case ENTITY_ID_RED_ARROW:
         case ENTITY_ID_GEYSER:
@@ -1145,7 +1145,7 @@ void EntityCommonTransferToOamBuffer(void)
 
     for (slot = 0; slot <= 0xC; slot++)
     {
-        if (gEntityInfo[slot].id == 0x34)
+        if (gEntityInfo[slot].id == ENTITY_ID_34)
         {
             continue;
         }
@@ -1254,7 +1254,7 @@ void EntityBossTransferToOamBuffer(void)
 
         for (slot = 0; slot <= 0xC; slot++)
         {
-            if (gEntityInfo[slot].id == 0x34)
+            if (gEntityInfo[slot].id == ENTITY_ID_34)
             {
                 continue;
             }
@@ -1292,7 +1292,7 @@ void EntityBossTransferToOamBuffer(void)
     {
         for (slot = 0; slot <= 0xC; slot++)
         {
-            if (gEntityInfo[slot].id == 0x34)
+            if (gEntityInfo[slot].id == ENTITY_ID_34)
             {
                 continue;
             }
@@ -1346,7 +1346,7 @@ void EntityVisionSelectTransferToOamBuffer(void)
     {
         if (gEntityInfo[slot].visible == 1)
         {
-            if ((gEntityInfo[slot].id == 0x52) &&
+            if ((gEntityInfo[slot].id == ENTITY_ID_52) &&
                 (gEntityInfo[slot].xPosScreen > (klonoaXPosScreen - 0x10)) && (gEntityInfo[slot].xPosScreen < (klonoaXPosScreen + 0x10)) &&
                 (gEntityInfo[slot].yPosScreen <= (klonoaYPosScreen + 0xA)) && (gEntityInfo[slot].yPosScreen >= (u32)klonoaYPosScreen))
             {
@@ -1372,7 +1372,7 @@ void EntityVisionSelectTransferToOamBuffer(void)
     {
         if (gEntityInfo[slot].visible == 1)
         {
-            if (gEntityInfo[slot].id == 0x52)
+            if (gEntityInfo[slot].id == ENTITY_ID_52)
             {
                 if ((gEntityInfo[slot].xPosScreen > (klonoaXPosScreen - 0x10) && gEntityInfo[slot].xPosScreen < (klonoaXPosScreen + 0x10)) &&
                     (gEntityInfo[slot].yPosScreen <= (klonoaYPosScreen + 0xA) && gEntityInfo[slot].yPosScreen >= (u32)klonoaYPosScreen))
@@ -1532,7 +1532,7 @@ void EntityBossUpdateScreenPositions(s8 xOffset, s8 yOffset)
             if (gEntityInfo[slot].unkF < 0x19)
             {
                 EntityUpdateScreenPositionAffine(slot, xOffset, yOffset);
-                if (gEntityInfo[slot].id != 0)
+                if (gEntityInfo[slot].id != ENTITY_ID_NONE)
                 {
                     if ((gEntityInfo[slot].xPosScreen >= (DISPLAY_WIDTH + 67) && gEntityInfo[slot].xPosScreen <= (u16)(-68))
                         || (gEntityInfo[slot].yPosScreen >= (DISPLAY_HEIGHT + 96) && gEntityInfo[slot].yPosScreen <= (u16)(-68)))
@@ -1578,7 +1578,7 @@ void sub_0800A804(void)
         }
 
         gCallbackQueue.previousCount = gCallbackQueue.currentCount;
-        gUnk_030034BC = 0;
+        gPauseMenuBg = 0;
         gUnk_03003410.unk4 = 1;
         gCallbackQueue.next[0] = PauseMenuScreenInit;
         gCallbackQueue.next[1] = CommonWaitForNextFrame;
@@ -1772,11 +1772,11 @@ void sub_0800AC34(void)
         gCallbackQueue.previousCount = gCallbackQueue.currentCount;
         if ((gUnk_03004C20.world == 5) && ((gUnk_03005400.unkA == 5) || (gUnk_03005400.unkA == 7) || (gUnk_03005400.unkA == 9)))
         {
-            gUnk_030034BC = 1;
+            gPauseMenuBg = 1;
         }
         else
         {
-            gUnk_030034BC = 0;
+            gPauseMenuBg = 0;
         }
 
         gUnk_03003410.unk4 = 1;
@@ -1815,7 +1815,7 @@ void sub_0800AC34(void)
 
         if (gEntityInfo[slot].unkF != 0x1C)
         {
-            if (gEntityInfo[slot].id != 0)
+            if (gEntityInfo[slot].id != ENTITY_ID_NONE)
             {
                 gEntityInfo[slot].affineHFlip_matrixNum = gEntityInfo[slot].hvFlip;
                 gEntityInfo[slot].affineDouble = 0;
@@ -1842,7 +1842,7 @@ void sub_0800AC34(void)
                         sub_0801F02C(slot);
                         break;
 
-                    case 0x10:
+                    case ENTITY_ID_10:
                         switch (gEntityInfo[slot].unkF)
                         {
                             case 0:
@@ -1856,27 +1856,27 @@ void sub_0800AC34(void)
                         }
                         break;
 
-                    case 0x11:
+                    case ENTITY_ID_11:
                         sub_0801F128(slot);
                         break;
 
-                    case 0x12:
+                    case ENTITY_ID_12:
                         sub_0801F4D0(slot);
                         break;
 
-                    case 0x13:
+                    case ENTITY_ID_13:
                         sub_0801F648(slot);
                         break;
 
-                    case 0x14:
+                    case ENTITY_ID_14:
                         sub_0801FADC(slot);
                         break;
 
-                    case 0x16:
+                    case ENTITY_ID_BUBBLE_MOO:
                         sub_0801FFF0(slot);
                         break;
 
-                    case 0x15:
+                    case ENTITY_ID_15:
                         gEntityInfo[slot].affineEnable = 1;
                         gEntityInfo[slot].affineHFlip_matrixNum = 3;
                         if (gEntityAnimationInfo[0x12 - gUnk_0300363C].state == 0)
@@ -1893,44 +1893,44 @@ void sub_0800AC34(void)
                         }
                         break;
 
-                    case 0x17:
+                    case ENTITY_ID_17:
                         gEntityInfo[slot].affineDouble = 1;
                         sub_080202D4(slot);
                         break;
 
-                    case 0x18:
+                    case ENTITY_ID_18:
                         sub_08021194(slot);
                         break;
 
-                    case 0x19:
+                    case ENTITY_ID_19:
                         sub_08020FB8(slot);
                         break;
 
-                    case 0x1A:
+                    case ENTITY_ID_1A:
                         sub_0802192C(slot);
                         break;
 
-                    case 0x1D:
+                    case ENTITY_ID_1D:
                         sub_08021AD4(slot);
                         break;
 
-                    case 0x1C:
+                    case ENTITY_ID_1C:
                         gEntityInfo[slot].affineHFlip_matrixNum = 5;
                         gEntityInfo[slot].affineDouble = 1;
                         sub_08022CA0(slot);
                         break;
 
-                    case 0x1E:
+                    case ENTITY_ID_BOSS:
                         gEntityInfo[slot].affineHFlip_matrixNum = 6;
                         gUnk_03003590[3].unk5_0 = gEntityInfo[slot].hvFlip;
                         sub_08023988(slot);
                         break;
 
-                    case 0x1B:
+                    case ENTITY_ID_1B:
                         sub_08021DAC(slot);
                         break;
 
-                    case 0x1F:
+                    case ENTITY_ID_1F:
                         if (slot > 0x18)
                         {
                             gEntityInfo[slot].affineHFlip_matrixNum = 10;
@@ -1975,10 +1975,10 @@ void sub_0800AC34(void)
                         }
                         break;
 
-                    case 0x44:
-                    case 0x45:
+                    case ENTITY_ID_44:
+                    case ENTITY_ID_45:
                         temp_r1_2 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
-                        if (((temp_r1_2->id != 0x22) && (temp_r1_2->unkF == 0x1C)) || (temp_r1_2->unkF == 0x19))
+                        if (((temp_r1_2->id != ENTITY_ID_22) && (temp_r1_2->unkF == 0x1C)) || (temp_r1_2->unkF == 0x19))
                         {
                             gEntityInfo[slot].xPosBg2 = 0x200;
                             break;
@@ -1988,7 +1988,7 @@ void sub_0800AC34(void)
                         gEntityInfo[slot].yPosBg2 = gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]].yPosBg2 & ~7;
                         
                         temp_r1_5 = &gEntityInfo[gUnk_080E2A84[gUnk_03004C20.world - 1][slot - gUnk_080E2A84[gUnk_03004C20.world - 1][0]]];
-                        if (temp_r1_5->id == 0x22)
+                        if (temp_r1_5->id == ENTITY_ID_22)
                         {
                             if (temp_r1_5->hvFlip == 0)
                             {
@@ -2019,7 +2019,7 @@ void sub_0800AC34(void)
                         
                         break;
 
-                    case 0x20:
+                    case ENTITY_ID_20:
                         sub_0803CE14(slot);
                         break;
                 }
@@ -2217,7 +2217,7 @@ void sub_0800B3C0(void)
             case ENTITY_ID_GOOMI_DIAGONAL_1:
             case ENTITY_ID_GOOMI_DIAGONAL_2:
             case ENTITY_ID_SPRING:
-            case 0x49:
+            case ENTITY_ID_49:
             case ENTITY_ID_FLYING_MOO_HORIZONTAL:
             case ENTITY_ID_FLYING_MOO_VERTICAL:
             case ENTITY_ID_GLIBZ_QUAD_CANNON:

@@ -205,17 +205,31 @@ enum EntityId {
     /* 0x0A */ ENTITY_ID_LEAF_2, // leaf blown by gust
     /* 0x0B */ ENTITY_ID_MOO_BOARDER,
     /* 0x0C */ ENTITY_ID_BOOMIE_EXPLOSION_COUNTDOWN, // explosion countdown that appears when carrying Boomie
-
-    /* 0x0E */ ENTITY_ID_FLAME_WAVE = 0x0E, // from the 1st boss
-
-    /* 0x16 */ ENTITY_ID_BUBBLE_MOO = 0x16, // present on the 4th boss
+    /* 0x0D */ ENTITY_ID_0D,
+    /* 0x0E */ ENTITY_ID_FLAME_WAVE, // from the 1st boss
+    /* 0x0F */ ENTITY_ID_0F,
+    /* 0x10 */ ENTITY_ID_10,
+    /* 0x11 */ ENTITY_ID_11,
+    /* 0x12 */ ENTITY_ID_12,
+    /* 0x13 */ ENTITY_ID_13,
+    /* 0x14 */ ENTITY_ID_14,
+    /* 0x15 */ ENTITY_ID_15,
+    /* 0x16 */ ENTITY_ID_BUBBLE_MOO, // present on the 4th boss
     /* 0x17 */ ENTITY_ID_17, // giant eye that appears during Jillius' battle (includes mini eyes)
-
-    /* 0x1E */ ENTITY_ID_BOSS = 0x1E, // seems to be all bosses and almost all hazards from them
-
-    /* 0x22 */ ENTITY_ID_22 = 0x22,
-
-    /* 0x25 */ ENTITY_ID_MAGNET_BLOCK = 0x25, // green/white block that has hand that sticks to block
+    /* 0x18 */ ENTITY_ID_18,
+    /* 0x19 */ ENTITY_ID_19,
+    /* 0x1A */ ENTITY_ID_1A,
+    /* 0x1B */ ENTITY_ID_1B,
+    /* 0x1C */ ENTITY_ID_1C,
+    /* 0x1D */ ENTITY_ID_1D,
+    /* 0x1E */ ENTITY_ID_BOSS, // seems to be all bosses and almost all hazards from them
+    /* 0x1F */ ENTITY_ID_1F,
+    /* 0x20 */ ENTITY_ID_20,
+    /* 0x21 */ ENTITY_ID_21,
+    /* 0x22 */ ENTITY_ID_22,
+    /* 0x23 */ ENTITY_ID_23,
+    /* 0x24 */ ENTITY_ID_24,
+    /* 0x25 */ ENTITY_ID_MAGNET_BLOCK, // green/white block that has hand that sticks to block
     /* 0x26 */ ENTITY_ID_MAGNET_BLOCK_HAND, // hand that comes out of sticky block
     /* 0x27 */ ENTITY_ID_MOVING_PLATFORM_VERTICAL,
     /* 0x28 */ ENTITY_ID_FOUNTAIN_FOOTHOLD, // platform on top of geyser that rises/falls with geyser
@@ -246,9 +260,23 @@ enum EntityId {
     /* 0x41 */ ENTITY_ID_MOON_DOOR,
     /* 0x42 */ ENTITY_ID_CANNON_GOAL, // cannon that appears at end of Athletic Challenge levels (autoscroller)
     /* 0x43 */ ENTITY_ID_GLIBZ_QUAD_CANNON_BULLET, // bullets shot by Glibz Quad Cannon
-
-    /* 0x51 */ ENTITY_ID_51 = 0x51, // seems to be decorations on the vision select screen
-    /* 0x52 */ ENTITY_ID_52 = 0x52, // seems to be the level icons on the vision select screen
+    /* 0x44 */ ENTITY_ID_44,
+    /* 0x45 */ ENTITY_ID_45,
+    /* 0x46 */ ENTITY_ID_46,
+    /* 0x47 */ ENTITY_ID_47,
+    /* 0x48 */ ENTITY_ID_48,
+    /* 0x49 */ ENTITY_ID_49,
+    /* 0x4A */ ENTITY_ID_4A,
+    /* 0x4B */ ENTITY_ID_4B,
+    /* 0x4C */ ENTITY_ID_4C,
+    /* 0x4D */ ENTITY_ID_4D,
+    /* 0x4E */ ENTITY_ID_4E,
+    /* 0x4F */ ENTITY_ID_4F,
+    /* 0x50 */ ENTITY_ID_50,
+    /* 0x51 */ ENTITY_ID_51, // seems to be decorations on the vision select screen
+    /* 0x52 */ ENTITY_ID_52, // seems to be the level icons on the vision select screen
+    /* 0x53 */ ENTITY_ID_53,
+    /* 0x54 */ ENTITY_ID_54,
 
     /* 0x6E */ ENTITY_ID_KLONOA = 0x6E,
     /* 0x6F */ ENTITY_ID_BOX, // throwable boxes, includes moo box and explosion direction box
@@ -828,7 +856,7 @@ extern union Unk_03000820 *gOamBufferPtr; // OAM buffer pointer
 
 extern union Unk_03000820 gOamBuffer[]; // OAM buffer
 
-extern u8 gUnk_030034BC;
+extern u8 gPauseMenuBg; // BG that pause menu appears on
 
 struct Unk_03003590 {
     /* 0x0 */ s16 unk0;
