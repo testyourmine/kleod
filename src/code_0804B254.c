@@ -59,15 +59,15 @@ const u16 gUnk_081177C4[16] = {
     0x0
 };
 
-extern const u32 *gUnk_08189AFC[];
-extern const u32 *gUnk_08189B4C[];
+extern u32* gUnk_08189AFC[20];
+extern u32* gUnk_08189B4C[32];
 
-extern const u32 *gUnk_08189BCC[][2];
-extern const u32 *gUnk_08189CCC[][2];
+extern u32* gUnk_08189BCC[32][2];
+extern u32* gUnk_08189CCC[32][2];
 
-extern const void *gUnk_08189DCC[];
+extern const u8* gUnk_08189DCC[46];
 
-extern struct Unk_0300466C *gUnk_08189E84[];
+extern struct Unk_0300466C *gUnk_08189E84[0x20];
 
 struct Unk_08189F04 {
     u16 unk0;
@@ -235,7 +235,7 @@ void sub_0804B424(void *arg0, void *arg1, u32 arg2)
 
 void sub_0804B464(s32 arg0, s32 arg1)
 {
-    sub_0804B424((void*)gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].nbrTiles * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].tileSize);
+    sub_0804B424(gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].nbrTiles * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].tileSize);
 }
 
 void sub_0804B4B0(s32 arg0, s32 arg1)
@@ -263,7 +263,7 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
     {
         var_sl = 0x10 << spC;
         if (gBgInfo); // FAKE?
-        temp_r8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][var_sb - 2]);
+        temp_r8 = DecompressAlloc(gUnk_08189CCC[var_r3][var_sb - 2]);
         temp_r8 += 4;
         
         for (var_r3 = 0; var_r3 < gBgInfo[2].vLength; var_r3++)
@@ -290,7 +290,7 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
     }
     else
     {
-        sp8 = DecompressAlloc((void*)gUnk_08189CCC[var_r3][var_sb - 2]);
+        sp8 = DecompressAlloc(gUnk_08189CCC[var_r3][var_sb - 2]);
         sp8 += 4;
 
         if (spC != 0)
@@ -455,12 +455,12 @@ void sub_0804B920(s32 arg0, s32 arg1)
 
 void sub_0804BAB4(u8 arg0)
 {
-    DecompressDma((void*)gUnk_08189B4C[arg0], PLTT, 0x1C0);
+    DecompressDma(gUnk_08189B4C[arg0], PLTT, 0x1C0);
 }
 
 void sub_0804BAD4(s32 arg0)
 {
-    gUnk_030007D0 = DecompressAlloc((void*)gUnk_08189AFC[arg0]);
+    gUnk_030007D0 = DecompressAlloc(gUnk_08189AFC[arg0]);
     gUnk_03004D84 = gUnk_030007D0 + 4;
 }
 

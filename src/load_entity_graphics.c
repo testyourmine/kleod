@@ -2,6 +2,7 @@
 #include "load_entity_graphics.h"
 #include "transitions.h"
 #include "anim.h"
+#include "data/data_08077E28.h"
 #include "structs/variables.h"
 
 extern struct EntityAnimationData *gUnk_08189A24[6][9];
@@ -91,107 +92,6 @@ extern u8 gUnk_08065568[0x200]; // Bomb Box (pointing left)
 extern u8 gUnk_08065768[0x20]; // small dot (idk)
 extern u8 gUnk_08065788[0x20]; // small dot (idk)
 extern u8 gUnk_080657A8[0x20]; // small dot (idk)
-
-// palettes
-extern u8 gUnk_08077E28[0x20];
-extern u8 gUnk_08077E48[0x20];
-extern u8 gUnk_08077E68[0x20];
-extern u8 gUnk_08077E88[0x20];
-extern u8 gUnk_08077EA8[0x20];
-extern u8 gUnk_08077EC8[0x20];
-extern u8 gUnk_08077EE8[0x20];
-extern u8 gUnk_08077F08[0x20];
-extern u8 gUnk_08077F28[0x20];
-extern u8 gUnk_08077F48[0x20];
-extern u8 gUnk_08077F68[0x20];
-extern u8 gUnk_08077F88[0x20];
-extern u8 gUnk_08077FA8[0x20];
-extern u8 gUnk_08077FC8[0x20];
-extern u8 gUnk_08077FE8[0x20];
-extern u8 gUnk_08078008[0x20];
-extern u8 gUnk_08078028[0x20];
-extern u8 gUnk_08078048[0x20];
-extern u8 gUnk_08078068[0x20];
-extern u8 gUnk_08078088[0x20];
-extern u8 gUnk_080780A8[0x20];
-extern u8 gUnk_080780C8[0x20];
-extern u8 gUnk_080780E8[0x20];
-extern u8 gUnk_08078108[0x20];
-extern u8 gUnk_08078128[0x20];
-extern u8 gUnk_08078148[0x20];
-extern u8 gUnk_08078168[0x20];
-extern u8 gUnk_08078188[0x20];
-extern u8 gUnk_080781A8[0x20];
-extern u8 gUnk_080781C8[0x20];
-extern u8 gUnk_080781E8[0x20];
-extern u8 gUnk_08078208[0x20];
-extern u8 gUnk_08078228[0x20];
-extern u8 gUnk_08078248[0x20];
-extern u8 gUnk_08078268[0x20];
-extern u8 gUnk_08078288[0x20];
-extern u8 gUnk_080782A8[0x20];
-extern u8 gUnk_080782C8[0x20];
-extern u8 gUnk_080782E8[0x20];
-extern u8 gUnk_08078308[0x20];
-extern u8 gUnk_08078328[0x20];
-extern u8 gUnk_08078348[0x20];
-extern u8 gUnk_08078368[0x20];
-extern u8 gUnk_08078388[0x20];
-extern u8 gUnk_080783A8[0x20];
-extern u8 gUnk_080783C8[0x20];
-extern u8 gUnk_080783E8[0x20];
-extern u8 gUnk_08078408[0x20];
-extern u8 gUnk_08078428[0x20];
-extern u8 gUnk_08078448[0x20];
-extern u8 gUnk_08078468[0x20];
-extern u8 gUnk_08078488[0x20];
-extern u8 gUnk_080784A8[0x20];
-extern u8 gUnk_080784C8[0x20];
-extern u8 gUnk_080784E8[0x20];
-extern u8 gUnk_08078508[0x20];
-extern u8 gUnk_08078528[0x20];
-extern u8 gUnk_08078548[0x20];
-extern u8 gUnk_08078568[0x20];
-extern u8 gUnk_08078588[0x20];
-extern u8 gUnk_080785A8[0x20];
-extern u8 gUnk_080785C8[0x20];
-extern u8 gUnk_080785E8[0x20];
-extern u8 gUnk_08078608[0x20];
-extern u8 gUnk_08078628[0x20];
-extern u8 gUnk_08078648[0x20];
-extern u8 gUnk_08078668[0x20];
-extern u8 gUnk_08078688[0x20];
-extern u8 gUnk_080786A8[0x20];
-extern u8 gUnk_080786C8[0x20];
-extern u8 gUnk_080786E8[0x20];
-extern u8 gUnk_08078708[0x20];
-extern u8 gUnk_08078728[0x20];
-extern u8 gUnk_08078748[0x20];
-extern u8 gUnk_08078768[0x20];
-extern u8 gUnk_08078788[0x20];
-extern u8 gUnk_080787A8[0x20];
-extern u8 gUnk_080787C8[0x20];
-extern u8 gUnk_080787E8[0x20];
-extern u8 gUnk_08078808[0x20];
-extern u8 gUnk_08078828[0x20]; // Unused?
-extern u8 gUnk_08078848[0x20];
-extern u8 gUnk_08078868[0x20];
-extern u8 gUnk_08078888[0x20];
-extern u8 gUnk_080788A8[0x20];
-extern u8 gUnk_080788C8[0x20];
-extern u8 gUnk_080788E8[0x20];
-extern u8 gUnk_08078908[0x20];
-extern u8 gUnk_08078928[0x20];
-extern u8 gUnk_08078948[0x20];
-extern u8 gUnk_08078968[0x20];
-extern u8 gUnk_08078988[0x20];
-extern u8 gUnk_080789A8[0x20];
-extern u8 gUnk_080789C8[0x20];
-extern u8 gUnk_080789E8[0x20];
-extern u8 gUnk_08078A08[0x20]; // Unused?
-extern u8 gUnk_08078A28[0x20];
-extern u8 gUnk_08078A48[0x20];
-extern u8 gUnk_08078A68[0x20];
 
 extern u8 gUnk_080A4888[0x800];
 extern u8 gUnk_080A5888[0x800];

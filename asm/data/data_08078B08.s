@@ -2,18 +2,6 @@
 
 	.section .rodata
 
-    nonmatching _78B08, 0x78F88-0x78B08
-_78B08::
-    .incbin "baserom.gba", 0x78B08, 0x78F88-0x78B08
-
-    nonmatching gUnk_08078F88, 0x20
-gUnk_08078F88:: @ 0x08078F88
-    .incbin "baserom.gba", 0x78F88, 0x20
-
-    nonmatching gUnk_08078FA8, 0x20
-gUnk_08078FA8:: @ 0x08078FA8
-    .incbin "baserom.gba", 0x78FA8, 0x20
-
     nonmatching gUnk_08078FC8, 0xD*0x8
 gUnk_08078FC8:: @ 0x08078FC8
     .incbin "baserom.gba", 0x78FC8, 0xD*0x8

@@ -13,6 +13,7 @@
 #include "rand.h"
 #include "rotation.h"
 #include "util.h"
+#include "data/data_08077E28.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -20,11 +21,6 @@
 extern const u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 
 extern u8 gUnk_08064868[0x200];
-extern const u8 gUnk_08078508[0x20];
-extern u8 gUnk_08078628[0x20];
-extern u8 gUnk_08078728[0x20];
-extern u8 gUnk_08078768[0x20];
-extern u8 gUnk_080789C8[0x20];
 extern u8 gUnk_080B9468[0x200];
 
 extern u8 gUnk_080D8C30[6][0x40];

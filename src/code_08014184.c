@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "rotation.h"
 #include "util.h"
+#include "data/data_08077E28.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -64,11 +65,6 @@ extern u8 gUnk_080635E8[0x80];
 extern u8 gUnk_08063368[0x80];
 extern u8 gUnk_08063FE8[0x80];
 extern u8 gUnk_08064A68[0x200];
-
-extern u8 gUnk_08078328[0x20];
-extern u8 gUnk_08078648[0x20];
-extern u8 gUnk_08078968[0x20];
-extern u8 gUnk_08078988[0x20];
 
 extern u8 gUnk_080B8F68[0x80];
 extern u8 gUnk_080B8FE8[0x80];

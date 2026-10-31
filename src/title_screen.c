@@ -8,12 +8,10 @@
 #include "transitions.h"
 #include "vision.h"
 #include "wait_for_next_frame.h"
+#include "data/data_08077E28.h"
 #include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern const u8 gUnk_08078F88[0x20];
-extern const u8 gUnk_08078FA8[0x20];
 
 extern struct Unk_0300466C gUnk_0807D7B0[];
 

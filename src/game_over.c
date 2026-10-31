@@ -8,6 +8,7 @@
 #include "save.h"
 #include "vision.h"
 #include "wait_for_next_frame.h"
+#include "data/data_08077E28.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -30,11 +31,6 @@ extern u8 gUnk_08066908[0x80];
 extern u8 gUnk_08066988[0x80];
 extern u8 gUnk_08066A08[0x80];
 extern u8 gUnk_08066A88[0x80];
-
-extern u8 gUnk_08078A88[0x20];
-extern u8 gUnk_08078AA8[0x20];
-extern u8 gUnk_08078AC8[0x20];
-extern u8 gUnk_08078AE8[0x20];
 
 extern struct Unk_0300466C gUnk_0807D248[];
 

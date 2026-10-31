@@ -284,11 +284,13 @@ SECTIONS {
         src/data/m4a_tables.o(.rodata);
         asm/data/sound_data.o(.rodata);
         src/eeprom.o(.rodata);
-        src/data/data_08188E5C.o(.data);
-        asm/data/data_08188E5C.o(.rodata);
     } >rom
 
     data : ALIGN(4) {
+        src/data/data_08188E5C.o(.data);
+        asm/data/data_08188E5C.o(.data);
+        src/data/data_08189AFC.o(.data);
+        asm/data/data_0818B704.o(.data);
         src/data/data_0818BBBC.o(.data);
     } >rom
 
