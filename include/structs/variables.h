@@ -389,25 +389,24 @@ struct Unk_030034A0 {
     /* 0x00_0 */ u32 unk0_0:2;
     /* 0x00_2 */ u8 unk0_2:4; // TODO: verify
     /* 0x00_6 */ u32 unk0_6:2;
-    /* 0x01_0 */ u32 unk1_0:1;
+    /* 0x01_0 */ u32 unk1_0:1; // DISPCNT BG Mode 0/1
     /* 0x01_1 */ u8 unk1_1:5; // TODO: verify
     /* 0x01_6 */ u32 unk1_6:1;
-    /* 0x01_6 */ u32 unk1_7:2;
+    /* 0x01_6 */ u32 unk1_7:2; // DISPCNT Window 0/1 Display Flag
     /* 0x02_1 */ u32 unk2_1:2;
-    /* 0x03 */ u8 unk3[1]; // TODO: length?
-    /* 0x02 */ u8 pad4[0x5 - 0x4];
+    /* 0x03 */ u8 unk3[2]; // BG screen size, [0] is BG2, [1] is BG3
     /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 pad7[0x8 - 0x7];
     /* 0x08 */ s16 winX1Y1[WIN01_COUNT][WINHV_COUNT];  // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X1/Y1
     /* 0x10 */ s16 winX2Y2[WIN01_COUNT][WINHV_COUNT]; // [x][y], where x represents WIN0/1 as 0/1, and y represents H/V as 0/1, X2/Y2
-    /* 0x18 */ s16 unk18;
-    /* 0x1A */ s16 unkA;
-    /* 0x1C_0 */ u8 unk1C_0:2;
-    /* 0x1C_2 */ u8 unk1C_2:1;
-    /* 0x1C_3 */ u8 unk1C_3:1;
-    /* 0x1C_4 */ u8 unk1C_4:1;
-    /* 0x1C_5 */ u8 unk1C_5:1;
+    /* 0x18 */ s16 unk18; // volume
+    /* 0x1A */ s16 unkA; // target volume
+    /* 0x1C_0 */ u8 unk1C_0:2; // 0 plays track 0, 1 plays track 1, 3 plays all tracks
+    /* 0x1C_2 */ u8 unk1C_2:1; // request volume update?
+    /* 0x1C_3 */ u8 unk1C_3:1; // 0 is decrease volume, 1 is increase volume
+    /* 0x1C_4 */ u8 unk1C_4:1; // determines VBlank, 0 for Cutscene, 1 for CutsceneTransition
+    /* 0x1C_5 */ u8 unk1C_5:1; // flag, fade out (BG2)
     /* 0x1C_6 */ u8 unk1C_6:1;
     /* 0x1D */ u8 pad1D[0x20 - 0x1D];
 }; /* size = 0x20 */
@@ -1038,7 +1037,7 @@ extern u8 gSaveFilesStarted;
 extern u8 gFileSelectScreenTransitionDelay; // delay timer between confirming file and transition
 
 extern void *gUnk_030007D0;
-extern u8 *gUnk_03004D84; // TODO: pointer type?
+extern u8 *gUnk_03004D84;
 
 struct Unk_030052A4 {
     u32 unk0_0:3;

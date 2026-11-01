@@ -15,7 +15,7 @@
 #include "constants/songs.h"
 #include "structs/variables.h"
 
-extern void sub_0804BE58();                                /* extern */
+extern void CutsceneInit();                                /* extern */
 
 // 240F4
 void sub_080240F4(void)
@@ -590,7 +590,7 @@ void TransitionFromVisionSelectToLevel_FadeOut(void)
             {
                 gSceneSaveData->cutsceneId = gUnk_03004C20.world * 3;
                 gBlendValue = BLEND_MAX;
-                gCallbackQueue.next[0] = sub_0804BE58;
+                gCallbackQueue.next[0] = CutsceneInit;
                 gCallbackQueue.next[1] = NULL + 1;
                 gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
                 gCallbackQueue.nextCount = 2;
@@ -824,7 +824,7 @@ void TransitionFromWorldMapToVisionSelect_FadeOut(void)
             WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_CUTSCENE);
         }
 
-        gCallbackQueue.next[0] = sub_0804BE58;
+        gCallbackQueue.next[0] = CutsceneInit;
         gCallbackQueue.next[1] = NULL + 1;
         gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
         gCallbackQueue.nextCount = 2;
@@ -921,7 +921,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         }
         else if (gSceneSaveData->sceneType == SCENE_TYPE_CUTSCENE)
         {
-            gCallbackQueue.next[0] = sub_0804BE58;
+            gCallbackQueue.next[0] = CutsceneInit;
             gCallbackQueue.next[1] = NULL + 1;
             gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
             gCallbackQueue.nextCount = 2;

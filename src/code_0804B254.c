@@ -19,13 +19,13 @@ extern const u8 gUnk_0805769C[];
 
 extern u8 gUnk_080576B4[0x20];
 
-extern const u8 gUnk_080576D4[0x20][2];
+extern const u8 gUnk_080576D4[0x20][2]; // BGxCNT bpp (0 = 16 color mode, 0x80 = 256 color mode)
 extern const u16 gUnk_08057714[0x20][2];
 extern const u16 gUnk_08057794[0x20][2];
 extern const u16 gUnk_08057814[0x20][2];
 extern const u8 gUnk_08057894[0x20][2];
-extern const u8 gUnk_080578D4[0x20][2];
-extern const u8 gUnk_08057914[0x20][2];
+extern const u8 gUnk_080578D4[0x20][2]; // BGxCNT character base block
+extern const u8 gUnk_08057914[0x20][2]; // BGxCNT screen base block
 
 struct Unk_08057954 {
     void *unk0;
@@ -34,7 +34,7 @@ struct Unk_08057954 {
 };
 extern const struct Unk_08057954 gUnk_08057954[];
 
-extern const u8 gUnk_08057ACC[][2][2];
+extern const u8 gUnk_08057ACC[0x20][2][2]; // pair values of {unk, bgNbr}
 
 extern const u16 gUnk_08057B4C[];
 
@@ -82,88 +82,106 @@ struct Unk_08189F04 {
 };
 extern const struct Unk_08189F04 gUnk_08189F04[0x20][0x10];
 
-extern void sub_0804BFD0();                                   /* extern */
-extern void sub_0804C0D4();                                   /* extern */
-extern void sub_0804EB64();                                   /* extern */
-extern void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3);                                   /* extern */
-extern void sub_0804EE14();                                   /* extern */
-extern void sub_0804EF50();                                   /* extern */
-extern s32 sub_0804F248(u8);                               /* extern */
+void sub_0804BFD0(void);
+void sub_0804C0D4(void);
+void CutsceneHandler(void);
+void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3);
+void sub_0804EE14(void);
+void sub_0804EF50(void);
+void sub_0804EFA0(void);
+void sub_0804EFDC(void);
+void sub_0804F034(void);
+void sub_0804F004(void);
+void sub_0804F050(void);
+void sub_0804F074(void);
+void sub_0804F0D0(void);
+void sub_0804F114(void);
+void sub_0804F13C(void);
+void sub_0804F160(void);
+void sub_0804F180(void);
+void sub_0804F1B4(void);
+s32 sub_0804F248(u8 arg0);
 
-u16 sub_0804B254(void *arg0)
+// 4B254
+u16 ReadU16(u8 *ptr)
 {
-    return ((u8*)arg0)[0] + (((u8*)arg0)[1] << 8);
+    return ptr[0] + (ptr[1] << 8);
 }
 
-s16 sub_0804B260(void *arg0)
+// 4B260
+s16 ReadS16(u8 *ptr)
 {
-    return ((u8*)arg0)[0] + (((u8*)arg0)[1] << 8);
+    return ptr[0] + (ptr[1] << 8);
 }
 
-u32 sub_0804B270(void *arg0)
+// 4B270
+u32 ReadU32(u8 *ptr)
 {
-    return ((u8*)arg0)[0] + (((u8*)arg0)[1] << 8) + (((u8*)arg0)[2] << 0x10) + (((u8*)arg0)[3] << 0x18);
+    return ptr[0] + (ptr[1] << 8) + (ptr[2] << 0x10) + (ptr[3] << 0x18);
 }
 
-s32 sub_0804B288(void *arg0)
+// 4B288
+s32 ReadS32(u8 *ptr)
 {
-    return ((u8*)arg0)[0] + (((u8*)arg0)[1] << 8) + (((u8*)arg0)[2] << 0x10) + (((u8*)arg0)[3] << 0x18);
+    return ptr[0] + (ptr[1] << 8) + (ptr[2] << 0x10) + (ptr[3] << 0x18);
 }
 
-s32 sub_0804B2A0(u8 arg0, u16 arg1, u16 arg2)
+// 4B2A0
+s32 CutsceneCalculateBgCntScreenSize(u8 bgMode, u16 hLength, u16 vLength)
 {
-    s32 var_r0;
-    s32 var_r2;
+    s32 bgScreenSize;
+    s32 hSize;
 
-    if (arg0 != 0)
+    if (bgMode != 0)
     {
-        if ((arg1 > 0x10) || (arg2 > 0x10))
+        if ((hLength > 0x10) || (vLength > 0x10))
         {
-            if ((arg1 > 0x20) || (arg2 > 0x20))
+            if ((hLength > 0x20) || (vLength > 0x20))
             {
-                if ((arg1 <= 0x40) && (arg2 <= 0x40))
+                if ((hLength <= 0x40) && (vLength <= 0x40))
                 {
-                    var_r0 = 2;
+                    bgScreenSize = 2;
                 }
                 else
                 {
-                    var_r0 = 3;
+                    bgScreenSize = 3;
                 }
             }
             else
             {
-                var_r0 = 1;
+                bgScreenSize = 1;
             }
         }
         else
         {
-            var_r0 = 0;
+            bgScreenSize = 0;
         }
     }
     else
     {
-        if (arg1 > 0x20)
+        if (hLength > 0x20)
         {
-            var_r2 = 1;
+            hSize = 1;
         }
         else
         {
-            var_r2 = 0;
+            hSize = 0;
         }
     
-        if (arg2 > 0x20)
+        if (vLength > 0x20)
         {
-            var_r0 = var_r2 | 2;
+            bgScreenSize = hSize | 2;
         }
         else
         {
-            var_r0 = var_r2;
+            bgScreenSize = hSize;
         }
     }
-    return var_r0;
+    return bgScreenSize;
 }
 
-void sub_0804B2EC(void)
+// 4B2EC
+void CutsceneSetWindowDimensions(void)
 {
     REG_WIN0H = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_H] >> 4) & 0xFF);
     REG_WIN0V = ((gUnk_030034A0->winX1Y1[WIN_0][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_0][WIN_V] >> 4) & 0xFF);
@@ -171,6 +189,7 @@ void sub_0804B2EC(void)
     REG_WIN1V = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_V] >> 4) & 0xFF);
 }
 
+// 4B35C
 void sub_0804B35C(void)
 {
     if (gHeldKeys & SELECT_BUTTON)
@@ -218,31 +237,34 @@ void sub_0804B35C(void)
 
         if (gHeldKeys & L_BUTTON)
         {
-            gBg2Alpha += 0xFF;
+            gBg2Alpha += -1;
         }
     }
 }
 
-void sub_0804B424(void *arg0, void *arg1, u32 arg2)
+// 4B424
+void sub_0804B424(void *src, void *dest, u32 size)
 {
-    void *temp_r0;
+    void *heapPtr;
 
-    temp_r0 = DecompressAlloc(arg0);
-    Decompress(temp_r0, arg0);
-    DmaCopy16Wait(3, temp_r0 + 4, arg1, arg2);
-    thunk_HeapFree(temp_r0);
+    heapPtr = DecompressAlloc(src);
+    Decompress(heapPtr, src);
+    DmaCopy16Wait(3, heapPtr + 4, dest, size);
+    thunk_HeapFree(heapPtr);
 }
 
+// 4B464
 void sub_0804B464(s32 arg0, s32 arg1)
 {
     sub_0804B424(gUnk_08189BCC[gUnk_08057ACC[arg0][arg1][0]][gUnk_08057ACC[arg0][arg1][1] - 2], gBgInfo[gUnk_08057ACC[arg0][arg1][1]].pTiles, gBgInfo[gUnk_08057ACC[arg0][arg1][1]].nbrTiles * gBgInfo[gUnk_08057ACC[arg0][arg1][1]].tileSize);
 }
 
+// 4B4B0
 void sub_0804B4B0(s32 arg0, s32 arg1)
 {
     s32 sp4;
-    void *sp8;
-    s32 spC;
+    u8 *sp8;
+    s32 bgCntScreenSize;
     u32 sp10;
     u32 sp14;
     u32 sp18;
@@ -251,19 +273,19 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
     s32 var_r7;
     u32 var_sl;
     u32 var_r8;
-    u32 var_sb;
+    u32 bgNbr;
 
     var_r3 = arg1; // FAKE?
-    var_sb = gUnk_08057ACC[arg0][arg1][1];
+    bgNbr = gUnk_08057ACC[arg0][arg1][1];
     do {} while(0); // Fake
     var_r3 = gUnk_08057ACC[arg0][arg1][0]; // Can also use separate s32 temp_r3; variable for this
-    spC = gUnk_030034A0->unk3[var_sb - 2];
+    bgCntScreenSize = gUnk_030034A0->unk3[bgNbr - 2];
 
-    if ((gUnk_030034A0->unk1_0 != 0) && (var_sb == 2))
+    if ((gUnk_030034A0->unk1_0 != 0) && (bgNbr == 2))
     {
-        var_sl = 0x10 << spC;
+        var_sl = 0x10 << bgCntScreenSize;
         if (gBgInfo); // FAKE?
-        temp_r8 = DecompressAlloc(gUnk_08189CCC[var_r3][var_sb - 2]);
+        temp_r8 = DecompressAlloc(gUnk_08189CCC[var_r3][bgNbr - 2]);
         temp_r8 += 4;
         
         for (var_r3 = 0; var_r3 < gBgInfo[2].vLength; var_r3++)
@@ -290,106 +312,56 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
     }
     else
     {
-        sp8 = DecompressAlloc(gUnk_08189CCC[var_r3][var_sb - 2]);
+        sp8 = DecompressAlloc(gUnk_08189CCC[var_r3][bgNbr - 2]);
         sp8 += 4;
 
-        if (spC != 0)
+        switch (bgCntScreenSize)
         {
-            if (spC == 3)
-            {
+            case 3:
                 sp4 = 4;
-            }
-            else
-            {
+                break;
+
+            default:
                 sp4 = 2;
-            }
-        }
-        else
-        {
-            sp4 = 1;
+                break;
+
+            case 0:
+                sp4 = 1;
+                break;
         }
 
         for (var_r7 = 0; var_r7 < sp4; var_r7++)
         {
-            switch (spC)
+            switch (bgCntScreenSize)
             {
                 case 0:
-                    var_sl = min(gBgInfo[var_sb].hLength, 0x20);
+                    var_sl = min(gBgInfo[bgNbr].hLength, 0x20);
                     var_r8 = min(0x20 - var_sl, 0x20);
-                    sp10 = min(gBgInfo[var_sb].vLength, 0x20);
+                    sp10 = min(gBgInfo[bgNbr].vLength, 0x20);
                     sp14 = 0;
                     sp18 = 0;
                     break;
 
                 case 1:
-                    if (var_r7 != 0)
-                    {
-                        var_sl = min(gBgInfo[var_sb].hLength, 0x20);
-                    }
-                    else
-                    {
-                        var_sl = 0x20;
-                    }
-
-                    if (var_r7 != 0)
-                    {
-                        var_r8 = min(0x20 - var_sl, 0x20);
-                    }
-                    else
-                    {
-                        var_r8 = 0;
-                    }
-
-                    sp10 = min(gBgInfo[var_sb].vLength, 0x20);
-                    sp14 = var_r7 << 5;
+                    var_sl = (var_r7 != 0) ? min(gBgInfo[bgNbr].hLength, 0x20) : 0x20;
+                    var_r8 = (var_r7 != 0) ? min(0x20 - var_sl, 0x20) : 0;
+                    sp10 = min(gBgInfo[bgNbr].vLength, 0x20);
+                    sp14 = var_r7 * 0x20;
                     sp18 = 0;
                     break;
 
                 case 2:
-                    var_sl = min(gBgInfo[var_sb].hLength, 0x20);
+                    var_sl = min(gBgInfo[bgNbr].hLength, 0x20);
                     var_r8 = min(0x20 - var_sl, 0x20);
-
-                    if (var_r7 != 0)
-                    {
-                        sp10 = min(gBgInfo[var_sb].vLength, 0x20);
-                    }
-                    else
-                    {
-                        sp10 = 0x20;
-                    }
-
+                    sp10 = (var_r7 != 0) ? min(gBgInfo[bgNbr].vLength, 0x20) : 0x20;
                     sp14 = 0;
-                    sp18 = var_r7 * gBgInfo[var_sb].vLength;
+                    sp18 = var_r7 * gBgInfo[bgNbr].vLength;
                     break;
 
                 case 3:
-                    if (var_r7 != 0)
-                    {
-                        var_sl = min(gBgInfo[var_sb].hLength, 0x20);
-                    }
-                    else
-                    {
-                        var_sl = 0x20;
-                    }
-
-                    if (var_r7 != 0)
-                    {
-                        var_r8 = min(0x20 - var_sl, 0x20);
-                    }
-                    else
-                    {
-                        var_r8 = 0x20;
-                    }
-
-                    if (var_r7 != 0)
-                    {
-                        sp10 = min(gBgInfo[var_sb].vLength, 0x20);
-                    }
-                    else
-                    {
-                        sp10 = 0x20;
-                    }
-
+                    var_sl = (var_r7 != 0) ? min(gBgInfo[bgNbr].hLength, 0x20) : 0x20;
+                    var_r8 = (var_r7 != 0) ? min(0x20 - var_sl, 0x20) : 0x20;
+                    sp10 = (var_r7 != 0) ? min(gBgInfo[bgNbr].vLength, 0x20) : 0x20;
                     sp14 = (var_r7 & 2) ? 0x20 : 0;
                     sp18 = (var_r7 & 1) ? 0x20 : 0;
                     break;
@@ -399,16 +371,16 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
             {
                 if (var_r8 != 0)
                 {
-                    DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800) + (var_sl * 2), var_r8 * 2);
+                    DmaFill16(3, 0, gBgInfo[bgNbr].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800) + (var_sl * 2), var_r8 * 2);
                 }
 
-                DmaCopy16Wait(3, sp8 + ((var_r3 + sp18) * gBgInfo[var_sb].hLength) * 2 + (sp14 * 2), gBgInfo[var_sb].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800), var_sl * 2);
+                DmaCopy16Wait(3, sp8 + ((var_r3 + sp18) * gBgInfo[bgNbr].hLength) * 2 + (sp14 * 2), gBgInfo[bgNbr].pTilemap + (var_r3 * 0x40) + (var_r7 * 0x800), var_sl * 2);
             }
 
             for (var_r3 = sp10; var_r3 < 0x20; var_r3++)
             {
                 if (var_r3) var_r3++,var_r3--; // Fake
-                DmaFill16(3, 0, gBgInfo[var_sb].pTilemap + (var_r7 * 0x800) + (var_r3 * 0x40), 0x40);
+                DmaFill16(3, 0, gBgInfo[bgNbr].pTilemap + (var_r7 * 0x800) + (var_r3 * 0x40), 0x40);
             }
         }
 
@@ -416,89 +388,99 @@ void sub_0804B4B0(s32 arg0, s32 arg1)
     }
 }
 
+// 4B920
 void sub_0804B920(s32 arg0, s32 arg1)
 {
     u32 temp_r5;
-    u32 temp_r7;
+    u32 bgNbr;
 
-    temp_r7 = gUnk_08057ACC[arg0][arg1][1];
+    bgNbr = gUnk_08057ACC[arg0][arg1][1];
     temp_r5 = gUnk_08057ACC[arg0][arg1][0];
 
-    gBgInfo[temp_r7].pTiles = BG_VRAM + gUnk_080578D4[temp_r5][temp_r7 - 2] * 0x4000;
-    gBgInfo[temp_r7].pTilemap = BG_VRAM + gUnk_08057914[temp_r5][temp_r7 - 2] * 0x800;
+    gBgInfo[bgNbr].pTiles = BG_VRAM + gUnk_080578D4[temp_r5][bgNbr - 2] * BG_CHAR_SIZE;
+    gBgInfo[bgNbr].pTilemap = BG_VRAM + gUnk_08057914[temp_r5][bgNbr - 2] * BG_SCREEN_SIZE;
 
-    gBgInfo[temp_r7].hOfs = 0;
-    gBgInfo[temp_r7].vOfs = 0;
+    gBgInfo[bgNbr].hOfs = 0;
+    gBgInfo[bgNbr].vOfs = 0;
 
-    gBgInfo[temp_r7].hLength = gUnk_08057714[temp_r5][temp_r7 - 2];
-    gBgInfo[temp_r7].vLength = gUnk_08057794[temp_r5][temp_r7 - 2];
+    gBgInfo[bgNbr].hLength = gUnk_08057714[temp_r5][bgNbr - 2];
+    gBgInfo[bgNbr].vLength = gUnk_08057794[temp_r5][bgNbr - 2];
 
-    gBgInfo[temp_r7].nbrTiles = gUnk_08057814[temp_r5][temp_r7 - 2];
-    gBgInfo[temp_r7].tileSize = gUnk_08057894[temp_r5][temp_r7 - 2];
-    gBgInfo[temp_r7].unk14 = 0;
+    gBgInfo[bgNbr].nbrTiles = gUnk_08057814[temp_r5][bgNbr - 2];
+    gBgInfo[bgNbr].tileSize = gUnk_08057894[temp_r5][bgNbr - 2];
+    gBgInfo[bgNbr].unk14 = 0;
 
-    gUnk_030034A0->unk1_0 = (gUnk_080576D4[temp_r5][temp_r7 - 2] == 0x80) ? 1 : 0;
+    gUnk_030034A0->unk1_0 = (gUnk_080576D4[temp_r5][bgNbr - 2] == 0x80) ? 1 : 0;
     REG_DISPCNT = (REG_DISPCNT & ~7) | gUnk_030034A0->unk1_0;
-    gUnk_030034A0->unk3[temp_r7 - 2] = sub_0804B2A0(gUnk_030034A0->unk1_0, gBgInfo[temp_r7].hLength, gBgInfo[temp_r7].vLength);
+    gUnk_030034A0->unk3[bgNbr - 2] = CutsceneCalculateBgCntScreenSize(gUnk_030034A0->unk1_0, gBgInfo[bgNbr].hLength, gBgInfo[bgNbr].vLength);
 
-    switch (temp_r7)
+    switch (bgNbr)
     {
         case 2:
-            REG_BG2CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
+            REG_BG2CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][bgNbr - 2] | (gUnk_030034A0->unk3[bgNbr - 2] << 14) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][bgNbr - 2] << 8) | (gUnk_080578D4[temp_r5][bgNbr - 2] << 2);
             break;
 
         case 3:
-            REG_BG3CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][temp_r7 - 2] | (gUnk_030034A0->unk3[temp_r7 - 2] << 0xE) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][temp_r7 - 2] << 8) | (gUnk_080578D4[temp_r5][temp_r7 - 2] << 2);
+            REG_BG3CNT = BGCNT_PRIORITY(2) | gUnk_080576D4[temp_r5][bgNbr - 2] | (gUnk_030034A0->unk3[bgNbr - 2] << 14) | BGCNT_MOSAIC | BGCNT_WRAP | (gUnk_08057914[temp_r5][bgNbr - 2] << 8) | (gUnk_080578D4[temp_r5][bgNbr - 2] << 2);
             break;
     }
 }
 
+// 4BAB4
 void sub_0804BAB4(u8 arg0)
 {
-    DecompressDma(gUnk_08189B4C[arg0], PLTT, 0x1C0);
+    DecompressDma(gUnk_08189B4C[arg0], BG_PLTT, 0x1C0);
 }
 
-void sub_0804BAD4(s32 arg0)
+// 4BAD4
+void sub_0804BAD4(s32 cutsceneId)
 {
-    gUnk_030007D0 = DecompressAlloc(gUnk_08189AFC[arg0]);
+    gUnk_030007D0 = DecompressAlloc(gUnk_08189AFC[cutsceneId]);
     gUnk_03004D84 = gUnk_030007D0 + 4;
 }
 
+// 4BAFC
 void sub_0804BAFC(void)
 {
     thunk_HeapFree(gUnk_030007D0);
 }
 
+// 4BB10
 void sub_0804BB10(void)
 {
     DmaFill16(3, 0xF000, &gBgTilemapBufs[1][0], 0x800);
 }
 
+// 4BB3C
 void sub_0804BB3C(void)
 {
     gUnk_030034A0 = thunk_HeapAlloc(0x20, 0);
     DmaFill16(3, 0, gUnk_030034A0, 0x20);
 }
 
+// 4BB74
 void sub_0804BB74(void)
 {
     thunk_HeapFree(gUnk_030034A0);
 }
 
+// 4BB88
 void sub_0804BB88(void)
 {
     gUnk_030052A4 = thunk_HeapAlloc(0x480, 0);
     DmaFill16(3, 0, gUnk_030052A4, 0x480);
 }
 
+// 4BBC0
 void sub_0804BBC0(void)
 {
     thunk_HeapFree(gUnk_030052A4);
 }
 
+// 4BBD4
 void sub_0804BBD4(void)
 {
-    s32 var_r2;
+    s32 i;
 
     gBgInfo[0].pTiles = VRAM;
     gBgInfo[0].pTilemap = VRAM + 0x3000;
@@ -519,9 +501,9 @@ void sub_0804BBD4(void)
     Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_082EA730);
     gBgDataPtrs.pBufBg0Tilemap += 2;
 
-    for (var_r2 = 0; var_r2 < 0x400; var_r2++)
+    for (i = 0; i < 0x400; i++)
     {
-        gBgTilemapBufs[0][var_r2] = ((gBgDataPtrs.pBufBg0Tilemap[var_r2] & 0xFFF) + 0x20) | ~0x1FFF;
+        gBgTilemapBufs[0][i] = ((gBgDataPtrs.pBufBg0Tilemap[i] & 0xFFF) + 0x20) | ~0x1FFF;
     }
 
     DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
@@ -532,9 +514,10 @@ void sub_0804BBD4(void)
     gBgInfo[0].hOfs = 0;
     REG_BG0HOFS = 0;
     REG_BG0VOFS = 0;
-    DecompressDma(&gUnk_082EA7F0, PLTT + 0x1C0, 0x20);
+    DecompressDma(&gUnk_082EA7F0, BG_PLTT + 0x1C0, 0x20);
 }
 
+// 4BD10
 void sub_0804BD10(void)
 {
     sub_0804ED68(gBgInfo[0].nbrTiles + 0x20, sub_0804BB10, 0x1D, 0x10);
@@ -548,19 +531,21 @@ void sub_0804BD10(void)
     gBgInfo[1].tileSize = 0x20;
     gBgInfo[1].unk14 = gBgInfo[0].nbrTiles;
 
-    DmaCopy16(3, &gUnk_080576B4, PLTT + 0x1E0, 0x40); // TODO: wrong DMA size?
+    DmaCopy16(3, &gUnk_080576B4, BG_PLTT + 0x1E0, 0x40); // TODO: wrong DMA size?
 
     REG_BG1CNT = BGCNT_SCREENBASE(7);
     REG_BG1HOFS = 0;
     REG_BG1VOFS = 0;
 }
 
+// 4BD88
 void sub_0804BD88(void)
 {
     DmaFill16(3, 0xF000, &gBgTilemapBufs[1][0], 0x800);
 }
 
-void sub_0804BDB4(void)
+// 4BDB4
+void CutsceneSetUpWindow(void)
 {
     gUnk_030034A0->winX1Y1[WIN_0][WIN_H] = 0;
     gUnk_030034A0->winX2Y2[WIN_0][WIN_H] = 0xE8 << 4;
@@ -570,25 +555,27 @@ void sub_0804BDB4(void)
     gUnk_030034A0->winX1Y1[WIN_1][WIN_H] = 0x70 << 4;
     gUnk_030034A0->winX2Y2[WIN_1][WIN_V] = 0xA0 << 4;
 
-    sub_0804B2EC();
+    CutsceneSetWindowDimensions();
     REG_WININ = WININ_WIN0_BG0 | WININ_WIN0_BG1 | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ;
     REG_WINOUT = WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR;
     REG_DISPCNT &= ~DISPCNT_WIN1_ON;
 }
 
-void sub_0804BE08(void)
+// 4BE08
+void CutsceneSetUpCallbacks(void)
 {
     gIntrTable.vBlank = VBlankIntr_Cutscene;
     gIntrTable.hBlank = sub_0800107C;
     gCallbackQueue.next[0] = InputHandler_Normal;
-    gCallbackQueue.next[1] = sub_0804EB64;
+    gCallbackQueue.next[1] = CutsceneHandler;
     gCallbackQueue.next[2] = CutsceneWaitForNextFrame;
     gCallbackQueue.next[3] = NULL + 1;
     gCallbackQueue.current[gCallbackQueue.currentCount - 1] = NULL;
     gCallbackQueue.nextCount = 4;
 }
 
-void sub_0804BE58(void)
+// 4BE58
+void CutsceneInit(void)
 {
     REG_IE &= ~INTR_FLAG_VBLANK;
     REG_DISPSTAT &= ~DISPSTAT_VBLANK_INTR;
@@ -602,14 +589,15 @@ void sub_0804BE58(void)
     WriteSaveFile(SAVE_DATA_TYPE_FILE, 0);
     gSceneSaveData->world = gUnk_03004C20.world;
     WriteSaveFile(SAVE_DATA_TYPE_SCENE, SCENE_TYPE_CUTSCENE);
+
     sub_0804BAD4(gSceneSaveData->cutsceneId);
     sub_0804BB3C();
     sub_0804BB88();
     sub_0804BBD4();
     sub_0804BD10();
     sub_0804BFD0();
-    sub_0804BDB4();
-    sub_0804BE08();
+    CutsceneSetUpWindow();
+    CutsceneSetUpCallbacks();
 
     gBlendValue = 0x10;
     gUnk_030034A0->unk2_1 = 2;
@@ -631,6 +619,7 @@ void sub_0804BE58(void)
     m4aSoundVSyncOn();
 }
 
+// 4BF7C
 void sub_0804BF7C(void)
 {
     gUnk_03000814 = gUnk_03004C20.globalFrameCounter;
@@ -644,6 +633,7 @@ void sub_0804BF7C(void)
     m4aMPlayAllStop();
 }
 
+// 4BFD0
 void sub_0804BFD0(void)
 {
     gUnk_030007C8 = thunk_HeapAlloc(0x100, 0);
@@ -655,6 +645,7 @@ void sub_0804BFD0(void)
     gObjVramPtr = gUnk_030052AC;
 }
 
+// 4C050
 void sub_0804C050(void)
 {
     s32 var_r5;
@@ -676,18 +667,21 @@ void sub_0804C050(void)
     gObjVramPtr = gUnk_030052AC;
 }
 
+// 4C0BC
 void sub_0804C0BC(void)
 {
     sub_0804C050();
     gUnk_03004D84 += 2;
 }
 
+// 4C0D4
 void sub_0804C0D4(void)
 {
     sub_0804C050();
     thunk_HeapFree(gUnk_030007C8);
 }
 
+// 4C0EC
 void sub_0804C0EC(s32 arg0, s32 arg1)
 {
     s32 var_r6;
@@ -712,6 +706,7 @@ void sub_0804C0EC(s32 arg0, s32 arg1)
     }
 }
 
+// 4C1A0
 void sub_0804C1A0(void)
 {
     u32 temp_r0;
@@ -723,11 +718,13 @@ void sub_0804C1A0(void)
     sub_0804C0EC(temp_r0, temp_r1_2);
 }
 
+// 4C1C0
 void sub_0804C1C0(s32 arg0, s32 arg1)
 {
     DmaCopy16(3, gUnk_030007C8[arg0].unk0 + (gUnk_030007C8[arg0].unk6 * (arg1 << 5)), OBJ_VRAM0 + (gUnk_030007C8[arg0].unk4 * 0x20), gUnk_030007C8[arg0].unk6 * 0x20);
 }
 
+// 4C1FC
 void sub_0804C1FC(void)
 {
     u32 temp_r0;
@@ -739,24 +736,27 @@ void sub_0804C1FC(void)
     sub_0804C1C0(temp_r0, temp_r1);
 }
 
+// 4C218
 void sub_0804C218(s32 arg0)
 {
     gUnk_030051DC = gUnk_08189E84[arg0];
 }
 
+// 4C230
 void sub_0804C230(void)
 {
     sub_0804C218(gUnk_03004D84[2]);
     gUnk_03004D84 += 3;
 }
 
+// 4C24C
 void sub_0804C24C(void)
 {
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].visible = gUnk_03004D84[2] >> 7;
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].unkF = ((gUnk_03004D84[2] >> 7) == 0) ? (0x1C) : (0);
 
-    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].xPosScreen = sub_0804B254(gUnk_03004D84 + 3);
-    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].yPosScreen = sub_0804B254(gUnk_03004D84 + 5);
+    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].xPosScreen = ReadU16(gUnk_03004D84 + 3);
+    gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].yPosScreen = ReadU16(gUnk_03004D84 + 5);
 
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].xPosBg2 = gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].xPosScreen * 0x10;
     gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].yPosBg2 = gEntityInfo[(gUnk_03004D84[2] & 0x7F) + 0xD].yPosScreen * 0x10;
@@ -764,12 +764,13 @@ void sub_0804C24C(void)
     gUnk_03004D84 += 7;
 }
 
+// 4C300
 void sub_0804C300(void)
 {
     s32 var_r8;
     u16 var_sb;
 
-    var_sb = sub_0804B254(gUnk_03004D84 + 2);
+    var_sb = ReadU16(gUnk_03004D84 + 2);
     for (var_r8 = 0; gUnk_08189F04[var_sb][var_r8].unk0 != 0xFFFF; var_r8++)
     {
         EntityCreate(gEntitySlotCount++, gUnk_08189F04[var_sb][var_r8].unk7, gUnk_08189F04[var_sb][var_r8].unk0, gUnk_08189F04[var_sb][var_r8].unk2, gUnk_08189F04[var_sb][var_r8].unk4, gUnk_08189F04[var_sb][var_r8].unk9, gUnk_08189F04[var_sb][var_r8].unk5, gUnk_08189F04[var_sb][var_r8].unk6, gUnk_08189F04[var_sb][var_r8].unk8);
@@ -777,6 +778,7 @@ void sub_0804C300(void)
     gUnk_03004D84 += 4;
 }
 
+// 4C3A4
 void sub_0804C3A4(void)
 {
     gEntityInfo[gUnk_03004D84[2]].unkF = ((gUnk_03004D84[3] & 1) == 0) ? (0x1C) : (0);
@@ -788,6 +790,7 @@ void sub_0804C3A4(void)
     gUnk_03004D84 += 5;
 }
 
+// 4C484
 void sub_0804C484(void)
 {
     s32 temp_r4;
@@ -795,7 +798,7 @@ void sub_0804C484(void)
     gEntityInfo[gUnk_03004D84[2] + 0xD].affineEnable = (gUnk_03004D84[3] >> 5) & 1;
     gEntityInfo[gUnk_03004D84[2] + 0xD].affineDouble = (gUnk_03004D84[3] >> 7);
 
-    temp_r4 = sub_0804B260(gUnk_03004D84 + 4);
+    temp_r4 = ReadS16(gUnk_03004D84 + 4);
     gOamAffineBuffer[gUnk_03004D84[3] & 0x1F].pa = MultiplyQ8(0x100, ReciprocalQ8(temp_r4));
     gOamAffineBuffer[gUnk_03004D84[3] & 0x1F].pb = 0;
     gOamAffineBuffer[gUnk_03004D84[3] & 0x1F].pc = 0;
@@ -804,6 +807,7 @@ void sub_0804C484(void)
     gUnk_03004D84 += 6;
 }
 
+// 4C598
 void sub_0804C598(void)
 {
     switch (gUnk_03004D84[2] & 3)
@@ -828,11 +832,12 @@ void sub_0804C598(void)
     gUnk_03004D84 += 3;
 }
 
+// 4C60C
 void sub_0804C60C(void)
 {
     u32 temp_r1;
 
-    DmaFill32(3, sub_0804B270(gUnk_03004D84 + 3), gBgInfo[gUnk_03004D84[2]].pTiles + 0x40, 0x20);
+    DmaFill32(3, ReadU32(gUnk_03004D84 + 3), gBgInfo[gUnk_03004D84[2]].pTiles + 0x40, 0x20);
 
     temp_r1 = 0xF002;
     switch (gUnk_03004D84[2])
@@ -851,6 +856,7 @@ void sub_0804C60C(void)
     gUnk_03004D84 += 7;
 }
 
+// 4C6A8
 void sub_0804C6A8(void)
 {
     REG_BG2CNT |= BGCNT_MOSAIC;
@@ -859,22 +865,25 @@ void sub_0804C6A8(void)
     gUnk_03004D84 += 3;
 }
 
+// 4C6E0
 void sub_0804C6E0(void)
 {
     gEntityInfo[gUnk_03004D84[2] + 0xD].visible = gUnk_03004D84[3] >> 7;
-    gEntityInfo[gUnk_03004D84[2] + 0xD].unkF = (!(gUnk_03004D84[3] & 0x80)) ? 0x1C : 0;
+    gEntityInfo[gUnk_03004D84[2] + 0xD].unkF = ((gUnk_03004D84[3] & 0x80) != 0) ? 0 : 0x1C;
     gEntityInfo[gUnk_03004D84[2] + 0xD].hvFlip = (gUnk_03004D84[3] >> 4) & 3;
-    gEntityInfo[gUnk_03004D84[2] + 0xD].priority = (gUnk_03004D84[3] & 3);
+    gEntityInfo[gUnk_03004D84[2] + 0xD].priority = gUnk_03004D84[3] & 3;
 
     gUnk_03004D84 += 4;
 }
 
+// 4C774
 void sub_0804C774(void)
 {
     gUnk_030034A0->unk0_0 = 2;
     gUnk_03004D84 += 2;
 }
 
+// 4C798
 void sub_0804C798(void)
 {
     s32 var_r5;
@@ -898,45 +907,35 @@ void sub_0804C798(void)
     sub_0804BAB4(gUnk_08057ACC[temp_r4][0][0]);
 }
 
+// 4C7FC
 void sub_0804C7FC(void)
 {
-    gBgInfo[gUnk_03004D84[2]].hOfs = sub_0804B254(gUnk_03004D84 + 3) * 0x10;
-    gBgInfo[gUnk_03004D84[2]].vOfs = sub_0804B254(gUnk_03004D84 + 5) * 0x10;
+    gBgInfo[gUnk_03004D84[2]].hOfs = ReadU16(gUnk_03004D84 + 3) * 0x10;
+    gBgInfo[gUnk_03004D84[2]].vOfs = ReadU16(gUnk_03004D84 + 5) * 0x10;
     gUnk_03004D84 += 7;
 }
 
+// 4C844
 void sub_0804C844(void)
 {
-    ((u16*)PLTT)[gUnk_03004D84[2]] = sub_0804B254(gUnk_03004D84 + 3);
+    ((u16*)PLTT)[gUnk_03004D84[2]] = ReadU16(gUnk_03004D84 + 3);
     gUnk_03004D84 += 5;
 }
 
+// 4C86C
 void sub_0804C86C(void)
 {
-    gBg2XMag = gBg2YMag = sub_0804B254(gUnk_03004D84 + 2);
+    gBg2XMag = gBg2YMag = ReadU16(gUnk_03004D84 + 2);
     gUnk_03004D84 += 4;
 }
 
+// 4C898
 void sub_0804C898(void)
 {
     // 0x1177e4
     u8 subroutine_arg0[0x10] = {
-        [0] = 0,
-        [1] = 1,
-        [2] = 2,
-        [3] = 4,
-        [4] = 6,
-        [5] = 4,
-        [6] = 2,
-        [7] = 1,
-        [8] = 0,
-        [9] = -1,
-        [10] = -2,
-        [11] = -4,
-        [12] = -6,
-        [13] = -4,
-        [14] = -2,
-        [15] = -1
+        0,  1,  2,  4,  6,  4,  2,  1,
+        0, -1, -2, -4, -6, -4, -2, -1
     };
 
     if (gUnk_0300081C->unk17_1 != 0)
@@ -949,6 +948,7 @@ void sub_0804C898(void)
     }
 }
 
+// 4C8F4
 s32 sub_0804C8F4(struct Unk_030052A4 *arg0)
 {
     s32 var_r5;
@@ -988,6 +988,7 @@ struct Unk_0804C9A8 {
     u16 unk0;
     u16 unk2;
 };
+// 4C9A8
 s32 sub_0804C9A8(struct Unk_030052A4 *arg0, struct Unk_0804C9A8 *arg1)
 {
     if (arg0->unk4 > 0)
@@ -1053,6 +1054,7 @@ struct Unk_0804CA6C {
     u16 unk0;
     u16 unk2;
 };
+// 4CA6C
 s32 sub_0804CA6C(struct Unk_030052A4 *arg0, struct Unk_0804CA6C *arg1)
 {
     arg1->unk0 = (arg0->unk8 * SIN((arg0->unk14 * arg0->unk10[0xE]) % 0x100u)) >> 8;
@@ -1068,11 +1070,13 @@ s32 sub_0804CA6C(struct Unk_030052A4 *arg0, struct Unk_0804CA6C *arg1)
     }
 }
 
+// 4CAC4
 void sub_0804CAC4(void)
 {
     return;
 }
 
+// 4CAC8
 s32 sub_0804CAC8(s32 arg0)
 {
     struct Unk_0804CA6C subroutine_arg0 = {
@@ -1112,7 +1116,7 @@ s32 sub_0804CAC8(s32 arg0)
                 gUnk_030034A0->winX2Y2[gUnk_030052A4[arg0].unk1_3 & 1][WIN_V] += subroutine_arg0.unk0;
             }
 
-            sub_0804B2EC();
+            CutsceneSetWindowDimensions();
             break;
     }
 
@@ -1120,6 +1124,7 @@ s32 sub_0804CAC8(s32 arg0)
     return 1;
 }
 
+// 4CC4C
 s32 sub_0804CC4C(s32 arg0)
 {
     struct Unk_0804C9A8 subroutine_arg0 = {
@@ -1182,7 +1187,7 @@ s32 sub_0804CC4C(s32 arg0)
     return 1;
 }
 
-
+// 4CF28
 s32 sub_0804CF28(s32 arg0)
 {
     if (gUnk_030052A4[arg0].unk0_3 == 0)
@@ -1193,6 +1198,7 @@ s32 sub_0804CF28(s32 arg0)
     return 1;
 }
 
+// 4CF80
 s32 sub_0804CF80(s32 arg0)
 {
 
@@ -1212,6 +1218,7 @@ s32 sub_0804CF80(s32 arg0)
     return 1;
 }
 
+// 4CFD0
 s32 sub_0804CFD0(s32 arg0)
 {
     // 0x1177f4
@@ -1236,6 +1243,7 @@ s32 sub_0804CFD0(s32 arg0)
     }
 }
 
+// 4D074
 s32 sub_0804D074(s32 arg0)
 {
     if (gNewKeys & A_BUTTON)
@@ -1254,11 +1262,9 @@ s32 sub_0804D074(s32 arg0)
     }
 }
 
+// 4D0B0
 s32 sub_0804D0B0(s32 arg0)
 {
-    s32 var_r0;
-    s32 var_r0_2;
-    s32 var_r0_4;
     s32 var_r4;
     u8 temp_r5;
 
@@ -1295,15 +1301,7 @@ s32 sub_0804D0B0(s32 arg0)
             
             for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
             {
-                if (var_r4 < 0)
-                {
-                    var_r0_4 = var_r4 + 7;
-                }
-                else
-                {
-                    var_r0_4 = var_r4;
-                }
-                temp_r5 = var_r4 - ((var_r0_4 >> 3) * 8);
+                temp_r5 = var_r4 % 8;
 
                 if (gEntityInfo[var_r4].id != ENTITY_ID_50)
                 {
@@ -1339,18 +1337,10 @@ s32 sub_0804D0B0(s32 arg0)
                 {
                     continue;
                 }
-                    
-                if (var_r4 < 0)
-                {
-                    var_r0 = var_r4 + 7;
-                }
-                else
-                {
-                    var_r0 = var_r4;
-                }
 
-                gEntityInfo[var_r4].xPosBg2 += sp0[((u8)(var_r4 - ((var_r0 >> 3) * 8)) * 2) + 0];
-                gEntityInfo[var_r4].yPosBg2 += sp0[((u8)(var_r4 - ((var_r0 >> 3) * 8)) * 2) + 1];
+                temp_r5 = var_r4 % 8;
+                gEntityInfo[var_r4].xPosBg2 += sp0[(temp_r5 * 2) + 0];
+                gEntityInfo[var_r4].yPosBg2 += sp0[(temp_r5 * 2) + 1];
 
                 gEntityInfo[var_r4].xPosScreen = gEntityInfo[var_r4].xPosBg2 >> 0x4;
                 gEntityInfo[var_r4].yPosScreen = gEntityInfo[var_r4].yPosBg2 >> 0x4;
@@ -1362,27 +1352,14 @@ s32 sub_0804D0B0(s32 arg0)
             }
             else if (gUnk_030052A4[arg0].unkC > 0x14)
             {
-                // FAKE: can it match without empty do while?
-                do
+                for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
                 {
-                    for (var_r4 = 0xD; var_r4 < gEntitySlotCount; var_r4++)
-                    {
-                        if (var_r4 < 0)
-                        {
-                            var_r0_2 = var_r4 + 7;
-                        }
-                        else
-                        {
-                            var_r0_2 = var_r4;
-                        }
-    
-                        gOamAffineBuffer[(u8)(var_r4 - ((var_r0_2 >> 3) * 8))].pa = 0x60;
-                        gOamAffineBuffer[(u8)(var_r4 - ((var_r0_2 >> 3) * 8))].pb = 0;
-                        gOamAffineBuffer[(u8)(var_r4 - ((var_r0_2 >> 3) * 8))].pc = 0;
-                        gOamAffineBuffer[(u8)(var_r4 - ((var_r0_2 >> 3) * 8))].pd = 0x60;
-                    }
+                    temp_r5 = var_r4 % 8;
+                    gOamAffineBuffer[temp_r5].pa = 0x60;
+                    gOamAffineBuffer[temp_r5].pb = 0;
+                    gOamAffineBuffer[temp_r5].pc = 0;
+                    gOamAffineBuffer[temp_r5].pd = 0x60;
                 }
-                while (0);
             }
             break;
 
@@ -1399,13 +1376,14 @@ s32 sub_0804D0B0(s32 arg0)
     return 1;
 }
 
+// 4D32C
 void sub_0804D32C(void)
 {
     gBlendValue = 0x10;
     REG_BLDCNT = BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_BD | BLDCNT_EFFECT_DARKEN;
-    REG_DISPCNT = (gUnk_081177C4[3]) | (gUnk_030034A0->unk1_0) | (gUnk_030034A0->unk1_7 << 0xD);
+    REG_DISPCNT = (gUnk_081177C4[3]) | (gUnk_030034A0->unk1_0) | (gUnk_030034A0->unk1_7 << 13);
 
-    gUnk_030052A4[gUnk_03004D84[2]].unkA = sub_0804B260(gUnk_03004D84 + 3);
+    gUnk_030052A4[gUnk_03004D84[2]].unkA = ReadS16(gUnk_03004D84 + 3);
     gUnk_030052A4[gUnk_03004D84[2]].unkA = 3;
     gUnk_030052A4[gUnk_03004D84[2]].unkE = 0x120;
     gUnk_030052A4[gUnk_03004D84[2]].unkC = 0;
@@ -1416,6 +1394,7 @@ void sub_0804D32C(void)
     gUnk_03004D84 += 5;
 }
 
+// 4D408
 void sub_0804D408(void)
 {
     s32 temp_r5;
@@ -1424,10 +1403,10 @@ void sub_0804D408(void)
     temp_r1 = gUnk_03004D84[2];
 
     gUnk_030052A4[temp_r1 % 0x40].unk1_3 = temp_r1 >> 6;
-    gUnk_030052A4[temp_r1 % 0x40].unk4 = sub_0804B260(gUnk_03004D84 + 3) << 4;
-    gUnk_030052A4[temp_r1 % 0x40].unk6 = sub_0804B260(gUnk_03004D84 + 5) << 4;
+    gUnk_030052A4[temp_r1 % 0x40].unk4 = ReadS16(gUnk_03004D84 + 3) << 4;
+    gUnk_030052A4[temp_r1 % 0x40].unk6 = ReadS16(gUnk_03004D84 + 5) << 4;
 
-    temp_r5 = sub_0804B260(gUnk_03004D84 + 7);
+    temp_r5 = ReadS16(gUnk_03004D84 + 7);
     gUnk_030052A4[temp_r1 % 0x40].unk8 = DivideQ4(gUnk_030052A4[temp_r1 % 0x40].unk4, temp_r5 << 4);
     gUnk_030052A4[temp_r1 % 0x40].unkA = DivideQ4(gUnk_030052A4[temp_r1 % 0x40].unk6, temp_r5 << 4);
 
@@ -1440,15 +1419,16 @@ void sub_0804D408(void)
     gUnk_03004D84 += 9;
 }
 
+// 4D4D8
 void sub_0804D4D8(void)
 {
     s32 temp_r4;
 
     gUnk_030052A4[gUnk_03004D84[2]].unk1_7 = gUnk_03004D84[3];
-    gUnk_030052A4[gUnk_03004D84[2]].unk4 = sub_0804B260(gUnk_03004D84 + 4) << 4;
-    gUnk_030052A4[gUnk_03004D84[2]].unk6 = sub_0804B260(gUnk_03004D84 + 6) << 4;
+    gUnk_030052A4[gUnk_03004D84[2]].unk4 = ReadS16(gUnk_03004D84 + 4) << 4;
+    gUnk_030052A4[gUnk_03004D84[2]].unk6 = ReadS16(gUnk_03004D84 + 6) << 4;
 
-    temp_r4 = sub_0804B260(gUnk_03004D84 + 8);
+    temp_r4 = ReadS16(gUnk_03004D84 + 8);
     gUnk_030052A4[gUnk_03004D84[2]].unk8 = DivideQ4(gUnk_030052A4[gUnk_03004D84[2]].unk4, temp_r4 << 4);
     gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ4(gUnk_030052A4[gUnk_03004D84[2]].unk6, temp_r4 << 4);
 
@@ -1463,10 +1443,11 @@ void sub_0804D4D8(void)
     gUnk_03004D84 += 0xA;
 }
 
+// 4D63C
 void sub_0804D63C(void)
 {
-    gUnk_030052A4[gUnk_03004D84[2]].unk4 = gUnk_030052A4[gUnk_03004D84[2]].unk6 = sub_0804B260(gUnk_03004D84 + 4);
-    gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ8(gUnk_030052A4[gUnk_03004D84[2]].unk6, sub_0804B260(gUnk_03004D84 + 6) << 8);
+    gUnk_030052A4[gUnk_03004D84[2]].unk4 = gUnk_030052A4[gUnk_03004D84[2]].unk6 = ReadS16(gUnk_03004D84 + 4);
+    gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ8(gUnk_030052A4[gUnk_03004D84[2]].unk6, ReadS16(gUnk_03004D84 + 6) << 8);
 
     gUnk_030052A4[gUnk_03004D84[2]].unk1_7 = gUnk_03004D84[3];
     gUnk_030052A4[gUnk_03004D84[2]].unk16 = ReciprocalQ8(gOamAffineBuffer[gEntityInfo[gUnk_03004D84[3] + 0xD].affineHFlip_matrixNum].pa);
@@ -1480,14 +1461,15 @@ void sub_0804D63C(void)
     gUnk_03004D84 += 8;
 }
 
+// 4D798
 void sub_0804D798(void)
 {
     s32 temp_r4;
 
-    gUnk_030052A4[gUnk_03004D84[2]].unk4 = sub_0804B260(gUnk_03004D84 + 4) << 4;
-    gUnk_030052A4[gUnk_03004D84[2]].unk6 = sub_0804B260(gUnk_03004D84 + 6) << 4;
+    gUnk_030052A4[gUnk_03004D84[2]].unk4 = ReadS16(gUnk_03004D84 + 4) << 4;
+    gUnk_030052A4[gUnk_03004D84[2]].unk6 = ReadS16(gUnk_03004D84 + 6) << 4;
 
-    temp_r4 = sub_0804B260(gUnk_03004D84 + 8);
+    temp_r4 = ReadS16(gUnk_03004D84 + 8);
     gUnk_030052A4[gUnk_03004D84[2]].unk8 = DivideQ4(gUnk_030052A4[gUnk_03004D84[2]].unk4, temp_r4 << 4);
     gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ4(gUnk_030052A4[gUnk_03004D84[2]].unk6, temp_r4 << 4);
 
@@ -1500,10 +1482,11 @@ void sub_0804D798(void)
     gUnk_03004D84 += 0xA;
 }
 
+// 4D8D4
 void sub_0804D8D4(void)
 {
-    gUnk_030052A4[gUnk_03004D84[2]].unk4 = gUnk_030052A4[gUnk_03004D84[2]].unk6 = sub_0804B260(gUnk_03004D84 + 3);
-    gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ8(gUnk_030052A4[gUnk_03004D84[2]].unk6, sub_0804B260(gUnk_03004D84 + 5) << 8);
+    gUnk_030052A4[gUnk_03004D84[2]].unk4 = gUnk_030052A4[gUnk_03004D84[2]].unk6 = ReadS16(gUnk_03004D84 + 3);
+    gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_030052A4[gUnk_03004D84[2]].unkA = DivideQ8(gUnk_030052A4[gUnk_03004D84[2]].unk6, ReadS16(gUnk_03004D84 + 5) << 8);
 
     gUnk_030052A4[gUnk_03004D84[2]].unkC = gUnk_030052A4[gUnk_03004D84[2]].unkE = 0;
     gUnk_030052A4[gUnk_03004D84[2]].unk0_3 = 1;
@@ -1513,12 +1496,13 @@ void sub_0804D8D4(void)
     gUnk_03004D84 += 7;
 }
 
+// 4D99C
 void sub_0804D99C(void)
 {
     gUnk_030052A4[gUnk_03004D84[2]].unk1_3 = gUnk_03004D84[3];
     gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_03004D84[4];
     gUnk_030052A4[gUnk_03004D84[2]].unkA = gUnk_03004D84[5];
-    gUnk_030052A4[gUnk_03004D84[2]].unk14 = sub_0804B260(gUnk_03004D84 + 6);
+    gUnk_030052A4[gUnk_03004D84[2]].unk14 = ReadS16(gUnk_03004D84 + 6);
     gUnk_030052A4[gUnk_03004D84[2]].unk1E = gUnk_03004D84[8];
 
     gUnk_030052A4[gUnk_03004D84[2]].unk0_3 = 0;
@@ -1528,12 +1512,13 @@ void sub_0804D99C(void)
     gUnk_03004D84 += 9;
 }
 
+// 4DA60
 void sub_0804DA60(void)
 {
     gUnk_030052A4[gUnk_03004D84[2]].unk1_7 = gUnk_03004D84[3];
     gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_03004D84[4];
     gUnk_030052A4[gUnk_03004D84[2]].unkA = gUnk_03004D84[5];
-    gUnk_030052A4[gUnk_03004D84[2]].unk14 = sub_0804B260(gUnk_03004D84 + 6);
+    gUnk_030052A4[gUnk_03004D84[2]].unk14 = ReadS16(gUnk_03004D84 + 6);
     gUnk_030052A4[gUnk_03004D84[2]].unk1E = gUnk_03004D84[8];
 
     gUnk_030052A4[gUnk_03004D84[2]].unk0_3 = 2;
@@ -1543,6 +1528,7 @@ void sub_0804DA60(void)
     gUnk_03004D84 += 9;
 }
 
+// 4DB38
 void sub_0804DB38(void)
 {
     gUnk_030052A4[gUnk_03004D84[2]].unk8 = gUnk_03004D84[4];
@@ -1556,6 +1542,7 @@ void sub_0804DB38(void)
     gUnk_03004D84 += 6;
 }
 
+// 4DBD4
 void sub_0804DBD4(void)
 {
     gUnk_030052A4[gUnk_03004D84[2]].unk4 = gUnk_03004D84[3];
@@ -1570,6 +1557,7 @@ void sub_0804DBD4(void)
     gUnk_03004D84 += 7;
 }
 
+// 4DC64
 s32 sub_0804DC64(s32 arg0)
 {
     REG_IE |= INTR_FLAG_HBLANK;
@@ -1591,23 +1579,25 @@ s32 sub_0804DC64(s32 arg0)
     return 1;
 }
 
+// 4DCCC
 void sub_0804DCCC(void)
 {
-    gUnk_030052A4[gUnk_03004D84[2]].unk14 = sub_0804B260(gUnk_03004D84 + 3);
-    gUnk_030052A4[gUnk_03004D84[2]].unk3_7 = (u32)gUnk_030052A4[gUnk_03004D84[2]].unk14 >> 0x1F;
+    gUnk_030052A4[gUnk_03004D84[2]].unk14 = ReadS16(gUnk_03004D84 + 3);
+    gUnk_030052A4[gUnk_03004D84[2]].unk3_7 = (gUnk_030052A4[gUnk_03004D84[2]].unk14 < 0) ? 1 : 0;
 
     gUnk_030052A4[gUnk_03004D84[2]].unk20 = sub_0804DC64;
     gUnk_030052A4[gUnk_03004D84[2]].unk0_0 = 1;
     gUnk_03004D84 += 5;
 }
 
+// 4DD48
 void sub_0804DD48(void)
 {
     gUnk_030052A4[gUnk_03004D84[2]].unk1_7 = gUnk_03004D84[3];
     gUnk_030052A4[gUnk_03004D84[2]].unk1F = gUnk_03004D84[4] >> 4;
     gUnk_030052A4[gUnk_03004D84[2]].unk1A = gUnk_03004D84[4] & 0xF;
     gUnk_030052A4[gUnk_03004D84[2]].unk1C = gUnk_03004D84[5];
-    gUnk_030052A4[gUnk_03004D84[2]].unk14 = sub_0804B260(gUnk_03004D84 + 6);
+    gUnk_030052A4[gUnk_03004D84[2]].unk14 = ReadS16(gUnk_03004D84 + 6);
 
     gUnk_030052A4[gUnk_03004D84[2]].unk20 = sub_0804CFD0;
     gUnk_030052A4[gUnk_03004D84[2]].unkE = 0;
@@ -1617,10 +1607,11 @@ void sub_0804DD48(void)
     gUnk_03004D84 += 8;
 }
 
+// 4DE34
 void sub_0804DE34(void)
 {
-    gUnk_030052A4[gUnk_03004D84[2]].unk14 = sub_0804B260(gUnk_03004D84 + 3);
-    gUnk_030052A4[gUnk_03004D84[2]].unk1E = (u16)gUnk_030052A4[gUnk_03004D84[2]].unk14 >> 0xF;
+    gUnk_030052A4[gUnk_03004D84[2]].unk14 = ReadS16(gUnk_03004D84 + 3);
+    gUnk_030052A4[gUnk_03004D84[2]].unk1E = (gUnk_030052A4[gUnk_03004D84[2]].unk14 < 0) ? 1 : 0;
 
     gUnk_030052A4[gUnk_03004D84[2]].unk20 = sub_0804D074;
     gUnk_030052A4[gUnk_03004D84[2]].unk0_0 = 1;
@@ -1629,6 +1620,7 @@ void sub_0804DE34(void)
     gUnk_03004D84 += 5;
 }
 
+// 4DEBC
 void sub_0804DEBC(void)
 {
     s32 var_r3;
@@ -1657,6 +1649,7 @@ void sub_0804DEBC(void)
     gUnk_03004D84 += 3;
 }
 
+// 4DF80
 s32 sub_0804DF80(void)
 {
     gTransitioning = TRUE;
@@ -1690,6 +1683,7 @@ s32 sub_0804DF80(void)
     return 1;
 }
 
+// 4E008
 void sub_0804E008(void)
 {
     if (gUnk_030034A0->unk1C_3)
@@ -1734,6 +1728,7 @@ void sub_0804E008(void)
     }
 }
 
+// 4E0E8
 void sub_0804E0E8(void)
 {
     gTransitioning = TRUE;
@@ -1853,6 +1848,7 @@ void sub_0804E0E8(void)
     sub_0804E008();
 }
 
+// 4E3D4
 void sub_0804E3D4(void)
 {
     gUnk_030034A0->unk0_0 = 0;
@@ -1860,31 +1856,36 @@ void sub_0804E3D4(void)
     gUnk_030034A0->unk2_1 = 1;
 }
 
+// 4E404
 void sub_0804E404(void)
 {
     gUnk_030034A0->unk0_0 = 2;
     gUnk_03004D84 += 2;
 }
 
+// 4E428
 void sub_0804E428(void)
 {
     gUnk_030034A0->unk0_0 = 0;
     gUnk_03004D84 += 2;
 }
 
+// 4E448
 void sub_0804E448(void)
 {
-    gUnk_03000814 = sub_0804B254(gUnk_03004D84 + 2) + gUnk_03004C20.globalFrameCounter;
+    gUnk_03000814 = ReadU16(gUnk_03004D84 + 2) + gUnk_03004C20.globalFrameCounter;
     gUnk_030034A0->unk0_0 = 2;
     gUnk_03004D84 += 4;
 }
 
+// 4E490
 void sub_0804E490(void)
 {
-    REG_DISPCNT = gUnk_081177C4[gUnk_03004D84[2]] | (gUnk_030034A0->unk1_0) | (gUnk_030034A0->unk1_7 << 0xD);
+    REG_DISPCNT = gUnk_081177C4[gUnk_03004D84[2]] | (gUnk_030034A0->unk1_0) | (gUnk_030034A0->unk1_7 << 13);
     gUnk_03004D84 += 3;
 }
 
+// 4E4D4
 void sub_0804E4D4(void)
 {
     gTransitioning = TRUE;
@@ -1897,6 +1898,7 @@ void sub_0804E4D4(void)
     gUnk_03004D84 += 4;
 }
 
+// 4E520
 void sub_0804E520(void)
 {
     gTransitioning = TRUE;
@@ -1909,6 +1911,7 @@ void sub_0804E520(void)
     gUnk_03004D84 += 4;
 }
 
+// 4E568
 void sub_0804E568(void)
 {
     if (gUnk_03004D84[2] == 0)
@@ -1923,12 +1926,14 @@ void sub_0804E568(void)
     gUnk_03004D84 += 3;
 }
 
+// 4E5C4
 void sub_0804E5C4(void)
 {
     gUnk_030034A0->unk1C_5 ^= 1;
     gUnk_03004D84 += 2;
 }
 
+// 4E5F0
 void sub_0804E5F0(void)
 {
     gUnk_030034A0->unk5 = gUnk_03004D84[2];
@@ -1937,6 +1942,7 @@ void sub_0804E5F0(void)
     gUnk_03004D84 += 4;
 }
 
+// 4E634
 void sub_0804E634(void)
 {
     if (gUnk_03004D84[2] & 2)
@@ -1950,17 +1956,19 @@ void sub_0804E634(void)
         gUnk_030034A0->winX2Y2[gUnk_03004D84[2] & 1][WIN_V] = gUnk_03004D84[4] << 4;
     }
     
-    sub_0804B2EC();
+    CutsceneSetWindowDimensions();
     gUnk_03004D84 += 5;
 }
 
+// 4E6B4
 void sub_0804E6B4(void)
 {
     gUnk_030034A0->unk1_7 = gUnk_03004D84[2] & 3;
-    REG_DISPCNT = (REG_DISPCNT & ~(7 | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON)) | gUnk_030034A0->unk1_0 | (gUnk_030034A0->unk1_7 << 0xD);
+    REG_DISPCNT = (REG_DISPCNT & ~(7 | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON)) | gUnk_030034A0->unk1_0 | (gUnk_030034A0->unk1_7 << 13);
     gUnk_03004D84 += 3;
 }
 
+// 4E708
 void sub_0804E708(void)
 {
     REG_WININ = gUnk_03004D84[2] | (gUnk_03004D84[3] << 8);
@@ -1968,6 +1976,7 @@ void sub_0804E708(void)
     gUnk_03004D84 += 6;
 }
 
+// 4E738
 void sub_0804E738(void)
 {
     gUnk_030034A0->unk0_6 = 1;
@@ -1975,18 +1984,21 @@ void sub_0804E738(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E76C
 void sub_0804E76C(void)
 {
     m4aMPlayAllStop();
     gUnk_03004D84 += 2;
 }
 
+// 4E784
 void sub_0804E784(void)
 {
     m4aSongNumStop(gUnk_03004D84[2]);
     gUnk_03004D84 += 3;
 }
 
+// 4E7A0
 void sub_0804E7A0(void)
 {
     if (gUnk_03004D84[2] < 0x23)
@@ -2001,17 +2013,20 @@ void sub_0804E7A0(void)
     gUnk_03004D84 += 3;
 }
 
+// 4E7D0
 void sub_0804E7D0(void)
 {
     m4aMPlayAllContinue();
     gUnk_03004D84 += 2;
 }
 
+// 4E7E8
 void sub_0804E7E8(void)
 {
     gUnk_03004D84 += 3;
 }
 
+// 4E7F8
 void sub_0804E7F8(void)
 {
     m4aMPlayAllStop();
@@ -2019,6 +2034,7 @@ void sub_0804E7F8(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E814
 void sub_0804E814(void)
 {
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -2028,6 +2044,7 @@ void sub_0804E814(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E850
 void sub_0804E850(void)
 {
     REG_IE |= INTR_FLAG_VBLANK;
@@ -2037,6 +2054,7 @@ void sub_0804E850(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E884
 void sub_0804E884(void)
 {
     if (gUnk_03004D84[2] < 0x23)
@@ -2057,6 +2075,7 @@ void sub_0804E884(void)
     gUnk_03004D84 += 3;
 }
 
+// 4E8FC
 void sub_0804E8FC(void)
 {
     REG_IE &= ~INTR_FLAG_VBLANK;
@@ -2067,6 +2086,7 @@ void sub_0804E8FC(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E93C
 void sub_0804E93C(void)
 {
     REG_IE |= INTR_FLAG_VBLANK;
@@ -2077,9 +2097,10 @@ void sub_0804E93C(void)
     gUnk_03004D84 += 2;
 }
 
+// 4E974
 void sub_0804E974(void)
 {
-    gUnk_030034A0->unk18 = sub_0804B254(gUnk_03004D84 + 2);
+    gUnk_030034A0->unk18 = ReadU16(gUnk_03004D84 + 2);
     gSoundVolume = gUnk_030034A0->unk18;
     m4aMPlayVolumeControl(&gMPlayInfo_0, 0xFF, gSoundVolume);
     m4aMPlayVolumeControl(&gMPlayInfo_1, 0xFF, gSoundVolume);
@@ -2089,11 +2110,12 @@ void sub_0804E974(void)
     gUnk_03004D84 += 4;
 }
 
+// 4E9DC
 void sub_0804E9DC(void)
 {
     gUnk_030034A0->unk1C_0 = gUnk_03004D84[2];
 
-    gUnk_030034A0->unkA = sub_0804B254(gUnk_03004D84 + 3);
+    gUnk_030034A0->unkA = ReadU16(gUnk_03004D84 + 3);
     if (gUnk_030034A0->unkA & 0x8000)
     {
         gUnk_030034A0->unk1C_3 = 1;
@@ -2104,6 +2126,7 @@ void sub_0804E9DC(void)
     gUnk_03004D84 += 5;
 }
 
+// 4EA44
 void sub_0804EA44(void)
 {
     if (gUnk_030034A0->unk1C_4)
@@ -2234,22 +2257,22 @@ const void* const gUnk_08117944[28] = {
 };
 
 // 0x1179b4
-// TODO: functions, requires pre-definition
 void (*const gUnk_081179B4[0xC])(void) = {
-    (void*)0x804f161,
-    (void*)0x804efdd,
-    (void*)0x804f051,
-    (void*)0x804f035,
-    (void*)0x804f005,
-    (void*)0x804f075,
-    (void*)0x804f0d1,
-    (void*)0x804f115,
-    (void*)0x804efa1,
-    (void*)0x804f13d,
-    (void*)0x804f181,
-    (void*)0x804f1b5
+    sub_0804F160,
+    sub_0804EFDC,
+    sub_0804F050,
+    sub_0804F034,
+    sub_0804F004,
+    sub_0804F074,
+    sub_0804F0D0,
+    sub_0804F114,
+    sub_0804EFA0,
+    sub_0804F13C,
+    sub_0804F180,
+    sub_0804F1B4
 };
 
+// 4EA94
 void sub_0804EA94(void)
 {
     gUnk_030034A0->unk0_0 = 3;
@@ -2296,10 +2319,11 @@ void sub_0804EA94(void)
             gUnk_030034A0->unk0_0 = 2;
         }
     }
-    while(gUnk_030034A0->unk0_0 & 1);
+    while (gUnk_030034A0->unk0_0 & 1);
 }
 
-void sub_0804EB64(void)
+// 4EB64
+void CutsceneHandler(void)
 {
     if (gUnk_030034A0->unk2_1 & 1)
     {
@@ -2390,6 +2414,7 @@ void sub_0804EB64(void)
     }
 }
 
+// 4ED68
 void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3)
 {
     gUnk_0300081C = thunk_HeapAlloc(0x28, 0);
@@ -2411,17 +2436,20 @@ void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3)
     gUnk_0300081C->unk24();
 }
 
+// 4EE14
 void sub_0804EE14(void)
 {
     thunk_HeapFree(gUnk_0300081C->unk0 - 4);
     thunk_HeapFree(gUnk_0300081C);
 }
 
+// 4EE34
 void sub_0804EE34(s16 arg0, s16 arg1, u16 arg2)
 {
     gBgTilemapBufs[1][arg0 + (arg1 * 0x20)] = arg2 | 0xF000;
 }
 
+// 4EE60
 void sub_0804EE60(void)
 {
     s32 sp0;
@@ -2433,8 +2461,7 @@ void sub_0804EE60(void)
 
     var_ip = gUnk_0300081C->unk0 + (gUnk_0300081C->unkE * gUnk_0300081C->unkD);
     var_r7 = BG_VRAM + (gUnk_0300081C->unk1A * 0x20);
-    
-    
+
     for (var_r6 = 0; var_r6 < 0x10; var_r6++, var_r7 += 4)
     {
         sp0 = 0;
@@ -2466,6 +2493,7 @@ void sub_0804EE60(void)
     gUnk_0300081C->unk1A += 2;
 }
 
+// 4EF50
 void sub_0804EF50(void)
 {
     if (gUnk_0300081C->unk14 <= 0)
@@ -2485,6 +2513,7 @@ void sub_0804EF50(void)
     }
 }
 
+// 4EFA0
 void sub_0804EFA0(void)
 {
     gUnk_0300081C->unk14 = 0x10;
@@ -2492,12 +2521,14 @@ void sub_0804EFA0(void)
     gUnk_03004D84 += 2;
 }
 
+// 4EFC4
 void sub_0804EFC4(u8 arg0)
 {
     gUnk_0300081C->unkD = arg0;
     gUnk_03004D84 += 2;
 }
 
+// 4EFDC
 void sub_0804EFDC(void)
 {
     gUnk_0300081C->unk24();
@@ -2505,18 +2536,21 @@ void sub_0804EFDC(void)
     gUnk_03004D84 += 2;
 }
 
+// 4F004
 void sub_0804F004(void)
 {
     gUnk_0300081C->unk16_0 = gUnk_03004D84[2];
     gUnk_03004D84 += 3;
 }
 
+// 4F034
 void sub_0804F034(void)
 {
     gUnk_0300081C->unk5 = gUnk_03004D84[2];
     gUnk_03004D84 += 3;
 }
 
+// 4F050
 void sub_0804F050(void)
 {
     gUnk_0300081C->unk9 = 0;
@@ -2524,6 +2558,7 @@ void sub_0804F050(void)
     gUnk_03004D84 += 2;
 }
 
+// 4F074
 void sub_0804F074(void)
 {
     gUnk_0300081C->unk16_4 = 1;
@@ -2533,6 +2568,7 @@ void sub_0804F074(void)
     gUnk_03004D84 += 2;
 }
 
+// 4F0D0
 void sub_0804F0D0(void)
 {
     gUnk_0300081C->unk24();
@@ -2545,6 +2581,7 @@ void sub_0804F0D0(void)
     gUnk_03004D84 += 2;
 }
 
+// 4F114
 void sub_0804F114(void)
 {
     gUnk_0300081C->unk16_4 = 0;
@@ -2552,30 +2589,35 @@ void sub_0804F114(void)
     gUnk_0300081C->unk1A = gUnk_0300081C->unk18;
 }
 
+// 4F13C
 void sub_0804F13C(void)
 {
     gUnk_0300081C->unk16_4 = 4;
     gUnk_03004D84 += 2;
 }
 
+// 4F160
 void sub_0804F160(void)
 {
     gUnk_0300081C->unk17_0 = 0;
     gUnk_03004D84 += 2;
 }
 
+// 4F180
 void sub_0804F180(void)
 {
-    gUnk_0300081C->unk10 = sub_0804B254(gUnk_03004D84 + 2);
-    gUnk_0300081C->unk12 = sub_0804B254(gUnk_03004D84 + 4);
+    gUnk_0300081C->unk10 = ReadU16(gUnk_03004D84 + 2);
+    gUnk_0300081C->unk12 = ReadU16(gUnk_03004D84 + 4);
     gUnk_03004D84 += 6;
 }
 
+// 4F1B4
 void sub_0804F1B4(void)
 {
     gUnk_03004D84 += 3;
 }
 
+// 4F1C4
 s32 sub_0804F1C4(void)
 {
     if ((gUnk_0300081C->unk16_4 & 2) != 0)
@@ -2616,12 +2658,14 @@ s32 sub_0804F1C4(void)
     }
 }
 
+// 4F248
 s32 sub_0804F248(u8 arg0)
 {
     gUnk_0300081C->unkD = arg0;
     return sub_0804F1C4();
 }
 
+// 4F25C
 void sub_0804F25C(void)
 {
     DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x800);

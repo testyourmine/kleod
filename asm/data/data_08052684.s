@@ -78,13 +78,9 @@ gUnk_08057954:: @ 0x08057954
 _57955::
     .incbin "baserom.gba", 0x57955, 0x57ACC-0x57955
 
-    nonmatching gUnk_08057ACC, 1
+    nonmatching gUnk_08057ACC, 0x20*0x2*0x2*0x1
 gUnk_08057ACC:: @ 0x08057ACC
-    .incbin "baserom.gba", 0x57ACC, 1
-
-    nonmatching _57ACD, 0x57B4C-0x57ACD
-_57ACD::
-    .incbin "baserom.gba", 0x57ACD, 0x57B4C-0x57ACD
+    .incbin "baserom.gba", 0x57ACC, 0x20*0x2*0x2*0x1
 
     nonmatching gUnk_08057B4C, 1
 gUnk_08057B4C:: @ 0x08057B4C
