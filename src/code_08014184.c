@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "rotation.h"
 #include "util.h"
+#include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "data/trig.h"
 #include "constants/songs.h"
@@ -58,13 +59,6 @@ extern const s8 gUnk_0818B8D0[8][2];
 
 extern void *gUnk_0818B7DC[];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
-
-extern u8 gUnk_08061FC8[0x80];
-extern u8 gUnk_08062148[0x100];
-extern u8 gUnk_080635E8[0x80];
-extern u8 gUnk_08063368[0x80];
-extern u8 gUnk_08063FE8[0x80];
-extern u8 gUnk_08064A68[0x200];
 
 extern u8 gUnk_080B8F68[0x80];
 extern u8 gUnk_080B8FE8[0x80];
@@ -1014,7 +1008,7 @@ void sub_08014760(u8 slot)
                                 {
                                     if (((gEntityInfo[slot].unkF == 0x15) && (gEntityInfo[var_r6].hvFlip == 0)) || ((gEntityInfo[slot].unkF == 0x16) && (gEntityInfo[var_r6].hvFlip == 1)))
                                     {
-                                        DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r6 - 0xD].tileNum * 0x20), 0x100);
+                                        DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r6 - 0xD].tileNum * 0x20), sizeof(gUnk_080B9368));
                                         gEntityInfo[var_r6].unkC_4 = 1;
                                         m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                                     }
@@ -1039,7 +1033,7 @@ void sub_08014760(u8 slot)
                                 {
                                     if (gUnk_03005220.oneWayGateOpen == 0)
                                     {
-                                        DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r6 - 0xD].tileNum << 5), 0x100);
+                                        DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_r6 - 0xD].tileNum << 5), sizeof(gUnk_08062148));
                                         gEntityInfo[var_r6].unkC_4 = 0;
                                     }
                                 }
@@ -2728,7 +2722,7 @@ block_128:
                             {
                                 if (((gEntityInfo[slot].unkF == 0x15) && (gEntityInfo[sp28].hvFlip == 0)) || ((gEntityInfo[slot].unkF == 0x16) && (gEntityInfo[sp28].hvFlip == 1)))
                                 {
-                                    DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[sp28 - 0xD].tileNum * 0x20), 0x100);
+                                    DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[sp28 - 0xD].tileNum * 0x20), sizeof(gUnk_080B9368));
                                     gEntityInfo[sp28].unkC_4 = 1;
                                     m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                                 }
@@ -2745,7 +2739,7 @@ block_128:
                             {
                                 if (gUnk_03005220.oneWayGateOpen == 0)
                                 {
-                                    DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[sp28 - 0xD].tileNum * 0x20), 0x100);
+                                    DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[sp28 - 0xD].tileNum * 0x20), sizeof(gUnk_08062148));
                                     gEntityInfo[sp28].unkC_4 = 0;
                                 }
                             }
@@ -4289,7 +4283,7 @@ void sub_0801C150(u8 slot)
                     gEntityInfo[slot].unk14 += 1;
                     if (gEntityInfo[slot].unk14 > 0x87)
                     {
-                        DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+                        DmaCopy16(3, &gUnk_080635E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080635E8));
                         gEntityInfo[slot].unkC_4 = 0;
                         gUnk_030034E0 -= 1;
                         gEntityInfo[slot].unk14 = 0;
@@ -4307,9 +4301,9 @@ void sub_0801C150(u8 slot)
 
             if ((gEntityInfo[slot].yPosBg2 & 1) && (gEntityInfo[slot + 1].unk8.split.unk8 == 0xFF))
             {
-                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
-                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xE].tileNum * 0x20), 0x80);
-                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xF].tileNum * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B9068));
+                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xE].tileNum * 0x20), sizeof(gUnk_080B9068));
+                DmaCopy16(3, &gUnk_080B9068, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xF].tileNum * 0x20), sizeof(gUnk_080B9068));
 
                 gEntityInfo[slot - 1].unk14 = gEntityInfo[slot - 2].unk14 = 0;
                 gEntityInfo[slot].unk14 = 0;
@@ -4360,7 +4354,7 @@ void sub_0801C150(u8 slot)
                 while (var_r5 >= 0)
                 {
                     gEntityInfo[slot - var_r5].unkC_4 = 0;
-                    DmaCopy16(3, &gUnk_08061FC8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - var_r5 - 0xD].tileNum * 0x20), 0x80);
+                    DmaCopy16(3, &gUnk_08061FC8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - var_r5 - 0xD].tileNum * 0x20), sizeof(gUnk_08061FC8));
                     var_r5 -= 1;
                 }
             }
@@ -6041,11 +6035,11 @@ void sub_0801EAA4(u8 slot)
         gEntityInfo[slot + 1].unk8.split.unk8 = 0x1A;
         if (gEntityInfo[slot].unkC_4 == 0)
         {
-            DmaCopy16(3, &gUnk_08063FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_08063FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_08063FE8));
         }
         else
         {
-            DmaCopy16(3, &gUnk_080B9268, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_080B9268, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B9268));
         }
         m4aSongNumStart(SE_WATER_SWITCH_HIT);
     }
@@ -6072,11 +6066,11 @@ void sub_0801EAA4(u8 slot)
 
         if ((gEntityInfo[slot].yPosBg2 & 1) == 0)
         {
-            DmaCopy16(3, &gUnk_080B8F68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_080B8F68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B8F68));
         }
         else
         {
-            DmaCopy16(3, &gUnk_080B8FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_080B8FE8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B8FE8));
             gEntityInfo[slot].unk14 = 1;
         }
     }
@@ -6106,11 +6100,11 @@ void sub_0801EAA4(u8 slot)
 
         if (gEntityInfo[slot].unkC_4 == 0)
         {
-            DmaCopy16(3, gUnk_08063368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_08063368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_08063368));
         }
         else
         {
-            DmaCopy16(3, gUnk_080B92E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x80);
+            DmaCopy16(3, &gUnk_080B92E8, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B92E8));
         }
     }
     else
@@ -6133,11 +6127,11 @@ void sub_0801EF5C(u8 slot)
 
     if ((gEntityInfo[slot].unkC_4 == 3) || (gEntityInfo[slot].unkC_4 == 1))
     {
-        DmaCopy16(3, gUnk_08064A68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x200);
+        DmaCopy16(3, &gUnk_08064A68, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_08064A68));
     }
     else
     {
-        DmaCopy16(3, gUnk_080B9668, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), 0x200);
+        DmaCopy16(3, &gUnk_080B9668, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xD].tileNum * 0x20), sizeof(gUnk_080B9668));
     }
     
     if (gEntityInfo[slot].unkC_4 == 3)
@@ -6358,7 +6352,7 @@ void sub_0801F648(u8 slot)
             SetEntityAnimationInfoState(slot, 0);
             gEntityInfo[slot].priority = 1;
             gEntityInfo[slot].unkF = 0xE;
-            DmaCopy16Wait(3, &gUnk_08078648, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+            DmaCopy16Wait(3, &gUnk_08078648, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078648));
             break;
 
         case 14:
@@ -6448,7 +6442,7 @@ void sub_0801F648(u8 slot)
             gEntityInfo[slot].xPosBg2 = gEntityInfo[0x12].xPosBg2 + ((gEntityInfo[slot].unk8.split.unk9 * COS(gEntityInfo[slot].unk8.split.unk8)) >> 8);
             gEntityInfo[slot].yPosBg2 = (gEntityInfo[0x12].yPosBg2 - gUnk_080E2AF2[gUnk_03005400.unkC - 1]) + ((gEntityInfo[slot].unk8.split.unk9 * SIN(gEntityInfo[slot].unk8.split.unk8)) >> 8);
 
-            DmaCopy16Wait(3, &gUnk_08078328, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+            DmaCopy16Wait(3, &gUnk_08078328, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078328));
             SetEntityAnimationInfoState(slot, 2);
             gEntityInfo[slot].unkF = 4;
             m4aSongNumStart(0x9C);
@@ -7156,7 +7150,7 @@ void sub_080202D4(u8 slot)
                 gEntityInfo[slot].unk8.split.unk9 &= 1;
                 if (slot == 0x15)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078968, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078968, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078968));
                     gEntityInfo[slot].unkF = 0x11;
                     sub_0801E664(gEntityInfo[0x13].xPosBg2, gEntityInfo[0x13].yPosBg2, 2, 0x13);
                     sub_0801E664(gEntityInfo[0x14].xPosBg2, gEntityInfo[0x14].yPosBg2, 2, 0x14);
@@ -7174,7 +7168,7 @@ void sub_080202D4(u8 slot)
             {
                 if ((gUnk_03004C20.sceneFrameCounter % 10) == 5)
                 {
-                    DmaCopy16Wait(3, &gUnk_08078968, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+                    DmaCopy16Wait(3, &gUnk_08078968, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078968));
                 }
 
                 if ((gUnk_03004C20.sceneFrameCounter % 10) == 0)
@@ -7334,7 +7328,7 @@ void sub_08021194(u8 slot)
             gEntityInfo[slot].unkF = 0x10;
             gEntityInfo[slot].priority = 0;
             gUnk_03005400.unk14 = 5;
-            DmaCopy16Wait(3, &gUnk_08078988, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), 0x20);
+            DmaCopy16Wait(3, &gUnk_08078988, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078988));
             break;
 
         case 16:
@@ -7636,7 +7630,7 @@ void sub_0802192C(u8 slot)
             var_r8 = ((gEntityInfo[slot].xPosBg2 / 8) - 3) & ~1;
 
             temp_r1 = (gUnk_03004C20.sceneFrameCounter & 4) >> 2;
-            var_r5 = &gUnk_03003790[0][var_r8];
+            var_r5 = &gBossBg2TilemapData[5][var_r8];
             var_r1 = gBgDataPtrs.pBufBg2Tilemap + ((temp_r1 * 6) + 0x3C);
             for (var_r6 = 0; var_r6 < 30; var_r6++)
             {
@@ -7666,7 +7660,7 @@ void sub_0802192C(u8 slot)
                     break;
             }
 
-            var_r5 = &gUnk_03003790[0][var_r8];
+            var_r5 = &gBossBg2TilemapData[5][var_r8];
             var_r1 = gBgDataPtrs.pBufBg2Tilemap + ((gBgInfo[2].hLength * 0x1F) + 0x3C);
             for (var_r6 = 0; var_r6 < 30; var_r6++)
             {

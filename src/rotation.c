@@ -3,11 +3,10 @@
 #include "code_08003D58.h"
 #include "heap.h"
 #include "vision.h"
+#include "data/data_0805C4E8.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u8 gUnk_080627C8[0x80];
 
 extern u8 gUnk_080B90E8[0x80];
 extern u8 gUnk_080B9168[0x80];
@@ -187,19 +186,19 @@ void RoomRotationHandler(void)
 
     if (i == 0)
     {
-        DmaCopy16(3, gUnk_080627C8, gUnk_03004C10, 0x80);
+        DmaCopy16(3, &gUnk_080627C8, gUnk_03004C10, sizeof(gUnk_080627C8));
     }
     else if (i == 1)
     {
-        DmaCopy16(3, gUnk_080B90E8, gUnk_03004C10, 0x80);
+        DmaCopy16(3, &gUnk_080B90E8, gUnk_03004C10, sizeof(gUnk_080B90E8));
     }
     else if (i == 2)
     {
-        DmaCopy16(3, gUnk_080B9168, gUnk_03004C10, 0x80);
+        DmaCopy16(3, &gUnk_080B9168, gUnk_03004C10, sizeof(gUnk_080B9168));
     }
     else
     {
-        DmaCopy16(3, gUnk_080B91E8, gUnk_03004C10, 0x80);
+        DmaCopy16(3, &gUnk_080B91E8, gUnk_03004C10, sizeof(gUnk_080B91E8));
     }
 
     gCallbackQueue.current[1] = sub_0800A804;

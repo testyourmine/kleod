@@ -229,8 +229,8 @@ void VisionAndVisionSelectInit(void)
         gBgTilemapBufs[0][var_r4] = gBgDataPtrs.pBufBg0Tilemap[var_r4];
     }
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
 
     REG_BG0CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][0] | BGCNT_PRIORITY(3) | BGCNT_SCREENBASE(28) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC;
     REG_BG1CNT = gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(2) | BGCNT_SCREENBASE(29) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC;
@@ -1283,16 +1283,16 @@ void SetUpRoomVisuals(void)
     if (gUnk_03004C20.level != 8)
     {
         LoadBg2TilemapData(0);
-        DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, 0x400);
+        DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, sizeof(gBg2TilemapData));
     }
     else
     {
-        DmaFill16(3, 0, &gBossBg2TilemapData, 0x1000);
+        DmaFill16(3, 0, &gBossBg2TilemapData, sizeof(gBossBg2TilemapData));
         for (i = 0; i < 0x28; i++)
         {
             DmaCopy16Wait(3, &gBgDataPtrs.pBufBg2Tilemap[i * gBgInfo[2].hLength], &gBossBg2TilemapData[i], 0x3C);
         }
-        DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, 0x1000);
+        DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, sizeof(gBossBg2TilemapData));
     }
 
     if (gUnk_03004C20.level == 8)
@@ -1368,7 +1368,7 @@ void ClearedAllVisionsScreenInit(void)
     gBg2Y = (((gBgInfo[2].vOfs + DISPLAY_HEIGHT_CENTER) << 8) - (gBg2PC * DISPLAY_WIDTH_CENTER)) - (gBg2PD * DISPLAY_HEIGHT_CENTER);
 
     DmaCopy16(3, &gUnk_080D927C, BG_PLTT, BG_PLTT_SIZE);
-    DmaCopy16(3, &gUnk_080D947C, BG_VRAM, 0x9600);
+    DmaCopy16(3, &gUnk_080D947C, BG_VRAM, sizeof(gUnk_080D947C));
 
     gUnk_03004C20.sceneFrameCounter = 0;
     gCallbackQueue.current[1] = ClearedAllVisionsScreenHandler;

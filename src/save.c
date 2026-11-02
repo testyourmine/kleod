@@ -5,7 +5,7 @@
 #include "structs/variables.h"
 
 const u16 sEmptyEepromData[4] = { 0, 0, 0, 0 };
-const u8 sSaveFileString[9] = "K_KLONOA"; // TODO: might be 12 long, will become clear when next data is done
+const u8 sSaveFileString[9] = "K_KLONOA";
 
 /**
  * @brief 46B6C | Load global save data from EEPROM

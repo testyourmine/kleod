@@ -68,7 +68,7 @@ void TitleScreenInit(void)
     gMosaicSize = 0;
     sub_08003D58();
 
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
 
     gUnk_03004C20.world = 1;
     gUnk_03003410.unk8 = 0;
@@ -82,8 +82,7 @@ void TitleScreenInit(void)
     m4aSoundVSyncOff();
 
     heapPtr = DecompressAlloc(&gUnk_08366214) + 4;
-
-    DmaCopy16Wait(3, &gUnk_08078F88, gObjPalRamPtr, 0x20);
+    DmaCopy16Wait(3, &gUnk_08078F88, gObjPalRamPtr, sizeof(gUnk_08078F88));
     gObjPalRamPtr += 0x20;
     DmaCopy16Wait(3, heapPtr, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
@@ -101,11 +100,10 @@ void TitleScreenInit(void)
     gObjVramPtr += 0x800;
     DmaCopy16Wait(3, heapPtr + 0x3800, gObjVramPtr, 0x800);
     gObjVramPtr += 0x800;
-
     thunk_HeapFree(heapPtr - 4);
-    heapPtr = DecompressAlloc(&gUnk_08367468) + 4;
 
-    DmaCopy16Wait(3, &gUnk_08078FA8, gObjPalRamPtr, 0x20);
+    heapPtr = DecompressAlloc(&gUnk_08367468) + 4;
+    DmaCopy16Wait(3, &gUnk_08078FA8, gObjPalRamPtr, sizeof(gUnk_08078FA8));
     gObjPalRamPtr += 0x20;
     DmaCopy16Wait(3, heapPtr, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
@@ -114,6 +112,7 @@ void TitleScreenInit(void)
     DmaCopy16Wait(3, heapPtr + 0x200, gObjVramPtr, 0x100);
     gObjVramPtr += 0x100;
     thunk_HeapFree(heapPtr - 4);
+
     gUnk_030051DC = gUnk_0807D7B0;
 
     gEntitySlotCount = 0xD;
@@ -246,9 +245,9 @@ void TitleScreenInit(void)
     gBlendValue = 0;
     gSaveFilesStarted = gGlobalSaveData->startedFile[0] | gGlobalSaveData->startedFile[1] | gGlobalSaveData->startedFile[2];
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1][0], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[2][0], gBgInfo[2].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, sizeof(gBgTilemapBufs[2]));
 
     REG_BG0HOFS = (gBgInfo[0].hOfs >> 4) & 0x1FF;
     REG_BG0VOFS = (gBgInfo[0].vOfs >> 7) & 0x1FF;
@@ -410,7 +409,7 @@ void TitleScreenStageSetup(u8 titleScreenStage)
                 DmaCopy16(3, &gBgTilemapBufs[1][i * 0x20], &gBgTilemapBufs[1][(i - 0xB) * 0x20], 0x3C);
             }
 
-            DmaCopy16Wait(3, &gBgTilemapBufs[1][0], gBgInfo[1].pTilemap, 0x800);
+            DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
             break;
 
         // Select New Game or Continue
@@ -449,8 +448,8 @@ void TitleScreenStageSetup(u8 titleScreenStage)
                 DmaCopy16(3, &gBgTilemapBufs[1][i * 0x20], &gBgTilemapBufs[1][(i - 0xB) * 0x20], 0x3C);
             }
 
-            DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
-            DmaCopy16Wait(3, &gBgTilemapBufs[1][0], gBgInfo[1].pTilemap, 0x800);
+            DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+            DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
             gBgInfo[0].vOfs = 0;
 
             for (i = 8; i < 0xB; i++)
@@ -673,7 +672,7 @@ void TitleScreenHandler(void)
                 m4aSongNumStart(SE_CURSOR_CONFIRM);
             }
 
-            DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
+            DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
             break;
 
         // Begin demo

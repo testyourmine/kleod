@@ -21,7 +21,7 @@ void BootScreenInit(void)
     gEntitySlotCount = 1;
     sub_08003D58();
 
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
     gBgInfo[0].pTiles = VRAM;
     gBgInfo[0].pTilemap = VRAM + 0x7800;
 
@@ -46,7 +46,7 @@ void BootScreenInit(void)
     gBlendValue = 0;
     REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_CHARBASE(0) | BGCNT_MOSAIC | BGCNT_SCREENBASE(15);
 
-    DmaCopy16Wait(3, gBgTilemapBufs, gBgInfo[0].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
     LoadGlobalSaveData();
     gTitleScreenStage = 0;
 }
@@ -73,16 +73,16 @@ void NamcoScreenInit(void)
     gEntitySlotCount = 1;
     sub_08003D58();
 
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
 
     gBgDataPtrs.pBufBg0Tiles = thunk_HeapAlloc(*gUnk_082F43C4 & 0x7FFFFFFF, 0);
     gBgDataPtrs.pBufBg0Tilemap = thunk_HeapAlloc(*gUnk_082F47A8 & 0x7FFFFFFF, 0);
-    Decompress(gBgDataPtrs.pBufBg0Tiles, (void*)gUnk_082F43C4);
-    Decompress(gBgDataPtrs.pBufBg0Tilemap, (void*)gUnk_082F47A8);
+    Decompress(gBgDataPtrs.pBufBg0Tiles, &gUnk_082F43C4);
+    Decompress(gBgDataPtrs.pBufBg0Tilemap, &gUnk_082F47A8);
     gBgDataPtrs.pBufBg0Tiles += 4;
     gBgDataPtrs.pBufBg0Tilemap += 2;
 
-    DecompressDma((void*)gUnk_082F48BC, PLTT, 0x200);
+    DecompressDma(&gUnk_082F48BC, BG_PLTT, BG_PLTT_SIZE);
 
     DmaFill16(3, 0, PLTT + 0x20, 0x4);
     DmaFill16(3, 0x1111, gBgInfo[1].pTiles + 0x20, 0x20);
@@ -106,8 +106,8 @@ void NamcoScreenInit(void)
     REG_BG0HOFS = (gBgInfo[0].hOfs >> 4) & 0x1FF;
     REG_BG0VOFS = (gBgInfo[0].vOfs >> 7) & 0x1FF;
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
 
     REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
     gBlendValue = 0x10;

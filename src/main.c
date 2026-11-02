@@ -25,7 +25,7 @@ extern void IntrMain(void);
 void AgbMain(void)
 {
     u32 i;
-    void *pIntrMainBuf;
+    u32 *pIntrMainBuf;
 
     DmaFill32(3, 0, EWRAM_START, EWRAM_END - EWRAM_START);
     DmaFill32(3, 0, IWRAM_START, IWRAM_END - IWRAM_START - 0x200);
@@ -47,7 +47,7 @@ void AgbMain(void)
 
     thunk_HeapInit();
     pIntrMainBuf = thunk_HeapAlloc(0x200, 2);
-    DmaCopy32(3, &IntrMain, pIntrMainBuf, 0x800);
+    DmaCopy32(3, &IntrMain, pIntrMainBuf, 0x200 << 2);
     INTR_VECTOR = pIntrMainBuf;
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
     INTR_VECTOR = pIntrMainBuf;

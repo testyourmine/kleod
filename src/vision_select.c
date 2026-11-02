@@ -865,15 +865,15 @@ void VisionSelectUpdateRotationAndEntities(void)
 
     if (gEntityInfo[0].hvFlip == 0)
     {
-        gOamAffineBuffer->pa = pa;
+        gOamAffineBuffer[0].pa = pa;
     }
     else
     {
-        gOamAffineBuffer->pa = -pa;
+        gOamAffineBuffer[0].pa = -pa;
     }
-    gOamAffineBuffer->pb = pb;
-    gOamAffineBuffer->pc = pc;
-    gOamAffineBuffer->pd = pd;
+    gOamAffineBuffer[0].pb = pb;
+    gOamAffineBuffer[0].pc = pc;
+    gOamAffineBuffer[0].pd = pd;
 
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));
     gBg2PB = MultiplyQ8(SIN(gBg2Alpha), ReciprocalQ8(gBg2XMag));

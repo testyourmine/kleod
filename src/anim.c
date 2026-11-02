@@ -35,7 +35,7 @@ void UpdateEntityAnimationInfoEntries(void)
     struct EntityAnimationFrameData **pFrames;
     struct EntityAnimationFrameData *pFrameData;
 
-    for (i = 0; i < 0x2D; i++)
+    for (i = 0; i < ARRAY_SIZE(gEntityAnimationInfo); i++)
     {
         if (i < 9)
         {
@@ -367,7 +367,7 @@ void DrawVisionEnd(void)
         gEntityInfo[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0xC].yPosScreen = 0;
         gEntityInfo[0xB].yPosScreen = 0;
-        DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 << 5), 0x800);
+        DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 * 0x20), sizeof(gUnk_080A5088));
         m4aSongNumStart(MUS_VISION_CLEAR);
     }
 

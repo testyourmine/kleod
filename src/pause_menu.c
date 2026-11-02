@@ -97,7 +97,7 @@ void PauseMenuScreenInit(void)
         gBgTilemapBufs[gPauseMenuBg][dstCol] = gBgDataPtrs.pBufBg3Tilemap[srcCol + 2] + var_sl;
     }
 
-    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, 0x800);
+    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, sizeof(gBgTilemapBufs[0]));
 
     REG_DISPCNT &= ~DISPCNT_WIN1_ON;
 
@@ -241,7 +241,7 @@ void PauseMenuScreenRestoreGfx(void)
         DrawLevelTimer();
     }
 
-    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, 0x800);
+    DmaCopy16(3, &gBgTilemapBufs[gPauseMenuBg], gBgInfo[gPauseMenuBg].pTilemap, sizeof(gBgTilemapBufs[0]));
 
     if (gUnk_03004C20.levelHasTimer == 1)
     {

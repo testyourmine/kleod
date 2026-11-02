@@ -448,14 +448,14 @@ void sub_0804BAFC(void)
 // 4BB10
 void sub_0804BB10(void)
 {
-    DmaFill16(3, 0xF000, &gBgTilemapBufs[1][0], 0x800);
+    DmaFill16(3, 0xF000, &gBgTilemapBufs[1], sizeof(gBgTilemapBufs[1]));
 }
 
 // 4BB3C
 void sub_0804BB3C(void)
 {
-    gUnk_030034A0 = thunk_HeapAlloc(0x20, 0);
-    DmaFill16(3, 0, gUnk_030034A0, 0x20);
+    gUnk_030034A0 = thunk_HeapAlloc(sizeof(*gUnk_030034A0), 0);
+    DmaFill16(3, 0, gUnk_030034A0, sizeof(*gUnk_030034A0));
 }
 
 // 4BB74
@@ -467,8 +467,8 @@ void sub_0804BB74(void)
 // 4BB88
 void sub_0804BB88(void)
 {
-    gUnk_030052A4 = thunk_HeapAlloc(0x480, 0);
-    DmaFill16(3, 0, gUnk_030052A4, 0x480);
+    gUnk_030052A4 = thunk_HeapAlloc(0x20 * sizeof(*gUnk_030052A4), 0);
+    DmaFill16(3, 0, gUnk_030052A4, 0x20 * sizeof(*gUnk_030052A4));
 }
 
 // 4BBC0
@@ -506,7 +506,7 @@ void sub_0804BBD4(void)
         gBgTilemapBufs[0][i] = ((gBgDataPtrs.pBufBg0Tilemap[i] & 0xFFF) + 0x20) | ~0x1FFF;
     }
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0][0], gBgInfo[0].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
     thunk_HeapFree(gBgDataPtrs.pBufBg0Tilemap - 2);
 
     REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_SCREENBASE(6);
@@ -541,7 +541,7 @@ void sub_0804BD10(void)
 // 4BD88
 void sub_0804BD88(void)
 {
-    DmaFill16(3, 0xF000, &gBgTilemapBufs[1][0], 0x800);
+    DmaFill16(3, 0xF000, &gBgTilemapBufs[1], sizeof(gBgTilemapBufs[1]));
 }
 
 // 4BDB4
@@ -636,10 +636,10 @@ void sub_0804BF7C(void)
 // 4BFD0
 void sub_0804BFD0(void)
 {
-    gUnk_030007C8 = thunk_HeapAlloc(0x100, 0);
-    DmaFill16(3, 0, gUnk_030007C8, 0x100);
+    gUnk_030007C8 = thunk_HeapAlloc(0x20 * sizeof(*gUnk_030007C8), 0);
+    DmaFill16(3, 0, gUnk_030007C8, 0x20 * sizeof(*gUnk_030007C8));
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
     gEntitySlotCount = 0xD;
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
@@ -688,7 +688,7 @@ void sub_0804C0EC(s32 arg0, s32 arg1)
     u16 var_r5;
 
     var_r6 = 0;
-    var_r5 = (u32) (gUnk_030052AC - 0x06010000) >> 5; // TODO: correct pointer arithmetic?
+    var_r5 = (gUnk_030052AC - (uintptr_t)OBJ_VRAM0) >> 5;
     while (gUnk_030007C8[var_r6].unk6 != 0)
     {
         var_r5 += gUnk_030007C8[var_r6].unk6;
@@ -1223,13 +1223,25 @@ s32 sub_0804CFD0(s32 arg0)
 {
     // 0x1177f4
     s8 subroutine_arg0[4][0x10] = {
-        [0] = { 1, 1, 2, -2, -1, -1, 0, 0, 1, 1, 2, -2, -1, -1, 0, 0 },
-        [1] = { -1, -1, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 1, 1, 0, 0 },
-        [2] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        [3] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        [0] = {
+            1, 1, 2, -2, -1, -1, 0, 0,
+            1, 1, 2, -2, -1, -1, 0, 0
+        },
+        [1] = {
+            -1, -1, -2, -2, -1, -1, 0, 0,
+             1,  1,  2,  2,  1,  1, 0, 0
+        },
+        [2] = {
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0
+        },
+        [3] = {
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0
+        }
     };
 
-    gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosBg2 += subroutine_arg0[gUnk_030052A4[arg0].unk1F][(u32)(gUnk_030052A4[arg0].unkE >> gUnk_030052A4[arg0].unk1A) % 0x10] * gUnk_030052A4[arg0].unk1C;
+    gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosBg2 += subroutine_arg0[gUnk_030052A4[arg0].unk1F][(gUnk_030052A4[arg0].unkE >> gUnk_030052A4[arg0].unk1A) % 0x10u] * gUnk_030052A4[arg0].unk1C;
     gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosScreen = gEntityInfo[gUnk_030052A4[arg0].unk1_7 + 0xD].yPosBg2 >> 4;
 
     gUnk_030052A4[arg0].unkE += 1;
@@ -1312,7 +1324,7 @@ s32 sub_0804D0B0(s32 arg0)
                 gEntityInfo[var_r4].visible = 1;
 
                 gEntityInfo[var_r4].affineEnable = 1;
-                gEntityInfo[var_r4].affineHFlip_matrixNum = temp_r5;                        
+                gEntityInfo[var_r4].affineHFlip_matrixNum = temp_r5;
                 gEntityInfo[var_r4].affineDouble = 1;
 
                 gEntityInfo[var_r4].xPosBg2 = sp10[(temp_r5 * 2) + 0] * 0x10;
@@ -2417,8 +2429,8 @@ void CutsceneHandler(void)
 // 4ED68
 void sub_0804ED68(u32 arg0, void (*arg1)(), u8 arg2, u8 arg3)
 {
-    gUnk_0300081C = thunk_HeapAlloc(0x28, 0);
-    DmaFill16(3, 0, gUnk_0300081C, 0x28);
+    gUnk_0300081C = thunk_HeapAlloc(sizeof(*gUnk_0300081C), 0);
+    DmaFill16(3, 0, gUnk_0300081C, sizeof(*gUnk_0300081C));
 
     gUnk_0300081C->unk0 = thunk_HeapAlloc(gUnk_082EA854[0] & 0x7FFFFFFF, 0);
     Decompress(gUnk_0300081C->unk0, &gUnk_082EA854);
@@ -2482,7 +2494,7 @@ void sub_0804EE60(void)
             var_r2 >>= 4;
         }
 
-        DmaCopy16Wait(3, &sp0, var_r7, 0x4);
+        DmaCopy16Wait(3, &sp0, var_r7, sizeof(sp0));
     }
 
     for (var_r6 = 0; var_r6 < 2; var_r6++)
@@ -2668,5 +2680,5 @@ s32 sub_0804F248(u8 arg0)
 // 4F25C
 void sub_0804F25C(void)
 {
-    DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x800);
+    DmaFill16(3, 0, &gBgTilemapBufs[1], sizeof(gBgTilemapBufs[1]));
 }

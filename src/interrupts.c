@@ -8,9 +8,9 @@ void VBlankIntr_Common(void)
 {
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, 0x400);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
+    DmaCopy16Wait(3, &gBg2TilemapData, gBgInfo[2].pTilemap, sizeof(gBg2TilemapData));
 
     DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
@@ -38,10 +38,10 @@ void sub_08000AC8(void)
     // Never called?
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, sizeof(gBgTilemapBufs[2]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, sizeof(gBgTilemapBufs[3]));
 
     DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
@@ -60,10 +60,10 @@ void VBlankIntr_TitleScreenAndWorldMap(void)
     // Called during title screen and world map
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[2], gBgInfo[2].pTilemap, sizeof(gBgTilemapBufs[2]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[3], gBgInfo[3].pTilemap, sizeof(gBgTilemapBufs[3]));
 
     DmaCopy32(3, &gOamBuffer, OAM, gEntitySlotCount * sizeof(OamData));
 
@@ -82,9 +82,9 @@ void VBlankIntr_Boss(void)
     // Called during boss battle
     m4aSoundVSync();
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, 0x1000);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
+    DmaCopy16Wait(3, &gBossBg2TilemapData, gBgInfo[2].pTilemap, sizeof(gBossBg2TilemapData));
 
     DmaCopy32Wait(3, &gOamBuffer, OAM, OAM_SIZE / 2);
 
@@ -143,8 +143,8 @@ void VBlankIntr_Cutscene(void)
     REG_WIN1H = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_H] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_H] >> 4) & 0xFF);
     REG_WIN1V = ((gUnk_030034A0->winX1Y1[WIN_1][WIN_V] << 4) & ~0xFF) | ((gUnk_030034A0->winX2Y2[WIN_1][WIN_V] >> 4) & 0xFF);
 
-    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, 0x800);
-    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, 0x800);
+    DmaCopy16Wait(3, &gBgTilemapBufs[0], gBgInfo[0].pTilemap, sizeof(gBgTilemapBufs[0]));
+    DmaCopy16Wait(3, &gBgTilemapBufs[1], gBgInfo[1].pTilemap, sizeof(gBgTilemapBufs[1]));
 
     DmaCopy32(3, &gOamBuffer, OAM, OAM_SIZE);
 

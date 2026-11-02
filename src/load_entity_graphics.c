@@ -2,96 +2,13 @@
 #include "load_entity_graphics.h"
 #include "transitions.h"
 #include "anim.h"
+#include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "structs/variables.h"
 
 extern struct EntityAnimationData *gUnk_08189A24[6][9];
 
 extern void *gUnk_0818B800[6][7];
-
-// tiles
-extern u8 gUnk_0805C6E8[0x200]; // enemy respawner
-extern u8 gUnk_0805C8E8[0x80]; // little bubble idk
-extern u8 gUnk_0805C968[0x80]; // littler bubble idk
-extern u8 gUnk_0805C9E8[0x800]; // VISION
-extern u8 gUnk_0805D1E8[0x800]; // 1 - 1
-extern u8 gUnk_0805D9E8[0x200]; // menu cursor
-extern u8 gUnk_0805DBE8[0x300]; // PRESS START
-extern u8 gUnk_0805DEE8[0x200]; // japanese text
-extern u8 gUnk_0805E0E8[0x200]; // japanese text
-extern u8 gUnk_0805E2E8[0x400]; // japanese text
-extern u8 gUnk_0805E6E8[0x400]; // japanese text
-extern u8 gUnk_0805EAE8[0x200]; // red level icon thing
-extern u8 gUnk_0805ECE8[0x200]; // Moon Door
-extern u8 gUnk_0805EEE8[0x200]; // Moo enemy
-extern u8 gUnk_0805F0E8[0x200]; // Flying Moo enemy
-extern u8 gUnk_0805F2E8[0x80]; // Star
-extern u8 gUnk_0805F368[0x20]; // Dream Stone small
-extern u8 gUnk_0805F388[0x80]; // Dream Stone large
-extern u8 gUnk_0805F408[0x80]; // Heart
-extern u8 gUnk_0805F488[0x80]; // 1 UP
-extern u8 gUnk_0805F508[0x200]; // Box
-extern u8 gUnk_0805F708[0x80]; // Key (circle)
-extern u8 gUnk_0805F788[0x80]; // Key (triangle)
-extern u8 gUnk_0805F808[0x200]; // Door (frame)
-extern u8 gUnk_0805FA08[0x100]; // hoverboard flame
-extern u8 gUnk_0805FB08[0x100]; // hoverboard ramp
-extern u8 gUnk_0805FC08[0x200]; // Goomi (red winged platform)
-extern u8 gUnk_0805FE08[0x800]; // cannon that appears at end of auto scrollers
-extern u8 gUnk_08060608[0x100]; // moving platform vertical
-extern u8 gUnk_08060708[0x100]; // moving platform horizontal
-extern u8 gUnk_08060808[0x200]; // Spring
-extern u8 gUnk_08060A08[0x80]; // boss healthbar
-extern u8 gUnk_08060A88[0x600]; // fancy thing around boss healthbar
-extern u8 gUnk_08061088[0x800]; // boss hit effect
-extern u8 gUnk_08061888[0x100]; // boss related
-extern u8 gUnk_08061988[0x80]; // big rock debris from boss 1 hitting ground
-extern u8 gUnk_08061A08[0x20]; // small rock debris from boss 1 hitting ground
-extern u8 gUnk_08061A28[0x200]; // Spiker enemy
-extern u8 gUnk_08061C28[0x100]; // Scale
-extern u8 gUnk_08061D28[0x20]; // leaf blown from fan 1
-extern u8 gUnk_08061D48[0x20]; // leaf blown from fan 2
-extern u8 gUnk_08061D68[0x20]; // leaf blown from fan 3
-extern u8 gUnk_08061D88[0x20]; // leaf blown from fan 4
-extern u8 gUnk_08061DA8[0x20]; // leaf blown from fan 5
-extern u8 gUnk_08061DC8[0x200]; // Teton
-extern u8 gUnk_08061FC8[0x80]; // switch that opens gate
-extern u8 gUnk_08062048[0x100]; // gate opened by switch
-extern u8 gUnk_08062148[0x100]; // one way gate
-extern u8 gUnk_08062248[0x100]; // platform that disappears after you land on it
-extern u8 gUnk_08062348[0x80]; // top of accordion looking platform that decompresses/compresses when standing on it/other one
-extern u8 gUnk_080623C8[0x400]; // middle of accordion looking platform that decompressed/compresses when standing on it/other one
-extern u8 gUnk_080627C8[0x80]; // switch that rotates room
-extern u8 gUnk_08062848[0x80]; // Key (heart)
-extern u8 gUnk_080628C8[0x200]; // Boomie (enemy)
-extern u8 gUnk_08062AC8[0x20]; // small dot (idk)
-extern u8 gUnk_08062AE8[0x200]; // explodable block
-extern u8 gUnk_08062CE8[0x200]; // Flying Boomie (enemy)
-extern u8 gUnk_08062EE8[0x200]; // Bomb Box (pointing up)
-extern u8 gUnk_080630E8[0x80]; // Pressure Switch
-extern u8 gUnk_08063168[0x200]; // Bomb Box (pointing right)
-extern u8 gUnk_08063368[0x80]; // switch that causes block to expand/contract
-extern u8 gUnk_080633E8[0x200]; // block when expanded
-extern u8 gUnk_080635E8[0x80]; // switch that opens gate when you hit all of them
-extern u8 gUnk_08063668[0x200]; // Bomb Box (pointing down)
-extern u8 gUnk_08063868[0x200]; // Glibz Quad Cannon (enemy)
-extern u8 gUnk_08063A68[0x80]; // Glibz Quad Cannon bullets
-extern u8 gUnk_08063AE8[0x100]; // Fountain Foothold
-extern u8 gUnk_08063BE8[0x400]; // geyser
-extern u8 gUnk_08063FE8[0x80]; // switch that lowers/raises water level
-extern u8 gUnk_08064068[0x400]; // water
-extern u8 gUnk_08064468[0x400]; // waterfall
-extern u8 gUnk_08064868[0x200]; // Arrow Panel (red i think)
-extern u8 gUnk_08064A68[0x200]; // Arrow Panel (blue i think)
-extern u8 gUnk_08064C68[0x200]; // Moo in bubble
-extern u8 gUnk_08064E68[0x100]; // Medim's (world 4 boss) spinning top on head
-extern u8 gUnk_08064F68[0x200]; // grabby hand that extends from box
-extern u8 gUnk_08065168[0x200]; // box that grabs
-extern u8 gUnk_08065368[0x200]; // box that gets grabbed
-extern u8 gUnk_08065568[0x200]; // Bomb Box (pointing left)
-extern u8 gUnk_08065768[0x20]; // small dot (idk)
-extern u8 gUnk_08065788[0x20]; // small dot (idk)
-extern u8 gUnk_080657A8[0x20]; // small dot (idk)
 
 extern u8 gUnk_080A4888[0x800];
 extern u8 gUnk_080A5888[0x800];

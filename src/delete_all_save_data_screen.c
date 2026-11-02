@@ -38,7 +38,7 @@ void DeleteAllSaveDataScreenInit(void)
     gDeleteAllSaveDataMinigameUnlocked = HeldUp();
     gEntitySlotCount = 1;
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
 
     gUnk_03003410.unk8 = 1;
     gUnk_03004C20.level = 1;
@@ -83,8 +83,8 @@ void DeleteAllSaveDataScreenInit(void)
 
     DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, 0x260);
     DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, 0xCA0);
-    DmaFill16(3, 0, gBgTilemapBufs, 0x800);
-    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap, &gBgTilemapBufs[0][0x400], 0x800);
+    DmaFill16(3, 0, &gBgTilemapBufs[0], sizeof(gBgTilemapBufs[0]));
+    DmaCopy16(3, gBgDataPtrs.pBufBg1Tilemap, &gBgTilemapBufs[1], sizeof(gBgTilemapBufs[1]));
 
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tilemap - 2);
     thunk_HeapFree(gBgDataPtrs.pBufBg1Tiles - 4);
@@ -313,7 +313,7 @@ void DeleteAllSaveDataScreenHandler(void)
             }
             else if (gNewKeys & A_BUTTON)
             {
-                DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x500);
+                DmaFill16(3, 0, &gBgTilemapBufs[1], 0x500);
                 if (gDeleteAllSaveDataScreenCursor == DELETE_ALL_SAVE_DATA_SCREEN_CURSOR_NO)
                 {
                     // Exit screen

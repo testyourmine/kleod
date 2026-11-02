@@ -8,29 +8,11 @@
 #include "save.h"
 #include "vision.h"
 #include "wait_for_next_frame.h"
+#include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u8 gUnk_080657C8[0x400];
-extern u8 gUnk_08065BC8[0x400];
-extern u8 gUnk_08065FC8[0x400];
-extern u8 gUnk_080663C8[0x80];
-extern u8 gUnk_08066448[0x40];
-extern u8 gUnk_08066488[0x80];
-extern u8 gUnk_08066508[0x80];
-extern u8 gUnk_08066588[0x80];
-extern u8 gUnk_08066608[0x80];
-extern u8 gUnk_08066688[0x80];
-extern u8 gUnk_08066708[0x80];
-extern u8 gUnk_08066788[0x80];
-extern u8 gUnk_08066808[0x80];
-extern u8 gUnk_08066888[0x80];
-extern u8 gUnk_08066908[0x80];
-extern u8 gUnk_08066988[0x80];
-extern u8 gUnk_08066A08[0x80];
-extern u8 gUnk_08066A88[0x80];
 
 extern struct Unk_0300466C gUnk_0807D248[];
 
@@ -99,66 +81,66 @@ void GameOverScreenInit(void)
     gObjPalRamPtr = gUnk_030034F4;
     gObjVramPtr = gUnk_030052AC;
 
-    DmaCopy16Wait(3, &gUnk_08078A88, gUnk_030034F4, 0x20);
-    DmaCopy16Wait(3, &gUnk_080657C8, gObjVramPtr, 0x400);
+    DmaCopy16Wait(3, &gUnk_08078A88, gUnk_030034F4, sizeof(gUnk_08078A88));
+    DmaCopy16Wait(3, &gUnk_080657C8, gObjVramPtr, sizeof(gUnk_080657C8));
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x400;
 
-    DmaCopy16Wait(3, &gUnk_08065BC8, gObjVramPtr, 0x400);
+    DmaCopy16Wait(3, &gUnk_08065BC8, gObjVramPtr, sizeof(gUnk_08065BC8));
     gObjVramPtr += 0x400;
 
-    DmaCopy16Wait(3, &gUnk_08078AA8, gObjPalRamPtr, 0x20);
-    DmaCopy16Wait(3, &gUnk_08065FC8, gObjVramPtr, 0x400);
+    DmaCopy16Wait(3, &gUnk_08078AA8, gObjPalRamPtr, sizeof(gUnk_08078AA8));
+    DmaCopy16Wait(3, &gUnk_08065FC8, gObjVramPtr, sizeof(gUnk_08065FC8));
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x400;
 
-    DmaCopy16Wait(3, &gUnk_08078AC8, gObjPalRamPtr, 0x20);
-    DmaCopy16Wait(3, &gUnk_080663C8, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08078AC8, gObjPalRamPtr, sizeof(gUnk_08078AC8));
+    DmaCopy16Wait(3, &gUnk_080663C8, gObjVramPtr, sizeof(gUnk_080663C8));
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066448, gObjVramPtr, 0x40);
+    DmaCopy16Wait(3, &gUnk_08066448, gObjVramPtr, sizeof(gUnk_08066448));
     gObjVramPtr += 0x40;
 
-    DmaCopy16Wait(3, &gUnk_08066488, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066488, gObjVramPtr, sizeof(gUnk_08066488));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066508, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066508, gObjVramPtr, sizeof(gUnk_08066508));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066588, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066588, gObjVramPtr, sizeof(gUnk_08066588));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066608, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066608, gObjVramPtr, sizeof(gUnk_08066608));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066688, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066688, gObjVramPtr, sizeof(gUnk_08066688));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08078AE8, gObjPalRamPtr, 0x20);
-    DmaCopy16Wait(3, &gUnk_08066708, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08078AE8, gObjPalRamPtr, sizeof(gUnk_08078AE8));
+    DmaCopy16Wait(3, &gUnk_08066708, gObjVramPtr, sizeof(gUnk_08066708));
     gObjPalRamPtr += 0x20;
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066788, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066788, gObjVramPtr, sizeof(gUnk_08066788));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066808, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066808, gObjVramPtr, sizeof(gUnk_08066808));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066888, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066888, gObjVramPtr, sizeof(gUnk_08066888));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066908, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066908, gObjVramPtr, sizeof(gUnk_08066908));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066988, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066988, gObjVramPtr, sizeof(gUnk_08066988));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066A08, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066A08, gObjVramPtr, sizeof(gUnk_08066A08));
     gObjVramPtr += 0x80;
 
-    DmaCopy16Wait(3, &gUnk_08066A88, gObjVramPtr, 0x80);
+    DmaCopy16Wait(3, &gUnk_08066A88, gObjVramPtr, sizeof(gUnk_08066A88));
     gObjVramPtr += 0x80;
 
     for (i = 0; gUnk_08116464[i].unk0 != 0xFFFF; i++)

@@ -183,11 +183,11 @@ extern u8 gFrameFinished;
 extern u8 gEntitySlotCount; // Number of entity slots, or next available slot
 
 extern u16 gBgTilemapBufs[4][0x400]; // BG tilemaps
-extern u8 gBg2TilemapData[]; // BG2 tilemap data, possibly "gCommonBg2TilemapData"
-extern u8 gBossBg2TilemapData[][0x40]; // Boss stage BG2 tilemap data
+extern u8 gBg2TilemapData[0x400]; // BG2 tilemap data, possibly "gCommonBg2TilemapData"
+extern u8 gBossBg2TilemapData[0x40][0x40]; // Boss stage BG2 tilemap data
 
-extern u16 gUnk_03004C40[];
-extern u16 gUnk_030052C0[];
+extern u16 gUnk_03004C40[160];
+extern u16 gUnk_030052C0[160];
 
 extern u32 gUnk_03005488; // game over screen related
 
@@ -353,7 +353,7 @@ struct EntityInfo {
     /* 0x18 */ u8 unk18;
     /* 0x19 */ u8 pad19[0x1C - 0x19];
 }; /* size = 0x1C */
-extern struct EntityInfo gEntityInfo[];
+extern struct EntityInfo gEntityInfo[100];
 
 struct BgInfo {
     /* 0x00 */ void *pTiles; // BG tiles
@@ -673,7 +673,7 @@ struct CurrentRoomBg2Center {
 extern struct CurrentRoomBg2Center gCurrentRoomBg2Center;
 
 extern u8 gUnk_030007C4;
-extern void * volatile gObjPalRamPtr; // OBJ palette ptr
+extern uintptr_t gObjPalRamPtr; // OBJ palette ptr
 
 struct EntityAnimationInfo {
     /* 0x0 */ u8 state; // entity state
@@ -681,7 +681,7 @@ struct EntityAnimationInfo {
     /* 0x2 */ volatile u8 frame; // current animation frame index
     /* 0x3 */ u8 pad3[0x4 - 0x3];
 }; /* size = 0x4 */
-extern struct EntityAnimationInfo gEntityAnimationInfo[];
+extern struct EntityAnimationInfo gEntityAnimationInfo[45];
 
 extern u8 gUnk_0300363C;
 
@@ -718,7 +718,7 @@ struct EntityAnimationData {
 extern struct EntityAnimationData *gUnk_03005294;
 extern struct EntityAnimationData *gUnk_03005418;
 
-extern void * volatile gObjVramPtr; // OBJ vram ptr
+extern uintptr_t gObjVramPtr; // OBJ vram ptr
 
 struct Unk_03000790 {
     /* 0x0 */ u16 unk0; // left hitbox
@@ -728,7 +728,7 @@ struct Unk_03000790 {
     /* 0x8 */ u16 unk8; // upper hitbox?
     /* 0xA */ u8 padA[0x10 - 0xA];
 }; /* size = 0x10 */
-extern struct Unk_03000790 gUnk_03000790[]; // left blower vent thing
+extern struct Unk_03000790 gUnk_03000790[3]; // left blower vent thing
 
 struct Unk_03003610 {
     /* 0x0 */ u8 unk0; // left scale slot
@@ -736,7 +736,7 @@ struct Unk_03003610 {
     /* 0x2 */ u8 unk2; // klonoa is not standing on scale, or possibly left scale is moving up
     /* 0x3 */ u8 unk3; // timer delay until begin moving again
 }; /* size = 0x4 */
-extern struct Unk_03003610 gUnk_03003610[];
+extern struct Unk_03003610 gUnk_03003610[4];
 
 struct OamAffineBuffer {
     /* 0x0 */ u16 pa; // object affine PA
@@ -744,7 +744,7 @@ struct OamAffineBuffer {
     /* 0x4 */ u16 pc; // object affine PC
     /* 0x6 */ u16 pd; // object affine PD
 }; /* size = 0x8 */ 
-extern struct OamAffineBuffer gOamAffineBuffer[]; // OAM affine buffer
+extern struct OamAffineBuffer gOamAffineBuffer[32]; // OAM affine buffer
 
 extern s32 gUnk_030047BC; // begin slot
 extern u32 gUnk_030007D4; // end slot
@@ -853,7 +853,7 @@ union Unk_03000820 {
 }; /* size = 0x8 */
 extern union Unk_03000820 *gOamBufferPtr; // OAM buffer pointer
 
-extern union Unk_03000820 gOamBuffer[]; // OAM buffer
+extern union Unk_03000820 gOamBuffer[128]; // OAM buffer
 
 extern u8 gPauseMenuBg; // BG that pause menu appears on
 
@@ -864,7 +864,7 @@ struct Unk_03003590 {
     /* 0x5_0 */ u8 unk5_0:1;
     /* 0x6 */ u8 pad6[0x8 - 0x6];
 }; /* size = 0x8 */
-extern struct Unk_03003590 gUnk_03003590[];
+extern struct Unk_03003590 gUnk_03003590[0x10];
 extern void (*gUnk_030034A8)(u8);
 
 extern u8 gUnk_030034E0;
@@ -925,8 +925,8 @@ extern struct TextBoxInfo gTextBoxInfo;
 
 extern u8 gUnk_03005200;
 
-extern void *gUnk_030034F4;
-extern void *gUnk_030052AC;
+extern uintptr_t gUnk_030034F4;
+extern uintptr_t gUnk_030052AC;
 
 extern u16 gSongToResume; // Maybe "gCurrentSong", but its only used for levels
 
@@ -988,13 +988,6 @@ struct Unk_0803D4AC {
     /* 0x7 */ u8 pad7[0x8 - 0x7];
 }; /* size = 0x8 */
 extern struct Unk_0803D4AC gUnk_03003620;
-
-extern u8 gUnk_03003D16[][8]; // TODO: type
-extern u8 gUnk_03003DD6[][8]; // TODO: type
-extern u8 gUnk_03003E96[][8]; // TODO: type
-extern u8 gUnk_03003F56[][8]; // TODO: type
-
-extern u8 gUnk_03003790[][0x40]; // TODO: type
 
 enum GameOverScreenStage {
     GAME_OVER_SCREEN_STAGE_TRANSITION_ANIMATION,

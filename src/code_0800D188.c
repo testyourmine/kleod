@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "text_box.h"
 #include "util.h"
+#include "data/data_0805C4E8.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -20,9 +21,6 @@ extern struct EntityAnimationData gUnk_08055614[9];
 extern u16 gUnk_08057C50;
 extern u16 gUnk_08057C58;
 
-extern u8 gUnk_0805C8E8[0x80];
-extern u8 gUnk_0805C968[0x80];
-extern u8 gUnk_08062148[0x100];
 extern u8 gUnk_0809AC08[0x80];
 extern u8 gUnk_0809AC88[0x80];
 extern u8 gUnk_080B9368[0x100];
@@ -979,7 +977,7 @@ void sub_0800D188(void)
 
                             gUnk_03005220.oneWayGateOpen = 1;
                             gEntityInfo[var_sb].unkC_4 = 1;
-                            DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
+                            DmaCopy16(3, &gUnk_080B9368, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), sizeof(gUnk_080B9368));
                             m4aSongNumStart(SE_ONE_WAY_GATE_OPEN);
                         }
                     }
@@ -988,7 +986,7 @@ void sub_0800D188(void)
                         if (gEntityInfo[var_sb].unkC_4 == 1)
                         {
                             gUnk_03005220.oneWayGateOpen = 0;
-                            DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), 0x100);
+                            DmaCopy16(3, &gUnk_08062148, OBJ_VRAM0 + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[var_sb - 0xD].tileNum * 0x20), sizeof(gUnk_08062148));
                             gEntityInfo[var_sb].unkC_4 = 0;
                         }
                     }
@@ -3350,19 +3348,19 @@ block_1433:
             s32 sp38 = 1;
             if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
             {
-                DmaCopy16(3, &gUnk_0805C8E8, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0805C8E8, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), sizeof(gUnk_0805C8E8));
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 1)
             {
-                DmaCopy16(3, &gUnk_0805C968, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0805C968, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), sizeof(gUnk_0805C968));
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 2)
             {
-                DmaCopy16(3, &gUnk_0809AC08, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0809AC08, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), sizeof(gUnk_0809AC08));
             }
             else
             {
-                DmaCopy16(3, &gUnk_0809AC88, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), 0x80);
+                DmaCopy16(3, &gUnk_0809AC88, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), sizeof(gUnk_0809AC88));
             }
             
             if (gUnk_03005220.windBulletDisableTimer == 0x12)
@@ -4186,8 +4184,8 @@ block_1643:
         {
             if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
             {
-                DmaCopy16(3, &gUnk_080D8AF0[(gUnk_03004C20.globalFrameCounter / 4) % 2], PLTT + 0xE0, 0x20);
-                DmaCopy16(3, &gUnk_080D8A70[(gUnk_03004C20.globalFrameCounter / 0x10) % 4], PLTT + 0x80, 0x20);
+                DmaCopy16(3, &gUnk_080D8AF0[(gUnk_03004C20.globalFrameCounter / 4) % 2], PLTT + 0xE0, sizeof(gUnk_080D8AF0[0]));
+                DmaCopy16(3, &gUnk_080D8A70[(gUnk_03004C20.globalFrameCounter / 0x10) % 4], PLTT + 0x80, sizeof(gUnk_080D8A70[0]));
             }
         }
     }
@@ -4351,7 +4349,7 @@ block_1643:
     {
         if ((gUnk_03004C20.globalFrameCounter & 0x21) == 0)
         {
-            DmaCopy16(3, &gUnk_080D8B30[(gUnk_03004C20.globalFrameCounter / 4) % 8], PLTT + 0x180, 0x20);
+            DmaCopy16(3, &gUnk_080D8B30[(gUnk_03004C20.globalFrameCounter / 4) % 8], PLTT + 0x180, sizeof(gUnk_080D8B30[0]));
         }
     }
 }

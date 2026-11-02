@@ -876,8 +876,8 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         if (LoadSaveFile(SAVE_DATA_TYPE_FILE) != 0)
         {
             // If issue loading file data, reset it
-            DmaFill32(3, 0, &gFileSaveData->nbrUnlockedWorlds, 0x40);
-            DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo, 0x30);
+            DmaFill32(3, 0, gFileSaveData, sizeof(*gFileSaveData));
+            DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo, sizeof(gFileSaveData->levelInfo));
             error = 1;
         }
         else if (LoadSaveFile(SAVE_DATA_TYPE_SCENE) != 0)
@@ -892,7 +892,7 @@ void TransitionFromFileSelectToLevel_FadeOut(void)
         if (error)
         {
             // If issue loading save data, reset scene save data
-            DmaFill32(3, 0, &gSceneSaveData->lives, 0x24);
+            DmaFill32(3, 0, gSceneSaveData, sizeof(*gSceneSaveData));
             gUnk_03004C20.world = 1;
             gSceneSaveData->world = 1;
             gSceneSaveData->lives = gUnk_03005220.lives = 3;

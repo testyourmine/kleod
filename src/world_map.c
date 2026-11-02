@@ -374,7 +374,7 @@ void WorldMapScreenUnlockNewWorld(void)
             {
                 if ((gUnk_03004C20.sceneFrameCounter % 4) == 0)
                 {
-                    DmaCopy16(3, &gUnk_08116780[thunk_GetRandomValue() % 8], BG_PLTT + 0x160, 0x20);
+                    DmaCopy16(3, &gUnk_08116780[thunk_GetRandomValue() % 8], BG_PLTT + 0x160, sizeof(gUnk_08116780[0]));
                     WorldMapScreenSetPalette(gWorldMapInfo.beatenIndex, 0xB); // 0x160 / 0x20 = 0xB
                 }
             }
@@ -417,7 +417,7 @@ void WorldMapScreenInit(void)
     level = gUnk_03004C20.level;
 
     sub_08003D58();
-    DmaCopy32(3, gOamBuffer, OAM, OAM_SIZE);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
     gUnk_03003410.unk8 = 0;
     gUnk_03004C20.world = 1;
     gUnk_03004C20.level = 1;
@@ -470,7 +470,7 @@ void WorldMapScreenInit(void)
     gBgDataPtrs.pBufBg1Tilemap += 2;
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, 0x260);
     DmaCopy16Wait(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, 0x1BC0);
-    DmaFill16(3, 0, &gBgTilemapBufs[0], 0x800);
+    DmaFill16(3, 0, &gBgTilemapBufs[0], sizeof(gBgTilemapBufs[0]));
 
     for (i = 0, j = 0; i < (20 * 30); j++, i++)
     {

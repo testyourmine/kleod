@@ -23,7 +23,7 @@ void FileSelectScreenInit(void)
 
     sub_08003D58();
 
-    DmaCopy32(3, gOamBuffer, OAM, 0x400);
+    DmaCopy32(3, &gOamBuffer, OAM, sizeof(gOamBuffer));
 
     gUnk_03004C20.world = 1;
     gUnk_03003410.unk8 = 0;
@@ -64,7 +64,7 @@ void FileSelectScreenInit(void)
     gBgInfo[1].pTilemap = VRAM + 0xE800;
     gBgInfo[0].pTiles = VRAM;
     gBgInfo[0].pTilemap = VRAM + 0xE000;
-    DecompressDma(&gUnk_082FBE10, PLTT, 0x200);
+    DecompressDma(&gUnk_082FBE10, BG_PLTT, BG_PLTT_SIZE);
     DmaCopy16(3, gBgDataPtrs.pBufBg2Tiles, gBgInfo[2].pTiles, 0x2900);
     DmaCopy16(3, gBgDataPtrs.pBufBg1Tiles, gBgInfo[1].pTiles, 0x1040);
     DmaCopy16(3, gBgDataPtrs.pBufBg0Tiles, gBgInfo[0].pTiles, 0x2080);
@@ -159,8 +159,8 @@ void FileSelectScreenDrawInfo(u8 arg0)
     u8 col;
     u8 file;
 
-    DmaFill16(3, 0, &gBgTilemapBufs[0][0], 0x800);
-    DmaFill16(3, 0, &gBgTilemapBufs[1][0], 0x800);
+    DmaFill16(3, 0, &gBgTilemapBufs[0], sizeof(gBgTilemapBufs[0]));
+    DmaFill16(3, 0, &gBgTilemapBufs[1], sizeof(gBgTilemapBufs[1]));
 
     for (row = 1; row <= 4; row++)
     {
@@ -582,14 +582,14 @@ void FileSelectScreenHandler(void)
 
             if (gUnk_03003410.unk6 == 0)
             {
-                DmaFill32(3, 0, gSceneSaveData, 0x24);
-                DmaFill32(3, 0, gFileSaveData, 0x40);
+                DmaFill32(3, 0, gSceneSaveData, sizeof(*gSceneSaveData));
+                DmaFill32(3, 0, gFileSaveData, sizeof(*gFileSaveData));
                 gUnk_03004C20.world = 1;
                 gSceneSaveData->world = 1;
                 gSceneSaveData->lives = gUnk_03005220.lives = 3;
                 gSceneSaveData->shootButtonConfig = 2;
                 gSceneSaveData->jumpButtonConfig = 1;
-                DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo[0][0], 0x30);
+                DmaFill16(3, 0x7F7F, &gFileSaveData->levelInfo, sizeof(gFileSaveData->levelInfo));
                 gSceneSaveData->cutsceneId = 0;
                 gUnk_03003410.unkC = 1;
                 gCallbackQueue.current[1] = TransitionFromWorldMapToVisionSelect_FadeOut;
