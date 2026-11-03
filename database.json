@@ -1936,6 +1936,4398 @@
         "size": 1
     },
     {
+        "path": "unk_7D808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7D808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7DA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7DA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7DC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7DC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7DE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7DE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7E008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7E008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7E208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7E208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7E408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7E408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7E608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7E608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7E808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7E808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7EA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7EA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7EC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7EC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7EE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7EE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7F008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7F008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7F208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7F208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7F408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7F408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7F608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7F608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7F808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7F808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7FA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7FA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7FC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7FC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_7FE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x7FE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_80E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x80E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_81E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x81E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_82E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x82E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_83E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x83E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_84E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x84E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_85E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x85E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_86E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x86E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_87E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x87E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_88E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x88E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_89E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x89E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8A008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8A008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8A208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8A208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8A408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8A408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8A608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8A608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8A808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8A808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8AA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8AA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8AC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8AC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8AE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8AE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8B008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8B008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8B208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8B208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8B408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8B408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8B608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8B608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8B808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8B808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8BA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8BA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8BC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8BC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8BE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8BE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8C008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8C008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8C208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8C208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8C408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8C408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8C608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8C608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8C808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8C808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8CA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8CA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8CC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8CC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8CE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8CE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8D008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8D008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8D208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8D208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8D408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8D408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8D608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8D608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8D808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8D808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8DA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8DA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8DC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8DC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8DE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8DE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8E008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8E008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8E208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8E208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8E408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8E408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8E608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8E608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8E808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8E808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8EA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8EA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8EC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8EC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8EE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8EE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8F008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8F008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8F208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8F208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8F408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8F408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8F608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8F608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8F808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8F808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8FA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8FA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8FC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8FC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_8FE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x8FE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_90E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x90E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_91E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x91E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_92E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x92E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_93E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x93E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_94E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x94E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_95E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x95E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_96E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x96E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x97008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97208.gfx",
+        "count": "0x600",
+        "addr": {
+            "us": "0x97208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x97808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x97A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x97C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_97E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x97E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_98E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x98E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_99E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x99E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9A008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9A008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9A208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9A208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9A408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9A408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9A608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9A608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9A808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9A808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9AA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9AA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9AC08.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0x9AC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9AC88.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0x9AC88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9AD08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9AD08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9AF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9AF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9B108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9B108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9B308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9B308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9B508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9B508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9B708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9B708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9B908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9B908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9BB08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9BB08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9BD08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9BD08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9BF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9BF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9C108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9C108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9C308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9C308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9C508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9C508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9C708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9C708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9C908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9C908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9CB08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9CB08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9CD08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9CD08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9CF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9CF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9D108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9D108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9D308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9D308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9D508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9D508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9D708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9D708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9D908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9D908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9DB08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9DB08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9DD08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9DD08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9DF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9DF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9E108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9E108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9E308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9E308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9E508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9E508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9E708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9E708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9E908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9E908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9EB08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9EB08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9ED08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9ED08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9EF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9EF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9F108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9F108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9F308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9F308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9F508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9F508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9F708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9F708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9F908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9F908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9FB08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9FB08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9FD08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9FD08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_9FF08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0x9FF08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0B08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0B08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0D08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0D08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A0F08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA0F08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1B08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1B08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1D08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1D08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A1F08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA1F08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2B08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2B08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2D08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2D08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A2F08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA2F08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3708.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3908.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3B08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3B08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3D08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3D08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A3F08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA3F08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4108.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA4108"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4308.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA4308"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4508.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xA4508"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4708.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xA4708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4788.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xA4788"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4808.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xA4808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A4888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA4888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A5088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA5088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A5888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA5888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A6088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA6088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A6888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA6888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A7088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA7088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A7888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA7888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A8088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA8088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A8888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA8888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A9088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA9088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_A9888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xA9888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AA088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAA088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AA888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAA888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AB088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAB088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AB888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAB888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AC088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAC088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AC888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAC888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AD088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAD088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AD888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAD888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AE088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAE088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AE888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAE888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AF088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAF088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_AF888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xAF888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B0088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB0088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B0888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB0888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B1088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB1088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B1888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB1888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B2088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB2088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B2888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB2888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B3088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB3088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B3888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB3888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B4088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB4088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B4888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB4888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B5088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB5088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B5888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB5888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B6088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB6088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B6888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB6888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B7088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB7088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B7888.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB7888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8088.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xB8088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8888.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB8888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8A88.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xB8A88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8AA8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xB8AA8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8AC8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xB8AC8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8AE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8AE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8B68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8B68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8BE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8BE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8C68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8C68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8CE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8CE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8D68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8D68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8DE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8DE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8E68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8E68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8EE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8EE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8F68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8F68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B8FE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB8FE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9068.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB9068"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B90E8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB90E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9168.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB9168"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B91E8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB91E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9268.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB9268"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B92E8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xB92E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9368.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xB9368"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9468.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9468"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9668.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9668"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9868.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9868"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9A68.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9A68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9C68.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9C68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_B9E68.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xB9E68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BA068.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBA068"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BA268.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBA268"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BA468.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBA468"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BA668.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBA668"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BA868.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBA868"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAA68.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBAA68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAC68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBAC68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BACE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBACE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAD68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBAD68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BADE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBADE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAE68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBAE68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAEE8.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBAEE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAF68.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xBAF68"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BAFE8.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xBAFE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BB0E8.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xBB0E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BB1E8.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xBB1E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BB2E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBB2E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BBAE8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBBAE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BC2E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBC2E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BCAE8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBCAE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BD2E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBD2E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BDAE8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBDAE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BDCE8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBDCE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BDEE8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBDEE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BE0E8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBE0E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BE2E8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBE2E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BE4E8.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xBE4E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BE6E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBE6E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BEEE8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBEEE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BF6E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBF6E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_BFEE8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xBFEE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C06E8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xC06E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C0EE8.gfx",
+        "count": "0x800",
+        "addr": {
+            "us": "0xC0EE8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C16E8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC16E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1708.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC1708"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1728.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC1728"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1748.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC1748"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1768.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC1768"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1788.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC1788"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C17A8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC17A8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C17C8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC17C8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C17E8.gfx",
+        "count": "0x20",
+        "addr": {
+            "us": "0xC17E8"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC1808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C1C08.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC1C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C2008.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC2008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C2408.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC2408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C2808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC2808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C2C08.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC2C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C3008.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC3008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C3408.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC3408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C3808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC3808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C3C08.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC3C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C4008.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC4008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C4408.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC4408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C4808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC4808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C4C08.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC4C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C5008.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC5008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C5408.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC5408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C5808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC5808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C5C08.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC5C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C6008.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC6008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C6408.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC6408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C6808.gfx",
+        "count": "0x400",
+        "addr": {
+            "us": "0xC6808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C6C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC6C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C6E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC6E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C7E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC7E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C8E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC8E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_C9E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xC9E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CA008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCA008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CA208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCA208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CA408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCA408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CA608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCA608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CA808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCA808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CAA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCAA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CAC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCAC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CAE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCAE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CB008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCB008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CB208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCB208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CB408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCB408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CB608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCB608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CB808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCB808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CBA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCBA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CBC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCBC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CBE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCBE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CC008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCC008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CC208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCC208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CC408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCC408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CC608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCC608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CC808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCC808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CCA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCCA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CCC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCCC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CCE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCCE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CD008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCD008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CD208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCD208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CD408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCD408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CD608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCD608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CD808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCD808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CDA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCDA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CDC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCDC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CDE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCDE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CE008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCE008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CE208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCE208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CE408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCE408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CE608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCE608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CE808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCE808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CEA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCEA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CEC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCEC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CEE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCEE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CF008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCF008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CF208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCF208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CF408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCF408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CF608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCF608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CF808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCF808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CFA08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCFA08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CFC08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCFC08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_CFE08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xCFE08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0808.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0A08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0C08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0C08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D0E08.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD0E08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1008.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD1008"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1208.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD1208"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1408.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD1408"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1608.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD1608"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1808.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1808"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1888.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1908.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1908"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1988.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1988"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1A08.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1A08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1A88.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1A88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1B08.gfx",
+        "count": "0x80",
+        "addr": {
+            "us": "0xD1B08"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1B88.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xD1B88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1C88.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xD1C88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1D88.gfx",
+        "count": "0x100",
+        "addr": {
+            "us": "0xD1D88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D1E88.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD1E88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2088.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2088"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2288.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2288"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2488.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2488"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2688.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2688"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2888.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2888"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2A88.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2A88"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D2C88.gfx",
+        "count": "0x200",
+        "addr": {
+            "us": "0xD2C88"
+        },
+        "size": 1
+    },
+    {
         "path": "unk_18BBBC.bin",
         "count": "0x89",
         "addr": {

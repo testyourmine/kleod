@@ -32,8 +32,8 @@ void UpdateEntityAnimationInfoEntries(void)
 {
     vu32 i;
     struct EntityAnimationData *pAnimData;
-    struct EntityAnimationFrameData **pFrames;
-    struct EntityAnimationFrameData *pFrameData;
+    const struct EntityAnimationFrameData **pFrames;
+    const struct EntityAnimationFrameData *pFrameData;
 
     for (i = 0; i < ARRAY_SIZE(gEntityAnimationInfo); i++)
     {
@@ -66,11 +66,11 @@ void UpdateEntityAnimationInfoEntries(void)
 
         pFrames = pAnimData->pFrames;
         pFrameData = pFrames[gEntityAnimationInfo[i].state];
-        if (pFrameData[++gEntityAnimationInfo[i].frame].src == -1)
+        if (pFrameData[++gEntityAnimationInfo[i].frame].src == (void*)-1)
         {
             gEntityAnimationInfo[i].frame = 0;
         }
-        else if (pFrameData[gEntityAnimationInfo[i].frame].src == -2)
+        else if (pFrameData[gEntityAnimationInfo[i].frame].src == (void*)-2)
         {
             gEntityAnimationInfo[i].timer = 0xFF;
             gEntityInfo[pAnimData->entityInfoEntry].visible = 0;
@@ -78,9 +78,9 @@ void UpdateEntityAnimationInfoEntries(void)
             gEntityInfo[pAnimData->entityInfoEntry].unk8.split.unk8 = 0;
             continue;
         }
-        else if (pFrameData[gEntityAnimationInfo[i].frame].src > 9999)
+        else if (pFrameData[gEntityAnimationInfo[i].frame].src > (void*)9999)
         {
-            if (pFrameData[gEntityAnimationInfo[i].frame].src == -3)
+            if (pFrameData[gEntityAnimationInfo[i].frame].src == (void*)-3)
             {
                 gEntityAnimationInfo[i].timer = 0xFF;
                 continue;
@@ -88,7 +88,7 @@ void UpdateEntityAnimationInfoEntries(void)
         }
         else
         {
-            gEntityAnimationInfo[i].state = pFrameData[gEntityAnimationInfo[i].frame].src;
+            gEntityAnimationInfo[i].state = (u32)pFrameData[gEntityAnimationInfo[i].frame].src;
             gEntityAnimationInfo[i].frame = 0;
             pFrameData = pFrames[gEntityAnimationInfo[i].state];
         }

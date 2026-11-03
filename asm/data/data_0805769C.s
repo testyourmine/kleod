@@ -2,34 +2,6 @@
 
 	.section .rodata
 
-    nonmatching _52684, 0x5553C-0x52684
-_52684::
-    .incbin "baserom.gba", 0x52684, 0x5553C-0x52684
-
-    nonmatching gUnk_0805553C, 1
-gUnk_0805553C:: @ 0x0805553C
-    .incbin "baserom.gba", 0x5553C, 1
-
-    nonmatching _5553D, 0x555A8-0x5553D
-_5553D::
-    .incbin "baserom.gba", 0x5553D, 0x555A8-0x5553D
-
-    nonmatching gUnk_080555A8, 1
-gUnk_080555A8:: @ 0x080555A8
-    .incbin "baserom.gba", 0x555A8, 1
-
-    nonmatching _555A9, 0x55614-0x555A9
-_555A9::
-    .incbin "baserom.gba", 0x555A9, 0x55614-0x555A9
-
-    nonmatching gUnk_08055614, 1
-gUnk_08055614:: @ 0x08055614
-    .incbin "baserom.gba", 0x55614, 1
-
-    nonmatching _55615, 0x5769C-0x55615
-_55615::
-    .incbin "baserom.gba", 0x55615, 0x5769C-0x55615
-
     nonmatching gUnk_0805769C, 1
 gUnk_0805769C:: @ 0x0805769C
     .incbin "baserom.gba", 0x5769C, 1

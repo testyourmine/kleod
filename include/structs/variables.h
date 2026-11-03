@@ -702,14 +702,14 @@ extern struct Unk_0300466C *gUnk_0300466C;
 extern struct Unk_0300466C *gUnk_030051DC;
 
 struct EntityAnimationFrameData {
-    /* 0x0 */ u32 src;
+    /* 0x0 */ void *src;
     /* 0x4 */ u8 timer;
     /* 0x5_0 */ s32 unk5_0:4; // related to X position
     /* 0x5_4 */ s32 unk5_4:4; // related to Y position
     /* 0x6 */ u8 pad6[0x8 - 0x6];
 }; /* size = 0x8 */
 struct EntityAnimationData {
-    /* 0x0 */ struct EntityAnimationFrameData **pFrames;
+    /* 0x0 */ const struct EntityAnimationFrameData **pFrames;
     /* 0x4 */ void *dest;
     /* 0x8 */ u16 size;
     /* 0xA */ u8 entityInfoEntry;
