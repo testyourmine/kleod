@@ -1096,4 +1096,10 @@ struct Unk_0300081C {
 };
 extern struct Unk_0300081C *gUnk_0300081C;
 
+struct Unk_08057954 {
+    void *unk0;
+    u16 unk4;
+    u16 unk6;
+};
+
 #endif // GUARD_VARIABLES_H

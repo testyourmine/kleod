@@ -1,5 +1,13 @@
 [
     {
+        "path": "unk_576B4.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0x576B4"
+        },
+        "size": 1
+    },
+    {
         "path": "unk_5C4E8.gfx",
         "count": "0x200",
         "addr": {

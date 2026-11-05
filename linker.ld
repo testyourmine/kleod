@@ -263,7 +263,8 @@ SECTIONS {
     rodata : ALIGN(4) {
         src/data/data_08051BD4.o(.rodata);
         src/data/data_08052684.o(.rodata);
-        asm/data/data_0805769C.o(.rodata);
+        src/data/data_0805769C.o(.rodata);
+        asm/data/data_08057C08.o(.rodata);
         src/data/data_0805C4E8.o(.rodata);
         asm/data/data_08066B08.o(.rodata);
         src/data/data_08077E28.o(.rodata);

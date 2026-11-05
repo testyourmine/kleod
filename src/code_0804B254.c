@@ -15,28 +15,21 @@
 #include "data/trig.h"
 #include "structs/variables.h"
 
-extern const u8 gUnk_0805769C[];
+extern const u8 gUnk_0805769C[0x18];
+extern const u8 gUnk_080576B4[0x20];
+extern const u8 gUnk_080576D4[0x20][2]; // bpp (0 = 16 color mode, 0x80 = 256 color mode)
+extern const u16 gUnk_08057714[0x20][2]; // hLength
+extern const u16 gUnk_08057794[0x20][2]; // vLength
+extern const u16 gUnk_08057814[0x20][2]; // nbrTiles
+extern const u8 gUnk_08057894[0x20][2]; // tileSize
+extern const u8 gUnk_080578D4[0x20][2]; // character base block
+extern const u8 gUnk_08057914[0x20][2]; // screen base block
 
-extern u8 gUnk_080576B4[0x20];
-
-extern const u8 gUnk_080576D4[0x20][2]; // BGxCNT bpp (0 = 16 color mode, 0x80 = 256 color mode)
-extern const u16 gUnk_08057714[0x20][2];
-extern const u16 gUnk_08057794[0x20][2];
-extern const u16 gUnk_08057814[0x20][2];
-extern const u8 gUnk_08057894[0x20][2];
-extern const u8 gUnk_080578D4[0x20][2]; // BGxCNT character base block
-extern const u8 gUnk_08057914[0x20][2]; // BGxCNT screen base block
-
-struct Unk_08057954 {
-    void *unk0;
-    u16 unk4;
-    u16 unk6;
-};
 extern const struct Unk_08057954 gUnk_08057954[];
 
 extern const u8 gUnk_08057ACC[0x20][2][2]; // pair values of {unk, bgNbr}
 
-extern const u16 gUnk_08057B4C[];
+extern const u16 gUnk_08057B4C[0x10]; // REG_BLDCNT
 
 // 0x1177c4
 // TODO: actual size?
