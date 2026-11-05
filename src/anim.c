@@ -8,11 +8,11 @@
 #include "save.h"
 #include "interrupts.h"
 #include "main.h"
+#include "data/data_0807D808.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
 extern u16 gUnk_08057C70;
-extern u8 gUnk_080A5088[0x800];
 
 // 25B78
 void SetEntityAnimationInfoState(s32 slot, u8 state)

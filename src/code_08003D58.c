@@ -11,6 +11,7 @@
 #include "rotation.h"
 #include "vision_select.h"
 #include "data/data_0805C4E8.h"
+#include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "structs/variables.h"
 
@@ -43,16 +44,6 @@ extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern struct EntityAnimationData gUnk_0805553C[9];
 extern struct EntityAnimationData gUnk_080555A8[9];
-
-extern u8 gUnk_080B8F68[0x80];
-extern u8 gUnk_080B9068[0x80];
-extern u8 gUnk_080B90E8[0x80];
-extern u8 gUnk_080B9168[0x80];
-extern u8 gUnk_080B91E8[0x80];
-extern u8 gUnk_080B9268[0x80];
-extern u8 gUnk_080B92E8[0x80];
-extern u8 gUnk_080B9468[0x200];
-extern u8 gUnk_080B9668[0x200];
 
 extern void sub_0801C82C(u32); // should be u8 param
 

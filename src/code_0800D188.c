@@ -10,6 +10,7 @@
 #include "text_box.h"
 #include "util.h"
 #include "data/data_0805C4E8.h"
+#include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -21,9 +22,6 @@ extern struct EntityAnimationData gUnk_08055614[9];
 extern u16 gUnk_08057C50;
 extern u16 gUnk_08057C58;
 
-extern u8 gUnk_0809AC08[0x80];
-extern u8 gUnk_0809AC88[0x80];
-extern u8 gUnk_080B9368[0x100];
 extern u8 gUnk_080D8A70[4][0x20];
 extern u8 gUnk_080D8AF0[2][0x20];
 extern u8 gUnk_080D8B30[8][0x20];

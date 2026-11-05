@@ -4,13 +4,10 @@
 #include "heap.h"
 #include "vision.h"
 #include "data/data_0805C4E8.h"
+#include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u8 gUnk_080B90E8[0x80];
-extern u8 gUnk_080B9168[0x80];
-extern u8 gUnk_080B91E8[0x80];
 
 struct Unk_080D48C8 {
     u16 unk0;

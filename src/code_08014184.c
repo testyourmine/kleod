@@ -11,6 +11,7 @@
 #include "util.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
+#include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -59,14 +60,6 @@ extern const s8 gUnk_0818B8D0[8][2];
 
 extern void *gUnk_0818B7DC[];
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
-
-extern u8 gUnk_080B8F68[0x80];
-extern u8 gUnk_080B8FE8[0x80];
-extern u8 gUnk_080B9068[0x80];
-extern u8 gUnk_080B9268[0x80];
-extern u8 gUnk_080B92E8[0x80];
-extern u8 gUnk_080B9368[0x100];
-extern u8 gUnk_080B9668[0x200];
 
 // 14184
 struct Unk_08014184 sub_08014184(u16 arg1, u16 arg2, u8 arg3)

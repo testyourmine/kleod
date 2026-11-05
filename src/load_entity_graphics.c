@@ -4,14 +4,12 @@
 #include "anim.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
+#include "data/data_0807D808.h"
 #include "structs/variables.h"
 
 extern struct EntityAnimationData *gUnk_08189A24[6][9];
 
 extern void *gUnk_0818B800[6][7];
-
-extern u8 gUnk_080A4888[0x800];
-extern u8 gUnk_080A5888[0x800];
 
 /*
     TODO: May have used macros like these.
