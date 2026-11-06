@@ -10,11 +10,10 @@
 #include "transitions.h"
 #include "util.h"
 #include "wait_for_next_frame.h"
+#include "data/data_08051BD4.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
 
 // 0x11717c
 // x, y, arg4, arg1 (connected ID?), id

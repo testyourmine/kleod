@@ -31,7 +31,7 @@ void SetEntityAnimationInfoState(s32 slot, u8 state)
 void UpdateEntityAnimationInfoEntries(void)
 {
     vu32 i;
-    struct EntityAnimationData *pAnimData;
+    const struct EntityAnimationData *pAnimData;
     const struct EntityAnimationFrameData **pFrames;
     const struct EntityAnimationFrameData *pFrameData;
 

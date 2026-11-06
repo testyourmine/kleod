@@ -15,20 +15,10 @@
 #include "text_box.h"
 #include "util.h"
 #include "vision_select.h"
+#include "data/data_08051BD4.h"
+#include "data/data_08188E5C.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern u8 gVisionBgColorMode[6][9][3]; // BG bpp (0 = 16 color mode, 0x80 = 256 color mode)
-extern u16 gVisionBgHLength[6][9][3];
-extern u16 gVisionBgVLength[6][9][3];
-extern u16 gVisionBgNbrTiles[6][9][3];
-extern u8 gVisionBgTileSize[6][9][3];
-extern struct Unk_03004654 gUnk_080520E4[6][8];
-extern u8 gUnk_08052624[6][9];
-extern u16 gUnk_0805265A[6];
-extern u16 gUnk_08052666[6];
-extern u16 gUnk_08052672[6];
-extern u8 gUnk_0805267E[6];
 
 extern struct CurrentRoomBg2Bounds gUnk_080D2E88[6][0x7][0x14];
 
@@ -43,14 +33,6 @@ extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 
 extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
 extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
-
-extern u32 *gVisionBgPalettes[6][9];   // pointers to BG palettes (level)
-extern u32 *gVisionBgTiles[6][9][3]; // pointers to BG tiles (level)
-extern u32 *gVisionBgTilemaps[6][9][3]; // pointers to BG tilemaps (level)
-
-extern u32 *gVisionSelectBgPalettes[6]; // pointers to BG palettes (overworld)
-extern u32 *gVisionSelectBgTiles[6]; // pointers to BG1 tiles (overworld)
-extern u32 *gVisionSelectBgTilemaps[6]; // pointers to BG1 tilemaps (overworld)
 
 extern u32 *gUnk_0818B7AC[6*2];
 

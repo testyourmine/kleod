@@ -10,6 +10,7 @@
 #include "pause_menu.h"
 #include "rotation.h"
 #include "vision_select.h"
+#include "data/data_08052684.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_0807D808.h"
 #include "data/trig.h"
@@ -38,12 +39,7 @@ extern const u8 gUnk_080E2A84[0x6][0x8];
 
 extern void (*gUnk_08116620[6][9])(void); // pointers to "load level" functions
 
-extern struct EntityAnimationData *gUnk_08189A24[6][9];
-
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
-
-extern struct EntityAnimationData gUnk_0805553C[9];
-extern struct EntityAnimationData gUnk_080555A8[9];
 
 extern void sub_0801C82C(u32); // should be u8 param
 

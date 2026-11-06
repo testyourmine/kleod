@@ -11,25 +11,11 @@
 #include "interrupts.h"
 #include "main.h"
 #include "math.h"
+#include "data/data_0805769C.h"
+#include "data/data_08189AFC.h"
 #include "data/data_0818BBBC.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern const u8 gUnk_0805769C[0x18];
-extern const u8 gUnk_080576B4[0x20];
-extern const u8 gUnk_080576D4[0x20][2]; // bpp (0 = 16 color mode, 0x80 = 256 color mode)
-extern const u16 gUnk_08057714[0x20][2]; // hLength
-extern const u16 gUnk_08057794[0x20][2]; // vLength
-extern const u16 gUnk_08057814[0x20][2]; // nbrTiles
-extern const u8 gUnk_08057894[0x20][2]; // tileSize
-extern const u8 gUnk_080578D4[0x20][2]; // character base block
-extern const u8 gUnk_08057914[0x20][2]; // screen base block
-
-extern const struct Unk_08057954 gUnk_08057954[];
-
-extern const u8 gUnk_08057ACC[0x20][2][2]; // pair values of {unk, bgNbr}
-
-extern const u16 gUnk_08057B4C[0x10]; // REG_BLDCNT
 
 // 0x1177c4
 // TODO: actual size?
@@ -51,14 +37,6 @@ const u16 gUnk_081177C4[16] = {
     0x0,
     0x0
 };
-
-extern u32* gUnk_08189AFC[20];
-extern u32* gUnk_08189B4C[32];
-
-extern u32* gUnk_08189BCC[32][2];
-extern u32* gUnk_08189CCC[32][2];
-
-extern const u8* gUnk_08189DCC[46];
 
 extern struct Unk_0300466C *gUnk_08189E84[0x20];
 

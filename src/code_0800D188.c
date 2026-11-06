@@ -9,6 +9,7 @@
 #include "rand.h"
 #include "text_box.h"
 #include "util.h"
+#include "data/data_08052684.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_0807D808.h"
 #include "data/trig.h"
@@ -16,8 +17,6 @@
 #include "structs/variables.h"
 
 extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
-
-extern struct EntityAnimationData gUnk_08055614[9];
 
 extern u16 gUnk_08057C50;
 extern u16 gUnk_08057C58;

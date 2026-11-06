@@ -662,7 +662,7 @@ struct Unk_03004654 {
     u8 unk1A;
     u8 unk1B;
 };
-extern struct Unk_03004654 *gUnk_03004654;
+extern const struct Unk_03004654 *gUnk_03004654;
 
 extern u8 gUnk_030051C8;
 
@@ -715,8 +715,8 @@ struct EntityAnimationData {
     /* 0xA */ u8 entityInfoEntry;
     /* 0xB */ u8 padB[0xC - 0xB];
 }; /* size = 0xC */
-extern struct EntityAnimationData *gUnk_03005294;
-extern struct EntityAnimationData *gUnk_03005418;
+extern const struct EntityAnimationData *gUnk_03005294;
+extern const struct EntityAnimationData *gUnk_03005418;
 
 extern uintptr_t gObjVramPtr; // OBJ vram ptr
 

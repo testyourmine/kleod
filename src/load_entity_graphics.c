@@ -2,12 +2,11 @@
 #include "load_entity_graphics.h"
 #include "transitions.h"
 #include "anim.h"
+#include "data/data_08052684.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "data/data_0807D808.h"
 #include "structs/variables.h"
-
-extern struct EntityAnimationData *gUnk_08189A24[6][9];
 
 extern void *gUnk_0818B800[6][7];
 
