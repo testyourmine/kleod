@@ -8,11 +8,10 @@
 #include "save.h"
 #include "interrupts.h"
 #include "main.h"
+#include "data/data_08057C08.h"
 #include "data/data_0807D808.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u16 gUnk_08057C70;
 
 // 25B78
 void SetEntityAnimationInfoState(s32 slot, u8 state)
@@ -367,7 +366,7 @@ void DrawVisionEnd(void)
         gEntityInfo[0xB].xPosScreen = DISPLAY_WIDTH_CENTER;
         gEntityInfo[0xC].yPosScreen = 0;
         gEntityInfo[0xB].yPosScreen = 0;
-        DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70 * 0x20), sizeof(gUnk_080A5088));
+        DmaCopy16(3, &gUnk_080A5088, OBJ_VRAM0 + (gUnk_08057C70[0].tileNum * 0x20), sizeof(gUnk_080A5088));
         m4aSongNumStart(MUS_VISION_CLEAR);
     }
 

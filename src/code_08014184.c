@@ -59,7 +59,7 @@ extern const u8 gUnk_08116A36[][4];
 extern const s8 gUnk_0818B8D0[8][2];
 
 extern void *gUnk_0818B7DC[];
-extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
+extern const struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 // 14184
 struct Unk_08014184 sub_08014184(u16 arg1, u16 arg2, u8 arg3)

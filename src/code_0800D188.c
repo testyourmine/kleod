@@ -10,16 +10,14 @@
 #include "text_box.h"
 #include "util.h"
 #include "data/data_08052684.h"
+#include "data/data_08057C08.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
-extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
-
-extern u16 gUnk_08057C50;
-extern u16 gUnk_08057C58;
+extern const struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern u8 gUnk_080D8A70[4][0x20];
 extern u8 gUnk_080D8AF0[2][0x20];
@@ -3343,19 +3341,19 @@ block_1433:
             s32 sp38 = 1;
             if ((gUnk_03004C20.globalFrameCounter % 4) == 0)
             {
-                DmaCopy16(3, &gUnk_0805C8E8, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), sizeof(gUnk_0805C8E8));
+                DmaCopy16(3, &gUnk_0805C8E8, OBJ_VRAM0 + (gUnk_08057C50[0].tileNum * 0x20), sizeof(gUnk_0805C8E8));
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 1)
             {
-                DmaCopy16(3, &gUnk_0805C968, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), sizeof(gUnk_0805C968));
+                DmaCopy16(3, &gUnk_0805C968, OBJ_VRAM0 + (gUnk_08057C58[0].tileNum * 0x20), sizeof(gUnk_0805C968));
             }
             else if ((gUnk_03004C20.globalFrameCounter % 4) == 2)
             {
-                DmaCopy16(3, &gUnk_0809AC08, OBJ_VRAM0 + (gUnk_08057C50 * 0x20), sizeof(gUnk_0809AC08));
+                DmaCopy16(3, &gUnk_0809AC08, OBJ_VRAM0 + (gUnk_08057C50[0].tileNum * 0x20), sizeof(gUnk_0809AC08));
             }
             else
             {
-                DmaCopy16(3, &gUnk_0809AC88, OBJ_VRAM0 + (gUnk_08057C58 * 0x20), sizeof(gUnk_0809AC88));
+                DmaCopy16(3, &gUnk_0809AC88, OBJ_VRAM0 + (gUnk_08057C58[0].tileNum * 0x20), sizeof(gUnk_0809AC88));
             }
             
             if (gUnk_03005220.windBulletDisableTimer == 0x12)

@@ -1,6 +1,8 @@
 #include "global.h"
 #include "data/data_08077E28.h"
+#include "data/data_08078FC8.h"
 #include "data/data_0818BBBC.h"
+#include "structs/variables.h"
 
 // 0x189afc
 u32* gUnk_08189AFC[20] = {
@@ -374,4 +376,40 @@ const u8* gUnk_08189DCC[46] = {
     [43] = gUnk_08078DC8,
     [44] = gUnk_08078D48,
     [45] = gUnk_08078D68
+};
+
+// 0x189e84
+const struct Unk_0300466C * gUnk_08189E84[32] = {
+    [0] = gUnk_0807D308,
+    [1] = gUnk_0807D340,
+    [2] = gUnk_0807D360,
+    [3] = gUnk_0807D390,
+    [4] = gUnk_0807D3C0,
+    [5] = gUnk_0807D428,
+    [6] = gUnk_0807D490,
+    [7] = gUnk_0807D4D8,
+    [8] = gUnk_0807D508,
+    [9] = gUnk_0807D540,
+    [10] = gUnk_0807D568,
+    [11] = gUnk_0807D5A0,
+    [12] = gUnk_0807D5E0,
+    [13] = gUnk_0807D620,
+    [14] = gUnk_0807D670,
+    [15] = gUnk_0807D698,
+    [16] = gUnk_0807D6B8,
+    [17] = gUnk_0807D700,
+    [18] = gUnk_0807D740,
+    [19] = gUnk_0807D768,
+    [20] = NULL,
+    [21] = NULL,
+    [22] = NULL,
+    [23] = NULL,
+    [24] = NULL,
+    [25] = NULL,
+    [26] = NULL,
+    [27] = NULL,
+    [28] = NULL,
+    [29] = NULL,
+    [30] = NULL,
+    [31] = NULL
 };

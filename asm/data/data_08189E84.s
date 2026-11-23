@@ -2,10 +2,6 @@
 
     .section .data
 
-    nonmatching gUnk_08189E84, 0x20*0x4
-gUnk_08189E84:: @ 0x08189E84
-    .incbin "baserom.gba", 0x189E84, 0x20*0x4
-
     nonmatching gUnk_08189F04, 0x20*0x10*0xC
 gUnk_08189F04:: @ 0x08189F04
     .incbin "baserom.gba", 0x189F04, 0x20*0x10*0xC

@@ -696,10 +696,10 @@ struct Unk_0300466C_4 {
 struct Unk_0300466C {
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 pad1[0x4 - 0x1];
-    /* 0x4 */ struct Unk_0300466C_4 *unk4;
+    /* 0x4 */ const struct Unk_0300466C_4 *unk4;
 }; /* size = 0x8 */
-extern struct Unk_0300466C *gUnk_0300466C;
-extern struct Unk_0300466C *gUnk_030051DC;
+extern const struct Unk_0300466C *gUnk_0300466C;
+extern const struct Unk_0300466C *gUnk_030051DC;
 
 struct EntityAnimationFrameData {
     /* 0x0 */ void *src;

@@ -9,11 +9,10 @@
 #include "vision.h"
 #include "wait_for_next_frame.h"
 #include "data/data_08077E28.h"
+#include "data/data_08078FC8.h"
 #include "data/data_0818BBBC.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern struct Unk_0300466C gUnk_0807D7B0[];
 
 struct Unk_08116590 {
     u16 unk0;

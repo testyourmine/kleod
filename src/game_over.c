@@ -10,11 +10,10 @@
 #include "wait_for_next_frame.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
+#include "data/data_08078FC8.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern struct Unk_0300466C gUnk_0807D248[];
 
 struct Unk_08116464 {
     u16 unk0;

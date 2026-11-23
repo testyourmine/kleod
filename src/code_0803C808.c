@@ -52,7 +52,7 @@ extern const u8 gUnk_08116AA4[3];
 extern const u8 gUnk_08116AA7[3];
 extern const u8 gUnk_0811710A[6];
 
-extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
+extern const struct Unk_0300466C *gUnk_0818B8E0[6][9];
 extern const void *gUnk_0818B9F8[];
 
 // 3C808

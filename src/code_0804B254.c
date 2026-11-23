@@ -38,8 +38,6 @@ const u16 gUnk_081177C4[16] = {
     0x0
 };
 
-extern struct Unk_0300466C *gUnk_08189E84[0x20];
-
 struct Unk_08189F04 {
     u16 unk0;
     u16 unk2;

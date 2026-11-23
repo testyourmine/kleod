@@ -12,6 +12,7 @@
 #include "vision_select.h"
 #include "data/data_08052684.h"
 #include "data/data_0805C4E8.h"
+#include "data/data_08078FC8.h"
 #include "data/data_0807D808.h"
 #include "data/trig.h"
 #include "structs/variables.h"
@@ -31,22 +32,20 @@ struct Unk_080E2B64 {
 };
 extern struct Unk_080E2B64 gUnk_080E2B64[6][8][0x64];
 
-extern struct Unk_0300466C gUnk_08078FC8[0xD];
-
 extern const union Unk_03000820 gUnk_080E2A7C;
 
 extern const u8 gUnk_080E2A84[0x6][0x8];
 
 extern void (*gUnk_08116620[6][9])(void); // pointers to "load level" functions
 
-extern struct Unk_0300466C *gUnk_0818B8E0[6][9];
+extern const struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
 extern void sub_0801C82C(u32); // should be u8 param
 
 #define TRANSFER_OAM(slot_) \
     { \
         u8 temp_r1; \
-        struct Unk_0300466C_4 *var_r5; \
+        const struct Unk_0300466C_4 *var_r5; \
         s32 var_sl; \
         u8 temp_r1_29 = gEntityInfo[slot_].unkA; \
         if (gEntityInfo[slot_].unkA < 0xD) \
@@ -1437,7 +1436,7 @@ void EntityUpdateScreenPositionAffine(u8 slot, s8 xOffset, s8 yOffset)
     s16 bg2YOffset;
     s32 yPos;
     s32 xPos;
-    struct Unk_0300466C_4 *var_r0;
+    const struct Unk_0300466C_4 *var_r0;
 
     xOffset++,xOffset--; //fake
     gEntityInfo[slot].xPosScreen = gEntityInfo[slot].xPosBg2 - xOffset - gBgInfo[2].hOfs;
