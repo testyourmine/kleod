@@ -746,7 +746,7 @@ void AthleticChallengeScrollUpdate(void)
     gAthleticChallengeAutoScrollXVelocity = autoScrollXVel & 0xFFFF;
     gAthleticChallengeAutoScrollYVelocity = autoScrollYVel & 0xFFFF;
 
-    if (gUnk_03005220.unk46 != 0)
+    if (gUnk_03005220.klonoaDeathFadeoutTimer != 0)
     {
         scrollFlags &= SCROLL_HORIZONTAL;
         scrollOffset.x = 0;
@@ -797,7 +797,7 @@ void HoverBoardScrollUpdate(void)
     u8 scrollFlags;
 
     scrollFlags = SCROLL_NONE;
-    if (gUnk_03005220.unk46 == 0)
+    if (gUnk_03005220.klonoaDeathFadeoutTimer == 0)
     {
         scrollFlags = SCROLL_RIGHT;
         if ((gEntityInfo[0].xPosBg2 - (gBgInfo[2].hOfs + 0x28)) > 0)

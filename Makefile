@@ -135,7 +135,7 @@ extract:
 	python3 $(EXTRACTOR)
 
 mostlyclean: tidy
-	rm -r data/*
+	rm -rf data/*
 
 clean-tools:
 	@$(foreach tooldir,$(TOOLDIRS),$(MAKE) clean -C $(tooldir);)

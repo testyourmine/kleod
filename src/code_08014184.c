@@ -192,8 +192,8 @@ void sub_080144C4(void)
     // gEntityInfo[0x9].unk10 = 0;
     // gUnk_03005220.allStarsCollected = 0;
     gUnk_03005220.allStarsCollected = gEntityInfo[0x9].visible = gEntityInfo[0xA].visible = 0;
-    gUnk_03005220.unk47 = 0;
-    gUnk_03005220.unk46 = 0;
+    gUnk_03005220.klonoaDeathFallingCounter = 0;
+    gUnk_03005220.klonoaDeathFadeoutTimer = 0;
     gUnk_03005220.unk38 = 0;
     gUnk_03005220.unk43 = 0;
     gUnk_03005220.unk42 = 0;
@@ -265,7 +265,7 @@ void sub_080145A8(s32 arg0)
 // 14624
 void ReceiveDamage(s32 damageTaken)
 {
-    if ((gUnk_03005220.unk46 | gUnk_03003410.unkB | gTransitioning) != 0)
+    if ((gUnk_03005220.klonoaDeathFadeoutTimer | gUnk_03003410.unkB | gTransitioning) != 0)
     {
         return;
     }
@@ -282,7 +282,7 @@ void ReceiveDamage(s32 damageTaken)
     {
         m4aSongNumStart(SE_KLONOA_DEATH);
 
-        gUnk_03005220.unk46 = 0x46;
+        gUnk_03005220.klonoaDeathFadeoutTimer = 0x46;
         gEntityInfo[0x9].visible = 0;
         gEntityInfo[0xA].visible = 0;
         gUnk_03005220.unk57 = 0;
@@ -314,7 +314,7 @@ void ReceiveDamage(s32 damageTaken)
 
     gUnk_03005220.klonoaIdleTimer = 0;
     gUnk_03005220.klonoaInvulnerabilityTimer = 120 + 15; // 135 frames, 2.25 seconds
-    if (gUnk_03005220.unk3D > 1)
+    if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
     {
         gUnk_03005220.unk3D = 1;
         m4aSongNumStart(SE_SILENCE_1);
@@ -3920,7 +3920,7 @@ void sub_0801B688(u8 slot)
 void sub_0801BB6C(u8 slot)
 {
     // Called by ENTITY_ID_SPRING
-    if (gUnk_03005220.unk46 != 0)
+    if (gUnk_03005220.klonoaDeathFadeoutTimer != 0)
     {
         return;
     }
@@ -4873,7 +4873,7 @@ void sub_0801D0D8(u8 slot)
             {
                 gUnk_03005220.unk30 = 1;
 
-                if ((gUnk_03005220.unk3B | gUnk_03005220.unk46) == 0)
+                if ((gUnk_03005220.unk3B | gUnk_03005220.klonoaDeathFadeoutTimer) == 0)
                 {
                     gUnk_03005220.unk3A = gEntityInfo[slot].unkC_4 + 1;
 

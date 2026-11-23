@@ -65,11 +65,11 @@ void sub_0800D188(void)
     sp1C = gEntityInfo[0].yPosBg2;
     sp20 = 0;
 
-    if (gUnk_03005220.unk46 != 0)
+    if (gUnk_03005220.klonoaDeathFadeoutTimer != 0)
     {
-        if (gUnk_03005220.unk46 <= 0x41)
+        if (gUnk_03005220.klonoaDeathFadeoutTimer <= 0x41)
         {
-            if (gUnk_03005220.unk46 == 0x41)
+            if (gUnk_03005220.klonoaDeathFadeoutTimer == 0x41)
             {
                 gBlendValue = 0x10;
                 REG_BLDALPHA = BLDALPHA_MAX;
@@ -90,7 +90,7 @@ void sub_0800D188(void)
         gNewKeys = 0;
         gHeldKeys = 0;
 
-        if (gUnk_03005220.unk46 == 1)
+        if (gUnk_03005220.klonoaDeathFadeoutTimer == 1)
         {
             gCallbackQueue.next[0] = InputHandler_Normal;
             if (gUnk_03004C20.level == 8)
@@ -132,12 +132,12 @@ void sub_0800D188(void)
         }
         else
         {
-            if (((gUnk_03005220.unk31 | gUnk_03005220.unk35) == 0) && (gUnk_03005220.unk47 <= 0x63))
+            if (((gUnk_03005220.unk31 | gUnk_03005220.unk35) == 0) && (gUnk_03005220.klonoaDeathFallingCounter <= 0x63))
             {
-                gUnk_03005220.unk47 += 1;
+                gUnk_03005220.klonoaDeathFallingCounter += 1;
                 if (gEntityInfo[0].yPosScreen <= 0xB7)
                 {
-                    gUnk_03005220.unk46 = 0x46;
+                    gUnk_03005220.klonoaDeathFadeoutTimer = 0x46;
                 }
                 else
                 {
@@ -236,8 +236,6 @@ void sub_0800D188(void)
                         gUnk_03005220.klonoaXVel = 0;
                     }
 
-                    // TODO: which is better
-                    // if (gUnk_03005220.unk3D <= 1)
                     if ((gUnk_03005220.unk3D == 0) || (gUnk_03005220.unk3D == 1))
                     {
                         if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
@@ -272,7 +270,7 @@ void sub_0800D188(void)
                         gUnk_03005220.klonoaXVel = 0;
                     }
 
-                    if (gUnk_03005220.unk3D <= 1)
+                    if ((gUnk_03005220.unk3D == 0) || (gUnk_03005220.unk3D == 1))
                     {
                         if ((gUnk_03004C20.globalFrameCounter % 2) != 0)
                         {
@@ -387,7 +385,7 @@ void sub_0800D188(void)
                 {
                     gEntityInfo[0].xPosBg2 += 1;
                 }
-                if (gUnk_03005220.unk3D <= 1)
+                if ((gUnk_03005220.unk3D == 0) || (gUnk_03005220.unk3D == 1))
                 {
                     gEntityInfo[0].xPosBg2 += 1;
                 }
@@ -399,7 +397,7 @@ void sub_0800D188(void)
                 {
                     gEntityInfo[0].xPosBg2 -= 1;
                 }
-                if (gUnk_03005220.unk3D <= 1)
+                if ((gUnk_03005220.unk3D == 0) || (gUnk_03005220.unk3D == 1))
                 {
                     gEntityInfo[0].xPosBg2 -= 1;
                 }
@@ -430,7 +428,7 @@ void sub_0800D188(void)
                 }
                 else
                 {
-                    if (gUnk_03005220.unk3D > 1)
+                    if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                     {
                         if (gUnk_03005220.unk16 > 0x200)
                         {
@@ -629,7 +627,7 @@ void sub_0800D188(void)
 
             if (flag)
             {
-                if (gUnk_03005220.unk46 == 0)
+                if (gUnk_03005220.klonoaDeathFadeoutTimer == 0)
                 {
                     gUnk_030051C8 = sp20;
                     gTransitioning = TRUE;
@@ -1649,7 +1647,7 @@ block_474:
         {
             if (gUnk_03005220.unk31 == 0)
             {
-                if (gUnk_03005220.unk3D > 1)
+                if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                 {
                     if (!(gHeldKeys & gSceneSaveData->jumpButtonConfig))
                     {
@@ -1869,7 +1867,7 @@ block_474:
                 {
                     sp1C = gEntityInfo[0].yPosBg2 += 3;
                     gUnk_03005220.klonoaYVel = 0x60;
-                    if (gUnk_03005220.unk3D > 1)
+                    if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                     {
                         gUnk_03005220.unk3D = 1;
                         m4aSongNumStart(SE_SILENCE_1);
@@ -1990,7 +1988,7 @@ block_474:
                             else
                             {
                                 gEntityInfo[0].yPosBg2 = gEntityInfo[var_sb].yPosBg2 + -0x18;
-                                if (gUnk_03005220.unk3D > 1)
+                                if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                                 {
                                     gUnk_03005220.unk3D = 1;
                                 }
@@ -2303,7 +2301,7 @@ block_474:
                     if (((gEntityInfo[0].xPosBg2 - 0xC) < (gEntityInfo[var_sb].xPosBg2 + 0xC)) && ((gEntityInfo[0].xPosBg2 + 0xC) > (gEntityInfo[var_sb].xPosBg2 - 0xC)) &&
                         ((gEntityInfo[0].yPosBg2 - 0x18) < gEntityInfo[var_sb].yPosBg2) && (gEntityInfo[0].yPosBg2 > (gEntityInfo[var_sb].yPosBg2 - 0x18)))
                     {
-                        if ((gUnk_03005220.unk3C | gUnk_03005220.unk46) == 0)
+                        if ((gUnk_03005220.unk3C | gUnk_03005220.klonoaDeathFadeoutTimer) == 0)
                         {
                             if (gEntityAnimationInfo[var_sb - gUnk_0300363C].state == 0)
                             {
@@ -2596,7 +2594,7 @@ exit_loop:
                             gUnk_03005220.unk3C = 0;
                             gUnk_03005220.klonoaYVel = 0;
                             gEntityInfo[0].yPosBg2 = sp1C;
-                            if (gUnk_03005220.unk3D > 1)
+                            if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                             {
                                 gUnk_03005220.unk3D = 1;
                             }
@@ -2882,7 +2880,7 @@ block_1185:
             }
             else if (gUnk_03005220.unk31 == 0)
             {
-                if (gUnk_03005220.unk3D > 1)
+                if ((gUnk_03005220.unk3D != 0) && (gUnk_03005220.unk3D != 1))
                 {
                     gUnk_03005220.unk3D = 1;
                     m4aSongNumStart(SE_SILENCE_1);
@@ -3004,7 +3002,7 @@ block_1185:
 
             if (flag)
             {
-                if (gUnk_03005220.unk46 == 0)
+                if (gUnk_03005220.klonoaDeathFadeoutTimer == 0)
                 {
                     gUnk_030051C8 = sp20;
                     gTransitioning = TRUE;
@@ -3036,7 +3034,7 @@ block_1185:
             }
         }
 
-        if ((gUnk_03005220.unk42 | gUnk_03005220.unk46) == 0)
+        if ((gUnk_03005220.unk42 | gUnk_03005220.klonoaDeathFadeoutTimer) == 0)
         {
             if ((gUnk_03004654->unk16 == sp20) && (gUnk_03005220.klonoaYVel >= -0x1B0))
             {
@@ -3849,7 +3847,7 @@ block_1643:
                                 SetEntityAnimationInfoState(0, 0x18);
                             }
                         }
-                        else if (gUnk_03005220.unk3D <= 1)
+                        else if ((gUnk_03005220.unk3D == 0) || (gUnk_03005220.unk3D == 1))
                         {
                             if (gUnk_03005220.unk42 == 0)
                             {
@@ -4093,7 +4091,7 @@ block_1643:
 
     if (gUnk_03004C20.isHoverBoardLevel == 1)
     {
-        if ((gUnk_03005220.unk31 == 1) && (gUnk_03003410.unkB <= 1) && (gUnk_03005220.unk46 == 0))
+        if ((gUnk_03005220.unk31 == 1) && (gUnk_03003410.unkB <= 1) && (gUnk_03005220.klonoaDeathFadeoutTimer == 0))
         {
             gEntityInfo[0xD].xPosBg2 = gEntityInfo[0].xPosBg2 - 0x1C;
             gEntityInfo[0xD].yPosBg2 = gEntityInfo[0].yPosBg2 + 2;
@@ -4275,15 +4273,15 @@ block_1643:
         }
     }
 
-    if (gUnk_03005220.unk46 != 0)
+    if (gUnk_03005220.klonoaDeathFadeoutTimer != 0)
     {
         if (gEntityAnimationInfo[0].state != 0xD)
         {
             SetEntityAnimationInfoState(0, 0xD);
         }
-        if (gUnk_03005220.unk46 > 1)
+        if (gUnk_03005220.klonoaDeathFadeoutTimer > 1)
         {
-            gUnk_03005220.unk46 -= 1;
+            gUnk_03005220.klonoaDeathFadeoutTimer -= 1;
         }
         gEntityInfo[0].xPosBg2 = sp18;
     }

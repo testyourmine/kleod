@@ -1542,7 +1542,6 @@ void EntityBossUpdateScreenPositions(s8 xOffset, s8 yOffset)
     }
 }
 
-
 // A804
 void sub_0800A804(void)
 {
@@ -1550,7 +1549,7 @@ void sub_0800A804(void)
     u32 i;
     u32 slot;
 
-    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0))
+    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.klonoaDeathFadeoutTimer == 0))
     {
         for (i = 0; i < 10; i++)
         {
@@ -1742,7 +1741,7 @@ void sub_0800AC34(void)
         gEntityInfo[0].priority = 0;
     }
 
-    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.unk46 == 0) && (gUnk_03005400.unkC != 0))
+    if ((gNewKeys & START_BUTTON) && (gTransitioning == FALSE) && (gUnk_03005220.klonoaDeathFadeoutTimer == 0) && (gUnk_03005400.unkC != 0))
     {
         for (i = 0; i < 10; i++)
         {

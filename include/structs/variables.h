@@ -518,8 +518,8 @@ struct Unk_03005220 {
     /* 0x43 */ u8 unk43; // State of entity being carried, 0 is not carried, 1 is carried, 2 is being squished (for enemy)
     /* 0x44 */ u8 unk44;
     /* 0x45 */ u8 unk45;
-    /* 0x46 */ u8 unk46;
-    /* 0x47 */ u8 unk47;
+    /* 0x46 */ u8 klonoaDeathFadeoutTimer; // death timer, counts down to fade out
+    /* 0x47 */ u8 klonoaDeathFallingCounter; // death counter, counts up for as long as Klonoa is in the air 
     /* 0x48 */ u8 unk48;
     /* 0x49 */ u8 unk49;
     /* 0x4A */ u8 unk4A;
@@ -528,23 +528,23 @@ struct Unk_03005220 {
     /* 0x4D */ u8 levelTimeMinutes; // current level timer minutes
     /* 0x4E */ u8 levelTimeSeconds; // current level timer seconds
     /* 0x4F */ u8 levelTimeCentiseconds; // current level timer centiseconds
-    /* 0x50 */ u8 unk50;
-    /* 0x51 */ u8 unk51;
-    /* 0x52 */ u8 unk52;
-    /* 0x53 */ u8 unk53;
+    /* 0x50 */ u8 unk50; // Entering Cannon Goal related, X vel cap is reached
+    /* 0x51 */ u8 unk51; // Entering Cannon Goal related, Y vel cap is reached
+    /* 0x52 */ u8 unk52; // Cannon Goal related, 0x40 moves Klonoa up, 0x80 moves Klonoa down
+    /* 0x53 */ u8 unk53; // Bool, Klonoa is holding a box while being on a wind gust
     /* 0x54 */ s8 unk54; // Box X position as its being picked up and put into position?
     /* 0x55 */ s8 unk55; // Box Y position as its being picked up and put into position?
-    /* 0x56 */ s8 unk56;
-    /* 0x57 */ s8 unk57;
+    /* 0x56 */ s8 unk56; // X velocity (offset?) of Klonoa when grabbing onto a stationary object (e.g. magnet or Goomi)
+    /* 0x57 */ s8 unk57; // Y velocity (offset?) of Klonoa when grabbing onto a stationary object (e.g. magnet or Goomi)
     /* 0x58 */ u8 pressedWaterSwitches; // bitfield of Water Switches that are pressed
-    /* 0x59 */ u8 unk59;
-    /* 0x5A */ u8 unk5A;
+    /* 0x59 */ u8 unk59; // Delay after picking up magnet block from magnet before it can re-attach
+    /* 0x5A */ u8 unk5A; // Klonoa is hitting the top of a grated platform while on a wind gust
     /* 0x5B */ u8 unk5B; // Klonoa is invulnerable (usually from being hit)
     /* 0x5C */ u8 unk5C; // Related to being able to control Klonoa
     /* 0x5D */ u8 allStarsCollected; // All 3 stars collected
     /* 0x5E */ u8 klonoaPrevIdleAnimation; // The previous idle animation state ID (28-32)
-    /* 0x5F */ u8 unk5F;
-    /* 0x60 */ u16 unk60;
+    /* 0x5F */ u8 pad5F[0x60 - 0x5F];
+    /* 0x60 */ u16 unk60; // level time, in hundreths of a centisecond
     /* 0x62 */ u8 pad62[0x64 - 0x62];
 }; /* size = 0x64 */
 extern struct Unk_03005220 gUnk_03005220;
