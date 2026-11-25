@@ -576,7 +576,7 @@ struct BossStageScroll {
 extern struct BossStageScroll gBossStageScroll; // Maybe more aptly "Camera" than "Scroll"
 
 struct Unk_03005400 {
-    /* 0x00 */ u16 unk0;
+    /* 0x00 */ u16 unk0; // timer
     /* 0x02 */ u16 unk2; // timer to spawn heart
     /* 0x04 */ u16 unk4;
     /* 0x06 */ u16 unk6;

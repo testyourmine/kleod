@@ -1778,11 +1778,12 @@ void sub_0800AC34(void)
             {
                 if (gEntityInfo[slot].unk8.split.unk8 == 0)
                 {
-                    if (gUnk_03005400.unk2 < 0xE10)
+                    if (gUnk_03005400.unk2 < CONVERT_SECONDS(60.f))
                     {
-                        gUnk_03005400.unk2 += 1;
+                        APPLY_DELTA_TIME_INC(gUnk_03005400.unk2);
                     }
-                    if (gUnk_03005400.unk2 == 0xE10)
+
+                    if (gUnk_03005400.unk2 == CONVERT_SECONDS(60.f))
                     {
                         gEntityInfo[slot].unkF = 0x19;
                         gUnk_03005400.unk2 = 0;

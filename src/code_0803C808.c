@@ -648,7 +648,6 @@ void sub_0803D4AC(u8 arg0, struct Unk_0803D4AC arg1)
 void sub_0803D90C(u8 slot)
 {
     // World 1 boss (Chipple)
-    s32 var_r0_3;
     u8 var_r2;
     s32 var_r9;
     u8 temp_r3_4;
@@ -659,7 +658,7 @@ void sub_0803D90C(u8 slot)
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
     gUnk_03003620 = gUnk_081168E8[gUnk_03005400.unk9];
     sub_0803D4AC(slot, gUnk_03003620);
@@ -729,7 +728,7 @@ void sub_0803D90C(u8 slot)
                     SetEntityAnimationInfoState(slot, 0xC);
                     gUnk_03005400.unkE_7 = 1;
                     gUnk_03005400.unkA = 4;
-                    gUnk_03005400.unk0 = 160; // 2.667 seconds 
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(2.f + 2.f / 3);
                 }
                 break;
 
@@ -758,7 +757,7 @@ void sub_0803D90C(u8 slot)
             case 1:
                 if (gUnk_03005400.unk0 == 0)
                 {
-                    gUnk_03005400.unk0 = 0x3C;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f);
                     if (gEntityInfo[slot].hvFlip == 0)
                     {
                         gEntityInfo[slot].xPosBg2 += 0x10;
@@ -779,7 +778,7 @@ void sub_0803D90C(u8 slot)
                     gUnk_03005400.unk8_0 = 1;
                 }
 
-                if (gUnk_03005400.unk0 == 1)
+                if (gUnk_03005400.unk0 == CONVERT_SECONDS(1.f / 60))
                 {
                     DmaCopy16Wait(3, &gUnk_08078508, OBJ_PLTT + gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20, sizeof(gUnk_08078508));
                     if (gUnk_03005400.unkC == 0)
@@ -789,7 +788,7 @@ void sub_0803D90C(u8 slot)
                         gEntityInfo[0x14].unkF = 0x1C;
 
                         gUnk_03005400.unkA = 0xC;
-                        gUnk_03005400.unk0 = 0x100;
+                        gUnk_03005400.unk0 = CONVERT_SECONDS(4.f + 4.f / 15);
                         gUnk_03005400.unk8_0 = 1;
                         gUnk_03005400.unk8_6 = 1;
                     }
@@ -905,7 +904,7 @@ void sub_0803D90C(u8 slot)
                 if (gEntityAnimationInfo[slot - gUnk_0300363C].state != 0)
                 {
                     SetEntityAnimationInfoState(slot, 0);
-                    gUnk_03005400.unk0 = 0x20;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(.5f + 1.f / 30);
                 }
                 if (gUnk_03005400.unk0 == 0)
                 {
@@ -925,12 +924,7 @@ void sub_0803D90C(u8 slot)
                     break;
                 }
 
-                var_r0_3 = Abs(gEntityInfo[slot].xPosBg2 - gEntityInfo[0].xPosBg2);
-                if (var_r0_3 < 0)
-                {
-                    var_r0_3 += 7;
-                }
-                temp_r3_4 = var_r0_3 >> 3;
+                temp_r3_4 = Abs(gEntityInfo[slot].xPosBg2 - gEntityInfo[0].xPosBg2) / 8;
 
                 if ((temp_r3_4 > gUnk_081169F9[gUnk_03005400.unkC - 1][2]) && (gUnk_03005220.unk43 != 0) && (gUnk_03005400.unk14 != 3))
                 {
@@ -1104,11 +1098,11 @@ void sub_0803D90C(u8 slot)
                 {
                     gUnk_03005400.unk9 = 0x1E;
                     sub_0803D140(0x1E);
-                    gUnk_03005400.unk0 = 0x46;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f + 1.f / 6);
                     gUnk_03005400.unk10 = 0;
                 }
 
-                if (gUnk_03005400.unk0 > 0xA)
+                if (gUnk_03005400.unk0 > CONVERT_SECONDS(1.f / 6))
                 {
                     if ((gEntityInfo[0].xPosBg2 < gEntityInfo[slot].xPosBg2) && (gEntityInfo[slot].hvFlip == 0))
                     {
@@ -1129,7 +1123,7 @@ void sub_0803D90C(u8 slot)
                     gUnk_03005400.unk11 = 0;
                 }
 
-                if (gUnk_03005400.unk0 == 1)
+                if (gUnk_03005400.unk0 == CONVERT_SECONDS(1.f / 60))
                 {
                     gUnk_03005400.unk8_0 = 0;
                     gUnk_03005400.unk0 = 0;
@@ -1154,7 +1148,7 @@ void sub_0803D90C(u8 slot)
                     gUnk_03003590[0].unk4 = 0;
                     gUnk_03005400.unk9 = 0;
                     sub_0803D140(0);
-                    gUnk_03005400.unk0 = 0x14;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f / 3);
                     gUnk_03005400.unk13 = 1;
                     gUnk_03005400.unkE_1 = 1;
                     gUnk_03005400.unkD = 5;
@@ -1182,7 +1176,7 @@ void sub_0803D90C(u8 slot)
                     {
                         gUnk_03003590[0].unk4 = 0;
                         gUnk_03005400.unkA = 9;
-                        gUnk_03005400.unk0 = 0x3C;
+                        gUnk_03005400.unk0 = CONVERT_SECONDS(1.f);
                         SetEntityAnimationInfoState(slot, 9);
                     }
                     else if (gUnk_03003590[0].unk4 == 0)
@@ -1315,18 +1309,15 @@ void sub_0803E904(u8 slot)
 {
     // World 2 boss (Muzika)
     u8 sp14;
-    s32 var_r0_3;
-    s32 var_r0_4;
 
     do {} while(0); // Required to match
-
     sp14 = gUnk_03005400.unkC - 1;
     gEntityInfo[slot].affineHFlip_matrixNum = 3;
     gEntityInfo[slot].affineDouble = 1;
-    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip ;
+    gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
     sub_0803D4AC(slot, gUnk_03003620);
 
@@ -1412,12 +1403,12 @@ void sub_0803E904(u8 slot)
 
                 if (gUnk_03005400.unk0 == 0)
                 {
-                    gUnk_03005400.unk0 = 0x3C;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f);
                     gUnk_03005400.unk8_0 = 1;
                     gUnk_03005400.unk8_6 = 1;
                 }
 
-                if (gUnk_03005400.unk0 == 1)
+                if (gUnk_03005400.unk0 == CONVERT_SECONDS(1.f / 60))
                 {
                     DmaCopy16Wait(3, &gUnk_08078628, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_08078628));
 
@@ -1592,12 +1583,7 @@ void sub_0803E904(u8 slot)
                 gUnk_03005400.unk8_6 = 1;
 
                 gUnk_03005400.unk15 += 1;
-                var_r0_3 = (s8) gUnk_03005400.unk15;
-                if (var_r0_3 < 0)
-                {
-                    var_r0_3 += 7;
-                }
-                if ((var_r0_3 >> 3) & 1)
+                if ((gUnk_03005400.unk15 / 8) & 1)
                 {
                     gUnk_03003590[0].unk0 += 8;
                     gUnk_03003590[0].unk2 += 8;
@@ -1628,12 +1614,7 @@ void sub_0803E904(u8 slot)
 
             case 7:
                 gUnk_03005400.unk15 += 1;
-                var_r0_4 = (s8) gUnk_03005400.unk15;
-                if (var_r0_4 < 0)
-                {
-                    var_r0_4 += 7;
-                }
-                if ((var_r0_4 >> 3) & 1)
+                if ((gUnk_03005400.unk15 / 8) & 1)
                 {
                     gUnk_03003590[0].unk0 += 9;
                     gUnk_03003590[0].unk2 += 9;
@@ -1974,7 +1955,7 @@ void sub_0803F9EC(u8 slot)
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
     DmaCopy16(3, &gUnk_080D8C30[(gUnk_03004C20.sceneFrameCounter / 12) % 6], BG_PLTT + 0x100, sizeof(gUnk_080D8C30[0]));
     if ((gEntityInfo[0].yPosBg2 > 0x147) && (gUnk_03005220.hearts != 0))
@@ -2045,12 +2026,12 @@ void sub_0803F9EC(u8 slot)
                 gEntityInfo[slot].priority = 1;
                 gEntityInfo[slot].unkF = 0;
                 SetEntityAnimationInfoState(slot, 0);
-                gUnk_03005400.unk0 = gUnk_08116A46[gUnk_03005400.unkC][0] * 0x3C;
+                gUnk_03005400.unk0 = gUnk_08116A46[gUnk_03005400.unkC][0] * CONVERT_SECONDS(1.f);
                 gUnk_03005400.unkA = 4;
                 break;
 
             case 4:
-                if (gUnk_03005400.unk0 > (gUnk_08116A46[gUnk_03005400.unkC][1] * 0x3C))
+                if (gUnk_03005400.unk0 > (gUnk_08116A46[gUnk_03005400.unkC][1] * CONVERT_SECONDS(1.f)))
                 {
                     break;
                 }
@@ -2060,7 +2041,7 @@ void sub_0803F9EC(u8 slot)
                     if ((gUnk_03005400.unk14 >> gUnk_03005400.unk13) & 1)
                     {
                         var_r1 = ((gUnk_03004C20.sceneFrameCounter / 8) % 4) + 1;
-                        if (gUnk_03005400.unk0 == 1)
+                        if (gUnk_03005400.unk0 == CONVERT_SECONDS(1.f / 60))
                         {
                             var_r1 = 0;
                         }
@@ -2072,7 +2053,7 @@ void sub_0803F9EC(u8 slot)
                             }
                         }
                     }
-                    if (gUnk_03005400.unk0 > 0x78)
+                    if (gUnk_03005400.unk0 > CONVERT_SECONDS(2.f))
                     {
                         break;
                     }
@@ -2129,7 +2110,7 @@ void sub_0803F9EC(u8 slot)
                     gUnk_03005400.unk13 = 0;
                     gUnk_03005400.unk15 += 1;
                     gUnk_03005400.unkA = 5;
-                    gUnk_03005400.unk0 = 0x50;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f + 1.f / 3);
                     gEntityInfo[slot].priority = 0;
                 }
                 break;
@@ -2155,7 +2136,7 @@ void sub_0803F9EC(u8 slot)
                         }
                         else
                         {
-                            gUnk_03005400.unk0 = 0x60;
+                            gUnk_03005400.unk0 = CONVERT_SECONDS(1.6f);
                             gUnk_03005400.unkA = 6;
                         }
                     }
@@ -2212,7 +2193,7 @@ void sub_0803F9EC(u8 slot)
                     sub_0803F950(0x1C);
                     gUnk_03005400.unkA = 2;
                     SetEntityAnimationInfoState(slot, 2);
-                    gUnk_03005400.unk0 = 0x3C;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f);
                 }
                 break;
 
@@ -2750,7 +2731,7 @@ void sub_08040F1C(u8 slot)
     gUnk_03003590[0].unk5_0 = gEntityInfo[0x12].hvFlip;
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
 
     if ((gEntityInfo[0].yPosBg2 > 0x14F) && (gUnk_03005220.hearts != 0))
@@ -2855,7 +2836,7 @@ void sub_08040F1C(u8 slot)
                 if (((gUnk_03003590[0].unk0 >= 0) || ((gUnk_03003590[0].unk0 += 8) >= 0)) && (gEntityInfo[slot].yPosBg2 <= 0xB0))
                 {
                     gUnk_03005400.unkA = 0xFF;
-                    gUnk_03005400.unk0 = 0x40;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f + 1.f / 15);
                     gUnk_03005400.unk16 = 6;
                 }
                 break;
@@ -3048,7 +3029,7 @@ void sub_08040F1C(u8 slot)
                         gUnk_03005400.unk13 = 0;
                         m4aSongNumStart(0x6E);
                         gUnk_03005400.unkA = 9;
-                        gUnk_03005400.unk0 = 0x20;
+                        gUnk_03005400.unk0 = CONVERT_SECONDS(.5f + 1.f / 30);
                     }
                 }
                 break;
@@ -3082,17 +3063,17 @@ void sub_08040F1C(u8 slot)
                             gEntityInfo[slot].unk8.all = 3;
                         }
 
-                        if (temp_r2_4 <= 7)
+                        if (temp_r2_4 < (s32)(0x20 * .25f))
                         {
-                            gUnk_03005400.unk0 = 0x78;
+                            gUnk_03005400.unk0 = CONVERT_SECONDS(2.f);
                         }
-                        else if (temp_r2_4 <= 0x17)
+                        else if (temp_r2_4 < (s32)(0x20 * .75f))
                         {
-                            gUnk_03005400.unk0 = 0xB4;
+                            gUnk_03005400.unk0 = CONVERT_SECONDS(3.f);
                         }
                         else
                         {
-                            gUnk_03005400.unk0 = 0xF0;
+                            gUnk_03005400.unk0 = CONVERT_SECONDS(4.f);
                         }
 
                         gUnk_03005400.unkE_2 = 1;
@@ -3244,7 +3225,7 @@ void sub_08040F1C(u8 slot)
                     gEntityInfo[0x12].priority = 2;
 
                     SetEntityAnimationInfoState(slot, 8);
-                    gUnk_03005400.unk0 = 0x20;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(.5f + 1.f / 30);
                     gUnk_03005400.unkA = 0xD;
                 }
                 break;
@@ -3492,7 +3473,7 @@ void sub_08042024(u8 slot)
 
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
 
     if (gEntityInfo[slot].unkF == 14)
@@ -3531,7 +3512,7 @@ void sub_08042024(u8 slot)
                 if (gUnk_03003590[0].unk0 == 0)
                 {
                     gUnk_03005400.unkA = 0xFF;
-                    gUnk_03005400.unk0 = 0x3C;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(1.f);
                 }
                 break;
 
@@ -3579,7 +3560,7 @@ void sub_08042024(u8 slot)
                 gEntityInfo[slot].yPosBg2 = spC.unk2;
                 if (((gEntityInfo[slot].xPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk0 >> 3)) && ((gEntityInfo[slot].yPosBg2 >> 3) == (gUnk_080E2B64[gUnk_03004C20.world - 1][gUnk_03004C20.level - 1][slot - 0xD].unk0[gUnk_03004C20.room - 1].unk2 >> 3)))
                 {
-                    gUnk_03005400.unk0 = 0x1E;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(.5f);
                     gUnk_03005400.unkA = 0xD;
                 }
 
@@ -3798,13 +3779,13 @@ b:
                 REG_IE &= ~INTR_FLAG_HBLANK;
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
                 m4aSongNumStop(0x73);
-                if (gUnk_03005400.unkC)
+                if (gUnk_03005400.unkC != 0)
                 {
-                    gUnk_03005400.unk0 = 0x800;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(34.f + 2.f / 15);
                 }
                 else
                 {
-                    gUnk_03005400.unk0 = 0x800;
+                    gUnk_03005400.unk0 = CONVERT_SECONDS(34.f + 2.f / 15);
                 }
                 break;
 
@@ -4032,7 +4013,7 @@ void sub_08042E64(u8 slot)
 
     if (gUnk_03005400.unk0 != 0)
     {
-        gUnk_03005400.unk0 -= 1;
+        APPLY_DELTA_TIME_DEC(gUnk_03005400.unk0);
     }
 
     if (gEntityAnimationInfo[slot - gUnk_0300363C].state == 0x18)
@@ -4073,7 +4054,7 @@ void sub_08042E64(u8 slot)
                 gIntrTable.hBlank = HBlankIntr_WavyBackground;
                 REG_IE &= ~INTR_FLAG_HBLANK;
                 REG_DISPSTAT &= ~DISPSTAT_HBLANK_INTR;
-                gUnk_03005400.unk0 = 0x40;
+                gUnk_03005400.unk0 = CONVERT_SECONDS(1.f + 1.f / 15);
                 gUnk_03005400.unkA = 1;
                 SetEntityAnimationInfoState(slot, 0x18);
                 break;
@@ -4102,7 +4083,7 @@ void sub_08042E64(u8 slot)
             case 0:
                 gBossStageScroll.targetYPos = 0x80;
                 gBossStageScroll.targetMag = 0;
-                gUnk_03005400.unk0 = 0x78;
+                gUnk_03005400.unk0 = CONVERT_SECONDS(2.f);
                 gUnk_03005400.unkA = 1;
                 break;
 
@@ -4290,11 +4271,11 @@ void sub_08042E64(u8 slot)
                 }
 
                 gUnk_03005400.unkA = 2;
-                gUnk_03005400.unk0 = 0x80;
+                gUnk_03005400.unk0 = CONVERT_SECONDS(2.f + 2.f / 15);
                 break;
 
             case 2:
-                if (gUnk_03005400.unk0 == 1)
+                if (gUnk_03005400.unk0 == CONVERT_SECONDS(1.f / 60))
                 {
                     DmaCopy16Wait(3, &gUnk_080789C8, OBJ_PLTT + (gUnk_0818B8E0[gUnk_03004C20.world - 1][gUnk_03004C20.level]->unk4[slot - 0xC].bpp_paletteNum * 0x20), sizeof(gUnk_080789C8));
 

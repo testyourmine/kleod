@@ -59,6 +59,17 @@
     (a) ^= (b); \
 })
 
+// Target FPS
+#define FRAMES_PER_SECOND 60
+// Amount of time that happens in one frame
+#define DELTA_TIME 1
+// Converts a floating point value of seconds to an amount of frames (CONVERT_SECONDS(1.f) == FRAMES_PER_SECOND)
+#define CONVERT_SECONDS(s) ((s32)((s) * FRAMES_PER_SECOND))
+// Applies the delta time to a value via decrementation
+#define APPLY_DELTA_TIME_DEC(v) ((v) -= DELTA_TIME)
+// Applies the delta time to a value via incrementation
+#define APPLY_DELTA_TIME_INC(v) ((v) += DELTA_TIME)
+
 /**
  * @brief Flag to allow the non-matching version of the code
  * 
