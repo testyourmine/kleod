@@ -612,24 +612,6 @@ struct Unk_03005400 {
 }; /* size = 0x18 */
 extern struct Unk_03005400 gUnk_03005400;
 
-struct Unk_03005440 {
-    /* 0x00 */ u16 unk0;
-    /* 0x02 */ u16 unk2;
-    /* 0x04 */ u16 unk4;
-    /* 0x06 */ u16 unk6;
-    /* 0x08 */ u8 pad8[0xC - 0x8];
-    /* 0x0C */ u16 unkC;
-    /* 0x0E */ u16 unkE;
-    /* 0x10 */ u16 unk10;
-    /* 0x12 */ u16 unk12;
-    /* 0x14 */ u8 pad14[0x18 - 0x14];
-    /* 0x18 */ u16 unk18;
-    /* 0x1A */ u16 unk1A;
-    /* 0x1C */ u16 unk1C;
-    /* 0x1E */ u16 unk1E;
-}; /* size = 0x20 */
-extern struct Unk_03005440 gUnk_03005440;
-
 extern u8 gUnk_03000800;
 
 struct Unk_03004654 {
@@ -899,12 +881,13 @@ struct Unk_080D821C_4 {
 struct Unk_080D821C {
     /* 0x0 */ u16 unk0;
     /* 0x2 */ u16 unk2;
-    /* 0x4 */ struct Unk_080D821C_4 *unk4;
+    /* 0x4 */ const struct Unk_080D821C_4 *unk4;
     /* 0x8 */ u8 unk8;
     /* 0x9 */ u8 unk9;
     /* 0xA */ u8 padA[0xC - 0xA];
 }; /* size = 0xC */
-extern struct Unk_080D821C *gUnk_03004D80;
+extern const struct Unk_080D821C *gUnk_03004D80;
+extern struct Unk_080D821C_4 gUnk_03005440[3];
 
 extern u16 gUnk_030051E0;
 
@@ -1100,6 +1083,26 @@ struct Unk_08057954 {
     void *unk0;
     u16 unk4;
     u16 unk6;
+};
+
+struct Unk_080D48C8 {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4_0:2;
+    u8 unk4_2:6;
+    u8 pad5[0x8 - 0x5];
+};
+
+struct Unk_080D6458 {
+    u16 unk0;
+    u16 unk2;
+    u8 unk4_0:2;
+    u8 pad5[0x8 - 0x5];
+};
+
+struct Unk_080D89A8 {
+    s32 unk0;
+    s32 unk4;
 };
 
 #endif // GUARD_VARIABLES_H

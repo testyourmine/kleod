@@ -13,17 +13,13 @@
 #include "data/data_08057C08.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_0807D808.h"
+#include "data/data_080D2E88.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
 
 extern const struct Unk_0300466C *gUnk_0818B8E0[6][9];
 
-extern u8 gUnk_080D8A70[4][0x20];
-extern u8 gUnk_080D8AF0[2][0x20];
-extern u8 gUnk_080D8B30[8][0x20];
-
-extern const u8 gUnk_080D8E10[3];
 extern s8 gUnk_080D90B8[0x16];
 extern s8 gUnk_080D9110[0x40];
 extern u8 gUnk_08116894[6][4];

@@ -11,33 +11,9 @@
 #include "pause_menu.h"
 #include "rand.h"
 #include "util.h"
+#include "data/data_080D2E88.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-struct Unk_080D48C8 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 unk4_2:6;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
-
-struct Unk_080D6458 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D6458 gUnk_080D6458[6];
-
-extern struct Unk_080D821C gUnk_080D821C[0xD];
-
-struct Unk_080D89A8 {
-    s32 unk0;
-    s32 unk4;
-};
-extern struct Unk_080D89A8 gUnk_080D89A8[5][5];
 
 extern struct Unk_0300542C *gUnk_0818B704[6][7];
 

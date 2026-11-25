@@ -5,18 +5,10 @@
 #include "vision.h"
 #include "data/data_0805C4E8.h"
 #include "data/data_0807D808.h"
+#include "data/data_080D2E88.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-struct Unk_080D48C8 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 unk4_2:6;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 
 struct Unk_080E2B64_0 {
     u16 unk0;

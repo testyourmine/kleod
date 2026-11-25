@@ -17,11 +17,10 @@
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "data/data_0807D808.h"
+#include "data/data_080D2E88.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
-
-extern u8 gUnk_080D8C30[6][0x40];
 
 struct Unk_080E2B64_0 {
     u16 unk0;
@@ -220,14 +219,15 @@ void sub_0803C808(void)
             REG_BG1CNT = 0x0000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][1] | BGCNT_PRIORITY(0) | BGCNT_SCREENBASE(29) | BGCNT_CHARBASE(1) | BGCNT_MOSAIC;
             REG_BG2CNT = 0x8000 | gVisionBgColorMode[gUnk_03004C20.world - 1][gUnk_03004C20.level][2] | BGCNT_PRIORITY(1) | BGCNT_SCREENBASE(30) | BGCNT_CHARBASE(2) | BGCNT_MOSAIC;
 
-            gUnk_03005440.unkC = 0x30;
-            gUnk_03005440.unkE = 0;
-            gUnk_03005440.unk10 = 0x30;
-            gUnk_03005440.unk12 = 0x200;
-            gUnk_03005440.unk18 = 0x1B0;
-            gUnk_03005440.unk1A = 0;
-            gUnk_03005440.unk1C = 0x1B0;
-            gUnk_03005440.unk1E = 0x200;
+            gUnk_03005440[1].unk0 = 0x30;
+            gUnk_03005440[1].unk2 = 0;
+            gUnk_03005440[1].unk4 = 0x30;
+            gUnk_03005440[1].unk6 = 0x200;
+
+            gUnk_03005440[2].unk0 = 0x1B0;
+            gUnk_03005440[2].unk2 = 0;
+            gUnk_03005440[2].unk4 = 0x1B0;
+            gUnk_03005440[2].unk6 = 0x200;
             break;
 
         case 5:

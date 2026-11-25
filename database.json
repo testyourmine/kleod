@@ -6336,6 +6336,191 @@
         "size": 1
     },
     {
+        "path": "unk_D8A70.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8A70"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8A90.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8A90"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8AB0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8AB0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8AD0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8AD0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8AF0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8AF0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8B10.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8B10"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8B30.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8B30"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8B50.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8B50"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8B70.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8B70"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8B90.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8B90"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8BB0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8BB0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8BD0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8BD0"
+        },
+        "size": 1
+    },    
+    {
+        "path": "unk_D8BF0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8BF0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8C10.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8C10"
+        },
+        "size": 1
+    },
+
+    {
+        "path": "unk_D8C30.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8C30"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8C70.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8C70"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8CB0.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8CB0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8CF0.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8CF0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8D30.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8D30"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8D70.pal",
+        "count": "0x40",
+        "addr": {
+            "us": "0xD8D70"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8DB0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8DB0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8DD0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8DD0"
+        },
+        "size": 1
+    },
+    {
+        "path": "unk_D8DF0.pal",
+        "count": "0x20",
+        "addr": {
+            "us": "0xD8DF0"
+        },
+        "size": 1
+    },
+    {
         "path": "unk_18BBBC.bin",
         "count": "0x89",
         "addr": {

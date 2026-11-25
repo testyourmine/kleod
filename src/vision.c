@@ -16,20 +16,10 @@
 #include "util.h"
 #include "vision_select.h"
 #include "data/data_08051BD4.h"
+#include "data/data_080D2E88.h"
 #include "data/data_08188E5C.h"
 #include "data/trig.h"
 #include "structs/variables.h"
-
-extern struct CurrentRoomBg2Bounds gUnk_080D2E88[6][0x7][0x14];
-
-struct Unk_080D48C8 {
-    u16 unk0;
-    u16 unk2;
-    u8 unk4_0:2;
-    u8 unk4_2:6;
-    u8 pad5[0x8 - 0x5];
-};
-extern struct Unk_080D48C8 gUnk_080D48C8[6][7][0x15];
 
 extern u16 gUnk_080D927C[BG_PLTT_SIZE/2]; // TODO: type
 extern u16 gUnk_080D947C[0x9600/2]; // TODO: type
@@ -1091,10 +1081,10 @@ void BossStageScrollUpdate(void)
             }
         }
 
-        gUnk_03005440.unk0 = -((COS(gBg2Alpha) * 0xF) >> 5);
-        gUnk_03005440.unk4 = ((COS(gBg2Alpha) * 0xF) >> 5);
-        gUnk_03005440.unk2 = -((SIN(gBg2Alpha) * 0xF) >> 5);
-        gUnk_03005440.unk6 = ((SIN(gBg2Alpha) * 0xF) >> 5);
+        gUnk_03005440[0].unk0 = -((COS(gBg2Alpha) * 0xF) >> 5);
+        gUnk_03005440[0].unk4 = ((COS(gBg2Alpha) * 0xF) >> 5);
+        gUnk_03005440[0].unk2 = -((SIN(gBg2Alpha) * 0xF) >> 5);
+        gUnk_03005440[0].unk6 = ((SIN(gBg2Alpha) * 0xF) >> 5);
 
         if (((gUnk_03004C20.sceneFrameCounter % (10 - Abs((s8)gBg2Alpha / 2))) == 0) && (gUnk_03005400.unkC != 0) && (gUnk_03005220.unk31 != 0) && (((s8) gBg2Alpha < -2) || ((s8) gBg2Alpha > 2)))
         {
@@ -1118,10 +1108,10 @@ void BossStageScrollUpdate(void)
         }
 
         gBgInfo[2].vOfs = 0x58;
-        gUnk_03005440.unk0 += 0xF0;
-        gUnk_03005440.unk4 += 0xF0;
-        gUnk_03005440.unk2 += 0xDC;
-        gUnk_03005440.unk6 += 0xDC;
+        gUnk_03005440[0].unk0 += 0xF0;
+        gUnk_03005440[0].unk4 += 0xF0;
+        gUnk_03005440[0].unk2 += 0xDC;
+        gUnk_03005440[0].unk6 += 0xDC;
     }
 
     gBg2PA = MultiplyQ8(COS(gBg2Alpha), ReciprocalQ8(gBg2XMag));

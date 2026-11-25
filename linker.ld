@@ -270,7 +270,7 @@ SECTIONS {
         src/data/data_08077E28.o(.rodata);
         src/data/data_08078FC8.o(.rodata);
         src/data/data_0807D808.o(.rodata);
-        asm/data/data_080D2E88.o(.rodata);
+        src/data/data_080D2E88.o(.rodata);
         src/data/trig.o(.rodata);
         asm/data/data_080D9094.o(.rodata);
         src/code_0803C808.o(.rodata);

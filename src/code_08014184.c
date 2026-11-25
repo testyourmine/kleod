@@ -12,6 +12,7 @@
 #include "data/data_0805C4E8.h"
 #include "data/data_08077E28.h"
 #include "data/data_0807D808.h"
+#include "data/data_080D2E88.h"
 #include "data/trig.h"
 #include "constants/songs.h"
 #include "structs/variables.h"
@@ -40,8 +41,6 @@ struct Unk_080E2B64 {
     u8 pad2A[0x2C - 0x2A];
 };
 extern struct Unk_080E2B64 gUnk_080E2B64[6][8][0x64];
-
-extern u8 gUnk_080D8E10[3];
 
 struct Unk_080D90D0 {
     u8 unk0;
